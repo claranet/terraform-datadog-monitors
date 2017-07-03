@@ -1,0 +1,7 @@
+#Datadog users
+resource "datadog_user" "adrien_brefort" {
+  email  = "adrien.brefort@fr.clara.net"
+  handle = "adrien.brefort@fr.clara.net"
+  name   = "Adrien Bréfort"
+}
+

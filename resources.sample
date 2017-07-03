@@ -1,0 +1,4 @@
+resource "google_service_account" "monitoring_datadog" {
+  account_id   = "monitoring-datadog"
+  display_name = "monitoring datadog"
+}
