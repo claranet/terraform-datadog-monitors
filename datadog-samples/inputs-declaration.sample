@@ -1,19 +1,26 @@
-variable "ho_escalation_group" {
+variable "critical_escalation_group" {
   default = "@pagerduty_HODummy"
 }
-
-variable "hno_escalation_group" {
+variable "warning_escalation_group" {
   default = "@pagerduty_HNODummy"
 }
 
-variable "linux_basics" {
+variable "datadog_app_key" {}
+variable "datadog_api_key" {}
+
+variable "dd_linux_basics" {
   default = "enabled"
 }
 
-variable "datadog_api_key" {
-  default = "4878503d31a00ad7af4486581d0f98e8"
-}
+variable "dd_custom_cpu" {
+  type = "map"
+  default = {
+    status = "enabled"
+    name   = "CPU High > 95% during 1 hour"
 
-variable "datadog_app_key" {
-  default = "e1a10feedbb095e7d28ef966c4a2c00d50f53272"
+    period = "last_1h"
+
+    critical_threshold = 95
+    warning_threshold  = 90
+  }
 }
