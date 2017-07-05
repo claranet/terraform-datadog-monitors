@@ -110,7 +110,7 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_5" {
 
 resource "datadog_monitor" "datadog_free_disk_space_inodes_10" {
   name    = "Free disk inodes < 10%"
-  message = "{{#is_alert}}\n${var.hno_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.hno_escalation_group} \n{{/is_recovery}}"
+  message = "{{#is_alert}}\n${var.hno_escalation_group}\n{{/is_alert}}\n{{#is_recovery}}\n${var.hno_escalation_group}\n{{/is_recovery}}\n{{#is_warning}}\n${var.ho_escalation_group}\n{{/is_warning}}\n{{#is_warning_recovery}}\n${var.ho_escalation_group}\n{{/is_warning_recovery}}"
 
   query = "max(last_5m):avg:system.fs.inodes.free{dd_monitoring:enabled,dd_linux_basics:enabled,!dd_custom_cpu:enabled} by {host,device} / avg:system.fs.inodes.total{dd_monitoring:enabled,dd_linux_basics:enabled,!dd_custom_cpu:enabled} by {host,device} * 100 < 10"
   type  = "query alert"
