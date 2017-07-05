@@ -1,16 +1,16 @@
 module "datadog-monitors" {
-  source = "../monitors"
+  source = "git:ssh://git@bitbucket.org/morea/terraform.datadog.monitors.git"
 
   ho_escalation_group  = "${var.ho_escalation_group}"
   hno_escalation_group = "${var.hno_escalation_group}"
 
   #default monitors templates integrations examples
   linux_basics  = "${var.linux_basics}"
-  #nginx         = "false"
-  #aws_rds_mysql = "false"
+  #nginx         = "disabled"
+  #aws_rds_mysql = "disabled"
 
   #custom monitors template integrations examples
-  #cpu_custom                        = "true"  #Will match the tag dd_cpu_high (NB: it will replace the basic cpu alert)
+  #cpu_custom                        = "enabled"  #Will match the tag dd_cpu_high (NB: it will replace the basic cpu alert)
   #cpu_custom_period                 = "60"    
   #cpu_custom_warning_threshold      = "90"
   #cpu_custom_warning_escalation_msg = ${var.ho_escalation_group}
