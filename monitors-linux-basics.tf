@@ -159,7 +159,7 @@ resource "datadog_monitor" "datadog_free_memory" {
   name   = "Free memory < 5%"
   message = "Debugging alert - no escalation"
 
-  query = "sum(last_1m):avg:system.mem.free{dd_monitoring:enabled,dd_linux_basics:enabled,!dd_custom_memory:enabled} by {host} / avg:system.mem.total{*} by {host} * 100 < 5"
+  query = "sum(last_1m):avg:system.mem.free{dd_monitoring:enabled,dd_linux_basics:enabled,!dd_custom_memory:enabled} by {host} / avg:system.mem.total{dd_monitoring:enabled,dd_linux_basics:enabled,!dd_custom_memory:enabled} by {host} * 100 < 5"
   type  = "query alert"
   count = "${var.linux_basics == "enabled" ? 1 : 0}"
 
