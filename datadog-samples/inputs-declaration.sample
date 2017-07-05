@@ -1,0 +1,19 @@
+variable "ho_escalation_group" {
+  default = "@pagerduty_HODummy"
+}
+
+variable "hno_escalation_group" {
+  default = "@pagerduty_HNODummy"
+}
+
+variable "linux_basics" {
+  default = "enabled"
+}
+
+variable "datadog_api_key" {
+  default = "4878503d31a00ad7af4486581d0f98e8"
+}
+
+variable "datadog_app_key" {
+  default = "e1a10feedbb095e7d28ef966c4a2c00d50f53272"
+}

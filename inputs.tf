@@ -1,9 +1,11 @@
-variable "warning_HO" {
-  type = "string"
+variable "dd_custom_ignores" {
+  default = ""
 }
 
-variable "alert_HNO" {
-  type = "string"
-}
+variable "ho_escalation_group" {}
 
-variable "project_id" {}
+variable "hno_escalation_group" {}
+
+variable "linux_basics" {
+  default = "disabled"
+}

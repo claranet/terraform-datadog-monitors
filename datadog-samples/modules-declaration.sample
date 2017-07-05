@@ -1,0 +1,19 @@
+module "datadog-monitors" {
+  source = "../monitors"
+
+  ho_escalation_group  = "${var.ho_escalation_group}"
+  hno_escalation_group = "${var.hno_escalation_group}"
+
+  #default monitors templates integrations examples
+  linux_basics  = "${var.linux_basics}"
+  #nginx         = "false"
+  #aws_rds_mysql = "false"
+
+  #custom monitors template integrations examples
+  #cpu_custom                        = "true"  #Will match the tag dd_cpu_high (NB: it will replace the basic cpu alert)
+  #cpu_custom_period                 = "60"    
+  #cpu_custom_warning_threshold      = "90"
+  #cpu_custom_warning_escalation_msg = ${var.ho_escalation_group}
+  #cpu_custom_alert_threshold        = "95"
+  #cpu_custom_alert_escalation_msg   = ${var.hno_escalation_group}
+}
