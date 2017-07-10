@@ -24,6 +24,7 @@ variable "dd_custom_cpu" {
 }
 
 
+
 ## RDS
 variable "dd_aws_rds" {
   default = "disabled"
@@ -48,6 +49,7 @@ variable "rds_mem_threshold" {
     critical  = 10
   }
 }
+
 
 ## ELB
 variable "dd_aws_elb" {
@@ -77,4 +79,15 @@ variable "elb_backend_latency" {
     warning   = 1000
     critical  = 5000
   }
+}
+
+##apache nginx php
+variable "dd_apache_basics" {
+  default = "disabled"
+}
+variable "dd_nginx_basics" {
+  default = "disabled"
+}
+variable "dd_php_basics" {
+  default = "disabled"
 }
