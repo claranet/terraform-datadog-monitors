@@ -11,3 +11,7 @@ variable "dd_custom_cpu" {
     status = "enabled"
   }
 }
+
+variable = "rds-mysql_basic" {
+  default = "disabled"
+}
