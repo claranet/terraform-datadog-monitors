@@ -16,6 +16,16 @@ The easiest way to contribute on this repository is to add monitors file inside 
 
 *If you override a basic monitor with a custom one, you have to use tag filters on you query. (Example dd_cpu_high, if you want to override default cpu monitors)
 
+### Main.tf : add the datadog provider ###
+
+```
+provider "datadog" {
+  api_key = "${var.datadog_api_key}"
+  app_key = "${var.datadog_app_key}"
+}
+}
+```
+
 ### Module Declaration example ###
 
 ```
