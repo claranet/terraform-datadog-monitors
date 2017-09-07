@@ -23,7 +23,7 @@ resource "datadog_monitor" "cpu_95_5min" {
   name    = "CPU High > 95% for 5 min"
   message = "{{#is_alert}}\n${var.critical_escalation_group}\n{{/is_alert}}\n{{#is_recovery}}\n${var.critical_escalation_group}\n{{/is_recovery}}"
 
-  query = "min(last_5m):avg:system.cpu.system{dd_monitoring:enabled,dd_linux_basics:enabled,!dd_custom_cpu:enabled} by {host} + avg:system.cpu.user{dd_monitoring:enabled,dd_linux_basics:enabled,!dd_custom_cpu:enabled} by {host} > 95"
+  query = "min(last_5m):avg:system.cpu.system{dd_monitoring:enabled,dd_linux_basics:enabled,!dd_custom_cpu:enabledd} by {host} + avg:system.cpu.user{dd_monitoring:enabled,dd_linux_basics:enabled,!dd_custom_cpu:enabled} by {host} > 95"
   type  = "query alert"
   count   = "${var.dd_linux_basics == "enabled" ? 1 : 0}"
 
@@ -134,25 +134,25 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_10" {
   no_data_timeframe   = 20
 }
 
-resource "datadog_monitor" "datadog_cpu_load" {
-  name    = "CPU Load > 2"
-  message = "Debugging alert - no escalation"
+# resource "datadog_monitor" "datadog_cpu_load" {
+#   name    = "CPU Load > 2"
+#   message = "Debugging alert - no escalation"
 
-  query = "min(last_5m):avg:system.load.5{dd_monitoring:enabled,dd_linux_basics:enabled,!dd_custom_cpu:enabled} by {instance-id} / avg:gcp.gce.instance.cpu.reserved_cores{*} by {instance-id} > 2"
-  type  = "query alert"
-  count = "${var.dd_linux_basics == "enabled" ? 1 : 0}"
+#   query = "min(last_5m):avg:system.load.5{dd_monitoring:enabled,dd_linux_basics:enabled,!dd_custom_cpu:enabled} by {instance-id} / avg:gcp.gce.instance.cpu.reserved_cores{*} by {instance-id} > 2"
+#   type  = "query alert"
+#   count = "${var.dd_linux_basics == "enabled" ? 1 : 0}"
 
-  notify_no_data      = false
-  renotify_interval   = 60
-  notify_audit        = false
-  timeout_h           = 0
-  include_tags        = true
-  locked              = false
-  require_full_window = true
-  new_host_delay      = 300
-  notify_no_data      = false
-  renotify_interval   = 0
-  no_data_timeframe   = 20
+#   notify_no_data      = false
+#   renotify_interval   = 60
+#   notify_audit        = false
+#   timeout_h           = 0
+#   include_tags        = true
+#   locked              = false
+#   require_full_window = true
+#   new_host_delay      = 300
+#   notify_no_data      = false
+#   renotify_interval   = 0
+#   no_data_timeframe   = 20
 }
 
 resource "datadog_monitor" "datadog_free_memory" {
