@@ -8,10 +8,24 @@ variable "dd_linux_basics" {
 variable "dd_custom_cpu" {
   type = "map"
   default = {
-    status = "enabled"
+    status = "disabled"
+  }
+}
+variable "dd_custom_memory" {
+  type = "map"
+  default = {
+    status = "disabled"
   }
 }
 
-variable "rds-mysql_basics" {
+
+variable "dd_rds_mysql_basics" {
   default = "disabled"
 }
+variable "dd_custom_rds-mysql" {
+  type = "map"
+  default = {
+    status = "disabled"
+  }
+}
+
