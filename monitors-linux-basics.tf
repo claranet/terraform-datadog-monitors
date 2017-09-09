@@ -153,7 +153,7 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_10" {
 #   notify_no_data      = false
 #   renotify_interval   = 0
 #   no_data_timeframe   = 20
-}
+#}
 
 resource "datadog_monitor" "datadog_free_memory" {
   name   = "Free memory < 5%"
