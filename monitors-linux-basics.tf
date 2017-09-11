@@ -1,6 +1,6 @@
 resource "datadog_monitor" "cpu_80_15min" {
   name    = "[${var.env}] CPU High > 80% for 15 min on {{host.name}}"
-  message = "{{#is_alert}}\n${var.critical_escalation_group}\n{{/is_alert}}\n{{#is_recovery}}\n${var.critical_escalation_group}\n{{/is_recovery}}"
+  message = "{{#is_alert}}\n${var.hno_escalation_group}\n{{/is_alert}}\n{{#is_recovery}}\n${var.hno_escalation_group}\n{{/is_recovery}}"
   count   = "${var.dd_linux_basics == "enabled" ? 1 : 0}"
 
   query = "min(last_15m):avg:system.cpu.system{dd_monitoring:enabled,dd_linux_basics:enabled,env:${var.env},!dd_custom_cpu:enabled} by {host,region,stack} + avg:system.cpu.user{dd_monitoring:enabled,dd_linux_basics:enabled,env:${var.env},!dd_custom_cpu:enabled} by {host,region,stack} > 80"
@@ -20,7 +20,7 @@ resource "datadog_monitor" "cpu_80_15min" {
 
 resource "datadog_monitor" "cpu_95_5min" {
   name    = "[${var.env}] CPU High > 95% for 5 min on {{host.name}}"
-  message = "{{#is_alert}}\n${var.critical_escalation_group}\n{{/is_alert}}\n{{#is_recovery}}\n${var.critical_escalation_group}\n{{/is_recovery}}"
+  message = "{{#is_alert}}\n${var.hno_escalation_group}\n{{/is_alert}}\n{{#is_recovery}}\n${var.hno_escalation_group}\n{{/is_recovery}}"
 
   query = "min(last_5m):avg:system.cpu.system{dd_monitoring:enabled,dd_linux_basics:enabled,env:${var.env},!dd_custom_cpu:enabled} by {host,region,stack} + avg:system.cpu.user{dd_monitoring:enabled,dd_linux_basics:enabled,!dd_custom_cpu:enabled} by {host,region,stack} > 95"
   type  = "query alert"
@@ -40,7 +40,7 @@ resource "datadog_monitor" "cpu_95_5min" {
 
 resource "datadog_monitor" "datadog_free_disk_space_5" {
   name   = "[${var.env}] Free disk space < 5%  on {{host.name}}"
-  message = "{{#is_alert}}\n${var.critical_escalation_group}\n{{/is_alert}}\n{{#is_recovery}}\n${var.critical_escalation_group}\n{{/is_recovery}}"
+  message = "{{#is_alert}}\n${var.hno_escalation_group}\n{{/is_alert}}\n{{#is_recovery}}\n${var.hno_escalation_group}\n{{/is_recovery}}"
 
   query   = "sum(last_5m):avg:system.disk.free{dd_monitoring:enabled,dd_linux_basics:enabled,env:${var.env},!dd_custom_cpu:enabled} by {host,device,region,stack} / avg:system.disk.total{dd_monitoring:enabled,dd_linux_basics:enabled,!dd_custom_cpu:enabled} by {host,device,region,stack} * 100 < 5"
   type  = "query alert"
@@ -60,7 +60,7 @@ resource "datadog_monitor" "datadog_free_disk_space_5" {
 
 resource "datadog_monitor" "datadog_free_disk_space_10" {
   name    = "[${var.env}] Free disk space < 10% on {{host.name}}"
-  message = "{{#is_alert}}\n${var.critical_escalation_group}\n{{/is_alert}}\n{{#is_recovery}}\n${var.critical_escalation_group}\n{{/is_recovery}}\n{{#is_warning}}\n${var.warning_escalation_group}\n{{/is_warning}}\n{{#is_warning_recovery}}\n${var.warning_escalation_group}\n{{/is_warning_recovery}}"
+  message = "{{#is_alert}}\n${var.hno_escalation_group}\n{{/is_alert}}\n{{#is_recovery}}\n${var.hno_escalation_group}\n{{/is_recovery}}\n{{#is_warning}}\n${var.ho_escalation_group}\n{{/is_warning}}\n{{#is_warning_recovery}}\n${var.ho_escalation_group}\n{{/is_warning_recovery}}"
 
   query = "sum(last_5m):avg:system.disk.free{dd_monitoring:enabled,dd_linux_basics:enabled,env:${var.env},!dd_custom_cpu:enabled} by {host,device,region,stack} / avg:system.disk.total{dd_monitoring:enabled,dd_linux_basics:enabled,env:${var.env},!dd_custom_cpu:enabled} by {host,device,region,stack} * 100 < 10"
   type  = "query alert"
@@ -85,7 +85,7 @@ resource "datadog_monitor" "datadog_free_disk_space_10" {
 
 resource "datadog_monitor" "datadog_free_disk_space_inodes_5" {
   name    = "[${var.env}] Free disk inodes < 5% on {{host.name}}"
-  message = "{{#is_alert}}\n${var.critical_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.critical_escalation_group} \n{{/is_recovery}}"
+  message = "{{#is_alert}}\n${var.hno_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.hno_escalation_group} \n{{/is_recovery}}"
 
   query = "sum(last_5m):avg:system.fs.inodes.free{dd_monitoring:enabled,dd_linux_basics:enabled,env:${var.env},!dd_custom_cpu:enabled} by {host,device,region,stack} / avg:system.fs.inodes.total{dd_monitoring:enabled,dd_linux_basics:enabled,env:${var.env},!dd_custom_cpu:enabled} by {host,device,region,stack} * 100 < 5"
   type  = "query alert"
@@ -105,7 +105,7 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_5" {
 
 resource "datadog_monitor" "datadog_free_disk_space_inodes_10" {
   name    = "[${var.env}] Free disk inodes < 10% on {{host.name}}"
-  message = "{{#is_alert}}\n${var.critical_escalation_group}\n{{/is_alert}}\n{{#is_recovery}}\n${var.critical_escalation_group}\n{{/is_recovery}}\n{{#is_warning}}\n${var.warning_escalation_group}\n{{/is_warning}}\n{{#is_warning_recovery}}\n${var.warning_escalation_group}\n{{/is_warning_recovery}}"
+  message = "{{#is_alert}}\n${var.hno_escalation_group}\n{{/is_alert}}\n{{#is_recovery}}\n${var.hno_escalation_group}\n{{/is_recovery}}\n{{#is_warning}}\n${var.ho_escalation_group}\n{{/is_warning}}\n{{#is_warning_recovery}}\n${var.ho_escalation_group}\n{{/is_warning_recovery}}"
 
   query = "max(last_5m):avg:system.fs.inodes.free{dd_monitoring:enabled,dd_linux_basics:enabled,env:${var.env},!dd_custom_cpu:enabled} by {host,device,region} / avg:system.fs.inodes.total{dd_monitoring:enabled,dd_linux_basics:enabled,env:${var.env},!dd_custom_cpu:enabled} by {host,device,region,stack} * 100 < 10"
   type  = "query alert"
@@ -172,7 +172,7 @@ resource "datadog_monitor" "datadog_free_memory" {
 
 # resource "datadog_monitor" "datadog_host_unreachable" {
 #   name    = "Host unreachable"
-#   message = "{{#is_alert}}\n${var.critical_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.critical_escalation_group} \n{{/is_recovery}}"
+#   message = "{{#is_alert}}\n${var.hno_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.hno_escalation_group} \n{{/is_recovery}}"
 
 #   query = "datadog.agent.up.over(dd_monitoring:enabled,dd_linux_basics:enabled,env:${var.env},!dd_custom_cpu:enabled).last(1).count_by_status()"
 #   type  = "service check"
