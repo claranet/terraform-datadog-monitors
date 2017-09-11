@@ -4,7 +4,7 @@ resource "datadog_monitor" "Nginx_process" {
 
 
   type  = "service check"
-  query = "\"process.up\".over(\"dd_monitoring:enabled"\,\"process:nginx\").exclude(\"dd_custom_nginx:enabled\").last(4).count_by_status()"
+  query = "process.up.over(dd_monitoring:enabled,process:nginx).exclude(dd_custom_nginx:enabled).last(4).count_by_status()"
   count = "${var.dd_nginx_basics == "true" ? 1 : 0 }"
 
   thresholds = {

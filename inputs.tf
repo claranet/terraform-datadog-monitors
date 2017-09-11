@@ -24,7 +24,6 @@ variable "dd_custom_cpu" {
 }
 
 
-
 ## RDS
 variable "dd_aws_rds" {
   default = "disabled"
