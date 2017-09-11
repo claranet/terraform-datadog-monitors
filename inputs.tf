@@ -1,5 +1,5 @@
-variable "critical_escalation_group" {}
-variable "warning_escalation_group" {}
+variable "hno_escalation_group" {}
+variable "ho_escalation_group" {}
 
 variable env {}
 variable region {}
