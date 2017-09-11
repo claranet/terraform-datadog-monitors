@@ -81,12 +81,27 @@ variable "elb_backend_latency" {
 }
 
 ##apache nginx php
-variable "dd_apache_basics" {
+variable "dd_nginx" {
   default = "disabled"
 }
-variable "dd_nginx_basics" {
+variable "dd_php_fpm" {
   default = "disabled"
 }
-variable "dd_php_basics" {
+
+variable "dd_apache" {
   default = "disabled"
+}
+variable "apache_nginx_fpm_config" {
+  type = "map"
+  default = {
+    notify_no_data = false
+    delay = 900
+  }
+}
+variable "php_fpm_busy_threshold" {
+  type = "map"
+  default = {
+    warning   = 0.8
+    critical  = 0.9
+  }
 }
