@@ -11,16 +11,15 @@ resource "datadog_monitor" "cpu_custom" {
     critical = "${var.dd_custom_cpu["critical_threshold"]}"
   }
 
-  notify_no_data      = false
+  notify_no_data      = "${var.linux_basics_config["notify_no_data"]}"
+  evaluation_delay    = "${var.linux_basics_config["delay"]}"
+  new_host_delay      = "${var.linux_basics_config["delay"]}"
   renotify_interval   = 60
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = true
-  new_host_delay      = 300
-  notify_no_data      = false
-  renotify_interval   = 0
   no_data_timeframe   = 20
 }
 
