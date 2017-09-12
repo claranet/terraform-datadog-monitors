@@ -49,6 +49,18 @@ variable "rds_mem_threshold" {
   }
 }
 
+## ELB
+variable "dd_aws_elb" {
+  default = "disable"
+}
+variable "elb_config" {
+  type = "map"
+  default = {
+    notify_no_data = false
+    delay = 900
+  }
+}
+
 
 
 
