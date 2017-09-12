@@ -60,8 +60,21 @@ variable "elb_config" {
     delay = 900
   }
 }
-
-
-
-
-
+variable "elb_5xx_threshold" {
+  default = {
+    warning   = 5
+    critical  = 10
+  }
+}
+variable "elb_4xx_threshold" {
+  default = {
+    warning   = 5
+    critical  = 10
+  }
+}
+variable "elb_backend_latency" {
+  default = {
+    warning   = 1000
+    critical  = 5000
+  }
+}
