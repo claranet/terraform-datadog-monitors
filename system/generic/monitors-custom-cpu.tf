@@ -22,4 +22,3 @@ resource "datadog_monitor" "cpu_custom" {
   require_full_window = true
   no_data_timeframe   = 20
 }
-
