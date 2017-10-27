@@ -1,5 +1,5 @@
 module "datadog-monitors" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.datadog.monitors.git"
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git"
 
   env     = "${var.environment}"
   region  = "${var.region}"
@@ -12,4 +12,3 @@ module "datadog-monitors" {
   dd_linux_basics  = "${var.dd_linux_basics}"
 
 }
-
