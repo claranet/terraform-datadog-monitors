@@ -112,5 +112,3 @@ resource "datadog_monitor" "ELB_backend_latency" {
   new_host_delay      = "${var.elb_config["delay"]}"
   no_data_timeframe   = 20
 }
-
-
