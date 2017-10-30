@@ -40,5 +40,5 @@ variable "runtime_errors_warning" {
 }
 
 variable "runtime_errors_critical" {
-  default = 0
+  default = 10
 }
