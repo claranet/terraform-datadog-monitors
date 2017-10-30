@@ -71,7 +71,7 @@ resource "datadog_monitor" "runtime_errors" {
   name    = "[${var.environment}] More than ${var.runtime_errors_threshold_critical} runtime errors on {{name}}"
   message = "${var.message}"
 
-  query = "avg(last_5m):avg:azure.streamanalytics_streamingjobs.errors{${var.use_filter_tags == "true" ? format("dd_monitoring:enabled,dd_azure_eventhub:enabled,env:%s", var.environment) : "*"} by {name,resource_group}} > ${var.runtime_errors_threshold_critical}"
+  query = "avg(last_5m):avg:azure.streamanalytics_streamingjobs.errors{${var.use_filter_tags == "true" ? format("dd_monitoring:enabled,dd_azure_eventhub:enabled,env:%s", var.environment) : "*"}} by {name,resource_group} > ${var.runtime_errors_threshold_critical}"
   type  = "query alert"
 
   notify_no_data      = "${var.notify_no_data}"
