@@ -6,8 +6,8 @@ variable "notify_no_data" {
   default = "false"
 }
 
-variable "filter_tags" {
-  default = "*"
+variable "use_filter_tags" {
+  default = "true"
 }
 
 variable "delay" {
