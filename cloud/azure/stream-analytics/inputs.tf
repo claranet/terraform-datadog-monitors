@@ -1,10 +1,14 @@
-variable "hno_escalation_group" {}
-variable "ho_escalation_group" {}
+variable "critical_escalation_group" {}
+variable "warning_escalation_group" {}
 
 variable "environment" {}
 
 variable "notify_no_data" {
   default = "false"
+}
+
+variable "filter_tags" {
+  default = "*"
 }
 
 variable "delay" {
