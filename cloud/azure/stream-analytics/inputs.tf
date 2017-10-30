@@ -14,34 +14,34 @@ variable "delay" {
   default = "600"
 }
 
-variable "su_utilization_warning" {
+variable "su_utilization_threshold_warning" {
   default = 60
 }
 
-variable "su_utilization_critical" {
+variable "su_utilization_threshold_critical" {
   default = 80
 }
 
-variable "failed_function_requests_warning" {
+variable "function_requests_threshold_warning" {
   default = 0
 }
 
-variable "failed_function_requests_critical" {
+variable "function_requests_threshold_critical" {
   default = 10
 }
 
-variable "conversion_errors_warning" {
+variable "conversion_errors_threshold_warning" {
   default = 0
 }
 
-variable "conversion_errors_critical" {
+variable "conversion_errors_threshold_critical" {
   default = 10
 }
 
-variable "runtime_errors_warning" {
+variable "runtime_errors_threshold_warning" {
   default = 0
 }
 
-variable "runtime_errors_critical" {
+variable "runtime_errors_threshold_critical" {
   default = 10
 }
