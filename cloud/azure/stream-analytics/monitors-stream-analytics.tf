@@ -1,6 +1,6 @@
 resource "datadog_monitor" "su_utilization" {
   name    = "[${var.environment}] SU utilization at more than ${var.su_utilization_critical}% on {{name}}"
-  message = "{{#is_alert}}\n${var.critical_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.critical_escalation_group}\n{{/is_recovery}}"
+  message = "${var.message}"
 
   query = "avg(last_5m):avg:azure.streamanalytics_streamingjobs.resource_utilization{${var.filter_tags}} by {name,resource_group} > ${var.su_utilization_critical}"
   type  = "query alert"
@@ -23,7 +23,7 @@ resource "datadog_monitor" "su_utilization" {
 
 resource "datadog_monitor" "failed_function_requests" {
   name    = "[${var.environment}] More than ${var.failed_function_requests_critical} failed function requests on {{name}}"
-  message = "{{#is_alert}}\n${var.critical_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.critical_escalation_group}\n{{/is_recovery}}"
+  message = "${var.message}"
 
   query = "avg(last_5m):avg:azure.streamanalytics_streamingjobs.aml_callout_failed_requests{*} by {name,resource_group} > ${var.failed_function_requests_critical}"
   type  = "query alert"
@@ -46,7 +46,7 @@ resource "datadog_monitor" "failed_function_requests" {
 
 resource "datadog_monitor" "conversion_errors" {
   name    = "[${var.environment}] More than ${var.conversion_errors_critical} conversion errors on {{name}}"
-  message = "{{#is_alert}}\n${var.critical_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.critical_escalation_group}\n{{/is_recovery}}"
+  message = "${var.message}"
 
   query = "avg(last_5m):avg:azure.streamanalytics_streamingjobs.conversion_errors{*} by {name,resource_group} > ${var.conversion_errors_critical}"
   type  = "query alert"
@@ -69,7 +69,7 @@ resource "datadog_monitor" "conversion_errors" {
 
 resource "datadog_monitor" "runtime_errors" {
   name    = "[${var.environment}] More than ${var.runtime_errors_critical} runtime errors on {{name}}"
-  message = "{{#is_alert}}\n${var.critical_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.critical_escalation_group}\n{{/is_recovery}}"
+  message = "${var.message}"
 
   query = "avg(last_5m):avg:azure.streamanalytics_streamingjobs.errors{*} by {name,resource_group} > ${var.runtime_errors_critical}"
   type  = "query alert"

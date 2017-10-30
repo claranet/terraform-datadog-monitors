@@ -1,5 +1,4 @@
-variable "critical_escalation_group" {}
-variable "warning_escalation_group" {}
+variable "message" {}
 
 variable "environment" {}
 
