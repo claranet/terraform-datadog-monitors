@@ -1,5 +1,5 @@
 resource "datadog_monitor" "su_utilization" {
-  name    = "[${var.environment}] SU utilization at more than ${var.su_utilization_threshold_critical}% on {{name}}"
+  name    = "[${var.environment}] Streaming Units utilization at more than ${var.su_utilization_threshold_critical}% on {{name}}"
   message = "${var.message}"
 
   query = "avg(last_5m):avg:azure.streamanalytics_streamingjobs.resource_utilization{${var.filter_tags}} by {name,resource_group} > ${var.su_utilization_threshold_critical}"
