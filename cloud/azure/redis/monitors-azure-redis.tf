@@ -7,7 +7,7 @@ resource "datadog_monitor" "status" {
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
-  renotify_interval   = 60
+  renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -21,17 +21,65 @@ resource "datadog_monitor" "evictedkeys" {
   name    = "[${var.environment}] Redis {{value}} evictedkeys on {{name}}"
   message = "${var.message}"
 
-  query = "avg(last_5m):avg:azure.cache_redis.evictedkeys{*} by {name,resource_group} > ${var.evictedkeys_threshold_critical}"
+  query = "avg(last_5m):avg:azure.cache_redis.evictedkeys{*} by {name,resource_group} > ${var.evictedkeys_limit_threshold_critical}"
   type  = "query alert"
 
   thresholds {
-    warning  = "${var.evictedkeys_threshold_warning}"
-    critical = "${var.evictedkeys_threshold_critical}"
+    warning  = "${var.evictedkeys_limit_threshold_warning}"
+    critical = "${var.evictedkeys_limit_threshold_critical}"
   }
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
-  renotify_interval   = 60
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+  new_host_delay      = "${var.delay}"
+  no_data_timeframe   = 20
+}
+
+resource "datadog_monitor" "percent_processor_time" {
+  name    = "[${var.environment}] Redis processor time {{value}}% on {{name}}"
+  message = "${var.message}"
+
+  query = "avg(last_5m):avg:azure.cache_redis.percent_processor_time{*} by {name,resource_group} > ${var.percent_processor_time_threshold_critical}"
+  type  = "query alert"
+
+  thresholds {
+    warning  = "${var.percent_processor_time_threshold_warning}"
+    critical = "${var.percent_processor_time_threshold_critical}"
+  }
+
+  notify_no_data      = false
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+  new_host_delay      = "${var.delay}"
+  no_data_timeframe   = 20
+}
+
+resource "datadog_monitor" "server_load" {
+  name    = "[${var.environment}] Redis processor server load {{value}}% on {{name}}"
+  message = "${var.message}"
+
+  query = "avg(last_5m):avg:azure.cache_redis.server_load{*} by {name,resource_group} > ${var.server_load_rate_threshold_critical}"
+  type  = "query alert"
+
+  thresholds {
+    warning  = "${var.server_load_rate_threshold_critical}"
+    critical = "${var.server_load_rate_threshold_warning}"
+  }
+
+  notify_no_data      = false
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
