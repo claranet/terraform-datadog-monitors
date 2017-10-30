@@ -131,3 +131,99 @@ resource "datadog_monitor" "too_many_c2d_methods_failed" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 }
+
+resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
+  name    = "[${var.environment}] Too many c2d twin read failure on {{name}} "
+  message = "${var.c2d_twin_read_failed_message}"
+
+  query = "avg(last_5m):( avg:azure.devices_iothubs.c2d.twin.read.failure{*} by {name,resource_group}.as_count() / ( avg:azure.devices_iothubs.c2d.twin.read.failure{*} by {name,resource_group}.as_count() + avg:azure.devices_iothubs.c2d.twin.read.success{*} by {name,resource_group}.as_count() ) ) * 100 > ${var.c2d_twin_read_failed_threshold_critical}"
+  type  = "query alert"
+
+  thresholds {
+    warning  = "${var.c2d_twin_read_failed_threshold_warning}"
+    critical = "${var.c2d_twin_read_failed_threshold_critical}"
+  }
+
+  notify_no_data      = false
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 60
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+  new_host_delay      = "${var.delay}"
+  no_data_timeframe   = 20
+}
+
+resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
+  name    = "[${var.environment}] Too many c2d twin update failure on {{name}} "
+  message = "${var.c2d_twin_update_failed_message}"
+
+  query = "avg(last_5m):( avg:azure.devices_iothubs.c2d.twin.update.failure{*} by {name,resource_group}.as_count() / ( avg:azure.devices_iothubs.c2d.twin.update.failure{*} by {name,resource_group}.as_count() + avg:azure.devices_iothubs.c2d.twin.update.success{*} by {name,resource_group}.as_count() ) ) * 100 > ${var.c2d_twin_update_failed_threshold_critical}"
+  type  = "query alert"
+
+  thresholds {
+    warning  = "${var.c2d_twin_update_failed_threshold_warning}"
+    critical = "${var.c2d_twin_update_failed_threshold_critical}"
+  }
+
+  notify_no_data      = false
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 60
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+  new_host_delay      = "${var.delay}"
+  no_data_timeframe   = 20
+}
+
+resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
+  name    = "[${var.environment}] Too many d2c twin read failure on {{name}} "
+  message = "${var.d2c_twin_read_failed_message}"
+
+  query = "avg(last_5m):( avg:azure.devices_iothubs.d2c.twin.read.failure{*} by {name,resource_group}.as_count() / ( avg:azure.devices_iothubs.d2c.twin.read.failure{*} by {name,resource_group}.as_count() + avg:azure.devices_iothubs.d2c.twin.read.success{*} by {name,resource_group}.as_count() ) ) * 100 > ${var.d2c_twin_read_failed_threshold_critical}"
+  type  = "query alert"
+
+  thresholds {
+    warning  = "${var.d2c_twin_read_failed_threshold_warning}"
+    critical = "${var.d2c_twin_read_failed_threshold_critical}"
+  }
+
+  notify_no_data      = false
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 60
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+  new_host_delay      = "${var.delay}"
+  no_data_timeframe   = 20
+}
+
+resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
+  name    = "[${var.environment}] Too many d2c twin update failure on {{name}} "
+  message = "${var.d2c_twin_update_failed_message}"
+
+  query = "avg(last_5m):( avg:azure.devices_iothubs.d2c.twin.update.failure{*} by {name,resource_group}.as_count() / ( avg:azure.devices_iothubs.d2c.twin.update.failure{*} by {name,resource_group}.as_count() + avg:azure.devices_iothubs.d2c.twin.update.success{*} by {name,resource_group}.as_count() ) ) * 100 > ${var.d2c_twin_update_failed_threshold_critical}"
+  type  = "query alert"
+
+  thresholds {
+    warning  = "${var.d2c_twin_update_failed_threshold_warning}"
+    critical = "${var.d2c_twin_update_failed_threshold_critical}"
+  }
+
+  notify_no_data      = false
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 60
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+  new_host_delay      = "${var.delay}"
+  no_data_timeframe   = 20
+}
