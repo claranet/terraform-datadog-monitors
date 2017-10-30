@@ -1,6 +1,6 @@
 resource "datadog_monitor" "status" {
   name    = "[${var.environment}] Redis {{name}} is down"
-  message = "{{#is_alert}}\n${var.critical_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.critical_escalation_group}\n{{/is_recovery}}"
+  message = "${var.message}"
 
   query = "avg(last_5m):avg:azure.cache_redis.status{*} by {name,resource_group} != 1"
   type  = "query alert"
@@ -19,7 +19,7 @@ resource "datadog_monitor" "status" {
 
 resource "datadog_monitor" "evictedkeys" {
   name    = "[${var.environment}] Redis {{value}} evictedkeys on {{name}}"
-  message = "{{#is_alert}}\n${var.critical_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.critical_escalation_group}\n{{/is_recovery}}"
+  message = "${var.message}"
 
   query = "avg(last_5m):avg:azure.cache_redis.evictedkeys{*} by {name,resource_group} > ${var.evictedkeys_threshold_critical}"
   type  = "query alert"

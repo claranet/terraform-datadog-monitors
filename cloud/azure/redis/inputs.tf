@@ -12,10 +12,7 @@ variable "stack" {
 }
 
 # Global DataDog
-variable "critical_escalation_group" {
-}
-
-variable "warning_escalation_group" {
+variable "message" {
 }
 
 variable "delay" {
