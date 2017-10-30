@@ -1,4 +1,4 @@
-resource "datadog_monitor" "SU_utilization" {
+resource "datadog_monitor" "su_utilization" {
   name    = "[${var.environment}] SU utilization at more than ${var.su_utilization_critical}% on {{name}}"
   message = "{{#is_alert}}\n${var.critical_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.critical_escalation_group}\n{{/is_recovery}}"
 
