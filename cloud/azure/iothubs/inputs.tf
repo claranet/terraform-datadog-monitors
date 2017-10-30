@@ -1,10 +1,12 @@
-variable "hno_escalation_group" {}
+variable "critical_escalation_group" {}
 
-variable "ho_escalation_group" {}
+variable "warning_escalation_group" {}
 
 variable "environment" {}
 
-variable "subscription_id" {}
+variable "stack" {}
+
+variable "client_name" {}
 
 ## IOT hubs
 variable "delay" {
