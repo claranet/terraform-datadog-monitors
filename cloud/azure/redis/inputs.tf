@@ -7,10 +7,6 @@ variable "environment" {
   type = "string"
 }
 
-variable "stack" {
-  type = "string"
-}
-
 # Global DataDog
 variable "message" {
 }
@@ -20,9 +16,21 @@ variable "delay" {
 }
 
 # Azure Redis specific
-variable "evictedkeys_threshold_warning" {
+variable "evictedkeys_limit_threshold_warning" {
   default = 0
 }
-variable "evictedkeys_threshold_critical" {
+variable "evictedkeys_limit_threshold_critical" {
   default = 100
+}
+variable "percent_processor_time_threshold_critical" {
+  default = 80
+}
+variable "percent_processor_time_threshold_warning" {
+  default = 60
+}
+variable "server_load_rate_threshold_critical" {
+  default = 90
+}
+variable "server_load_rate_threshold_warning" {
+  default = 70
 }
