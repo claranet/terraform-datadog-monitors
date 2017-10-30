@@ -14,7 +14,7 @@ resource "datadog_monitor" "eventhub_status" {
   query = <<EOF
       avg(last_5m): avg:azure.eventhub_namespaces.status{${data.template_file.filter.rendered}} by {name,resource_group,region} != 1
       EOF
-  type  = "query alert"
+  type  = "metric alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
