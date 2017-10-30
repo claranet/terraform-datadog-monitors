@@ -4,6 +4,8 @@ variable "stack" {}
 
 variable "client_name" {}
 
+variable "subscription_id" {}
+
 variable "delay" {
   default = 600
 }
