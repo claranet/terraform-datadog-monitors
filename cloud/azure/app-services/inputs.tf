@@ -1,7 +1,8 @@
 variable "environment" {}
 
 variable "use_filter_tags" {
-  default = "*"
+  description = "Filter the data with service tags if true"
+  default     = "true"
 }
 
 variable "critical_escalation_group" {

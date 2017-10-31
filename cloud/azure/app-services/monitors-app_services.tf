@@ -1,3 +1,11 @@
+data "template_file" "filter" {
+  template = "$${filter}"
+
+  vars {
+    filter = "${var.use_filter_tags == "true" ? format("dd_monitoring:enabled,dd_azure_appservices:enabled,env:%s", var.environment) : "*"}"
+  }
+}
+
 # Monitoring App Services response time
 resource "datadog_monitor" "appservices_response_time" {
   name               = "[${var.environment}] App Services response time {{value}}s is above ${var.response_time_threshold_critical}s"
@@ -5,7 +13,7 @@ resource "datadog_monitor" "appservices_response_time" {
   message            = "{{#is_alert}}${var.critical_escalation_group}{{/is_alert}}{{#is_recovery}}${var.critical_escalation_group}{{/is_recovery}}"
   escalation_message = "${var.response_time_escalation_message}"
 
-  query = "avg(last_${var.response_time_last_time_window_code}):avg:azure.app_services.average_response_time{*} >= ${var.response_time_threshold_critical}"
+  query = "avg(last_${var.response_time_last_time_window_code}):avg:azure.app_services.average_response_time{${data.template_file.filter.rendered}} >= ${var.response_time_threshold_critical}"
 
   evaluation_delay = "${var.response_time_appserv_eval_delay}"
 
@@ -31,7 +39,7 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
   message            = "{{#is_alert}}${var.critical_escalation_group}{{/is_alert}}{{#is_recovery}}${var.critical_escalation_group}{{/is_recovery}}"
   escalation_message = "${var.memory_usage_escalation_message}"
 
-  query = "avg(last_${var.memory_usage_last_time_window_code}):avg:azure.app_services.memory_working_set{*} >= ${var.memory_usage_threshold_critical}"
+  query = "avg(last_${var.memory_usage_last_time_window_code}):avg:azure.app_services.memory_working_set{${data.template_file.filter.rendered}} >= ${var.memory_usage_threshold_critical}"
 
   evaluation_delay = "${var.memory_usage_appserv_eval_delay}"
 
@@ -57,7 +65,7 @@ resource "datadog_monitor" "appservices_http_404_errors_count" {
   message            = "{{#is_alert}}${var.critical_escalation_group}{{/is_alert}}{{#is_recovery}}${var.critical_escalation_group}{{/is_recovery}}"
   escalation_message = "${var.http_404_errors_count_rate_escalation_message}"
 
-  query = "max(last_${var.http_404_errors_count_rate_last_time_window_code}):per_minute(avg:azure.app_services.http404{*}.as_rate()) > ${var.http_404_errors_count_rate_threshold_critical}"
+  query = "max(last_${var.http_404_errors_count_rate_last_time_window_code}):per_minute(avg:azure.app_services.http404{${data.template_file.filter.rendered}}.as_rate()) > ${var.http_404_errors_count_rate_threshold_critical}"
 
   evaluation_delay = "${var.http_404_errors_count_rate_appserv_eval_delay}"
 
@@ -83,7 +91,7 @@ resource "datadog_monitor" "appservices_http_2xx_status_rate" {
   message            = "{{#is_alert}}${var.critical_escalation_group}{{/is_alert}}{{#is_recovery}}${var.critical_escalation_group}{{/is_recovery}}"
   escalation_message = "${var.http_2xx_status_rate_escalation_message}"
 
-  query            = "avg(last_${var.http_2xx_status_rate_last_time_window_code}):avg:azure.app_services.http2xx{*}.as_count() / avg:azure.app_services.http2xx{*}.as_count() < ${var.http_2xx_status_rate_threshold_critical}"
+  query            = "avg(last_${var.http_2xx_status_rate_last_time_window_code}):avg:azure.app_services.http2xx{${data.template_file.filter.rendered}}.as_count() / avg:azure.app_services.http2xx{${data.template_file.filter.rendered}}.as_count() < ${var.http_2xx_status_rate_threshold_critical}"
   evaluation_delay = "${var.http_2xx_status_rate_appserv_eval_delay}"
 
   thresholds {
@@ -91,7 +99,8 @@ resource "datadog_monitor" "appservices_http_2xx_status_rate" {
     critical = "${var.http_2xx_status_rate_threshold_critical}"
   }
 
-  notify_no_data      = true                                            # Will notify when no data is received
+  # Will notify when no data is received
+  notify_no_data      = true
   renotify_interval   = "${var.http_2xx_status_rate_renotify_interval}"
   require_full_window = true
 
