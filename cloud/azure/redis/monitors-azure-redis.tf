@@ -13,7 +13,8 @@ resource "datadog_monitor" "status" {
   query = <<EOF
     avg(last_5m):avg:azure.cache_redis.status{${data.template_file.filter.rendered}} by {name,resource_group} != 1
 EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
@@ -36,7 +37,8 @@ resource "datadog_monitor" "evictedkeys" {
       avg:azure.cache_redis.evictedkeys{${data.template_file.filter.rendered}} by {name,resource_group}
      ) > ${var.evictedkeys_limit_threshold_critical}
 EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   thresholds {
     warning  = "${var.evictedkeys_limit_threshold_warning}"
@@ -64,7 +66,8 @@ resource "datadog_monitor" "percent_processor_time" {
       avg:azure.cache_redis.percent_processor_time{${data.template_file.filter.rendered}} by {name,resource_group}
     ) > ${var.percent_processor_time_threshold_critical}
 EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   thresholds {
     warning  = "${var.percent_processor_time_threshold_warning}"
@@ -92,7 +95,8 @@ resource "datadog_monitor" "server_load" {
       avg:azure.cache_redis.server_load{${data.template_file.filter.rendered}} by {name,resource_group}
     ) > ${var.server_load_rate_threshold_critical}
 EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   thresholds {
     warning  = "${var.server_load_rate_threshold_warning}"
