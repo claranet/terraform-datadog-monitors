@@ -14,8 +14,8 @@ resource "datadog_monitor" "appservices_response_time" {
     critical = "${var.response_time_threshold_critical}"
   }
 
-  notify_no_data    = true # Will notify when no data is received
-  renotify_interval = "${var.response_time_renotify_interval}"
+  notify_no_data      = true                                       # Will notify when no data is received
+  renotify_interval   = "${var.response_time_renotify_interval}"
   require_full_window = "${var.response_time_require_full_window}"
 
   timeout_h    = "${var.response_time_timeout_h}"
@@ -40,8 +40,8 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
     critical = "${var.memory_usage_threshold_critical}"
   }
 
-  notify_no_data    = true # Will notify when no data is received
-  renotify_interval = "${var.memory_usage_renotify_interval}"
+  notify_no_data      = true                                      # Will notify when no data is received
+  renotify_interval   = "${var.memory_usage_renotify_interval}"
   require_full_window = "${var.memory_usage_require_full_window}"
 
   timeout_h    = "${var.memory_usage_timeout_h}"
@@ -66,8 +66,8 @@ resource "datadog_monitor" "appservices_http_404_errors_count" {
     critical = "${var.http_404_errors_count_rate_threshold_critical}"
   }
 
-  notify_no_data    = false # Will NOT notify when no data is received
-  renotify_interval = "${var.http_404_errors_count_rate_renotify_interval}"
+  notify_no_data      = false                                                 # Will NOT notify when no data is received
+  renotify_interval   = "${var.http_404_errors_count_rate_renotify_interval}"
   require_full_window = true
 
   timeout_h    = "${var.http_404_errors_count_rate_timeout_h}"
@@ -83,7 +83,7 @@ resource "datadog_monitor" "appservices_http_2xx_status_rate" {
   message            = "{{#is_alert}}${var.critical_escalation_group}{{/is_alert}}{{#is_recovery}}${var.critical_escalation_group}{{/is_recovery}}"
   escalation_message = "${var.http_2xx_status_rate_escalation_message}"
 
-  query = "avg(last_${var.http_2xx_status_rate_last_time_window_code}):avg:azure.app_services.http2xx{*}.as_count() / avg:azure.app_services.http2xx{*}.as_count() < ${var.http_2xx_status_rate_threshold_critical}"
+  query            = "avg(last_${var.http_2xx_status_rate_last_time_window_code}):avg:azure.app_services.http2xx{*}.as_count() / avg:azure.app_services.http2xx{*}.as_count() < ${var.http_2xx_status_rate_threshold_critical}"
   evaluation_delay = "${var.http_2xx_status_rate_appserv_eval_delay}"
 
   thresholds {
@@ -91,8 +91,8 @@ resource "datadog_monitor" "appservices_http_2xx_status_rate" {
     critical = "${var.http_2xx_status_rate_threshold_critical}"
   }
 
-  notify_no_data    = true # Will notify when no data is received
-  renotify_interval = "${var.http_2xx_status_rate_renotify_interval}"
+  notify_no_data      = true                                            # Will notify when no data is received
+  renotify_interval   = "${var.http_2xx_status_rate_renotify_interval}"
   require_full_window = true
 
   timeout_h    = "${var.http_2xx_status_rate_timeout_h}"
