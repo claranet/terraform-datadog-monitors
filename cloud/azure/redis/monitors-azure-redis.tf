@@ -10,7 +10,9 @@ resource "datadog_monitor" "status" {
   name    = "[${var.environment}] Redis {{name}} is down"
   message = "${var.message}"
 
-  query = "avg(last_5m):avg:azure.cache_redis.status{${data.template_file.filter.rendered}} by {name,resource_group} != 1"
+  query = <<EOF
+    avg(last_5m):avg:azure.cache_redis.status{${data.template_file.filter.rendered}} by {name,resource_group} != 1
+EOF
   type  = "query alert"
 
   notify_no_data      = false
@@ -29,7 +31,11 @@ resource "datadog_monitor" "evictedkeys" {
   name    = "[${var.environment}] Redis {{value}} evictedkeys on {{name}}"
   message = "${var.message}"
 
-  query = "avg(last_5m):avg:azure.cache_redis.evictedkeys{${data.template_file.filter.rendered}} by {name,resource_group} > ${var.evictedkeys_limit_threshold_critical}"
+  query = <<EOF
+    avg(last_5m): (
+      avg:azure.cache_redis.evictedkeys{${data.template_file.filter.rendered}} by {name,resource_group}
+     ) > ${var.evictedkeys_limit_threshold_critical}
+EOF
   type  = "query alert"
 
   thresholds {
@@ -53,7 +59,11 @@ resource "datadog_monitor" "percent_processor_time" {
   name    = "[${var.environment}] Redis processor time {{value}}% on {{name}}"
   message = "${var.message}"
 
-  query = "avg(last_5m):avg:azure.cache_redis.percent_processor_time{${data.template_file.filter.rendered}} by {name,resource_group} > ${var.percent_processor_time_threshold_critical}"
+  query = <<EOF
+    avg(last_5m): (
+      avg:azure.cache_redis.percent_processor_time{${data.template_file.filter.rendered}} by {name,resource_group}
+    ) > ${var.percent_processor_time_threshold_critical}
+EOF
   type  = "query alert"
 
   thresholds {
@@ -77,12 +87,16 @@ resource "datadog_monitor" "server_load" {
   name    = "[${var.environment}] Redis processor server load {{value}}% on {{name}}"
   message = "${var.message}"
 
-  query = "avg(last_5m):avg:azure.cache_redis.server_load{${data.template_file.filter.rendered}} by {name,resource_group} > ${var.server_load_rate_threshold_critical}"
+  query = <<EOF
+    avg(last_5m): (
+      avg:azure.cache_redis.server_load{${data.template_file.filter.rendered}} by {name,resource_group}
+    ) > ${var.server_load_rate_threshold_critical}
+EOF
   type  = "query alert"
 
   thresholds {
-    warning  = "${var.server_load_rate_threshold_critical}"
-    critical = "${var.server_load_rate_threshold_warning}"
+    warning  = "${var.server_load_rate_threshold_warning}"
+    critical = "${var.server_load_rate_threshold_critical}"
   }
 
   notify_no_data      = false
