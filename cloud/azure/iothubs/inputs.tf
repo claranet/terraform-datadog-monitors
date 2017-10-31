@@ -8,6 +8,11 @@ variable "client_name" {
   type        = "string"
 }
 
+variable "use_filter_tags" {
+  description = "Filter the data with service tags if true"
+  default     = "true"
+}
+
 variable "subscription_id" {
   description = "Subscription ID used to tag monitors"
   type        = "string"
