@@ -2,7 +2,7 @@ data "template_file" "filter" {
   template = "$${filter}"
 
   vars {
-    filter = "${var.use_filter_tags == "true" ? format("dd_monitoring:enabled,dd_azure_eventhub:enabled,env:%s", var.environment) : "*"}"
+    filter = "${var.use_filter_tags == "true" ? format("dd_monitoring:enabled,dd_azure_redis:enabled,env:%s", var.environment) : "*"}"
   }
 }
 

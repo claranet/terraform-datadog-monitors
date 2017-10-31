@@ -44,6 +44,6 @@ Inputs
 Related documentation
 ---------------------
 
-DataDog documentation: https://docs.datadoghq.com/integrations/azure_redis_cache/
+DataDog documentation: [https://docs.datadoghq.com/integrations/azure_redis_cache/](https://docs.datadoghq.com/integrations/azure_redis_cache/)
 
-Azure Redis metrics documentation: https://docs.microsoft.com/en-us/azure/redis-cache/cache-how-to-monitor
+Azure Redis metrics documentation: [https://docs.microsoft.com/en-us/azure/redis-cache/cache-how-to-monitor](https://docs.microsoft.com/en-us/azure/redis-cache/cache-how-to-monitor)
