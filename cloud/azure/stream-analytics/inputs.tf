@@ -1,19 +1,29 @@
-variable "message" {}
+# Global Terraform
+variable "environment" {
+  description = "Architecture environment"
+  type        = "string"
+}
 
-variable "environment" {}
+variable "message" {
+  description = "Message sent when a monitor is triggered"
+}
+
+# Global DataDog
+variable "use_filter_tags" {
+  description = "Filter the data with service tags if true"
+  default     = "true"
+}
 
 variable "notify_no_data" {
   default = "false"
 }
 
-variable "use_filter_tags" {
-  default = "true"
-}
-
 variable "delay" {
-  default = "600"
+  description = "Delay in seconds for the metric evaluation"
+  default     = 600
 }
 
+# Monitor specific
 variable "su_utilization_threshold_warning" {
   default = 60
 }
