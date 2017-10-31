@@ -94,3 +94,45 @@ variable "d2c_twin_update_failed_threshold_critical" {
 }
 
 variable "d2c_twin_update_failed_message" {}
+
+variable "d2c_telemetry_egress_dropped_threshold_warning" {
+  default = 500
+}
+
+variable "d2c_telemetry_egress_dropped_threshold_critical" {
+  default = 1000
+}
+
+variable "d2c_telemetry_egress_dropped_message" {}
+
+variable "d2c_telemetry_egress_orphaned_threshold_warning" {
+  default = 500
+}
+
+variable "d2c_telemetry_egress_orphaned_threshold_critical" {
+  default = 1000
+}
+
+variable "d2c_telemetry_egress_orphaned_message" {}
+
+variable "d2c_telemetry_egress_invalid_threshold_warning" {
+  default = 500
+}
+
+variable "d2c_telemetry_egress_invalid_threshold_critical" {
+  default = 1000
+}
+
+variable "d2c_telemetry_egress_invalid_message" {}
+
+variable "d2c_telemetry_egress_fallback_threshold_warning" {
+  default = 500
+}
+
+variable "d2c_telemetry_egress_fallback_threshold_critical" {
+  default = 1000
+}
+
+variable "d2c_telemetry_egress_fallback_message" {}
+
+variable "d2c_telemetry_ingress_nosent_message" {}
