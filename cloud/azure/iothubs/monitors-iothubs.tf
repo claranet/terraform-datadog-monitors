@@ -1,3 +1,11 @@
+data "template_file" "filter" {
+  template = "$${filter}"
+
+  vars {
+    filter = "${var.use_filter_tags == "true" ? format("dd_monitoring:enabled,dd_azure_appservices:enabled,subscription_id:%s,env:%s", var.subscription_id,var.environment) : var.subscription_id}"
+  }
+}
+
 resource "datadog_monitor" "too_many_jobs_failed" {
   name    = "[${var.environment}] IOT Hub Too many jobs failed on {{name}}"
   message = "${var.message}"
