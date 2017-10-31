@@ -15,6 +15,7 @@ variable "message" {
 ###################################
 ###   RESPONSE TIME VARIABLES   ###
 ###################################
+
 variable "response_time_appserv_eval_delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 600
@@ -73,6 +74,7 @@ variable "response_time_escalation_message" {
 ###################################
 ###   MEMORY USAGE VARIABLES   ###
 ###################################
+
 variable "memory_usage_appserv_eval_delay" {
   default = 600
 }
@@ -130,6 +132,7 @@ variable "memory_usage_escalation_message" {
 #################################
 ###   HTTP 404 status pages   ###
 #################################
+
 variable "http_404_errors_count_rate_limit" {
   default = 30
 }
@@ -191,6 +194,7 @@ variable "http_404_errors_count_rate_escalation_message" {
 #################################
 ###   HTTP 202 status pages   ###
 #################################
+
 variable "http_2xx_status_rate_limit" {
   default = 30
 }
