@@ -2,7 +2,7 @@ resource "datadog_monitor" "too_many_jobs_failed" {
   name    = "[${var.environment}] IOT Hub Too many jobs failed on {{name}}"
   message = "${var.jobs_failed_message}"
 
-  query = "sum(last_5m):( avg:azure.devices_iothubs.jobs.failed{subscription_id:${var.subscription_id}} by {name,resource_group}.as_count() / ( avg:azure.devices_iothubs.jobs.failed{subscription_id:${var.subscription_id}} by {name,resource_group}.as_count() + avg:azure.devices_iothubs.jobs.completed{subscription_id:${var.subscription_id}} by {name,resource_group}.as_count() ) ) * 100 > ${var.jobs_failed_threshold_critical}"
+  query = "avg(last_5m):( avg:azure.devices_iothubs.jobs.failed{subscription_id:${var.subscription_id}} by {name,resource_group}.as_count() / ( avg:azure.devices_iothubs.jobs.failed{subscription_id:${var.subscription_id}} by {name,resource_group}.as_count() + avg:azure.devices_iothubs.jobs.completed{subscription_id:${var.subscription_id}} by {name,resource_group}.as_count() ) ) * 100 > ${var.jobs_failed_threshold_critical}"
   type  = "query alert"
 
   thresholds {
@@ -26,7 +26,7 @@ resource "datadog_monitor" "too_many_list_jobs_failed" {
   name    = "[${var.environment}] IOT Hub Too many list_jobs failure on {{name}}"
   message = "${var.listjobs_failed_message}"
 
-  query = "sum(last_5m):( avg:azure.devices_iothubs.jobs.list_jobs.failure{subscription_id:${var.subscription_id}} by {resource_group,name}.as_count() / ( avg:azure.devices_iothubs.jobs.list_jobs.success{subscription_id:${var.subscription_id}} by {resource_group,name}.as_count() + avg:azure.devices_iothubs.jobs.list_jobs.failure{subscription_id:${var.subscription_id}} by {resource_group,name}.as_count() ) ) * 100 > ${var.listjobs_failed_threshold_critical}"
+  query = "avg(last_5m):( avg:azure.devices_iothubs.jobs.list_jobs.failure{subscription_id:${var.subscription_id}} by {resource_group,name}.as_count() / ( avg:azure.devices_iothubs.jobs.list_jobs.success{subscription_id:${var.subscription_id}} by {resource_group,name}.as_count() + avg:azure.devices_iothubs.jobs.list_jobs.failure{subscription_id:${var.subscription_id}} by {resource_group,name}.as_count() ) ) * 100 > ${var.listjobs_failed_threshold_critical}"
   type  = "query alert"
 
   thresholds {
@@ -50,7 +50,7 @@ resource "datadog_monitor" "too_many_query_jobs_failed" {
   name    = "[${var.environment}] IOT Hub Too many query_jobs failed on {{name}}"
   message = "${var.queryjobs_failed_message}"
 
-  query = "sum(last_5m):( avg:azure.devices_iothubs.jobs.query_jobs.failure{subscription_id:${var.subscription_id}} by {resource_group,name}.as_count() / ( avg:azure.devices_iothubs.jobs.query_jobs.success{subscription_id:${var.subscription_id}} by {resource_group,name}.as_count() + avg:azure.devices_iothubs.jobs.query_jobs.failure{subscription_id:${var.subscription_id}} by {resource_group,name}.as_count() ) ) * 100 > ${var.queryjobs_failed_threshold_critical}"
+  query = "avg(last_5m):( avg:azure.devices_iothubs.jobs.query_jobs.failure{subscription_id:${var.subscription_id}} by {resource_group,name}.as_count() / ( avg:azure.devices_iothubs.jobs.query_jobs.success{subscription_id:${var.subscription_id}} by {resource_group,name}.as_count() + avg:azure.devices_iothubs.jobs.query_jobs.failure{subscription_id:${var.subscription_id}} by {resource_group,name}.as_count() ) ) * 100 > ${var.queryjobs_failed_threshold_critical}"
   type  = "query alert"
 
   thresholds {
@@ -215,6 +215,121 @@ resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
     warning  = "${var.d2c_twin_update_failed_threshold_warning}"
     critical = "${var.d2c_twin_update_failed_threshold_critical}"
   }
+
+  notify_no_data      = false
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+  new_host_delay      = "${var.delay}"
+  no_data_timeframe   = 20
+}
+
+resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
+  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress dropped on {{name}}"
+  message = "${var.d2c_telemetry_egress_dropped_message}"
+
+  query = "sum(last_5m):avg:azure.devices_iothubs.d2c.telemetry.egress.dropped{subscription_id:${var.subscription_id}} by {name,resource_group} > ${var.d2c_telemetry_egress_dropped_threshold_critical}"
+  type  = "query alert"
+
+  thresholds {
+    warning  = "${var.d2c_telemetry_egress_dropped_threshold_warning}"
+    critical = "${var.d2c_telemetry_egress_dropped_threshold_critical}"
+  }
+
+  notify_no_data      = false
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+  new_host_delay      = "${var.delay}"
+  no_data_timeframe   = 20
+}
+
+resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
+  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress orphaned on {{name}}"
+  message = "${var.d2c_telemetry_egress_orphaned_message}"
+
+  query = "sum(last_5m):avg:azure.devices_iothubs.d2c.telemetry.egress.orphaned{subscription_id:${var.subscription_id}} by {name,resource_group} > ${var.d2c_telemetry_egress_orphaned_threshold_critical}"
+  type  = "query alert"
+
+  thresholds {
+    warning  = "${var.d2c_telemetry_egress_orphaned_threshold_warning}"
+    critical = "${var.d2c_telemetry_egress_orphaned_threshold_critical}"
+  }
+
+  notify_no_data      = false
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+  new_host_delay      = "${var.delay}"
+  no_data_timeframe   = 20
+}
+
+resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
+  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress invalid on {{name}}"
+  message = "${var.d2c_telemetry_egress_invalid_message}"
+
+  query = "sum(last_5m):avg:azure.devices_iothubs.d2c.telemetry.egress.invalid{subscription_id:${var.subscription_id}} by {name,resource_group} > ${var.d2c_telemetry_egress_invalid_threshold_critical}"
+  type  = "query alert"
+
+  thresholds {
+    warning  = "${var.d2c_telemetry_egress_invalid_threshold_warning}"
+    critical = "${var.d2c_telemetry_egress_invalid_threshold_critical}"
+  }
+
+  notify_no_data      = false
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+  new_host_delay      = "${var.delay}"
+  no_data_timeframe   = 20
+}
+
+resource "datadog_monitor" "too_many_d2c_telemetry_egress_fallback" {
+  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress fallback on {{name}}"
+  message = "${var.d2c_telemetry_egress_fallback_message}"
+
+  query = "sum(last_5m):avg:azure.devices_iothubs.d2c.telemetry.egress.fallback{subscription_id:${var.subscription_id}} by {name,resource_group} > ${var.d2c_telemetry_egress_fallback_threshold_critical}"
+  type  = "query alert"
+
+  thresholds {
+    warning  = "${var.d2c_telemetry_egress_fallback_threshold_warning}"
+    critical = "${var.d2c_telemetry_egress_fallback_threshold_critical}"
+  }
+
+  notify_no_data      = false
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+  new_host_delay      = "${var.delay}"
+  no_data_timeframe   = 20
+}
+
+resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
+  name    = "[${var.environment}] IOT Hub Too many d2c telemetry ingress no sent on {{name}}"
+  message = "${var.d2c_telemetry_ingress_nosent_message}"
+
+  query = "sum(last_5m):avg:azure.devices_iothubs.d2c.telemetry.ingress.all_protocol{subscription_id:${var.subscription_id}} by {name,resource_group}.as_count() - avg:azure.devices_iothubs.d2c.telemetry.ingress.success{subscription_id:${var.subscription_id}} by {name,resource_group}.as_count() > 0"
+  type  = "query alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
