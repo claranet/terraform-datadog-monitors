@@ -1,19 +1,23 @@
-variable "environment" {}
+variable "environment" {
+  description = "Architecture environment"
+  type        = "string"
+}
 
 variable "use_filter_tags" {
   description = "Filter the data with service tags if true"
   default     = "true"
 }
 
-variable "critical_escalation_group" {
-  default = "HO_Dummy"
+variable "message" {
+  description = "Message sent when a monitor is triggered"
 }
 
 ###################################
 ###   RESPONSE TIME VARIABLES   ###
 ###################################
 variable "response_time_appserv_eval_delay" {
-  default = 600
+  description = "Delay in seconds for the metric evaluation"
+  default     = 600
 }
 
 variable "response_time_threshold_critical" {
