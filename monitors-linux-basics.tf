@@ -10,6 +10,8 @@ resource "datadog_monitor" "cpu_80_15min" {
     critical = "${var.cpu_15_critical}"
   }
 
+  tags = ["*"]
+
   notify_no_data      = "${var.linux_basics_config["notify_no_data"]}"
   evaluation_delay    = "${var.linux_basics_config["delay"]}"
   new_host_delay      = "${var.linux_basics_config["delay"]}"
@@ -34,6 +36,8 @@ resource "datadog_monitor" "cpu_95_5min" {
     critical = "${var.cpu_5_critical}"
   }
 
+  tags = ["*"]
+
   notify_no_data      = "${var.linux_basics_config["notify_no_data"]}"
   evaluation_delay    = "${var.linux_basics_config["delay"]}"
   new_host_delay      = "${var.linux_basics_config["delay"]}"
@@ -57,6 +61,8 @@ resource "datadog_monitor" "datadog_free_disk_space_5" {
   thresholds {
     critical = 5
   }
+
+  tags = ["*"]
 
   notify_no_data      = "${var.linux_basics_config["notify_no_data"]}"
   evaluation_delay    = "${var.linux_basics_config["delay"]}"
@@ -83,6 +89,8 @@ resource "datadog_monitor" "datadog_free_disk_space_10" {
     critical = 10
   }
 
+  tags = ["*"]
+
   notify_no_data      = "${var.linux_basics_config["notify_no_data"]}"
   evaluation_delay    = "${var.linux_basics_config["delay"]}"
   new_host_delay      = "${var.linux_basics_config["delay"]}"
@@ -106,6 +114,8 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_5" {
   thresholds {
     critical = 5
   }
+
+  tags = ["*"]
 
   notify_no_data      = "${var.linux_basics_config["notify_no_data"]}"
   evaluation_delay    = "${var.linux_basics_config["delay"]}"
@@ -131,6 +141,8 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_10" {
     warning  = 20
     critical = 10
   }
+
+  tags = ["*"]
 
   notify_no_data      = "${var.linux_basics_config["notify_no_data"]}"
   evaluation_delay    = "${var.linux_basics_config["delay"]}"
@@ -177,6 +189,8 @@ resource "datadog_monitor" "datadog_free_memory" {
   thresholds {
     critical = 5
   }
+
+  tags = ["*"]
 
   notify_no_data      = "${var.linux_basics_config["notify_no_data"]}"
   evaluation_delay    = "${var.linux_basics_config["delay"]}"

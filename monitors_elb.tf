@@ -16,6 +16,8 @@ resource "datadog_monitor" "ELB_no_healthy_instances" {
   require_full_window = true
   new_host_delay      = "${var.elb_config["delay"]}"
   no_data_timeframe   = 20
+
+  tags = ["*"]
 }
 
 resource "datadog_monitor" "ELB_unhealthy_instances" {
@@ -36,6 +38,8 @@ resource "datadog_monitor" "ELB_unhealthy_instances" {
   require_full_window = true
   new_host_delay      = "${var.elb_config["delay"]}"
   no_data_timeframe   = 20
+
+  tags = ["*"]
 }
 
 resource "datadog_monitor" "ELB_too_much_5xx_backend" {
@@ -61,6 +65,8 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
   require_full_window = true
   new_host_delay      = "${var.elb_config["delay"]}"
   no_data_timeframe   = 20
+
+  tags = ["*"]
 }
 
 resource "datadog_monitor" "ELB_too_much_4xx_backend" {
@@ -86,6 +92,8 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
   require_full_window = true
   new_host_delay      = "${var.elb_config["delay"]}"
   no_data_timeframe   = 20
+
+  tags = ["*"]
 }
 
 resource "datadog_monitor" "ELB_backend_latency" {
@@ -111,6 +119,8 @@ resource "datadog_monitor" "ELB_backend_latency" {
   require_full_window = true
   new_host_delay      = "${var.elb_config["delay"]}"
   no_data_timeframe   = 20
+
+  tags = ["*"]
 }
 
 

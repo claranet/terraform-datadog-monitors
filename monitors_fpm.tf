@@ -23,6 +23,8 @@ resource "datadog_monitor" "php-fpm_process_idle" {
   require_full_window = true
   renotify_interval   = 0
   no_data_timeframe   = 20
+
+  tags = ["*"]
 }
 
 
@@ -51,4 +53,6 @@ resource "datadog_monitor" "FPM_process" {
   locked              = false
   require_full_window = true
   no_data_timeframe   = 20
+
+  tags = ["*"]
 }

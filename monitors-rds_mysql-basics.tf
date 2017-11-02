@@ -16,6 +16,8 @@ resource "datadog_monitor" "rds-mysql_cpu_80_15min" {
     critical = "${var.rds_cpu_threshold["critical"]}"
   }
 
+  tags = ["*"]
+
   notify_no_data      = "${var.rds_config["notify_no_data"]}"
   evaluation_delay    = "${var.rds_config["delay"]}"
   renotify_interval   = 60
@@ -41,6 +43,8 @@ resource "datadog_monitor" "mysql_rds_free_space_low" {
     warning  = "${var.rds_mem_threshold["warning"]}"
     critical = "${var.rds_mem_threshold["critical"]}"
   }
+
+  tags = ["*"]
 
   notify_no_data      = "${var.rds_config["notify_no_data"]}"
   evaluation_delay    = "${var.rds_config["delay"]}"
