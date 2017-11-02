@@ -4,7 +4,7 @@ resource "datadog_monitor" "php-fpm_process_idle" {
 
 
   type  = "query alert"
-  query = "avg(last_10m):avg:php_fpm.processes.active{dd_monitoring:enabled,dd_php_fpm:enabled,env:${var.env}} by {host,region,stack} / ( avg:php_fpm.processes.idle{dd_monitoring:enabled,dd_php_fpm:enabled,env:${var.env}} by {host,region} + avg:php_fpm.processes.active{dd_monitoring:enabled,dd_php_fpm:enabled,env:${var.env}} by {host,region,stack} ) > 0.9"
+  query = "avg(last_10m):avg:php_fpm.processes.active{dd_monitoring:enabled,dd_php_fpm:enabled,env:${var.env}} by {host,region} / ( avg:php_fpm.processes.idle{dd_monitoring:enabled,dd_php_fpm:enabled,env:${var.env}} by {host,region} + avg:php_fpm.processes.active{dd_monitoring:enabled,dd_php_fpm:enabled,env:${var.env}} by {host,region} ) > 0.9"
   count = "${var.dd_php_fpm == "enabled" ? 1 : 0 }"
 
   thresholds {
