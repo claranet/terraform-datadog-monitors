@@ -3,6 +3,11 @@ variable "environment" {
   type        = "string"
 }
 
+variable "client_name" {
+  description = "Client Name"
+  type        = "string"
+}
+
 variable "use_filter_tags" {
   description = "Filter the data with service tags if true"
   default     = "true"
@@ -12,14 +17,14 @@ variable "message" {
   description = "Message sent when a monitor is triggered"
 }
 
-###################################
-###   RESPONSE TIME VARIABLES   ###
-###################################
-
-variable "response_time_appserv_eval_delay" {
+variable "delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 600
 }
+
+###################################
+###   RESPONSE TIME VARIABLES   ###
+###################################
 
 variable "response_time_threshold_critical" {
   default     = 0.8
@@ -51,33 +56,14 @@ variable "response_time_timeout_h" {
   description = "The number of hours of the monitor not reporting data before it will automatically resolve from a triggered state. Defaults to false."
 }
 
-variable "response_time_include_tags" {
-  default     = false
-  description = "A boolean indicating whether notifications from this monitor will automatically insert its triggering tags into the title. Defaults to true."
-}
-
 # variable "response_time_notify_no_data" {
 #   default = true
 #   description = " boolean indicating whether this monitor will notify when data stops reporting. Defaults to true."
 # }
 
-variable "response_time_renotify_interval" {
-  default     = 0
-  description = "The number of minutes after the last notification before a monitor will re-notify on the current status. It will only re-notify if it's not resolved."
-}
-
-variable "response_time_escalation_message" {
-  default     = "Escalation message @pagerduty"
-  description = "A message to include with a re-notification. Supports the '@username' notification allowed elsewhere."
-}
-
 ###################################
 ###   MEMORY USAGE VARIABLES   ###
 ###################################
-
-variable "memory_usage_appserv_eval_delay" {
-  default = 600
-}
 
 variable "memory_usage_threshold_critical" {
   default     = 52430000
@@ -109,25 +95,10 @@ variable "memory_usage_timeout_h" {
   description = "The number of hours of the monitor not reporting data before it will automatically resolve from a triggered state. Defaults to false."
 }
 
-variable "memory_usage_include_tags" {
-  default     = false
-  description = "A boolean indicating whether notifications from this monitor will automatically insert its triggering tags into the title. Defaults to true."
-}
-
 # variable "memory_usage_notify_no_data" {
 #   default = true
 #   description = " boolean indicating whether this monitor will notify when data stops reporting. Defaults to true."
 # }
-
-variable "memory_usage_renotify_interval" {
-  default     = 0
-  description = "The number of minutes after the last notification before a monitor will re-notify on the current status. It will only re-notify if it's not resolved."
-}
-
-variable "memory_usage_escalation_message" {
-  default     = "Escalation message @pagerduty"
-  description = "A message to include with a re-notification. Supports the '@username' notification allowed elsewhere."
-}
 
 #################################
 ###   HTTP 404 status pages   ###
@@ -135,10 +106,6 @@ variable "memory_usage_escalation_message" {
 
 variable "http_404_errors_count_rate_limit" {
   default = 30
-}
-
-variable "http_404_errors_count_rate_appserv_eval_delay" {
-  default = 600
 }
 
 variable "http_404_errors_count_rate_threshold_critical" {
@@ -171,25 +138,10 @@ variable "http_404_errors_count_rate_timeout_h" {
   description = "The number of hours of the monitor not reporting data before it will automatically resolve from a triggered state. Defaults to false."
 }
 
-variable "http_404_errors_count_rate_include_tags" {
-  default     = false
-  description = "A boolean indicating whether notifications from this monitor will automatically insert its triggering tags into the title. Defaults to true."
-}
-
 # variable "http_404_errors_count_rate_notify_no_data" {
 #   default = true
 #   description = " boolean indicating whether this monitor will notify when data stops reporting. Defaults to true."
 # }
-
-variable "http_404_errors_count_rate_renotify_interval" {
-  default     = 0
-  description = "The number of minutes after the last notification before a monitor will re-notify on the current status. It will only re-notify if it's not resolved."
-}
-
-variable "http_404_errors_count_rate_escalation_message" {
-  default     = "Escalation message @pagerduty"
-  description = "A message to include with a re-notification. Supports the '@username' notification allowed elsewhere."
-}
 
 #################################
 ###   HTTP 202 status pages   ###
@@ -197,10 +149,6 @@ variable "http_404_errors_count_rate_escalation_message" {
 
 variable "http_2xx_status_rate_limit" {
   default = 30
-}
-
-variable "http_2xx_status_rate_appserv_eval_delay" {
-  default = 600
 }
 
 variable "http_2xx_status_rate_threshold_critical" {
@@ -233,22 +181,8 @@ variable "http_2xx_status_rate_timeout_h" {
   description = "The number of hours of the monitor not reporting data before it will automatically resolve from a triggered state. Defaults to false."
 }
 
-variable "http_2xx_status_rate_include_tags" {
-  default     = false
-  description = "A boolean indicating whether notifications from this monitor will automatically insert its triggering tags into the title. Defaults to true."
-}
-
 # variable "http_2xx_status_rate_notify_no_data" {
 #   default = true
 #   description = " boolean indicating whether this monitor will notify when data stops reporting. Defaults to true."
 # }
 
-variable "http_2xx_status_rate_renotify_interval" {
-  default     = 0
-  description = "The number of minutes after the last notification before a monitor will re-notify on the current status. It will only re-notify if it's not resolved."
-}
-
-variable "http_2xx_status_rate_escalation_message" {
-  default     = "Escalation message @pagerduty"
-  description = "A message to include with a re-notification. Supports the '@username' notification allowed elsewhere."
-}
