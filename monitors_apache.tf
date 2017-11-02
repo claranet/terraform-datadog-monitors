@@ -23,4 +23,6 @@ resource "datadog_monitor" "Apache_process" {
   locked              = false
   require_full_window = true
   no_data_timeframe   = 20
+
+  tags = ["*"]
 }
