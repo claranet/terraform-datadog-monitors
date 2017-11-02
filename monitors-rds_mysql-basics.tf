@@ -8,7 +8,7 @@ resource "datadog_monitor" "rds-mysql_cpu_80_15min" {
   count = "${var.dd_aws_rds == "enabled" ? 1 : 0 }"
 
 
-  query = "avg(last_15m):avg:aws.rds.cpuutilization{dd_monitoring:enabled,dd_aws_rds:enabled,env:${var.env}} by {region,name,stack} > 90"
+  query = "avg(last_15m):avg:aws.rds.cpuutilization{dd_monitoring:enabled,dd_aws_rds:enabled,env:${var.env}} by {region,name} > 90"
   type  = "query alert"
 
   thresholds {
@@ -35,7 +35,7 @@ resource "datadog_monitor" "mysql_rds_free_space_low" {
   message = "{{#is_alert}}\n${var.hno_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.hno_escalation_group}\n{{/is_recovery}}\n{{#is_warning}}\n${var.ho_escalation_group} \n{{/is_warning}} \n{{#is_warning_recovery}}\n${var.ho_escalation_group}\n{{/is_warning_recovery}}"
   
   type  = "query alert"
-  query = "avg(last_15m):avg:aws.rds.free_storage_space{dd_monitoring:enabled,dd_aws_rds:enabled,env:${var.env}} by {region,name,stack} / avg:aws.rds.total_storage_space{dd_monitoring:enabled,dd_aws_rds:enabled,env:${var.env}} by {region,name,stack} * 100 < 10"
+  query = "avg(last_15m):avg:aws.rds.free_storage_space{dd_monitoring:enabled,dd_aws_rds:enabled,env:${var.env}} by {region,name} / avg:aws.rds.total_storage_space{dd_monitoring:enabled,dd_aws_rds:enabled,env:${var.env}} by {region,name} * 100 < 10"
   count = "${var.dd_aws_rds == "enabled" ? 1 : 0 }"
 
 
