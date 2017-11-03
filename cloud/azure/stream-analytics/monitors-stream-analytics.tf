@@ -41,8 +41,9 @@ resource "datadog_monitor" "failed_function_requests" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:azure.streamanalytics_streamingjobs.aml_callout_failed_requests{${data.template_file.filter.rendered}} by {name,resource_group}
-    ) > ${var.function_requests_threshold_critical}
+      avg:azure.streamanalytics_streamingjobs.aml_callout_failed_requests{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() /
+       avg:azure.streamanalytics_streamingjobs.aml_callout_requests{${data.template_file.filter.rendered}} by {name,resource_group}.as_count()
+    ) * 100 > ${var.function_requests_threshold_critical}
   EOF
   type  = "query alert"
 
@@ -66,7 +67,8 @@ resource "datadog_monitor" "failed_function_requests" {
 
 resource "datadog_monitor" "conversion_errors" {
   name    = "[${var.environment}] Stream Analytics more than ${var.conversion_errors_threshold_critical} conversion errors on {{name}}"
-  message = "${var.message}"
+  # Hard Coded Message while we don't know how to configure warning and critical thresholds
+  message = "@FR-CloudPublic-run@fr.clara.net"
 
   query = <<EOF
     avg(last_5m): (
@@ -95,7 +97,8 @@ resource "datadog_monitor" "conversion_errors" {
 
 resource "datadog_monitor" "runtime_errors" {
   name    = "[${var.environment}] Stream Analytics more than ${var.runtime_errors_threshold_critical} runtime errors on {{name}}"
-  message = "${var.message}"
+  # Hard Coded Message while we don't know how to configure warning and critical thresholds
+  message = "@FR-CloudPublic-run@fr.clara.net"
 
   query = <<EOF
     avg(last_5m): (
