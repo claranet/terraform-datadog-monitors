@@ -2,12 +2,12 @@ data "template_file" "filter" {
   template = "$${filter}"
 
   vars {
-    filter = "${var.use_filter_tags == "true" ? format("dd_monitoring:enabled,dd_azure_stream_analytics:enabled,env:%s", var.environment) : "*"}"
+    filter = "${var.use_filter_tags == "true" ? format("dd_monitoring:enabled,dd_azure_storage:enabled,env:%s", var.environment) : "subscription_id:${var.subscription_id}"}"
   }
 }
 
 resource "datadog_monitor" "su_utilization" {
-  name    = "[${var.environment}] Streaming Units utilization at more than ${var.su_utilization_threshold_critical}% on {{name}}"
+  name    = "[${var.environment}] Stram Analytics streaming Units utilization at more than ${var.su_utilization_threshold_critical}% on {{name}}"
   message = "${var.message}"
 
   query = <<EOF
@@ -31,10 +31,12 @@ resource "datadog_monitor" "su_utilization" {
     warning  = "${var.su_utilization_threshold_warning}"
     critical = "${var.su_utilization_threshold_critical}"
   }
+
+  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
 }
 
 resource "datadog_monitor" "failed_function_requests" {
-  name    = "[${var.environment}] Stream Analytics : More than ${var.function_requests_threshold_critical} failed function requests on {{name}}"
+  name    = "[${var.environment}] Stream Analytics more than ${var.function_requests_threshold_critical} failed function requests on {{name}}"
   message = "${var.message}"
 
   query = <<EOF
@@ -58,10 +60,12 @@ resource "datadog_monitor" "failed_function_requests" {
     warning  = "${var.function_requests_threshold_warning}"
     critical = "${var.function_requests_threshold_critical}"
   }
+
+  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
 }
 
 resource "datadog_monitor" "conversion_errors" {
-  name    = "[${var.environment}] Stream Analytics : More than ${var.conversion_errors_threshold_critical} conversion errors on {{name}}"
+  name    = "[${var.environment}] Stream Analytics more than ${var.conversion_errors_threshold_critical} conversion errors on {{name}}"
   message = "${var.message}"
 
   query = <<EOF
@@ -85,10 +89,12 @@ resource "datadog_monitor" "conversion_errors" {
     warning  = "${var.conversion_errors_threshold_warning}"
     critical = "${var.conversion_errors_threshold_critical}"
   }
+
+  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
 }
 
 resource "datadog_monitor" "runtime_errors" {
-  name    = "[${var.environment}] Stream Analytics : More than ${var.runtime_errors_threshold_critical} runtime errors on {{name}}"
+  name    = "[${var.environment}] Stream Analytics more than ${var.runtime_errors_threshold_critical} runtime errors on {{name}}"
   message = "${var.message}"
 
   query = <<EOF
@@ -112,4 +118,6 @@ resource "datadog_monitor" "runtime_errors" {
     warning  = "${var.runtime_errors_threshold_warning}"
     critical = "${var.runtime_errors_threshold_critical}"
   }
+
+  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
 }
