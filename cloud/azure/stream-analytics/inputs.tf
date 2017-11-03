@@ -8,14 +8,28 @@ variable "message" {
   description = "Message sent when a monitor is triggered"
 }
 
-# Global DataDog
-variable "use_filter_tags" {
-  description = "Filter the data with service tags if true"
-  default     = "true"
+variable "subscription_id" {
+  description = "Azure account id used as filter for monitors"
+  type = "string"
 }
 
-variable "notify_no_data" {
-  default = "false"
+variable "provider" {
+  description = "Cloud provider which the monitor and its based metric depend on"
+  type = "string"
+  default = "azure"
+}
+
+variable "service" {
+  description = "Service monitored by this set of monitors"
+  type = "string"
+  default = "storage"
+}
+
+# Global DataDog
+
+
+variable "message" {
+  description = "Message sent when a Redis monitor is triggered"
 }
 
 variable "delay" {
@@ -23,7 +37,12 @@ variable "delay" {
   default     = 600
 }
 
-# Monitor specific
+variable "use_filter_tags" {
+  description = "Filter the data with service tags if true"
+  default     = "true"
+}
+
+# Azure Stream Analytics specific
 variable "su_utilization_threshold_warning" {
   default = 60
 }

@@ -9,8 +9,8 @@ module "datadog-monitors-azure-redis" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/stream-analytics?ref={revision}"
 
   message = "${module.datadog-message-alerting.alerting-message}"
-
   environment = "${var.environment}"
+  subscription_id = "${var.subscription_id}"
 }
 ```
 
@@ -31,6 +31,7 @@ Inputs
 | runtime_errors_threshold_warning |  | string | `0` | no |
 | su_utilization_threshold_critical |  | string | `80` | no |
 | su_utilization_threshold_warning | Monitor specific | string | `60` | no |
+| subscription_id | Azure account id used as filter for monitors | string | - | yes |
 | use_filter_tags | Filter the data with service tags if true | string | `true` | no |
 
 Related documentation
