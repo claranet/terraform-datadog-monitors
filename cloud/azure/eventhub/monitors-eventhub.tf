@@ -2,10 +2,9 @@ data "template_file" "filter" {
   template = "$${filter}"
 
   vars {
-    filter = "${var.use_filter_tags == "true" ? format("dd_monitoring:enabled,dd_azure_eventhub:enabled,env:%s", var.environment) : "*"}"
+    filter = "${var.use_filter_tags == "true" ? format("dd_monitoring:enabled,dd_azure_storage:enabled,env:%s", var.environment) : "subscription_id:${var.subscription_id}"}"
   }
 }
-
 
 resource "datadog_monitor" "eventhub_status" {
   name    = "[${var.environment}] Event Hub status"
@@ -26,6 +25,8 @@ resource "datadog_monitor" "eventhub_status" {
   require_full_window = true
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
+
+  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
 }
 
 resource "datadog_monitor" "eventhub_failed_requests" {
@@ -57,6 +58,8 @@ resource "datadog_monitor" "eventhub_failed_requests" {
   require_full_window = true
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
+
+  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
 }
 
 resource "datadog_monitor" "eventhub_errors" {
@@ -91,5 +94,7 @@ resource "datadog_monitor" "eventhub_errors" {
   locked              = false
   require_full_window = true
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
+  no_data_timeframe   = 20o
+
+  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
 }
