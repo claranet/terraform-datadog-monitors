@@ -29,15 +29,15 @@ Inputs
 |------|-------------|:----:|:-----:|:-----:|
 | delay | Delay in seconds for the metric evaluation | string | `600` | no |
 | environment | Architecture environment | string | - | yes |
-| provider | What is the monitored provider | string | - | yes |
-| service | What is the monitored service | string | - | yes |
 | errors_rate_thresold_critical | Errors ratio (percentage) to trigger the critical alert | string | `3` | no |
 | errors_rate_thresold_warning | Errors ratio (percentage) to trigger a warning alert | string | `1` | no |
 | failed_requests_rate_thresold_critical | Failed requests ratio (percentage) to trigger the critical alert | string | `3` | no |
 | failed_requests_rate_thresold_warning | Failed requests ratio (percentage) to trigger a warning alert | string | `1` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
+| provider | What is the monitored provider | string | azure | no |
 | use_filter_tags | Filter the data with service tags if true | string | `true` | no |
 | subscription_id | Azure account id used as filter for monitors | string | - | yes |
+| service | What is the monitored service | string | storage | no |
 
 Outputs
 -------
