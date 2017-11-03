@@ -19,14 +19,13 @@ Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| conversion_errors_threshold_critical |  | string | `10` | no |
-| conversion_errors_threshold_warning |  | string | `0` | no |
+| conversion_errors_threshold_critical | Conversion errors limit (critical threshold) | string | `10` | no |
+| conversion_errors_threshold_warning | Conversion errors limit (warning threshold) | string | `0` | no |
 | delay | Delay in seconds for the metric evaluation | string | `600` | no |
 | environment | Architecture environment | string | - | yes |
-| function_requests_threshold_critical |  | string | `10` | no |
-| function_requests_threshold_warning |  | string | `0` | no |
+| function_requests_threshold_critical | Failed Function Request rate limit (critical threshold) | string | `10` | no |
+| function_requests_threshold_warning | Failed Function Request rate limit (warning threshold) | string | `0` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
-| notify_no_data |  | string | `false` | no |
 | runtime_errors_threshold_critical |  | string | `10` | no |
 | runtime_errors_threshold_warning |  | string | `0` | no |
 | su_utilization_threshold_critical |  | string | `80` | no |
