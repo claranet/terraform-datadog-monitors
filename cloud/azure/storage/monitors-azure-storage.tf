@@ -2,7 +2,7 @@ data "template_file" "filter" {
   template = "$${filter}"
 
   vars {
-    filter = "${var.use_filter_tags == "true" ? format("dd_monitoring:enabled,dd_azure_storage:enabled,env:%s", var.environment) : "*"}"
+    filter = "${var.use_filter_tags == "true" ? format("dd_monitoring:enabled,dd_azure_storage:enabled,env:%s", var.environment) : "subscription_id:${var.subscription_id}"}"
   }
 }
 

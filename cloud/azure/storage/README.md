@@ -9,8 +9,8 @@ module "datadog-monitors-azure-storage" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/storage?ref={revision}"
 
   message = "${module.datadog-message-alerting.alerting-message}"
-
   environment = "${var.environment}"
+  subscription_id = "${var.subscription_id}"
 }
 ```
 
@@ -35,6 +35,7 @@ Inputs
 |------|-------------|:----:|:-----:|:-----:|
 | delay | Delay in seconds for the metric evaluation | string | `600` | no |
 | environment | Architecture environment | string | - | yes |
+| subscription_id | Azure account id used as filter for monitors | string | - | yes |
 | message | Message sent when a monitor is triggered | string | - | yes |
 | use_filter_tags | Filter the data with service tags if true | string | `true` | no |
 | availability_threshold_critical | Minimum threshold of availability | string | `90` | no |
