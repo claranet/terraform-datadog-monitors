@@ -11,7 +11,6 @@ module "datadog-monitors-azure-storage" {
   message = "${module.datadog-message-alerting.alerting-message}"
 
   environment = "${var.environment}"
-  client_name = "${var.client_name}"
 }
 ```
 
@@ -34,7 +33,6 @@ Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| client_name | Client name | string | - | yes |
 | delay | Delay in seconds for the metric evaluation | string | `600` | no |
 | environment | Architecture environment | string | - | yes |
 | message | Message sent when a monitor is triggered | string | - | yes |

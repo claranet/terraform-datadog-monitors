@@ -1,8 +1,4 @@
 # Global Terraform
-variable "client_name" {
-  type = "string"
-}
-
 variable "environment" {
   description = "Architecture environment"
   type = "string"
