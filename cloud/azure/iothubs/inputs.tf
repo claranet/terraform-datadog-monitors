@@ -1,23 +1,26 @@
+# Global Terraform
 variable "environment" {
   description = "Architecture Environment"
   type        = "string"
 }
 
-variable "client_name" {
-  description = "Client Name"
-  type        = "string"
-}
-
-variable "use_filter_tags" {
-  description = "Filter the data with service tags if true"
-  default     = "true"
-}
-
 variable "subscription_id" {
-  description = "Subscription ID used to tag monitors"
-  type        = "string"
+  description = "Azure account id used as filter for monitors"
+  type = "string"
 }
 
+variable "provider" {
+  description = "Cloud provider which the monitor and its based metric depend on"
+  type = "string"
+  default = "azure"
+}
+
+variable "service" {
+  description = "Service monitored by this set of monitors"
+  type = "string"
+  default = "storage"
+
+# Global DataDog
 variable "delay" {
   description = "Delay in seconds for the metric evaluation"
   default = 600
@@ -27,7 +30,12 @@ variable "message" {
   description = "Message sent when an alert is triggered"
 }
 
-## IOT hubs
+variable "use_filter_tags" {
+  description = "Filter the data with service tags if true"
+  default     = "true"
+}
+
+# Azure IOT hubs specific
 variable "jobs_failed_threshold_warning" {
   description = "Jobs Failed rate limit (warning threshold)"
   default = 0

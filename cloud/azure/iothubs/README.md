@@ -9,10 +9,7 @@ module "iothubs" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/iothubs?ref=MON-80-azure-hub-iot-monitors"
   
   message         = "${module.datadog-message-alerting.alerting-message}"
-   
   environment     = "${var.environment}"
-  stack           = "${var.stack}"
-  client_name     = "${var.client_name}"
   subscription_id = "${var.subscription_id}"
 }
 ```
@@ -48,7 +45,6 @@ Inputs
 | c2d_twin_read_failed_threshold_warning | C2D Twin Read Failed rate limit (warning threshold) | string | `0` | no |
 | c2d_twin_update_failed_threshold_critical | C2D Twin Update Failed rate limit (critical threshold) | string | `10` | no |
 | c2d_twin_update_failed_threshold_warning | C2D Twin Update Failed rate limit (warning threshold) | string | `0` | no |
-| client_name | Client Name | string | - | yes |
 | d2c_telemetry_egress_dropped_threshold_critical | D2C Telemetry Dropped Failed limit (critical threshold) | string | `1000` | no |
 | d2c_telemetry_egress_dropped_threshold_warning | D2C Telemetry Dropped Failed limit (warning threshold) | string | `500` | no |
 | d2c_telemetry_egress_fallback_threshold_critical | D2C Telemetry Fallback Failed limit (critical threshold) | string | `1000` | no |
