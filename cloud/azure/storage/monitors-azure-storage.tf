@@ -32,7 +32,7 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}"]
+  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
 }
 
 resource "datadog_monitor" "successful_requests" {
@@ -61,7 +61,7 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}"]
+  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
 }
 
 resource "datadog_monitor" "latency" {
@@ -90,7 +90,7 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}"]
+  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
 }
 
 resource "datadog_monitor" "timeout_error_requests" {
@@ -119,7 +119,7 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}"]
+  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
 }
 
 
@@ -149,7 +149,7 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}"]
+  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
 }
 
 
@@ -179,7 +179,7 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}"]
+  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
 }
 
 
@@ -209,7 +209,7 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}"]
+  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
 }
 
 
@@ -239,7 +239,7 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}"]
+  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
 }
 
 
@@ -269,5 +269,5 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}"]
+  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
 }
