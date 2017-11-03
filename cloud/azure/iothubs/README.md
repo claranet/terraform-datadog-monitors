@@ -64,8 +64,10 @@ Inputs
 | listjobs_failed_threshold_critical | ListJobs Failed rate limit (critical threshold) | string | `10` | no |
 | listjobs_failed_threshold_warning | ListJobs Failed rate limit (warning threshold) | string | `0` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
+| provider | What is the monitored provider | string | azure | no |
 | queryjobs_failed_threshold_critical | QueryJobs Failed rate limit (critical threshold) | string | `10` | no |
 | queryjobs_failed_threshold_warning | QueryJobs Failed rate limit (warning threshold) | string | `0` | no |
+| service | What is the monitored service | string | storage | no |
 | subscription_id | Subscription ID used to tag monitors | string | - | yes |
 
 Related documentation
