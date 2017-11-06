@@ -1,5 +1,5 @@
 Azure IOT Hubs DataDog monitors
-============================
+===============================
 
 How to use this module
 ----------------------
@@ -39,36 +39,37 @@ Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| c2d_methods_failed_threshold_critical | C2D Methods Failed rate limit (critical threshold) | string | `10` | no |
-| c2d_methods_failed_threshold_warning | C2D Methods Failed rate limit (warning threshold) | string | `0` | no |
-| c2d_twin_read_failed_threshold_critical | C2D Twin Read Failed rate limit (critical threshold) | string | `10` | no |
-| c2d_twin_read_failed_threshold_warning | C2D Twin Read Failed rate limit (warning threshold) | string | `0` | no |
-| c2d_twin_update_failed_threshold_critical | C2D Twin Update Failed rate limit (critical threshold) | string | `10` | no |
-| c2d_twin_update_failed_threshold_warning | C2D Twin Update Failed rate limit (warning threshold) | string | `0` | no |
-| d2c_telemetry_egress_dropped_threshold_critical | D2C Telemetry Dropped Failed limit (critical threshold) | string | `1000` | no |
-| d2c_telemetry_egress_dropped_threshold_warning | D2C Telemetry Dropped Failed limit (warning threshold) | string | `500` | no |
-| d2c_telemetry_egress_fallback_threshold_critical | D2C Telemetry Fallback Failed limit (critical threshold) | string | `1000` | no |
-| d2c_telemetry_egress_fallback_threshold_warning | D2C Telemetry Fallback Failed limit (warning threshold) | string | `500` | no |
-| d2c_telemetry_egress_invalid_threshold_critical | D2C Telemetry Invalid Failed limit (critical threshold) | string | `1000` | no |
-| d2c_telemetry_egress_invalid_threshold_warning | D2C Telemetry Invalid Failed limit (warning threshold) | string | `500` | no |
-| d2c_telemetry_egress_orphaned_threshold_critical | D2C Telemetry Orphaned Failed limit (critical threshold) | string | `1000` | no |
-| d2c_telemetry_egress_orphaned_threshold_warning | D2C Telemetry Orphaned Failed limit (warning threshold) | string | `500` | no |
-| d2c_twin_read_failed_threshold_critical | D2C Twin Read Failed rate limit (critical threshold) | string | `10` | no |
-| d2c_twin_read_failed_threshold_warning | D2C Twin Read Failed rate limit (warning threshold) | string | `0` | no |
-| d2c_twin_update_failed_threshold_critical | D2C Twin Update Failed rate limit (critical threshold) | string | `10` | no |
-| d2c_twin_update_failed_threshold_warning | D2C Twin Update Failed rate limit (warning threshold) | string | `0` | no |
 | delay | Delay in seconds for the metric evaluation | string | `600` | no |
+| dropped_d2c_telemetry_egress_threshold_critical | D2C Telemetry Dropped limit (critical threshold) | string | `1000` | no |
+| dropped_d2c_telemetry_egress_threshold_warning | D2C Telemetry Dropped limit (warning threshold) | string | `500` | no |
 | environment | Architecture Environment | string | - | yes |
-| jobs_failed_threshold_critical | Jobs Failed rate limit (critical threshold) | string | `10` | no |
-| jobs_failed_threshold_warning | Jobs Failed rate limit (warning threshold) | string | `0` | no |
-| listjobs_failed_threshold_critical | ListJobs Failed rate limit (critical threshold) | string | `10` | no |
-| listjobs_failed_threshold_warning | ListJobs Failed rate limit (warning threshold) | string | `0` | no |
+| failed_c2d_methods_rate_threshold_critical | C2D Methods Failed rate limit (critical threshold) | string | `10` | no |
+| failed_c2d_methods_rate_threshold_warning | C2D Methods Failed rate limit (warning threshold) | string | `0` | no |
+| failed_c2d_twin_read_rate_threshold_critical | C2D Twin Read Failed rate limit (critical threshold) | string | `10` | no |
+| failed_c2d_twin_read_rate_threshold_warning | C2D Twin Read Failed rate limit (warning threshold) | string | `0` | no |
+| failed_c2d_twin_update_rate_threshold_critical | C2D Twin Update Failed rate limit (critical threshold) | string | `10` | no |
+| failed_c2d_twin_update_rate_threshold_warning | C2D Twin Update Failed rate limit (warning threshold) | string | `0` | no |
+| failed_d2c_twin_read_rate_threshold_critical | D2C Twin Read Failed rate limit (critical threshold) | string | `10` | no |
+| failed_d2c_twin_read_rate_threshold_warning | D2C Twin Read Failed rate limit (warning threshold) | string | `0` | no |
+| failed_d2c_twin_update_rate_threshold_critical | D2C Twin Update Failed rate limit (critical threshold) | string | `10` | no |
+| failed_d2c_twin_update_rate_threshold_warning | D2C Twin Update Failed rate limit (warning threshold) | string | `0` | no |
+| failed_jobs_rate_threshold_critical | Jobs Failed rate limit (critical threshold) | string | `10` | no |
+| failed_jobs_rate_threshold_warning | Jobs Failed rate limit (warning threshold) | string | `0` | no |
+| failed_listjobs_rate_threshold_critical | ListJobs Failed rate limit (critical threshold) | string | `10` | no |
+| failed_listjobs_rate_threshold_warning | ListJobs Failed rate limit (warning threshold) | string | `0` | no |
+| failed_queryjobs_rate_threshold_critical | QueryJobs Failed rate limit (critical threshold) | string | `10` | no |
+| failed_queryjobs_rate_threshold_warning | QueryJobs Failed rate limit (warning threshold) | string | `0` | no |
+| fallback_d2c_telemetry_egress_threshold_critical | D2C Telemetry Fallback limit (critical threshold) | string | `1000` | no |
+| fallback_d2c_telemetry_egress_threshold_warning | D2C Telemetry Fallback limit (warning threshold) | string | `500` | no |
+| invalid_d2c_telemetry_egress_threshold_critical | D2C Telemetry Invalid limit (critical threshold) | string | `1000` | no |
+| invalid_d2c_telemetry_egress_threshold_warning | D2C Telemetry Invalid limit (warning threshold) | string | `500` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
-| provider | What is the monitored provider | string | azure | no |
-| queryjobs_failed_threshold_critical | QueryJobs Failed rate limit (critical threshold) | string | `10` | no |
-| queryjobs_failed_threshold_warning | QueryJobs Failed rate limit (warning threshold) | string | `0` | no |
-| service | What is the monitored service | string | storage | no |
-| subscription_id | Subscription ID used to tag monitors | string | - | yes |
+| orphaned_d2c_telemetry_egress_threshold_critical | D2C Telemetry Orphaned limit (critical threshold) | string | `1000` | no |
+| orphaned_d2c_telemetry_egress_threshold_warning | D2C Telemetry Orphaned limit (warning threshold) | string | `500` | no |
+| provider | Cloud provider which the monitor and its based metric depend on | string | `azure` | no |
+| service | Service monitored by this set of monitors | string | `storage` | no |
+| subscription_id | Azure account id used as filter for monitors | string | - | yes |
+| use_filter_tags | Filter the data with service tags if true | string | `true` | no |
 
 Related documentation
 ---------------------
