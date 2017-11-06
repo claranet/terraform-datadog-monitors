@@ -1,5 +1,6 @@
 # Ignore all volatile files
 **/.terraform/modules
+**/.terraform/plugins
 **/terraform.tfstate*.backup
 
 # Ignore all credentials files
