@@ -15,13 +15,14 @@ resource "datadog_monitor" "too_many_jobs_failed" {
             avg:azure.devices_iothubs.jobs.failed{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() /
             ( avg:azure.devices_iothubs.jobs.failed{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() +
                 avg:azure.devices_iothubs.jobs.completed{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() )
-          ) * 100 > ${var.jobs_failed_threshold_critical}
+          ) * 100 > ${var.failed_jobs_rate_threshold_critical}
   EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   thresholds {
-    warning  = "${var.jobs_failed_threshold_warning}"
-    critical = "${var.jobs_failed_threshold_critical}"
+    warning  = "${var.failed_jobs_rate_threshold_warning}"
+    critical = "${var.failed_jobs_rate_threshold_critical}"
   }
 
   notify_no_data      = false
@@ -35,7 +36,7 @@ resource "datadog_monitor" "too_many_jobs_failed" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
 }
 
 resource "datadog_monitor" "too_many_list_jobs_failed" {
@@ -47,13 +48,14 @@ resource "datadog_monitor" "too_many_list_jobs_failed" {
             avg:azure.devices_iothubs.jobs.list_jobs.failure{${data.template_file.filter.rendered}} by {resource_group,name}.as_count() /
               ( avg:azure.devices_iothubs.jobs.list_jobs.success{${data.template_file.filter.rendered}} by {resource_group,name}.as_count() +
                   avg:azure.devices_iothubs.jobs.list_jobs.failure{${data.template_file.filter.rendered}} by {resource_group,name}.as_count() )
-          ) * 100 > ${var.listjobs_failed_threshold_critical}
+          ) * 100 > ${var.failed_listjobs_rate_threshold_critical}
   EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   thresholds {
-    warning  = "${var.listjobs_failed_threshold_warning}"
-    critical = "${var.listjobs_failed_threshold_critical}"
+    warning  = "${var.failed_listjobs_rate_threshold_warning}"
+    critical = "${var.failed_listjobs_rate_threshold_critical}"
   }
 
   notify_no_data      = false
@@ -67,7 +69,7 @@ resource "datadog_monitor" "too_many_list_jobs_failed" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
 }
 
 resource "datadog_monitor" "too_many_query_jobs_failed" {
@@ -79,13 +81,14 @@ resource "datadog_monitor" "too_many_query_jobs_failed" {
       avg:azure.devices_iothubs.jobs.query_jobs.failure{${data.template_file.filter.rendered}} by {resource_group,name}.as_count() /
         ( avg:azure.devices_iothubs.jobs.query_jobs.success{${data.template_file.filter.rendered}} by {resource_group,name}.as_count() +
             avg:azure.devices_iothubs.jobs.query_jobs.failure{${data.template_file.filter.rendered}} by {resource_group,name}.as_count() )
-    ) * 100 > ${var.queryjobs_failed_threshold_critical}
+    ) * 100 > ${var.failed_queryjobs_rate_threshold_critical}
   EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   thresholds {
-    warning  = "${var.queryjobs_failed_threshold_warning}"
-    critical = "${var.queryjobs_failed_threshold_critical}"
+    warning  = "${var.failed_queryjobs_rate_threshold_warning}"
+    critical = "${var.failed_queryjobs_rate_threshold_critical}"
   }
 
   notify_no_data      = false
@@ -99,7 +102,7 @@ resource "datadog_monitor" "too_many_query_jobs_failed" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
 }
 
 resource "datadog_monitor" "status" {
@@ -109,7 +112,8 @@ resource "datadog_monitor" "status" {
   query = <<EOF
     avg(last_5m):avg:azure.devices_iothubs.status{${data.template_file.filter.rendered}} by {name,resource_group} < 1
   EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
@@ -122,7 +126,7 @@ resource "datadog_monitor" "status" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
 }
 
 resource "datadog_monitor" "total_devices" {
@@ -132,7 +136,8 @@ resource "datadog_monitor" "total_devices" {
   query = <<EOF
     avg(last_5m):avg:azure.devices_iothubs.devices.total_devices{${data.template_file.filter.rendered}} by {name,resource_group} == 0
   EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
@@ -145,7 +150,7 @@ resource "datadog_monitor" "total_devices" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
 }
 
 resource "datadog_monitor" "too_many_c2d_methods_failed" {
@@ -157,13 +162,14 @@ resource "datadog_monitor" "too_many_c2d_methods_failed" {
       avg:azure.devices_iothubs.c2d.methods.failure{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() /
         ( avg:azure.devices_iothubs.c2d.methods.failure{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() +
             avg:azure.devices_iothubs.c2d.methods.success{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() )
-    ) * 100 > ${var.c2d_methods_failed_threshold_critical}
+    ) * 100 > ${var.failed_c2d_methods_rate_threshold_critical}
   EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   thresholds {
-    warning  = "${var.c2d_methods_failed_threshold_warning}"
-    critical = "${var.c2d_methods_failed_threshold_critical}"
+    warning  = "${var.failed_c2d_methods_rate_threshold_warning}"
+    critical = "${var.failed_c2d_methods_rate_threshold_critical}"
   }
 
   notify_no_data      = false
@@ -177,7 +183,7 @@ resource "datadog_monitor" "too_many_c2d_methods_failed" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
 }
 
 resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
@@ -189,13 +195,14 @@ resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
       avg:azure.devices_iothubs.c2d.twin.read.failure{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() /
         ( avg:azure.devices_iothubs.c2d.twin.read.failure{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() +
             avg:azure.devices_iothubs.c2d.twin.read.success{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() )
-    ) * 100 > ${var.c2d_twin_read_failed_threshold_critical}
+    ) * 100 > ${var.failed_c2d_twin_read_rate_threshold_critical}
   EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   thresholds {
-    warning  = "${var.c2d_twin_read_failed_threshold_warning}"
-    critical = "${var.c2d_twin_read_failed_threshold_critical}"
+    warning  = "${var.failed_c2d_twin_read_rate_threshold_warning}"
+    critical = "${var.failed_c2d_twin_read_rate_threshold_critical}"
   }
 
   notify_no_data      = false
@@ -209,7 +216,7 @@ resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
 }
 
 resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
@@ -221,13 +228,14 @@ resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
       avg:azure.devices_iothubs.c2d.twin.update.failure{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() /
       ( avg:azure.devices_iothubs.c2d.twin.update.failure{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() +
           avg:azure.devices_iothubs.c2d.twin.update.success{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() )
-    ) * 100 > ${var.c2d_twin_update_failed_threshold_critical}
+    ) * 100 > ${var.failed_c2d_twin_update_rate_threshold_critical}
   EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   thresholds {
-    warning  = "${var.c2d_twin_update_failed_threshold_warning}"
-    critical = "${var.c2d_twin_update_failed_threshold_critical}"
+    warning  = "${var.failed_c2d_twin_update_rate_threshold_warning}"
+    critical = "${var.failed_c2d_twin_update_rate_threshold_critical}"
   }
 
   notify_no_data      = false
@@ -241,7 +249,7 @@ resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
 }
 
 resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
@@ -253,13 +261,14 @@ resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
       avg:azure.devices_iothubs.d2c.twin.read.failure{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() /
         ( avg:azure.devices_iothubs.d2c.twin.read.failure{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() +
           avg:azure.devices_iothubs.d2c.twin.read.success{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() )
-    ) * 100 > ${var.d2c_twin_read_failed_threshold_critical}
+    ) * 100 > ${var.failed_d2c_twin_read_rate_threshold_critical}
   EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   thresholds {
-    warning  = "${var.d2c_twin_read_failed_threshold_warning}"
-    critical = "${var.d2c_twin_read_failed_threshold_critical}"
+    warning  = "${var.failed_d2c_twin_read_rate_threshold_warning}"
+    critical = "${var.failed_d2c_twin_read_rate_threshold_critical}"
   }
 
   notify_no_data      = false
@@ -273,7 +282,7 @@ resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
 }
 
 resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
@@ -285,13 +294,14 @@ resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
       avg:azure.devices_iothubs.d2c.twin.update.failure{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() /
         ( avg:azure.devices_iothubs.d2c.twin.update.failure{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() +
           avg:azure.devices_iothubs.d2c.twin.update.success{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() )
-    ) * 100 > ${var.d2c_twin_update_failed_threshold_critical}
+    ) * 100 > ${var.failed_d2c_twin_update_rate_threshold_critical}
   EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   thresholds {
-    warning  = "${var.d2c_twin_update_failed_threshold_warning}"
-    critical = "${var.d2c_twin_update_failed_threshold_critical}"
+    warning  = "${var.failed_d2c_twin_update_rate_threshold_warning}"
+    critical = "${var.failed_d2c_twin_update_rate_threshold_critical}"
   }
 
   notify_no_data      = false
@@ -305,7 +315,7 @@ resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
@@ -315,13 +325,14 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
   query = <<EOF
       sum(last_5m): (
         avg:azure.devices_iothubs.d2c.telemetry.egress.dropped{${data.template_file.filter.rendered}} by {name,resource_group}.as_count()
-      ) > ${var.d2c_telemetry_egress_dropped_threshold_critical}
+      ) > ${var.dropped_d2c_telemetry_egress_threshold_critical}
   EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   thresholds {
-    warning  = "${var.d2c_telemetry_egress_dropped_threshold_warning}"
-    critical = "${var.d2c_telemetry_egress_dropped_threshold_critical}"
+    warning  = "${var.dropped_d2c_telemetry_egress_threshold_warning}"
+    critical = "${var.dropped_d2c_telemetry_egress_threshold_critical}"
   }
 
   notify_no_data      = false
@@ -335,7 +346,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
@@ -345,13 +356,14 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
   query = <<EOF
     sum(last_5m): (
       avg:azure.devices_iothubs.d2c.telemetry.egress.orphaned{${data.template_file.filter.rendered}} by {name,resource_group}.as_count()
-    ) > ${var.d2c_telemetry_egress_orphaned_threshold_critical}
+    ) > ${var.orphaned_d2c_telemetry_egress_threshold_critical}
   EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   thresholds {
-    warning  = "${var.d2c_telemetry_egress_orphaned_threshold_warning}"
-    critical = "${var.d2c_telemetry_egress_orphaned_threshold_critical}"
+    warning  = "${var.orphaned_d2c_telemetry_egress_threshold_warning}"
+    critical = "${var.orphaned_d2c_telemetry_egress_threshold_critical}"
   }
 
   notify_no_data      = false
@@ -365,7 +377,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
@@ -375,13 +387,14 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
   query = <<EOF
     sum(last_5m): (
       avg:azure.devices_iothubs.d2c.telemetry.egress.invalid{${data.template_file.filter.rendered}} by {name,resource_group}.as_count()
-    ) > ${var.d2c_telemetry_egress_invalid_threshold_critical}
+    ) > ${var.invalid_d2c_telemetry_egress_threshold_critical}
   EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   thresholds {
-    warning  = "${var.d2c_telemetry_egress_invalid_threshold_warning}"
-    critical = "${var.d2c_telemetry_egress_invalid_threshold_critical}"
+    warning  = "${var.invalid_d2c_telemetry_egress_threshold_warning}"
+    critical = "${var.invalid_d2c_telemetry_egress_threshold_critical}"
   }
 
   notify_no_data      = false
@@ -395,7 +408,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_fallback" {
@@ -405,13 +418,14 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_fallback" {
   query = <<EOF
     sum(last_5m): (
       avg:azure.devices_iothubs.d2c.telemetry.egress.fallback{${data.template_file.filter.rendered}} by {name,resource_group}.as_count()
-    )  > ${var.d2c_telemetry_egress_fallback_threshold_critical}
+    )  > ${var.fallback_d2c_telemetry_egress_threshold_critical}
   EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   thresholds {
-    warning  = "${var.d2c_telemetry_egress_fallback_threshold_warning}"
-    critical = "${var.d2c_telemetry_egress_fallback_threshold_critical}"
+    warning  = "${var.fallback_d2c_telemetry_egress_threshold_warning}"
+    critical = "${var.fallback_d2c_telemetry_egress_threshold_critical}"
   }
 
   notify_no_data      = false
@@ -425,7 +439,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_fallback" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
@@ -438,7 +452,8 @@ resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
         avg:azure.devices_iothubs.d2c.telemetry.ingress.success{${data.template_file.filter.rendered}} by {name,resource_group}.as_count()
     ) > 0
   EOF
-  type  = "query alert"
+
+  type = "query alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
@@ -451,5 +466,5 @@ resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
 }
