@@ -122,5 +122,3 @@ resource "datadog_monitor" "ELB_backend_latency" {
 
   tags = ["*"]
 }
-
-

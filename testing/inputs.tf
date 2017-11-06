@@ -5,6 +5,7 @@ variable region {}
 variable "critical_escalation_group" {
   default = "@pagerduty_HODummy"
 }
+
 variable "warning_escalation_group" {
   default = "@pagerduty_HNODummy"
 }
@@ -19,4 +20,3 @@ variable "dd_linux_basics" {
 variable "dd_aws_rds" {
   default = "enabled"
 }
-
