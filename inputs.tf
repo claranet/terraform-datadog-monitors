@@ -26,6 +26,16 @@ variable "dd_custom_cpu" {
   }
 }
 
+#cpu threshold
+
+variable "cpu_5_critical" {
+  default = 95
+}
+
+variable "cpu_15_critical" {
+  default = 80
+}
+
 ## RDS
 variable "dd_aws_rds" {
   default = "disabled"
