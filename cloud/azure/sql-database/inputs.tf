@@ -1,49 +1,74 @@
+# Global Terraform
+variable "environment" {
+  description = "Architecture Environment"
+  type        = "string"
+}
+
 variable "subscription_id" {
-  default = ""
+  description = "Azure account id used as filter for monitors"
+  type        = "string"
+}
+
+variable "provider" {
+  description = "Cloud provider which the monitor and its based metric depend on"
+  type        = "string"
+  default     = "azure"
+}
+
+variable "service" {
+  description = "Service monitored by this set of monitors"
+  type        = "string"
+  default     = "sql-database"
+}
+
+# Global DataDog
+variable "delay" {
+  description = "Delay in seconds for the metric evaluation"
+  default     = 600
 }
 
 variable "message" {
-  description = "Message sent when a SQL DB monitor is triggered"
+  description = "Message sent when an alert is triggered"
 }
-
-variable "environment" {}
 
 variable "use_filter_tags" {
-  default = "false"
+  description = "Filter the data with service tags if true"
+  default     = "true"
 }
 
+# Azure SQL Database specific
+
 variable "cpu_threshold_warning" {
-  default = ""
+  description = "CPU usage in percent (warning threshold)"
+  default     = ""
 }
 
 variable "cpu_threshold_critical" {
-  default = "90"
+  description = "CPU usage in percent (critical threshold)"
+  default     = "90"
 }
 
 variable "diskspace_threshold_warning" {
-  default = "80"
+  description = "Disk space used in percent (warning threshold)"
+  default     = "80"
 }
 
 variable "diskspace_threshold_critical" {
-  default = "90"
+  description = "Disk space used in percent (critical threshold)"
+  default     = "90"
 }
 
 variable "dtu_threshold_warning" {
-  default = "85"
+  description = "Amount of DTU used (warning threshold)"
+  default     = "85"
 }
 
 variable "dtu_threshold_critical" {
-  default = "90"
+  description = "Amount of DTU used (critical threshold)"
+  default     = "90"
 }
 
 variable "deadlock_threshold_critical" {
-  default = "1"
-}
-
-variable "delay" {
-  default = "600"
-}
-
-variable "dd_azure_sqldb" {
-  default = "disabled"
+  description = "Amount of Deadlocks (critical threshold)"
+  default     = "1"
 }
