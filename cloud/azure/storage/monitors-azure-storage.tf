@@ -20,7 +20,7 @@ EOF
     critical  = "${var.availability_threshold_critical}"
   }
 
-  type                = "query alert"
+  type                = "metric alert"
   notify_no_data      = true
   notify_audit        = false
   timeout_h           = 0
@@ -49,7 +49,7 @@ EOF
     critical  = "${var.successful_requests_threshold_critical}"
   }
 
-  type                = "query alert"
+  type                = "metric alert"
   notify_no_data      = true
   notify_audit        = false
   timeout_h           = 0
@@ -78,7 +78,7 @@ EOF
     critical  = "${var.latency_threshold_critical}"
   }
 
-  type                = "query alert"
+  type                = "metric alert"
   notify_no_data      = true
   notify_audit        = false
   timeout_h           = 0
@@ -107,7 +107,7 @@ EOF
     critical  = "${var.timeout_error_requests_threshold_critical}"
   }
 
-  type                = "query alert"
+  type                = "metric alert"
   notify_no_data      = true
   notify_audit        = false
   timeout_h           = 0
@@ -137,7 +137,7 @@ EOF
     critical  = "${var.network_error_requests_threshold_critical}"
   }
 
-  type                = "query alert"
+  type                = "metric alert"
   notify_no_data      = true
   notify_audit        = false
   timeout_h           = 0
@@ -167,7 +167,7 @@ EOF
     critical  = "${var.throttling_error_requests_threshold_critical}"
   }
 
-  type                = "query alert"
+  type                = "metric alert"
   notify_no_data      = true
   notify_audit        = false
   timeout_h           = 0
@@ -197,7 +197,7 @@ EOF
     critical  = "${var.server_other_error_requests_threshold_critical}"
   }
 
-  type                = "query alert"
+  type                = "metric alert"
   notify_no_data      = true
   notify_audit        = false
   timeout_h           = 0
@@ -227,7 +227,7 @@ EOF
     critical  = "${var.client_other_error_requests_threshold_critical}"
   }
 
-  type                = "query alert"
+  type                = "metric alert"
   notify_no_data      = true
   notify_audit        = false
   timeout_h           = 0
@@ -257,7 +257,7 @@ EOF
     critical  = "${var.authorization_error_requests_threshold_critical}"
   }
 
-  type                = "query alert"
+  type                = "metric alert"
   notify_no_data      = true
   notify_audit        = false
   timeout_h           = 0
