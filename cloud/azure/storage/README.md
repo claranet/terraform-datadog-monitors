@@ -10,7 +10,6 @@ module "datadog-monitors-azure-storage" {
 
   message = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
-  subscription_id = "${var.subscription_id}"
 }
 ```
 
