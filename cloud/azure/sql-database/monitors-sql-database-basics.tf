@@ -2,13 +2,13 @@ data "template_file" "filter" {
   template = "$${filter}"
 
   vars {
-    filter = "${var.use_filter_tags == "true" ? format("dd_monitoring:enabled,dd_azure_sqldb:enabled,env:%s",var.environment) : "*"}"
+    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_azure_sqldatabase:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
   }
 }
 
 resource "datadog_monitor" "sql-database_cpu_90_15min" {
-  name    = "[${var.environment}] SQL Database CPU high > 90% for 15 min on {{name}}"
-  message = "${message}"
+  name    = "[${var.environment}] SQL Database CPU high > ${var.cpu_threshold_critical}% on {{name}}"
+  message = "${var.message}"
 
   query = <<EOF
     avg(last_15m): (
@@ -16,7 +16,7 @@ resource "datadog_monitor" "sql-database_cpu_90_15min" {
     ) > ${var.cpu_threshold_critical}
   EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   thresholds {
     critical = "${var.cpu_threshold_critical}"
@@ -32,13 +32,15 @@ resource "datadog_monitor" "sql-database_cpu_90_15min" {
   require_full_window = true
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
+
+  tags = ["env:${var.environment}", "resource:sqldatabase", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "sql-database_free_space_low" {
-  name    = "[${var.environment}] SQL Database free space < 10 % on {{name}}"
-  message = "${message}"
+  name    = "[${var.environment}] SQL Database free space < ${var.diskspace_threshold_critical}% on {{name}}"
+  message = "${var.message}"
 
-  type = "query alert"
+  type = "metric alert"
 
   query = <<EOF
     avg(last_15m): (
@@ -61,13 +63,15 @@ resource "datadog_monitor" "sql-database_free_space_low" {
   require_full_window = true
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
+
+  tags = ["env:${var.environment}", "resource:sqldatabase", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "sql-database_dtu_consumption_high" {
-  name    = "[${var.environment}] DTU Consumption on {{name}} > 90"
-  message = "${message}"
+  name    = "[${var.environment}] SQL Database DTU Consumption on {{name}} > ${var.dtu_threshold_critical}"
+  message = "${var.message}"
 
-  type = "query alert"
+  type = "metric alert"
 
   query = <<EOF
     avg(last_15m): (
@@ -90,13 +94,15 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
   require_full_window = true
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
+
+  tags = ["env:${var.environment}", "resource:sqldatabase", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "sql-database_deadlocks_count" {
-  name    = "[${var.environment}] SQL Deadlocks too high on {{name}}"
-  message = "${message}"
+  name    = "[${var.environment}] SQL Database Deadlocks too high on {{name}}"
+  message = "${var.message}"
 
-  type = "query alert"
+  type = "metric alert"
 
   query = <<EOF
     sum(last_5m): (
@@ -118,4 +124,6 @@ resource "datadog_monitor" "sql-database_deadlocks_count" {
   require_full_window = true
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
+
+  tags = ["env:${var.environment}", "resource:sqldatabase", "team:azure", "provider:azure"]
 }
