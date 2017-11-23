@@ -31,9 +31,14 @@ variable "delay" {
   default     = 600
 }
 
-variable "use_filter_tags" {
-  description = "Filter the data with service tags if true"
+variable "filter_tags_default" {
+  description = "Use default filter tags convention"
   default     = "true"
+}
+
+variable "filter_tags_custom" {
+  description = "Tags used for custom filtering when filter_tags_default is false"
+  default     = "*"
 }
 
 # Azure Storage specific
