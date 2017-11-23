@@ -4,23 +4,6 @@ variable "environment" {
   type = "string"
 }
 
-variable "subscription_id" {
-  description = "Azure account id used as filter for monitors"
-  type = "string"
-}
-
-variable "provider" {
-  description = "Cloud provider which the monitor and its based metric depend on"
-  type = "string"
-  default = "azure"
-}
-
-variable "service" {
-  description = "Service monitored by this set of monitors"
-  type = "string"
-  default = "storage"
-}
-
 # Global DataDog
 variable "message" {
   description = "Message sent when a Redis monitor is triggered"
