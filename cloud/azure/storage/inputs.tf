@@ -42,31 +42,31 @@ variable "latency_threshold_critical" {
 
 variable "timeout_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of timeout error requests for a storage"
-  default = 35
+  default = 5
 }
 
 variable "network_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of network error requests for a storage"
-  default = 35
+  default = 5
 }
 
 variable "throttling_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of throttling error requests for a storage"
-  default = 50
+  default = 10
 }
 
 variable "server_other_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of server other error requests for a storage"
-  default = 50
+  default = 10
 }
 
 variable "client_other_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of client other error requests for a storage"
-  default = 75
+  default = 15
 }
 
 variable "authorization_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of authorization error requests for a storage"
-  default = 75
+  default = 15
 }
 
