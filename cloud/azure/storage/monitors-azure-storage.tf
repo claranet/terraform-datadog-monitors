@@ -32,7 +32,7 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}","resource:storage","team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "successful_requests" {
@@ -61,7 +61,7 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}","resource:storage","team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "latency" {
@@ -90,7 +90,7 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}","resource:storage","team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "timeout_error_requests" {
@@ -119,7 +119,7 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}","resource:storage","team:azure", "provider:azure"]
 }
 
 
@@ -149,7 +149,7 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}","resource:storage","team:azure", "provider:azure"]
 }
 
 
@@ -179,7 +179,7 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}","resource:storage","team:azure", "provider:azure"]
 }
 
 
@@ -209,7 +209,7 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}","resource:storage","team:azure", "provider:azure"]
 }
 
 
@@ -239,7 +239,7 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}","resource:storage","team:azure", "provider:azure"]
 }
 
 
@@ -269,5 +269,5 @@ EOF
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}","resource:storage","team:azure", "provider:azure"]
 }
