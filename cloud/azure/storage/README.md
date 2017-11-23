@@ -1,5 +1,5 @@
 Azure Storage DataDog monitors
-============================
+==============================
 
 How to use this module
 ----------------------
