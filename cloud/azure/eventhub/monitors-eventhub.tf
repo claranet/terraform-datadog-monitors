@@ -94,7 +94,7 @@ resource "datadog_monitor" "eventhub_errors" {
   locked              = false
   require_full_window = true
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20o
+  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
 }
