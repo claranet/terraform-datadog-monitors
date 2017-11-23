@@ -1,5 +1,5 @@
 Azure SQL Database DataDog monitors
-============================
+===================================
 
 How to use this module
 ----------------------
@@ -8,10 +8,8 @@ How to use this module
 module "datadog-monitors-azure-storage" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/sql-database?ref={revision}"
 
-  message = "${module.datadog-message-alerting.alerting-message}"
-
+  message     = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
-  client_name = "${var.client_name}"
 }
 ```
 
@@ -38,8 +36,14 @@ Inputs
 | dtu_threshold_critical | Amount of DTU used (critical threshold) | string | `90` | no |
 | dtu_threshold_warning | Amount of DTU used (warning threshold) | string | `85` | no |
 | environment | Architecture Environment | string | - | yes |
+| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
-| provider | Cloud provider which the monitor and its based metric depend on | string | `azure` | no |
-| service | Service monitored by this set of monitors | string | `sql-database` | no |
-| subscription_id | Azure account id used as filter for monitors | string | - | yes |
-| use_filter_tags | Filter the data with service tags if true | string | `true` | no |
+
+Related documentation
+---------------------
+
+DataDog documentation: [https://docs.datadoghq.com/integrations/azure_sql_database/](https://docs.datadoghq.com/integrations/azure_sql_database/)
+
+Azure SQL Database metrics documentation: [https://docs.microsoft.com/en-us/azure/sql-database/saas-dbpertenant-log-analytics](https://docs.microsoft.com/en-us/azure/sql-database/saas-dbpertenant-log-analytics)
+
