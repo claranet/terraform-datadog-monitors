@@ -35,11 +35,9 @@ Inputs
 |------|-------------|:----:|:-----:|:-----:|
 | delay | Delay in seconds for the metric evaluation | string | `600` | no |
 | environment | Architecture environment | string | - | yes |
-| provider | What is the monitored provider | string | azure | no |
-| service | What is the monitored service | string | storage | no |
-| subscription_id | Azure account id used as filter for monitors | string | - | yes |
 | message | Message sent when a monitor is triggered | string | - | yes |
-| use_filter_tags | Filter the data with service tags if true | string | `true` | no |
+| filter_tags_default | Use default tagging convention | string | `true` | no |
+| filter_tags_custom | Tags used for custom filtering when filter_tags_default is false | string | `*` | no |
 | availability_threshold_critical | Minimum threshold of availability | string | `90` | no |
 | successful_requests_threshold_critical | Minimum threshold of successful requests | string | `90` | no |
 | latency_threshold_critical | Maximum threshold of latency in ms | string | `1000` | no |
