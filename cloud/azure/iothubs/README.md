@@ -8,9 +8,8 @@ How to use this module
 module "iothubs" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/iothubs?ref=MON-80-azure-hub-iot-monitors"
   
-  message         = "${module.datadog-message-alerting.alerting-message}"
-  environment     = "${var.environment}"
-  subscription_id = "${var.subscription_id}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
+  environment = "${var.environment}"
 }
 ```
 
@@ -61,15 +60,13 @@ Inputs
 | failed_queryjobs_rate_threshold_warning | QueryJobs Failed rate limit (warning threshold) | string | `0` | no |
 | fallback_d2c_telemetry_egress_threshold_critical | D2C Telemetry Fallback limit (critical threshold) | string | `1000` | no |
 | fallback_d2c_telemetry_egress_threshold_warning | D2C Telemetry Fallback limit (warning threshold) | string | `500` | no |
+| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | invalid_d2c_telemetry_egress_threshold_critical | D2C Telemetry Invalid limit (critical threshold) | string | `1000` | no |
 | invalid_d2c_telemetry_egress_threshold_warning | D2C Telemetry Invalid limit (warning threshold) | string | `500` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 | orphaned_d2c_telemetry_egress_threshold_critical | D2C Telemetry Orphaned limit (critical threshold) | string | `1000` | no |
 | orphaned_d2c_telemetry_egress_threshold_warning | D2C Telemetry Orphaned limit (warning threshold) | string | `500` | no |
-| provider | Cloud provider which the monitor and its based metric depend on | string | `azure` | no |
-| service | Service monitored by this set of monitors | string | `storage` | no |
-| subscription_id | Azure account id used as filter for monitors | string | - | yes |
-| use_filter_tags | Filter the data with service tags if true | string | `true` | no |
 
 Related documentation
 ---------------------

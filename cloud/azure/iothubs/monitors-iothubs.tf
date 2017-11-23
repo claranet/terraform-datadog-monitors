@@ -2,7 +2,7 @@ data "template_file" "filter" {
   template = "$${filter}"
 
   vars {
-    filter = "${var.use_filter_tags == "true" ? format("dd_monitoring:enabled,dd_azure_storage:enabled,env:%s", var.environment) : "${data.template_file.filter.rendered}"}"
+    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_azure_iothub:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
   }
 }
 
@@ -18,7 +18,7 @@ resource "datadog_monitor" "too_many_jobs_failed" {
           ) * 100 > ${var.failed_jobs_rate_threshold_critical}
   EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   thresholds {
     warning  = "${var.failed_jobs_rate_threshold_warning}"
@@ -36,7 +36,7 @@ resource "datadog_monitor" "too_many_jobs_failed" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "too_many_list_jobs_failed" {
@@ -51,7 +51,7 @@ resource "datadog_monitor" "too_many_list_jobs_failed" {
           ) * 100 > ${var.failed_listjobs_rate_threshold_critical}
   EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   thresholds {
     warning  = "${var.failed_listjobs_rate_threshold_warning}"
@@ -69,7 +69,7 @@ resource "datadog_monitor" "too_many_list_jobs_failed" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "too_many_query_jobs_failed" {
@@ -84,7 +84,7 @@ resource "datadog_monitor" "too_many_query_jobs_failed" {
     ) * 100 > ${var.failed_queryjobs_rate_threshold_critical}
   EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   thresholds {
     warning  = "${var.failed_queryjobs_rate_threshold_warning}"
@@ -102,7 +102,7 @@ resource "datadog_monitor" "too_many_query_jobs_failed" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "status" {
@@ -113,7 +113,7 @@ resource "datadog_monitor" "status" {
     avg(last_5m):avg:azure.devices_iothubs.status{${data.template_file.filter.rendered}} by {name,resource_group} < 1
   EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
@@ -126,7 +126,7 @@ resource "datadog_monitor" "status" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "total_devices" {
@@ -137,7 +137,7 @@ resource "datadog_monitor" "total_devices" {
     avg(last_5m):avg:azure.devices_iothubs.devices.total_devices{${data.template_file.filter.rendered}} by {name,resource_group} == 0
   EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
@@ -150,7 +150,7 @@ resource "datadog_monitor" "total_devices" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "too_many_c2d_methods_failed" {
@@ -165,7 +165,7 @@ resource "datadog_monitor" "too_many_c2d_methods_failed" {
     ) * 100 > ${var.failed_c2d_methods_rate_threshold_critical}
   EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   thresholds {
     warning  = "${var.failed_c2d_methods_rate_threshold_warning}"
@@ -183,7 +183,7 @@ resource "datadog_monitor" "too_many_c2d_methods_failed" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
@@ -198,7 +198,7 @@ resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
     ) * 100 > ${var.failed_c2d_twin_read_rate_threshold_critical}
   EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   thresholds {
     warning  = "${var.failed_c2d_twin_read_rate_threshold_warning}"
@@ -216,7 +216,7 @@ resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
@@ -231,7 +231,7 @@ resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
     ) * 100 > ${var.failed_c2d_twin_update_rate_threshold_critical}
   EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   thresholds {
     warning  = "${var.failed_c2d_twin_update_rate_threshold_warning}"
@@ -249,7 +249,7 @@ resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
@@ -264,7 +264,7 @@ resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
     ) * 100 > ${var.failed_d2c_twin_read_rate_threshold_critical}
   EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   thresholds {
     warning  = "${var.failed_d2c_twin_read_rate_threshold_warning}"
@@ -282,7 +282,7 @@ resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
@@ -297,7 +297,7 @@ resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
     ) * 100 > ${var.failed_d2c_twin_update_rate_threshold_critical}
   EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   thresholds {
     warning  = "${var.failed_d2c_twin_update_rate_threshold_warning}"
@@ -315,7 +315,7 @@ resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
@@ -328,7 +328,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
       ) > ${var.dropped_d2c_telemetry_egress_threshold_critical}
   EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   thresholds {
     warning  = "${var.dropped_d2c_telemetry_egress_threshold_warning}"
@@ -346,7 +346,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
@@ -359,7 +359,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
     ) > ${var.orphaned_d2c_telemetry_egress_threshold_critical}
   EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   thresholds {
     warning  = "${var.orphaned_d2c_telemetry_egress_threshold_warning}"
@@ -377,7 +377,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
@@ -390,7 +390,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
     ) > ${var.invalid_d2c_telemetry_egress_threshold_critical}
   EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   thresholds {
     warning  = "${var.invalid_d2c_telemetry_egress_threshold_warning}"
@@ -408,7 +408,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_fallback" {
@@ -421,7 +421,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_fallback" {
     )  > ${var.fallback_d2c_telemetry_egress_threshold_critical}
   EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   thresholds {
     warning  = "${var.fallback_d2c_telemetry_egress_threshold_warning}"
@@ -439,7 +439,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_fallback" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
@@ -453,7 +453,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
     ) > 0
   EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
@@ -466,5 +466,5 @@ resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "resource:${var.service}", "team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
