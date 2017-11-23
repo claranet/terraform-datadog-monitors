@@ -11,5 +11,7 @@ EOF
   vars {
     oncall_24x7         = "${var.oncall_24x7}"
     oncall_office_hours = "${var.oncall_office_hours}"
+    prepend_text        = "${var.prepend_text}"
+    append_text         = "${var.append_text}"
   }
 }
