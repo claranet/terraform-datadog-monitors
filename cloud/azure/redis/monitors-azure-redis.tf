@@ -2,7 +2,7 @@ data "template_file" "filter" {
   template = "$${filter}"
 
   vars {
-    filter = "${var.use_filter_tags == "true" ? format("dd_monitoring:enabled,dd_azure_storage:enabled,env:%s", var.environment) : "subscription_id:${var.subscription_id}"}"
+    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_azure_redis:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
   }
 }
 
@@ -14,9 +14,9 @@ resource "datadog_monitor" "status" {
     avg(last_5m):avg:azure.cache_redis.status{${data.template_file.filter.rendered}} by {name,resource_group} != 1
 EOF
 
-  type = "query alert"
+  type = "metric alert"
 
-  notify_no_data      = false
+  notify_no_data      = true
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -27,7 +27,7 @@ EOF
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:redis", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "evictedkeys" {
@@ -40,7 +40,7 @@ resource "datadog_monitor" "evictedkeys" {
      ) > ${var.evictedkeys_limit_threshold_critical}
 EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   thresholds {
     warning  = "${var.evictedkeys_limit_threshold_warning}"
@@ -58,7 +58,7 @@ EOF
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:redis", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "percent_processor_time" {
@@ -71,7 +71,7 @@ resource "datadog_monitor" "percent_processor_time" {
     ) > ${var.percent_processor_time_threshold_critical}
 EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   thresholds {
     warning  = "${var.percent_processor_time_threshold_warning}"
@@ -89,7 +89,7 @@ EOF
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:redis", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "server_load" {
@@ -102,7 +102,7 @@ resource "datadog_monitor" "server_load" {
     ) > ${var.server_load_rate_threshold_critical}
 EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   thresholds {
     warning  = "${var.server_load_rate_threshold_warning}"
@@ -120,5 +120,5 @@ EOF
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:redis", "team:azure", "provider:azure"]
 }
