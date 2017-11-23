@@ -2,12 +2,12 @@ data "template_file" "filter" {
   template = "$${filter}"
 
   vars {
-    filter = "${var.use_filter_tags == "true" ? format("dd_monitoring:enabled,dd_azure_storage:enabled,env:%s", var.environment) : "subscription_id:${var.subscription_id}"}"
+    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_azure_eventhub:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
   }
 }
 
 resource "datadog_monitor" "eventhub_status" {
-  name    = "[${var.environment}] Event Hub status"
+  name    = "[${var.environment}] Event Hub status is not ok on {{name}}"
   message = "${var.message}"
 
   query = <<EOF
@@ -26,11 +26,11 @@ resource "datadog_monitor" "eventhub_status" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:eventhub", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "eventhub_failed_requests" {
-  name    = "[${var.environment}] Event Hub failed requests"
+  name    = "[${var.environment}] Event Hub too much failed requests on {{name}}"
   message = "${var.message}"
 
   query = <<EOF
@@ -41,7 +41,7 @@ resource "datadog_monitor" "eventhub_failed_requests" {
           avg:azure.eventhub_namespaces.failed_requests{${data.template_file.filter.rendered}} by {name,resource_group,region}
         ) > ${var.failed_requests_rate_thresold_critical}
         EOF
-  type  = "query alert"
+  type  = "metric alert"
 
   thresholds {
     critical = "${var.failed_requests_rate_thresold_critical}"
@@ -59,11 +59,11 @@ resource "datadog_monitor" "eventhub_failed_requests" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:eventhub", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "eventhub_errors" {
-  name    = "[${var.environment}] Event Hub errors"
+  name    = "[${var.environment}] Event Hub too much errors on {{name}}"
   message = "${var.message}"
 
   query = <<EOF
@@ -78,7 +78,7 @@ resource "datadog_monitor" "eventhub_errors" {
           avg:azure.eventhub_namespaces.other_errors{${data.template_file.filter.rendered}} by {name,resource_group,region}
         ) > ${var.errors_rate_thresold_critical}
         EOF
-  type  = "query alert"
+  type  = "metric alert"
 
   thresholds {
     critical = "${var.errors_rate_thresold_critical}"
@@ -96,5 +96,5 @@ resource "datadog_monitor" "eventhub_errors" {
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}","resource:${var.service}","team:${var.provider}"]
+  tags = ["env:${var.environment}", "resource:eventhub", "team:azure", "provider:azure"]
 }
