@@ -33,11 +33,9 @@ Inputs
 | errors_rate_thresold_warning | Errors ratio (percentage) to trigger a warning alert | string | `1` | no |
 | failed_requests_rate_thresold_critical | Failed requests ratio (percentage) to trigger the critical alert | string | `3` | no |
 | failed_requests_rate_thresold_warning | Failed requests ratio (percentage) to trigger a warning alert | string | `1` | no |
+| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
-| provider | What is the monitored provider | string | azure | no |
-| use_filter_tags | Filter the data with service tags if true | string | `true` | no |
-| subscription_id | Azure account id used as filter for monitors | string | - | yes |
-| service | What is the monitored service | string | storage | no |
 
 Outputs
 -------

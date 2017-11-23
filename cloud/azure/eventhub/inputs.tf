@@ -4,23 +4,6 @@ variable "environment" {
   type = "string"
 }
 
-variable "subscription_id" {
-  description = "Azure account id used as filter for monitors"
-  type = "string"
-}
-
-variable "provider" {
-  description = "Cloud provider which the monitor and its based metric depend on"
-  type = "string"
-  default = "azure"
-}
-
-variable "service" {
-  description = "Service monitored by this set of monitors"
-  type = "string"
-  default = "storage"
-}
-
 # Global DataDog
 variable "message" {
   description = "Message sent when an alert is triggered"
@@ -31,9 +14,14 @@ variable "delay" {
   default = 600
 }
 
-variable "use_filter_tags" {
-  description = "Filter the data with service tags if true"
+variable "filter_tags_use_defaults" {
+  description = "Use default filter tags convention"
   default     = "true"
+}
+
+variable "filter_tags_custom" {
+  description = "Tags used for custom filtering when filter_tags_use_defaults is false"
+  default     = "*"
 }
 
 variable "failed_requests_rate_thresold_critical" {
