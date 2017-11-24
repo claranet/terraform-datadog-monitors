@@ -6,6 +6,16 @@ data "template_file" "filter" {
   }
 }
 
+module "filters-tags" {
+  source = "../../../common/filter-tags"
+
+  environment   = "${var.environment}"
+  resource_name = "storage"
+
+  filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
+  filter_tags_custom       = "${var.filter_tags_custom}"
+}
+
 module "storage_availability" {
   source = "../../../common/base-monitor"
 
@@ -17,7 +27,7 @@ module "storage_availability" {
 
   query = <<EOF
     avg(last_5m): (default(
-      avg:azure.storage.availability{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
+      avg:azure.storage.availability{${module.filters-tags.value},transaction_type:all} by {resource_group,storage_type,name},
     100)) < ${var.availability_threshold_critical}
 EOF
 
