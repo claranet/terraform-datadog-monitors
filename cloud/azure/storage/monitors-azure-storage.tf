@@ -6,9 +6,14 @@ data "template_file" "filter" {
   }
 }
 
-resource "datadog_monitor" "availability" {
-  name    = "[${var.environment}] Azure Storage is down"
-  message = "${coalesce(var.availability_message, var.message)}"
+module "storage_availability" {
+  source = "../../../common/base-monitor"
+
+  name        = "Azure Storage is down"
+  environment = "${var.environment}"
+  message     = "${coalesce(var.availability_message, var.message)}"
+  resource_name = "storage"
+  provider = "azure"
 
   query = <<EOF
     avg(last_5m): (default(
@@ -23,19 +28,12 @@ EOF
 
   silenced = "${var.availability_silenced}"
 
-  type                = "metric alert"
-  notify_no_data      = false
-  notify_audit        = false
-  timeout_h           = 0
-  include_tags        = true
-  locked              = false
-  require_full_window = false
-  new_host_delay      = "${var.delay}"
-  evaluation_delay    = "${var.delay}"
-  renotify_interval   = 0
-  no_data_timeframe   = 20
+  notify_no_data = true
+  delay          = "${var.delay}"
 
-  tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
+
+  filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
+  filter_tags_custom       = "${var.filter_tags_custom}"
 }
 
 resource "datadog_monitor" "successful_requests" {
