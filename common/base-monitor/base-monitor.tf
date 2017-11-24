@@ -7,12 +7,22 @@ data "template_file" "name" {
   }
 }
 
+data "template_file" "filter" {
+template = "$${filter}"
+
+  vars {
+    filter = "${var.filter_tags_use_defaults == "true" ?
+              format("dd_monitoring:enabled,dd_azure_%s:enabled,env:%s", var.resource_kind, var.environment) :
+              "${var.filter_tags_custom}"}"
+  }
+}
+
 resource "datadog_monitor" "base_monitor" {
   name = "[${var.environment}] ${var.name}${data.template_file.name.rendered}"
 
   message = "${var.message}"
 
-  query = "${var.query}"
+  query = "${replace(var.query, "{{filter_tags}}", data.template_file.filter.rendered)}"
 
   type = "${var.type}"
 
@@ -34,5 +44,4 @@ resource "datadog_monitor" "base_monitor" {
         list("env:${var.environment}", "resource:${var.resource_kind}", "team:${var.provider}", "provider:${var.provider}"),
         formatlist("%s:%s", keys(var.extra_tags), values(var.extra_tags))
       )}"
-
 }

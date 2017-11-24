@@ -16,9 +16,9 @@ module "storage_availability" {
   provider      = "azure"
 
   query = <<EOF
-    avg(last_5m): (default(
-      avg:azure.storage.availability{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
-    100)) < ${var.availability_threshold_critical}
+    avg(last_5m): (
+      avg:azure.storage.availability{{{filter_tags}}} by {resource_group,storage_type,name}
+    ) < ${var.availability_threshold_critical}
 EOF
 
   thresholds = {
