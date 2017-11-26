@@ -145,7 +145,7 @@ resource "datadog_monitor" "apimgt_successful_requests" {
   }
 
   type                = "metric alert"
-  notify_no_data      = true
+  notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
