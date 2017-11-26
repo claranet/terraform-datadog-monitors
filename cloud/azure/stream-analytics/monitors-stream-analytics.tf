@@ -63,7 +63,7 @@ resource "datadog_monitor" "failed_function_requests" {
   message = "${var.message}"
 
   query = <<EOF
-    avg(last_5m): (
+    sum(last_5m): (
       avg:azure.streamanalytics_streamingjobs.aml_callout_failed_requests{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() /
        avg:azure.streamanalytics_streamingjobs.aml_callout_requests{${data.template_file.filter.rendered}} by {name,resource_group}.as_count()
     ) * 100 > ${var.failed_function_requests_threshold_critical}
