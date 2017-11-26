@@ -100,7 +100,7 @@ resource "datadog_monitor" "appservices_http_2xx_status_rate" {
   message = "${var.message}"
 
   query = <<EOF
-    avg(last_5m): (
+    sum(last_5m): (
       avg:azure.app_services.http2xx{${data.template_file.filter.rendered}}.as_count() /
         avg:azure.app_services.http2xx{${data.template_file.filter.rendered}}.as_count()
     ) < ${var.http_2xx_status_rate_threshold_critical}
@@ -114,7 +114,7 @@ resource "datadog_monitor" "appservices_http_2xx_status_rate" {
     critical = "${var.http_2xx_status_rate_threshold_critical}"
   }
 
-  notify_no_data      = true  # Will notify when no data is received
+  notify_no_data      = false  # Will notify when no data is received
   renotify_interval   = 0
   require_full_window = true
   timeout_h           = 0
