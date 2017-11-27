@@ -14,7 +14,7 @@ resource "datadog_monitor" "appservices_response_time" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:azure.app_services.average_response_time{${data.template_file.filter.rendered}}
+      avg:azure.app_services.average_response_time{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) >= ${var.response_time_threshold_critical}
   EOF
 
@@ -43,7 +43,7 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:azure.app_services.memory_working_set{${data.template_file.filter.rendered}}
+      avg:azure.app_services.memory_working_set{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) >= ${var.memory_usage_threshold_critical}
   EOF
 
@@ -72,7 +72,7 @@ resource "datadog_monitor" "appservices_http_404_errors_count" {
 
   query = <<EOF
     max(last_5m): (
-      per_minute(avg:azure.app_services.http404{${data.template_file.filter.rendered}}.as_rate())
+      per_minute(avg:azure.app_services.http404{${data.template_file.filter.rendered}}.as_rate()) by {resource_group,region,name}
     ) > ${var.http_404_errors_count_rate_threshold_critical}
   EOF
 
@@ -102,7 +102,7 @@ resource "datadog_monitor" "appservices_http_2xx_status_rate" {
   query = <<EOF
     sum(last_5m): (
       avg:azure.app_services.http2xx{${data.template_file.filter.rendered}}.as_count() /
-        avg:azure.app_services.http2xx{${data.template_file.filter.rendered}}.as_count()
+        avg:azure.app_services.http2xx{${data.template_file.filter.rendered}}.as_count() by {resource_group,region,name}
     ) < ${var.http_2xx_status_rate_threshold_critical}
   EOF
 
