@@ -11,7 +11,7 @@ resource "datadog_monitor" "eventhub_status" {
   message = "${var.message}"
 
   query = <<EOF
-      avg(last_5m): avg:azure.eventhub_namespaces.status{${data.template_file.filter.rendered}} by {name,resource_group,region} != 1
+      avg(last_5m): avg:azure.eventhub_namespaces.status{${data.template_file.filter.rendered}} by {resource_group,region,name} != 1
       EOF
   type  = "metric alert"
 
@@ -34,12 +34,12 @@ resource "datadog_monitor" "eventhub_failed_requests" {
   message = "${var.message}"
 
   query = <<EOF
-        avg(last_5m): (
-          avg:azure.eventhub_namespaces.failed_requests{${data.template_file.filter.rendered}} by {name,resource_group,region}
-        ) * 100 / (
-          avg:azure.eventhub_namespaces.successful_requests{${data.template_file.filter.rendered}} by {name,resource_group,region} +
-          avg:azure.eventhub_namespaces.failed_requests{${data.template_file.filter.rendered}} by {name,resource_group,region}
-        ) > ${var.failed_requests_rate_thresold_critical}
+        sum(last_5m): (
+          avg:azure.eventhub_namespaces.failed_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
+        (
+          avg:azure.eventhub_namespaces.successful_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
+          avg:azure.eventhub_namespaces.failed_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
+        ) * 100 > ${var.failed_requests_rate_thresold_critical}
         EOF
   type  = "metric alert"
 
@@ -67,16 +67,16 @@ resource "datadog_monitor" "eventhub_errors" {
   message = "${var.message}"
 
   query = <<EOF
-        avg(last_5m): (
-          avg:azure.eventhub_namespaces.internal_server_errors{${data.template_file.filter.rendered}} by {name,resource_group,region} +
-          avg:azure.eventhub_namespaces.server_busy_errors{${data.template_file.filter.rendered}} by {name,resource_group,region} +
-          avg:azure.eventhub_namespaces.other_errors{${data.template_file.filter.rendered}} by {name,resource_group,region}
-        ) * 100 / (
-          avg:azure.eventhub_namespaces.successful_requests{${data.template_file.filter.rendered}} by {name,resource_group,region} +
-          avg:azure.eventhub_namespaces.internal_server_errors{${data.template_file.filter.rendered}} by {name,resource_group,region} +
-          avg:azure.eventhub_namespaces.server_busy_errors{${data.template_file.filter.rendered}} by {name,resource_group,region} +
-          avg:azure.eventhub_namespaces.other_errors{${data.template_file.filter.rendered}} by {name,resource_group,region}
-        ) > ${var.errors_rate_thresold_critical}
+        sum(last_5m): (
+          avg:azure.eventhub_namespaces.internal_server_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
+          avg:azure.eventhub_namespaces.server_busy_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
+          avg:azure.eventhub_namespaces.other_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
+        ) / (
+          avg:azure.eventhub_namespaces.successful_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
+          avg:azure.eventhub_namespaces.internal_server_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
+          avg:azure.eventhub_namespaces.server_busy_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
+          avg:azure.eventhub_namespaces.other_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
+        ) * 100 > ${var.errors_rate_thresold_critical}
         EOF
   type  = "metric alert"
 
