@@ -101,8 +101,8 @@ resource "datadog_monitor" "appservices_http_2xx_status_rate" {
 
   query = <<EOF
     sum(last_5m): (
-      avg:azure.app_services.http2xx{${data.template_file.filter.rendered}}.as_count() /
-        avg:azure.app_services.http2xx{${data.template_file.filter.rendered}}.as_count() by {resource_group,region,name}
+      avg:azure.app_services.http2xx{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
+        avg:azure.app_services.requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
     ) < ${var.http_2xx_status_rate_threshold_critical}
   EOF
 
