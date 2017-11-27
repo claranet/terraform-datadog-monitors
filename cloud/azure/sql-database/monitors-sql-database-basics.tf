@@ -12,7 +12,7 @@ resource "datadog_monitor" "sql-database_cpu_90_15min" {
 
   query = <<EOF
     avg(last_15m): (
-      avg:azure.sql_servers_databases.cpu_percent{${data.template_file.filter.rendered}} by {name,resource_group}
+      avg:azure.sql_servers_databases.cpu_percent{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.cpu_threshold_critical}
   EOF
 
@@ -44,7 +44,7 @@ resource "datadog_monitor" "sql-database_free_space_low" {
 
   query = <<EOF
     avg(last_15m): (
-      avg:azure.sql_servers_databases.storage_percent{${data.template_file.filter.rendered}} by {name,resource_group}
+      avg:azure.sql_servers_databases.storage_percent{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.diskspace_threshold_critical}
   EOF
 
@@ -75,7 +75,7 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
 
   query = <<EOF
     avg(last_15m): (
-      azure.sql_servers_databases.dtu_consumption_percent{${data.template_file.filter.rendered}} by {name,resource_group}
+      azure.sql_servers_databases.dtu_consumption_percent{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.dtu_threshold_critical}
   EOF
 
@@ -106,7 +106,7 @@ resource "datadog_monitor" "sql-database_deadlocks_count" {
 
   query = <<EOF
     sum(last_5m): (
-      avg:azure.sql_servers_databases.deadlock{${data.template_file.filter.rendered}} by {name,resource_group}.as_count()
+      avg:azure.sql_servers_databases.deadlock{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
     ) > ${var.deadlock_threshold_critical}
   EOF
 
