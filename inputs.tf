@@ -60,6 +60,8 @@ variable "rds_cpu_threshold" {
 }
 
 variable "rds_mem_threshold" {
+  type = "map"
+
   default = {
     warning  = 20
     critical = 10
@@ -81,6 +83,8 @@ variable "elb_config" {
 }
 
 variable "elb_5xx_threshold" {
+  type = "map"
+
   default = {
     warning  = 5
     critical = 10
@@ -88,6 +92,8 @@ variable "elb_5xx_threshold" {
 }
 
 variable "elb_4xx_threshold" {
+  type = "map"
+
   default = {
     warning  = 5
     critical = 10
@@ -96,10 +102,29 @@ variable "elb_4xx_threshold" {
 
 variable "elb_backend_latency" {
   description = "Average time elapsed after the request leaves the load balancer until a response is received. In seconds"
-
+  
   default = {
     warning  = 1
     critical = 5
+  }
+}
+
+## VPN
+variable "vpn_tunnel_address" {
+  description = "List the VPN tunnels you want to monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "vpn_config" {
+  description = "Ok means that both tunnels are up, warning means only one tunnel is up and critical means that both tunnels are down "
+  type        = "map"
+
+  default = {
+    delay    = 900
+    warning  = 1
+    critical = 0
+    ok       = 2
   }
 }
 
