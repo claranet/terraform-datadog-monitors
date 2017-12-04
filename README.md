@@ -54,6 +54,19 @@ variable "warning_escalation_group" {
 variable "datadog_app_key" {}
 variable "datadog_api_key" {}
 
+##Set this variable to true if you want to keep the default tags (tags in query directive)
+variable "filter_tags_use_defaults" {
+  description = "Use default filter tags convention"
+  default     = "true"
+}
+
+##If you have to set custom tags, you have to set the previous input to false and add your tags in this variable
+variable "filter_tags_custom" {
+  description = "Tags used for custom filtering when filter_tags_use_defaults is false"
+  default     = "*"
+}
+
+
 variable "dd_linux_basics" {
   default = "enabled"
 }

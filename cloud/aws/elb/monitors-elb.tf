@@ -1,9 +1,17 @@
+data "template_file" "filter" {
+  template = "$${filter}"
+
+  vars {
+    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_elb:enabled,env:%s", var.env) : "${var.filter_tags_custom}"}"
+  }
+}
+
 resource "datadog_monitor" "ELB_no_healthy_instances" {
   name    = "[${var.env}] ELB no healthy instances on {{host.identifier}}"
   message = "{{#is_alert}}\n${var.hno_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.hno_escalation_group}\n{{/is_recovery}}"
 
   count = "${var.dd_aws_elb == "enabled" ? 1 : 0 }"
-  query = "avg(last_5m):avg:aws.elb.healthy_host_count{dd_monitoring:enabled,dd_aws_elb:enabled,env:${var.env}} by {loadbalancername,region} == 0"
+  query = "avg(last_5m):avg:aws.elb.healthy_host_count{${data.template_file.filter.rendered}} by {loadbalancername,region} == 0"
   type  = "query alert"
 
   notify_no_data      = "${var.elb_config["notify_no_data"]}"
@@ -17,7 +25,7 @@ resource "datadog_monitor" "ELB_no_healthy_instances" {
   new_host_delay      = "${var.elb_config["delay"]}"
   no_data_timeframe   = 20
 
-  tags = ["*"]
+  tags = ["env:${var.env}", "resource:elb", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "ELB_unhealthy_instances" {
@@ -25,7 +33,7 @@ resource "datadog_monitor" "ELB_unhealthy_instances" {
   message = "{{#is_alert}}\n${var.ho_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.ho_escalation_group}\n{{/is_recovery}}"
 
   count = "${var.dd_aws_elb == "enabled" ? 1 : 0 }"
-  query = "avg(last_5m):avg:aws.elb.un_healthy_host_count{dd_monitoring:enabled,dd_aws_elb:enabled,env:${var.env}} by {loadbalancername,region} > 0"
+  query = "avg(last_5m):avg:aws.elb.un_healthy_host_count{${data.template_file.filter.rendered}} by {loadbalancername,region} > 0"
   type  = "query alert"
 
   notify_no_data      = "${var.elb_config["notify_no_data"]}"
@@ -39,7 +47,7 @@ resource "datadog_monitor" "ELB_unhealthy_instances" {
   new_host_delay      = "${var.elb_config["delay"]}"
   no_data_timeframe   = 20
 
-  tags = ["*"]
+  tags = ["env:${var.env}", "resource:elb", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "ELB_too_much_5xx_backend" {
@@ -47,7 +55,7 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
   message = "{{#is_alert}}\n${var.hno_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.hno_escalation_group}\n{{/is_recovery}}"
 
   count = "${var.dd_aws_elb == "enabled" ? 1 : 0 }"
-  query = "avg(last_5m): avg:aws.elb.httpcode_backend_5xx{dd_monitoring:enabled,dd_aws_elb:enabled,env:${var.env}} by {loadbalancername,region} / avg:aws.elb.request_count{dd_monitoring:enabled,dd_aws_elb:enabled,env:${var.env}} by {loadbalancername,region} * 100 > ${var.elb_5xx_threshold["critical"]}"
+  query = "avg(last_5m): avg:aws.elb.httpcode_backend_5xx{${data.template_file.filter.rendered}} by {loadbalancername,region} / avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {loadbalancername,region} * 100 > ${var.elb_5xx_threshold["critical"]}"
   type  = "query alert"
 
   thresholds {
@@ -66,7 +74,7 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
   new_host_delay      = "${var.elb_config["delay"]}"
   no_data_timeframe   = 20
 
-  tags = ["*"]
+  tags = ["env:${var.env}", "resource:elb", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "ELB_too_much_4xx_backend" {
@@ -74,7 +82,7 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
   message = "{{#is_alert}}\n${var.hno_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.hno_escalation_group}\n{{/is_recovery}}"
 
   count = "${var.dd_aws_elb == "enabled" ? 1 : 0 }"
-  query = "avg(last_5m): avg:aws.elb.httpcode_backend_4xx{dd_monitoring:enabled,dd_aws_elb:enabled,env:${var.env}} by {loadbalancername,region} / avg:aws.elb.request_count{dd_monitoring:enabled,dd_aws_elb:enabled,env:${var.env}} by {loadbalancername,region} * 100 > ${var.elb_4xx_threshold["critical"]}"
+  query = "avg(last_5m): avg:aws.elb.httpcode_backend_4xx{${data.template_file.filter.rendered}} by {loadbalancername,region} / avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {loadbalancername,region} * 100 > ${var.elb_4xx_threshold["critical"]}"
   type  = "query alert"
 
   thresholds {
@@ -93,7 +101,7 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
   new_host_delay      = "${var.elb_config["delay"]}"
   no_data_timeframe   = 20
 
-  tags = ["*"]
+  tags = ["env:${var.env}", "resource:elb", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "ELB_backend_latency" {
@@ -101,7 +109,7 @@ resource "datadog_monitor" "ELB_backend_latency" {
   message = "{{#is_alert}}\n${var.ho_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.ho_escalation_group}\n{{/is_recovery}}"
 
   count = "${var.dd_aws_elb == "enabled" ? 1 : 0 }"
-  query = "avg(last_5m):avg:aws.elb.latency{dd_monitoring:enabled,dd_aws_elb:enabled,env:${var.env}} by {loadbalancername,region} > ${var.elb_backend_latency["critical"]}"
+  query = "avg(last_5m):avg:aws.elb.latency{${data.template_file.filter.rendered}} by {loadbalancername,region} > ${var.elb_backend_latency["critical"]}"
   type  = "query alert"
 
   thresholds {
@@ -120,5 +128,5 @@ resource "datadog_monitor" "ELB_backend_latency" {
   new_host_delay      = "${var.elb_config["delay"]}"
   no_data_timeframe   = 20
 
-  tags = ["*"]
+  tags = ["env:${var.env}", "resource:elb", "team:aws", "provider:aws"]
 }
