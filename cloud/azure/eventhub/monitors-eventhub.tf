@@ -35,7 +35,7 @@ resource "datadog_monitor" "eventhub_failed_requests" {
 
   query = <<EOF
         sum(last_5m): (
-          avg:azure.eventhub_namespaces.failed_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
+          avg:azure.eventhub_namespaces.failed_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() ) /
         (
           avg:azure.eventhub_namespaces.successful_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
           avg:azure.eventhub_namespaces.failed_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
