@@ -101,7 +101,7 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:azure.apimanagement_service.failed_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
+      avg:azure.apimanagement_service.unauthorized_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
       avg:azure.apimanagement_service.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() * 100
     ) > ${var.unauthorized_requests_threshold_critical}
     EOF
