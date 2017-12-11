@@ -66,7 +66,7 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
 
 # Monitoring App Services 404 errors rate
 resource "datadog_monitor" "appservices_http_404_errors_count" {
-  name    = "[${var.environment}] App Services HTTP errors > ${var.http_404_errors_count_rate_limit} limit on {{name}}"
+  name    = "[${var.environment}] App Services HTTP errors > {{value}}% limit on {{name}}"
   type    = "metric alert"
   message = "${var.message}"
 
