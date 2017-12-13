@@ -23,7 +23,7 @@ resource "datadog_monitor" "php-fpm_process_idle" {
   renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["*"]
+  tags = ["env:${var.env}", "type:php-fpm"]
 }
 
 resource "datadog_monitor" "FPM_process" {
@@ -51,5 +51,5 @@ resource "datadog_monitor" "FPM_process" {
   require_full_window = true
   no_data_timeframe   = 20
 
-  tags = ["*"]
+  tags = ["env:${var.env}", "type:php-fpm"]
 }

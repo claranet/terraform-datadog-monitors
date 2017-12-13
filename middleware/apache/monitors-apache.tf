@@ -23,5 +23,5 @@ resource "datadog_monitor" "Apache_process" {
   require_full_window = true
   no_data_timeframe   = 20
 
-  tags = ["*"]
+  tags = ["env:${var.env}", "type:apache"]
 }

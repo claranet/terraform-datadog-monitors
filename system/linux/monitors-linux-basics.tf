@@ -10,7 +10,7 @@ resource "datadog_monitor" "cpu_80_15min" {
     critical = "${var.cpu_15_critical}"
   }
 
-  tags = ["*"]
+  tags = ["env:${var.env}", "type:system"]
 
   notify_no_data      = "${var.linux_basics_config["notify_no_data"]}"
   evaluation_delay    = "${var.linux_basics_config["delay"]}"
@@ -36,7 +36,7 @@ resource "datadog_monitor" "cpu_95_5min" {
     critical = "${var.cpu_5_critical}"
   }
 
-  tags = ["*"]
+  tags = ["env:${var.env}", "type:system"]
 
   notify_no_data      = "${var.linux_basics_config["notify_no_data"]}"
   evaluation_delay    = "${var.linux_basics_config["delay"]}"
@@ -62,7 +62,7 @@ resource "datadog_monitor" "datadog_free_disk_space_5" {
     critical = 5
   }
 
-  tags = ["*"]
+  tags = ["env:${var.env}", "type:system"]
 
   notify_no_data      = "${var.linux_basics_config["notify_no_data"]}"
   evaluation_delay    = "${var.linux_basics_config["delay"]}"
@@ -89,7 +89,7 @@ resource "datadog_monitor" "datadog_free_disk_space_10" {
     critical = 10
   }
 
-  tags = ["*"]
+  tags = ["env:${var.env}", "type:system"]
 
   notify_no_data      = "${var.linux_basics_config["notify_no_data"]}"
   evaluation_delay    = "${var.linux_basics_config["delay"]}"
@@ -115,7 +115,7 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_5" {
     critical = 5
   }
 
-  tags = ["*"]
+  tags = ["env:${var.env}", "type:system"]
 
   notify_no_data      = "${var.linux_basics_config["notify_no_data"]}"
   evaluation_delay    = "${var.linux_basics_config["delay"]}"
@@ -142,7 +142,7 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_10" {
     critical = 10
   }
 
-  tags = ["*"]
+  tags = ["env:${var.env}", "type:system"]
 
   notify_no_data      = "${var.linux_basics_config["notify_no_data"]}"
   evaluation_delay    = "${var.linux_basics_config["delay"]}"
@@ -188,7 +188,7 @@ resource "datadog_monitor" "datadog_free_memory" {
     critical = 5
   }
 
-  tags = ["*"]
+  tags = ["env:${var.env}", "type:system"]
 
   notify_no_data      = "${var.linux_basics_config["notify_no_data"]}"
   evaluation_delay    = "${var.linux_basics_config["delay"]}"
