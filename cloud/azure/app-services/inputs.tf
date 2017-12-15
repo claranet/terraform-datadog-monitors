@@ -65,17 +65,17 @@ variable "http_5xx_requests_threshold_warning" {
 }
 
 #################################
-###   HTTP 404 status pages   ###
+###   HTTP 4xx status pages   ###
 #################################
 
-variable "http_404_requests_threshold_critical" {
+variable "http_4xx_requests_threshold_critical" {
   default     = 30
-  description = "Maximum critical acceptable percent of 404 errors"
+  description = "Maximum critical acceptable percent of 4xx errors"
 }
 
-variable "http_404_requests_threshold_warning" {
+variable "http_4xx_requests_threshold_warning" {
   default     = 15
-  description = "Maximum warning acceptable percent of 404 errors"
+  description = "Maximum warning acceptable percent of 4xx errors"
 }
 
 #################################
