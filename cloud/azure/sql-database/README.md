@@ -28,7 +28,7 @@ Inputs
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | cpu_threshold_critical | CPU usage in percent (critical threshold) | string | `90` | no |
-| cpu_threshold_warning | CPU usage in percent (warning threshold) | string | `` | no |
+| cpu_threshold_warning | CPU usage in percent (warning threshold) | string | `80` | no |
 | deadlock_threshold_critical | Amount of Deadlocks (critical threshold) | string | `1` | no |
 | delay | Delay in seconds for the metric evaluation | string | `600` | no |
 | diskspace_threshold_critical | Disk space used in percent (critical threshold) | string | `90` | no |

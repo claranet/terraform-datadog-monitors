@@ -276,7 +276,7 @@ variable "redis_server_load_rate_threshold_warning" {
 # Azure SQL Database specific variables
 variable "sqldatabase_cpu_threshold_warning" {
   description = "CPU usage in percent (warning threshold)"
-  default     = ""
+  default     = "80"
 }
 
 variable "sqldatabase_cpu_threshold_critical" {
