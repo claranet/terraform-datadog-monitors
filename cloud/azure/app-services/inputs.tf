@@ -55,17 +55,17 @@ variable "memory_usage_threshold_warning" {
 #################################
 
 variable "http_404_requests_threshold_critical" {
-  default     = 40
-  description = "Maximum critical acceptable percent of 404 errors"
-}
-
-variable "http_404_requests_threshold_warning" {
   default     = 30
   description = "Maximum critical acceptable percent of 404 errors"
 }
 
+variable "http_404_requests_threshold_warning" {
+  default     = 15
+  description = "Maximum warning acceptable percent of 404 errors"
+}
+
 #################################
-###   HTTP 202 status pages   ###
+###   HTTP 2xx status pages   ###
 #################################
 
 variable "http_2xx_requests_threshold_critical" {
