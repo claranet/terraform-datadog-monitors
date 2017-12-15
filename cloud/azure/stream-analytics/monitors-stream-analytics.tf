@@ -11,7 +11,7 @@ resource "datadog_monitor" "status" {
   message = "${var.message}"
 
   query = <<EOF
-    avg(last_5m):avg:azure.streamanalytics_streamingjobs.status{${data.template_file.filter.rendered}} by {name,resource_group} < 1
+    avg(last_5m):avg:azure.streamanalytics_streamingjobs.status{${data.template_file.filter.rendered}} by {resource_group,region,name} < 1
   EOF
   type  = "metric alert"
 
@@ -35,7 +35,7 @@ resource "datadog_monitor" "su_utilization" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:azure.streamanalytics_streamingjobs.resource_utilization{${data.template_file.filter.rendered}} by {name,resource_group}
+      avg:azure.streamanalytics_streamingjobs.resource_utilization{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.su_utilization_threshold_critical}
   EOF
   type  = "metric alert"
@@ -63,9 +63,9 @@ resource "datadog_monitor" "failed_function_requests" {
   message = "${var.message}"
 
   query = <<EOF
-    avg(last_5m): (
-      avg:azure.streamanalytics_streamingjobs.aml_callout_failed_requests{${data.template_file.filter.rendered}} by {name,resource_group}.as_count() /
-       avg:azure.streamanalytics_streamingjobs.aml_callout_requests{${data.template_file.filter.rendered}} by {name,resource_group}.as_count()
+    sum(last_5m): (
+      avg:azure.streamanalytics_streamingjobs.aml_callout_failed_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
+       avg:azure.streamanalytics_streamingjobs.aml_callout_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
     ) * 100 > ${var.failed_function_requests_threshold_critical}
   EOF
   type  = "metric alert"
@@ -94,7 +94,7 @@ resource "datadog_monitor" "conversion_errors" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:azure.streamanalytics_streamingjobs.conversion_errors{${data.template_file.filter.rendered}} by {name,resource_group}
+      avg:azure.streamanalytics_streamingjobs.conversion_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.conversion_errors_threshold_critical}
   EOF
   type  = "metric alert"
@@ -123,7 +123,7 @@ resource "datadog_monitor" "runtime_errors" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:azure.streamanalytics_streamingjobs.errors{${data.template_file.filter.rendered}} by {name,resource_group}
+      avg:azure.streamanalytics_streamingjobs.errors{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.runtime_errors_threshold_critical}
   EOF
   type  = "metric alert"
