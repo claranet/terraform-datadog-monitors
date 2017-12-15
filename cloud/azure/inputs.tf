@@ -70,32 +70,34 @@ variable "appservices_memory_usage_threshold_warning" {
   description = "Warning threshold in MiB"
 }
 
-variable "appservices_http_404_errors_count_rate_limit" {
-  default = 30
-}
-
-variable "appservices_http_404_errors_count_rate_threshold_critical" {
+variable "appservices_http_4xx_requests_threshold_critical" {
   default     = 30
-  description = "Alerting threshold (number of requests)"
+  description = "Maximum critical acceptable percent of 4xx errors"
 }
 
-variable "appservices_http_404_errors_count_rate_threshold_warning" {
+variable "appservices_http_4xx_requests_threshold_warning" {
+  default     = 15
+  description = "Maximum warning acceptable percent of 4xx errors"
+}
+
+variable "appservices_http_5xx_requests_threshold_critical" {
+  default     = 20
+  description = "Maximum critical acceptable percent of 5xx errors"
+}
+
+variable "appservices_http_5xx_requests_threshold_warning" {
   default     = 10
-  description = "Warning threshold (number of requests)"
+  description = "Maximum warning acceptable percent of 5xx errors"
 }
 
-variable "appservices_http_2xx_status_rate_limit" {
-  default = 30
+variable "appservices_http_2xx_requests_threshold_critical" {
+  default     = 90
+  description = "Minimum critical acceptable percent of 2xx requests"
 }
 
-variable "appservices_http_2xx_status_rate_threshold_critical" {
-  default     = 0.9
-  description = "Alerting threshold (percentage)"
-}
-
-variable "appservices_http_2xx_status_rate_threshold_warning" {
-  default     = 0.95
-  description = "Warning threshold (percentage)"
+variable "appservices_http_2xx_requests_threshold_warning" {
+  default     = 95
+  description = "Minimum warning acceptable percent of 2xx requests"
 }
 
 # Azure Event Hub specific variables

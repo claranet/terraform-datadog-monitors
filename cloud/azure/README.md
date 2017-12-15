@@ -35,12 +35,12 @@ Inputs
 | apimanagement_other_requests_threshold_critical | Maximum acceptable percent of other requests | string | `5` | no |
 | apimanagement_successful_requests_threshold_critical | Minimum acceptable percent of successful requests | string | `90` | no |
 | apimanagement_unauthorized_requests_threshold_critical | Maximum acceptable percent of unauthorized requests | string | `5` | no |
-| appservices_http_2xx_status_rate_limit |  | string | `30` | no |
-| appservices_http_2xx_status_rate_threshold_critical | Alerting threshold (percentage) | string | `0.9` | no |
-| appservices_http_2xx_status_rate_threshold_warning | Warning threshold (percentage) | string | `0.95` | no |
-| appservices_http_404_errors_count_rate_limit |  | string | `30` | no |
-| appservices_http_404_errors_count_rate_threshold_critical | Alerting threshold (number of requests) | string | `30` | no |
-| appservices_http_404_errors_count_rate_threshold_warning | Warning threshold (number of requests) | string | `10` | no |
+| appservices_http_2xx_requests_threshold_critical | Minimum critical acceptable percent of 2xx requests | string | `90` | no |
+| appservices_http_2xx_requests_threshold_warning | Minimum warning acceptable percent of 2xx requests | string | `95` | no |
+| appservices_http_4xx_requests_threshold_critical | Maximum critical acceptable percent of 4xx errors | string | `30` | no |
+| appservices_http_4xx_requests_threshold_warning | Maximum warning acceptable percent of 4xx errors | string | `15` | no |
+| appservices_http_5xx_requests_threshold_critical | Maximum critical acceptable percent of 5xx errors | string | `20` | no |
+| appservices_http_5xx_requests_threshold_warning | Maximum warning acceptable percent of 5xx errors | string | `10` | no |
 | appservices_memory_usage_threshold_critical | Alerting threshold in Mib | string | `52430000` | no |
 | appservices_memory_usage_threshold_warning | Warning threshold in MiB | string | `33550000` | no |
 | appservices_response_time_threshold_critical | Alerting threshold in seconds | string | `0.8` | no |
