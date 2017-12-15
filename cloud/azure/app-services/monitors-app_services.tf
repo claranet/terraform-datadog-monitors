@@ -94,25 +94,25 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
   tags = ["env:${var.environment}", "resource:appservices", "team:azure", "provider:azure"]
 }
 
-# Monitoring App Services 404 errors percent
-resource "datadog_monitor" "appservices_http_404_errors_count" {
-  name    = "[${var.environment}] App Services HTTP 404 errors is {{value}}% above the limit on {{name}}"
+# Monitoring App Services 4xx errors percent
+resource "datadog_monitor" "appservices_http_4xx_errors_count" {
+  name    = "[${var.environment}] App Services HTTP 4xx errors is {{value}}% above the limit on {{name}}"
   type    = "metric alert"
   message = "${var.message}"
 
   query = <<EOF
     sum(last_5m): (
-      avg:azure.app_services.http404{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
+      avg:azure.app_services.http4xx{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
       avg:azure.app_services.requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
-    ) * 100 > ${var.http_404_requests_threshold_critical}
+    ) * 100 > ${var.http_4xx_requests_threshold_critical}
   EOF
 
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"
 
   thresholds {
-    warning  = "${var.http_404_requests_threshold_warning}"
-    critical = "${var.http_404_requests_threshold_critical}"
+    warning  = "${var.http_4xx_requests_threshold_warning}"
+    critical = "${var.http_4xx_requests_threshold_critical}"
   }
 
   notify_no_data      = false # Will NOT notify when no data is received
