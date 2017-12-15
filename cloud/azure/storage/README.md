@@ -32,20 +32,20 @@ Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| authorization_error_requests_threshold_critical | Maximum acceptable percent of authorization error requests for a storage | string | `15` | no |
+| availability_threshold_critical | Minimum acceptable percent of availability for a storage | string | `90` | no |
+| client_other_error_requests_threshold_critical | Maximum acceptable percent of client other error requests for a storage | string | `15` | no |
 | delay | Delay in seconds for the metric evaluation | string | `600` | no |
 | environment | Architecture environment | string | - | yes |
-| message | Message sent when a monitor is triggered | string | - | yes |
-| filter_tags_use_defaults | Use default tagging convention | string | `true` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
-| availability_threshold_critical | Minimum threshold of availability | string | `90` | no |
-| successful_requests_threshold_critical | Minimum threshold of successful requests | string | `90` | no |
-| latency_threshold_critical | Maximum threshold of latency in ms | string | `1000` | no |
-| timeout_error_requests_threshold_critical | Maximum threshold of timeout error requests in percent | string | `35` | no |
-| network_error_requests_threshold_critical | Maximum threshold of network error requests in percent | string | `35` | no |
-| throttling_error_requests_threshold_critical | Maximum threshold of throttling error requests in percent | string | `50` | no |
-| server_other_error_requests_threshold_critical | Maximum threshold of server other error requests in percent | string | `50` | no |
-| client_other_error_requests_threshold_critical | Maximum threshold of client other error requests in percent | string | `75` | no |
-| authorization_error_requests_threshold_critical | Maximum threshold of authorization error requests in percent | string | `75` | no |
+| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
+| latency_threshold_critical | Maximum acceptable end to end latency (ms) for a storage | string | `1000` | no |
+| message | Message sent when a Redis monitor is triggered | string | - | yes |
+| network_error_requests_threshold_critical | Maximum acceptable percent of network error requests for a storage | string | `5` | no |
+| server_other_error_requests_threshold_critical | Maximum acceptable percent of server other error requests for a storage | string | `10` | no |
+| successful_requests_threshold_critical | Minimum acceptable percent of successful requests for a storage | string | `90` | no |
+| throttling_error_requests_threshold_critical | Maximum acceptable percent of throttling error requests for a storage | string | `10` | no |
+| timeout_error_requests_threshold_critical | Maximum acceptable percent of timeout error requests for a storage | string | `5` | no |
 
 Related documentation
 ---------------------

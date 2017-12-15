@@ -86,7 +86,7 @@ Inputs
 | redis_server_load_rate_threshold_critical | Server CPU load rate (critical threshold) | string | `90` | no |
 | redis_server_load_rate_threshold_warning | Server CPU load rate (warning threshold) | string | `70` | no |
 | sqldatabase_cpu_threshold_critical | CPU usage in percent (critical threshold) | string | `90` | no |
-| sqldatabase_cpu_threshold_warning | CPU usage in percent (warning threshold) | string | `` | no |
+| sqldatabase_cpu_threshold_warning | CPU usage in percent (warning threshold) | string | `80` | no |
 | sqldatabase_deadlock_threshold_critical | Amount of Deadlocks (critical threshold) | string | `1` | no |
 | sqldatabase_diskspace_threshold_critical | Disk space used in percent (critical threshold) | string | `90` | no |
 | sqldatabase_diskspace_threshold_warning | Disk space used in percent (warning threshold) | string | `80` | no |
