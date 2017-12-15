@@ -19,9 +19,9 @@ Creates a DataDog monitors with the following checks :
 
 * Response time
 * Memory usage count
-* HTTP 404 errors
-* HTTP 50x errors
-* HTTP 20x rate
+* HTTP 5xx requests
+* HTTP 4xx requests
+* HTTP 2xx requests
 
 Inputs
 ------
@@ -32,12 +32,12 @@ Inputs
 | environment | Architecture environment | string | - | yes |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
-| http_2xx_status_rate_limit |  | string | `30` | no |
-| http_2xx_status_rate_threshold_critical | Alerting threshold (percentage) | string | `0.9` | no |
-| http_2xx_status_rate_threshold_warning | Warning threshold (percentage) | string | `0.95` | no |
-| http_404_errors_count_rate_limit |  | string | `30` | no |
-| http_404_errors_count_rate_threshold_critical | Alerting threshold (number of requests) | string | `30` | no |
-| http_404_errors_count_rate_threshold_warning | Warning threshold (number of requests) | string | `10` | no |
+| http_2xx_requests_threshold_critical | Minimum critical acceptable percent of 2xx requests | string | `90` | no |
+| http_2xx_requests_threshold_warning | Minimum warning acceptable percent of 2xx requests | string | `95` | no |
+| http_4xx_requests_threshold_critical | Maximum critical acceptable percent of 4xx errors | string | `30` | no |
+| http_4xx_requests_threshold_warning | Maximum warning acceptable percent of 4xx errors | string | `15` | no |
+| http_5xx_requests_threshold_critical | Maximum critical acceptable percent of 5xx errors | string | `20` | no |
+| http_5xx_requests_threshold_warning | Maximum warning acceptable percent of 5xx errors | string | `10` | no |
 | memory_usage_threshold_critical | Alerting threshold in Mib | string | `52430000` | no |
 | memory_usage_threshold_warning | Warning threshold in MiB | string | `33550000` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
