@@ -51,6 +51,20 @@ variable "memory_usage_threshold_warning" {
 }
 
 #################################
+###   HTTP 5xx status pages   ###
+#################################
+
+variable "http_5xx_requests_threshold_critical" {
+  default     = 20
+  description = "Maximum critical acceptable percent of 5xx errors"
+}
+
+variable "http_5xx_requests_threshold_warning" {
+  default     = 10
+  description = "Maximum warning acceptable percent of 5xx errors"
+}
+
+#################################
 ###   HTTP 404 status pages   ###
 #################################
 
