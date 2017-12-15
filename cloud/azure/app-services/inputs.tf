@@ -51,37 +51,43 @@ variable "memory_usage_threshold_warning" {
 }
 
 #################################
-###   HTTP 404 status pages   ###
+###   HTTP 5xx status pages   ###
 #################################
 
-variable "http_404_errors_count_rate_limit" {
-  default = 30
+variable "http_5xx_requests_threshold_critical" {
+  default     = 20
+  description = "Maximum critical acceptable percent of 5xx errors"
 }
 
-variable "http_404_errors_count_rate_threshold_critical" {
-  default     = 30
-  description = "Alerting threshold (number of requests)"
-}
-
-variable "http_404_errors_count_rate_threshold_warning" {
+variable "http_5xx_requests_threshold_warning" {
   default     = 10
-  description = "Warning threshold (number of requests)"
+  description = "Maximum warning acceptable percent of 5xx errors"
 }
 
 #################################
-###   HTTP 202 status pages   ###
+###   HTTP 4xx status pages   ###
 #################################
 
-variable "http_2xx_status_rate_limit" {
-  default = 30
+variable "http_4xx_requests_threshold_critical" {
+  default     = 30
+  description = "Maximum critical acceptable percent of 4xx errors"
 }
 
-variable "http_2xx_status_rate_threshold_critical" {
-  default     = 0.9
-  description = "Alerting threshold (percentage)"
+variable "http_4xx_requests_threshold_warning" {
+  default     = 15
+  description = "Maximum warning acceptable percent of 4xx errors"
 }
 
-variable "http_2xx_status_rate_threshold_warning" {
-  default     = 0.95
-  description = "Warning threshold (percentage)"
+#################################
+###   HTTP 2xx status pages   ###
+#################################
+
+variable "http_2xx_requests_threshold_critical" {
+  default     = 90
+  description = "Minimum critical acceptable percent of 2xx requests"
+}
+
+variable "http_2xx_requests_threshold_warning" {
+  default     = 95
+  description = "Minimum warning acceptable percent of 2xx requests"
 }
