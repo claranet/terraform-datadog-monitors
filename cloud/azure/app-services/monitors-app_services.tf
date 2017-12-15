@@ -8,7 +8,7 @@ data "template_file" "filter" {
 
 # Monitoring App Services response time
 resource "datadog_monitor" "appservices_response_time" {
-  name    = "[${var.environment}] App Services response time > ${var.response_time_threshold_critical}s on {{name}}"
+  name    = "[${var.environment}] App Services response time of {{value}}s is to high on {{name}}"
   type    = "metric alert"
   message = "${var.message}"
 
