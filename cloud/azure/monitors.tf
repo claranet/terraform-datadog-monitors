@@ -24,16 +24,16 @@ module "appservices" {
   filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
   filter_tags_custom       = "${var.filter_tags_custom}"
 
-  http_2xx_status_rate_limit                    = "${var.appservices_http_2xx_status_rate_limit}"
-  http_2xx_status_rate_threshold_critical       = "${var.appservices_http_2xx_status_rate_threshold_critical}"
-  http_2xx_status_rate_threshold_warning        = "${var.appservices_http_2xx_status_rate_threshold_warning}"
-  http_404_errors_count_rate_limit              = "${var.appservices_http_404_errors_count_rate_limit}"
-  http_404_errors_count_rate_threshold_critical = "${var.appservices_http_404_errors_count_rate_threshold_critical}"
-  http_404_errors_count_rate_threshold_warning  = "${var.appservices_http_404_errors_count_rate_threshold_warning}"
-  memory_usage_threshold_critical               = "${var.appservices_memory_usage_threshold_critical}"
-  memory_usage_threshold_warning                = "${var.appservices_memory_usage_threshold_warning}"
-  response_time_threshold_critical              = "${var.appservices_response_time_threshold_critical}"
-  response_time_threshold_warning               = "${var.appservices_response_time_threshold_warning}"
+  http_2xx_requests_threshold_critical = "${var.appservices_http_2xx_requests_threshold_critical}"
+  http_2xx_requests_threshold_warning  = "${var.appservices_http_2xx_requests_threshold_warning}"
+  http_5xx_requests_threshold_critical = "${var.appservices_http_5xx_requests_threshold_critical}"
+  http_5xx_requests_threshold_warning  = "${var.appservices_http_5xx_requests_threshold_warning}"
+  http_4xx_requests_threshold_critical = "${var.appservices_http_4xx_requests_threshold_critical}"
+  http_4xx_requests_threshold_warning  = "${var.appservices_http_4xx_requests_threshold_warning}"
+  memory_usage_threshold_critical      = "${var.appservices_memory_usage_threshold_critical}"
+  memory_usage_threshold_warning       = "${var.appservices_memory_usage_threshold_warning}"
+  response_time_threshold_critical     = "${var.appservices_response_time_threshold_critical}"
+  response_time_threshold_warning      = "${var.appservices_response_time_threshold_warning}"
 }
 
 module "eventhub" {
