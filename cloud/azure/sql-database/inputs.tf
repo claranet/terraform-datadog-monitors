@@ -28,7 +28,7 @@ variable "filter_tags_custom" {
 
 variable "cpu_threshold_warning" {
   description = "CPU usage in percent (warning threshold)"
-  default     = ""
+  default     = "80"
 }
 
 variable "cpu_threshold_critical" {

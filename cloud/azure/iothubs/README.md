@@ -60,8 +60,7 @@ Inputs
 | failed_queryjobs_rate_threshold_warning | QueryJobs Failed rate limit (warning threshold) | string | `0` | no |
 | fallback_d2c_telemetry_egress_threshold_critical | D2C Telemetry Fallback limit (critical threshold) | string | `1000` | no |
 | fallback_d2c_telemetry_egress_threshold_warning | D2C Telemetry Fallback limit (warning threshold) | string | `500` | no |
-| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
-| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
+| filter_tags | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | invalid_d2c_telemetry_egress_threshold_critical | D2C Telemetry Invalid limit (critical threshold) | string | `1000` | no |
 | invalid_d2c_telemetry_egress_threshold_warning | D2C Telemetry Invalid limit (warning threshold) | string | `500` | no |
 | message | Message sent when an alert is triggered | string | - | yes |

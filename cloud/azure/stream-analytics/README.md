@@ -23,17 +23,15 @@ Inputs
 | conversion_errors_threshold_warning | Conversion errors limit (warning threshold) | string | `0` | no |
 | delay | Delay in seconds for the metric evaluation | string | `600` | no |
 | environment | Architecture environment | string | - | yes |
-| function_requests_threshold_critical | Failed Function Request rate limit (critical threshold) | string | `10` | no |
+| failed_function_requests_threshold_critical | Failed Function Request rate limit (critical threshold) | string | `10` | no |
+| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | function_requests_threshold_warning | Failed Function Request rate limit (warning threshold) | string | `0` | no |
-| message | Message sent when a monitor is triggered | string | - | yes |
-| provider | What is the monitored provider | string | azure | no |
-| runtime_errors_threshold_critical |  | string | `10` | no |
-| runtime_errors_threshold_warning |  | string | `0` | no |
-| su_utilization_threshold_critical |  | string | `80` | no |
-| su_utilization_threshold_warning | Monitor specific | string | `60` | no |
-| service | What is the monitored service | string | storage | no |
-| subscription_id | Azure account id used as filter for monitors | string | - | yes |
-| use_filter_tags | Filter the data with service tags if true | string | `true` | no |
+| message | Message sent when a Redis monitor is triggered | string | - | yes |
+| runtime_errors_threshold_critical | Runtime errors limit (critical threshold) | string | `10` | no |
+| runtime_errors_threshold_warning | Runtime errors limit (warning threshold) | string | `0` | no |
+| su_utilization_threshold_critical | Streaming Unit utilization rate limit (critical threshold) | string | `80` | no |
+| su_utilization_threshold_warning | Streaming Unit utilization rate limit (warning threshold) | string | `60` | no |
 
 Related documentation
 ---------------------
