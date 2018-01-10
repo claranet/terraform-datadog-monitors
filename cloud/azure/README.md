@@ -35,8 +35,8 @@ Inputs
 | apimanagement_other_requests_threshold_critical | Maximum acceptable percent of other requests | string | `5` | no |
 | apimanagement_successful_requests_threshold_critical | Minimum acceptable percent of successful requests | string | `90` | no |
 | apimanagement_unauthorized_requests_threshold_critical | Maximum acceptable percent of unauthorized requests | string | `5` | no |
-| appservices_http_2xx_requests_threshold_critical | Minimum critical acceptable percent of 2xx requests | string | `90` | no |
-| appservices_http_2xx_requests_threshold_warning | Minimum warning acceptable percent of 2xx requests | string | `95` | no |
+| appservices_http_successful_requests_threshold_critical | Minimum critical acceptable percent of 2xx & 3xx requests | string | `90` | no |
+| appservices_http_successful_requests_threshold_warning | Minimum warning acceptable percent of 2xx & 3xx requests | string | `95` | no |
 | appservices_http_4xx_requests_threshold_critical | Maximum critical acceptable percent of 4xx errors | string | `30` | no |
 | appservices_http_4xx_requests_threshold_warning | Maximum warning acceptable percent of 4xx errors | string | `15` | no |
 | appservices_http_5xx_requests_threshold_critical | Maximum critical acceptable percent of 5xx errors | string | `20` | no |

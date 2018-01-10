@@ -82,12 +82,12 @@ variable "http_4xx_requests_threshold_warning" {
 ###   HTTP 2xx status pages   ###
 #################################
 
-variable "http_2xx_requests_threshold_critical" {
+variable "http_successful_requests_threshold_critical" {
   default     = 90
-  description = "Minimum critical acceptable percent of 2xx requests"
+  description = "Minimum critical acceptable percent of 2xx & 3xx requests"
 }
 
-variable "http_2xx_requests_threshold_warning" {
+variable "http_successful_requests_threshold_warning" {
   default     = 95
-  description = "Minimum warning acceptable percent of 2xx requests"
+  description = "Minimum warning acceptable percent of 2xx & 3xx requests"
 }

@@ -32,8 +32,8 @@ Inputs
 | environment | Architecture environment | string | - | yes |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
-| http_2xx_requests_threshold_critical | Minimum critical acceptable percent of 2xx requests | string | `90` | no |
-| http_2xx_requests_threshold_warning | Minimum warning acceptable percent of 2xx requests | string | `95` | no |
+| http_successful_requests_threshold_critical | Minimum critical acceptable percent of 2xx & 3xx requests | string | `90` | no |
+| http_successful_requests_threshold_warning | Minimum warning acceptable percent of 2xx & 3xx requests | string | `95` | no |
 | http_4xx_requests_threshold_critical | Maximum critical acceptable percent of 4xx errors | string | `30` | no |
 | http_4xx_requests_threshold_warning | Maximum warning acceptable percent of 4xx errors | string | `15` | no |
 | http_5xx_requests_threshold_critical | Maximum critical acceptable percent of 5xx errors | string | `20` | no |

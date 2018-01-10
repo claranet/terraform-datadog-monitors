@@ -124,25 +124,26 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
   tags = ["env:${var.environment}", "resource:appservices", "team:azure", "provider:azure"]
 }
 
-# Monitoring App Services HTTP 2xx status pages percent
-resource "datadog_monitor" "appservices_http_2xx_status_rate" {
-  name    = "[${var.environment}] App Services HTTP 2xx responses is {{value}}% below the limit on {{name}}"
+# Monitoring App Services HTTP 2xx & 3xx status pages percent
+resource "datadog_monitor" "appservices_http_success_status_rate" {
+  name    = "[${var.environment}] App Services HTTP successful responses is {{value}}% below the limit on {{name}}"
   type    = "metric alert"
   message = "${var.message}"
 
   query = <<EOF
     sum(last_5m): (
-      avg:azure.app_services.http2xx{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
+      (avg:azure.app_services.http2xx{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
+       avg:azure.app_services.http3xx{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()) /
       avg:azure.app_services.requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
-    ) * 100 < ${var.http_2xx_requests_threshold_critical}
+    ) * 100 < ${var.http_successful_requests_threshold_critical}
   EOF
 
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"
 
   thresholds {
-    warning  = "${var.http_2xx_requests_threshold_warning}"
-    critical = "${var.http_2xx_requests_threshold_critical}"
+    warning  = "${var.http_successful_requests_threshold_warning}"
+    critical = "${var.http_successful_requests_threshold_critical}"
   }
 
   notify_no_data      = false  # Will notify when no data is received
