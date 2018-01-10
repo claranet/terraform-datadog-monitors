@@ -90,14 +90,14 @@ variable "appservices_http_5xx_requests_threshold_warning" {
   description = "Maximum warning acceptable percent of 5xx errors"
 }
 
-variable "appservices_http_2xx_requests_threshold_critical" {
+variable "appservices_http_successful_requests_threshold_critical" {
   default     = 90
-  description = "Minimum critical acceptable percent of 2xx requests"
+  description = "Minimum critical acceptable percent of 2xx & 3xx requests"
 }
 
-variable "appservices_http_2xx_requests_threshold_warning" {
+variable "appservices_http_successful_requests_threshold_warning" {
   default     = 95
-  description = "Minimum warning acceptable percent of 2xx requests"
+  description = "Minimum warning acceptable percent of 2xx & 3xx requests"
 }
 
 # Azure Event Hub specific variables
