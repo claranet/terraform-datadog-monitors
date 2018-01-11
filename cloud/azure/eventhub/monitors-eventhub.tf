@@ -52,7 +52,7 @@ resource "datadog_monitor" "eventhub_failed_requests" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -89,7 +89,7 @@ resource "datadog_monitor" "eventhub_errors" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true
