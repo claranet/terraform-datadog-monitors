@@ -74,7 +74,7 @@ resource "datadog_monitor" "failed_function_requests" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 60
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -103,7 +103,7 @@ resource "datadog_monitor" "conversion_errors" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -132,7 +132,7 @@ resource "datadog_monitor" "runtime_errors" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true

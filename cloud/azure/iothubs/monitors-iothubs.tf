@@ -21,7 +21,7 @@ resource "datadog_monitor" "too_many_jobs_failed" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -54,7 +54,7 @@ resource "datadog_monitor" "too_many_list_jobs_failed" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -87,7 +87,7 @@ resource "datadog_monitor" "too_many_query_jobs_failed" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -168,7 +168,7 @@ resource "datadog_monitor" "too_many_c2d_methods_failed" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -201,7 +201,7 @@ resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -234,7 +234,7 @@ resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -267,7 +267,7 @@ resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -300,7 +300,7 @@ resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -331,7 +331,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -362,7 +362,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -393,7 +393,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -424,7 +424,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_fallback" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -451,7 +451,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true

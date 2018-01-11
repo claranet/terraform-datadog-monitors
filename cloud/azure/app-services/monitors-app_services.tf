@@ -88,7 +88,7 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
   notify_no_data      = false # Will NOT notify when no data is received
   renotify_interval   = 0
   require_full_window = true
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
 
   tags = ["env:${var.environment}", "resource:appservices", "team:azure", "provider:azure"]
@@ -118,7 +118,7 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
   notify_no_data      = false # Will NOT notify when no data is received
   renotify_interval   = 0
   require_full_window = true
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
 
   tags = ["env:${var.environment}", "resource:appservices", "team:azure", "provider:azure"]
@@ -149,7 +149,7 @@ resource "datadog_monitor" "appservices_http_success_status_rate" {
   notify_no_data      = false  # Will notify when no data is received
   renotify_interval   = 0
   require_full_window = true
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
 
   tags = ["env:${var.environment}", "resource:appservices", "team:azure", "provider:azure"]
