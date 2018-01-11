@@ -118,7 +118,7 @@ resource "datadog_monitor" "sql-database_deadlocks_count" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = true
