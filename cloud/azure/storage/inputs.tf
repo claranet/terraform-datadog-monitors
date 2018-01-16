@@ -222,3 +222,8 @@ variable "authorization_error_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of authorization error requests for a storage"
   default     = 50
 }
+
+variable "extra_tags" {
+  type    = "map"
+  default = {}
+}
