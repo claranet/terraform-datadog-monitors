@@ -1,5 +1,5 @@
 resource "datadog_monitor" "Apache_process" {
-  name    = "[${var.env}] Nginx process is down on {{host.name}}"
+  name    = "[${var.env}] Apache process is down on {{host.name}}"
   message = "{{#is_alert}}\n${var.hno_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.hno_escalation_group}\n{{/is_recovery}}\n{{#is_warning}}\n${var.ho_escalation_group} \n{{/is_warning}} \n{{#is_warning_recovery}}\n${var.ho_escalation_group}\n{{/is_warning_recovery}}"
 
   type  = "service check"
