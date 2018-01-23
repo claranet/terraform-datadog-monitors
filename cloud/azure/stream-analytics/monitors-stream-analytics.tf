@@ -13,7 +13,8 @@ resource "datadog_monitor" "status" {
   query = <<EOF
     avg(last_5m):avg:azure.streamanalytics_streamingjobs.status{${data.template_file.filter.rendered}} by {resource_group,region,name} < 1
   EOF
-  type  = "metric alert"
+
+  type = "metric alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
@@ -38,7 +39,8 @@ resource "datadog_monitor" "su_utilization" {
       avg:azure.streamanalytics_streamingjobs.resource_utilization{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.su_utilization_threshold_critical}
   EOF
-  type  = "metric alert"
+
+  type = "metric alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
@@ -50,6 +52,7 @@ resource "datadog_monitor" "su_utilization" {
   require_full_window = true
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
+
   thresholds {
     warning  = "${var.su_utilization_threshold_warning}"
     critical = "${var.su_utilization_threshold_critical}"
@@ -68,7 +71,8 @@ resource "datadog_monitor" "failed_function_requests" {
        avg:azure.streamanalytics_streamingjobs.aml_callout_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
     ) * 100 > ${var.failed_function_requests_threshold_critical}
   EOF
-  type  = "metric alert"
+
+  type = "metric alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
@@ -80,6 +84,7 @@ resource "datadog_monitor" "failed_function_requests" {
   require_full_window = true
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
+
   thresholds {
     warning  = "${var.function_requests_threshold_warning}"
     critical = "${var.failed_function_requests_threshold_critical}"
@@ -97,7 +102,8 @@ resource "datadog_monitor" "conversion_errors" {
       avg:azure.streamanalytics_streamingjobs.conversion_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.conversion_errors_threshold_critical}
   EOF
-  type  = "metric alert"
+
+  type = "metric alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
@@ -109,6 +115,7 @@ resource "datadog_monitor" "conversion_errors" {
   require_full_window = true
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
+
   thresholds {
     warning  = "${var.conversion_errors_threshold_warning}"
     critical = "${var.conversion_errors_threshold_critical}"
@@ -126,7 +133,8 @@ resource "datadog_monitor" "runtime_errors" {
       avg:azure.streamanalytics_streamingjobs.errors{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.runtime_errors_threshold_critical}
   EOF
-  type  = "metric alert"
+
+  type = "metric alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
@@ -138,6 +146,7 @@ resource "datadog_monitor" "runtime_errors" {
   require_full_window = true
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
+
   thresholds {
     warning  = "${var.runtime_errors_threshold_warning}"
     critical = "${var.runtime_errors_threshold_critical}"

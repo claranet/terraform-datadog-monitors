@@ -1,10 +1,3 @@
-# Ignore all volatile files
-**/.terraform/modules
-**/.terraform/plugins
-**/terraform.tfstate*.backup
-
-# Ignore all credentials files
-**/terraform.tfvars
-
-# Ignore all but root state files
-**/terraform.tfstate
+.terraform
+main.tf
+terraform.tfvars

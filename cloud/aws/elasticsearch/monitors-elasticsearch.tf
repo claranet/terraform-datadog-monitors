@@ -11,7 +11,8 @@ resource "datadog_monitor" "es_cluster_status" {
   name    = "[${var.environment}] ElasticSearch cluster status is not green"
   message = "${var.message}"
 
-  type  = "query alert"
+  type = "query alert"
+
   query = <<EOF
   max(last_30m): (
     avg:aws.es.cluster_statusred{${data.template_file.filter.rendered}} by {region,name} * 2 +
@@ -44,7 +45,8 @@ resource "datadog_monitor" "es_free_space_low" {
   name    = "[${var.environment}] ElasticSearch cluster free storage space < ${var.diskspace_threshold_critical}%"
   message = "${var.message}"
 
-  type  = "query alert"
+  type = "query alert"
+
   query = <<EOF
   avg(last_15m): (
     avg:aws.es.free_storage_space{${data.template_file.filter.rendered}} by {region,name} / (${var.es_cluster_volume_size}*1000) * 100
@@ -75,7 +77,8 @@ resource "datadog_monitor" "es_cpu_90_15min" {
   name    = "[${var.environment}] ElasticSearch cluster CPU high > ${var.cpu_threshold_critical}%"
   message = "${var.message}"
 
-  type  = "query alert"
+  type = "query alert"
+
   query = <<EOF
   avg(last_15m): (
     avg:aws.es.cpuutilization{${data.template_file.filter.rendered}} by {region,name}

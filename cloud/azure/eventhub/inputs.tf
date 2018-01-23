@@ -1,7 +1,7 @@
 # Global Terraform
 variable "environment" {
   description = "Architecture environment"
-  type = "string"
+  type        = "string"
 }
 
 # Global DataDog
@@ -11,7 +11,7 @@ variable "message" {
 
 variable "delay" {
   description = "Delay in seconds for the metric evaluation"
-  default = 600
+  default     = 600
 }
 
 variable "filter_tags_use_defaults" {
@@ -26,20 +26,20 @@ variable "filter_tags_custom" {
 
 variable "failed_requests_rate_thresold_critical" {
   description = "Failed requests ratio (percentage) to trigger the critical alert"
-  default = 3
+  default     = 3
 }
 
 variable "failed_requests_rate_thresold_warning" {
   description = "Failed requests ratio (percentage) to trigger a warning alert"
-  default = 1
+  default     = 1
 }
 
 variable "errors_rate_thresold_critical" {
   description = "Errors ratio (percentage) to trigger the critical alert"
-  default = 3
+  default     = 3
 }
 
 variable "errors_rate_thresold_warning" {
   description = "Errors ratio (percentage) to trigger a warning alert"
-  default = 1
+  default     = 1
 }

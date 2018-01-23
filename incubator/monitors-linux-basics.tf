@@ -25,7 +25,7 @@ resource "datadog_monitor" "cpu_95_5min" {
 
   query = "min(last_5m):avg:system.cpu.system{dd_monitoring:enabled,!dd_custom_cpu:enabled} by {host} + avg:system.cpu.user{dd_monitoring:enabled,!dd_custom_cpu:enabled} by {host} > 95"
   type  = "query alert"
-  count   = "${var.linux-basics == "enabled" ? 1 : 0}"
+  count = "${var.linux-basics == "enabled" ? 1 : 0}"
 
   notify_no_data      = false
   renotify_interval   = 60
@@ -41,12 +41,12 @@ resource "datadog_monitor" "cpu_95_5min" {
 }
 
 resource "datadog_monitor" "datadog_free_disk_space_5" {
-  name   = "Free disk space < 5%"
+  name    = "Free disk space < 5%"
   message = "{{#is_alert}}\n${var.hno_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.hno_escalation_group}\n{{/is_recovery}}"
 
-  query   = "sum(last_5m):avg:system.disk.free{*} by {host,device} / avg:system.disk.total{*} by {host,device} * 100 < 5"
+  query = "sum(last_5m):avg:system.disk.free{*} by {host,device} / avg:system.disk.total{*} by {host,device} * 100 < 5"
   type  = "query alert"
-  count   = "${var.linux-basics == "enabled" ? 1 : 0}"
+  count = "${var.linux-basics == "enabled" ? 1 : 0}"
 
   notify_no_data      = false
   renotify_interval   = 60
@@ -146,10 +146,10 @@ resource "datadog_monitor" "datadog_cpu_load" {
 }
 
 resource "datadog_monitor" "datadog_free_memory" {
-  name   = "Free memory < 5%"
+  name    = "Free memory < 5%"
   message = "Debugging alert - no escalation"
   query   = "sum(last_1m):avg:system.mem.free{*} by {host} / avg:system.mem.total{*} by {host} * 100 < 5"
-  type  = "query alert"
+  type    = "query alert"
 
   notify_no_data      = false
   renotify_interval   = 60

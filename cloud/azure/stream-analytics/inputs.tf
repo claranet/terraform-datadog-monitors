@@ -27,40 +27,40 @@ variable "filter_tags_custom" {
 # Azure Stream Analytics specific
 variable "su_utilization_threshold_warning" {
   description = "Streaming Unit utilization rate limit (warning threshold)"
-  default = 60
+  default     = 60
 }
 
 variable "su_utilization_threshold_critical" {
   description = "Streaming Unit utilization rate limit (critical threshold)"
-  default = 80
+  default     = 80
 }
 
 variable "function_requests_threshold_warning" {
   description = "Failed Function Request rate limit (warning threshold)"
-  default = 0
+  default     = 0
 }
 
 variable "failed_function_requests_threshold_critical" {
   description = "Failed Function Request rate limit (critical threshold)"
-  default = 10
+  default     = 10
 }
 
 variable "conversion_errors_threshold_warning" {
   description = "Conversion errors limit (warning threshold)"
-  default = 0
+  default     = 0
 }
 
 variable "conversion_errors_threshold_critical" {
   description = "Conversion errors limit (critical threshold)"
-  default = 10
+  default     = 10
 }
 
 variable "runtime_errors_threshold_warning" {
   description = "Runtime errors limit (warning threshold)"
-  default = 0
+  default     = 0
 }
 
 variable "runtime_errors_threshold_critical" {
   description = "Runtime errors limit (critical threshold)"
-  default = 10
+  default     = 10
 }
