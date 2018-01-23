@@ -1,7 +1,7 @@
 # Global Terraform
 variable "environment" {
   description = "Architecture environment"
-  type = "string"
+  type        = "string"
 }
 
 # Global DataDog

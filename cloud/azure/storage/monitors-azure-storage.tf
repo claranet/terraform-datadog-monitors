@@ -17,7 +17,7 @@ resource "datadog_monitor" "availability" {
 EOF
 
   thresholds {
-    critical  = "${var.availability_threshold_critical}"
+    critical = "${var.availability_threshold_critical}"
   }
 
   type                = "metric alert"
@@ -46,7 +46,7 @@ resource "datadog_monitor" "successful_requests" {
 EOF
 
   thresholds {
-    critical  = "${var.successful_requests_threshold_critical}"
+    critical = "${var.successful_requests_threshold_critical}"
   }
 
   type                = "metric alert"
@@ -75,7 +75,7 @@ resource "datadog_monitor" "latency" {
 EOF
 
   thresholds {
-    critical  = "${var.latency_threshold_critical}"
+    critical = "${var.latency_threshold_critical}"
   }
 
   type                = "metric alert"
@@ -104,7 +104,7 @@ resource "datadog_monitor" "timeout_error_requests" {
 EOF
 
   thresholds {
-    critical  = "${var.timeout_error_requests_threshold_critical}"
+    critical = "${var.timeout_error_requests_threshold_critical}"
   }
 
   type                = "metric alert"
@@ -121,7 +121,6 @@ EOF
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
 }
-
 
 resource "datadog_monitor" "network_error_requests" {
   name    = "[${var.environment}] Azure Storage {{value}}% of network error requests on {{name}}"
@@ -134,7 +133,7 @@ resource "datadog_monitor" "network_error_requests" {
 EOF
 
   thresholds {
-    critical  = "${var.network_error_requests_threshold_critical}"
+    critical = "${var.network_error_requests_threshold_critical}"
   }
 
   type                = "metric alert"
@@ -151,7 +150,6 @@ EOF
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
 }
-
 
 resource "datadog_monitor" "throttling_error_requests" {
   name    = "[${var.environment}] Azure Storage {{value}}% of throttling error requests on {{name}}"
@@ -164,7 +162,7 @@ resource "datadog_monitor" "throttling_error_requests" {
 EOF
 
   thresholds {
-    critical  = "${var.throttling_error_requests_threshold_critical}"
+    critical = "${var.throttling_error_requests_threshold_critical}"
   }
 
   type                = "metric alert"
@@ -181,7 +179,6 @@ EOF
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
 }
-
 
 resource "datadog_monitor" "server_other_error_requests" {
   name    = "[${var.environment}] Azure Storage {{value}}% of server_other error requests on {{name}}"
@@ -194,7 +191,7 @@ resource "datadog_monitor" "server_other_error_requests" {
 EOF
 
   thresholds {
-    critical  = "${var.server_other_error_requests_threshold_critical}"
+    critical = "${var.server_other_error_requests_threshold_critical}"
   }
 
   type                = "metric alert"
@@ -211,7 +208,6 @@ EOF
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
 }
-
 
 resource "datadog_monitor" "client_other_error_requests" {
   name    = "[${var.environment}] Azure Storage {{value}}% of client_other error requests on {{name}}"
@@ -224,7 +220,7 @@ resource "datadog_monitor" "client_other_error_requests" {
 EOF
 
   thresholds {
-    critical  = "${var.client_other_error_requests_threshold_critical}"
+    critical = "${var.client_other_error_requests_threshold_critical}"
   }
 
   type                = "metric alert"
@@ -242,7 +238,6 @@ EOF
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
 }
 
-
 resource "datadog_monitor" "authorization_error_requests" {
   name    = "[${var.environment}] Azure Storage {{value}}% of authorization error requests on {{name}}"
   message = "${var.message}"
@@ -254,7 +249,7 @@ resource "datadog_monitor" "authorization_error_requests" {
 EOF
 
   thresholds {
-    critical  = "${var.authorization_error_requests_threshold_critical}"
+    critical = "${var.authorization_error_requests_threshold_critical}"
   }
 
   type                = "metric alert"

@@ -1,7 +1,7 @@
 # Global Terraform
 variable "environment" {
   description = "Architecture environment"
-  type = "string"
+  type        = "string"
 }
 
 # Global DataDog
@@ -27,46 +27,45 @@ variable "filter_tags_custom" {
 # Azure Storage specific
 variable "availability_threshold_critical" {
   description = "Minimum acceptable percent of availability for a storage"
-  default = 90
+  default     = 90
 }
 
 variable "successful_requests_threshold_critical" {
   description = "Minimum acceptable percent of successful requests for a storage"
-  default = 90
+  default     = 90
 }
 
 variable "latency_threshold_critical" {
   description = "Maximum acceptable end to end latency (ms) for a storage"
-  default = 1000
+  default     = 1000
 }
 
 variable "timeout_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of timeout error requests for a storage"
-  default = 5
+  default     = 5
 }
 
 variable "network_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of network error requests for a storage"
-  default = 5
+  default     = 5
 }
 
 variable "throttling_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of throttling error requests for a storage"
-  default = 10
+  default     = 10
 }
 
 variable "server_other_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of server other error requests for a storage"
-  default = 10
+  default     = 10
 }
 
 variable "client_other_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of client other error requests for a storage"
-  default = 15
+  default     = 15
 }
 
 variable "authorization_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of authorization error requests for a storage"
-  default = 15
+  default     = 15
 }
-

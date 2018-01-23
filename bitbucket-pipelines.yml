@@ -1,0 +1,15 @@
+image: hashicorp/terraform:0.10.8
+
+pipelines:
+  default:
+    - step:
+        name: Format
+        script:
+          - terraform fmt -write=false -diff -check
+    - step:
+        name: Validate
+        script:
+          - mv main.tf.ci main.tf
+          - mv terraform.tfvars.ci terraform.tfvars
+          - terraform init
+          - terraform validate

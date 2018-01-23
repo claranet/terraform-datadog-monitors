@@ -13,7 +13,8 @@ resource "datadog_monitor" "eventhub_status" {
   query = <<EOF
       avg(last_5m): avg:azure.eventhub_namespaces.status{${data.template_file.filter.rendered}} by {resource_group,region,name} != 1
       EOF
-  type  = "metric alert"
+
+  type = "metric alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
@@ -41,7 +42,8 @@ resource "datadog_monitor" "eventhub_failed_requests" {
           avg:azure.eventhub_namespaces.failed_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
         ) * 100 > ${var.failed_requests_rate_thresold_critical}
         EOF
-  type  = "metric alert"
+
+  type = "metric alert"
 
   thresholds {
     critical = "${var.failed_requests_rate_thresold_critical}"
@@ -78,7 +80,8 @@ resource "datadog_monitor" "eventhub_errors" {
           avg:azure.eventhub_namespaces.other_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
         ) * 100 > ${var.errors_rate_thresold_critical}
         EOF
-  type  = "metric alert"
+
+  type = "metric alert"
 
   thresholds {
     critical = "${var.errors_rate_thresold_critical}"
