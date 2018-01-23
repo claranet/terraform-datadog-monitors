@@ -16,7 +16,7 @@ variable "message" {
 
 variable "filter_tags" {
   description = "Tags used for filtering"
-  default = "*"
+  default     = "*"
 }
 
 # Azure IOT hubs specific

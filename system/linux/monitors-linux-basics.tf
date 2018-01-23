@@ -54,7 +54,7 @@ resource "datadog_monitor" "datadog_free_disk_space_5" {
   name    = "[${var.env}] Free disk space < 5%  on {{host.name}}"
   message = "{{#is_alert}}\n${var.hno_escalation_group}\n{{/is_alert}}\n{{#is_recovery}}\n${var.hno_escalation_group}\n{{/is_recovery}}"
 
-  query   = "sum(last_5m):avg:system.disk.free{dd_monitoring:enabled,dd_linux_basics:enabled,env:${var.env},!dd_custom_cpu:enabled} by {host,region,device} / avg:system.disk.total{dd_monitoring:enabled,dd_linux_basics:enabled,env:${var.env},!dd_custom_cpu:enabled} by {host,region,device} * 100 < 5"
+  query = "sum(last_5m):avg:system.disk.free{dd_monitoring:enabled,dd_linux_basics:enabled,env:${var.env},!dd_custom_cpu:enabled} by {host,region,device} / avg:system.disk.total{dd_monitoring:enabled,dd_linux_basics:enabled,env:${var.env},!dd_custom_cpu:enabled} by {host,region,device} * 100 < 5"
   type  = "query alert"
   count = "${var.dd_linux_basics == "enabled" ? 1 : 0}"
 
