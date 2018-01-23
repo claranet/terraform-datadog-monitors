@@ -26,7 +26,7 @@ resource "datadog_monitor" "appservices_response_time" {
     critical = "${var.response_time_threshold_critical}"
   }
 
-  notify_no_data      = true  # Will notify when no data is received
+  notify_no_data      = true # Will notify when no data is received
   renotify_interval   = 0
   require_full_window = true
   timeout_h           = 0
@@ -55,7 +55,7 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
     critical = "${var.memory_usage_threshold_critical}"
   }
 
-  notify_no_data      = true                                      # Will notify when no data is received
+  notify_no_data      = true # Will notify when no data is received
   renotify_interval   = 0
   require_full_window = true
   timeout_h           = 0
@@ -146,7 +146,7 @@ resource "datadog_monitor" "appservices_http_success_status_rate" {
     critical = "${var.http_successful_requests_threshold_critical}"
   }
 
-  notify_no_data      = false  # Will notify when no data is received
+  notify_no_data      = false # Will notify when no data is received
   renotify_interval   = 0
   require_full_window = true
   timeout_h           = 1

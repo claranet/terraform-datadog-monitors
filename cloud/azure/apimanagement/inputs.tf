@@ -1,7 +1,7 @@
 # Global Terraform
 variable "environment" {
   description = "Architecture environment"
-  type = "string"
+  type        = "string"
 }
 
 # Global DataDog
@@ -27,20 +27,20 @@ variable "filter_tags_custom" {
 # Azure API Management specific
 variable "failed_requests_threshold_critical" {
   description = "Maximum acceptable percent of failed requests"
-  default = 5
+  default     = 5
 }
 
 variable "other_requests_threshold_critical" {
   description = "Maximum acceptable percent of other requests"
-  default = 5
+  default     = 5
 }
 
 variable "unauthorized_requests_threshold_critical" {
   description = "Maximum acceptable percent of unauthorized requests"
-  default = 5
+  default     = 5
 }
 
 variable "successful_requests_threshold_critical" {
   description = "Minimum acceptable percent of successful requests"
-  default = 90
+  default     = 90
 }

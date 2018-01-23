@@ -15,7 +15,8 @@ resource "datadog_monitor" "apimgt_status" {
   query = <<EOF
       avg(last_5m):avg:azure.apimanagement_service.status{${data.template_file.filter.rendered}} by {resource_group,region,name} < 1
       EOF
-  type  = "metric alert"
+
+  type = "metric alert"
 
   thresholds {
     critical = 1
@@ -47,7 +48,7 @@ resource "datadog_monitor" "apimgt_failed_requests" {
     EOF
 
   thresholds {
-    critical  = "${var.failed_requests_threshold_critical}"
+    critical = "${var.failed_requests_threshold_critical}"
   }
 
   type                = "metric alert"
@@ -77,7 +78,7 @@ resource "datadog_monitor" "apimgt_other_requests" {
     EOF
 
   thresholds {
-    critical  = "${var.other_requests_threshold_critical}"
+    critical = "${var.other_requests_threshold_critical}"
   }
 
   type                = "metric alert"
@@ -107,7 +108,7 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
     EOF
 
   thresholds {
-    critical  = "${var.unauthorized_requests_threshold_critical}"
+    critical = "${var.unauthorized_requests_threshold_critical}"
   }
 
   type                = "metric alert"
@@ -137,7 +138,7 @@ resource "datadog_monitor" "apimgt_successful_requests" {
     EOF
 
   thresholds {
-    critical  = "${var.successful_requests_threshold_critical}"
+    critical = "${var.successful_requests_threshold_critical}"
   }
 
   type                = "metric alert"
