@@ -2,7 +2,9 @@ data "template_file" "filter" {
   template = "$${filter}"
 
   vars {
-    filter = "${data.template_file.filter.rendered_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_alb:enabled,env:%s", var.environment) : "${data.template_file.filter.rendered_custom}"}"
+    filter = "${var.filter_tags_use_defaults == "true" ?
+             format("dd_monitoring:enabled,dd_aws_alb:enabled,env:%s", var.environment) :
+             "${var.filter_tags_custom}"}"
   }
 }
 
