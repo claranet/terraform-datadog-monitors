@@ -75,4 +75,3 @@ variable "httpcode_target_5xx_threshold_warning" {
   default     = 60
   description = "target 5xx warning threshold in percentage"
 }
-
