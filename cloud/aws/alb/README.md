@@ -32,7 +32,8 @@ Inputs
 |------|-------------|:----:|:-----:|:-----:|
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
-| filter_tags | Tags used for custom filtering | string | `*` | no |
+| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| filter_tags_use_defaults | Use default filter tags convention | string | `*` | no |
 | httpcode_elb_4xx_threshold_critical | loadbalancer 4xx critical threshold in percentage | string | `80` | no |
 | httpcode_elb_4xx_threshold_warning | loadbalancer 4xx warning threshold in percentage | string | `60` | no |
 | httpcode_elb_5xx_threshold_critical | loadbalancer 5xx critical threshold in percentage | string | `80` | no |
