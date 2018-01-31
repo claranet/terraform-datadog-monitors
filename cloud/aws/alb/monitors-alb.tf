@@ -26,7 +26,7 @@ resource "datadog_monitor" "ALB_no_healthy_instances" {
     critical = 0
   }
 
-  notify_no_data      = true  # Will notify when no data is received
+  notify_no_data      = true
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 0
@@ -54,7 +54,7 @@ resource "datadog_monitor" "ALB_latency" {
     warning  = "${var.latency_threshold_warning}"
   }
 
-  notify_no_data      = true  # Will notify when no data is received
+  notify_no_data      = true
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 0
@@ -83,7 +83,7 @@ resource "datadog_monitor" "ALB_httpcode_elb_5xx" {
     warning  = "${var.httpcode_elb_5xx_threshold_warning}"
   }
 
-  notify_no_data      = false # Will notify when no data is received
+  notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 1
@@ -112,7 +112,7 @@ resource "datadog_monitor" "ALB_httpcode_elb_4xx" {
     warning  = "${var.httpcode_elb_4xx_threshold_warning}"
   }
 
-  notify_no_data      = false # Will notify when no data is received
+  notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 1
@@ -141,7 +141,7 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
     warning  = "${var.httpcode_target_5xx_threshold_warning}"
   }
 
-  notify_no_data      = false # Will notify when no data is received
+  notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 1
@@ -170,7 +170,7 @@ resource "datadog_monitor" "ALB_httpcode_target_4xx" {
     warning  = "${var.httpcode_target_4xx_threshold_warning}"
   }
 
-  notify_no_data      = false # Will notify when no data is received
+  notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 1
