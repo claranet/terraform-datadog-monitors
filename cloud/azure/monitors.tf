@@ -135,14 +135,23 @@ module "storage" {
   filter_tags_custom       = "${var.filter_tags_custom}"
 
   authorization_error_requests_threshold_critical = "${var.storage_authorization_error_requests_threshold_critical}"
+  authorization_error_requests_threshold_warning  = "${var.storage_authorization_error_requests_threshold_warning}"
   availability_threshold_critical                 = "${var.storage_availability_threshold_critical}"
+  availability_threshold_warning                  = "${var.storage_availability_threshold_warning}"
   client_other_error_requests_threshold_critical  = "${var.storage_client_other_error_requests_threshold_critical}"
+  client_other_error_requests_threshold_warning   = "${var.storage_client_other_error_requests_threshold_warning}"
   latency_threshold_critical                      = "${var.storage_latency_threshold_critical}"
+  latency_threshold_warning                       = "${var.storage_latency_threshold_warning}"
   network_error_requests_threshold_critical       = "${var.storage_network_error_requests_threshold_critical}"
+  network_error_requests_threshold_warning        = "${var.storage_network_error_requests_threshold_warning}"
   server_other_error_requests_threshold_critical  = "${var.storage_server_other_error_requests_threshold_critical}"
+  server_other_error_requests_threshold_warning   = "${var.storage_server_other_error_requests_threshold_warning}"
   successful_requests_threshold_critical          = "${var.storage_successful_requests_threshold_critical}"
+  successful_requests_threshold_warning           = "${var.storage_successful_requests_threshold_warning}"
   throttling_error_requests_threshold_critical    = "${var.storage_throttling_error_requests_threshold_critical}"
+  throttling_error_requests_threshold_warning     = "${var.storage_throttling_error_requests_threshold_warning}"
   timeout_error_requests_threshold_critical       = "${var.storage_timeout_error_requests_threshold_critical}"
+  timeout_error_requests_threshold_warning        = "${var.storage_timeout_error_requests_threshold_warning}"
 }
 
 module "streamanalytics" {
