@@ -18,6 +18,7 @@ EOF
 
   thresholds {
     critical = "${var.availability_threshold_critical}"
+    warning  = "${var.availability_threshold_warning}"
   }
 
   type                = "metric alert"
@@ -47,6 +48,7 @@ EOF
 
   thresholds {
     critical = "${var.successful_requests_threshold_critical}"
+    warning  = "${var.successful_requests_threshold_warning}"
   }
 
   type                = "metric alert"
@@ -76,6 +78,7 @@ EOF
 
   thresholds {
     critical = "${var.latency_threshold_critical}"
+    warning  = "${var.latency_threshold_warning}"
   }
 
   type                = "metric alert"
@@ -105,6 +108,7 @@ EOF
 
   thresholds {
     critical = "${var.timeout_error_requests_threshold_critical}"
+    warning  = "${var.timeout_error_requests_threshold_warning}"
   }
 
   type                = "metric alert"
@@ -134,6 +138,7 @@ EOF
 
   thresholds {
     critical = "${var.network_error_requests_threshold_critical}"
+    warning  = "${var.network_error_requests_threshold_warning}"
   }
 
   type                = "metric alert"
@@ -163,6 +168,7 @@ EOF
 
   thresholds {
     critical = "${var.throttling_error_requests_threshold_critical}"
+    warning  = "${var.throttling_error_requests_threshold_warning}"
   }
 
   type                = "metric alert"
@@ -192,6 +198,7 @@ EOF
 
   thresholds {
     critical = "${var.server_other_error_requests_threshold_critical}"
+    warning  = "${var.server_other_error_requests_threshold_warning}"
   }
 
   type                = "metric alert"
@@ -221,6 +228,7 @@ EOF
 
   thresholds {
     critical = "${var.client_other_error_requests_threshold_critical}"
+    warning  = "${var.client_other_error_requests_threshold_warning}"
   }
 
   type                = "metric alert"
@@ -250,6 +258,7 @@ EOF
 
   thresholds {
     critical = "${var.authorization_error_requests_threshold_critical}"
+    warning  = "${var.authorization_error_requests_threshold_warning}"
   }
 
   type                = "metric alert"

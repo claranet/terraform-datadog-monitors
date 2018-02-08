@@ -312,46 +312,91 @@ variable "sqldatabase_deadlock_threshold_critical" {
 # Azure Storage specific variables
 variable "storage_availability_threshold_critical" {
   description = "Minimum acceptable percent of availability for a storage"
+  default     = 50
+}
+
+variable "storage_availability_threshold_warning" {
+  description = "Warning regarding acceptable percent of availability for a storage"
   default     = 90
 }
 
 variable "storage_successful_requests_threshold_critical" {
   description = "Minimum acceptable percent of successful requests for a storage"
+  default     = 50
+}
+
+variable "storage_successful_requests_threshold_warning" {
+  description = "Warning regarding acceptable percent of successful requests for a storage"
   default     = 90
 }
 
 variable "storage_latency_threshold_critical" {
   description = "Maximum acceptable end to end latency (ms) for a storage"
+  default     = 2000
+}
+
+variable "storage_latency_threshold_warning" {
+  description = "Warning regarding acceptable end to end latency (ms) for a storage"
   default     = 1000
 }
 
 variable "storage_timeout_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of timeout error requests for a storage"
+  default     = 50
+}
+
+variable "storage_timeout_error_requests_threshold_warning" {
+  description = "Warning regarding acceptable percent of timeout error requests for a storage"
   default     = 5
 }
 
 variable "storage_network_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of network error requests for a storage"
+  default     = 50
+}
+
+variable "storage_network_error_requests_threshold_warning" {
+  description = "Warning regarding acceptable percent of network error requests for a storage"
   default     = 5
 }
 
 variable "storage_throttling_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of throttling error requests for a storage"
+  default     = 50
+}
+
+variable "storage_throttling_error_requests_threshold_warning" {
+  description = "Warning regarding acceptable percent of throttling error requests for a storage"
   default     = 10
 }
 
 variable "storage_server_other_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of server other error requests for a storage"
+  default     = 50
+}
+
+variable "storage_server_other_error_requests_threshold_warning" {
+  description = "Warning regarding acceptable percent of server other error requests for a storage"
   default     = 10
 }
 
 variable "storage_client_other_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of client other error requests for a storage"
+  default     = 50
+}
+
+variable "storage_client_other_error_requests_threshold_warning" {
+  description = "Warning regarding acceptable percent of client other error requests for a storage"
   default     = 15
 }
 
 variable "storage_authorization_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of authorization error requests for a storage"
+  default     = 50
+}
+
+variable "storage_authorization_error_requests_threshold_warning" {
+  description = "Warning regarding acceptable percent of authorization error requests for a storage"
   default     = 15
 }
 
