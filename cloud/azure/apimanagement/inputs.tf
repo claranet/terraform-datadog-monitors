@@ -27,20 +27,40 @@ variable "filter_tags_custom" {
 # Azure API Management specific
 variable "failed_requests_threshold_critical" {
   description = "Maximum acceptable percent of failed requests"
-  default     = 5
+  default     = 90
+}
+
+variable "failed_requests_threshold_warning" {
+  description = "Warning regarding acceptable percent of failed requests"
+  default     = 50
 }
 
 variable "other_requests_threshold_critical" {
   description = "Maximum acceptable percent of other requests"
-  default     = 5
+  default     = 90
+}
+
+variable "other_requests_threshold_warning" {
+  description = "Warning regarding acceptable percent of other requests"
+  default     = 50
 }
 
 variable "unauthorized_requests_threshold_critical" {
   description = "Maximum acceptable percent of unauthorized requests"
-  default     = 5
+  default     = 90
+}
+
+variable "unauthorized_requests_threshold_warning" {
+  description = "Warning regarding acceptable percent of unauthorized requests"
+  default     = 50
 }
 
 variable "successful_requests_threshold_critical" {
   description = "Minimum acceptable percent of successful requests"
-  default     = 90
+  default     = 10
+}
+
+variable "successful_requests_threshold_warning" {
+  description = "Warning regarding acceptable percent of successful requests"
+  default     = 30
 }

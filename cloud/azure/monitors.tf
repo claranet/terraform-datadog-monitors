@@ -9,9 +9,13 @@ module "apimanagement" {
   filter_tags_custom       = "${var.filter_tags_custom}"
 
   failed_requests_threshold_critical       = "${var.apimanagement_failed_requests_threshold_critical}"
+  failed_requests_threshold_warning        = "${var.apimanagement_failed_requests_threshold_warning}"
   other_requests_threshold_critical        = "${var.apimanagement_other_requests_threshold_critical}"
+  other_requests_threshold_warning         = "${var.apimanagement_other_requests_threshold_warning}"
   successful_requests_threshold_critical   = "${var.apimanagement_successful_requests_threshold_critical}"
+  successful_requests_threshold_warning    = "${var.apimanagement_successful_requests_threshold_warning}"
   unauthorized_requests_threshold_critical = "${var.apimanagement_unauthorized_requests_threshold_critical}"
+  unauthorized_requests_threshold_warning  = "${var.apimanagement_unauthorized_requests_threshold_warning}"
 }
 
 module "appservices" {
