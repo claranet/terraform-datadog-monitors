@@ -35,12 +35,12 @@ Inputs
 | apimanagement_other_requests_threshold_critical | Maximum acceptable percent of other requests | string | `5` | no |
 | apimanagement_successful_requests_threshold_critical | Minimum acceptable percent of successful requests | string | `90` | no |
 | apimanagement_unauthorized_requests_threshold_critical | Maximum acceptable percent of unauthorized requests | string | `5` | no |
-| appservices_http_successful_requests_threshold_critical | Minimum critical acceptable percent of 2xx & 3xx requests | string | `90` | no |
-| appservices_http_successful_requests_threshold_warning | Minimum warning acceptable percent of 2xx & 3xx requests | string | `95` | no |
 | appservices_http_4xx_requests_threshold_critical | Maximum critical acceptable percent of 4xx errors | string | `30` | no |
 | appservices_http_4xx_requests_threshold_warning | Maximum warning acceptable percent of 4xx errors | string | `15` | no |
 | appservices_http_5xx_requests_threshold_critical | Maximum critical acceptable percent of 5xx errors | string | `20` | no |
 | appservices_http_5xx_requests_threshold_warning | Maximum warning acceptable percent of 5xx errors | string | `10` | no |
+| appservices_http_successful_requests_threshold_critical | Minimum critical acceptable percent of 2xx & 3xx requests | string | `90` | no |
+| appservices_http_successful_requests_threshold_warning | Minimum warning acceptable percent of 2xx & 3xx requests | string | `95` | no |
 | appservices_memory_usage_threshold_critical | Alerting threshold in Mib | string | `52430000` | no |
 | appservices_memory_usage_threshold_warning | Warning threshold in MiB | string | `33550000` | no |
 | appservices_response_time_threshold_critical | Alerting threshold in seconds | string | `0.8` | no |
@@ -92,15 +92,24 @@ Inputs
 | sqldatabase_diskspace_threshold_warning | Disk space used in percent (warning threshold) | string | `80` | no |
 | sqldatabase_dtu_threshold_critical | Amount of DTU used (critical threshold) | string | `90` | no |
 | sqldatabase_dtu_threshold_warning | Amount of DTU used (warning threshold) | string | `85` | no |
-| storage_authorization_error_requests_threshold_critical | Maximum acceptable percent of authorization error requests for a storage | string | `15` | no |
-| storage_availability_threshold_critical | Minimum acceptable percent of availability for a storage | string | `90` | no |
-| storage_client_other_error_requests_threshold_critical | Maximum acceptable percent of client other error requests for a storage | string | `15` | no |
-| storage_latency_threshold_critical | Maximum acceptable end to end latency (ms) for a storage | string | `1000` | no |
-| storage_network_error_requests_threshold_critical | Maximum acceptable percent of network error requests for a storage | string | `5` | no |
-| storage_server_other_error_requests_threshold_critical | Maximum acceptable percent of server other error requests for a storage | string | `10` | no |
-| storage_successful_requests_threshold_critical | Minimum acceptable percent of successful requests for a storage | string | `90` | no |
-| storage_throttling_error_requests_threshold_critical | Maximum acceptable percent of throttling error requests for a storage | string | `10` | no |
-| storage_timeout_error_requests_threshold_critical | Maximum acceptable percent of timeout error requests for a storage | string | `5` | no |
+| storage_authorization_error_requests_threshold_critical | Maximum acceptable percent of authorization error requests for a storage | string | `50` | no |
+| storage_authorization_error_requests_threshold_warning | Warning regarding acceptable percent of authorization error requests for a storage | string | `15` | no |
+| storage_availability_threshold_critical | Minimum acceptable percent of availability for a storage | string | `50` | no |
+| storage_availability_threshold_warning | Warning regarding acceptable percent of availability for a storage | string | `90` | no |
+| storage_client_other_error_requests_threshold_critical | Maximum acceptable percent of client other error requests for a storage | string | `50` | no |
+| storage_client_other_error_requests_threshold_warning | Warning regarding acceptable percent of client other error requests for a storage | string | `15` | no |
+| storage_latency_threshold_critical | Maximum acceptable end to end latency (ms) for a storage | string | `2000` | no |
+| storage_latency_threshold_warning | Warning regarding acceptable end to end latency (ms) for a storage | string | `1000` | no |
+| storage_network_error_requests_threshold_critical | Maximum acceptable percent of network error requests for a storage | string | `50` | no |
+| storage_network_error_requests_threshold_warning | Warning regarding acceptable percent of network error requests for a storage | string | `5` | no |
+| storage_server_other_error_requests_threshold_critical | Maximum acceptable percent of server other error requests for a storage | string | `50` | no |
+| storage_server_other_error_requests_threshold_warning | Warning regarding acceptable percent of server other error requests for a storage | string | `10` | no |
+| storage_successful_requests_threshold_critical | Minimum acceptable percent of successful requests for a storage | string | `50` | no |
+| storage_successful_requests_threshold_warning | Warning regarding acceptable percent of successful requests for a storage | string | `90` | no |
+| storage_throttling_error_requests_threshold_critical | Maximum acceptable percent of throttling error requests for a storage | string | `50` | no |
+| storage_throttling_error_requests_threshold_warning | Warning regarding acceptable percent of throttling error requests for a storage | string | `10` | no |
+| storage_timeout_error_requests_threshold_critical | Maximum acceptable percent of timeout error requests for a storage | string | `50` | no |
+| storage_timeout_error_requests_threshold_warning | Warning regarding acceptable percent of timeout error requests for a storage | string | `5` | no |
 | streamanalytics_conversion_errors_threshold_critical | Conversion errors limit (critical threshold) | string | `10` | no |
 | streamanalytics_conversion_errors_threshold_warning | Conversion errors limit (warning threshold) | string | `0` | no |
 | streamanalytics_failed_function_requests_threshold_critical | Failed Function Request rate limit (critical threshold) | string | `10` | no |
