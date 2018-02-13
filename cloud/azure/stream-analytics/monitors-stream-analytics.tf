@@ -7,7 +7,7 @@ data "template_file" "filter" {
 }
 
 resource "datadog_monitor" "status" {
-  name    = "[${var.environment}] Stream Analytics Status is not ok on {{name}}"
+  name    = "[${var.environment}] Stream Analytics is down"
   message = "${var.message}"
 
   query = <<EOF
@@ -23,7 +23,7 @@ resource "datadog_monitor" "status" {
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -31,7 +31,7 @@ resource "datadog_monitor" "status" {
 }
 
 resource "datadog_monitor" "su_utilization" {
-  name    = "[${var.environment}] Stream Analytics streaming Units utilization at more than ${var.su_utilization_threshold_critical}% on {{name}}"
+  name    = "[${var.environment}] Stream Analytics streaming units utilization too high {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
   message = "${var.message}"
 
   query = <<EOF
@@ -49,7 +49,7 @@ resource "datadog_monitor" "su_utilization" {
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -62,7 +62,7 @@ resource "datadog_monitor" "su_utilization" {
 }
 
 resource "datadog_monitor" "failed_function_requests" {
-  name    = "[${var.environment}] Stream Analytics more than ${var.failed_function_requests_threshold_critical} failed function requests on {{name}}"
+  name    = "[${var.environment}] Stream Analytics too many failed requests {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -81,7 +81,7 @@ resource "datadog_monitor" "failed_function_requests" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -94,7 +94,7 @@ resource "datadog_monitor" "failed_function_requests" {
 }
 
 resource "datadog_monitor" "conversion_errors" {
-  name    = "[${var.environment}] Stream Analytics more than ${var.conversion_errors_threshold_critical} conversion errors on {{name}}"
+  name    = "[${var.environment}] Stream Analytics too many conversion errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -112,7 +112,7 @@ resource "datadog_monitor" "conversion_errors" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -125,7 +125,7 @@ resource "datadog_monitor" "conversion_errors" {
 }
 
 resource "datadog_monitor" "runtime_errors" {
-  name    = "[${var.environment}] Stream Analytics more than ${var.runtime_errors_threshold_critical} runtime errors on {{name}}"
+  name    = "[${var.environment}] Stream Analytics too many runtime errors {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
   message = "${var.message}"
 
   query = <<EOF
@@ -143,7 +143,7 @@ resource "datadog_monitor" "runtime_errors" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 

@@ -7,7 +7,7 @@ data "template_file" "filter" {
 }
 
 resource "datadog_monitor" "sql-database_cpu_90_15min" {
-  name    = "[${var.environment}] SQL Database CPU high > ${var.cpu_threshold_critical}% on {{name}}"
+  name    = "[${var.environment}] SQL Database CPU too high {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -29,7 +29,7 @@ resource "datadog_monitor" "sql-database_cpu_90_15min" {
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -37,7 +37,7 @@ resource "datadog_monitor" "sql-database_cpu_90_15min" {
 }
 
 resource "datadog_monitor" "sql-database_free_space_low" {
-  name    = "[${var.environment}] SQL Database free space < ${var.diskspace_threshold_critical}% on {{name}}"
+  name    = "[${var.environment}] SQL Database low free space {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   type = "metric alert"
@@ -60,7 +60,7 @@ resource "datadog_monitor" "sql-database_free_space_low" {
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -68,7 +68,7 @@ resource "datadog_monitor" "sql-database_free_space_low" {
 }
 
 resource "datadog_monitor" "sql-database_dtu_consumption_high" {
-  name    = "[${var.environment}] SQL Database DTU Consumption on {{name}} > ${var.dtu_threshold_critical}"
+  name    = "[${var.environment}] SQL Database DTU Consumption too high {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   type = "metric alert"
@@ -91,7 +91,7 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -99,7 +99,7 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
 }
 
 resource "datadog_monitor" "sql-database_deadlocks_count" {
-  name    = "[${var.environment}] SQL Database Deadlocks too high on {{name}}"
+  name    = "[${var.environment}] SQL Database Deadlocks too high {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
   message = "${var.message}"
 
   type = "metric alert"
@@ -121,7 +121,7 @@ resource "datadog_monitor" "sql-database_deadlocks_count" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
