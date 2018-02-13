@@ -49,6 +49,7 @@ resource "datadog_monitor" "apimgt_failed_requests" {
 
   thresholds {
     critical = "${var.failed_requests_threshold_critical}"
+    warning  = "${var.failed_requests_threshold_warning}"
   }
 
   type                = "metric alert"
@@ -79,6 +80,7 @@ resource "datadog_monitor" "apimgt_other_requests" {
 
   thresholds {
     critical = "${var.other_requests_threshold_critical}"
+    warning  = "${var.other_requests_threshold_warning}"
   }
 
   type                = "metric alert"
@@ -109,6 +111,7 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
 
   thresholds {
     critical = "${var.unauthorized_requests_threshold_critical}"
+    warning  = "${var.unauthorized_requests_threshold_warning}"
   }
 
   type                = "metric alert"
@@ -139,6 +142,7 @@ resource "datadog_monitor" "apimgt_successful_requests" {
 
   thresholds {
     critical = "${var.successful_requests_threshold_critical}"
+    warning  = "${var.successful_requests_threshold_warning}"
   }
 
   type                = "metric alert"

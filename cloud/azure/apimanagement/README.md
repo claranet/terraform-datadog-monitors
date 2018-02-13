@@ -29,13 +29,17 @@ Inputs
 |------|-------------|:----:|:-----:|:-----:|
 | delay | Delay in seconds for the metric evaluation | string | `600` | no |
 | environment | Architecture environment | string | - | yes |
-| failed_requests_threshold_critical | Maximum acceptable percent of failed requests | string | `5` | no |
+| failed_requests_threshold_critical | Maximum acceptable percent of failed requests | string | `90` | no |
+| failed_requests_threshold_warning | Warning regarding acceptable percent of failed requests | string | `50` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when a Redis monitor is triggered | string | - | yes |
-| other_requests_threshold_critical | Maximum acceptable percent of other requests | string | `5` | no |
-| successful_requests_threshold_critical | Minimum acceptable percent of successful requests | string | `90` | no |
-| unauthorized_requests_threshold_critical | Maximum acceptable percent of unauthorized requests | string | `5` | no |
+| other_requests_threshold_critical | Maximum acceptable percent of other requests | string | `90` | no |
+| other_requests_threshold_warning | Warning regarding acceptable percent of other requests | string | `50` | no |
+| successful_requests_threshold_critical | Minimum acceptable percent of successful requests | string | `10` | no |
+| successful_requests_threshold_warning | Warning regarding acceptable percent of successful requests | string | `30` | no |
+| unauthorized_requests_threshold_critical | Maximum acceptable percent of unauthorized requests | string | `90` | no |
+| unauthorized_requests_threshold_warning | Warning regarding acceptable percent of unauthorized requests | string | `50` | no |
 
 Related documentation
 ---------------------

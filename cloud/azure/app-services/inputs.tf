@@ -27,12 +27,12 @@ variable "delay" {
 ###################################
 
 variable "response_time_threshold_critical" {
-  default     = 0.8
+  default     = 10
   description = "Alerting threshold in seconds"
 }
 
 variable "response_time_threshold_warning" {
-  default     = 0.4
+  default     = 5
   description = "Warning threshold in seconds"
 }
 
@@ -41,12 +41,12 @@ variable "response_time_threshold_warning" {
 ###################################
 
 variable "memory_usage_threshold_critical" {
-  default     = 52430000
+  default     = 1073741824                  # 1Gb
   description = "Alerting threshold in Mib"
 }
 
 variable "memory_usage_threshold_warning" {
-  default     = 33550000
+  default     = 536870912                  # 512Mb
   description = "Warning threshold in MiB"
 }
 
@@ -55,13 +55,13 @@ variable "memory_usage_threshold_warning" {
 #################################
 
 variable "http_5xx_requests_threshold_critical" {
-  default     = 20
+  default     = 90
   description = "Maximum critical acceptable percent of 5xx errors"
 }
 
 variable "http_5xx_requests_threshold_warning" {
-  default     = 10
-  description = "Maximum warning acceptable percent of 5xx errors"
+  default     = 50
+  description = "Warning regarding acceptable percent of 5xx errors"
 }
 
 #################################
@@ -69,13 +69,13 @@ variable "http_5xx_requests_threshold_warning" {
 #################################
 
 variable "http_4xx_requests_threshold_critical" {
-  default     = 30
+  default     = 90
   description = "Maximum critical acceptable percent of 4xx errors"
 }
 
 variable "http_4xx_requests_threshold_warning" {
-  default     = 15
-  description = "Maximum warning acceptable percent of 4xx errors"
+  default     = 50
+  description = "Warning regarding acceptable percent of 4xx errors"
 }
 
 #################################
@@ -83,11 +83,11 @@ variable "http_4xx_requests_threshold_warning" {
 #################################
 
 variable "http_successful_requests_threshold_critical" {
-  default     = 90
+  default     = 10
   description = "Minimum critical acceptable percent of 2xx & 3xx requests"
 }
 
 variable "http_successful_requests_threshold_warning" {
-  default     = 95
-  description = "Minimum warning acceptable percent of 2xx & 3xx requests"
+  default     = 30
+  description = "Warning regarding acceptable percent of 2xx & 3xx requests"
 }

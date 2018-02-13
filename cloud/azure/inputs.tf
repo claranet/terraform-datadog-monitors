@@ -31,175 +31,195 @@ variable "non_taggable_filter_tags" {
 # Azure API Management specific variables
 variable "apimanagement_failed_requests_threshold_critical" {
   description = "Maximum acceptable percent of failed requests"
-  default     = 5
+  default     = 90
+}
+
+variable "apimanagement_failed_requests_threshold_warning" {
+  description = "Warning regarding acceptable percent of failed requests"
+  default     = 50
 }
 
 variable "apimanagement_other_requests_threshold_critical" {
   description = "Maximum acceptable percent of other requests"
-  default     = 5
+  default     = 90
+}
+
+variable "apimanagement_other_requests_threshold_warning" {
+  description = "Warning regarding acceptable percent of other requests"
+  default     = 50
 }
 
 variable "apimanagement_unauthorized_requests_threshold_critical" {
   description = "Maximum acceptable percent of unauthorized requests"
-  default     = 5
+  default     = 90
+}
+
+variable "apimanagement_unauthorized_requests_threshold_warning" {
+  description = "Warning regarding acceptable percent of unauthorized requests"
+  default     = 50
 }
 
 variable "apimanagement_successful_requests_threshold_critical" {
   description = "Minimum acceptable percent of successful requests"
-  default     = 90
+  default     = 10
+}
+
+variable "apimanagement_successful_requests_threshold_warning" {
+  description = "Warning regarding acceptable percent of successful requests"
+  default     = 30
 }
 
 # Azure App Services specific variables
 variable "appservices_response_time_threshold_critical" {
-  default     = 0.8
+  default     = 10
   description = "Alerting threshold in seconds"
 }
 
 variable "appservices_response_time_threshold_warning" {
-  default     = 0.4
+  default     = 5
   description = "Warning threshold in seconds"
 }
 
 variable "appservices_memory_usage_threshold_critical" {
-  default     = 52430000
+  default     = 1073741824                  # 1Gb
   description = "Alerting threshold in Mib"
 }
 
 variable "appservices_memory_usage_threshold_warning" {
-  default     = 33550000
+  default     = 536870912                  # 512Mb
   description = "Warning threshold in MiB"
 }
 
 variable "appservices_http_4xx_requests_threshold_critical" {
-  default     = 30
+  default     = 90
   description = "Maximum critical acceptable percent of 4xx errors"
 }
 
 variable "appservices_http_4xx_requests_threshold_warning" {
-  default     = 15
-  description = "Maximum warning acceptable percent of 4xx errors"
+  default     = 50
+  description = "Warning regarding acceptable percent of 4xx errors"
 }
 
 variable "appservices_http_5xx_requests_threshold_critical" {
-  default     = 20
+  default     = 90
   description = "Maximum critical acceptable percent of 5xx errors"
 }
 
 variable "appservices_http_5xx_requests_threshold_warning" {
-  default     = 10
-  description = "Maximum warning acceptable percent of 5xx errors"
+  default     = 50
+  description = "Warning regarding acceptable percent of 5xx errors"
 }
 
 variable "appservices_http_successful_requests_threshold_critical" {
-  default     = 90
+  default     = 10
   description = "Minimum critical acceptable percent of 2xx & 3xx requests"
 }
 
 variable "appservices_http_successful_requests_threshold_warning" {
-  default     = 95
-  description = "Minimum warning acceptable percent of 2xx & 3xx requests"
+  default     = 30
+  description = "Warning regarding acceptable percent of 2xx & 3xx requests"
 }
 
 # Azure Event Hub specific variables
 variable "eventhub_failed_requests_rate_thresold_critical" {
   description = "Failed requests ratio (percentage) to trigger the critical alert"
-  default     = 3
+  default     = 90
 }
 
 variable "eventhub_failed_requests_rate_thresold_warning" {
   description = "Failed requests ratio (percentage) to trigger a warning alert"
-  default     = 1
+  default     = 50
 }
 
 variable "eventhub_errors_rate_thresold_critical" {
   description = "Errors ratio (percentage) to trigger the critical alert"
-  default     = 3
+  default     = 90
 }
 
 variable "eventhub_errors_rate_thresold_warning" {
   description = "Errors ratio (percentage) to trigger a warning alert"
-  default     = 1
+  default     = 50
 }
 
 # IOT Hub specific variables
 variable "iothub_failed_jobs_rate_threshold_warning" {
   description = "Jobs Failed rate limit (warning threshold)"
-  default     = 0
+  default     = 50
 }
 
 variable "iothub_failed_jobs_rate_threshold_critical" {
   description = "Jobs Failed rate limit (critical threshold)"
-  default     = 10
+  default     = 90
 }
 
 variable "iothub_failed_listjobs_rate_threshold_warning" {
   description = "ListJobs Failed rate limit (warning threshold)"
-  default     = 0
+  default     = 50
 }
 
 variable "iothub_failed_listjobs_rate_threshold_critical" {
   description = "ListJobs Failed rate limit (critical threshold)"
-  default     = 10
+  default     = 90
 }
 
 variable "iothub_failed_queryjobs_rate_threshold_warning" {
   description = "QueryJobs Failed rate limit (warning threshold)"
-  default     = 0
+  default     = 50
 }
 
 variable "iothub_failed_queryjobs_rate_threshold_critical" {
   description = "QueryJobs Failed rate limit (critical threshold)"
-  default     = 10
+  default     = 90
 }
 
 variable "iothub_failed_c2d_methods_rate_threshold_warning" {
   description = "C2D Methods Failed rate limit (warning threshold)"
-  default     = 0
+  default     = 50
 }
 
 variable "iothub_failed_c2d_methods_rate_threshold_critical" {
   description = "C2D Methods Failed rate limit (critical threshold)"
-  default     = 10
+  default     = 90
 }
 
 variable "iothub_failed_c2d_twin_read_rate_threshold_warning" {
   description = "C2D Twin Read Failed rate limit (warning threshold)"
-  default     = 0
+  default     = 50
 }
 
 variable "iothub_failed_c2d_twin_read_rate_threshold_critical" {
   description = "C2D Twin Read Failed rate limit (critical threshold)"
-  default     = 10
+  default     = 90
 }
 
 variable "iothub_failed_c2d_twin_update_rate_threshold_warning" {
   description = "C2D Twin Update Failed rate limit (warning threshold)"
-  default     = 0
+  default     = 50
 }
 
 variable "iothub_failed_c2d_twin_update_rate_threshold_critical" {
   description = "C2D Twin Update Failed rate limit (critical threshold)"
-  default     = 10
+  default     = 90
 }
 
 variable "iothub_failed_d2c_twin_read_rate_threshold_warning" {
   description = "D2C Twin Read Failed rate limit (warning threshold)"
-  default     = 0
+  default     = 50
 }
 
 variable "iothub_failed_d2c_twin_read_rate_threshold_critical" {
   description = "D2C Twin Read Failed rate limit (critical threshold)"
-  default     = 10
+  default     = 90
 }
 
 variable "iothub_failed_d2c_twin_update_rate_threshold_warning" {
   description = "D2C Twin Update Failed rate limit (warning threshold)"
-  default     = 0
+  default     = 50
 }
 
 variable "iothub_failed_d2c_twin_update_rate_threshold_critical" {
   description = "D2C Twin Update Failed rate limit (critical threshold)"
-  default     = 10
+  default     = 90
 }
 
 variable "iothub_dropped_d2c_telemetry_egress_threshold_warning" {
@@ -342,62 +362,62 @@ variable "storage_latency_threshold_warning" {
 
 variable "storage_timeout_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of timeout error requests for a storage"
-  default     = 50
+  default     = 90
 }
 
 variable "storage_timeout_error_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of timeout error requests for a storage"
-  default     = 5
+  default     = 50
 }
 
 variable "storage_network_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of network error requests for a storage"
-  default     = 50
+  default     = 90
 }
 
 variable "storage_network_error_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of network error requests for a storage"
-  default     = 5
+  default     = 50
 }
 
 variable "storage_throttling_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of throttling error requests for a storage"
-  default     = 50
+  default     = 90
 }
 
 variable "storage_throttling_error_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of throttling error requests for a storage"
-  default     = 10
+  default     = 50
 }
 
 variable "storage_server_other_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of server other error requests for a storage"
-  default     = 50
+  default     = 90
 }
 
 variable "storage_server_other_error_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of server other error requests for a storage"
-  default     = 10
+  default     = 50
 }
 
 variable "storage_client_other_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of client other error requests for a storage"
-  default     = 50
+  default     = 90
 }
 
 variable "storage_client_other_error_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of client other error requests for a storage"
-  default     = 15
+  default     = 50
 }
 
 variable "storage_authorization_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of authorization error requests for a storage"
-  default     = 50
+  default     = 90
 }
 
 variable "storage_authorization_error_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of authorization error requests for a storage"
-  default     = 15
+  default     = 50
 }
 
 # Azure Stream Analytics specific variables

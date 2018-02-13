@@ -22,82 +22,82 @@ variable "filter_tags" {
 # Azure IOT hubs specific
 variable "failed_jobs_rate_threshold_warning" {
   description = "Jobs Failed rate limit (warning threshold)"
-  default     = 0
+  default     = 50
 }
 
 variable "failed_jobs_rate_threshold_critical" {
   description = "Jobs Failed rate limit (critical threshold)"
-  default     = 10
+  default     = 90
 }
 
 variable "failed_listjobs_rate_threshold_warning" {
   description = "ListJobs Failed rate limit (warning threshold)"
-  default     = 0
+  default     = 50
 }
 
 variable "failed_listjobs_rate_threshold_critical" {
   description = "ListJobs Failed rate limit (critical threshold)"
-  default     = 10
+  default     = 90
 }
 
 variable "failed_queryjobs_rate_threshold_warning" {
   description = "QueryJobs Failed rate limit (warning threshold)"
-  default     = 0
+  default     = 50
 }
 
 variable "failed_queryjobs_rate_threshold_critical" {
   description = "QueryJobs Failed rate limit (critical threshold)"
-  default     = 10
+  default     = 90
 }
 
 variable "failed_c2d_methods_rate_threshold_warning" {
   description = "C2D Methods Failed rate limit (warning threshold)"
-  default     = 0
+  default     = 50
 }
 
 variable "failed_c2d_methods_rate_threshold_critical" {
   description = "C2D Methods Failed rate limit (critical threshold)"
-  default     = 10
+  default     = 90
 }
 
 variable "failed_c2d_twin_read_rate_threshold_warning" {
   description = "C2D Twin Read Failed rate limit (warning threshold)"
-  default     = 0
+  default     = 50
 }
 
 variable "failed_c2d_twin_read_rate_threshold_critical" {
   description = "C2D Twin Read Failed rate limit (critical threshold)"
-  default     = 10
+  default     = 90
 }
 
 variable "failed_c2d_twin_update_rate_threshold_warning" {
   description = "C2D Twin Update Failed rate limit (warning threshold)"
-  default     = 0
+  default     = 50
 }
 
 variable "failed_c2d_twin_update_rate_threshold_critical" {
   description = "C2D Twin Update Failed rate limit (critical threshold)"
-  default     = 10
+  default     = 90
 }
 
 variable "failed_d2c_twin_read_rate_threshold_warning" {
   description = "D2C Twin Read Failed rate limit (warning threshold)"
-  default     = 0
+  default     = 50
 }
 
 variable "failed_d2c_twin_read_rate_threshold_critical" {
   description = "D2C Twin Read Failed rate limit (critical threshold)"
-  default     = 10
+  default     = 90
 }
 
 variable "failed_d2c_twin_update_rate_threshold_warning" {
   description = "D2C Twin Update Failed rate limit (warning threshold)"
-  default     = 0
+  default     = 50
 }
 
 variable "failed_d2c_twin_update_rate_threshold_critical" {
   description = "D2C Twin Update Failed rate limit (critical threshold)"
-  default     = 10
+  default     = 90
 }
 
 variable "dropped_d2c_telemetry_egress_threshold_warning" {

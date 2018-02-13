@@ -29,10 +29,10 @@ Inputs
 |------|-------------|:----:|:-----:|:-----:|
 | delay | Delay in seconds for the metric evaluation | string | `600` | no |
 | environment | Architecture environment | string | - | yes |
-| errors_rate_thresold_critical | Errors ratio (percentage) to trigger the critical alert | string | `3` | no |
-| errors_rate_thresold_warning | Errors ratio (percentage) to trigger a warning alert | string | `1` | no |
-| failed_requests_rate_thresold_critical | Failed requests ratio (percentage) to trigger the critical alert | string | `3` | no |
-| failed_requests_rate_thresold_warning | Failed requests ratio (percentage) to trigger a warning alert | string | `1` | no |
+| errors_rate_thresold_critical | Errors ratio (percentage) to trigger the critical alert | string | `90` | no |
+| errors_rate_thresold_warning | Errors ratio (percentage) to trigger a warning alert | string | `50` | no |
+| failed_requests_rate_thresold_critical | Failed requests ratio (percentage) to trigger the critical alert | string | `90` | no |
+| failed_requests_rate_thresold_warning | Failed requests ratio (percentage) to trigger a warning alert | string | `50` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |

@@ -57,60 +57,60 @@ variable "latency_threshold_warning" {
 
 variable "timeout_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of timeout error requests for a storage"
-  default     = 50
+  default     = 90
 }
 
 variable "timeout_error_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of timeout error requests for a storage"
-  default     = 5
+  default     = 50
 }
 
 variable "network_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of network error requests for a storage"
-  default     = 50
+  default     = 90
 }
 
 variable "network_error_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of network error requests for a storage"
-  default     = 5
+  default     = 50
 }
 
 variable "throttling_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of throttling error requests for a storage"
-  default     = 50
+  default     = 90
 }
 
 variable "throttling_error_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of throttling error requests for a storage"
-  default     = 10
+  default     = 50
 }
 
 variable "server_other_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of server other error requests for a storage"
-  default     = 50
+  default     = 90
 }
 
 variable "server_other_error_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of server other error requests for a storage"
-  default     = 10
+  default     = 50
 }
 
 variable "client_other_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of client other error requests for a storage"
-  default     = 50
+  default     = 90
 }
 
 variable "client_other_error_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of client other error requests for a storage"
-  default     = 15
+  default     = 50
 }
 
 variable "authorization_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of authorization error requests for a storage"
-  default     = 50
+  default     = 90
 }
 
 variable "authorization_error_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of authorization error requests for a storage"
-  default     = 15
+  default     = 50
 }
