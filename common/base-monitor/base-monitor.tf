@@ -1,5 +1,5 @@
 resource "datadog_monitor" "base_monitor" {
-  name    = "[${var.environment}] ${var.name}"
+  name    = "[${var.environment}] ${var.name} {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}}${var.thresholds_unit} ({{value}}${var.thresholds_unit})"
   message = "${var.message}"
 
   query = "${var.query}"

@@ -13,6 +13,11 @@ variable "message" {
   type = "string"
 }
 
+variable "thresholds_unit" {
+  type    = "string"
+  default = ""
+}
+
 variable "query" {
   description = "Query to use for monitor evaluation"
   type        = "string"
