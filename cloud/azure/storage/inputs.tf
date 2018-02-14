@@ -37,12 +37,12 @@ variable "availability_threshold_warning" {
 
 variable "successful_requests_threshold_critical" {
   description = "Minimum acceptable percent of successful requests for a storage"
-  default     = 50
+  default     = 10
 }
 
 variable "successful_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of successful requests for a storage"
-  default     = 90
+  default     = 30
 }
 
 variable "latency_threshold_critical" {
