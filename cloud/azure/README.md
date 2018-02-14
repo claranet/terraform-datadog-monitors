@@ -104,8 +104,8 @@ Inputs
 | storage_network_error_requests_threshold_warning | Warning regarding acceptable percent of network error requests for a storage | string | `5` | no |
 | storage_server_other_error_requests_threshold_critical | Maximum acceptable percent of server other error requests for a storage | string | `50` | no |
 | storage_server_other_error_requests_threshold_warning | Warning regarding acceptable percent of server other error requests for a storage | string | `10` | no |
-| storage_successful_requests_threshold_critical | Minimum acceptable percent of successful requests for a storage | string | `50` | no |
-| storage_successful_requests_threshold_warning | Warning regarding acceptable percent of successful requests for a storage | string | `90` | no |
+| storage_successful_requests_threshold_critical | Minimum acceptable percent of successful requests for a storage | string | `10` | no |
+| storage_successful_requests_threshold_warning | Warning regarding acceptable percent of successful requests for a storage | string | `30` | no |
 | storage_throttling_error_requests_threshold_critical | Maximum acceptable percent of throttling error requests for a storage | string | `50` | no |
 | storage_throttling_error_requests_threshold_warning | Warning regarding acceptable percent of throttling error requests for a storage | string | `10` | no |
 | storage_timeout_error_requests_threshold_critical | Maximum acceptable percent of timeout error requests for a storage | string | `50` | no |
