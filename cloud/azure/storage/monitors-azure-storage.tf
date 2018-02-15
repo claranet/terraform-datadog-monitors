@@ -12,7 +12,7 @@ module "storage_availability" {
   name          = "Azure Storage is down"
   environment   = "${var.environment}"
   message       = "${coalesce(var.availability_message, var.message)}"
-  resource_name = "storage"
+  resource_kind = "storage"
   provider      = "azure"
 
   query = <<EOF
@@ -21,14 +21,15 @@ module "storage_availability" {
     100)) < ${var.availability_threshold_critical}
 EOF
 
-
-thresholds {
+  thresholds = {
     critical = "${var.availability_threshold_critical}"
     warning  = "${var.availability_threshold_warning}"
   }
 
-  silenced = "${var.availability_silenced}"  notify_no_data = true
-  evaluation_delay          = "${var.delay}"
+  silenced = "${var.availability_silenced}"
+
+  notify_no_data   = true
+  evaluation_delay = "${var.delay}"
 
   extra_tags = "${var.extra_tags}"
 }

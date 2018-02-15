@@ -6,6 +6,8 @@ resource "datadog_monitor" "base_monitor" {
 
   thresholds = "${var.thresholds}"
 
+  silenced = "${var.silenced}"
+
   type                = "${var.type}"
   notify_no_data      = "${var.notify_no_data}"
   notify_audit        = false

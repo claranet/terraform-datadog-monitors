@@ -1,76 +1,95 @@
 # Global Terraform
 variable "environment" {
-  description = "Architecture environment"
+  description = "Architecture environment."
   type        = "string"
 }
 
 variable "name" {
-  description = "Name of the monitor, should contain '{{name}}' for resource identification"
+  description = "Name of Datadog monitor."
   type        = "string"
 }
 
 variable "message" {
-  type = "string"
-}
-
-variable "thresholds_unit" {
-  type    = "string"
-  default = ""
-}
-
-variable "query" {
-  description = "Query to use for monitor evaluation"
+  description = "A message to include with notifications for this monitor. Email notifications can be sent to specific users by using the same '@username' notation as events."
   type        = "string"
 }
 
-variable "resource_name" {
-  type = "string"
+variable "thresholds_unit" {
+  description = "Unit of the values used as thresholds, used in monitor name."
+  type        = "string"
+  default     = ""
+}
+
+variable "query" {
+  description = "Query to use for monitor evaluation."
+  type        = "string"
+}
+
+variable "resource_kind" {
+  description = "Kind of resource monitored (eg. storage, elasticsearch, apache, ec2)."
+  type        = "string"
 }
 
 variable "extra_tags" {
-  type    = "map"
-  default = {}
+  description = "Extra tags to add on this monitor in addition of the standard ones."
+  type        = "map"
+  default     = {}
 }
 
 variable "provider" {
-  type = "string"
+  description = "Provider of the monitores resources (eg. azure, amazon)."
+  type        = "string"
 }
 
 variable "type" {
-  type    = "string"
-  default = "metric alert"
+  description = "Type of monitor query (metric alert or query alert)."
+  type        = "string"
+  default     = "metric alert"
 }
 
 variable "thresholds" {
-  type    = "map"
-  default = {}
+  description = "Map of the monitors thresholds, possible keys are `critical` and `warning`."
+  type        = "map"
+  default     = {}
+}
+
+variable "silenced" {
+  description = "Map of the scopes to mute for a given timestamp (or 0)."
+  type        = "map"
+  default     = {}
 }
 
 variable "notify_no_data" {
-  type = "string"
+  description = "A boolean indicating whether this monitor will notify when data stops reporting."
+  type        = "string"
 }
 
 variable "no_data_timeframe" {
-  type    = "string"
-  default = "10"
+  description = "The number of minutes before a monitor will notify when data stops reporting."
+  type        = "string"
+  default     = "10"
 }
 
 variable "evaluation_delay" {
-  type    = "string"
-  default = "600"
+  description = "Time (in seconds) to delay evaluation, as a non-negative integer."
+  type        = "string"
+  default     = "600"
 }
 
 variable "new_host_delay" {
-  type    = "string"
-  default = "300"
+  description = "Time (in seconds) to allow a host to boot and applications to fully start before starting the evaluation of monitor results."
+  type        = "string"
+  default     = "300"
 }
 
 variable "timeout_h" {
-  type    = "string"
-  default = "0"
+  description = "The number of hours of the monitor not reporting data before it will automatically resolve from a triggered state."
+  type        = "string"
+  default     = "0"
 }
 
 variable "require_full_window" {
-  type    = "string"
-  default = "false"
+  description = "A boolean indicating whether this monitor needs a full window of data before it's evaluated."
+  type        = "string"
+  default     = "false"
 }
