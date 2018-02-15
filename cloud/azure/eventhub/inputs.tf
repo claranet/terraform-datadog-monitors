@@ -24,6 +24,18 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
+variable "status_silenced" {
+  description = "Groups to mute for Event Hub status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "failed_requests_rate_silenced" {
+  description = "Groups to mute for Event Hub failed requests monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "failed_requests_rate_thresold_critical" {
   description = "Failed requests ratio (percentage) to trigger the critical alert"
   default     = 90
@@ -32,6 +44,12 @@ variable "failed_requests_rate_thresold_critical" {
 variable "failed_requests_rate_thresold_warning" {
   description = "Failed requests ratio (percentage) to trigger a warning alert"
   default     = 50
+}
+
+variable "errors_rate_silenced" {
+  description = "Groups to mute for Event Hub errors monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "errors_rate_thresold_critical" {

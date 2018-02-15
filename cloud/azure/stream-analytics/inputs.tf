@@ -25,6 +25,18 @@ variable "filter_tags_custom" {
 }
 
 # Azure Stream Analytics specific
+variable "status_silenced" {
+  description = "Groups to mute for Stream Analytics status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "su_utilization_silenced" {
+  description = "Groups to mute for Stream Analytics utilization monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "su_utilization_threshold_warning" {
   description = "Streaming Unit utilization rate limit (warning threshold)"
   default     = 60
@@ -35,7 +47,13 @@ variable "su_utilization_threshold_critical" {
   default     = 80
 }
 
-variable "function_requests_threshold_warning" {
+variable "failed_function_requests_silenced" {
+  description = "Groups to mute for Stream Analytics failed requests monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "failed_function_requests_threshold_warning" {
   description = "Failed Function Request rate limit (warning threshold)"
   default     = 0
 }
@@ -43,6 +61,12 @@ variable "function_requests_threshold_warning" {
 variable "failed_function_requests_threshold_critical" {
   description = "Failed Function Request rate limit (critical threshold)"
   default     = 10
+}
+
+variable "conversion_errors_silenced" {
+  description = "Groups to mute for Stream Analytics conversion errors monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "conversion_errors_threshold_warning" {
@@ -53,6 +77,12 @@ variable "conversion_errors_threshold_warning" {
 variable "conversion_errors_threshold_critical" {
   description = "Conversion errors limit (critical threshold)"
   default     = 10
+}
+
+variable "runtime_errors_silenced" {
+  description = "Groups to mute for Stream Analytics runtime errors monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "runtime_errors_threshold_warning" {

@@ -16,6 +16,8 @@ resource "datadog_monitor" "status" {
 
   type = "metric alert"
 
+  silenced = "${var.status_silenced}"
+
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -58,6 +60,8 @@ resource "datadog_monitor" "su_utilization" {
     critical = "${var.su_utilization_threshold_critical}"
   }
 
+  silenced = "${var.su_utilization_silenced}"
+
   tags = ["env:${var.environment}", "resource:streamanalytics", "team:azure", "provider:azure"]
 }
 
@@ -86,9 +90,11 @@ resource "datadog_monitor" "failed_function_requests" {
   no_data_timeframe   = 20
 
   thresholds {
-    warning  = "${var.function_requests_threshold_warning}"
+    warning  = "${var.failed_function_requests_threshold_warning}"
     critical = "${var.failed_function_requests_threshold_critical}"
   }
+
+  silenced = "${var.failed_function_requests_silenced}"
 
   tags = ["env:${var.environment}", "resource:streamanalytics", "team:azure", "provider:azure"]
 }
@@ -121,6 +127,8 @@ resource "datadog_monitor" "conversion_errors" {
     critical = "${var.conversion_errors_threshold_critical}"
   }
 
+  silenced = "${var.conversion_errors_silenced}"
+
   tags = ["env:${var.environment}", "resource:streamanalytics", "team:azure", "provider:azure"]
 }
 
@@ -151,6 +159,8 @@ resource "datadog_monitor" "runtime_errors" {
     warning  = "${var.runtime_errors_threshold_warning}"
     critical = "${var.runtime_errors_threshold_critical}"
   }
+
+  silenced = "${var.runtime_errors_silenced}"
 
   tags = ["env:${var.environment}", "resource:streamanalytics", "team:azure", "provider:azure"]
 }

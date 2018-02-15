@@ -16,6 +16,8 @@ EOF
 
   type = "metric alert"
 
+  silenced = "${var.status_silenced}"
+
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -46,6 +48,8 @@ EOF
     warning  = "${var.evictedkeys_limit_threshold_warning}"
     critical = "${var.evictedkeys_limit_threshold_critical}"
   }
+
+  silenced = "${var.evictedkeys_limit_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
@@ -78,6 +82,8 @@ EOF
     critical = "${var.percent_processor_time_threshold_critical}"
   }
 
+  silenced = "${var.percent_processor_time_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -108,6 +114,8 @@ EOF
     warning  = "${var.server_load_rate_threshold_warning}"
     critical = "${var.server_load_rate_threshold_critical}"
   }
+
+  silenced = "${var.server_load_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"

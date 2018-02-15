@@ -29,6 +29,18 @@ variable "non_taggable_filter_tags" {
 }
 
 # Azure API Management specific variables
+variable "apimanagement_status_silenced" {
+  description = "Groups to mute for API Management status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "apimanagement_failed_requests_silenced" {
+  description = "Groups to mute for API Management failed requests monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "apimanagement_failed_requests_threshold_critical" {
   description = "Maximum acceptable percent of failed requests"
   default     = 90
@@ -37,6 +49,12 @@ variable "apimanagement_failed_requests_threshold_critical" {
 variable "apimanagement_failed_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of failed requests"
   default     = 50
+}
+
+variable "apimanagement_other_requests_silenced" {
+  description = "Groups to mute for API Management other requests monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "apimanagement_other_requests_threshold_critical" {
@@ -49,6 +67,12 @@ variable "apimanagement_other_requests_threshold_warning" {
   default     = 50
 }
 
+variable "apimanagement_unauthorized_requests_silenced" {
+  description = "Groups to mute for API Management unauthorized requests monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "apimanagement_unauthorized_requests_threshold_critical" {
   description = "Maximum acceptable percent of unauthorized requests"
   default     = 90
@@ -57,6 +81,12 @@ variable "apimanagement_unauthorized_requests_threshold_critical" {
 variable "apimanagement_unauthorized_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of unauthorized requests"
   default     = 50
+}
+
+variable "apimanagement_successful_requests_silenced" {
+  description = "Groups to mute for API Management successful requests monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "apimanagement_successful_requests_threshold_critical" {
@@ -70,14 +100,26 @@ variable "apimanagement_successful_requests_threshold_warning" {
 }
 
 # Azure App Services specific variables
+variable "appservices_response_time_silenced" {
+  description = "Groups to mute for App Services response time monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "appservices_response_time_threshold_critical" {
   default     = 10
-  description = "Alerting threshold in seconds"
+  description = "Alerting threshold for response time in seconds"
 }
 
 variable "appservices_response_time_threshold_warning" {
   default     = 5
-  description = "Warning threshold in seconds"
+  description = "Warning threshold for response time in seconds"
+}
+
+variable "appservices_memory_usage_silenced" {
+  description = "Groups to mute for App Services memory usage monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "appservices_memory_usage_threshold_critical" {
@@ -90,6 +132,12 @@ variable "appservices_memory_usage_threshold_warning" {
   description = "Warning threshold in MiB"
 }
 
+variable "appservices_http_4xx_requests_silenced" {
+  description = "Groups to mute for App Services 4xx requests monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "appservices_http_4xx_requests_threshold_critical" {
   default     = 90
   description = "Maximum critical acceptable percent of 4xx errors"
@@ -100,6 +148,12 @@ variable "appservices_http_4xx_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of 4xx errors"
 }
 
+variable "appservices_http_5xx_requests_silenced" {
+  description = "Groups to mute for App Services 5xx requests monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "appservices_http_5xx_requests_threshold_critical" {
   default     = 90
   description = "Maximum critical acceptable percent of 5xx errors"
@@ -108,6 +162,12 @@ variable "appservices_http_5xx_requests_threshold_critical" {
 variable "appservices_http_5xx_requests_threshold_warning" {
   default     = 50
   description = "Warning regarding acceptable percent of 5xx errors"
+}
+
+variable "appservices_http_successful_requests_silenced" {
+  description = "Groups to mute for App Services successful requests monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "appservices_http_successful_requests_threshold_critical" {
@@ -121,6 +181,18 @@ variable "appservices_http_successful_requests_threshold_warning" {
 }
 
 # Azure Event Hub specific variables
+variable "eventhub_status_silenced" {
+  description = "Groups to mute for Event Hub status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "eventhub_failed_requests_rate_silenced" {
+  description = "Groups to mute for Event Hub failed requests monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "eventhub_failed_requests_rate_thresold_critical" {
   description = "Failed requests ratio (percentage) to trigger the critical alert"
   default     = 90
@@ -129,6 +201,12 @@ variable "eventhub_failed_requests_rate_thresold_critical" {
 variable "eventhub_failed_requests_rate_thresold_warning" {
   description = "Failed requests ratio (percentage) to trigger a warning alert"
   default     = 50
+}
+
+variable "eventhub_errors_rate_silenced" {
+  description = "Groups to mute for Event Hub errors monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "eventhub_errors_rate_thresold_critical" {
@@ -142,6 +220,30 @@ variable "eventhub_errors_rate_thresold_warning" {
 }
 
 # IOT Hub specific variables
+variable "iothub_status_silenced" {
+  description = "Groups to mute for IoT Hub status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "iothub_total_devices_silenced" {
+  description = "Groups to mute for IoT Hub total device monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "iothub_too_many_d2c_telemetry_ingress_nosent_silenced" {
+  description = "Groups to mute for IoT Hub unsent d2c telemetry monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "iothub_failed_jobs_rate_silenced" {
+  description = "Groups to mute for IoT Hub failed jobs monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "iothub_failed_jobs_rate_threshold_warning" {
   description = "Jobs Failed rate limit (warning threshold)"
   default     = 50
@@ -150,6 +252,12 @@ variable "iothub_failed_jobs_rate_threshold_warning" {
 variable "iothub_failed_jobs_rate_threshold_critical" {
   description = "Jobs Failed rate limit (critical threshold)"
   default     = 90
+}
+
+variable "iothub_failed_listjobs_rate_silenced" {
+  description = "Groups to mute for IoT Hub failed list jobs monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "iothub_failed_listjobs_rate_threshold_warning" {
@@ -162,6 +270,12 @@ variable "iothub_failed_listjobs_rate_threshold_critical" {
   default     = 90
 }
 
+variable "iothub_failed_queryjobs_rate_silenced" {
+  description = "Groups to mute for IoT Hub failed query jobs monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "iothub_failed_queryjobs_rate_threshold_warning" {
   description = "QueryJobs Failed rate limit (warning threshold)"
   default     = 50
@@ -170,6 +284,12 @@ variable "iothub_failed_queryjobs_rate_threshold_warning" {
 variable "iothub_failed_queryjobs_rate_threshold_critical" {
   description = "QueryJobs Failed rate limit (critical threshold)"
   default     = 90
+}
+
+variable "iothub_failed_c2d_methods_rate_silenced" {
+  description = "Groups to mute for IoT Hub failed c2d methods monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "iothub_failed_c2d_methods_rate_threshold_warning" {
@@ -182,6 +302,12 @@ variable "iothub_failed_c2d_methods_rate_threshold_critical" {
   default     = 90
 }
 
+variable "iothub_failed_c2d_twin_read_rate_silenced" {
+  description = "Groups to mute for IoT Hub failed c2d twin read monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "iothub_failed_c2d_twin_read_rate_threshold_warning" {
   description = "C2D Twin Read Failed rate limit (warning threshold)"
   default     = 50
@@ -190,6 +316,12 @@ variable "iothub_failed_c2d_twin_read_rate_threshold_warning" {
 variable "iothub_failed_c2d_twin_read_rate_threshold_critical" {
   description = "C2D Twin Read Failed rate limit (critical threshold)"
   default     = 90
+}
+
+variable "iothub_failed_c2d_twin_update_rate_silenced" {
+  description = "Groups to mute for IoT Hub failed c2d twin update monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "iothub_failed_c2d_twin_update_rate_threshold_warning" {
@@ -202,6 +334,12 @@ variable "iothub_failed_c2d_twin_update_rate_threshold_critical" {
   default     = 90
 }
 
+variable "iothub_failed_d2c_twin_read_rate_silenced" {
+  description = "Groups to mute for IoT Hub failed d2c twin read monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "iothub_failed_d2c_twin_read_rate_threshold_warning" {
   description = "D2C Twin Read Failed rate limit (warning threshold)"
   default     = 50
@@ -210,6 +348,12 @@ variable "iothub_failed_d2c_twin_read_rate_threshold_warning" {
 variable "iothub_failed_d2c_twin_read_rate_threshold_critical" {
   description = "D2C Twin Read Failed rate limit (critical threshold)"
   default     = 90
+}
+
+variable "iothub_failed_d2c_twin_update_rate_silenced" {
+  description = "Groups to mute for IoT Hub failed d2c twin update monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "iothub_failed_d2c_twin_update_rate_threshold_warning" {
@@ -222,6 +366,12 @@ variable "iothub_failed_d2c_twin_update_rate_threshold_critical" {
   default     = 90
 }
 
+variable "iothub_dropped_d2c_telemetry_egress_silenced" {
+  description = "Groups to mute for IoT Hub dropped d2c telemetry monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "iothub_dropped_d2c_telemetry_egress_threshold_warning" {
   description = "D2C Telemetry Dropped limit (warning threshold)"
   default     = 500
@@ -230,6 +380,12 @@ variable "iothub_dropped_d2c_telemetry_egress_threshold_warning" {
 variable "iothub_dropped_d2c_telemetry_egress_threshold_critical" {
   description = "D2C Telemetry Dropped limit (critical threshold)"
   default     = 1000
+}
+
+variable "iothub_orphaned_d2c_telemetry_egress_silenced" {
+  description = "Groups to mute for IoT Hub orphaned d2c telemetry monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "iothub_orphaned_d2c_telemetry_egress_threshold_warning" {
@@ -242,6 +398,12 @@ variable "iothub_orphaned_d2c_telemetry_egress_threshold_critical" {
   default     = 1000
 }
 
+variable "iothub_invalid_d2c_telemetry_egress_silenced" {
+  description = "Groups to mute for IoT Hub invalid d2c telemetry monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "iothub_invalid_d2c_telemetry_egress_threshold_warning" {
   description = "D2C Telemetry Invalid limit (warning threshold)"
   default     = 500
@@ -250,6 +412,12 @@ variable "iothub_invalid_d2c_telemetry_egress_threshold_warning" {
 variable "iothub_invalid_d2c_telemetry_egress_threshold_critical" {
   description = "D2C Telemetry Invalid limit (critical threshold)"
   default     = 1000
+}
+
+variable "iothub_fallback_d2c_telemetry_egress_silenced" {
+  description = "Groups to mute for IoT Hub fallback d2c telemetry monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "iothub_fallback_d2c_telemetry_egress_threshold_warning" {
@@ -263,6 +431,18 @@ variable "iothub_fallback_d2c_telemetry_egress_threshold_critical" {
 }
 
 # Azure Redis specific variables
+variable "redis_status_silenced" {
+  description = "Groups to mute for Redis status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "redis_evictedkeys_limit_silenced" {
+  description = "Groups to mute for Redis evicted keys monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "redis_evictedkeys_limit_threshold_warning" {
   description = "Evicted keys limit (warning threshold)"
   default     = 0
@@ -273,6 +453,12 @@ variable "redis_evictedkeys_limit_threshold_critical" {
   default     = 100
 }
 
+variable "redis_percent_processor_time_silenced" {
+  description = "Groups to mute for Redis processor monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "redis_percent_processor_time_threshold_critical" {
   description = "Processor time percent (critical threshold)"
   default     = 80
@@ -281,6 +467,12 @@ variable "redis_percent_processor_time_threshold_critical" {
 variable "redis_percent_processor_time_threshold_warning" {
   description = "Processor time percent (warning threshold)"
   default     = 60
+}
+
+variable "redis_server_load_rate_silenced" {
+  description = "Groups to mute for Redis server load monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "redis_server_load_rate_threshold_critical" {
@@ -294,6 +486,12 @@ variable "redis_server_load_rate_threshold_warning" {
 }
 
 # Azure SQL Database specific variables
+variable "sqldatabase_cpu_silenced" {
+  description = "Groups to mute for SQL CPU monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "sqldatabase_cpu_threshold_warning" {
   description = "CPU usage in percent (warning threshold)"
   default     = "80"
@@ -302,6 +500,12 @@ variable "sqldatabase_cpu_threshold_warning" {
 variable "sqldatabase_cpu_threshold_critical" {
   description = "CPU usage in percent (critical threshold)"
   default     = "90"
+}
+
+variable "sqldatabase_diskspace_silenced" {
+  description = "Groups to mute for SQL disk space monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "sqldatabase_diskspace_threshold_warning" {
@@ -314,6 +518,12 @@ variable "sqldatabase_diskspace_threshold_critical" {
   default     = "90"
 }
 
+variable "sqldatabase_dtu_silenced" {
+  description = "Groups to mute for SQL DTU monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "sqldatabase_dtu_threshold_warning" {
   description = "Amount of DTU used (warning threshold)"
   default     = "85"
@@ -324,12 +534,24 @@ variable "sqldatabase_dtu_threshold_critical" {
   default     = "90"
 }
 
+variable "sqldatabase_deadlock_silenced" {
+  description = "Groups to mute for SQL Deadlock monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "sqldatabase_deadlock_threshold_critical" {
   description = "Amount of Deadlocks (critical threshold)"
   default     = "1"
 }
 
 # Azure Storage specific variables
+variable "storage_availability_silenced" {
+  description = "Groups to mute for Storage availability monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "storage_availability_threshold_critical" {
   description = "Minimum acceptable percent of availability for a storage"
   default     = 50
@@ -338,6 +560,12 @@ variable "storage_availability_threshold_critical" {
 variable "storage_availability_threshold_warning" {
   description = "Warning regarding acceptable percent of availability for a storage"
   default     = 90
+}
+
+variable "storage_successful_requests_silenced" {
+  description = "Groups to mute for Storage sucessful requests monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "storage_successful_requests_threshold_critical" {
@@ -350,6 +578,12 @@ variable "storage_successful_requests_threshold_warning" {
   default     = 30
 }
 
+variable "storage_latency_silenced" {
+  description = "Groups to mute for Storage latency monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "storage_latency_threshold_critical" {
   description = "Maximum acceptable end to end latency (ms) for a storage"
   default     = 2000
@@ -358,6 +592,12 @@ variable "storage_latency_threshold_critical" {
 variable "storage_latency_threshold_warning" {
   description = "Warning regarding acceptable end to end latency (ms) for a storage"
   default     = 1000
+}
+
+variable "storage_timeout_error_requests_silenced" {
+  description = "Groups to mute for Storage timeout monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "storage_timeout_error_requests_threshold_critical" {
@@ -370,6 +610,12 @@ variable "storage_timeout_error_requests_threshold_warning" {
   default     = 50
 }
 
+variable "storage_network_error_requests_silenced" {
+  description = "Groups to mute for Storage network errors monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "storage_network_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of network error requests for a storage"
   default     = 90
@@ -378,6 +624,12 @@ variable "storage_network_error_requests_threshold_critical" {
 variable "storage_network_error_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of network error requests for a storage"
   default     = 50
+}
+
+variable "storage_throttling_error_requests_silenced" {
+  description = "Groups to mute for Storage throttling error monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "storage_throttling_error_requests_threshold_critical" {
@@ -390,6 +642,12 @@ variable "storage_throttling_error_requests_threshold_warning" {
   default     = 50
 }
 
+variable "storage_server_other_error_requests_silenced" {
+  description = "Groups to mute for Storage server other errors monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "storage_server_other_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of server other error requests for a storage"
   default     = 90
@@ -400,6 +658,12 @@ variable "storage_server_other_error_requests_threshold_warning" {
   default     = 50
 }
 
+variable "storage_client_other_error_requests_silenced" {
+  description = "Groups to mute for Storage other errors monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "storage_client_other_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of client other error requests for a storage"
   default     = 90
@@ -408,6 +672,12 @@ variable "storage_client_other_error_requests_threshold_critical" {
 variable "storage_client_other_error_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of client other error requests for a storage"
   default     = 50
+}
+
+variable "storage_authorization_error_requests_silenced" {
+  description = "Groups to mute for Storage authorization errors monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "storage_authorization_error_requests_threshold_critical" {
@@ -421,6 +691,18 @@ variable "storage_authorization_error_requests_threshold_warning" {
 }
 
 # Azure Stream Analytics specific variables
+variable "streamanalytics_status_silenced" {
+  description = "Groups to mute for Stream Analytics status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "streamanalytics_su_utilization_silenced" {
+  description = "Groups to mute for Stream Analytics utilization monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "streamanalytics_su_utilization_threshold_warning" {
   description = "Streaming Unit utilization rate limit (warning threshold)"
   default     = 60
@@ -431,7 +713,13 @@ variable "streamanalytics_su_utilization_threshold_critical" {
   default     = 80
 }
 
-variable "streamanalytics_function_requests_threshold_warning" {
+variable "streamanalytics_failed_function_requests_silenced" {
+  description = "Groups to mute for Stream Analytics failed requests monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "streamanalytics_failed_function_requests_threshold_warning" {
   description = "Failed Function Request rate limit (warning threshold)"
   default     = 0
 }
@@ -439,6 +727,12 @@ variable "streamanalytics_function_requests_threshold_warning" {
 variable "streamanalytics_failed_function_requests_threshold_critical" {
   description = "Failed Function Request rate limit (critical threshold)"
   default     = 10
+}
+
+variable "streamanalytics_conversion_errors_silenced" {
+  description = "Groups to mute for Stream Analytics conversion errors monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "streamanalytics_conversion_errors_threshold_warning" {
@@ -449,6 +743,12 @@ variable "streamanalytics_conversion_errors_threshold_warning" {
 variable "streamanalytics_conversion_errors_threshold_critical" {
   description = "Conversion errors limit (critical threshold)"
   default     = 10
+}
+
+variable "streamanalytics_runtime_errors_silenced" {
+  description = "Groups to mute for Stream Analytics runtime errors monitor"
+  type        = "map"
+  default     = {}
 }
 
 variable "streamanalytics_runtime_errors_threshold_warning" {
