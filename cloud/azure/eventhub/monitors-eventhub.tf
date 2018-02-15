@@ -16,6 +16,8 @@ resource "datadog_monitor" "eventhub_status" {
 
   type = "metric alert"
 
+  silenced = "${var.status_silenced}"
+
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -49,6 +51,8 @@ resource "datadog_monitor" "eventhub_failed_requests" {
     critical = "${var.failed_requests_rate_thresold_critical}"
     warning  = "${var.failed_requests_rate_thresold_warning}"
   }
+
+  silenced = "${var.failed_requests_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
@@ -87,6 +91,8 @@ resource "datadog_monitor" "eventhub_errors" {
     critical = "${var.errors_rate_thresold_critical}"
     warning  = "${var.errors_rate_thresold_warning}"
   }
+
+  silenced = "${var.errors_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"

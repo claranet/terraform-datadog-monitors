@@ -22,6 +22,8 @@ resource "datadog_monitor" "sql-database_cpu_90_15min" {
     critical = "${var.cpu_threshold_critical}"
   }
 
+  silenced = "${var.cpu_silenced}"
+
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -52,6 +54,8 @@ resource "datadog_monitor" "sql-database_free_space_low" {
     warning  = "${var.diskspace_threshold_warning}"
     critical = "${var.diskspace_threshold_critical}"
   }
+
+  silenced = "${var.diskspace_silenced}"
 
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
@@ -84,6 +88,8 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
     critical = "${var.dtu_threshold_critical}"
   }
 
+  silenced = "${var.dtu_silenced}"
+
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -113,6 +119,8 @@ resource "datadog_monitor" "sql-database_deadlocks_count" {
   thresholds {
     critical = "${var.deadlock_threshold_critical}"
   }
+
+  silenced = "${var.deadlock_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
