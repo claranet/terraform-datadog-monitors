@@ -7,7 +7,7 @@ data "template_file" "filter" {
 }
 
 resource "datadog_monitor" "availability" {
-  name    = "[${var.environment}] Azure Storage {{name}} unvailability detected"
+  name    = "[${var.environment}] Azure Storage {{name}} unavailability detected"
   message = "${var.message}"
 
   query = <<EOF
@@ -21,7 +21,7 @@ EOF
   }
 
   type                = "metric alert"
-  notify_no_data      = true
+  notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -50,7 +50,7 @@ EOF
   }
 
   type                = "metric alert"
-  notify_no_data      = true
+  notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -79,7 +79,7 @@ EOF
   }
 
   type                = "metric alert"
-  notify_no_data      = true
+  notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -108,7 +108,7 @@ EOF
   }
 
   type                = "metric alert"
-  notify_no_data      = true
+  notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -137,7 +137,7 @@ EOF
   }
 
   type                = "metric alert"
-  notify_no_data      = true
+  notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -166,7 +166,7 @@ EOF
   }
 
   type                = "metric alert"
-  notify_no_data      = true
+  notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -195,7 +195,7 @@ EOF
   }
 
   type                = "metric alert"
-  notify_no_data      = true
+  notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -224,7 +224,7 @@ EOF
   }
 
   type                = "metric alert"
-  notify_no_data      = true
+  notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -253,7 +253,7 @@ EOF
   }
 
   type                = "metric alert"
-  notify_no_data      = true
+  notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
