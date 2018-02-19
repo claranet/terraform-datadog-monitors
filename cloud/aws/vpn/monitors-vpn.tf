@@ -24,7 +24,7 @@ resource "datadog_monitor" "VPN_status" {
   }
 
   notify_no_data      = true
-  renotify_interval   = 15
+  renotify_interval   = 0
   evaluation_delay    = "${var.vpn_config["delay"]}"
   notify_audit        = false
   timeout_h           = 0
