@@ -31,6 +31,7 @@ resource "datadog_monitor" "VPN_status" {
   include_tags        = true
   locked              = false
   require_full_window = true
+  new_host_delay      = "${var.vpn_config["delay"]}}"
 
   tags = ["env: ${var.env}", "provider: aws", "resource: vpn"]
 }
