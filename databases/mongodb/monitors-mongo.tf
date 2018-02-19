@@ -1,34 +1,35 @@
-module "message" {
-  source              = "../../common/alerting-message"
-  oncall_24x7         = "${var.hno_escalation_group}"
-  oncall_office_hours = "${var.ho_escalation_group}"
+data "template_file" "filter" {
+  template = "$${filter}"
+
+  vars {
+    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_monitoring_mongodb:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
+  }
 }
 
-resource "datadog_monitor" "Mongodb_ReplicaSet_State" {
-  name    = "[${var.env}] Replica Set heath for {{ replset_name }}"
-  message = "${module.message.alerting-message}"
+resource "datadog_monitor" "mongodb_replicaset_state" {
+  name    = "[${var.environment}] Replica Set heath for {{ replset_name }}"
+  message = "${var.message}"
 
   query = <<EOF
       avg(last_5m): (
-        avg:mongodb.replset.health{dd_monitoring:enabled,dd_monitoring_mongodb,env:${var.env}} by {replset_name}
-      ) == ${var.mongo_config["critical"]}
+        avg:mongodb.replset.health{${data.template_file.filter.rendered}} by {region,replset_name}
+      ) == ${var.replica_status_critical}
   EOF
 
-  type = "query alert"
+  type = "metric alert"
 
   thresholds {
-    ok       = "${var.mongo_config["ok"]}"
-    critical = "${var.mongo_config["critical"]}"
+    critical = "${var.replica_status_critical}"
   }
 
   notify_no_data      = true
-  renotify_interval   = 15
-  evaluation_delay    = "${var.mongo_config["delay"]}"
+  renotify_interval   = 0
+  evaluation_delay    = "${var.evaluation_delay}"
+  new_host_delay      = "${var.evaluation_delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
-  locked              = false
-  require_full_window = true
+  require_full_window = false
 
-  tags = ["env:${var.env}", "type:mongodb"]
+  tags = ["env:${var.environment}", "resource:mongodb", "team:aws", "provider:aws"]
 }

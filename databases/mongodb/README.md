@@ -1,8 +1,10 @@
-###MongoDB Monitors
+AWS MongoDB Service DataDog monitors
+==========================================
 
 Link to integration documentation :
 
-``https://docs.datadoghq.com/integrations/mongo/``
+[https://docs.datadoghq.com/integrations/mongo/](https://docs.datadoghq.com/integrations/mongo/)
+
 
 **Prepare your ReplicaSet** :
 
@@ -46,3 +48,35 @@ Metrics are :
 0: The replicaSet is KO  
 
 This monitor will trigger an alert for each ReplicaSet.
+
+
+How to use this module
+----------------------
+
+```
+module "datadog-monitors-aws-mongodb" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//databases/mongodb?ref={revision}"
+
+  message     = "${module.datadog-message-alerting.alerting-message}"
+  environment = "${var.environment}"
+
+}
+```
+
+Purpose
+-------
+
+Creates a DataDog monitors with the following checks : 
+* Mongodb ReplicaSet status
+
+Inputs
+------
+
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| environment | Architecture Environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `600` | no |
+| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
+| message | Message sent when an alert is triggered | string | - | yes |
+| replica_status_critical | The ReplicaSet status is DOWN | string | `0` | no |
