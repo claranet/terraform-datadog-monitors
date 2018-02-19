@@ -60,8 +60,6 @@ variable "rds_cpu_threshold" {
 }
 
 variable "rds_mem_threshold" {
-  type = "map"
-
   default = {
     warning  = 20
     critical = 10
@@ -83,8 +81,6 @@ variable "elb_config" {
 }
 
 variable "elb_5xx_threshold" {
-  type = "map"
-
   default = {
     warning  = 5
     critical = 10
@@ -92,8 +88,6 @@ variable "elb_5xx_threshold" {
 }
 
 variable "elb_4xx_threshold" {
-  type = "map"
-
   default = {
     warning  = 5
     critical = 10
@@ -136,17 +130,5 @@ variable "php_fpm_busy_threshold" {
   default = {
     warning  = 0.8
     critical = 0.9
-  }
-}
-
-##MongoDB
-variable "mongo_config" {
-  description = "Critical means the ReplicaSet is DOWN and OK means the ReplicaSet is UP"
-  type = "map"
-
-  default = {
-    delay          = 0
-    critical       = 0
-    ok             = 1
   }
 }
