@@ -60,8 +60,6 @@ variable "rds_cpu_threshold" {
 }
 
 variable "rds_mem_threshold" {
-  type = "map"
-
   default = {
     warning  = 20
     critical = 10
@@ -83,8 +81,6 @@ variable "elb_config" {
 }
 
 variable "elb_5xx_threshold" {
-  type = "map"
-
   default = {
     warning  = 5
     critical = 10
@@ -92,8 +88,6 @@ variable "elb_5xx_threshold" {
 }
 
 variable "elb_4xx_threshold" {
-  type = "map"
-
   default = {
     warning  = 5
     critical = 10
@@ -102,7 +96,6 @@ variable "elb_4xx_threshold" {
 
 variable "elb_backend_latency" {
   description = "Average time elapsed after the request leaves the load balancer until a response is received. In seconds"
-  
   default = {
     warning  = 1
     critical = 5
