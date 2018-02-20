@@ -1,21 +1,22 @@
+data "template_file" "filter" {
+  template = "$${filter}"
+
+  vars {
+    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_elb:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
+  }
+}
+
 resource "datadog_monitor" "VPN_status" {
   name    = "[${var.environment}] VPN Down {{ tunnelipaddress }}"
   message = "${var.message}"
 
   query = <<EOF
         avg(last_5m): (
-        avg:aws.vpn.tunnel_state{tunnelipaddress:${var.vpn_tunnel_address[0]}} by {region,name}
-        + avg:aws.vpn.tunnel_state{tunnelipaddress:${var.vpn_tunnel_address[1]}} by {region,name}
-      ) == ${var.vpn_status_critical}
+          avg:aws.vpn.tunnel_state{${data.template_file.filter.rendered}} by {region,name}
+        ) < 1
   EOF
 
   type = "metric alert"
-
-  thresholds {
-    ok       = "${var.vpn_status_ok}"
-    warning  = "${var.vpn_status_warning}"
-    critical = "${var.vpn_status_critical}"
-  }
 
   notify_no_data      = true
   renotify_interval   = 0

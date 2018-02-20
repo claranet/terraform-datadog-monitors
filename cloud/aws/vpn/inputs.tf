@@ -14,24 +14,12 @@ variable "message" {
   description = "Message sent when an alert is triggered"
 }
 
-# AWS VPN Service specific
-variable "vpn_tunnel_address" {
-  description = "List the VPN tunnels you want to monitor"
-  type        = "list"
-  default     = []
+variable "filter_tags_use_defaults" {
+  description = "Use default filter tags convention"
+  default     = "true"
 }
 
-variable "vpn_status_ok" {
-  description = "Both tunnels are up, everything is ok"
-  default     = 2
-}
-
-variable "vpn_status_warning" {
-  description = "Only one tunnel is up"
-  default     = 1
-}
-
-variable "vpn_status_critical" {
-  description = "Both tunnels are down"
-  default     = 0
+variable "filter_tags_custom" {
+  description = "Tags used for custom filtering when filter_tags_use_defaults is false"
+  default     = "*"
 }
