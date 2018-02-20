@@ -26,8 +26,6 @@ Inputs
 |------|-------------|:----:|:-----:|:-----:|
 | environment | Architecture Environment | string | - | yes |
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `600` | no |
+| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
-| vpn_status_critical | Both tunnels are down | string | `0` | no |
-| vpn_status_ok | Both tunnels are up, everything is ok | string | `2` | no |
-| vpn_status_warning | Only one tunnel is up | string | `1` | no |
-| vpn_tunnel_address | List the VPN tunnels you want to monitor | list | `<list>` | no |
