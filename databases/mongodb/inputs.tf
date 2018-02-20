@@ -23,9 +23,3 @@ variable "filter_tags_custom" {
   description = "Tags used for custom filtering when filter_tags_use_defaults is false"
   default     = "*"
 }
-
-##MongoDB
-variable "replica_status_critical" {
-  description = "The ReplicaSet status is DOWN"
-  default     = 0
-}
