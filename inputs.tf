@@ -96,6 +96,7 @@ variable "elb_4xx_threshold" {
 
 variable "elb_backend_latency" {
   description = "Average time elapsed after the request leaves the load balancer until a response is received. In seconds"
+
   default = {
     warning  = 1
     critical = 5

@@ -13,14 +13,10 @@ resource "datadog_monitor" "mongodb_replicaset_state" {
   query = <<EOF
       avg(last_5m): (
         avg:mongodb.replset.health{${data.template_file.filter.rendered}} by {region,replset_name}
-      ) == ${var.replica_status_critical}
+      ) == 0
   EOF
 
   type = "metric alert"
-
-  thresholds {
-    critical = "${var.replica_status_critical}"
-  }
 
   notify_no_data      = true
   renotify_interval   = 0
