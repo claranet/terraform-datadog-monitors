@@ -1,19 +1,32 @@
-resource "datadog_monitor" "cpu_custom" {
-  name    = "${var.dd_custom_cpu["name"]}"
-  message = "{{#is_alert}}\n${var.hno_escalation_group}\n{{/is_alert}}\n{{#is_recovery}}\n${var.hno_escalation_group}\n{{/is_recovery}}\n{{#is_warning}}\n${var.ho_escalation_group}\n{{/is_warning}}\n{{#is_warning_recovery}}\n${var.ho_escalation_group}\n{{/is_warning_recovery}}"
-  count   = "${var.dd_custom_cpu["status"] == "enabled" ? 1 : 0}"
+data "template_file" "filter" {
+  template = "$${filter}"
 
-  query = "min(${var.dd_custom_cpu["period"]}):avg:system.cpu.system{dd_monitoring:enabled,dd_linux_basics:enabled,!dd_custom_cpu.monitoring:enabled} by {host} + avg:system.cpu.user{dd_monitoring:enabled,dd_linux_basics:enabled,!dd_custom_cpu:enabled} by {host} > ${var.dd_custom_cpu["critical_threshold"]}"
-  type  = "query alert"
+  vars {
+    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_rds:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
+  }
+}
+
+resource "datadog_monitor" "cpu_custom" {
+  name    = "[${var.environment}] CPU too High {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  message = "${var.message}"
+
+  query = <<EOF
+    min(${var.custom_cpu_period}): (
+      avg:system.cpu.system{${data.template_file.filter.rendered}} by {region,host} +
+      avg:system.cpu.user{${data.template_file.filter.rendered}} by {region,host}
+    ) > ${var.custom_cpu_threshold_critical}"
+  EOF
+
+  type = "metric alert"
 
   thresholds = {
-    warning  = "${var.dd_custom_cpu["warning_threshold"]}"
-    critical = "${var.dd_custom_cpu["critical_threshold"]}"
+    warning  = "${var.custom_cpu_threshold_warning}"
+    critical = "${var.custom_cpu_threshold_critical}"
   }
 
-  notify_no_data      = "${var.linux_basics_config["notify_no_data"]}"
-  evaluation_delay    = "${var.linux_basics_config["delay"]}"
-  new_host_delay      = "${var.linux_basics_config["delay"]}"
+  notify_no_data      = true
+  evaluation_delay    = "${var.evaluation_delay}"
+  new_host_delay      = "${var.evaluation_delay}"
   renotify_interval   = 60
   notify_audit        = false
   timeout_h           = 0
