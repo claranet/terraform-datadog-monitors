@@ -34,8 +34,6 @@ Inputs
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
-| notify_no_data | Enable 'No Data' alert | string | `true` | no |
-| renotify_interval | The number of minutes after the last notification before a monitor will re-notify on the current status | string | `60` | no |
 
 Related documentation
 ---------------------

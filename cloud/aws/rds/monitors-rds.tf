@@ -8,10 +8,11 @@ data "template_file" "filter" {
 
 ### RDS instance CPU monitor ###
 resource "datadog_monitor" "rds_cpu_90_15min" {
-  name    = "[${var.environment}] RDS instance CPU high > ${var.cpu_threshold_critical}% for 15 min on {{host.identifier}}"
+  name    = "[${var.environment}] RDS instance CPU high {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
-  type  = "metric alert"
+  type = "metric alert"
+
   query = <<EOF
     avg(last_15m): (
       avg:aws.rds.cpuutilization{${data.template_file.filter.rendered}} by {region,name}
@@ -23,9 +24,8 @@ EOF
     critical = "${var.cpu_threshold_critical}"
   }
 
-  notify_no_data      = "${var.notify_no_data}"
+  notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
-  renotify_interval   = "${var.renotify_interval}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -39,13 +39,15 @@ EOF
 
 ### RDS instance free space monitor ###
 resource "datadog_monitor" "rds_free_space_low" {
-  name    = "[${var.environment}] RDS instance free space < ${var.diskspace_threshold_critical}% on {{host.identifier}}"
+  name    = "[${var.environment}] RDS instance free space {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
-  type  = "metric alert"
+  type = "metric alert"
+
   query = <<EOF
   avg(last_15m): (
-    avg:aws.rds.free_storage_space{${data.template_file.filter.rendered}} by {region,name} / avg:aws.rds.total_storage_space{${data.template_file.filter.rendered}} by {region,name} * 100
+    avg:aws.rds.free_storage_space{${data.template_file.filter.rendered}} by {region,name} /
+    avg:aws.rds.total_storage_space{${data.template_file.filter.rendered}} by {region,name} * 100
   ) < ${var.diskspace_threshold_critical}
 EOF
 
@@ -54,9 +56,8 @@ EOF
     critical = "${var.diskspace_threshold_critical}"
   }
 
-  notify_no_data      = "${var.notify_no_data}"
+  notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
-  renotify_interval   = "${var.renotify_interval}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true

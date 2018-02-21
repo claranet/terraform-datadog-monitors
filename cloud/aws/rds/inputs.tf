@@ -5,19 +5,9 @@ variable "environment" {
 }
 
 # Global DataDog
-variable "notify_no_data" {
-  description = "Enable 'No Data' alert"
-  default = true
-}
-
 variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 600
-}
-
-variable "renotify_interval" {
-  description = "The number of minutes after the last notification before a monitor will re-notify on the current status"
-  default     = 60
 }
 
 variable "message" {
