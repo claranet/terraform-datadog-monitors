@@ -7,7 +7,7 @@ data "template_file" "filter" {
 }
 
 resource "datadog_monitor" "VPN_status" {
-  name    = "[${var.environment}] VPN Down {{ tunnelipaddress }}"
+  name    = "[${var.environment}] VPN Down"
   message = "${var.message}"
 
   query = <<EOF
