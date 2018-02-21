@@ -20,8 +20,10 @@ Creates DataDog monitors with the following checks :
 
 * ELB no healthy hosts
 * ELB latency too high
-* ELB http code 5xx percent to high
 * ELB http code 4xx percent to high
+* ELB http code 5xx percent to high
+* ELB backend http code 4xx percent to high
+* ELB backend http code 5xx percent to high
 
 Inputs
 ------
@@ -33,9 +35,12 @@ Inputs
 | elb_4xx_threshold_warning | loadbalancer 4xx warning threshold in percentage | string | `5` | no |
 | elb_5xx_threshold_critical | loadbalancer 5xx critical threshold in percentage | string | `10` | no |
 | elb_5xx_threshold_warning | loadbalancer 5xx warning threshold in percentage | string | `5` | no |
+| elb_backend_4xx_threshold_critical | loadbalancer backend 4xx critical threshold in percentage | string | `10` | no |
+| elb_backend_4xx_threshold_warning | loadbalancer backend 4xx warning threshold in percentage | string | `5` | no |
+| elb_backend_5xx_threshold_critical | loadbalancer backend 5xx critical threshold in percentage | string | `10` | no |
+| elb_backend_5xx_threshold_warning | loadbalancer backend 5xx warning threshold in percentage | string | `5` | no |
 | elb_backend_latency_critical | latency critical threshold in seconds | string | `5` | no |
 | elb_backend_latency_warning | latency warning threshold in seconds | string | `1` | no |
-| elb_notify_no_data | Use this variable to disable notify no data | string | `true` | no |
 | environment | Architecture Environment | string | - | yes |
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `600` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
