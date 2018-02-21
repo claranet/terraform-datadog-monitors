@@ -29,9 +29,14 @@ variable "dd_aws_elb" {
   default = "disable"
 }
 
-variable "elb_notify_no_data" {
-  description = "Use this variable to disable notify no data"
-  default     = true
+variable "elb_4xx_threshold_warning" {
+  description = "loadbalancer 4xx warning threshold in percentage"
+  default     = 5
+}
+
+variable "elb_4xx_threshold_critical" {
+  description = "loadbalancer 4xx critical threshold in percentage"
+  default     = 10
 }
 
 variable "elb_5xx_threshold_warning" {
@@ -44,13 +49,23 @@ variable "elb_5xx_threshold_critical" {
   default     = 10
 }
 
-variable "elb_4xx_threshold_warning" {
-  description = "loadbalancer 4xx warning threshold in percentage"
+variable "elb_backend_4xx_threshold_warning" {
+  description = "loadbalancer backend 4xx warning threshold in percentage"
   default     = 5
 }
 
-variable "elb_4xx_threshold_critical" {
-  description = "loadbalancer 4xx critical threshold in percentage"
+variable "elb_backend_4xx_threshold_critical" {
+  description = "loadbalancer backend 4xx critical threshold in percentage"
+  default     = 10
+}
+
+variable "elb_backend_5xx_threshold_warning" {
+  description = "loadbalancer backend 5xx warning threshold in percentage"
+  default     = 5
+}
+
+variable "elb_backend_5xx_threshold_critical" {
+  description = "loadbalancer backend 5xx critical threshold in percentage"
   default     = 10
 }
 
