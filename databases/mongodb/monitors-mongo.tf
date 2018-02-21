@@ -7,13 +7,13 @@ data "template_file" "filter" {
 }
 
 resource "datadog_monitor" "mongodb_replicaset_state" {
-  name    = "[${var.environment}] Replica Set heath for {{ replset_name }}"
+  name    = "[${var.environment}] Replica Set health"
   message = "${var.message}"
 
   query = <<EOF
       avg(last_5m): (
         avg:mongodb.replset.health{${data.template_file.filter.rendered}} by {region,replset_name}
-      ) == 0
+      ) < 1
   EOF
 
   type = "metric alert"
@@ -25,7 +25,7 @@ resource "datadog_monitor" "mongodb_replicaset_state" {
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
-  require_full_window = false
+  require_full_window = true
 
-  tags = ["env:${var.environment}", "resource:mongodb", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "resource:mongodb"]
 }
