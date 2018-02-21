@@ -42,14 +42,15 @@ EOF
 
 ### Elasticsearch cluster free storage space monitor ###
 resource "datadog_monitor" "es_free_space_low" {
-  name    = "[${var.environment}] ElasticSearch cluster free storage space < ${var.diskspace_threshold_critical}%"
+  name    = "[${var.environment}] ElasticSearch cluster free storage space {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   type = "query alert"
 
   query = <<EOF
   avg(last_15m): (
-    avg:aws.es.free_storage_space{${data.template_file.filter.rendered}} by {region,name} / (${var.es_cluster_volume_size}*1000) * 100
+    avg:aws.es.free_storage_space{${data.template_file.filter.rendered}} by {region,name} /
+    (${var.es_cluster_volume_size}*1000) * 100
   ) < ${var.diskspace_threshold_critical}
 EOF
 
@@ -74,7 +75,7 @@ EOF
 
 ### Elasticsearch cluster CPU monitor ###
 resource "datadog_monitor" "es_cpu_90_15min" {
-  name    = "[${var.environment}] ElasticSearch cluster CPU high > ${var.cpu_threshold_critical}%"
+  name    = "[${var.environment}] ElasticSearch cluster CPU high {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   type = "query alert"
