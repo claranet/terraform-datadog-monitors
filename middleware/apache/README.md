@@ -24,7 +24,6 @@ Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| dd_apache |  | string | `disabled` | no |
 | environment | Architecture Environment | string | - | yes |
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | message | Message sent when an alert is triggered | string | - | yes |

@@ -2,7 +2,7 @@ data "template_file" "filter" {
   template = "$${filter}"
 
   vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_rds:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
+    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_linux:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
   }
 }
 
@@ -122,7 +122,7 @@ resource "datadog_monitor" "datadog_free_memory" {
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
   new_host_delay      = "${var.evaluation_delay}"
-  renotify_interval   = 60
+  renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true

@@ -3,7 +3,7 @@ resource "datadog_monitor" "Apache_process" {
   message = "${var.message}"
 
   type  = "service check"
-  query = "\"process.up\".over(\"dd_monitoring:enabled\",\"dd_apache:enabled\",\"process:apache\",\"env:${var.environment}\").by(\"host\",\"process\", \"app\").last(4).count_by_status()"
+  query = "\"apache.can_connect\".over(\"dd_monitoring:enabled\",\"dd_apache:enabled\",\"process:apache\",\"env:${var.environment}\").by(\"host\",\"port\").last(6).count_by_status()"
 
   thresholds = {
     ok       = 1
@@ -11,10 +11,10 @@ resource "datadog_monitor" "Apache_process" {
     critical = 4
   }
 
-  notify_no_data      = false
+  notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
   new_host_delay      = "${var.evaluation_delay}"
-  renotify_interval   = 60
+  renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -22,5 +22,5 @@ resource "datadog_monitor" "Apache_process" {
   require_full_window = true
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "type:apache"]
+  tags = ["env:${var.environment}", "type:resource"]
 }

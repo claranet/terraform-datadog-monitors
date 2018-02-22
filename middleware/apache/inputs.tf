@@ -15,7 +15,3 @@ variable "message" {
 }
 
 # Apache Middleware specific
-
-variable "dd_apache" {
-  default = "disabled"
-}
