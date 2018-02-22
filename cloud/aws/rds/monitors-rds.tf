@@ -30,7 +30,7 @@ EOF
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.evaluation_delay}"
   no_data_timeframe   = 20
 
@@ -62,7 +62,7 @@ EOF
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.evaluation_delay}"
   no_data_timeframe   = 20
 

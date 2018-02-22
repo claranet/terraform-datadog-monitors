@@ -15,7 +15,3 @@ variable "message" {
 }
 
 # Nginx Middleware specific
-
-variable "dd_nginx" {
-  default = "disabled"
-}
