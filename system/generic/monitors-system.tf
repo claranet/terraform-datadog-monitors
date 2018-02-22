@@ -2,18 +2,17 @@ data "template_file" "filter" {
   template = "$${filter}"
 
   vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_system:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
+    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_system:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
   }
 }
 
 resource "datadog_monitor" "datadog_cpu_too_high" {
-  name    = "[${var.environment}] CPU too High {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  name    = "[${var.environment}] CPU usage {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
     min(${var.cpu_high_timeframe}): (
-      avg:system.cpu.system{${data.template_file.filter.rendered}} by {region,host} +
-      avg:system.cpu.user{${data.template_file.filter.rendered}} by {region,host}
+      100 - avg:system.cpu.idle{${data.template_file.filter.rendered}} by {region,host}
     ) > ${var.cpu_high_threshold_critical}
   EOF
 
@@ -24,7 +23,7 @@ resource "datadog_monitor" "datadog_cpu_too_high" {
     critical = "${var.cpu_high_threshold_critical}"
   }
 
-  tags = ["env:${var.environment}", "type:system"]
+  tags = ["env:${var.environment}", "type:system", "resource:cpu"]
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -55,7 +54,7 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
     critical = "${var.free_disk_space_threshold_critical}"
   }
 
-  tags = ["env:${var.environment}", "type:system"]
+  tags = ["env:${var.environment}", "type:system", "resource:disk"]
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -86,7 +85,7 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
     critical = "${var.free_disk_inodes_threshold_critical}"
   }
 
-  tags = ["env:${var.environment}", "type:system"]
+  tags = ["env:${var.environment}", "type:system", "resource:disk"]
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -101,7 +100,7 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
 
 resource "datadog_monitor" "datadog_free_memory" {
   name    = "[${var.environment}] Free memory {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "Debugging alert - no escalation"
+  message = "${var.message}"
 
   query = <<EOF
     sum(last_1m): (
@@ -117,7 +116,7 @@ resource "datadog_monitor" "datadog_free_memory" {
     critical = "${var.free_memory_threshold_critical}"
   }
 
-  tags = ["env:${var.environment}", "type:system"]
+  tags = ["env:${var.environment}", "type:system", "resource:memory"]
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
