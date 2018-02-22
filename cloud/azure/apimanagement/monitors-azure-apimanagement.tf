@@ -9,7 +9,7 @@ data "template_file" "filter" {
 }
 
 resource "datadog_monitor" "apimgt_status" {
-  name    = "[${var.environment}] API Management status is not ok on {{name}}"
+  name    = "[${var.environment}] API Management is down"
   message = "${var.message}"
 
   query = <<EOF
@@ -22,6 +22,8 @@ resource "datadog_monitor" "apimgt_status" {
     critical = 1
   }
 
+  silenced = "${var.status_silenced}"
+
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -29,7 +31,7 @@ resource "datadog_monitor" "apimgt_status" {
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -37,7 +39,7 @@ resource "datadog_monitor" "apimgt_status" {
 }
 
 resource "datadog_monitor" "apimgt_failed_requests" {
-  name    = "[${var.environment}] API Management {{name}} too much failed requests"
+  name    = "[${var.environment}] API Management too many failed requests {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -49,7 +51,10 @@ resource "datadog_monitor" "apimgt_failed_requests" {
 
   thresholds {
     critical = "${var.failed_requests_threshold_critical}"
+    warning  = "${var.failed_requests_threshold_warning}"
   }
+
+  silenced = "${var.failed_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -57,7 +62,7 @@ resource "datadog_monitor" "apimgt_failed_requests" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -67,7 +72,7 @@ resource "datadog_monitor" "apimgt_failed_requests" {
 }
 
 resource "datadog_monitor" "apimgt_other_requests" {
-  name    = "[${var.environment}] API Management {{name}} too much other requests"
+  name    = "[${var.environment}] API Management too many other requests {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -79,7 +84,10 @@ resource "datadog_monitor" "apimgt_other_requests" {
 
   thresholds {
     critical = "${var.other_requests_threshold_critical}"
+    warning  = "${var.other_requests_threshold_warning}"
   }
+
+  silenced = "${var.other_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -87,7 +95,7 @@ resource "datadog_monitor" "apimgt_other_requests" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -97,7 +105,7 @@ resource "datadog_monitor" "apimgt_other_requests" {
 }
 
 resource "datadog_monitor" "apimgt_unauthorized_requests" {
-  name    = "[${var.environment}] API Management {{name}} too much unauthorized requests"
+  name    = "[${var.environment}] API Management too many unauthorized requests {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -109,7 +117,10 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
 
   thresholds {
     critical = "${var.unauthorized_requests_threshold_critical}"
+    warning  = "${var.unauthorized_requests_threshold_warning}"
   }
+
+  silenced = "${var.unauthorized_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -117,7 +128,7 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -127,7 +138,7 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
 }
 
 resource "datadog_monitor" "apimgt_successful_requests" {
-  name    = "[${var.environment}] API Management {{name}} successful requests rate too low"
+  name    = "[${var.environment}] API Management successful requests rate too low {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -139,7 +150,10 @@ resource "datadog_monitor" "apimgt_successful_requests" {
 
   thresholds {
     critical = "${var.successful_requests_threshold_critical}"
+    warning  = "${var.successful_requests_threshold_warning}"
   }
+
+  silenced = "${var.successful_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -147,7 +161,7 @@ resource "datadog_monitor" "apimgt_successful_requests" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0

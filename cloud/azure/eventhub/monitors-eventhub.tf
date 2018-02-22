@@ -7,7 +7,7 @@ data "template_file" "filter" {
 }
 
 resource "datadog_monitor" "eventhub_status" {
-  name    = "[${var.environment}] Event Hub status is not ok on {{name}}"
+  name    = "[${var.environment}] Event Hub is down"
   message = "${var.message}"
 
   query = <<EOF
@@ -16,6 +16,8 @@ resource "datadog_monitor" "eventhub_status" {
 
   type = "metric alert"
 
+  silenced = "${var.status_silenced}"
+
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -23,7 +25,7 @@ resource "datadog_monitor" "eventhub_status" {
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -31,7 +33,7 @@ resource "datadog_monitor" "eventhub_status" {
 }
 
 resource "datadog_monitor" "eventhub_failed_requests" {
-  name    = "[${var.environment}] Event Hub too much failed requests on {{name}}"
+  name    = "[${var.environment}] Event Hub too many failed requests {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -50,6 +52,8 @@ resource "datadog_monitor" "eventhub_failed_requests" {
     warning  = "${var.failed_requests_rate_thresold_warning}"
   }
 
+  silenced = "${var.failed_requests_rate_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -57,7 +61,7 @@ resource "datadog_monitor" "eventhub_failed_requests" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -65,7 +69,7 @@ resource "datadog_monitor" "eventhub_failed_requests" {
 }
 
 resource "datadog_monitor" "eventhub_errors" {
-  name    = "[${var.environment}] Event Hub too much errors on {{name}}"
+  name    = "[${var.environment}] Event Hub too manny errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -88,6 +92,8 @@ resource "datadog_monitor" "eventhub_errors" {
     warning  = "${var.errors_rate_thresold_warning}"
   }
 
+  silenced = "${var.errors_rate_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -95,7 +101,7 @@ resource "datadog_monitor" "eventhub_errors" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 

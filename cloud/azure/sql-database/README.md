@@ -27,12 +27,16 @@ Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| cpu_silenced | Groups to mute for SQL CPU monitor | map | `<map>` | no |
 | cpu_threshold_critical | CPU usage in percent (critical threshold) | string | `90` | no |
 | cpu_threshold_warning | CPU usage in percent (warning threshold) | string | `80` | no |
+| deadlock_silenced | Groups to mute for SQL Deadlock monitor | map | `<map>` | no |
 | deadlock_threshold_critical | Amount of Deadlocks (critical threshold) | string | `1` | no |
 | delay | Delay in seconds for the metric evaluation | string | `600` | no |
+| diskspace_silenced | Groups to mute for SQL disk space monitor | map | `<map>` | no |
 | diskspace_threshold_critical | Disk space used in percent (critical threshold) | string | `90` | no |
 | diskspace_threshold_warning | Disk space used in percent (warning threshold) | string | `80` | no |
+| dtu_silenced | Groups to mute for SQL DTU monitor | map | `<map>` | no |
 | dtu_threshold_critical | Amount of DTU used (critical threshold) | string | `90` | no |
 | dtu_threshold_warning | Amount of DTU used (warning threshold) | string | `85` | no |
 | environment | Architecture Environment | string | - | yes |

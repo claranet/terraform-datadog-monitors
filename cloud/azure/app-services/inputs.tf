@@ -22,72 +22,82 @@ variable "delay" {
   default     = 600
 }
 
-###################################
-###   RESPONSE TIME VARIABLES   ###
-###################################
+variable "response_time_silenced" {
+  description = "Groups to mute for App Services response time monitor"
+  type        = "map"
+  default     = {}
+}
 
 variable "response_time_threshold_critical" {
-  default     = 0.8
-  description = "Alerting threshold in seconds"
+  default     = 10
+  description = "Alerting threshold for response time in seconds"
 }
 
 variable "response_time_threshold_warning" {
-  default     = 0.4
-  description = "Warning threshold in seconds"
+  default     = 5
+  description = "Warning threshold for response time in seconds"
 }
 
-###################################
-###   MEMORY USAGE VARIABLES   ###
-###################################
+variable "memory_usage_silenced" {
+  description = "Groups to mute for App Services memory usage monitor"
+  type        = "map"
+  default     = {}
+}
 
 variable "memory_usage_threshold_critical" {
-  default     = 52430000
+  default     = 1073741824                  # 1Gb
   description = "Alerting threshold in Mib"
 }
 
 variable "memory_usage_threshold_warning" {
-  default     = 33550000
+  default     = 536870912                  # 512Mb
   description = "Warning threshold in MiB"
 }
 
-#################################
-###   HTTP 5xx status pages   ###
-#################################
-
-variable "http_5xx_requests_threshold_critical" {
-  default     = 20
-  description = "Maximum critical acceptable percent of 5xx errors"
+variable "http_4xx_requests_silenced" {
+  description = "Groups to mute for App Services 4xx requests monitor"
+  type        = "map"
+  default     = {}
 }
-
-variable "http_5xx_requests_threshold_warning" {
-  default     = 10
-  description = "Maximum warning acceptable percent of 5xx errors"
-}
-
-#################################
-###   HTTP 4xx status pages   ###
-#################################
 
 variable "http_4xx_requests_threshold_critical" {
-  default     = 30
+  default     = 90
   description = "Maximum critical acceptable percent of 4xx errors"
 }
 
 variable "http_4xx_requests_threshold_warning" {
-  default     = 15
-  description = "Maximum warning acceptable percent of 4xx errors"
+  default     = 50
+  description = "Warning regarding acceptable percent of 4xx errors"
 }
 
-#################################
-###   HTTP 2xx status pages   ###
-#################################
+variable "http_5xx_requests_silenced" {
+  description = "Groups to mute for App Services 5xx requests monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "http_5xx_requests_threshold_critical" {
+  default     = 90
+  description = "Maximum critical acceptable percent of 5xx errors"
+}
+
+variable "http_5xx_requests_threshold_warning" {
+  default     = 50
+  description = "Warning regarding acceptable percent of 5xx errors"
+}
+
+variable "http_successful_requests_silenced" {
+  description = "Groups to mute for App Services successful requests monitor"
+  type        = "map"
+  default     = {}
+}
 
 variable "http_successful_requests_threshold_critical" {
-  default     = 90
+  default     = 10
   description = "Minimum critical acceptable percent of 2xx & 3xx requests"
 }
 
 variable "http_successful_requests_threshold_warning" {
-  default     = 95
-  description = "Minimum warning acceptable percent of 2xx & 3xx requests"
+  default     = 30
+  description = "Warning regarding acceptable percent of 2xx & 3xx requests"
 }

@@ -8,7 +8,7 @@ data "template_file" "filter" {
 
 # Monitoring App Services response time
 resource "datadog_monitor" "appservices_response_time" {
-  name    = "[${var.environment}] App Services response time of {{value}}s is to high on {{name}}"
+  name    = "[${var.environment}] App Services response time too high {{comparator}} {{#is_alert}}{{threshold}}s{{/is_alert}}{{#is_warning}}{{warn_threshold}}s{{/is_warning}} ({{value}}s)"
   type    = "metric alert"
   message = "${var.message}"
 
@@ -26,9 +26,11 @@ resource "datadog_monitor" "appservices_response_time" {
     critical = "${var.response_time_threshold_critical}"
   }
 
-  notify_no_data      = true # Will notify when no data is received
+  silenced = "${var.response_time_silenced}"
+
+  notify_no_data      = true  # Will notify when no data is received
   renotify_interval   = 0
-  require_full_window = true
+  require_full_window = false
   timeout_h           = 0
   include_tags        = true
 
@@ -37,7 +39,7 @@ resource "datadog_monitor" "appservices_response_time" {
 
 # Monitoring App Services memory usage
 resource "datadog_monitor" "appservices_memory_usage_count" {
-  name    = "[${var.environment}] App Services memory usage > ${ceil(var.memory_usage_threshold_critical/1000000)}MiB on {{name}}"
+  name    = "[${var.environment}] App Services memory usage  {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
   type    = "metric alert"
   message = "${var.message}"
 
@@ -55,9 +57,11 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
     critical = "${var.memory_usage_threshold_critical}"
   }
 
-  notify_no_data      = true # Will notify when no data is received
+  silenced = "${var.memory_usage_silenced}"
+
+  notify_no_data      = true  # Will notify when no data is received
   renotify_interval   = 0
-  require_full_window = true
+  require_full_window = false
   timeout_h           = 0
   include_tags        = true
 
@@ -66,7 +70,7 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
 
 # Monitoring App Services 5xx errors percent
 resource "datadog_monitor" "appservices_http_5xx_errors_count" {
-  name    = "[${var.environment}] App Services HTTP 5xx errors is {{value}}% above the limit on {{name}}"
+  name    = "[${var.environment}] App Services HTTP 5xx errors too high {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   type    = "metric alert"
   message = "${var.message}"
 
@@ -85,9 +89,11 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
     critical = "${var.http_5xx_requests_threshold_critical}"
   }
 
+  silenced = "${var.http_5xx_requests_silenced}"
+
   notify_no_data      = false # Will NOT notify when no data is received
   renotify_interval   = 0
-  require_full_window = true
+  require_full_window = false
   timeout_h           = 1
   include_tags        = true
 
@@ -96,7 +102,7 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
 
 # Monitoring App Services 4xx errors percent
 resource "datadog_monitor" "appservices_http_4xx_errors_count" {
-  name    = "[${var.environment}] App Services HTTP 4xx errors is {{value}}% above the limit on {{name}}"
+  name    = "[${var.environment}] App Services HTTP 4xx errors too high {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   type    = "metric alert"
   message = "${var.message}"
 
@@ -115,9 +121,11 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
     critical = "${var.http_4xx_requests_threshold_critical}"
   }
 
+  silenced = "${var.http_4xx_requests_silenced}"
+
   notify_no_data      = false # Will NOT notify when no data is received
   renotify_interval   = 0
-  require_full_window = true
+  require_full_window = false
   timeout_h           = 1
   include_tags        = true
 
@@ -126,7 +134,7 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
 
 # Monitoring App Services HTTP 2xx & 3xx status pages percent
 resource "datadog_monitor" "appservices_http_success_status_rate" {
-  name    = "[${var.environment}] App Services HTTP successful responses is {{value}}% below the limit on {{name}}"
+  name    = "[${var.environment}] App Services HTTP successful responses too low {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   type    = "metric alert"
   message = "${var.message}"
 
@@ -146,9 +154,11 @@ resource "datadog_monitor" "appservices_http_success_status_rate" {
     critical = "${var.http_successful_requests_threshold_critical}"
   }
 
+  silenced = "${var.http_successful_requests_silenced}"
+
   notify_no_data      = false # Will notify when no data is received
   renotify_interval   = 0
-  require_full_window = true
+  require_full_window = false
   timeout_h           = 1
   include_tags        = true
 

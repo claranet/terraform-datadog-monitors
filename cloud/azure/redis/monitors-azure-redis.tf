@@ -16,6 +16,8 @@ EOF
 
   type = "metric alert"
 
+  silenced = "${var.status_silenced}"
+
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -23,7 +25,7 @@ EOF
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -31,7 +33,7 @@ EOF
 }
 
 resource "datadog_monitor" "evictedkeys" {
-  name    = "[${var.environment}] Redis {{value}} evictedkeys on {{name}}"
+  name    = "[${var.environment}] Redis too many evictedkeys {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
   message = "${var.message}"
 
   query = <<EOF
@@ -47,6 +49,8 @@ EOF
     critical = "${var.evictedkeys_limit_threshold_critical}"
   }
 
+  silenced = "${var.evictedkeys_limit_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -54,7 +58,7 @@ EOF
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -62,7 +66,7 @@ EOF
 }
 
 resource "datadog_monitor" "percent_processor_time" {
-  name    = "[${var.environment}] Redis processor time {{value}}% on {{name}}"
+  name    = "[${var.environment}] Redis processor time too high {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -78,6 +82,8 @@ EOF
     critical = "${var.percent_processor_time_threshold_critical}"
   }
 
+  silenced = "${var.percent_processor_time_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -85,7 +91,7 @@ EOF
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -93,7 +99,7 @@ EOF
 }
 
 resource "datadog_monitor" "server_load" {
-  name    = "[${var.environment}] Redis processor server load {{value}}% on {{name}}"
+  name    = "[${var.environment}] Redis server load too high {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -109,6 +115,8 @@ EOF
     critical = "${var.server_load_rate_threshold_critical}"
   }
 
+  silenced = "${var.server_load_rate_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -116,7 +124,7 @@ EOF
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
