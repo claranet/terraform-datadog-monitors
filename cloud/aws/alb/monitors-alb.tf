@@ -36,12 +36,12 @@ resource "datadog_monitor" "ALB_no_healthy_instances" {
 }
 
 resource "datadog_monitor" "ALB_latency" {
-  name    = "[${var.environment}] ALB latency > ${var.latency_threshold_critical} ms"
+  name    = "[${var.environment}] ALB latency {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   type    = "metric alert"
   message = "${var.message}"
 
   query = <<EOF
-    avg(last_5m): (
+    min(last_5m): (
       avg:aws.applicationelb.target_response_time.average{${data.template_file.filter.rendered}} by {region,loadbalancer}
     ) > ${var.latency_threshold_critical}
   EOF
@@ -54,7 +54,7 @@ resource "datadog_monitor" "ALB_latency" {
     warning  = "${var.latency_threshold_warning}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 0
@@ -64,7 +64,7 @@ resource "datadog_monitor" "ALB_latency" {
 }
 
 resource "datadog_monitor" "ALB_httpcode_elb_5xx" {
-  name    = "[${var.environment}] ALB HTTP code 5xx > ${var.httpcode_elb_5xx_threshold_critical} %"
+  name    = "[${var.environment}] ALB HTTP code 5xx {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   type    = "metric alert"
   message = "${var.message}"
 
@@ -93,7 +93,7 @@ resource "datadog_monitor" "ALB_httpcode_elb_5xx" {
 }
 
 resource "datadog_monitor" "ALB_httpcode_elb_4xx" {
-  name    = "[${var.environment}] ALB HTTP code 4xx > ${var.httpcode_elb_4xx_threshold_critical} %"
+  name    = "[${var.environment}] ALB HTTP code 4xx {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   type    = "metric alert"
   message = "${var.message}"
 
@@ -122,7 +122,7 @@ resource "datadog_monitor" "ALB_httpcode_elb_4xx" {
 }
 
 resource "datadog_monitor" "ALB_httpcode_target_5xx" {
-  name    = "[${var.environment}] ALB target HTTP code 5xx > ${var.httpcode_target_5xx_threshold_critical} %"
+  name    = "[${var.environment}] ALB target HTTP code 5xx {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   type    = "metric alert"
   message = "${var.message}"
 
@@ -151,7 +151,7 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
 }
 
 resource "datadog_monitor" "ALB_httpcode_target_4xx" {
-  name    = "[${var.environment}] ALB target HTTP code 4xx > ${var.httpcode_target_4xx_threshold_critical} %"
+  name    = "[${var.environment}] ALB target HTTP code 4xx {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   type    = "metric alert"
   message = "${var.message}"
 
