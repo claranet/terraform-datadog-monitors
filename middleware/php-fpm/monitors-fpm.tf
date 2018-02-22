@@ -1,38 +1,49 @@
-resource "datadog_monitor" "php-fpm_process_idle" {
-  name    = "[${var.env}] php_fpm busy worker > 90% on {{host.name}}"
-  message = "{{#is_alert}}\n${var.hno_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.hno_escalation_group}\n{{/is_recovery}}\n{{#is_warning}}\n${var.ho_escalation_group} \n{{/is_warning}} \n{{#is_warning_recovery}}\n${var.ho_escalation_group}\n{{/is_warning_recovery}}"
+data "template_file" "filter" {
+  template = "$${filter}"
 
-  type  = "query alert"
-  query = "avg(last_10m):avg:php_fpm.processes.active{dd_monitoring:enabled,dd_php_fpm:enabled,env:${var.env}} by {host,region} / ( avg:php_fpm.processes.idle{dd_monitoring:enabled,dd_php_fpm:enabled,env:${var.env}} by {host,region} + avg:php_fpm.processes.active{dd_monitoring:enabled,dd_php_fpm:enabled,env:${var.env}} by {host,region} ) > 0.9"
-  count = "${var.dd_php_fpm == "enabled" ? 1 : 0 }"
+  vars {
+    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_php_fpm:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
+  }
+}
+
+resource "datadog_monitor" "datadog_php_fpm_process_idle" {
+  name    = "[${var.environment}] php_fpm busy worker {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  message = "${var.message}"
+
+  type = "metric alert"
+
+  query = <<EOF
+    avg(last_10m): (
+      avg:php_fpm.processes.active{${data.template_file.filter.rendered}} by {region, host} /
+      ( avg:php_fpm.processes.idle{${data.template_file.filter.rendered}} by {region, host} +
+       avg:php_fpm.processes.active{${data.template_file.filter.rendered}} by {region, host} )
+    ) > ${var.php_fpm_busy_threshold_critical}
+  EOF
 
   thresholds {
-    warning  = "${var.php_fpm_busy_threshold["warning"]}"
-    critical = "${var.php_fpm_busy_threshold["critical"]}"
+    warning  = "${var.php_fpm_busy_threshold_warning}"
+    critical = "${var.php_fpm_busy_threshold_critical}"
   }
 
-  notify_no_data      = "${var.apache_nginx_fpm_config["notify_no_data"]}"
-  evaluation_delay    = "${var.apache_nginx_fpm_config["delay"]}"
-  new_host_delay      = "${var.apache_nginx_fpm_config["delay"]}"
-  renotify_interval   = 60
+  notify_no_data      = true
+  evaluation_delay    = "${var.evaluation_delay_metric}"
+  new_host_delay      = "${var.evaluation_delay_metric}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = true
-  renotify_interval   = 0
   no_data_timeframe   = 20
 
-  tags = ["*"]
+  tags = ["env:${var.environment}", "resource:php-fpm"]
 }
 
-resource "datadog_monitor" "FPM_process" {
-  name    = "[${var.env}] FPM process is down on {{host.name}}"
-  message = "{{#is_alert}}\n${var.hno_escalation_group} \n{{/is_alert}} \n{{#is_recovery}}\n${var.hno_escalation_group}\n{{/is_recovery}}\n{{#is_warning}}\n${var.ho_escalation_group} \n{{/is_warning}} \n{{#is_warning_recovery}}\n${var.ho_escalation_group}\n{{/is_warning_recovery}}"
+resource "datadog_monitor" "datadog_fpm_process" {
+  name    = "[${var.environment}] Can't connect to php-fpm"
+  message = "${var.message}"
 
   type  = "service check"
-  query = "\"process.up\".over(\"dd_monitoring:enabled\",\"dd_php_fpm:enabled\",\"process:php_fpm\",\"env:${var.env}\").by(\"host\",\"process\", \"app\").last(4).count_by_status()"
-  count = "${var.dd_nginx == "enabled" ? 1 : 0 }"
+  query = "\"php_fpm.can_ping\".over(\"dd_monitoring:enabled\",\"dd_php_fpm:enabled\",\"env:${var.environment}\").by(\"host\",\"port\").last(6).count_by_status()"
 
   thresholds = {
     ok       = 1
@@ -40,10 +51,10 @@ resource "datadog_monitor" "FPM_process" {
     critical = 4
   }
 
-  notify_no_data      = "${var.apache_nginx_fpm_config["notify_no_data"]}"
-  evaluation_delay    = "${var.apache_nginx_fpm_config["delay"]}"
-  new_host_delay      = "${var.apache_nginx_fpm_config["delay"]}"
-  renotify_interval   = 60
+  notify_no_data      = true
+  evaluation_delay    = "${var.evaluation_delay_service}"
+  new_host_delay      = "${var.evaluation_delay_service}"
+  renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -51,5 +62,5 @@ resource "datadog_monitor" "FPM_process" {
   require_full_window = true
   no_data_timeframe   = 20
 
-  tags = ["*"]
+  tags = ["env:${var.environment}", "resource:php-fpm"]
 }

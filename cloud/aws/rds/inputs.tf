@@ -24,7 +24,7 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
-# instance specific
+# AWS RDS instance specific
 
 variable "cpu_threshold_warning" {
   description = "CPU usage in percent (warning threshold)"
