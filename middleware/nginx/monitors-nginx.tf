@@ -1,9 +1,9 @@
-resource "datadog_monitor" "Nginx_process" {
-  name    = "[${var.environment}] Nginx process is down on {{host.name}}"
+resource "datadog_monitor" "datadog_nginx_process" {
+  name    = "[${var.environment}] Can't connect to nginx, process is not running on {{host.name}}"
   message = "${var.message}"
 
   type  = "service check"
-  query = "\"nginx.can_connect\".over(\"dd_monitoring:enabled\",\"dd_nginx:enabled\",\"process:nginx\",\"env:${var.environment}\").by(\"host\",\"port\").last(6).count_by_status()"
+  query = "\"nginx.can_connect\".over(\"dd_monitoring:enabled\",\"dd_nginx:enabled\",\"env:${var.environment}\").by(\"host\",\"port\").last(6).count_by_status()"
 
   thresholds = {
     ok       = 1
@@ -22,5 +22,5 @@ resource "datadog_monitor" "Nginx_process" {
   require_full_window = true
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "type:resource"]
+  tags = ["env:${var.environment}", "resource:nginx"]
 }

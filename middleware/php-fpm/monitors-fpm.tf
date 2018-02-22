@@ -2,11 +2,11 @@ data "template_file" "filter" {
   template = "$${filter}"
 
   vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_php_fpm:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
+    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_php_fpm:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
   }
 }
 
-resource "datadog_monitor" "php-fpm_process_idle" {
+resource "datadog_monitor" "datadog_php_fpm_process_idle" {
   name    = "[${var.environment}] php_fpm busy worker {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
@@ -35,15 +35,15 @@ resource "datadog_monitor" "php-fpm_process_idle" {
   require_full_window = true
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "type:resource"]
+  tags = ["env:${var.environment}", "resource:php-fpm"]
 }
 
-resource "datadog_monitor" "FPM_process" {
-  name    = "[${var.environment}] FPM process is down on {{host.name}}"
+resource "datadog_monitor" "datadog_fpm_process" {
+  name    = "[${var.environment}] Can't ping FPM, process is not running on {{host.name}}"
   message = "${var.message}"
 
   type  = "service check"
-  query = "\"php_fpm.can_ping\".over(\"dd_monitoring:enabled\",\"dd_php_fpm:enabled\",\"process:php_fpm\",\"env:${var.environment}\").by(\"host\",\"port\").last(6).count_by_status()"
+  query = "\"php_fpm.can_ping\".over(\"dd_monitoring:enabled\",\"dd_php_fpm:enabled\",\"env:${var.environment}\").by(\"host\",\"port\").last(6).count_by_status()"
 
   thresholds = {
     ok       = 1
@@ -62,5 +62,5 @@ resource "datadog_monitor" "FPM_process" {
   require_full_window = true
   no_data_timeframe   = 20
 
-  tags = ["env:${var.environment}", "type:resource"]
+  tags = ["env:${var.environment}", "resource:php-fpm"]
 }
