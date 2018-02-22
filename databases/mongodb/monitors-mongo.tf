@@ -7,7 +7,7 @@ data "template_file" "filter" {
 }
 
 resource "datadog_monitor" "mongodb_replicaset_state" {
-  name    = "[${var.environment}] Replica Set health"
+  name    = "[${var.environment}] Member down in the replica set"
   message = "${var.message}"
 
   query = <<EOF
