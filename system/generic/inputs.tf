@@ -26,17 +26,47 @@ variable "filter_tags_custom" {
 
 # Custom CPU instance specific
 
-variable "custom_cpu_period" {
-  description = "Set up period for the query"
+variable "cpu_high_timeframe" {
+  description = "CPU high timeframe"
   default     = "last_5m"
 }
 
-variable "custom_cpu_threshold_warning" {
-  description = "Custom CPU warning threshold"
+variable "cpu_high_threshold_warning" {
+  description = "CPU high warning threshold"
   default     = 80
 }
 
-variable "custom_cpu_threshold_critical" {
-  description = "Custom CPU critical threshold"
+variable "cpu_high_threshold_critical" {
+  description = "CPU high critical threshold"
   default     = 95
+}
+
+variable "free_disk_space_threshold_warning" {
+  description = "Free disk space warning threshold"
+  default     = 10
+}
+
+variable "free_disk_space_threshold_critical" {
+  description = "Free disk space critical threshold"
+  default     = 5
+}
+
+variable "free_disk_inodes_threshold_warning" {
+  description = "Free disk space warning threshold"
+  default     = 10
+}
+
+variable "free_disk_inodes_threshold_critical" {
+  description = "Free disk space critical threshold"
+  default     = 5
+}
+
+variable "free_memory_threshold_warning" {
+  description = "Free disk space warning threshold"
+  default     = 10
+}
+
+variable "free_memory_threshold_critical" {
+  description = "Free disk space critical threshold"
+  default     = 5
 }
