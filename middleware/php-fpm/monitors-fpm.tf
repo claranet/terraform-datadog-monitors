@@ -39,7 +39,7 @@ resource "datadog_monitor" "datadog_php_fpm_process_idle" {
 }
 
 resource "datadog_monitor" "datadog_fpm_process" {
-  name    = "[${var.environment}] Can't ping FPM, process is not running on {{host.name}}"
+  name    = "[${var.environment}] Can't connect to php-fpm"
   message = "${var.message}"
 
   type  = "service check"
