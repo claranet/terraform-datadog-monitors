@@ -1,5 +1,5 @@
 resource "datadog_monitor" "too_many_jobs_failed" {
-  name    = "[${var.environment}] IOT Hub Too many jobs failed on {{name}}"
+  name    = "[${var.environment}] IOT Hub Too many jobs failed {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -17,6 +17,8 @@ resource "datadog_monitor" "too_many_jobs_failed" {
     critical = "${var.failed_jobs_rate_threshold_critical}"
   }
 
+  silenced = "${var.failed_jobs_rate_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -24,7 +26,7 @@ resource "datadog_monitor" "too_many_jobs_failed" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -32,7 +34,7 @@ resource "datadog_monitor" "too_many_jobs_failed" {
 }
 
 resource "datadog_monitor" "too_many_list_jobs_failed" {
-  name    = "[${var.environment}] IOT Hub Too many list_jobs failure on {{name}}"
+  name    = "[${var.environment}] IOT Hub Too many list_jobs failure {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -50,6 +52,8 @@ resource "datadog_monitor" "too_many_list_jobs_failed" {
     critical = "${var.failed_listjobs_rate_threshold_critical}"
   }
 
+  silenced = "${var.failed_listjobs_rate_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -57,7 +61,7 @@ resource "datadog_monitor" "too_many_list_jobs_failed" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -65,7 +69,7 @@ resource "datadog_monitor" "too_many_list_jobs_failed" {
 }
 
 resource "datadog_monitor" "too_many_query_jobs_failed" {
-  name    = "[${var.environment}] IOT Hub Too many query_jobs failed on {{name}}"
+  name    = "[${var.environment}] IOT Hub Too many query_jobs failed {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -83,6 +87,8 @@ resource "datadog_monitor" "too_many_query_jobs_failed" {
     critical = "${var.failed_queryjobs_rate_threshold_critical}"
   }
 
+  silenced = "${var.failed_queryjobs_rate_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -90,7 +96,7 @@ resource "datadog_monitor" "too_many_query_jobs_failed" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -98,7 +104,7 @@ resource "datadog_monitor" "too_many_query_jobs_failed" {
 }
 
 resource "datadog_monitor" "status" {
-  name    = "[${var.environment}] IOT Hub Status is not ok on {{name}}"
+  name    = "[${var.environment}] IOT Hub is down"
   message = "${var.message}"
 
   query = <<EOF
@@ -107,6 +113,8 @@ resource "datadog_monitor" "status" {
 
   type = "metric alert"
 
+  silenced = "${var.status_silenced}"
+
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -114,7 +122,7 @@ resource "datadog_monitor" "status" {
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -122,7 +130,7 @@ resource "datadog_monitor" "status" {
 }
 
 resource "datadog_monitor" "total_devices" {
-  name    = "[${var.environment}] IOT Hub Total devices is wrong on {{name}}"
+  name    = "[${var.environment}] IOT Hub Total devices is wrong {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
   message = "${var.message}"
 
   query = <<EOF
@@ -131,6 +139,8 @@ resource "datadog_monitor" "total_devices" {
 
   type = "metric alert"
 
+  silenced = "${var.total_devices_silenced}"
+
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -138,7 +148,7 @@ resource "datadog_monitor" "total_devices" {
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -146,7 +156,7 @@ resource "datadog_monitor" "total_devices" {
 }
 
 resource "datadog_monitor" "too_many_c2d_methods_failed" {
-  name    = "[${var.environment}] IOT Hub Too many c2d methods failure on {{name}}"
+  name    = "[${var.environment}] IOT Hub Too many c2d methods failure {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -164,6 +174,8 @@ resource "datadog_monitor" "too_many_c2d_methods_failed" {
     critical = "${var.failed_c2d_methods_rate_threshold_critical}"
   }
 
+  silenced = "${var.failed_c2d_methods_rate_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -171,7 +183,7 @@ resource "datadog_monitor" "too_many_c2d_methods_failed" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -179,7 +191,7 @@ resource "datadog_monitor" "too_many_c2d_methods_failed" {
 }
 
 resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
-  name    = "[${var.environment}] IOT Hub Too many c2d twin read failure on {{name}}"
+  name    = "[${var.environment}] IOT Hub Too many c2d twin read failure {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -197,6 +209,8 @@ resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
     critical = "${var.failed_c2d_twin_read_rate_threshold_critical}"
   }
 
+  silenced = "${var.failed_c2d_twin_read_rate_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -204,7 +218,7 @@ resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -212,7 +226,7 @@ resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
 }
 
 resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
-  name    = "[${var.environment}] IOT Hub Too many c2d twin update failure on {{name}}"
+  name    = "[${var.environment}] IOT Hub Too many c2d twin update failure {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -230,6 +244,8 @@ resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
     critical = "${var.failed_c2d_twin_update_rate_threshold_critical}"
   }
 
+  silenced = "${var.failed_c2d_twin_update_rate_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -237,7 +253,7 @@ resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -245,7 +261,7 @@ resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
 }
 
 resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
-  name    = "[${var.environment}] IOT Hub Too many d2c twin read failure on {{name}}"
+  name    = "[${var.environment}] IOT Hub Too many d2c twin read failure {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -263,6 +279,8 @@ resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
     critical = "${var.failed_d2c_twin_read_rate_threshold_critical}"
   }
 
+  silenced = "${var.failed_d2c_twin_read_rate_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -270,7 +288,7 @@ resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -278,7 +296,7 @@ resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
 }
 
 resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
-  name    = "[${var.environment}] IOT Hub Too many d2c twin update failure on {{name}}"
+  name    = "[${var.environment}] IOT Hub Too many d2c twin update failure {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -296,6 +314,8 @@ resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
     critical = "${var.failed_d2c_twin_update_rate_threshold_critical}"
   }
 
+  silenced = "${var.failed_d2c_twin_update_rate_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -303,7 +323,7 @@ resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -311,7 +331,7 @@ resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
-  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress dropped on {{name}}"
+  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress dropped {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
   message = "${var.message}"
 
   query = <<EOF
@@ -327,6 +347,8 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
     critical = "${var.dropped_d2c_telemetry_egress_threshold_critical}"
   }
 
+  silenced = "${var.dropped_d2c_telemetry_egress_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -334,7 +356,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -342,7 +364,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
-  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress orphaned on {{name}}"
+  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress orphaned {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
   message = "${var.message}"
 
   query = <<EOF
@@ -358,6 +380,8 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
     critical = "${var.orphaned_d2c_telemetry_egress_threshold_critical}"
   }
 
+  silenced = "${var.orphaned_d2c_telemetry_egress_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -365,7 +389,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -373,7 +397,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
-  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress invalid on {{name}}"
+  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress invalid {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
   message = "${var.message}"
 
   query = <<EOF
@@ -389,6 +413,8 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
     critical = "${var.invalid_d2c_telemetry_egress_threshold_critical}"
   }
 
+  silenced = "${var.invalid_d2c_telemetry_egress_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -396,7 +422,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -404,7 +430,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_fallback" {
-  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress fallback on {{name}}"
+  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress fallback {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
   message = "${var.message}"
 
   query = <<EOF
@@ -420,6 +446,8 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_fallback" {
     critical = "${var.fallback_d2c_telemetry_egress_threshold_critical}"
   }
 
+  silenced = "${var.fallback_d2c_telemetry_egress_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -427,7 +455,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_fallback" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
@@ -435,7 +463,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_fallback" {
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
-  name    = "[${var.environment}] IOT Hub Too many d2c telemetry ingress no sent on {{name}}"
+  name    = "[${var.environment}] IOT Hub Too many d2c telemetry ingress not sent {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
   message = "${var.message}"
 
   query = <<EOF
@@ -447,6 +475,8 @@ resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
 
   type = "metric alert"
 
+  silenced = "${var.too_many_d2c_telemetry_ingress_nosent_silenced}"
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -454,7 +484,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
   timeout_h           = 1
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 

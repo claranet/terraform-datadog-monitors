@@ -7,7 +7,7 @@ data "template_file" "filter" {
 }
 
 resource "datadog_monitor" "availability" {
-  name    = "[${var.environment}] Azure Storage {{name}} unavailability detected"
+  name    = "[${var.environment}] Azure Storage is down"
   message = "${var.message}"
 
   query = <<EOF
@@ -18,7 +18,10 @@ EOF
 
   thresholds {
     critical = "${var.availability_threshold_critical}"
+    warning  = "${var.availability_threshold_warning}"
   }
+
+  silenced = "${var.availability_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -26,7 +29,7 @@ EOF
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -36,7 +39,7 @@ EOF
 }
 
 resource "datadog_monitor" "successful_requests" {
-  name    = "[${var.environment}] Azure Storage {{name}} too much failed requests"
+  name    = "[${var.environment}] Azure Storage too few successful requests {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -47,7 +50,10 @@ EOF
 
   thresholds {
     critical = "${var.successful_requests_threshold_critical}"
+    warning  = "${var.successful_requests_threshold_warning}"
   }
+
+  silenced = "${var.successful_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -55,7 +61,7 @@ EOF
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -65,7 +71,7 @@ EOF
 }
 
 resource "datadog_monitor" "latency" {
-  name    = "[${var.environment}] Azure Storage {{name}} too high end to end latency"
+  name    = "[${var.environment}] Azure Storage too high end to end latency {{comparator}} {{#is_alert}}{{threshold}}ms{{/is_alert}}{{#is_warning}}{{warn_threshold}}ms{{/is_warning}} ({{value}}ms)"
   message = "${var.message}"
 
   query = <<EOF
@@ -76,7 +82,10 @@ EOF
 
   thresholds {
     critical = "${var.latency_threshold_critical}"
+    warning  = "${var.latency_threshold_warning}"
   }
+
+  silenced = "${var.latency_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -84,7 +93,7 @@ EOF
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -94,7 +103,7 @@ EOF
 }
 
 resource "datadog_monitor" "timeout_error_requests" {
-  name    = "[${var.environment}] Azure Storage {{value}}% of timeout error requests on {{name}}"
+  name    = "[${var.environment}] Azure Storage too many timeout errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -105,7 +114,10 @@ EOF
 
   thresholds {
     critical = "${var.timeout_error_requests_threshold_critical}"
+    warning  = "${var.timeout_error_requests_threshold_warning}"
   }
+
+  silenced = "${var.timeout_error_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -113,7 +125,7 @@ EOF
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -123,7 +135,7 @@ EOF
 }
 
 resource "datadog_monitor" "network_error_requests" {
-  name    = "[${var.environment}] Azure Storage {{value}}% of network error requests on {{name}}"
+  name    = "[${var.environment}] Azure Storage too many network errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -134,7 +146,10 @@ EOF
 
   thresholds {
     critical = "${var.network_error_requests_threshold_critical}"
+    warning  = "${var.network_error_requests_threshold_warning}"
   }
+
+  silenced = "${var.network_error_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -142,7 +157,7 @@ EOF
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -152,7 +167,7 @@ EOF
 }
 
 resource "datadog_monitor" "throttling_error_requests" {
-  name    = "[${var.environment}] Azure Storage {{value}}% of throttling error requests on {{name}}"
+  name    = "[${var.environment}] Azure Storage too many throttling errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -163,7 +178,10 @@ EOF
 
   thresholds {
     critical = "${var.throttling_error_requests_threshold_critical}"
+    warning  = "${var.throttling_error_requests_threshold_warning}"
   }
+
+  silenced = "${var.throttling_error_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -171,7 +189,7 @@ EOF
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -181,7 +199,7 @@ EOF
 }
 
 resource "datadog_monitor" "server_other_error_requests" {
-  name    = "[${var.environment}] Azure Storage {{value}}% of server_other error requests on {{name}}"
+  name    = "[${var.environment}] Azure Storage too many server_other errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -192,7 +210,10 @@ EOF
 
   thresholds {
     critical = "${var.server_other_error_requests_threshold_critical}"
+    warning  = "${var.server_other_error_requests_threshold_warning}"
   }
+
+  silenced = "${var.server_other_error_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -200,7 +221,7 @@ EOF
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -210,7 +231,7 @@ EOF
 }
 
 resource "datadog_monitor" "client_other_error_requests" {
-  name    = "[${var.environment}] Azure Storage {{value}}% of client_other error requests on {{name}}"
+  name    = "[${var.environment}] Azure Storage too many client_other errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -221,7 +242,10 @@ EOF
 
   thresholds {
     critical = "${var.client_other_error_requests_threshold_critical}"
+    warning  = "${var.client_other_error_requests_threshold_warning}"
   }
+
+  silenced = "${var.client_other_error_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -229,7 +253,7 @@ EOF
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -239,7 +263,7 @@ EOF
 }
 
 resource "datadog_monitor" "authorization_error_requests" {
-  name    = "[${var.environment}] Azure Storage {{value}}% of authorization error requests on {{name}}"
+  name    = "[${var.environment}] Azure Storage too many authorization errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
 
   query = <<EOF
@@ -250,7 +274,10 @@ EOF
 
   thresholds {
     critical = "${var.authorization_error_requests_threshold_critical}"
+    warning  = "${var.authorization_error_requests_threshold_warning}"
   }
+
+  silenced = "${var.authorization_error_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -258,7 +285,7 @@ EOF
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
