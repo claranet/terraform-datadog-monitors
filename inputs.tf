@@ -66,43 +66,6 @@ variable "rds_mem_threshold" {
   }
 }
 
-## ELB
-variable "dd_aws_elb" {
-  default = "disable"
-}
-
-variable "elb_config" {
-  type = "map"
-
-  default = {
-    notify_no_data = false
-    delay          = 900
-  }
-}
-
-variable "elb_5xx_threshold" {
-  default = {
-    warning  = 5
-    critical = 10
-  }
-}
-
-variable "elb_4xx_threshold" {
-  default = {
-    warning  = 5
-    critical = 10
-  }
-}
-
-variable "elb_backend_latency" {
-  description = "Average time elapsed after the request leaves the load balancer until a response is received. In seconds"
-
-  default = {
-    warning  = 1
-    critical = 5
-  }
-}
-
 ##apache nginx php
 variable "dd_nginx" {
   default = "disabled"
