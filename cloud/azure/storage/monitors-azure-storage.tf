@@ -12,7 +12,7 @@ resource "datadog_monitor" "availability" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:azure.storage.availability{${data.template_file.filter.rendered}} by {resource_group,storage_type,name}
+      avg:azure.storage.availability{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
     ) < ${var.availability_threshold_critical}
 EOF
 
@@ -44,7 +44,7 @@ resource "datadog_monitor" "successful_requests" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:azure.storage.percent_success{${data.template_file.filter.rendered}} by {resource_group,storage_type,name}
+      avg:azure.storage.percent_success{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
     ) < ${var.successful_requests_threshold_critical}
 EOF
 
@@ -76,7 +76,7 @@ resource "datadog_monitor" "latency" {
 
   query = <<EOF
     max(last_5m): (
-      avg:azure.storage.average_e2_e_latency{${data.template_file.filter.rendered}} by {resource_group,storage_type,name}
+      avg:azure.storage.average_e2_e_latency{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
     ) > ${var.latency_threshold_critical}
 EOF
 
@@ -108,7 +108,7 @@ resource "datadog_monitor" "timeout_error_requests" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:azure.storage.percent_timeout_error{${data.template_file.filter.rendered}} by {resource_group,storage_type,name}
+      avg:azure.storage.percent_timeout_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
     ) > ${var.timeout_error_requests_threshold_critical}
 EOF
 
@@ -140,7 +140,7 @@ resource "datadog_monitor" "network_error_requests" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:azure.storage.percent_network_error{${data.template_file.filter.rendered}} by {resource_group,storage_type,name}
+      avg:azure.storage.percent_network_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
     ) > ${var.network_error_requests_threshold_critical}
 EOF
 
@@ -172,7 +172,7 @@ resource "datadog_monitor" "throttling_error_requests" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:azure.storage.percent_throttling_error{${data.template_file.filter.rendered}} by {resource_group,storage_type,name}
+      avg:azure.storage.percent_throttling_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
     ) > ${var.throttling_error_requests_threshold_critical}
 EOF
 
@@ -204,7 +204,7 @@ resource "datadog_monitor" "server_other_error_requests" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:azure.storage.percent_server_other_error{${data.template_file.filter.rendered}} by {resource_group,storage_type,name}
+      avg:azure.storage.percent_server_other_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
     ) > ${var.server_other_error_requests_threshold_critical}
 EOF
 
@@ -236,7 +236,7 @@ resource "datadog_monitor" "client_other_error_requests" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:azure.storage.percent_client_other_error{${data.template_file.filter.rendered}} by {resource_group,storage_type,name}
+      avg:azure.storage.percent_client_other_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
     ) > ${var.client_other_error_requests_threshold_critical}
 EOF
 
@@ -268,7 +268,7 @@ resource "datadog_monitor" "authorization_error_requests" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:azure.storage.percent_authorization_error{${data.template_file.filter.rendered}} by {resource_group,storage_type,name}
+      avg:azure.storage.percent_authorization_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
     ) > ${var.authorization_error_requests_threshold_critical}
 EOF
 
