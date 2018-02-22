@@ -50,7 +50,7 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
     critical = "${var.elb_4xx_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -82,7 +82,7 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
     critical = "${var.elb_5xx_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -114,7 +114,7 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
     critical = "${var.elb_backend_4xx_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -146,7 +146,7 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
     critical = "${var.elb_backend_5xx_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -165,7 +165,7 @@ resource "datadog_monitor" "ELB_backend_latency" {
   message = "${var.message}"
 
   query = <<EOF
-    avg(last_5m): (
+    min(last_5m): (
       avg:aws.elb.latency{${data.template_file.filter.rendered}} by {region,loadbalancer}
     ) > ${var.elb_backend_latency_critical}}"
   EOF
@@ -177,7 +177,7 @@ resource "datadog_monitor" "ELB_backend_latency" {
     critical = "${var.elb_backend_latency_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
