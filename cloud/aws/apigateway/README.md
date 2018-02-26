@@ -28,7 +28,7 @@ Inputs
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
-| environment | Architecture environment | string | - | yes |
+| environment | Environment | string | - | yes |
 | filter_tags | Tags used for custom filtering | string | `*` | no |
 | http_4xx_requests_threshold_critical | Maximum critical acceptable percent of 4xx errors | string | `30` | no |
 | http_4xx_requests_threshold_warning | Maximum warning acceptable percent of 4xx errors | string | `15` | no |
@@ -37,6 +37,7 @@ Inputs
 | message | Message sent when a monitor is triggered | string | - | yes |
 | latency_threshold_critical | Alerting threshold in miliseconds | string | `800` | no |
 | latency_threshold_warning | Warning threshold in miliseconds | string | `400` | no |
+| artificial_requests_count | Number of false requests used to mitigate false positive in case of low trafic | string | `0` | no |
 
 Related documentation
 ---------------------

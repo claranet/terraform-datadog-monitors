@@ -36,7 +36,7 @@ resource "datadog_monitor" "API_http_5xx_errors_count" {
   query = <<EOF
     sum(last_5m): (
       avg:aws.apigateway.5xxerror{${var.filter_tags}} by {region,apiname}.as_count() /
-      avg:aws.apigateway.count{${var.filter_tags}} by {region,apiname}.as_count()
+      (avg:aws.apigateway.count{${var.filter_tags}} by {region,apiname}.as_count() + ${var.artificial_requests_count})
     ) * 100 > ${var.http_5xx_requests_threshold_critical}
   EOF
 
@@ -66,7 +66,7 @@ resource "datadog_monitor" "API_http_4xx_errors_count" {
   query = <<EOF
     sum(last_5m): (
       avg:aws.apigateway.4xxerror{${var.filter_tags}} by {region,apiname}.as_count() /
-      avg:aws.apigateway.count{${var.filter_tags}} by {region,apiname}.as_count()
+      (avg:aws.apigateway.count{${var.filter_tags}} by {region,apiname}.as_count() + ${var.artificial_requests_count})
     ) * 100 > ${var.http_4xx_requests_threshold_critical}
   EOF
 
