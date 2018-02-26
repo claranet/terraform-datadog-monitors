@@ -1,5 +1,5 @@
 variable "environment" {
-  description = "Architecture environment"
+  description = "Environment"
   type        = "string"
 }
 
@@ -57,4 +57,9 @@ variable "http_4xx_requests_threshold_critical" {
 variable "http_4xx_requests_threshold_warning" {
   default     = 15
   description = "Maximum warning acceptable percent of 4xx errors"
+}
+
+variable "artificial_requests_count" {
+  default     = 0
+  description = "Number of false requests used to mitigate false positive in case of low trafic"
 }
