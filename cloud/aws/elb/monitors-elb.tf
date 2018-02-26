@@ -40,7 +40,7 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
     avg(last_5m): (
       avg:aws.elb.httpcode_elb_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer} /
       avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}
-    ) * 100 > ${var.elb_4xx_threshold_critical}"
+    ) * 100 > ${var.elb_4xx_threshold_critical}
   EOF
 
   type = "metric alert"
@@ -72,7 +72,7 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
     avg(last_5m): (
       avg:aws.elb.httpcode_elb_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer} /
       avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}
-    ) * 100 > ${var.elb_5xx_threshold_critical}"
+    ) * 100 > ${var.elb_5xx_threshold_critical}
   EOF
 
   type = "metric alert"
@@ -104,7 +104,7 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
     avg(last_5m): (
       avg:aws.elb.httpcode_backend_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer} /
       avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}
-    ) * 100 > ${var.elb_backend_4xx_threshold_critical}"
+    ) * 100 > ${var.elb_backend_4xx_threshold_critical}
   EOF
 
   type = "metric alert"
@@ -136,7 +136,7 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
     avg(last_5m): (
       avg:aws.elb.httpcode_backend_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer} /
       avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}
-    ) * 100 > ${var.elb_backend_5xx_threshold_critical}"
+    ) * 100 > ${var.elb_backend_5xx_threshold_critical}
   EOF
 
   type = "metric alert"
@@ -167,7 +167,7 @@ resource "datadog_monitor" "ELB_backend_latency" {
   query = <<EOF
     min(last_5m): (
       avg:aws.elb.latency{${data.template_file.filter.rendered}} by {region,loadbalancer}
-    ) > ${var.elb_backend_latency_critical}}"
+    ) > ${var.elb_backend_latency_critical}}
   EOF
 
   type = "metric alert"
