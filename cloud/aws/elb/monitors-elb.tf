@@ -167,7 +167,7 @@ resource "datadog_monitor" "ELB_backend_latency" {
   query = <<EOF
     min(last_5m): (
       avg:aws.elb.latency{${data.template_file.filter.rendered}} by {region,loadbalancer}
-    ) > ${var.elb_backend_latency_critical}}
+    ) > ${var.elb_backend_latency_critical}
   EOF
 
   type = "metric alert"
