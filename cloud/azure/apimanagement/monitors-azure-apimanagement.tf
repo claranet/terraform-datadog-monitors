@@ -10,7 +10,7 @@ data "template_file" "filter" {
 
 resource "datadog_monitor" "apimgt_status" {
   name    = "[${var.environment}] API Management is down"
-  message = "${var.message}"
+  message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
       avg(last_5m):avg:azure.apimanagement_service.status{${data.template_file.filter.rendered}} by {resource_group,region,name} < 1
@@ -40,7 +40,7 @@ resource "datadog_monitor" "apimgt_status" {
 
 resource "datadog_monitor" "apimgt_failed_requests" {
   name    = "[${var.environment}] API Management too many failed requests {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.failed_requests_message, var.message)}"
 
   query = <<EOF
     sum(last_5m): (
@@ -73,7 +73,7 @@ resource "datadog_monitor" "apimgt_failed_requests" {
 
 resource "datadog_monitor" "apimgt_other_requests" {
   name    = "[${var.environment}] API Management too many other requests {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.other_requests_message, var.message)}"
 
   query = <<EOF
     sum(last_5m): (
@@ -106,7 +106,7 @@ resource "datadog_monitor" "apimgt_other_requests" {
 
 resource "datadog_monitor" "apimgt_unauthorized_requests" {
   name    = "[${var.environment}] API Management too many unauthorized requests {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.unauthorized_requests_message, var.message)}"
 
   query = <<EOF
     sum(last_5m): (
@@ -139,7 +139,7 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
 
 resource "datadog_monitor" "apimgt_successful_requests" {
   name    = "[${var.environment}] API Management successful requests rate too low {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.successful_requests_message, var.message)}"
 
   query = <<EOF
     sum(last_5m): (

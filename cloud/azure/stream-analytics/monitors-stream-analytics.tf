@@ -8,7 +8,7 @@ data "template_file" "filter" {
 
 resource "datadog_monitor" "status" {
   name    = "[${var.environment}] Stream Analytics is down"
-  message = "${var.message}"
+  message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
     avg(last_5m):avg:azure.streamanalytics_streamingjobs.status{${data.template_file.filter.rendered}} by {resource_group,region,name} < 1
@@ -34,7 +34,7 @@ resource "datadog_monitor" "status" {
 
 resource "datadog_monitor" "su_utilization" {
   name    = "[${var.environment}] Stream Analytics streaming units utilization too high {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
-  message = "${var.message}"
+  message = "${coalesce(var.su_utilization_message, var.message)}"
 
   query = <<EOF
     avg(last_5m): (
@@ -67,7 +67,7 @@ resource "datadog_monitor" "su_utilization" {
 
 resource "datadog_monitor" "failed_function_requests" {
   name    = "[${var.environment}] Stream Analytics too many failed requests {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.failed_function_requests_message, var.message)}"
 
   query = <<EOF
     sum(last_5m): (
@@ -101,7 +101,7 @@ resource "datadog_monitor" "failed_function_requests" {
 
 resource "datadog_monitor" "conversion_errors" {
   name    = "[${var.environment}] Stream Analytics too many conversion errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.conversion_errors_message, var.message)}"
 
   query = <<EOF
     avg(last_5m): (
@@ -134,7 +134,7 @@ resource "datadog_monitor" "conversion_errors" {
 
 resource "datadog_monitor" "runtime_errors" {
   name    = "[${var.environment}] Stream Analytics too many runtime errors {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
-  message = "${var.message}"
+  message = "${coalesce(var.runtime_errors_message, var.message)}"
 
   query = <<EOF
     avg(last_5m): (
