@@ -22,10 +22,17 @@ variable "delay" {
   default     = 600
 }
 
+# Azure App Services specific variables
 variable "response_time_silenced" {
   description = "Groups to mute for App Services response time monitor"
   type        = "map"
   default     = {}
+}
+
+variable "response_time_message" {
+  description = "Custom message for App Services response time monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "response_time_threshold_critical" {
@@ -44,6 +51,12 @@ variable "memory_usage_silenced" {
   default     = {}
 }
 
+variable "memory_usage_message" {
+  description = "Custom message for App Services memory usage monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "memory_usage_threshold_critical" {
   default     = 1073741824                  # 1Gb
   description = "Alerting threshold in Mib"
@@ -58,6 +71,12 @@ variable "http_4xx_requests_silenced" {
   description = "Groups to mute for App Services 4xx requests monitor"
   type        = "map"
   default     = {}
+}
+
+variable "http_4xx_requests_message" {
+  description = "Custom message for App Services 4xx requests monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "http_4xx_requests_threshold_critical" {
@@ -76,6 +95,12 @@ variable "http_5xx_requests_silenced" {
   default     = {}
 }
 
+variable "http_5xx_requests_message" {
+  description = "Custom message for App Services 5xx requests monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "http_5xx_requests_threshold_critical" {
   default     = 90
   description = "Maximum critical acceptable percent of 5xx errors"
@@ -90,6 +115,12 @@ variable "http_successful_requests_silenced" {
   description = "Groups to mute for App Services successful requests monitor"
   type        = "map"
   default     = {}
+}
+
+variable "http_successful_requests_message" {
+  description = "Custom message for App Services successful requests monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "http_successful_requests_threshold_critical" {

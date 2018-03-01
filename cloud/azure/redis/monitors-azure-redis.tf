@@ -8,7 +8,7 @@ data "template_file" "filter" {
 
 resource "datadog_monitor" "status" {
   name    = "[${var.environment}] Redis {{name}} is down"
-  message = "${var.message}"
+  message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
     avg(last_5m):avg:azure.cache_redis.status{${data.template_file.filter.rendered}} by {resource_group,region,name} != 1
@@ -34,7 +34,7 @@ EOF
 
 resource "datadog_monitor" "evictedkeys" {
   name    = "[${var.environment}] Redis too many evictedkeys {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
-  message = "${var.message}"
+  message = "${coalesce(var.evictedkeys_limit_message, var.message)}"
 
   query = <<EOF
     avg(last_5m): (
@@ -67,7 +67,7 @@ EOF
 
 resource "datadog_monitor" "percent_processor_time" {
   name    = "[${var.environment}] Redis processor time too high {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.percent_processor_time_message, var.message)}"
 
   query = <<EOF
     avg(last_5m): (
@@ -100,7 +100,7 @@ EOF
 
 resource "datadog_monitor" "server_load" {
   name    = "[${var.environment}] Redis server load too high {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.server_load_rate_message, var.message)}"
 
   query = <<EOF
     avg(last_5m): (

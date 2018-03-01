@@ -8,7 +8,7 @@ data "template_file" "filter" {
 
 resource "datadog_monitor" "availability" {
   name    = "[${var.environment}] Azure Storage is down"
-  message = "${var.message}"
+  message = "${coalesce(var.availability_message, var.message)}"
 
   query = <<EOF
     avg(last_5m): (
@@ -40,7 +40,7 @@ EOF
 
 resource "datadog_monitor" "successful_requests" {
   name    = "[${var.environment}] Azure Storage too few successful requests {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.successful_requests_message, var.message)}"
 
   query = <<EOF
     avg(last_5m): (
@@ -72,7 +72,7 @@ EOF
 
 resource "datadog_monitor" "latency" {
   name    = "[${var.environment}] Azure Storage too high end to end latency {{comparator}} {{#is_alert}}{{threshold}}ms{{/is_alert}}{{#is_warning}}{{warn_threshold}}ms{{/is_warning}} ({{value}}ms)"
-  message = "${var.message}"
+  message = "${coalesce(var.latency_message, var.message)}"
 
   query = <<EOF
     max(last_5m): (
@@ -104,7 +104,7 @@ EOF
 
 resource "datadog_monitor" "timeout_error_requests" {
   name    = "[${var.environment}] Azure Storage too many timeout errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.timeout_error_requests_message, var.message)}"
 
   query = <<EOF
     avg(last_5m): (
@@ -136,7 +136,7 @@ EOF
 
 resource "datadog_monitor" "network_error_requests" {
   name    = "[${var.environment}] Azure Storage too many network errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.network_error_requests_message, var.message)}"
 
   query = <<EOF
     avg(last_5m): (
@@ -168,7 +168,7 @@ EOF
 
 resource "datadog_monitor" "throttling_error_requests" {
   name    = "[${var.environment}] Azure Storage too many throttling errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.throttling_error_requests_message, var.message)}"
 
   query = <<EOF
     avg(last_5m): (
@@ -200,7 +200,7 @@ EOF
 
 resource "datadog_monitor" "server_other_error_requests" {
   name    = "[${var.environment}] Azure Storage too many server_other errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.server_other_error_requests_message, var.message)}"
 
   query = <<EOF
     avg(last_5m): (
@@ -232,7 +232,7 @@ EOF
 
 resource "datadog_monitor" "client_other_error_requests" {
   name    = "[${var.environment}] Azure Storage too many client_other errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.client_other_error_requests_message, var.message)}"
 
   query = <<EOF
     avg(last_5m): (
@@ -264,7 +264,7 @@ EOF
 
 resource "datadog_monitor" "authorization_error_requests" {
   name    = "[${var.environment}] Azure Storage too many authorization errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.authorization_error_requests_message, var.message)}"
 
   query = <<EOF
     avg(last_5m): (

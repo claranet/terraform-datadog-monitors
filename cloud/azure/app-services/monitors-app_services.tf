@@ -10,7 +10,7 @@ data "template_file" "filter" {
 resource "datadog_monitor" "appservices_response_time" {
   name    = "[${var.environment}] App Services response time too high {{comparator}} {{#is_alert}}{{threshold}}s{{/is_alert}}{{#is_warning}}{{warn_threshold}}s{{/is_warning}} ({{value}}s)"
   type    = "metric alert"
-  message = "${var.message}"
+  message = "${coalesce(var.response_time_message, var.message)}"
 
   query = <<EOF
     avg(last_5m): (
@@ -39,9 +39,9 @@ resource "datadog_monitor" "appservices_response_time" {
 
 # Monitoring App Services memory usage
 resource "datadog_monitor" "appservices_memory_usage_count" {
-  name    = "[${var.environment}] App Services memory usage  {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
+  name    = "[${var.environment}] App Services memory usage {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
   type    = "metric alert"
-  message = "${var.message}"
+  message = "${coalesce(var.memory_usage_message, var.message)}"
 
   query = <<EOF
     avg(last_5m): (
@@ -72,7 +72,7 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
 resource "datadog_monitor" "appservices_http_5xx_errors_count" {
   name    = "[${var.environment}] App Services HTTP 5xx errors too high {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   type    = "metric alert"
-  message = "${var.message}"
+  message = "${coalesce(var.http_5xx_requests_message, var.message)}"
 
   query = <<EOF
     sum(last_5m): (
@@ -104,7 +104,7 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
 resource "datadog_monitor" "appservices_http_4xx_errors_count" {
   name    = "[${var.environment}] App Services HTTP 4xx errors too high {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   type    = "metric alert"
-  message = "${var.message}"
+  message = "${coalesce(var.http_4xx_requests_message, var.message)}"
 
   query = <<EOF
     sum(last_5m): (
@@ -136,7 +136,7 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
 resource "datadog_monitor" "appservices_http_success_status_rate" {
   name    = "[${var.environment}] App Services HTTP successful responses too low {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   type    = "metric alert"
-  message = "${var.message}"
+  message = "${coalesce(var.http_successful_requests_message, var.message)}"
 
   query = <<EOF
     sum(last_5m): (

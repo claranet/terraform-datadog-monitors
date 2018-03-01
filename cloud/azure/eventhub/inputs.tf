@@ -24,16 +24,29 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
+# Azure Event Hub specific variables
 variable "status_silenced" {
   description = "Groups to mute for Event Hub status monitor"
   type        = "map"
   default     = {}
 }
 
+variable "status_message" {
+  description = "Custom message for Event Hub status monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "failed_requests_rate_silenced" {
   description = "Groups to mute for Event Hub failed requests monitor"
   type        = "map"
   default     = {}
+}
+
+variable "failed_requests_rate_message" {
+  description = "Custom message for Event Hub failed requests monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "failed_requests_rate_thresold_critical" {
@@ -50,6 +63,12 @@ variable "errors_rate_silenced" {
   description = "Groups to mute for Event Hub errors monitor"
   type        = "map"
   default     = {}
+}
+
+variable "errors_rate_message" {
+  description = "Custom message for Event Hub errors monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "errors_rate_thresold_critical" {
