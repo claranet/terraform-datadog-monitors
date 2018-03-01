@@ -26,7 +26,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -58,7 +58,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -90,7 +90,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -122,7 +122,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -154,7 +154,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -186,7 +186,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -218,7 +218,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -250,7 +250,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -282,7 +282,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = false
