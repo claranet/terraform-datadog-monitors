@@ -1,6 +1,6 @@
 # Monitoring Api Gateway latency
 resource "datadog_monitor" "API_Gateway_latency" {
-  name    = "[${var.environment}] API Gateway latency {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  name    = "[${var.environment}] API Gateway latency {{comparator}} {{#is_alert}}{{threshold}}ms{{/is_alert}}{{#is_warning}}{{warn_threshold}}ms{{/is_warning}} ({{value}}ms)"
   type    = "metric alert"
   message = "${var.message}"
 
