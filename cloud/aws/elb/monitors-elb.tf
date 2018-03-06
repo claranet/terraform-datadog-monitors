@@ -12,7 +12,7 @@ resource "datadog_monitor" "ELB_no_healthy_instances" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:aws.elb.healthy_host_count{${data.template_file.filter.rendered}} by {region,loadbalancer}
+      avg:aws.elb.healthy_host_count{${data.template_file.filter.rendered}} by {region,loadbalancername}
     ) < 1
   EOF
 
@@ -38,8 +38,8 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:aws.elb.httpcode_elb_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer} /
-      avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}
+      avg:aws.elb.httpcode_elb_4xx{${data.template_file.filter.rendered}} by {region,loadbalancername} /
+      avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancername}
     ) * 100 > ${var.elb_4xx_threshold_critical}
   EOF
 
@@ -70,8 +70,8 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:aws.elb.httpcode_elb_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer} /
-      avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}
+      avg:aws.elb.httpcode_elb_5xx{${data.template_file.filter.rendered}} by {region,loadbalancername} /
+      avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancername}
     ) * 100 > ${var.elb_5xx_threshold_critical}
   EOF
 
@@ -102,8 +102,8 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:aws.elb.httpcode_backend_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer} /
-      avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}
+      avg:aws.elb.httpcode_backend_4xx{${data.template_file.filter.rendered}} by {region,loadbalancername} /
+      avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancername}
     ) * 100 > ${var.elb_backend_4xx_threshold_critical}
   EOF
 
@@ -134,8 +134,8 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:aws.elb.httpcode_backend_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer} /
-      avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}
+      avg:aws.elb.httpcode_backend_5xx{${data.template_file.filter.rendered}} by {region,loadbalancername} /
+      avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancername}
     ) * 100 > ${var.elb_backend_5xx_threshold_critical}
   EOF
 
@@ -166,7 +166,7 @@ resource "datadog_monitor" "ELB_backend_latency" {
 
   query = <<EOF
     min(last_5m): (
-      avg:aws.elb.latency{${data.template_file.filter.rendered}} by {region,loadbalancer}
+      avg:aws.elb.latency{${data.template_file.filter.rendered}} by {region,loadbalancername}
     ) > ${var.elb_backend_latency_critical}
   EOF
 
