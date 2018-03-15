@@ -24,11 +24,17 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
-# Azure SQL Database specific
+# Azure SQL Database specific variables
 variable "cpu_silenced" {
   description = "Groups to mute for SQL CPU monitor"
   type        = "map"
   default     = {}
+}
+
+variable "cpu_message" {
+  description = "Custom message for SQL CPU monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "cpu_threshold_warning" {
@@ -47,6 +53,12 @@ variable "diskspace_silenced" {
   default     = {}
 }
 
+variable "diskspace_message" {
+  description = "Custom message for SQL disk space monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "diskspace_threshold_warning" {
   description = "Disk space used in percent (warning threshold)"
   default     = "80"
@@ -63,6 +75,12 @@ variable "dtu_silenced" {
   default     = {}
 }
 
+variable "dtu_message" {
+  description = "Custom message for SQL DTU monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "dtu_threshold_warning" {
   description = "Amount of DTU used (warning threshold)"
   default     = "85"
@@ -77,6 +95,12 @@ variable "deadlock_silenced" {
   description = "Groups to mute for SQL Deadlock monitor"
   type        = "map"
   default     = {}
+}
+
+variable "deadlock_message" {
+  description = "Custom message for SQL Deadlock monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "deadlock_threshold_critical" {

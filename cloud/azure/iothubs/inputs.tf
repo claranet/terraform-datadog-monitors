@@ -19,17 +19,29 @@ variable "filter_tags" {
   default     = "*"
 }
 
-# Azure IOT hubs specific
+# IOT Hub specific variables
 variable "status_silenced" {
   description = "Groups to mute for IoT Hub status monitor"
   type        = "map"
   default     = {}
 }
 
+variable "status_message" {
+  description = "Custom message for IoT Hub status monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "total_devices_silenced" {
-  description = "Groups to mute for IoT Hub total device monitor"
+  description = "Groups to mute for IoT Hub total devices monitor"
   type        = "map"
   default     = {}
+}
+
+variable "total_devices_message" {
+  description = "Custom message for IoT Hub total devices monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "too_many_d2c_telemetry_ingress_nosent_silenced" {
@@ -38,10 +50,22 @@ variable "too_many_d2c_telemetry_ingress_nosent_silenced" {
   default     = {}
 }
 
+variable "too_many_d2c_telemetry_ingress_nosent_message" {
+  description = "Custom message for IoT Hub unsent d2c telemetry monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "failed_jobs_rate_silenced" {
   description = "Groups to mute for IoT Hub failed jobs monitor"
   type        = "map"
   default     = {}
+}
+
+variable "failed_jobs_rate_message" {
+  description = "Custom message for IoT Hub failed jobs monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "failed_jobs_rate_threshold_warning" {
@@ -60,6 +84,12 @@ variable "failed_listjobs_rate_silenced" {
   default     = {}
 }
 
+variable "failed_listjobs_rate_message" {
+  description = "Custom message for IoT Hub failed list jobs monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "failed_listjobs_rate_threshold_warning" {
   description = "ListJobs Failed rate limit (warning threshold)"
   default     = 50
@@ -74,6 +104,12 @@ variable "failed_queryjobs_rate_silenced" {
   description = "Groups to mute for IoT Hub failed query jobs monitor"
   type        = "map"
   default     = {}
+}
+
+variable "failed_queryjobs_rate_message" {
+  description = "Custom message for IoT Hub failed query jobs monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "failed_queryjobs_rate_threshold_warning" {
@@ -92,6 +128,12 @@ variable "failed_c2d_methods_rate_silenced" {
   default     = {}
 }
 
+variable "failed_c2d_methods_rate_message" {
+  description = "Custom message for IoT Hub failed c2d method monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "failed_c2d_methods_rate_threshold_warning" {
   description = "C2D Methods Failed rate limit (warning threshold)"
   default     = 50
@@ -106,6 +148,12 @@ variable "failed_c2d_twin_read_rate_silenced" {
   description = "Groups to mute for IoT Hub failed c2d twin read monitor"
   type        = "map"
   default     = {}
+}
+
+variable "failed_c2d_twin_read_rate_message" {
+  description = "Custom message for IoT Hub failed c2d twin read monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "failed_c2d_twin_read_rate_threshold_warning" {
@@ -124,6 +172,12 @@ variable "failed_c2d_twin_update_rate_silenced" {
   default     = {}
 }
 
+variable "failed_c2d_twin_update_rate_message" {
+  description = "Custom message for IoT Hub failed c2d twin update monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "failed_c2d_twin_update_rate_threshold_warning" {
   description = "C2D Twin Update Failed rate limit (warning threshold)"
   default     = 50
@@ -138,6 +192,12 @@ variable "failed_d2c_twin_read_rate_silenced" {
   description = "Groups to mute for IoT Hub failed d2c twin read monitor"
   type        = "map"
   default     = {}
+}
+
+variable "failed_d2c_twin_read_rate_message" {
+  description = "Custom message for IoT Hub failed d2c twin read monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "failed_d2c_twin_read_rate_threshold_warning" {
@@ -156,6 +216,12 @@ variable "failed_d2c_twin_update_rate_silenced" {
   default     = {}
 }
 
+variable "failed_d2c_twin_update_rate_message" {
+  description = "Custom message for IoT Hub failed d2c twin update monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "failed_d2c_twin_update_rate_threshold_warning" {
   description = "D2C Twin Update Failed rate limit (warning threshold)"
   default     = 50
@@ -170,6 +236,12 @@ variable "dropped_d2c_telemetry_egress_silenced" {
   description = "Groups to mute for IoT Hub dropped d2c telemetry monitor"
   type        = "map"
   default     = {}
+}
+
+variable "dropped_d2c_telemetry_egress_message" {
+  description = "Custom message for IoT Hub dropped d2c telemetry monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "dropped_d2c_telemetry_egress_threshold_warning" {
@@ -188,6 +260,12 @@ variable "orphaned_d2c_telemetry_egress_silenced" {
   default     = {}
 }
 
+variable "orphaned_d2c_telemetry_egress_message" {
+  description = "Custom message for IoT Hub orphaned d2c telemetry monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "orphaned_d2c_telemetry_egress_threshold_warning" {
   description = "D2C Telemetry Orphaned limit (warning threshold)"
   default     = 500
@@ -204,6 +282,12 @@ variable "invalid_d2c_telemetry_egress_silenced" {
   default     = {}
 }
 
+variable "invalid_d2c_telemetry_egress_message" {
+  description = "Custom message for IoT Hub invalid d2c telemetry monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "invalid_d2c_telemetry_egress_threshold_warning" {
   description = "D2C Telemetry Invalid limit (warning threshold)"
   default     = 500
@@ -218,6 +302,12 @@ variable "fallback_d2c_telemetry_egress_silenced" {
   description = "Groups to mute for IoT Hub fallback d2c telemetry monitor"
   type        = "map"
   default     = {}
+}
+
+variable "fallback_d2c_telemetry_egress_message" {
+  description = "Custom message for IoT Hub fallback d2c telemetry monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "fallback_d2c_telemetry_egress_threshold_warning" {

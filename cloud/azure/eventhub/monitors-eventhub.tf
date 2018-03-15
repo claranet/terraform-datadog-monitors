@@ -8,7 +8,7 @@ data "template_file" "filter" {
 
 resource "datadog_monitor" "eventhub_status" {
   name    = "[${var.environment}] Event Hub is down"
-  message = "${var.message}"
+  message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
       avg(last_5m): avg:azure.eventhub_namespaces.status{${data.template_file.filter.rendered}} by {resource_group,region,name} != 1
@@ -34,7 +34,7 @@ resource "datadog_monitor" "eventhub_status" {
 
 resource "datadog_monitor" "eventhub_failed_requests" {
   name    = "[${var.environment}] Event Hub too many failed requests {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.failed_requests_rate_message, var.message)}"
 
   query = <<EOF
         sum(last_5m): (
@@ -70,7 +70,7 @@ resource "datadog_monitor" "eventhub_failed_requests" {
 
 resource "datadog_monitor" "eventhub_errors" {
   name    = "[${var.environment}] Event Hub too manny errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.errors_rate_message, var.message)}"
 
   query = <<EOF
         sum(last_5m): (

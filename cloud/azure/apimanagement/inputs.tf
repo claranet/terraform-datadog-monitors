@@ -31,10 +31,22 @@ variable "status_silenced" {
   default     = {}
 }
 
+variable "status_message" {
+  description = "Custom message for API Management status monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "failed_requests_silenced" {
   description = "Groups to mute for API Management failed requests monitor"
   type        = "map"
   default     = {}
+}
+
+variable "failed_requests_message" {
+  description = "Custom message for API Management failed requests monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "failed_requests_threshold_critical" {
@@ -53,6 +65,12 @@ variable "other_requests_silenced" {
   default     = {}
 }
 
+variable "other_requests_message" {
+  description = "Custom message for API Management other requests monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "other_requests_threshold_critical" {
   description = "Maximum acceptable percent of other requests"
   default     = 90
@@ -69,6 +87,12 @@ variable "unauthorized_requests_silenced" {
   default     = {}
 }
 
+variable "unauthorized_requests_message" {
+  description = "Custom message for API Management unauthorized requests monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "unauthorized_requests_threshold_critical" {
   description = "Maximum acceptable percent of unauthorized requests"
   default     = 90
@@ -83,6 +107,12 @@ variable "successful_requests_silenced" {
   description = "Groups to mute for API Management successful requests monitor"
   type        = "map"
   default     = {}
+}
+
+variable "successful_requests_message" {
+  description = "Custom message for API Management successful requests monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "successful_requests_threshold_critical" {
