@@ -24,17 +24,29 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
-# Azure Redis specific
+# Azure Redis specific variables
 variable "status_silenced" {
   description = "Groups to mute for Redis status monitor"
   type        = "map"
   default     = {}
 }
 
+variable "status_message" {
+  description = "Custom message for Redis status monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "evictedkeys_limit_silenced" {
   description = "Groups to mute for Redis evicted keys monitor"
   type        = "map"
   default     = {}
+}
+
+variable "evictedkeys_limit_message" {
+  description = "Custom message for Redis evicted keys monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "evictedkeys_limit_threshold_warning" {
@@ -53,6 +65,12 @@ variable "percent_processor_time_silenced" {
   default     = {}
 }
 
+variable "percent_processor_time_message" {
+  description = "Custom message for Redis processor monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "percent_processor_time_threshold_critical" {
   description = "Processor time percent (critical threshold)"
   default     = 80
@@ -67,6 +85,12 @@ variable "server_load_rate_silenced" {
   description = "Groups to mute for Redis server load monitor"
   type        = "map"
   default     = {}
+}
+
+variable "server_load_rate_message" {
+  description = "Custom message for Redis server load monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "server_load_rate_threshold_critical" {

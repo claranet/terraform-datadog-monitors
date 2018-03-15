@@ -24,11 +24,17 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
-# Azure Storage specific
+# Azure Storage specific variables
 variable "availability_silenced" {
   description = "Groups to mute for Storage availability monitor"
   type        = "map"
   default     = {}
+}
+
+variable "availability_message" {
+  description = "Custom message for Storage availability monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "availability_threshold_critical" {
@@ -47,6 +53,12 @@ variable "successful_requests_silenced" {
   default     = {}
 }
 
+variable "successful_requests_message" {
+  description = "Custom message for Storage sucessful requests monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "successful_requests_threshold_critical" {
   description = "Minimum acceptable percent of successful requests for a storage"
   default     = 10
@@ -61,6 +73,12 @@ variable "latency_silenced" {
   description = "Groups to mute for Storage latency monitor"
   type        = "map"
   default     = {}
+}
+
+variable "latency_message" {
+  description = "Custom message for Storage latency monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "latency_threshold_critical" {
@@ -79,6 +97,12 @@ variable "timeout_error_requests_silenced" {
   default     = {}
 }
 
+variable "timeout_error_requests_message" {
+  description = "Custom message for Storage timeout monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "timeout_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of timeout error requests for a storage"
   default     = 90
@@ -93,6 +117,12 @@ variable "network_error_requests_silenced" {
   description = "Groups to mute for Storage network errors monitor"
   type        = "map"
   default     = {}
+}
+
+variable "network_error_requests_message" {
+  description = "Custom message for Storage network errors monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "network_error_requests_threshold_critical" {
@@ -111,6 +141,12 @@ variable "throttling_error_requests_silenced" {
   default     = {}
 }
 
+variable "throttling_error_requests_message" {
+  description = "Custom message for Storage throttling error monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "throttling_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of throttling error requests for a storage"
   default     = 90
@@ -125,6 +161,12 @@ variable "server_other_error_requests_silenced" {
   description = "Groups to mute for Storage server other errors monitor"
   type        = "map"
   default     = {}
+}
+
+variable "server_other_error_requests_message" {
+  description = "Custom message for Storage server other errors monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "server_other_error_requests_threshold_critical" {
@@ -143,6 +185,12 @@ variable "client_other_error_requests_silenced" {
   default     = {}
 }
 
+variable "client_other_error_requests_message" {
+  description = "Custom message for Storage other errors monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "client_other_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of client other error requests for a storage"
   default     = 90
@@ -157,6 +205,12 @@ variable "authorization_error_requests_silenced" {
   description = "Groups to mute for Storage authorization errors monitor"
   type        = "map"
   default     = {}
+}
+
+variable "authorization_error_requests_message" {
+  description = "Custom message for Storage authorization errors monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "authorization_error_requests_threshold_critical" {

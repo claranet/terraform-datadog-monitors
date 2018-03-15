@@ -8,12 +8,12 @@ data "template_file" "filter" {
 
 resource "datadog_monitor" "availability" {
   name    = "[${var.environment}] Azure Storage is down"
-  message = "${var.message}"
+  message = "${coalesce(var.availability_message, var.message)}"
 
   query = <<EOF
-    avg(last_5m): (
-      avg:azure.storage.availability{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
-    ) < ${var.availability_threshold_critical}
+    avg(last_5m): (default(
+      avg:azure.storage.availability{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
+    100)) < ${var.availability_threshold_critical}
 EOF
 
   thresholds {
@@ -26,7 +26,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 1
+  timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -40,12 +40,12 @@ EOF
 
 resource "datadog_monitor" "successful_requests" {
   name    = "[${var.environment}] Azure Storage too few successful requests {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.successful_requests_message, var.message)}"
 
   query = <<EOF
-    avg(last_5m): (
-      avg:azure.storage.percent_success{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
-    ) < ${var.successful_requests_threshold_critical}
+    avg(last_5m): (default(
+      avg:azure.storage.percent_success{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
+    100)) < ${var.successful_requests_threshold_critical}
 EOF
 
   thresholds {
@@ -58,7 +58,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 1
+  timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -72,12 +72,12 @@ EOF
 
 resource "datadog_monitor" "latency" {
   name    = "[${var.environment}] Azure Storage too high end to end latency {{comparator}} {{#is_alert}}{{threshold}}ms{{/is_alert}}{{#is_warning}}{{warn_threshold}}ms{{/is_warning}} ({{value}}ms)"
-  message = "${var.message}"
+  message = "${coalesce(var.latency_message, var.message)}"
 
   query = <<EOF
-    max(last_5m): (
-      avg:azure.storage.average_e2_e_latency{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
-    ) > ${var.latency_threshold_critical}
+    min(last_5m): (default(
+      avg:azure.storage.average_e2_e_latency{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
+    0)) > ${var.latency_threshold_critical}
 EOF
 
   thresholds {
@@ -90,7 +90,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 1
+  timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -104,12 +104,12 @@ EOF
 
 resource "datadog_monitor" "timeout_error_requests" {
   name    = "[${var.environment}] Azure Storage too many timeout errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.timeout_error_requests_message, var.message)}"
 
   query = <<EOF
-    avg(last_5m): (
-      avg:azure.storage.percent_timeout_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
-    ) > ${var.timeout_error_requests_threshold_critical}
+    avg(last_5m): (default(
+      avg:azure.storage.percent_timeout_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
+    0)) > ${var.timeout_error_requests_threshold_critical}
 EOF
 
   thresholds {
@@ -122,7 +122,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 1
+  timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -136,12 +136,12 @@ EOF
 
 resource "datadog_monitor" "network_error_requests" {
   name    = "[${var.environment}] Azure Storage too many network errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.network_error_requests_message, var.message)}"
 
   query = <<EOF
-    avg(last_5m): (
-      avg:azure.storage.percent_network_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
-    ) > ${var.network_error_requests_threshold_critical}
+    avg(last_5m): (default(
+      avg:azure.storage.percent_network_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
+    0)) > ${var.network_error_requests_threshold_critical}
 EOF
 
   thresholds {
@@ -154,7 +154,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 1
+  timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -168,12 +168,12 @@ EOF
 
 resource "datadog_monitor" "throttling_error_requests" {
   name    = "[${var.environment}] Azure Storage too many throttling errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.throttling_error_requests_message, var.message)}"
 
   query = <<EOF
-    avg(last_5m): (
-      avg:azure.storage.percent_throttling_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
-    ) > ${var.throttling_error_requests_threshold_critical}
+    avg(last_5m): (default(
+      avg:azure.storage.percent_throttling_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
+    0)) > ${var.throttling_error_requests_threshold_critical}
 EOF
 
   thresholds {
@@ -186,7 +186,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 1
+  timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -200,12 +200,12 @@ EOF
 
 resource "datadog_monitor" "server_other_error_requests" {
   name    = "[${var.environment}] Azure Storage too many server_other errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.server_other_error_requests_message, var.message)}"
 
   query = <<EOF
-    avg(last_5m): (
-      avg:azure.storage.percent_server_other_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
-    ) > ${var.server_other_error_requests_threshold_critical}
+    avg(last_5m): (default(
+      avg:azure.storage.percent_server_other_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
+    0)) > ${var.server_other_error_requests_threshold_critical}
 EOF
 
   thresholds {
@@ -218,7 +218,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 1
+  timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -232,12 +232,12 @@ EOF
 
 resource "datadog_monitor" "client_other_error_requests" {
   name    = "[${var.environment}] Azure Storage too many client_other errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.client_other_error_requests_message, var.message)}"
 
   query = <<EOF
-    avg(last_5m): (
-      avg:azure.storage.percent_client_other_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
-    ) > ${var.client_other_error_requests_threshold_critical}
+    avg(last_5m): (default(
+      avg:azure.storage.percent_client_other_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
+    0)) > ${var.client_other_error_requests_threshold_critical}
 EOF
 
   thresholds {
@@ -250,7 +250,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 1
+  timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -264,12 +264,12 @@ EOF
 
 resource "datadog_monitor" "authorization_error_requests" {
   name    = "[${var.environment}] Azure Storage too many authorization errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
+  message = "${coalesce(var.authorization_error_requests_message, var.message)}"
 
   query = <<EOF
-    avg(last_5m): (
-      avg:azure.storage.percent_authorization_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name}
-    ) > ${var.authorization_error_requests_threshold_critical}
+    avg(last_5m): (default(
+      avg:azure.storage.percent_authorization_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
+    0)) > ${var.authorization_error_requests_threshold_critical}
 EOF
 
   thresholds {
@@ -282,7 +282,7 @@ EOF
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 1
+  timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
