@@ -38,11 +38,11 @@ resource "datadog_monitor" "eventhub_failed_requests" {
 
   query = <<EOF
         sum(last_5m): (
-          avg:azure.eventhub_namespaces.failed_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() ) /
-        (
-          avg:azure.eventhub_namespaces.successful_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
-          avg:azure.eventhub_namespaces.failed_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
-        ) * 100 > ${var.failed_requests_rate_thresold_critical}
+          default(
+            avg:azure.eventhub_namespaces.failed_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
+            avg:azure.eventhub_namespaces.incoming_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count(),
+          0) * 100
+        ) > ${var.failed_requests_rate_thresold_critical}
         EOF
 
   type = "metric alert"
@@ -58,7 +58,7 @@ resource "datadog_monitor" "eventhub_failed_requests" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 1
+  timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -69,20 +69,21 @@ resource "datadog_monitor" "eventhub_failed_requests" {
 }
 
 resource "datadog_monitor" "eventhub_errors" {
-  name    = "[${var.environment}] Event Hub too manny errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  name    = "[${var.environment}] Event Hub too many errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${coalesce(var.errors_rate_message, var.message)}"
 
   query = <<EOF
         sum(last_5m): (
-          avg:azure.eventhub_namespaces.internal_server_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
-          avg:azure.eventhub_namespaces.server_busy_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
-          avg:azure.eventhub_namespaces.other_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
-        ) / (
-          avg:azure.eventhub_namespaces.successful_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
-          avg:azure.eventhub_namespaces.internal_server_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
-          avg:azure.eventhub_namespaces.server_busy_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
-          avg:azure.eventhub_namespaces.other_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
-        ) * 100 > ${var.errors_rate_thresold_critical}
+          default(
+            (
+              avg:azure.eventhub_namespaces.internal_server_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
+              avg:azure.eventhub_namespaces.server_busy_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
+              avg:azure.eventhub_namespaces.other_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
+            ) / (
+              avg:eventhub_namespaces.incoming_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
+            ),
+          0) * 100
+        ) > ${var.errors_rate_thresold_critical}
         EOF
 
   type = "metric alert"
@@ -98,7 +99,7 @@ resource "datadog_monitor" "eventhub_errors" {
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 1
+  timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
