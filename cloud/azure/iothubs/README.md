@@ -40,9 +40,9 @@ Inputs
 |------|-------------|:----:|:-----:|:-----:|
 | delay | Delay in seconds for the metric evaluation | string | `600` | no |
 | dropped_d2c_telemetry_egress_message | Custom message for IoT Hub dropped d2c telemetry monitor | string | `` | no |
+| dropped_d2c_telemetry_egress_rate_threshold_critical | D2C Telemetry Dropped limit (critical threshold) | string | `90` | no |
+| dropped_d2c_telemetry_egress_rate_threshold_warning | D2C Telemetry Dropped limit (warning threshold) | string | `50` | no |
 | dropped_d2c_telemetry_egress_silenced | Groups to mute for IoT Hub dropped d2c telemetry monitor | map | `<map>` | no |
-| dropped_d2c_telemetry_egress_threshold_critical | D2C Telemetry Dropped limit (critical threshold) | string | `1000` | no |
-| dropped_d2c_telemetry_egress_threshold_warning | D2C Telemetry Dropped limit (warning threshold) | string | `500` | no |
 | environment | Architecture Environment | string | - | yes |
 | failed_c2d_methods_rate_message | Custom message for IoT Hub failed c2d method monitor | string | `` | no |
 | failed_c2d_methods_rate_silenced | Groups to mute for IoT Hub failed c2d methods monitor | map | `<map>` | no |
@@ -76,20 +76,16 @@ Inputs
 | failed_queryjobs_rate_silenced | Groups to mute for IoT Hub failed query jobs monitor | map | `<map>` | no |
 | failed_queryjobs_rate_threshold_critical | QueryJobs Failed rate limit (critical threshold) | string | `90` | no |
 | failed_queryjobs_rate_threshold_warning | QueryJobs Failed rate limit (warning threshold) | string | `50` | no |
-| fallback_d2c_telemetry_egress_message | Custom message for IoT Hub fallback d2c telemetry monitor | string | `` | no |
-| fallback_d2c_telemetry_egress_silenced | Groups to mute for IoT Hub fallback d2c telemetry monitor | map | `<map>` | no |
-| fallback_d2c_telemetry_egress_threshold_critical | D2C Telemetry Fallback limit (critical threshold) | string | `1000` | no |
-| fallback_d2c_telemetry_egress_threshold_warning | D2C Telemetry Fallback limit (warning threshold) | string | `500` | no |
 | filter_tags | Tags used for filtering | string | `*` | no |
 | invalid_d2c_telemetry_egress_message | Custom message for IoT Hub invalid d2c telemetry monitor | string | `` | no |
+| invalid_d2c_telemetry_egress_rate_threshold_critical | D2C Telemetry Invalid limit (critical threshold) | string | `90` | no |
+| invalid_d2c_telemetry_egress_rate_threshold_warning | D2C Telemetry Invalid limit (warning threshold) | string | `50` | no |
 | invalid_d2c_telemetry_egress_silenced | Groups to mute for IoT Hub invalid d2c telemetry monitor | map | `<map>` | no |
-| invalid_d2c_telemetry_egress_threshold_critical | D2C Telemetry Invalid limit (critical threshold) | string | `1000` | no |
-| invalid_d2c_telemetry_egress_threshold_warning | D2C Telemetry Invalid limit (warning threshold) | string | `500` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 | orphaned_d2c_telemetry_egress_message | Custom message for IoT Hub orphaned d2c telemetry monitor | string | `` | no |
+| orphaned_d2c_telemetry_egress_rate_threshold_critical | D2C Telemetry Orphaned limit (critical threshold) | string | `90` | no |
+| orphaned_d2c_telemetry_egress_rate_threshold_warning | D2C Telemetry Orphaned limit (warning threshold) | string | `50` | no |
 | orphaned_d2c_telemetry_egress_silenced | Groups to mute for IoT Hub orphaned d2c telemetry monitor | map | `<map>` | no |
-| orphaned_d2c_telemetry_egress_threshold_critical | D2C Telemetry Orphaned limit (critical threshold) | string | `1000` | no |
-| orphaned_d2c_telemetry_egress_threshold_warning | D2C Telemetry Orphaned limit (warning threshold) | string | `500` | no |
 | status_message | Custom message for IoT Hub status monitor | string | `` | no |
 | status_silenced | Groups to mute for IoT Hub status monitor | map | `<map>` | no |
 | too_many_d2c_telemetry_ingress_nosent_message | Custom message for IoT Hub unsent d2c telemetry monitor | string | `` | no |
