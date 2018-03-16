@@ -336,15 +336,20 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
 
   query = <<EOF
       sum(last_5m): (
-        avg:azure.devices_iothubs.d2c.telemetry.egress.dropped{${var.filter_tags}} by {resource_group,region,name}.as_count()
-      ) > ${var.dropped_d2c_telemetry_egress_threshold_critical}
+        avg:azure.devices_iothubs.d2c.telemetry.egress.dropped{${var.filter_tags}} by {resource_group,region,name}.as_count() /
+        (avg:azure.devices_iothubs.d2c.telemetry.egress.dropped{${var.filter_tags}} by {resource_group,region,name}.as_count() +
+         avg:azure.devices_iothubs.d2c.telemetry.egress.orphaned{${var.filter_tags}} by {resource_group,region,name}.as_count() +
+         avg:azure.devices_iothubs.d2c.telemetry.egress.invalid{${var.filter_tags}} by {resource_group,region,name}.as_count() +
+         avg:azure.devices_iothubs.d2c.telemetry.egress.success{${var.filter_tags}} by {resource_group,region,name}.as_count())
+        * 100
+      ) > ${var.dropped_d2c_telemetry_egress_rate_threshold_critical}
   EOF
 
   type = "metric alert"
 
   thresholds {
-    warning  = "${var.dropped_d2c_telemetry_egress_threshold_warning}"
-    critical = "${var.dropped_d2c_telemetry_egress_threshold_critical}"
+    warning  = "${var.dropped_d2c_telemetry_egress_rate_threshold_warning}"
+    critical = "${var.dropped_d2c_telemetry_egress_rate_threshold_critical}"
   }
 
   silenced = "${var.dropped_d2c_telemetry_egress_silenced}"
@@ -369,15 +374,20 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
 
   query = <<EOF
     sum(last_5m): (
-      avg:azure.devices_iothubs.d2c.telemetry.egress.orphaned{${var.filter_tags}} by {resource_group,region,name}.as_count()
-    ) > ${var.orphaned_d2c_telemetry_egress_threshold_critical}
+        avg:azure.devices_iothubs.d2c.telemetry.egress.orphaned{${var.filter_tags}} by {resource_group,region,name}.as_count() /
+        (avg:azure.devices_iothubs.d2c.telemetry.egress.dropped{${var.filter_tags}} by {resource_group,region,name}.as_count() +
+         avg:azure.devices_iothubs.d2c.telemetry.egress.orphaned{${var.filter_tags}} by {resource_group,region,name}.as_count() +
+         avg:azure.devices_iothubs.d2c.telemetry.egress.invalid{${var.filter_tags}} by {resource_group,region,name}.as_count() +
+         avg:azure.devices_iothubs.d2c.telemetry.egress.success{${var.filter_tags}} by {resource_group,region,name}.as_count())
+        * 100
+    ) > ${var.orphaned_d2c_telemetry_egress_rate_threshold_critical}
   EOF
 
   type = "metric alert"
 
   thresholds {
-    warning  = "${var.orphaned_d2c_telemetry_egress_threshold_warning}"
-    critical = "${var.orphaned_d2c_telemetry_egress_threshold_critical}"
+    warning  = "${var.orphaned_d2c_telemetry_egress_rate_threshold_warning}"
+    critical = "${var.orphaned_d2c_telemetry_egress_rate_threshold_critical}"
   }
 
   silenced = "${var.orphaned_d2c_telemetry_egress_silenced}"
@@ -402,51 +412,23 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
 
   query = <<EOF
     sum(last_5m): (
-      avg:azure.devices_iothubs.d2c.telemetry.egress.invalid{${var.filter_tags}} by {resource_group,region,name}.as_count()
-    ) > ${var.invalid_d2c_telemetry_egress_threshold_critical}
+        avg:azure.devices_iothubs.d2c.telemetry.egress.invalid{${var.filter_tags}} by {resource_group,region,name}.as_count() /
+        (avg:azure.devices_iothubs.d2c.telemetry.egress.dropped{${var.filter_tags}} by {resource_group,region,name}.as_count() +
+         avg:azure.devices_iothubs.d2c.telemetry.egress.orphaned{${var.filter_tags}} by {resource_group,region,name}.as_count() +
+         avg:azure.devices_iothubs.d2c.telemetry.egress.invalid{${var.filter_tags}} by {resource_group,region,name}.as_count() +
+         avg:azure.devices_iothubs.d2c.telemetry.egress.success{${var.filter_tags}} by {resource_group,region,name}.as_count())
+        * 100
+    ) > ${var.invalid_d2c_telemetry_egress_rate_threshold_critical}
   EOF
 
   type = "metric alert"
 
   thresholds {
-    warning  = "${var.invalid_d2c_telemetry_egress_threshold_warning}"
-    critical = "${var.invalid_d2c_telemetry_egress_threshold_critical}"
+    warning  = "${var.invalid_d2c_telemetry_egress_rate_threshold_warning}"
+    critical = "${var.invalid_d2c_telemetry_egress_rate_threshold_critical}"
   }
 
   silenced = "${var.invalid_d2c_telemetry_egress_silenced}"
-
-  notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
-  renotify_interval   = 0
-  notify_audit        = false
-  timeout_h           = 1
-  include_tags        = true
-  locked              = false
-  require_full_window = false
-  new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
-
-  tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
-}
-
-resource "datadog_monitor" "too_many_d2c_telemetry_egress_fallback" {
-  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress fallback {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
-  message = "${coalesce(var.fallback_d2c_telemetry_egress_message, var.message)}"
-
-  query = <<EOF
-    sum(last_5m): (
-      avg:azure.devices_iothubs.d2c.telemetry.egress.fallback{${var.filter_tags}} by {resource_group,region,name}.as_count()
-    )  > ${var.fallback_d2c_telemetry_egress_threshold_critical}
-  EOF
-
-  type = "metric alert"
-
-  thresholds {
-    warning  = "${var.fallback_d2c_telemetry_egress_threshold_warning}"
-    critical = "${var.fallback_d2c_telemetry_egress_threshold_critical}"
-  }
-
-  silenced = "${var.fallback_d2c_telemetry_egress_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"

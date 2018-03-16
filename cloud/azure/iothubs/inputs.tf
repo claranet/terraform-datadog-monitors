@@ -244,14 +244,14 @@ variable "dropped_d2c_telemetry_egress_message" {
   default     = ""
 }
 
-variable "dropped_d2c_telemetry_egress_threshold_warning" {
+variable "dropped_d2c_telemetry_egress_rate_threshold_warning" {
   description = "D2C Telemetry Dropped limit (warning threshold)"
-  default     = 500
+  default     = 50
 }
 
-variable "dropped_d2c_telemetry_egress_threshold_critical" {
+variable "dropped_d2c_telemetry_egress_rate_threshold_critical" {
   description = "D2C Telemetry Dropped limit (critical threshold)"
-  default     = 1000
+  default     = 90
 }
 
 variable "orphaned_d2c_telemetry_egress_silenced" {
@@ -266,14 +266,14 @@ variable "orphaned_d2c_telemetry_egress_message" {
   default     = ""
 }
 
-variable "orphaned_d2c_telemetry_egress_threshold_warning" {
+variable "orphaned_d2c_telemetry_egress_rate_threshold_warning" {
   description = "D2C Telemetry Orphaned limit (warning threshold)"
-  default     = 500
+  default     = 50
 }
 
-variable "orphaned_d2c_telemetry_egress_threshold_critical" {
+variable "orphaned_d2c_telemetry_egress_rate_threshold_critical" {
   description = "D2C Telemetry Orphaned limit (critical threshold)"
-  default     = 1000
+  default     = 90
 }
 
 variable "invalid_d2c_telemetry_egress_silenced" {
@@ -288,34 +288,12 @@ variable "invalid_d2c_telemetry_egress_message" {
   default     = ""
 }
 
-variable "invalid_d2c_telemetry_egress_threshold_warning" {
+variable "invalid_d2c_telemetry_egress_rate_threshold_warning" {
   description = "D2C Telemetry Invalid limit (warning threshold)"
-  default     = 500
+  default     = 50
 }
 
-variable "invalid_d2c_telemetry_egress_threshold_critical" {
+variable "invalid_d2c_telemetry_egress_rate_threshold_critical" {
   description = "D2C Telemetry Invalid limit (critical threshold)"
-  default     = 1000
-}
-
-variable "fallback_d2c_telemetry_egress_silenced" {
-  description = "Groups to mute for IoT Hub fallback d2c telemetry monitor"
-  type        = "map"
-  default     = {}
-}
-
-variable "fallback_d2c_telemetry_egress_message" {
-  description = "Custom message for IoT Hub fallback d2c telemetry monitor"
-  type        = "string"
-  default     = ""
-}
-
-variable "fallback_d2c_telemetry_egress_threshold_warning" {
-  description = "D2C Telemetry Fallback limit (warning threshold)"
-  default     = 500
-}
-
-variable "fallback_d2c_telemetry_egress_threshold_critical" {
-  description = "D2C Telemetry Fallback limit (critical threshold)"
-  default     = 1000
+  default     = 90
 }
