@@ -13,7 +13,7 @@ resource "datadog_monitor" "appservices_response_time" {
   message = "${coalesce(var.response_time_message, var.message)}"
 
   query = <<EOF
-    avg(last_5m): (
+    min(last_5m): (
       avg:azure.app_services.average_response_time{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.response_time_threshold_critical}
   EOF
