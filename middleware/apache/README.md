@@ -24,6 +24,8 @@ Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| apache_process_message | Custom message for Apache process monitor | string | `` | no |
+| apache_process_silenced | Groups to mute for Apache process monitor | map | `<map>` | no |
 | environment | Architecture Environment | string | - | yes |
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | message | Message sent when an alert is triggered | string | - | yes |

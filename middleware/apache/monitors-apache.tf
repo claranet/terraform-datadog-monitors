@@ -1,6 +1,6 @@
 resource "datadog_monitor" "datadog_apache_process" {
   name    = "[${var.environment}] Can't connect to apache vhost status"
-  message = "${var.message}"
+  message = "${coalesce(var.apache_process_message, var.message)}"
 
   type  = "service check"
   query = "\"apache.can_connect\".over(\"dd_monitoring:enabled\",\"dd_apache:enabled\",\"env:${var.environment}\").by(\"host\",\"port\").last(6).count_by_status()"
@@ -21,6 +21,8 @@ resource "datadog_monitor" "datadog_apache_process" {
   locked              = false
   require_full_window = true
   no_data_timeframe   = 20
+
+  silenced = "${var.apache_process_silenced}"
 
   tags = ["env:${var.environment}", "resource:apache"]
 }

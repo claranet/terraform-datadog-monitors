@@ -8,7 +8,7 @@ data "template_file" "filter" {
 
 resource "datadog_monitor" "datadog_php_fpm_process_idle" {
   name    = "[${var.environment}] php_fpm busy worker {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = "${var.message}"
+  message = "${coalesce(var.php_fpm_busy_message, var.message)}"
 
   type = "metric alert"
 
@@ -35,12 +35,14 @@ resource "datadog_monitor" "datadog_php_fpm_process_idle" {
   require_full_window = true
   no_data_timeframe   = 20
 
+  silenced = "${var.php_fpm_busy_silenced}"
+
   tags = ["env:${var.environment}", "resource:php-fpm"]
 }
 
 resource "datadog_monitor" "datadog_fpm_process" {
   name    = "[${var.environment}] Can't connect to php-fpm"
-  message = "${var.message}"
+  message = "${coalesce(var.php_fpm_process_message, var.message)}"
 
   type  = "service check"
   query = "\"php_fpm.can_ping\".over(\"dd_monitoring:enabled\",\"dd_php_fpm:enabled\",\"env:${var.environment}\").by(\"host\",\"port\").last(6).count_by_status()"
@@ -61,6 +63,8 @@ resource "datadog_monitor" "datadog_fpm_process" {
   locked              = false
   require_full_window = true
   no_data_timeframe   = 20
+
+  silenced = "${var.php_fpm_process_silenced}"
 
   tags = ["env:${var.environment}", "resource:php-fpm"]
 }
