@@ -9,7 +9,7 @@ data "template_file" "filter" {
 ### Elasticsearch cluster status monitor ###
 resource "datadog_monitor" "es_cluster_status" {
   name    = "[${var.environment}] ElasticSearch cluster status is not green"
-  message = "${var.message}"
+  message = "${coalesce(var.es_cluster_status_message, var.message)}"
 
   type = "query alert"
 
@@ -37,13 +37,15 @@ EOF
   new_host_delay      = "${var.evaluation_delay}"
   no_data_timeframe   = 20
 
+  silenced = "${var.es_cluster_status_silenced}"
+
   tags = ["env:${var.environment}", "resource:elasticsearch", "team:aws", "provider:aws"]
 }
 
 ### Elasticsearch cluster free storage space monitor ###
 resource "datadog_monitor" "es_free_space_low" {
   name    = "[${var.environment}] ElasticSearch cluster free storage space {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = "${var.message}"
+  message = "${coalesce(var.diskspace_message, var.message)}"
 
   type = "query alert"
 
@@ -70,13 +72,15 @@ EOF
   new_host_delay      = "${var.evaluation_delay}"
   no_data_timeframe   = 20
 
+  silenced = "${var.diskspace_silenced}"
+
   tags = ["env:${var.environment}", "resource:elasticsearch", "team:aws", "provider:aws"]
 }
 
 ### Elasticsearch cluster CPU monitor ###
 resource "datadog_monitor" "es_cpu_90_15min" {
   name    = "[${var.environment}] ElasticSearch cluster CPU high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = "${var.message}"
+  message = "${coalesce(var.cpu_message, var.message)}"
 
   type = "query alert"
 
@@ -101,6 +105,8 @@ EOF
   require_full_window = false
   new_host_delay      = "${var.evaluation_delay}"
   no_data_timeframe   = 20
+
+  silenced = "${var.cpu_silenced}"
 
   tags = ["env:${var.environment}", "resource:elasticsearch", "team:aws", "provider:aws"]
 }

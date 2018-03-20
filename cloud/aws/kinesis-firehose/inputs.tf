@@ -25,6 +25,19 @@ variable "filter_tags_custom" {
 }
 
 # Kinesis-Firehose
+
+variable "incoming_records_silenced" {
+  description = "Groups to mute for Kinesis Firehorse incoming records monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "incoming_records_message" {
+  description = "Custom message for Kinesis Firehorse incoming records monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "incoming_records_timeframe" {
   description = "Monitor timeframe for incoming records metrics evaluation [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   default     = "last_15m"
