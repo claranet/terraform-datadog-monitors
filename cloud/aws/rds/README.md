@@ -25,8 +25,12 @@ Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| cpu_message | Custom message for RDS CPU usage monitor | string | `` | no |
+| cpu_silenced | Groups to mute for RDS CPU usage monitor | map | `<map>` | no |
 | cpu_threshold_critical | CPU usage in percent (critical threshold) | string | `90` | no |
 | cpu_threshold_warning | CPU usage in percent (warning threshold) | string | `80` | no |
+| diskspace_message | Custom message for RDS free diskspace monitor | string | `` | no |
+| diskspace_silenced | Groups to mute for RDS free diskspace monitor | map | `<map>` | no |
 | diskspace_threshold_critical | Disk free space in percent (critical threshold) | string | `10` | no |
 | diskspace_threshold_warning | Disk free space in percent (warning threshold) | string | `20` | no |
 | environment | Architecture Environment | string | - | yes |

@@ -9,7 +9,7 @@ data "template_file" "filter" {
 ### RDS instance CPU monitor ###
 resource "datadog_monitor" "rds_cpu_90_15min" {
   name    = "[${var.environment}] RDS instance CPU high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = "${var.message}"
+  message = "${coalesce(var.cpu_message, var.message)}"
 
   type = "metric alert"
 
@@ -34,13 +34,15 @@ EOF
   new_host_delay      = "${var.evaluation_delay}"
   no_data_timeframe   = 20
 
+  silenced = "${var.cpu_silenced}"
+
   tags = ["env:${var.environment}", "resource:rds", "team:aws", "provider:aws"]
 }
 
 ### RDS instance free space monitor ###
 resource "datadog_monitor" "rds_free_space_low" {
   name    = "[${var.environment}] RDS instance free space {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = "${var.message}"
+  message = "${coalesce(var.diskspace_message, var.message)}"
 
   type = "metric alert"
 
@@ -65,6 +67,8 @@ EOF
   require_full_window = false
   new_host_delay      = "${var.evaluation_delay}"
   no_data_timeframe   = 20
+
+  silenced = "${var.diskspace_silenced}"
 
   tags = ["env:${var.environment}", "resource:rds", "team:aws", "provider:aws"]
 }

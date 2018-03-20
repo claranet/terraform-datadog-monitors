@@ -25,8 +25,33 @@ variable "filter_tags_custom" {
 }
 
 # AWS ElasticSearch Service specific
+
+variable "es_cluster_status_silenced" {
+  description = "Groups to mute for ES cluster status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "es_cluster_status_message" {
+  description = "Custom message for ES cluster status monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "es_cluster_volume_size" {
   description = "ElasticSearch Domain volume size (in GB)"
+}
+
+variable "diskspace_silenced" {
+  description = "Groups to mute for ES cluster diskspace monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "diskspace_message" {
+  description = "Custom message for ES cluster diskspace monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "diskspace_threshold_warning" {
@@ -37,6 +62,18 @@ variable "diskspace_threshold_warning" {
 variable "diskspace_threshold_critical" {
   description = "Disk free space in percent (critical threshold)"
   default     = "10"
+}
+
+variable "cpu_silenced" {
+  description = "Groups to mute for ES cluster cpu monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "cpu_message" {
+  description = "Custom message for ES cluster cpu monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "cpu_threshold_warning" {

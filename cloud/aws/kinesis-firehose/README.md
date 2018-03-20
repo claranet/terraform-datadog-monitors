@@ -28,6 +28,8 @@ Inputs
 | environment | Environment | string | - | yes |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
+| incoming_records_message | Custom message for Kinesis Firehorse incoming records monitor | string | `` | no |
+| incoming_records_silenced | Groups to mute for Kinesis Firehorse incoming records monitor | map | `<map>` | no |
 | incoming_records_timeframe | Monitor timeframe for incoming records metrics evaluation [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 

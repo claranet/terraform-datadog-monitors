@@ -9,7 +9,7 @@ data "template_file" "filter" {
 ### Kinesis Firehose Incoming records ###
 resource "datadog_monitor" "firehose_incoming_records" {
   name    = "[${var.environment}] Kinesis Firehose No incoming records"
-  message = "${var.message}"
+  message = "${coalesce(var.incoming_records_message, var.message)}"
 
   type = "metric alert"
 
@@ -33,6 +33,8 @@ EOF
   require_full_window = false
   new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
+
+  silenced = "${var.incoming_records_silenced}"
 
   tags = ["env:${var.environment}", "resource:kinesis-firehose", "team:aws", "provider:aws"]
 }
