@@ -1,7 +1,7 @@
 resource "datadog_monitor" "mysql_cpu_80_15min" {
   name    = "[${var.environment}] Mysql Connections > {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
-  type  = "query alert"
+  type    = "query alert"
 
   query = <<EOF
     avg(last_15m): (
@@ -18,7 +18,7 @@ resource "datadog_monitor" "mysql_cpu_80_15min" {
     critical = "${var.mysql_connection_threshold_critical}"
   }
 
-  notify_no_data      = false # Will NOT notify when no data is received
+  notify_no_data      = false           # Will NOT notify when no data is received
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 60
   notify_audit        = false
@@ -36,7 +36,7 @@ resource "datadog_monitor" "mysql_cpu_80_15min" {
 resource "datadog_monitor" "mysql_thread_5min" {
   name    = "[${var.environment}] Mysql threads > {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
-  type  = "query alert"
+  type    = "query alert"
 
   query = <<EOF
     avg(last_5m): (
@@ -52,7 +52,7 @@ resource "datadog_monitor" "mysql_thread_5min" {
     critical = "${var.mysql_thread_threshold_critical}"
   }
 
-  notify_no_data      = false # Will NOT notify when no data is received
+  notify_no_data      = false           # Will NOT notify when no data is received
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 60
   notify_audit        = false
