@@ -16,3 +16,14 @@ variable "message" {
 
 # Nginx Middleware specific
 
+variable "nginx_process_silenced" {
+  description = "Groups to mute for Nginx process monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "nginx_process_message" {
+  description = "Custom message for Nginx process monitor"
+  type        = "string"
+  default     = ""
+}

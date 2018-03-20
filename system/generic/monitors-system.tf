@@ -8,7 +8,7 @@ data "template_file" "filter" {
 
 resource "datadog_monitor" "datadog_cpu_too_high" {
   name    = "[${var.environment}] CPU usage {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = "${var.message}"
+  message = "${coalesce(var.cpu_high_message, var.message)}"
 
   query = <<EOF
     min(${var.cpu_high_timeframe}): (
@@ -34,11 +34,13 @@ resource "datadog_monitor" "datadog_cpu_too_high" {
   locked              = false
   require_full_window = true
   no_data_timeframe   = 20
+
+  silenced = "${var.cpu_high_silenced}"
 }
 
 resource "datadog_monitor" "datadog_free_disk_space_too_low" {
   name    = "[${var.environment}] Free disk space {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = "${var.message}"
+  message = "${coalesce(var.free_disk_space_message, var.message)}"
 
   query = <<EOF
     min(last_5m): (
@@ -65,11 +67,13 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
   locked              = false
   require_full_window = true
   no_data_timeframe   = 20
+
+  silenced = "${var.free_disk_space_silenced}"
 }
 
 resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
   name    = "[${var.environment}] Free disk inodes {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = "${var.message}"
+  message = "${coalesce(var.free_disk_inodes_message, var.message)}"
 
   query = <<EOF
     min(last_5m): (
@@ -96,11 +100,13 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
   locked              = false
   require_full_window = true
   no_data_timeframe   = 20
+
+  silenced = "${var.free_disk_inodes_silenced}"
 }
 
 resource "datadog_monitor" "datadog_free_memory" {
   name    = "[${var.environment}] Free memory {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = "${var.message}"
+  message = "${coalesce(var.free_memory_message, var.message)}"
 
   query = <<EOF
     min(last_1m): (
@@ -128,4 +134,6 @@ resource "datadog_monitor" "datadog_free_memory" {
   locked              = false
   require_full_window = true
   no_data_timeframe   = 20
+
+  silenced = "${var.free_memory_silenced}"
 }
