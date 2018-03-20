@@ -11,7 +11,7 @@ data "template_file" "filter" {
 resource "datadog_monitor" "ALB_no_healthy_instances" {
   name    = "[${var.environment}] ALB no healthy instances"
   type    = "metric alert"
-  message = "${var.message}"
+  message = "${coalesce(var.alb_no_healthy_instances_message, var.message)}"
 
   query = <<EOF
     min(last_1m): (
@@ -32,13 +32,15 @@ resource "datadog_monitor" "ALB_no_healthy_instances" {
   timeout_h           = 0
   include_tags        = true
 
+  silenced = "${var.alb_no_healthy_instances_silenced}"
+
   tags = ["env:${var.environment}", "resource:alb", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "ALB_latency" {
   name    = "[${var.environment}] ALB latency {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   type    = "metric alert"
-  message = "${var.message}"
+  message = "${coalesce(var.latency_message, var.message)}"
 
   query = <<EOF
     min(last_5m): (
@@ -60,13 +62,15 @@ resource "datadog_monitor" "ALB_latency" {
   timeout_h           = 0
   include_tags        = true
 
+  silenced = "${var.latency_silenced}"
+
   tags = ["env:${var.environment}", "resource:alb", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "ALB_httpcode_elb_5xx" {
   name    = "[${var.environment}] ALB HTTP code 5xx {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   type    = "metric alert"
-  message = "${var.message}"
+  message = "${coalesce(var.httpcode_elb_5xx_message, var.message)}"
 
   query = <<EOF
     sum(last_5m): (
@@ -89,13 +93,15 @@ resource "datadog_monitor" "ALB_httpcode_elb_5xx" {
   timeout_h           = 1
   include_tags        = true
 
+  silenced = "${var.httpcode_elb_5xx_silenced}"
+
   tags = ["env:${var.environment}", "resource:alb", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "ALB_httpcode_elb_4xx" {
   name    = "[${var.environment}] ALB HTTP code 4xx {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   type    = "metric alert"
-  message = "${var.message}"
+  message = "${coalesce(var.httpcode_elb_4xx_message, var.message)}"
 
   query = <<EOF
     sum(last_5m): (
@@ -118,13 +124,15 @@ resource "datadog_monitor" "ALB_httpcode_elb_4xx" {
   timeout_h           = 1
   include_tags        = true
 
+  silenced = "${var.httpcode_elb_4xx_silenced}"
+
   tags = ["env:${var.environment}", "resource:alb", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "ALB_httpcode_target_5xx" {
   name    = "[${var.environment}] ALB target HTTP code 5xx {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   type    = "metric alert"
-  message = "${var.message}"
+  message = "${coalesce(var.httpcode_target_5xx_message, var.message)}"
 
   query = <<EOF
     sum(last_5m): (
@@ -147,13 +155,15 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
   timeout_h           = 1
   include_tags        = true
 
+  silenced = "${var.httpcode_target_5xx_silenced}"
+
   tags = ["env:${var.environment}", "resource:alb", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "ALB_httpcode_target_4xx" {
   name    = "[${var.environment}] ALB target HTTP code 4xx {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   type    = "metric alert"
-  message = "${var.message}"
+  message = "${coalesce(var.httpcode_target_4xx_message, var.message)}"
 
   query = <<EOF
     sum(last_5m): (
@@ -175,6 +185,8 @@ resource "datadog_monitor" "ALB_httpcode_target_4xx" {
   require_full_window = false
   timeout_h           = 1
   include_tags        = true
+
+  silenced = "${var.httpcode_target_4xx_silenced}"
 
   tags = ["env:${var.environment}", "resource:alb", "team:aws", "provider:aws"]
 }
