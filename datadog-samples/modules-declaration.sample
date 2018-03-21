@@ -9,7 +9,7 @@ module "datadog-monitors" {
 
 
   dd_aws_rds = "${var.dd_aws_rds}"
-  dd_linux_basics  = "${var.dd_linux_basics}"
+  dd_system  = "${var.dd_system}"
 
 }
 
