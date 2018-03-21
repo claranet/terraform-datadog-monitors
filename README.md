@@ -33,7 +33,7 @@ module "datadog-monitors" {
   warning_escalation_group  = "${var.warning_escalation_group}"
 
   #default monitors templates integrations examples
-  dd_linux_basics  = "${var.dd_linux_basics}"
+  dd_system      = "${var.dd_system}"
   #nginx         = "false"
   #aws_rds_mysql = "false"
 
@@ -54,7 +54,7 @@ variable "warning_escalation_group" {
 variable "datadog_app_key" {}
 variable "datadog_api_key" {}
 
-variable "dd_linux_basics" {
+variable "dd_system" {
   default = "enabled"
 }
 
