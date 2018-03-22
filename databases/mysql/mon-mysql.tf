@@ -40,7 +40,6 @@ resource "datadog_monitor" "mysql_connections_15min" {
   tags = ["env:${var.environment}", "resource:mysql"]
 }
 
-
 resource "datadog_monitor" "mysql_thread_5min" {
   name    = "[${var.environment}] Mysql threads > {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
   message = "${var.message}"
