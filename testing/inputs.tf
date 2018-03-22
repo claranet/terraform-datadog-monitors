@@ -13,7 +13,7 @@ variable "warning_escalation_group" {
 variable "datadog_api_key" {}
 variable "datadog_app_key" {}
 
-variable "dd_linux_basics" {
+variable "dd_system" {
   default = "enabled"
 }
 

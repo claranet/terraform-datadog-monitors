@@ -5,7 +5,7 @@ variable env {}
 variable region {}
 
 ##linux
-variable "dd_linux_basics" {
+variable "dd_system" {
   default = "disabled"
 }
 
