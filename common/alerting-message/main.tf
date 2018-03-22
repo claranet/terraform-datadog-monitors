@@ -5,7 +5,7 @@ $${prepend_text}
 {{#is_recovery}}$${oncall_24x7}{{/is_recovery}}
 {{#is_warning}}$${oncall_office_hours}{{/is_warning}}
 {{#is_warning_recovery}}$${oncall_office_hours}{{/is_warning_recovery}}
-{{#is_no_data}}$${oncall_office_hours}{{/is_no_data}}
+{{#is_no_data}}$${oncall_24x7}{{/is_no_data}}
 $${append_text}
 EOF
 
