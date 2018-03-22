@@ -74,8 +74,10 @@ resource "datadog_monitor" "ALB_httpcode_elb_5xx" {
 
   query = <<EOF
     sum(last_5m): (
-      avg:aws.applicationelb.httpcode_elb_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
-      avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() * 100
+      default(
+        avg:aws.applicationelb.httpcode_elb_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
+        avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count(),
+      0) * 100
     ) > ${var.httpcode_elb_5xx_threshold_critical}
   EOF
 
@@ -90,7 +92,7 @@ resource "datadog_monitor" "ALB_httpcode_elb_5xx" {
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
-  timeout_h           = 1
+  timeout_h           = 0
   include_tags        = true
 
   silenced = "${var.httpcode_elb_5xx_silenced}"
@@ -105,8 +107,10 @@ resource "datadog_monitor" "ALB_httpcode_elb_4xx" {
 
   query = <<EOF
     sum(last_5m): (
-      avg:aws.applicationelb.httpcode_elb_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
-      avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() * 100
+      default(
+        avg:aws.applicationelb.httpcode_elb_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
+        avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count(),
+      0) * 100
     ) > ${var.httpcode_elb_4xx_threshold_critical}
   EOF
 
@@ -121,7 +125,7 @@ resource "datadog_monitor" "ALB_httpcode_elb_4xx" {
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
-  timeout_h           = 1
+  timeout_h           = 0
   include_tags        = true
 
   silenced = "${var.httpcode_elb_4xx_silenced}"
@@ -136,8 +140,10 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
 
   query = <<EOF
     sum(last_5m): (
-      avg:aws.applicationelb.httpcode_target_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
-      avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() * 100
+      default(
+        avg:aws.applicationelb.httpcode_target_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
+        avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count(),
+      0) * 100
     ) > ${var.httpcode_target_5xx_threshold_critical}
   EOF
 
@@ -152,7 +158,7 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
-  timeout_h           = 1
+  timeout_h           = 0
   include_tags        = true
 
   silenced = "${var.httpcode_target_5xx_silenced}"
@@ -167,8 +173,10 @@ resource "datadog_monitor" "ALB_httpcode_target_4xx" {
 
   query = <<EOF
     sum(last_5m): (
-      avg:aws.applicationelb.httpcode_target_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
-      avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() * 100
+      default(
+        avg:aws.applicationelb.httpcode_target_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
+        avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count(),
+      0) * 100
     ) > ${var.httpcode_target_4xx_threshold_critical}
   EOF
 
@@ -183,7 +191,7 @@ resource "datadog_monitor" "ALB_httpcode_target_4xx" {
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
-  timeout_h           = 1
+  timeout_h           = 0
   include_tags        = true
 
   silenced = "${var.httpcode_target_4xx_silenced}"
