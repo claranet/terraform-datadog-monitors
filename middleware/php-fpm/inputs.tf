@@ -53,13 +53,13 @@ variable "php_fpm_busy_threshold_critical" {
   default     = 0.9
 }
 
-variable "php_fpm_process_silenced" {
+variable "php_fpm_connect_silenced" {
   description = "Groups to mute for PHP FPM process monitor"
   type        = "map"
   default     = {}
 }
 
-variable "php_fpm_process_message" {
+variable "php_fpm_connect_message" {
   description = "Custom message for PHP FPM process monitor"
   type        = "string"
   default     = ""
