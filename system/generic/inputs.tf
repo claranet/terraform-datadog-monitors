@@ -106,7 +106,6 @@ variable "free_memory_silenced" {
 variable "free_memory_message" {
   description = "Custom message for Free memory monitor"
   type        = "string"
-  default     = ""
 }
 
 variable "free_memory_threshold_warning" {
