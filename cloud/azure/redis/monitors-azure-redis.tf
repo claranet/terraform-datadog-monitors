@@ -33,7 +33,7 @@ EOF
 }
 
 resource "datadog_monitor" "evictedkeys" {
-  name    = "[${var.environment}] Redis too many evictedkeys {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
+  name    = "[${var.environment}] Redis too many evictedkeys {{#is_alert}}{{comparator}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.evictedkeys_limit_message, var.message)}"
 
   query = <<EOF
@@ -66,7 +66,7 @@ EOF
 }
 
 resource "datadog_monitor" "percent_processor_time" {
-  name    = "[${var.environment}] Redis processor time too high {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  name    = "[${var.environment}] Redis processor time too high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.percent_processor_time_message, var.message)}"
 
   query = <<EOF
@@ -99,7 +99,7 @@ EOF
 }
 
 resource "datadog_monitor" "server_load" {
-  name    = "[${var.environment}] Redis server load too high {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  name    = "[${var.environment}] Redis server load too high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.server_load_rate_message, var.message)}"
 
   query = <<EOF

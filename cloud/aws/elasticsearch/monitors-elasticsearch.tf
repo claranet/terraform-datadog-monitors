@@ -42,7 +42,7 @@ EOF
 
 ### Elasticsearch cluster free storage space monitor ###
 resource "datadog_monitor" "es_free_space_low" {
-  name    = "[${var.environment}] ElasticSearch cluster free storage space {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  name    = "[${var.environment}] ElasticSearch cluster free storage space {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${var.message}"
 
   type = "query alert"
@@ -75,7 +75,7 @@ EOF
 
 ### Elasticsearch cluster CPU monitor ###
 resource "datadog_monitor" "es_cpu_90_15min" {
-  name    = "[${var.environment}] ElasticSearch cluster CPU high {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  name    = "[${var.environment}] ElasticSearch cluster CPU high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${var.message}"
 
   type = "query alert"
