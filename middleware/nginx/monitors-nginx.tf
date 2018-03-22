@@ -1,6 +1,6 @@
 resource "datadog_monitor" "datadog_nginx_process" {
   name    = "[${var.environment}] Can't connect to nginx vhost status"
-  message = "${coalesce(var.nginx_process_message, var.message)}"
+  message = "${coalesce(var.nginx_connect_message, var.message)}"
 
   type  = "service check"
   query = "\"nginx.can_connect\".over(\"dd_monitoring:enabled\",\"dd_nginx:enabled\",\"env:${var.environment}\").by(\"host\",\"port\").last(6).count_by_status()"
@@ -22,7 +22,7 @@ resource "datadog_monitor" "datadog_nginx_process" {
   require_full_window = true
   no_data_timeframe   = 20
 
-  silenced = "${var.nginx_process_silenced}"
+  silenced = "${var.nginx_connect_silenced}"
 
   tags = ["env:${var.environment}", "resource:nginx"]
 }
