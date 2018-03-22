@@ -41,7 +41,7 @@ Inputs
 | free_disk_space_silenced | Groups to mute for Free diskspace monitor | map | `<map>` | no |
 | free_disk_space_threshold_critical | Free disk space critical threshold | string | `5` | no |
 | free_disk_space_threshold_warning | Free disk space warning threshold | string | `10` | no |
-| free_memory_message | Custom message for Free memory monitor | string | `` | no |
+| free_memory_message | Custom message for Free memory monitor | string | - | yes |
 | free_memory_silenced | Groups to mute for Free memory monitor | map | `<map>` | no |
 | free_memory_threshold_critical | Free disk space critical threshold | string | `5` | no |
 | free_memory_threshold_warning | Free disk space warning threshold | string | `10` | no |
