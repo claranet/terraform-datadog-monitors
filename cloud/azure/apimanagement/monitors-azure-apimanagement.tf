@@ -39,7 +39,7 @@ resource "datadog_monitor" "apimgt_status" {
 }
 
 resource "datadog_monitor" "apimgt_failed_requests" {
-  name    = "[${var.environment}] API Management too many failed requests {{#is_alert}}{{comparator}}{{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}}{{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] API Management too many failed requests {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.failed_requests_message, var.message)}"
 
   query = <<EOF
@@ -72,7 +72,7 @@ resource "datadog_monitor" "apimgt_failed_requests" {
 }
 
 resource "datadog_monitor" "apimgt_other_requests" {
-  name    = "[${var.environment}] API Management too many other requests {{#is_alert}}{{comparator}}{{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}}{{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] API Management too many other requests {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.other_requests_message, var.message)}"
 
   query = <<EOF
@@ -105,7 +105,7 @@ resource "datadog_monitor" "apimgt_other_requests" {
 }
 
 resource "datadog_monitor" "apimgt_unauthorized_requests" {
-  name    = "[${var.environment}] API Management too many unauthorized requests {{#is_alert}}{{comparator}}{{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}}{{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] API Management too many unauthorized requests {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.unauthorized_requests_message, var.message)}"
 
   query = <<EOF
@@ -138,7 +138,7 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
 }
 
 resource "datadog_monitor" "apimgt_successful_requests" {
-  name    = "[${var.environment}] API Management successful requests rate too low {{#is_alert}}{{comparator}}{{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}}{{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] API Management successful requests rate too low {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.successful_requests_message, var.message)}"
 
   query = <<EOF
