@@ -147,3 +147,8 @@ variable "httpcode_target_5xx_threshold_warning" {
   default     = 60
   description = "target 5xx warning threshold in percentage"
 }
+
+variable "artificial_requests_count" {
+  default     = 5
+  description = "Number of false requests used to mitigate false positive in case of low trafic"
+}
