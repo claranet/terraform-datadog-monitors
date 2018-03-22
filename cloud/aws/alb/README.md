@@ -32,6 +32,7 @@ Inputs
 |------|-------------|:----:|:-----:|:-----:|
 | alb_no_healthy_instances_message | Custom message for ALB no healthy instances monitor | string | `` | no |
 | alb_no_healthy_instances_silenced | Groups to mute for ALB no healthy instances monitor | map | `<map>` | no |
+| artificial_requests_count | Number of false requests used to mitigate false positive in case of low trafic | string | `0` | no |
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
