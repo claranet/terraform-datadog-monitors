@@ -1,6 +1,6 @@
 # Monitoring Api Gateway latency
 resource "datadog_monitor" "API_Gateway_latency" {
-  name    = "[${var.environment}] API Gateway latency {{comparator}} {{#is_alert}}{{threshold}}ms{{/is_alert}}{{#is_warning}}{{warn_threshold}}ms{{/is_warning}} ({{value}}ms)"
+  name    = "[${var.environment}] API Gateway latency {{#is_alert}}{{comparator}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   type    = "metric alert"
   message = "${var.message}"
 
@@ -29,7 +29,7 @@ resource "datadog_monitor" "API_Gateway_latency" {
 
 # Monitoring API Gateway 5xx errors percent
 resource "datadog_monitor" "API_http_5xx_errors_count" {
-  name    = "[${var.environment}] API Gateway HTTP 5xx errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  name    = "[${var.environment}] API Gateway HTTP 5xx errors {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   type    = "metric alert"
   message = "${var.message}"
 
@@ -59,7 +59,7 @@ resource "datadog_monitor" "API_http_5xx_errors_count" {
 
 # Monitoring API Gateway 4xx errors percent
 resource "datadog_monitor" "API_http_4xx_errors_count" {
-  name    = "[${var.environment}] API Gateway HTTP 4xx errors {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  name    = "[${var.environment}] API Gateway HTTP 4xx errors {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   type    = "metric alert"
   message = "${var.message}"
 

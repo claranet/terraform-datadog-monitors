@@ -7,7 +7,7 @@ data "template_file" "filter" {
 }
 
 resource "datadog_monitor" "sql-database_cpu_90_15min" {
-  name    = "[${var.environment}] SQL Database CPU too high {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  name    = "[${var.environment}] SQL Database CPU too high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_message, var.message)}"
 
   query = <<EOF
@@ -39,7 +39,7 @@ resource "datadog_monitor" "sql-database_cpu_90_15min" {
 }
 
 resource "datadog_monitor" "sql-database_free_space_low" {
-  name    = "[${var.environment}] SQL Database low free space {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  name    = "[${var.environment}] SQL Database low free space {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.diskspace_message, var.message)}"
 
   type = "metric alert"
@@ -72,7 +72,7 @@ resource "datadog_monitor" "sql-database_free_space_low" {
 }
 
 resource "datadog_monitor" "sql-database_dtu_consumption_high" {
-  name    = "[${var.environment}] SQL Database DTU Consumption too high {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  name    = "[${var.environment}] SQL Database DTU Consumption too high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.dtu_message, var.message)}"
 
   type = "metric alert"
@@ -105,7 +105,7 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
 }
 
 resource "datadog_monitor" "sql-database_deadlocks_count" {
-  name    = "[${var.environment}] SQL Database Deadlocks too high {{comparator}} {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}} ({{value}})"
+  name    = "[${var.environment}] SQL Database Deadlocks too high {{#is_alert}}{{comparator}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.deadlock_message, var.message)}"
 
   type = "metric alert"
