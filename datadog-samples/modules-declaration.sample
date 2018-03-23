@@ -1,6 +1,0 @@
-module "datadog-monitors-feature" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git/{monitors_feature_path}?ref={revision}"
-
-  environment = "${var.environment}"
-  message = "${module.datadog-message-alerting.alerting-message}"
-}
