@@ -8,7 +8,7 @@ data "template_file" "filter" {
 
 resource "datadog_monitor" "mongodb_replicaset_state" {
   name    = "[${var.environment}] Member down in the replica set"
-  message = "${var.message}"
+  message = "${coalesce(var.mongodb_replicaset_message, var.message)}"
 
   query = <<EOF
       avg(last_5m): (
@@ -26,6 +26,8 @@ resource "datadog_monitor" "mongodb_replicaset_state" {
   timeout_h           = 0
   include_tags        = true
   require_full_window = true
+
+  silenced = "${var.mongodb_replicaset_silenced}"
 
   tags = ["env:${var.environment}", "resource:mongodb"]
 }

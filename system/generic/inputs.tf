@@ -26,6 +26,18 @@ variable "filter_tags_custom" {
 
 # Custom CPU instance specific
 
+variable "cpu_high_silenced" {
+  description = "Groups to mute for CPU high monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "cpu_high_message" {
+  description = "Custom message for CPU high monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "cpu_high_timeframe" {
   description = "CPU high timeframe"
   default     = "last_5m"
@@ -41,6 +53,18 @@ variable "cpu_high_threshold_critical" {
   default     = 95
 }
 
+variable "free_disk_space_silenced" {
+  description = "Groups to mute for Free diskspace monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "free_disk_space_message" {
+  description = "Custom message for Free diskspace monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "free_disk_space_threshold_warning" {
   description = "Free disk space warning threshold"
   default     = 10
@@ -51,6 +75,18 @@ variable "free_disk_space_threshold_critical" {
   default     = 5
 }
 
+variable "free_disk_inodes_silenced" {
+  description = "Groups to mute for Free disk inodes monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "free_disk_inodes_message" {
+  description = "Custom message for Free disk inodes monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "free_disk_inodes_threshold_warning" {
   description = "Free disk space warning threshold"
   default     = 10
@@ -59,6 +95,18 @@ variable "free_disk_inodes_threshold_warning" {
 variable "free_disk_inodes_threshold_critical" {
   description = "Free disk space critical threshold"
   default     = 5
+}
+
+variable "free_memory_silenced" {
+  description = "Groups to mute for Free memory monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "free_memory_message" {
+  description = "Custom message for Free memory monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "free_memory_threshold_warning" {

@@ -8,7 +8,7 @@ data "template_file" "filter" {
 
 resource "datadog_monitor" "VPN_status" {
   name    = "[${var.environment}] VPN Down"
-  message = "${var.message}"
+  message = "${coalesce(var.vpn_status_message, var.message)}"
 
   query = <<EOF
         avg(last_5m): (
@@ -26,6 +26,8 @@ resource "datadog_monitor" "VPN_status" {
   timeout_h           = 0
   include_tags        = true
   require_full_window = false
+
+  silenced = "${var.vpn_status_silenced}"
 
   tags = ["env: ${var.environment}", "resource:vpn", "team:aws", "provider:aws"]
 }

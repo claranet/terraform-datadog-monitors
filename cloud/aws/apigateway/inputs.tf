@@ -21,6 +21,18 @@ variable "delay" {
 ###   LATENCY VARIABLES   ###
 ###################################
 
+variable "latency_silenced" {
+  description = "Groups to mute for API Gateway latency monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "latency_message" {
+  description = "Custom message for API Gateway latency monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "latency_threshold_critical" {
   default     = 800
   description = "Alerting threshold in milliseconds"
@@ -35,6 +47,18 @@ variable "latency_threshold_warning" {
 ###   HTTP 5xx status pages   ###
 #################################
 
+variable "http_5xx_requests_silenced" {
+  description = "Groups to mute for API Gateway HTTP 5xx requests monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "http_5xx_requests_message" {
+  description = "Custom message for API Gateway HTTP 5xx requests monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "http_5xx_requests_threshold_critical" {
   default     = 20
   description = "Maximum critical acceptable percent of 5xx errors"
@@ -48,6 +72,18 @@ variable "http_5xx_requests_threshold_warning" {
 #################################
 ###   HTTP 4xx status pages   ###
 #################################
+
+variable "http_4xx_requests_silenced" {
+  description = "Groups to mute for API Gateway HTTP 4xx requests monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "http_4xx_requests_message" {
+  description = "Custom message for API Gateway HTTP 4xx requests monitor"
+  type        = "string"
+  default     = ""
+}
 
 variable "http_4xx_requests_threshold_critical" {
   default     = 30

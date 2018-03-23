@@ -26,6 +26,18 @@ variable "filter_tags_custom" {
 
 # AWS RDS instance specific
 
+variable "cpu_silenced" {
+  description = "Groups to mute for RDS CPU usage monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "cpu_message" {
+  description = "Custom message for RDS CPU usage monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "cpu_threshold_warning" {
   description = "CPU usage in percent (warning threshold)"
   default     = "80"
@@ -34,6 +46,18 @@ variable "cpu_threshold_warning" {
 variable "cpu_threshold_critical" {
   description = "CPU usage in percent (critical threshold)"
   default     = "90"
+}
+
+variable "diskspace_silenced" {
+  description = "Groups to mute for RDS free diskspace monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "diskspace_message" {
+  description = "Custom message for RDS free diskspace monitor"
+  type        = "string"
+  default     = ""
 }
 
 variable "diskspace_threshold_warning" {

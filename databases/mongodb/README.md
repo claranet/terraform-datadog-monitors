@@ -79,3 +79,5 @@ Inputs
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
+| mongodb_replicaset_message | Custom message for Mongodb replicaset monitor | string | `` | no |
+| mongodb_replicaset_silenced | Groups to mute for Mongodb replicaset monitor | map | `<map>` | no |

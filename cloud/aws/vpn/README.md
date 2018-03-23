@@ -29,3 +29,5 @@ Inputs
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
+| vpn_status_message | Custom message for VPN status monitor | string | `` | no |
+| vpn_status_silenced | Groups to mute for VPN status monitor | map | `<map>` | no |

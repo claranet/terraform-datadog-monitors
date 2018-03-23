@@ -23,3 +23,15 @@ variable "filter_tags_custom" {
   description = "Tags used for custom filtering when filter_tags_use_defaults is false"
   default     = "*"
 }
+
+variable "mongodb_replicaset_silenced" {
+  description = "Groups to mute for Mongodb replicaset monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "mongodb_replicaset_message" {
+  description = "Custom message for Mongodb replicaset monitor"
+  type        = "string"
+  default     = ""
+}
