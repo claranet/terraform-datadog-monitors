@@ -155,4 +155,3 @@ variable "artificial_requests_count" {
   default     = 5
   description = "Number of false requests used to mitigate false positive in case of low trafic"
 }
-
