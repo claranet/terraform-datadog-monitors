@@ -23,7 +23,7 @@ Here is the repository organization :
         - [storage](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/storage/)
         - [stream-analytics](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/stream-analytics/)
 - common
-    - alerting-message
+    - [alerting-message](https://bitbucket.org/morea/terraform.feature.datadog/src/master/common/alerting-message/)
 - databases
     - [mongodb](https://bitbucket.org/morea/terraform.feature.datadog/src/master/databases/mongodb/)
 - datadog-samples
@@ -40,23 +40,21 @@ Here is the repository organization :
 
 First, you may refresh your knowledge and look at the [terminalogy](https://confluence.fr.clara.net/display/DAT/Getting+started)
 
-If you want to report an issue please be sure to follow this page : [How to report an issue](https://confluence.fr.clara.net/display/DAT/Project+and+Workflow)
+To contribute you will need to [report an issue](https://confluence.fr.clara.net/display/DAT/Project+and+Workflow).
 
-It explains the different stages of a request, from the `Backlog` to the `Merged`.
-
-If you want to contribute to any request, you must follow our [best practices](https://confluence.fr.clara.net/display/DAT/Templates+monitors).
+If you would like to resolve an issue or implement new monitors you must follow our [best practices](https://confluence.fr.clara.net/display/DAT/Templates+monitors).
 
 ### Important notes ###
 
-* Each folder can be import as a feature on terraform, you must choose the one that you need.
-* Each of these features contains the most commons monitors, but they probably not fulfill all your customer needs
-* You still can create some DataDog monitors after importing a feature, it's even advisable to complete your needs
-* You will find a complete `README.md` on each feature, explaining the feature's workaround
-* The `alerting-message` module defines the alert channel and must be included in each configuration, you have to define it (Pager, Slack...)
+* This repository represents a terraform feature and each first level directory could be imported as a terraform module, you must choose the one(s) you need.
+* Each of these modules contains the most commons monitors, but they probably not fulfill all your customer needs
+* You still can create some specific DataDog monitors after importing a module, it's even advisable to complete your needs
+* You will find a complete `README.md` on each module, explaining how to use it.
+* The `alerting-message` module could be used to easily generate a templating message to use by default but it could be used also multiple times to generate messages for specific monitors.
 
 ### The DataDog provider ###
 
-Before importing some features, you must define the DataDog provider in your `main.tf`
+Before importing some modules, you must define the DataDog provider in your `main.tf`
 
 ```
 provider "datadog" {
