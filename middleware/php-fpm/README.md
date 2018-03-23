@@ -35,5 +35,5 @@ Inputs
 | php_fpm_busy_silenced | Groups to mute for PHP FPM busy worker monitor | map | `<map>` | no |
 | php_fpm_busy_threshold_critical | php fpm busy critical threshold | string | `0.9` | no |
 | php_fpm_busy_threshold_warning | php fpm busy warning threshold | string | `0.8` | no |
-| php_fpm_process_message | Custom message for PHP FPM process monitor | string | `` | no |
-| php_fpm_process_silenced | Groups to mute for PHP FPM process monitor | map | `<map>` | no |
+| php_fpm_connect_message | Custom message for PHP FPM process monitor | string | `` | no |
+| php_fpm_connect_silenced | Groups to mute for PHP FPM process monitor | map | `<map>` | no |
