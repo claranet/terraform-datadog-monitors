@@ -44,8 +44,11 @@ resource "datadog_monitor" "datadog_fpm_process" {
   name    = "[${var.environment}] Can't connect to php-fpm"
   message = "${coalesce(var.php_fpm_connect_message, var.message)}"
 
-  type  = "service check"
-  query = "\"php_fpm.can_ping\".over(\"dd_monitoring:enabled\",\"dd_php_fpm:enabled\",\"env:${var.environment}\").by(\"host\",\"port\").last(6).count_by_status()"
+  type = "service check"
+
+  query = <<EOF
+    "php_fpm.can_ping".over(${data.template_file.filter.rendered}).by("host","port").last(6).count_by_status()
+  EOF
 
   thresholds = {
     ok       = 1
