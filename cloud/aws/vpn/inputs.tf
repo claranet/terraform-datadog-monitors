@@ -23,3 +23,15 @@ variable "filter_tags_custom" {
   description = "Tags used for custom filtering when filter_tags_use_defaults is false"
   default     = "*"
 }
+
+variable "vpn_status_silenced" {
+  description = "Groups to mute for VPN status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "vpn_status_message" {
+  description = "Custom message for VPN status monitor"
+  type        = "string"
+  default     = ""
+}
