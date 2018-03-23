@@ -7,34 +7,37 @@ data "template_file" "filter" {
 }
 
 ### Elasticsearch cluster status monitor ###
+/* Note about the query
+    - If aws.es.cluster_statusred is 1 --> query value (= 2.1) > 2 : critical
+    - If aws.es.cluster_statusyellow is 1 --> 1 < query value (=1.1) < 2 : warning
+    Workaround : in the query, we add "0.1" to the result and we use the comparator ">=". No alert was triggered without that. */
 resource "datadog_monitor" "es_cluster_status" {
   name    = "[${var.environment}] ElasticSearch cluster status is not green"
   message = "${coalesce(var.es_cluster_status_message, var.message)}"
 
-  type = "query alert"
+  type = "metric alert"
 
   query = <<EOF
   max(last_30m): (
     avg:aws.es.cluster_statusred{${data.template_file.filter.rendered}} by {region,name} * 2 +
-    avg:aws.es.cluster_statusyel{${data.template_file.filter.rendered}} by {region,name}
-  ) > 2
+    (avg:aws.es.cluster_statusyellow{${data.template_file.filter.rendered}} by {region,name} + 0.1)
+  ) >= 2
 EOF
 
   thresholds {
-    ok       = 0
     warning  = 1
     critical = 2
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
+  evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.evaluation_delay}"
+  new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
   silenced = "${var.es_cluster_status_silenced}"
@@ -47,7 +50,7 @@ resource "datadog_monitor" "es_free_space_low" {
   name    = "[${var.environment}] ElasticSearch cluster free storage space {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.diskspace_message, var.message)}"
 
-  type = "query alert"
+  type = "metric alert"
 
   query = <<EOF
   avg(last_15m): (
@@ -62,14 +65,14 @@ EOF
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
+  evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.evaluation_delay}"
+  new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
   silenced = "${var.diskspace_silenced}"
@@ -82,7 +85,7 @@ resource "datadog_monitor" "es_cpu_90_15min" {
   name    = "[${var.environment}] ElasticSearch cluster CPU high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_message, var.message)}"
 
-  type = "query alert"
+  type = "metric alert"
 
   query = <<EOF
   avg(last_15m): (
@@ -96,14 +99,14 @@ EOF
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
+  evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.evaluation_delay}"
+  new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
   silenced = "${var.cpu_silenced}"
