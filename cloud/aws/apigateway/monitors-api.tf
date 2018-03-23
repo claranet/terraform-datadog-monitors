@@ -36,7 +36,7 @@ resource "datadog_monitor" "API_http_5xx_errors_count" {
   message = "${coalesce(var.http_5xx_requests_message, var.message)}"
 
   query = <<EOF
-    sum(last_5m): (
+    min(last_5m): (
       default(
         avg:aws.apigateway.5xxerror{${var.filter_tags}} by {region,apiname}.as_count() /
         (avg:aws.apigateway.count{${var.filter_tags}} by {region,apiname}.as_count() + ${var.artificial_requests_count}),
@@ -70,7 +70,7 @@ resource "datadog_monitor" "API_http_4xx_errors_count" {
   message = "${coalesce(var.http_4xx_requests_message, var.message)}"
 
   query = <<EOF
-    sum(last_5m): (
+    min(last_5m): (
       default(
         avg:aws.apigateway.4xxerror{${var.filter_tags}} by {region,apiname}.as_count() /
         (avg:aws.apigateway.count{${var.filter_tags}} by {region,apiname}.as_count() + ${var.artificial_requests_count}),

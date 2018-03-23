@@ -150,3 +150,9 @@ variable "elb_backend_latency_critical" {
   description = "latency critical threshold in seconds"
   default     = 5
 }
+
+variable "artificial_requests_count" {
+  default     = 5
+  description = "Number of false requests used to mitigate false positive in case of low trafic"
+}
+
