@@ -27,7 +27,7 @@ Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| delay | Delay in seconds for the metric evaluation | string | `600` | no |
+| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
 | failed_requests_message | Custom message for API Management failed requests monitor | string | `` | no |
 | failed_requests_silenced | Groups to mute for API Management failed requests monitor | map | `<map>` | no |

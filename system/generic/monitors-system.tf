@@ -26,8 +26,8 @@ resource "datadog_monitor" "datadog_cpu_too_high" {
   tags = ["env:${var.environment}", "type:system", "resource:cpu"]
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
-  new_host_delay      = "${var.evaluation_delay}"
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -59,8 +59,8 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
   tags = ["env:${var.environment}", "type:system", "resource:disk"]
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
-  new_host_delay      = "${var.evaluation_delay}"
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -92,8 +92,8 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
   tags = ["env:${var.environment}", "type:system", "resource:disk"]
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
-  new_host_delay      = "${var.evaluation_delay}"
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -125,8 +125,8 @@ resource "datadog_monitor" "datadog_free_memory" {
   tags = ["env:${var.environment}", "type:system", "resource:memory"]
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
-  new_host_delay      = "${var.evaluation_delay}"
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
