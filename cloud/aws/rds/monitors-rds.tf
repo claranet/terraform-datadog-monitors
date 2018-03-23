@@ -25,13 +25,13 @@ EOF
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
+  evaluation_delay    = "${var.delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.evaluation_delay}"
+  new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
   silenced = "${var.cpu_silenced}"
@@ -59,13 +59,13 @@ EOF
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
+  evaluation_delay    = "${var.delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.evaluation_delay}"
+  new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
   silenced = "${var.diskspace_silenced}"

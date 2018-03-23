@@ -44,7 +44,7 @@ Inputs
 | client_other_error_requests_silenced | Groups to mute for Storage other errors monitor | map | `<map>` | no |
 | client_other_error_requests_threshold_critical | Maximum acceptable percent of client other error requests for a storage | string | `90` | no |
 | client_other_error_requests_threshold_warning | Warning regarding acceptable percent of client other error requests for a storage | string | `50` | no |
-| delay | Delay in seconds for the metric evaluation | string | `600` | no |
+| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |

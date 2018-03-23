@@ -69,7 +69,7 @@ Inputs
 | appservices_response_time_silenced | Groups to mute for App Services response time monitor | map | `<map>` | no |
 | appservices_response_time_threshold_critical | Alerting threshold for response time in seconds | string | `10` | no |
 | appservices_response_time_threshold_warning | Warning threshold for response time in seconds | string | `5` | no |
-| delay | Delay in seconds for the metric evaluation | string | `600` | no |
+| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
 | eventhub_errors_rate_message | Custom message for Event Hub errors monitor | string | `` | no |
 | eventhub_errors_rate_silenced | Groups to mute for Event Hub errors monitor | map | `<map>` | no |
