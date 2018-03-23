@@ -106,7 +106,7 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
 
 resource "datadog_monitor" "datadog_free_memory" {
   name    = "[${var.environment}] Free memory {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = "${coalesce(var.free_memory_message, var.message)}"
+  message = "${var.free_memory_message}"
 
   query = <<EOF
     min(last_1m): (
