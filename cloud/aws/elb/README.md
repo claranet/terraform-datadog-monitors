@@ -31,6 +31,7 @@ Inputs
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | dd_aws_elb | # ELB | string | `disable` | no |
+| artificial_requests_count | Number of false requests used to mitigate false positive in case of low trafic | string | `5` | no |
 | elb_4xx_message | Custom message for ELB 4xx errors monitor | string | `` | no |
 | elb_4xx_silenced | Groups to mute for ELB 4xx errors monitor | map | `<map>` | no |
 | elb_4xx_threshold_critical | loadbalancer 4xx critical threshold in percentage | string | `10` | no |

@@ -73,7 +73,7 @@ resource "datadog_monitor" "ALB_httpcode_elb_5xx" {
   message = "${coalesce(var.httpcode_elb_5xx_message, var.message)}"
 
   query = <<EOF
-    sum(last_5m): (
+    min(last_5m): (
       default(
         avg:aws.applicationelb.httpcode_elb_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
         (avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
@@ -106,7 +106,7 @@ resource "datadog_monitor" "ALB_httpcode_elb_4xx" {
   message = "${coalesce(var.httpcode_elb_4xx_message, var.message)}"
 
   query = <<EOF
-    sum(last_5m): (
+    min(last_5m): (
       default(
         avg:aws.applicationelb.httpcode_elb_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
         (avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
@@ -139,7 +139,7 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
   message = "${coalesce(var.httpcode_target_5xx_message, var.message)}"
 
   query = <<EOF
-    sum(last_5m): (
+    min(last_5m): (
       default(
         avg:aws.applicationelb.httpcode_target_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
         (avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
@@ -172,7 +172,7 @@ resource "datadog_monitor" "ALB_httpcode_target_4xx" {
   message = "${coalesce(var.httpcode_target_4xx_message, var.message)}"
 
   query = <<EOF
-    sum(last_5m): (
+    min(last_5m): (
       default(
         avg:aws.applicationelb.httpcode_target_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
         (avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
