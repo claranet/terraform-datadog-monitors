@@ -26,7 +26,6 @@ Here is the repository organization :
     - [alerting-message](https://bitbucket.org/morea/terraform.feature.datadog/src/master/common/alerting-message/)
 - databases
     - [mongodb](https://bitbucket.org/morea/terraform.feature.datadog/src/master/databases/mongodb/)
-- datadog-samples
 - incubator
 - middleware
     - [apache](https://bitbucket.org/morea/terraform.feature.datadog/src/master/middleware/apache/)
@@ -38,7 +37,7 @@ Here is the repository organization :
 
 ### How to contribute ? ###
 
-First, you may refresh your knowledge and look at the [terminalogy](https://confluence.fr.clara.net/display/DAT/Getting+started)
+First, you may refresh your knowledge and look at the [terminalogy](https://confluence.fr.clara.net/display/DAT/Getting+started).
 
 To contribute you will need to [report an issue](https://confluence.fr.clara.net/display/DAT/Project+and+Workflow).
 
@@ -67,15 +66,15 @@ Both of the `datadog_api_key` and `datadog_app_key` are unique to the client.
 
 ### Module Declaration example ###
 
-A quick example to how import the monitors that you need :
+A quick example to how import a monitors set that you need :
 
 ```
-module "datadog-monitors-feature" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git/{monitors_feature_path}?ref={revision}"
+module "datadog-monitors-my-monitors-set" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//my/monitors/set?ref={revision}"
 
   environment = "${var.environment}"
   message = "${module.datadog-message-alerting.alerting-message}"
 }
 ```
 
-`{monitors_feature_path}` could be defined as `/cloud/aws/elb` for example.
+`my/monitors/set` represents the path to an monitors set directory listed above.
