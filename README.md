@@ -77,4 +77,5 @@ module "datadog-monitors-my-monitors-set" {
 }
 ```
 
-`my/monitors/set` represents the path to an monitors set directory listed above.
+`my/monitors/set` represents the path to an monitors set directory listed above.  
+The `//` is very important, it's a terraform specific syntax used to separate git url and folder path.
