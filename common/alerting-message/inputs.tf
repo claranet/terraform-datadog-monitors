@@ -1,10 +1,10 @@
-variable "oncall_24x7" {
-  description = "Define PagerDuty NBH service name for alerts and nodata"
+variable "oncall_alert" {
+  description = "Define a broadcast channel for critical alerts"
   type        = "string"
 }
 
-variable "oncall_office_hours" {
-  description = "Define PagerDuty BH service name for warning alerts"
+variable "oncall_warning" {
+  description = "Define a broadcast channel for warning alerts"
   type        = "string"
 }
 
