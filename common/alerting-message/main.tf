@@ -10,9 +10,9 @@ $${append_text}
 EOF
 
   vars {
-    oncall_24x7         = "${var.oncall_alert}"
-    oncall_office_hours = "${var.oncall_warning}"
-    prepend_text        = "${var.prepend_text}"
-    append_text         = "${var.append_text}"
+    oncall_alert   = "${var.oncall_alert}"
+    oncall_warning = "${var.oncall_warning}"
+    prepend_text   = "${var.prepend_text}"
+    append_text    = "${var.append_text}"
   }
 }
