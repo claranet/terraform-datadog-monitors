@@ -2,7 +2,7 @@
 
 This repository is used to store all our monitors templates.
 
-Here is the repository organization :
+Here is the repository organization:
 
 - cloud
     - aws
@@ -37,7 +37,7 @@ Here is the repository organization :
 
 ### How to contribute ? ###
 
-First, you may refresh your knowledge and look at the [terminalogy](https://confluence.fr.clara.net/display/DAT/Getting+started).
+First, you may refresh your knowledge and look at the [terminology](https://confluence.fr.clara.net/display/DAT/Getting+started).
 
 To contribute you will need to [report an issue](https://confluence.fr.clara.net/display/DAT/Project+and+Workflow).
 
@@ -66,7 +66,7 @@ Both of the `datadog_api_key` and `datadog_app_key` are unique to the client.
 
 ### Module Declaration example ###
 
-A quick example to how import a monitors set that you need :
+ A quick example of using a set of monitors:
 
 ```
 module "datadog-monitors-my-monitors-set" {
