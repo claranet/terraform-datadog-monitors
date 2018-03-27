@@ -8,6 +8,12 @@ variable "oncall_warning" {
   type        = "string"
 }
 
+variable "oncall_nodata" {
+  description = "Define a broadcast channel for nodata alerts"
+  type        = "string"
+  default     = ""
+}
+
 variable "prepend_text" {
   description = "Optional free text string to prepend to alert"
   type        = "string"
