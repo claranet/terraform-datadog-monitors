@@ -1,7 +1,3 @@
-locals {
-  oncall_nodata = "${var.message_nodata == "" ? var.message_alert : var.message_nodata}"
-}
-
 data "template_file" "alerting-message" {
   template = <<EOF
 $${prepend_text}
@@ -17,7 +13,7 @@ EOF
   vars {
     message_alert   = "${var.message_alert}"
     message_warning = "${var.message_warning}"
-    message_nodata  = "${local.oncall_nodata}"
+    message_nodata  = "${coalesce(var.message_nodata,var.message_alert)}"
     prepend_text    = "${var.prepend_text}"
     append_text     = "${var.append_text}"
   }
