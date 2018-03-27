@@ -1,14 +1,14 @@
-variable "oncall_alert" {
+variable "message_alert" {
   description = "Define a broadcast channel for critical alerts"
   type        = "string"
 }
 
-variable "oncall_warning" {
+variable "message_warning" {
   description = "Define a broadcast channel for warning alerts"
   type        = "string"
 }
 
-variable "oncall_nodata" {
+variable "message_nodata" {
   description = "Define a broadcast channel for nodata alerts"
   type        = "string"
   default     = ""
