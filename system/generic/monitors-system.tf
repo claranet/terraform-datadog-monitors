@@ -7,7 +7,7 @@ data "template_file" "filter" {
 }
 
 resource "datadog_monitor" "datadog_cpu_too_high" {
-  name    = "[${var.environment}] CPU usage {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] CPU usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_high_message, var.message)}"
 
   query = <<EOF
@@ -39,7 +39,7 @@ resource "datadog_monitor" "datadog_cpu_too_high" {
 }
 
 resource "datadog_monitor" "datadog_load_too_high" {
-  name    = "[${var.environment}] CPU load 5 {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] CPU load 5 {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_load_message, var.message)}"
 
   query = <<EOF
@@ -72,7 +72,7 @@ resource "datadog_monitor" "datadog_load_too_high" {
 }
 
 resource "datadog_monitor" "datadog_free_disk_space_too_low" {
-  name    = "[${var.environment}] Free disk space {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Free disk space {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.free_disk_space_message, var.message)}"
 
   query = <<EOF
@@ -105,7 +105,7 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
 }
 
 resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
-  name    = "[${var.environment}] Free disk inodes {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Free disk inodes {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.free_disk_inodes_message, var.message)}"
 
   query = <<EOF
@@ -138,7 +138,7 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
 }
 
 resource "datadog_monitor" "datadog_free_memory" {
-  name    = "[${var.environment}] Free memory {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Free memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${var.free_memory_message}"
 
   query = <<EOF
