@@ -1,17 +1,27 @@
-variable "oncall_24x7" {
-  type = "string"
+variable "message_alert" {
+  description = "Define a broadcast channel for critical alerts"
+  type        = "string"
 }
 
-variable "oncall_office_hours" {
-  type = "string"
+variable "message_warning" {
+  description = "Define a broadcast channel for warning alerts"
+  type        = "string"
+}
+
+variable "message_nodata" {
+  description = "Define a broadcast channel for nodata alerts"
+  type        = "string"
+  default     = ""
 }
 
 variable "prepend_text" {
-  type    = "string"
-  default = ""
+  description = "Optional free text string to prepend to alert"
+  type        = "string"
+  default     = ""
 }
 
 variable "append_text" {
-  type    = "string"
-  default = ""
+  description = "Optional free text string to append to alert"
+  type        = "string"
+  default     = ""
 }
