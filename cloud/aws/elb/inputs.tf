@@ -5,9 +5,9 @@ variable "environment" {
 }
 
 # Global DataDog
-variable "evaluation_delay" {
+variable "delay" {
   description = "Delay in seconds for the metric evaluation"
-  default     = 600
+  default     = 900
 }
 
 variable "message" {
@@ -149,4 +149,9 @@ variable "elb_backend_latency_warning" {
 variable "elb_backend_latency_critical" {
   description = "latency critical threshold in seconds"
   default     = 5
+}
+
+variable "artificial_requests_count" {
+  default     = 5
+  description = "Number of false requests used to mitigate false positive in case of low trafic"
 }

@@ -17,7 +17,11 @@ Purpose
 -------
 Creates a DataDog monitors with the following checks :
 
-* System CPU High
+* CPU usage
+* CPU load ratio
+* Free memory
+* Free disk inodes
+* Free disk space
 
 Inputs
 ------
@@ -29,8 +33,13 @@ Inputs
 | cpu_high_threshold_critical | CPU high critical threshold | string | `95` | no |
 | cpu_high_threshold_warning | CPU high warning threshold | string | `80` | no |
 | cpu_high_timeframe | CPU high timeframe | string | `last_5m` | no |
+| cpu_load_message | Custom message for CPU load ratio monitor | string | `` | no |
+| cpu_load_silenced | Groups to mute for CPU load ratio monitor | map | `<map>` | no |
+| cpu_load_threshold_critical | CPU load ratio critical threshold | string | `4` | no |
+| cpu_load_threshold_warning | CPU load ratio warning threshold | string | `3` | no |
+| cpu_load_timeframe | CPU load timeframe | string | `last_5m` | no |
 | environment | Architecture Environment | string | - | yes |
-| evaluation_delay | Delay in seconds for the metric evaluation | string | `600` | no |
+| delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | free_disk_inodes_message | Custom message for Free disk inodes monitor | string | `` | no |

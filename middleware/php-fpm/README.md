@@ -17,7 +17,7 @@ Purpose
 -------
 Creates a DataDog monitors with the following checks :
 
-* PHP FPM process
+* PHP FPM connect
 * PHP FPM load
 
 Inputs
@@ -26,8 +26,7 @@ Inputs
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | environment | Architecture Environment | string | - | yes |
-| evaluation_delay_metric | Delay in seconds for the metric evaluation | string | `600` | no |
-| evaluation_delay_service | Delay in seconds for the metric evaluation | string | `15` | no |
+| delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |

@@ -8,7 +8,7 @@ data "template_file" "filter" {
 
 ### RDS instance CPU monitor ###
 resource "datadog_monitor" "rds_cpu_90_15min" {
-  name    = "[${var.environment}] RDS instance CPU high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] RDS instance CPU high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_message, var.message)}"
 
   type = "metric alert"
@@ -25,13 +25,13 @@ EOF
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
+  evaluation_delay    = "${var.delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.evaluation_delay}"
+  new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
   silenced = "${var.cpu_silenced}"
@@ -41,7 +41,7 @@ EOF
 
 ### RDS instance free space monitor ###
 resource "datadog_monitor" "rds_free_space_low" {
-  name    = "[${var.environment}] RDS instance free space {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] RDS instance free space {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.diskspace_message, var.message)}"
 
   type = "metric alert"
@@ -59,13 +59,13 @@ EOF
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
+  evaluation_delay    = "${var.delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.evaluation_delay}"
+  new_host_delay      = "${var.delay}"
   no_data_timeframe   = 20
 
   silenced = "${var.diskspace_silenced}"

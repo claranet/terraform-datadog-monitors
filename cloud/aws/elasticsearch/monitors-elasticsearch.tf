@@ -47,7 +47,7 @@ EOF
 
 ### Elasticsearch cluster free storage space monitor ###
 resource "datadog_monitor" "es_free_space_low" {
-  name    = "[${var.environment}] ElasticSearch cluster free storage space {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] ElasticSearch cluster free storage space {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.diskspace_message, var.message)}"
 
   type = "metric alert"
@@ -82,7 +82,7 @@ EOF
 
 ### Elasticsearch cluster CPU monitor ###
 resource "datadog_monitor" "es_cpu_90_15min" {
-  name    = "[${var.environment}] ElasticSearch cluster CPU high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] ElasticSearch cluster CPU high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_message, var.message)}"
 
   type = "metric alert"

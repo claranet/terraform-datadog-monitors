@@ -7,7 +7,7 @@ data "template_file" "filter" {
 }
 
 resource "datadog_monitor" "datadog_php_fpm_connect_idle" {
-  name    = "[${var.environment}] php_fpm busy worker {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] php_fpm busy worker {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.php_fpm_busy_message, var.message)}"
 
   type = "metric alert"
@@ -26,8 +26,8 @@ resource "datadog_monitor" "datadog_php_fpm_connect_idle" {
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay_metric}"
-  new_host_delay      = "${var.evaluation_delay_metric}"
+  evaluation_delay    = "${var.delay_metric}"
+  new_host_delay      = "${var.delay_metric}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -57,8 +57,8 @@ resource "datadog_monitor" "datadog_fpm_process" {
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay_service}"
-  new_host_delay      = "${var.evaluation_delay_service}"
+  evaluation_delay    = "${var.delay_service}"
+  new_host_delay      = "${var.delay_service}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
