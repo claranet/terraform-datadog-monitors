@@ -15,7 +15,7 @@ resource "datadog_monitor" "ALB_no_healthy_instances" {
 
   query = <<EOF
     min(last_1m): (
-      sum:aws.applicationelb.healthy_host_count{${data.template_file.filter.rendered}} by {region,loadbalancer}
+      min:aws.applicationelb.healthy_host_count{${data.template_file.filter.rendered}} by {region,loadbalancer}
     ) <= 0
   EOF
 
@@ -44,7 +44,7 @@ resource "datadog_monitor" "ALB_latency" {
 
   query = <<EOF
     min(last_5m): (
-      avg:aws.applicationelb.target_response_time.average{${data.template_file.filter.rendered}} by {region,loadbalancer}
+      min:aws.applicationelb.target_response_time.average{${data.template_file.filter.rendered}} by {region,loadbalancer}
     ) > ${var.latency_threshold_critical}
   EOF
 
@@ -75,8 +75,8 @@ resource "datadog_monitor" "ALB_httpcode_elb_5xx" {
   query = <<EOF
     min(last_5m): (
       default(
-        avg:aws.applicationelb.httpcode_elb_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
-        (avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
+        min:aws.applicationelb.httpcode_elb_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
+        (min:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.httpcode_elb_5xx_threshold_critical}
   EOF
@@ -108,8 +108,8 @@ resource "datadog_monitor" "ALB_httpcode_elb_4xx" {
   query = <<EOF
     min(last_5m): (
       default(
-        avg:aws.applicationelb.httpcode_elb_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
-        (avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
+        min:aws.applicationelb.httpcode_elb_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
+        (min:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.httpcode_elb_4xx_threshold_critical}
   EOF
@@ -141,8 +141,8 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
   query = <<EOF
     min(last_5m): (
       default(
-        avg:aws.applicationelb.httpcode_target_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
-        (avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
+        min:aws.applicationelb.httpcode_target_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
+        (min:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.httpcode_target_5xx_threshold_critical}
   EOF
@@ -174,8 +174,8 @@ resource "datadog_monitor" "ALB_httpcode_target_4xx" {
   query = <<EOF
     min(last_5m): (
       default(
-        avg:aws.applicationelb.httpcode_target_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
-        (avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
+        min:aws.applicationelb.httpcode_target_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
+        (min:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.httpcode_target_4xx_threshold_critical}
   EOF
