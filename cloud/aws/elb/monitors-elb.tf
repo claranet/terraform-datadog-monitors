@@ -35,7 +35,7 @@ resource "datadog_monitor" "ELB_no_healthy_instances" {
 }
 
 resource "datadog_monitor" "ELB_too_much_4xx" {
-  name    = "[${var.environment}] ELB 4xx errors too high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] ELB 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.elb_4xx_message, var.message)}"
 
   query = <<EOF
@@ -71,7 +71,7 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
 }
 
 resource "datadog_monitor" "ELB_too_much_5xx" {
-  name    = "[${var.environment}] ELB 5xx errors too high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] ELB 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.elb_5xx_message, var.message)}"
 
   query = <<EOF
@@ -107,7 +107,7 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
 }
 
 resource "datadog_monitor" "ELB_too_much_4xx_backend" {
-  name    = "[${var.environment}] ELB backend 4xx errors too high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] ELB backend 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.elb_backend_4xx_message, var.message)}"
 
   query = <<EOF
@@ -143,7 +143,7 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
 }
 
 resource "datadog_monitor" "ELB_too_much_5xx_backend" {
-  name    = "[${var.environment}] ELB backend 5xx errors too high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] ELB backend 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.elb_backend_5xx_message, var.message)}"
 
   query = <<EOF
@@ -179,7 +179,7 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
 }
 
 resource "datadog_monitor" "ELB_backend_latency" {
-  name    = "[${var.environment}] ELB latency too high {{#is_alert}}{{comparator}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
+  name    = "[${var.environment}] ELB latency too high {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = "${coalesce(var.elb_backend_latency_message, var.message)}"
 
   query = <<EOF

@@ -33,7 +33,7 @@ resource "datadog_monitor" "eventhub_status" {
 }
 
 resource "datadog_monitor" "eventhub_failed_requests" {
-  name    = "[${var.environment}] Event Hub too many failed requests {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Event Hub too many failed requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.failed_requests_rate_message, var.message)}"
 
   query = <<EOF
@@ -69,7 +69,7 @@ resource "datadog_monitor" "eventhub_failed_requests" {
 }
 
 resource "datadog_monitor" "eventhub_errors" {
-  name    = "[${var.environment}] Event Hub too many errors {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Event Hub too many errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.errors_rate_message, var.message)}"
 
   query = <<EOF
