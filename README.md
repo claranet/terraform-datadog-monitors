@@ -46,7 +46,7 @@ If you would like to resolve an issue or implement new monitors you must follow 
 ### Important notes ###
 
 * This repository represents a terraform feature and each first level directory could be imported as a terraform module, you must choose the one(s) you need.
-* Each of these modules contains the most commons monitors, but they probably not fulfill all your customer needs
+* Each of these modules contains the most commons monitors, but they probably do not fulfill all your customer needs
 * You still can create some specific DataDog monitors after importing a module, it's even advisable to complete your needs
 * You will find a complete `README.md` on each module, explaining how to use it.
 * The `alerting-message` module could be used to easily generate a templating message to use by default but it could be used also multiple times to generate messages for specific monitors.
@@ -66,16 +66,37 @@ Both of the `datadog_api_key` and `datadog_app_key` are unique to the client.
 
 ### Module Declaration example ###
 
- A quick example of using a set of monitors:
+ A quick example of using a set of monitors for a given terraform module:
 
 ```
-module "datadog-monitors-my-monitors-set" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//my/monitors/set?ref={revision}"
 
-  environment = "${var.environment}"
-  message = "${module.datadog-message-alerting.alerting-message}"
+variable "oncall_24x7" {
+  default = "@pagerduty-Public_Cloud_FR_-_Yoda_-_Unibail_HNO"
+}
+
+variable "oncall_office_hours" {
+  default = "@pagerduty-Public_Cloud_FR_-_Yoda_-_Unibail_HO"
+}
+
+variable "oncall_nodata" {
+  default = "@pagerduty-Public_Cloud_FR_-_Yoda_-_Unibail_HNO"
+}
+
+module "datadog-message-alerting" {
+  source                       = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//common/alerting-message"
+
+  message_alert                = "${var.oncall_24x7}"
+  message_warning              = "${var.oncall_office_hours}"
+  message_nodata               = "${var.oncall_nodata}"
+}
+
+module "datadog-monitors-my-monitors-set" {
+  source                       = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//my/monitors/set?ref={revision}"
+
+  environment                  = "${var.environment}"
+  message                      = "${module.datadog-message-alerting.alerting-message}"
 }
 ```
 
-`my/monitors/set` represents the path to an monitors set directory listed above.  
+`my/monitors/set` represents the path to a monitors set sub directory listed above.  
 The `//` is very important, it's a terraform specific syntax used to separate git url and folder path.
