@@ -22,7 +22,7 @@ Creates a DataDog monitor alert message with the following inputs :
 * A broadcast channel for critical alerts
 * A broadcast channel for nodata alerts
 * A broadcast channel for warning alerts
-* Prepend test free string
+* Prepend text free string
 * Append text free string
 
 Inputs
