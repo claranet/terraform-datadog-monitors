@@ -1,20 +1,59 @@
-# README - DataDog Monitors #
+# DataDog Monitors #
 
-This repository is used to store all our monitors templates. 
+This repository is used to store all our monitors templates.
 
-These templates have to be used with dedicated agent configurations and resource tagging to works as expected.
+Here is the repository organization:
+
+- cloud
+    - aws
+        - [alb](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/alb/)
+        - [apigateway](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/apigateway/)
+        - [elasticsearch](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/elasticsearch/)
+        - [elb](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/elb/)
+        - [kinesis-firehose](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/kinesis-firehose/)
+        - [rds](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/rds/)
+        - [vpn](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/vpn/)
+    - azure
+        - [apimanagement](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/apimanagement)
+        - [app-services](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/app-services/r)
+        - [eventhub](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/eventhub/)
+        - [iothubs](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/iothubs/)
+        - [redis](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/redis/)
+        - [sql-database](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/sql-database/)
+        - [storage](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/storage/)
+        - [stream-analytics](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/stream-analytics/)
+- common
+    - [alerting-message](https://bitbucket.org/morea/terraform.feature.datadog/src/master/common/alerting-message/)
+- databases
+    - [mongodb](https://bitbucket.org/morea/terraform.feature.datadog/src/master/databases/mongodb/)
+- incubator
+- middleware
+    - [apache](https://bitbucket.org/morea/terraform.feature.datadog/src/master/middleware/apache/)
+    - [nginx](https://bitbucket.org/morea/terraform.feature.datadog/src/master/middleware/nginx/)
+    - [php-fpm](https://bitbucket.org/morea/terraform.feature.datadog/src/master/middleware/php-fpm/)
+- system
+    - [generic](https://bitbucket.org/morea/terraform.feature.datadog/src/master/system/generic/)
+
 
 ### How to contribute ? ###
 
-The easiest way to contribute on this repository is to add monitors file inside the monitors repository.
+First, you may refresh your knowledge and look at the [terminology](https://confluence.fr.clara.net/display/DAT/Getting+started).
+
+To contribute you will need to [report an issue](https://confluence.fr.clara.net/display/DAT/Project+and+Workflow).
+
+If you would like to resolve an issue or implement new monitors you must follow our [best practices](https://confluence.fr.clara.net/display/DAT/Templates+monitors).
 
 ### Important notes ###
 
-* This repository will be included as a Terraform module source.
-* Each monitors have to be disabled by default, so you have to manage this condition when you create your monitors.
-* If you override a basic monitor with a custom one, you have to use tag filters on you query. (Example dd_cpu_high, if you want to override default cpu monitors)
+* This repository represents a terraform feature and each first level directory could be imported as a terraform module, you must choose the one(s) you need.
+* Each of these modules contains the most commons monitors, but they probably do not fulfill all your customer needs
+* You still can create some specific DataDog monitors after importing a module, it's even advisable to complete your needs
+* You will find a complete `README.md` on each module, explaining how to use it.
+* The `alerting-message` module could be used to easily generate a templating message to use by default but it could be used also multiple times to generate messages for specific monitors.
 
-### Main.tf : add the DataDog provider ###
+### The DataDog provider ###
+
+Before importing some modules, you must define the DataDog provider in your `main.tf`
 
 ```
 provider "datadog" {
@@ -23,51 +62,41 @@ provider "datadog" {
 }
 ```
 
+Both of the `datadog_api_key` and `datadog_app_key` are unique to the client.
+
 ### Module Declaration example ###
 
-```
-module "datadog-monitors" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//{module-path}?ref={version}"
-
-  critical_escalation_group = "${var.critical_escalation_group}"
-  warning_escalation_group  = "${var.warning_escalation_group}"
-
-  #default monitors templates integrations examples
-  dd_system      = "${var.dd_system}"
-  #nginx         = "false"
-  #aws_rds_mysql = "false"
-
-  dd_custom_cpu = "${var.dd_custom_cpu}"
-}
-```
-
-### Input Declaration example ###
+ A quick example of using a set of monitors for a given terraform module:
 
 ```
-variable "critical_escalation_group" {
-  default = "@pagerduty_HODummy"
-}
-variable "warning_escalation_group" {
-  default = "@pagerduty_HNODummy"
+
+variable "oncall_24x7" {
+  default = "@pagerduty-Public_Cloud_FR_-_Yoda_-_Unibail_HNO"
 }
 
-variable "datadog_app_key" {}
-variable "datadog_api_key" {}
-
-variable "dd_system" {
-  default = "enabled"
+variable "oncall_office_hours" {
+  default = "@pagerduty-Public_Cloud_FR_-_Yoda_-_Unibail_HO"
 }
 
-variable "dd_custom_cpu" {
-  type = "map"
-  default = {
-    status = "enabled"
-    name   = "CPU High > 95% during 1 hour"
+variable "oncall_nodata" {
+  default = "@pagerduty-Public_Cloud_FR_-_Yoda_-_Unibail_HNO"
+}
 
-    period = "last_1h"
+module "datadog-message-alerting" {
+  source                       = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//common/alerting-message"
 
-    critical_threshold = 95
-    warning_threshold  = 90
-  }
+  message_alert                = "${var.oncall_24x7}"
+  message_warning              = "${var.oncall_office_hours}"
+  message_nodata               = "${var.oncall_nodata}"
+}
+
+module "datadog-monitors-my-monitors-set" {
+  source                       = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//my/monitors/set?ref={revision}"
+
+  environment                  = "${var.environment}"
+  message                      = "${module.datadog-message-alerting.alerting-message}"
 }
 ```
+
+`my/monitors/set` represents the path to a monitors set sub directory listed above.  
+The `//` is very important, it's a terraform specific syntax used to separate git url and folder path.
