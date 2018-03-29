@@ -7,7 +7,7 @@ data "template_file" "filter" {
 }
 
 resource "datadog_monitor" "datadog_cpu_too_high" {
-  name    = "[${var.environment}] CPU usage {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] CPU usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_high_message, var.message)}"
 
   query = <<EOF
@@ -26,8 +26,8 @@ resource "datadog_monitor" "datadog_cpu_too_high" {
   tags = ["env:${var.environment}", "type:system", "resource:cpu"]
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
-  new_host_delay      = "${var.evaluation_delay}"
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -38,8 +38,41 @@ resource "datadog_monitor" "datadog_cpu_too_high" {
   silenced = "${var.cpu_high_silenced}"
 }
 
+resource "datadog_monitor" "datadog_load_too_high" {
+  name    = "[${var.environment}] CPU load 5 {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = "${coalesce(var.cpu_load_message, var.message)}"
+
+  query = <<EOF
+    min(${var.cpu_load_timeframe}): (
+      avg:system.load.5{${data.template_file.filter.rendered}} by {region,host} /
+      avg:system.core.count{${data.template_file.filter.rendered}} by {region,host}
+    ) > ${var.cpu_load_threshold_critical}
+  EOF
+
+  type = "metric alert"
+
+  thresholds {
+    warning  = "${var.cpu_load_threshold_warning}"
+    critical = "${var.cpu_load_threshold_critical}"
+  }
+
+  tags = ["env:${var.environment}", "type:system", "resource:load"]
+
+  notify_no_data      = true
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+  no_data_timeframe   = 20
+
+  silenced = "${var.cpu_load_silenced}"
+}
+
 resource "datadog_monitor" "datadog_free_disk_space_too_low" {
-  name    = "[${var.environment}] Free disk space {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Free disk space {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.free_disk_space_message, var.message)}"
 
   query = <<EOF
@@ -59,8 +92,8 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
   tags = ["env:${var.environment}", "type:system", "resource:disk"]
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
-  new_host_delay      = "${var.evaluation_delay}"
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -72,7 +105,7 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
 }
 
 resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
-  name    = "[${var.environment}] Free disk inodes {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Free disk inodes {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.free_disk_inodes_message, var.message)}"
 
   query = <<EOF
@@ -92,8 +125,8 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
   tags = ["env:${var.environment}", "type:system", "resource:disk"]
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
-  new_host_delay      = "${var.evaluation_delay}"
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -105,7 +138,7 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
 }
 
 resource "datadog_monitor" "datadog_free_memory" {
-  name    = "[${var.environment}] Free memory {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Free memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${var.free_memory_message}"
 
   query = <<EOF
@@ -125,8 +158,8 @@ resource "datadog_monitor" "datadog_free_memory" {
   tags = ["env:${var.environment}", "type:system", "resource:memory"]
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
-  new_host_delay      = "${var.evaluation_delay}"
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0

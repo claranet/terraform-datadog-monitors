@@ -31,6 +31,7 @@ Inputs
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | dd_aws_elb | # ELB | string | `disable` | no |
+| artificial_requests_count | Number of false requests used to mitigate false positive in case of low trafic | string | `5` | no |
 | elb_4xx_message | Custom message for ELB 4xx errors monitor | string | `` | no |
 | elb_4xx_silenced | Groups to mute for ELB 4xx errors monitor | map | `<map>` | no |
 | elb_4xx_threshold_critical | loadbalancer 4xx critical threshold in percentage | string | `10` | no |
@@ -54,7 +55,7 @@ Inputs
 | elb_no_healthy_instance_message | Custom message for ELB no healty instance monitor | string | `` | no |
 | elb_no_healthy_instance_silenced | Groups to mute for ELB no healty instance monitor | map | `<map>` | no |
 | environment | Architecture Environment | string | - | yes |
-| evaluation_delay | Delay in seconds for the metric evaluation | string | `600` | no |
+| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |

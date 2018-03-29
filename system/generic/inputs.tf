@@ -5,9 +5,9 @@ variable "environment" {
 }
 
 # Global DataDog
-variable "evaluation_delay" {
+variable "delay" {
   description = "Delay in seconds for the metric evaluation"
-  default     = 600
+  default     = 15
 }
 
 variable "message" {
@@ -51,6 +51,33 @@ variable "cpu_high_threshold_warning" {
 variable "cpu_high_threshold_critical" {
   description = "CPU high critical threshold"
   default     = 95
+}
+
+variable "cpu_load_silenced" {
+  description = "Groups to mute for CPU load ratio monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "cpu_load_message" {
+  description = "Custom message for CPU load ratio monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "cpu_load_timeframe" {
+  description = "CPU load ratio timeframe"
+  default     = "last_5m"
+}
+
+variable "cpu_load_threshold_warning" {
+  description = "CPU load ratio warning threshold"
+  default     = 3
+}
+
+variable "cpu_load_threshold_critical" {
+  description = "CPU load ratio critical threshold"
+  default     = 4
 }
 
 variable "free_disk_space_silenced" {

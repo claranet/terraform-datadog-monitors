@@ -33,7 +33,7 @@ Inputs
 | cpu_silenced | Groups to mute for ES cluster cpu monitor | map | `<map>` | no |
 | cpu_threshold_critical | CPU usage in percent (critical threshold) | string | `90` | no |
 | cpu_threshold_warning | CPU usage in percent (warning threshold) | string | `80` | no |
-| delay | Delay in seconds for the metric evaluation | string | `600` | no |
+| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | diskspace_message | Custom message for ES cluster diskspace monitor | string | `` | no |
 | diskspace_silenced | Groups to mute for ES cluster diskspace monitor | map | `<map>` | no |
 | diskspace_threshold_critical | Disk free space in percent (critical threshold) | string | `10` | no |

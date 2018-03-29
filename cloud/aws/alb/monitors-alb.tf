@@ -15,7 +15,7 @@ resource "datadog_monitor" "ALB_no_healthy_instances" {
 
   query = <<EOF
     min(last_1m): (
-      sum:aws.applicationelb.healthy_host_count{${data.template_file.filter.rendered}} by {region,loadbalancer}
+      min:aws.applicationelb.healthy_host_count{${data.template_file.filter.rendered}} by {region,loadbalancer}
     ) <= 0
   EOF
 
@@ -38,13 +38,13 @@ resource "datadog_monitor" "ALB_no_healthy_instances" {
 }
 
 resource "datadog_monitor" "ALB_latency" {
-  name    = "[${var.environment}] ALB latency {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] ALB latency {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.latency_message, var.message)}"
 
   query = <<EOF
     min(last_5m): (
-      avg:aws.applicationelb.target_response_time.average{${data.template_file.filter.rendered}} by {region,loadbalancer}
+      min:aws.applicationelb.target_response_time.average{${data.template_file.filter.rendered}} by {region,loadbalancer}
     ) > ${var.latency_threshold_critical}
   EOF
 
@@ -68,15 +68,15 @@ resource "datadog_monitor" "ALB_latency" {
 }
 
 resource "datadog_monitor" "ALB_httpcode_elb_5xx" {
-  name    = "[${var.environment}] ALB HTTP code 5xx {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] ALB HTTP code 5xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.httpcode_elb_5xx_message, var.message)}"
 
   query = <<EOF
-    sum(last_5m): (
+    min(last_5m): (
       default(
-        avg:aws.applicationelb.httpcode_elb_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
-        (avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
+        min:aws.applicationelb.httpcode_elb_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
+        (min:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.httpcode_elb_5xx_threshold_critical}
   EOF
@@ -101,15 +101,15 @@ resource "datadog_monitor" "ALB_httpcode_elb_5xx" {
 }
 
 resource "datadog_monitor" "ALB_httpcode_elb_4xx" {
-  name    = "[${var.environment}] ALB HTTP code 4xx {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] ALB HTTP code 4xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.httpcode_elb_4xx_message, var.message)}"
 
   query = <<EOF
-    sum(last_5m): (
+    min(last_5m): (
       default(
-        avg:aws.applicationelb.httpcode_elb_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
-        (avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
+        min:aws.applicationelb.httpcode_elb_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
+        (min:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.httpcode_elb_4xx_threshold_critical}
   EOF
@@ -134,15 +134,15 @@ resource "datadog_monitor" "ALB_httpcode_elb_4xx" {
 }
 
 resource "datadog_monitor" "ALB_httpcode_target_5xx" {
-  name    = "[${var.environment}] ALB target HTTP code 5xx {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] ALB target HTTP code 5xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.httpcode_target_5xx_message, var.message)}"
 
   query = <<EOF
-    sum(last_5m): (
+    min(last_5m): (
       default(
-        avg:aws.applicationelb.httpcode_target_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
-        (avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
+        min:aws.applicationelb.httpcode_target_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
+        (min:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.httpcode_target_5xx_threshold_critical}
   EOF
@@ -167,15 +167,15 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
 }
 
 resource "datadog_monitor" "ALB_httpcode_target_4xx" {
-  name    = "[${var.environment}] ALB target HTTP code 4xx {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] ALB target HTTP code 4xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.httpcode_target_4xx_message, var.message)}"
 
   query = <<EOF
-    sum(last_5m): (
+    min(last_5m): (
       default(
-        avg:aws.applicationelb.httpcode_target_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
-        (avg:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
+        min:aws.applicationelb.httpcode_target_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
+        (min:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.httpcode_target_4xx_threshold_critical}
   EOF

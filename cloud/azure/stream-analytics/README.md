@@ -23,7 +23,7 @@ Inputs
 | conversion_errors_silenced | Groups to mute for Stream Analytics conversion errors monitor | map | `<map>` | no |
 | conversion_errors_threshold_critical | Conversion errors limit (critical threshold) | string | `10` | no |
 | conversion_errors_threshold_warning | Conversion errors limit (warning threshold) | string | `0` | no |
-| delay | Delay in seconds for the metric evaluation | string | `600` | no |
+| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
 | failed_function_requests_message | Custom message for Stream Analytics failed requests monitor | string | `` | no |
 | failed_function_requests_silenced | Groups to mute for Stream Analytics failed requests monitor | map | `<map>` | no |

@@ -20,8 +20,8 @@ resource "datadog_monitor" "mongodb_replicaset_state" {
 
   notify_no_data      = true
   renotify_interval   = 0
-  evaluation_delay    = "${var.evaluation_delay}"
-  new_host_delay      = "${var.evaluation_delay}"
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true

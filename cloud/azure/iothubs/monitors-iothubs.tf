@@ -1,5 +1,5 @@
 resource "datadog_monitor" "too_many_jobs_failed" {
-  name    = "[${var.environment}] IOT Hub Too many jobs failed {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] IOT Hub Too many jobs failed {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.failed_jobs_rate_message, var.message)}"
 
   query = <<EOF
@@ -34,7 +34,7 @@ resource "datadog_monitor" "too_many_jobs_failed" {
 }
 
 resource "datadog_monitor" "too_many_list_jobs_failed" {
-  name    = "[${var.environment}] IOT Hub Too many list_jobs failure {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] IOT Hub Too many list_jobs failure {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.failed_listjobs_rate_message, var.message)}"
 
   query = <<EOF
@@ -69,7 +69,7 @@ resource "datadog_monitor" "too_many_list_jobs_failed" {
 }
 
 resource "datadog_monitor" "too_many_query_jobs_failed" {
-  name    = "[${var.environment}] IOT Hub Too many query_jobs failed {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] IOT Hub Too many query_jobs failed {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.failed_queryjobs_rate_message, var.message)}"
 
   query = <<EOF
@@ -130,7 +130,7 @@ resource "datadog_monitor" "status" {
 }
 
 resource "datadog_monitor" "total_devices" {
-  name    = "[${var.environment}] IOT Hub Total devices is wrong {{#is_alert}}{{comparator}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  name    = "[${var.environment}] IOT Hub Total devices is wrong {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.total_devices_message, var.message)}"
 
   query = <<EOF
@@ -156,7 +156,7 @@ resource "datadog_monitor" "total_devices" {
 }
 
 resource "datadog_monitor" "too_many_c2d_methods_failed" {
-  name    = "[${var.environment}] IOT Hub Too many c2d methods failure {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] IOT Hub Too many c2d methods failure {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.failed_c2d_methods_rate_message, var.message)}"
 
   query = <<EOF
@@ -191,7 +191,7 @@ resource "datadog_monitor" "too_many_c2d_methods_failed" {
 }
 
 resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
-  name    = "[${var.environment}] IOT Hub Too many c2d twin read failure {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] IOT Hub Too many c2d twin read failure {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.failed_c2d_twin_read_rate_message, var.message)}"
 
   query = <<EOF
@@ -226,7 +226,7 @@ resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
 }
 
 resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
-  name    = "[${var.environment}] IOT Hub Too many c2d twin update failure {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] IOT Hub Too many c2d twin update failure {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.failed_c2d_twin_update_rate_message, var.message)}"
 
   query = <<EOF
@@ -261,7 +261,7 @@ resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
 }
 
 resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
-  name    = "[${var.environment}] IOT Hub Too many d2c twin read failure {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] IOT Hub Too many d2c twin read failure {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.failed_d2c_twin_read_rate_message, var.message)}"
 
   query = <<EOF
@@ -296,7 +296,7 @@ resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
 }
 
 resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
-  name    = "[${var.environment}] IOT Hub Too many d2c twin update failure {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] IOT Hub Too many d2c twin update failure {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.failed_d2c_twin_update_rate_message, var.message)}"
 
   query = <<EOF
@@ -331,7 +331,7 @@ resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
-  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress dropped {{#is_alert}}{{comparator}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress dropped {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.dropped_d2c_telemetry_egress_message, var.message)}"
 
   query = <<EOF
@@ -369,7 +369,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
-  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress orphaned {{#is_alert}}{{comparator}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress orphaned {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.orphaned_d2c_telemetry_egress_message, var.message)}"
 
   query = <<EOF
@@ -407,7 +407,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
-  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress invalid {{#is_alert}}{{comparator}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  name    = "[${var.environment}] IOT Hub Too many d2c telemetry egress invalid {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.invalid_d2c_telemetry_egress_message, var.message)}"
 
   query = <<EOF
@@ -445,7 +445,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
-  name    = "[${var.environment}] IOT Hub Too many d2c telemetry ingress not sent {{#is_alert}}{{comparator}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  name    = "[${var.environment}] IOT Hub Too many d2c telemetry ingress not sent {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.too_many_d2c_telemetry_ingress_nosent_message, var.message)}"
 
   query = <<EOF

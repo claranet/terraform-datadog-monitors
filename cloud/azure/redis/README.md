@@ -27,7 +27,7 @@ Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| delay | Delay in seconds for the metric evaluation | string | `600` | no |
+| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
 | evictedkeys_limit_message | Custom message for Redis evicted keys monitor | string | `` | no |
 | evictedkeys_limit_silenced | Groups to mute for Redis evicted keys monitor | map | `<map>` | no |

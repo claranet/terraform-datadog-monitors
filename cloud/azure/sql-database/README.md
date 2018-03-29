@@ -34,7 +34,7 @@ Inputs
 | deadlock_message | Custom message for SQL Deadlock monitor | string | `` | no |
 | deadlock_silenced | Groups to mute for SQL Deadlock monitor | map | `<map>` | no |
 | deadlock_threshold_critical | Amount of Deadlocks (critical threshold) | string | `1` | no |
-| delay | Delay in seconds for the metric evaluation | string | `600` | no |
+| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | diskspace_message | Custom message for SQL disk space monitor | string | `` | no |
 | diskspace_silenced | Groups to mute for SQL disk space monitor | map | `<map>` | no |
 | diskspace_threshold_critical | Disk space used in percent (critical threshold) | string | `90` | no |
