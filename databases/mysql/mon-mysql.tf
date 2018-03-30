@@ -13,8 +13,8 @@ resource "datadog_monitor" "mysql_connections_15min" {
 
   query = <<EOF
     avg(last_15m): (
-      avg:mysql.net.connections{${data.template_file.filter.rendered}} /
-      avg:mysql.net.max_connections{${data.template_file.filter.rendered}}
+      avg:mysql.net.connections{${data.template_file.filter.rendered}} by {region,dd_host} /
+      avg:mysql.net.max_connections{${data.template_file.filter.rendered}} by {region,dd_host}
     ) * 100 > ${var.mysql_connection_threshold_critical}
   EOF
 
@@ -27,15 +27,10 @@ resource "datadog_monitor" "mysql_connections_15min" {
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
-  renotify_interval   = 60
-  notify_audit        = false
+  renotify_interval   = 0
+  require_full_window = false
   timeout_h           = 0
   include_tags        = true
-  locked              = true
-  require_full_window = true
-  new_host_delay      = "${var.evaluation_delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:mysql"]
 }
@@ -47,7 +42,7 @@ resource "datadog_monitor" "mysql_thread_5min" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:mysql.performance.threads_running{${data.template_file.filter.rendered}}
+      avg:mysql.performance.threads_running{${data.template_file.filter.rendered}} by {region,dd_host}
     ) > ${var.mysql_thread_threshold_critical}
   EOF
 
@@ -60,15 +55,10 @@ resource "datadog_monitor" "mysql_thread_5min" {
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
-  renotify_interval   = 60
-  notify_audit        = false
+  renotify_interval   = 0
+  require_full_window = false
   timeout_h           = 0
   include_tags        = true
-  locked              = false
-  require_full_window = true
-  new_host_delay      = "${var.evaluation_delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:mysql"]
 }
