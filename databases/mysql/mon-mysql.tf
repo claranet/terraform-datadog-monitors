@@ -6,10 +6,10 @@ data "template_file" "filter" {
   }
 }
 
-resource "datadog_monitor" "mysql_connections_15min" {
-  name    = "[${var.environment}] Mysql Connections > {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
-  type    = "query alert"
+resource "datadog_monitor" "mysql_connection_too_high" {
+  name    = "[${var.environment}] Mysql Connections {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  message = "${coalesce(var.mysql_connection_message, var.message)}"
+  type    = "metric alert"
 
   query = <<EOF
     avg(last_15m): (
@@ -32,13 +32,15 @@ resource "datadog_monitor" "mysql_connections_15min" {
   timeout_h           = 0
   include_tags        = true
 
+  silenced = "${var.mysql_connection_silenced}"
+
   tags = ["env:${var.environment}", "resource:mysql"]
 }
 
-resource "datadog_monitor" "mysql_thread_5min" {
-  name    = "[${var.environment}] Mysql threads > {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
-  message = "${var.message}"
-  type    = "query alert"
+resource "datadog_monitor" "mysql_thread_too_high" {
+  name    = "[${var.environment}] Mysql threads {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  message = "${coalesce(var.mysql_thread_message, var.message)}"
+  type    = "metric alert"
 
   query = <<EOF
     avg(last_5m): (
@@ -59,6 +61,8 @@ resource "datadog_monitor" "mysql_thread_5min" {
   require_full_window = false
   timeout_h           = 0
   include_tags        = true
+
+  silenced = "${var.mysql_thread_silenced}"
 
   tags = ["env:${var.environment}", "resource:mysql"]
 }
