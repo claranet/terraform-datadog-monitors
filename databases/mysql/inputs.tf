@@ -38,6 +38,18 @@ variable "mysql_connection_threshold_warning" {
   description = "Maximum warning acceptable percent of connections"
 }
 
+variable "mysql_connection_silenced" {
+  description = "Groups to mute mysql connection monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "mysql_connection_message" {
+  description = "Custom message for MySQL connection monitor"
+  type        = "string"
+  default     = ""
+}
+
 #################################
 ###   MySQL threads           ###
 #################################
@@ -50,4 +62,16 @@ variable "mysql_thread_threshold_critical" {
 variable "mysql_thread_threshold_warning" {
   default     = 400
   description = "Maximum critical acceptable number of threads"
+}
+
+variable "mysql_thread_silenced" {
+  description = "Groups to mute mysql threads monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "mysql_thread_message" {
+  description = "Custom message for MySQL thread monitor"
+  type        = "string"
+  default     = ""
 }
