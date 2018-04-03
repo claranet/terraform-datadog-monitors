@@ -18,7 +18,7 @@ resource "datadog_monitor" "API_Gateway_latency" {
     critical = "${var.latency_threshold_critical}"
   }
 
-  notify_no_data      = true  # Will notify when no data is received
+  notify_no_data      = false # Will NOT notify when no data is received
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 0
