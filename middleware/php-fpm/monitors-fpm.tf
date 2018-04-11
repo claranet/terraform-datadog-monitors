@@ -46,9 +46,7 @@ resource "datadog_monitor" "datadog_fpm_process" {
 
   type = "service check"
 
-  query = <<EOF
-    "php_fpm.can_ping".over(${data.template_file.filter.rendered}).by("host","port").last(6).count_by_status()
-  EOF
+  query = "\"php_fpm.can_ping\".over(\"dd_php_fpm:enabled\",\"dd_monitoring:enabled\",\"env:${var.environment}\").by(\"host\",\"port\").last(6).count_by_status()"
 
   thresholds = {
     ok       = 1

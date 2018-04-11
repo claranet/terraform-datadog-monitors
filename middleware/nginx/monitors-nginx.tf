@@ -1,20 +1,10 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_nginx:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
 resource "datadog_monitor" "datadog_nginx_process" {
   name    = "[${var.environment}] Can't connect to nginx vhost status"
   message = "${coalesce(var.nginx_connect_message, var.message)}"
 
   type = "service check"
 
-  query = <<EOF
-    "nginx.can_connect".over(${data.template_file.filter.rendered}).by("host","port").last(6).count_by_status()
-  EOF
+  query = "\"nginx.can_connect\".over(\"dd_nginx:enabled\",\"dd_monitoring:enabled\",\"env:${var.environment}\").by(\"host\",\"port\").last(6).count_by_status()"
 
   thresholds = {
     ok       = 1
