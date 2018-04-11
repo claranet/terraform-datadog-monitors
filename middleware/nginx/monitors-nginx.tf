@@ -4,7 +4,9 @@ resource "datadog_monitor" "datadog_nginx_process" {
 
   type = "service check"
 
-  query = "\"nginx.can_connect\".over(\"dd_nginx:enabled\",\"dd_monitoring:enabled\",\"env:${var.environment}\").by(\"host\",\"port\").last(6).count_by_status()"
+  query = <<EOF
+    "nginx.can_connect".over("dd_nginx:enabled","dd_monitoring:enabled","env:${var.environment}").by("host","port").last(6).count_by_status()
+  EOF
 
   thresholds = {
     ok       = 1

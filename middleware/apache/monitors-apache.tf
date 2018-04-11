@@ -4,7 +4,9 @@ resource "datadog_monitor" "datadog_apache_process" {
 
   type = "service check"
 
-  query = "\"apache.can_connect\".over(\"dd_apache:enabled\",\"dd_monitoring:enabled\",\"env:${var.environment}\").by(\"host\",\"port\").last(6).count_by_status()"
+  query = <<EOF
+    "apache.can_connect".over("dd_apache:enabled","dd_monitoring:enabled","env:${var.environment}").by("host","port").last(6).count_by_status()
+  EOF
 
   thresholds = {
     ok       = 1
