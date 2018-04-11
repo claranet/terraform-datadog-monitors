@@ -31,7 +31,6 @@ resource "datadog_monitor" "datadog_nginx_process" {
   include_tags        = true
   locked              = false
   require_full_window = true
-  no_data_timeframe   = 20
 
   silenced = "${var.nginx_connect_silenced}"
 

@@ -33,7 +33,6 @@ resource "datadog_monitor" "sql-database_cpu_90_15min" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:sqldatabase", "team:azure", "provider:azure"]
 }
@@ -66,7 +65,6 @@ resource "datadog_monitor" "sql-database_free_space_low" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:sqldatabase", "team:azure", "provider:azure"]
 }
@@ -99,7 +97,6 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:sqldatabase", "team:azure", "provider:azure"]
 }
@@ -131,7 +128,6 @@ resource "datadog_monitor" "sql-database_deadlocks_count" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:sqldatabase", "team:azure", "provider:azure"]
 }
