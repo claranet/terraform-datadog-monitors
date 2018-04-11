@@ -38,7 +38,6 @@ EOF
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   silenced = "${var.es_cluster_status_silenced}"
 
@@ -73,7 +72,6 @@ EOF
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   silenced = "${var.diskspace_silenced}"
 
@@ -107,7 +105,6 @@ EOF
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   silenced = "${var.cpu_silenced}"
 
