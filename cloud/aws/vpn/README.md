@@ -10,7 +10,6 @@ module "vpn" {
   
   environment        = "${var.environment}"
   message            = "${module.datadog-message-alerting.alerting-message}"
-  vpn_tunnel_address = "${var.vpn_to_monitor}"
 }
 ```
 
