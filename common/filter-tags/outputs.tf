@@ -1,3 +1,7 @@
-output "value" {
-  value = "${data.template_file.filter.rendered}"
+output "value_metric" {
+  value = "${data.template_file.filter_metric.rendered}"
+}
+
+output "value_query" {
+  value = "${data.template_file.filter_query.rendered}"
 }
