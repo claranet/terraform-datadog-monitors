@@ -3,9 +3,11 @@ Base Datadog monitor
 
 Purpose
 -------
-This monitor should be used a base template for all monitors since it gathers the best practices.
+
+This monitor should be used as a base template for all monitors since it gathers the best practices.
 
 Best practices implemented :
+
 - standard naming (environment, threshold and value)
 - standard tagging with maps
 - locked by default
@@ -49,15 +51,16 @@ Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| environment | Architecture environmen.t | string | - | yes |
+| delay | Delay in seconds for the metric evaluation | string | `900` | no |
+| environment | Architecture environment. | string | - | yes |
 | evaluation_delay | Time (in seconds) to delay evaluation, as a non-negative integer. | string | `600` | no |
 | extra_tags | Extra tags to add on this monitor in addition of the standard ones. | map | `<map>` | no |
-| message | A message to include with notifications for this monitor. Email notifications can be sent to specific users by using the same '@username' notation as events. | string | - | yes |
+| message | Message sent when a monitor is triggered | string | - | yes |
 | name | Name of Datadog monitor. | string | - | yes |
+| name_use_defaults | Use default name convention | string | `true` | no |
 | new_host_delay | Time (in seconds) to allow a host to boot and applications to fully start before starting the evaluation of monitor results. | string | `300` | no |
-| no_data_timeframe | The number of minutes before a monitor will notify when data stops reporting. | string | `10` | no |
 | notify_no_data | A boolean indicating whether this monitor will notify when data stops reporting. | string | - | yes |
-| provider | Provider of the monitores resources (eg. azure, amazon). | string | - | yes |
+| provider | Provider of the monitors resources (eg. azure, amazon). | string | - | yes |
 | query | Query to use for monitor evaluation. | string | - | yes |
 | require_full_window | A boolean indicating whether this monitor needs a full window of data before it's evaluated. | string | `false` | no |
 | resource_kind | Kind of resource monitored (eg. storage, elasticsearch, apache, ec2). | string | - | yes |

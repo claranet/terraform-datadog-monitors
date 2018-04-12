@@ -1,16 +1,28 @@
-# Global Terraform
-variable "environment" {
-  description = "Architecture environment."
-  type        = "string"
-}
+# Datadog global variables
 
-variable "name" {
-  description = "Name of Datadog monitor."
+variable "environment" {
+  description = "Architecture environment"
   type        = "string"
 }
 
 variable "message" {
-  description = "A message to include with notifications for this monitor. Email notifications can be sent to specific users by using the same '@username' notation as events."
+  description = "Message sent when a monitor is triggered"
+}
+
+variable "delay" {
+  description = "Delay in seconds for the metric evaluation"
+  default     = 900
+}
+
+# Base Template variables
+
+variable "name_use_defaults" {
+  description = "Use default name convention"
+  default     = "true"
+}
+
+variable "name" {
+  description = "Name of Datadog monitor."
   type        = "string"
 }
 
@@ -37,7 +49,7 @@ variable "extra_tags" {
 }
 
 variable "provider" {
-  description = "Provider of the monitores resources (eg. azure, amazon)."
+  description = "Provider of the monitors resources (eg. azure, amazon)."
   type        = "string"
 }
 
@@ -62,12 +74,6 @@ variable "silenced" {
 variable "notify_no_data" {
   description = "A boolean indicating whether this monitor will notify when data stops reporting."
   type        = "string"
-}
-
-variable "no_data_timeframe" {
-  description = "The number of minutes before a monitor will notify when data stops reporting."
-  type        = "string"
-  default     = "10"
 }
 
 variable "evaluation_delay" {
