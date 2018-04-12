@@ -16,6 +16,7 @@ module "vpn" {
 Purpose
 -------
 Creates a DataDog monitors with the following checks :
+
 * VPN status
 
 Inputs
