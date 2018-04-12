@@ -1,6 +1,6 @@
 variable "environment" {
   description = "Architecture environment"
-  type = "string"
+  type        = "string"
 }
 
 variable "resource_name" {}
