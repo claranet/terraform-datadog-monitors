@@ -96,17 +96,18 @@ variable "timeout_h" {
 
 variable "require_full_window" {
   description = "A boolean indicating whether this monitor needs a full window of data before it's evaluated."
-  type = "string"
-  default = "false"
+  type        = "string"
+  default     = "false"
 }
 
 variable "critical_threshold" {
   description = "Critical threshold to set, mandatory if `warning_threshold` is set"
-  default = ""
+  default     = ""
 }
+
 variable "warning_threshold" {
   description = "Warning threshold to set"
-  default = ""
+  default     = ""
 }
 
 variable "filter_tags_use_defaults" {

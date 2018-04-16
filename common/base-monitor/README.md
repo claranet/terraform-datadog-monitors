@@ -51,10 +51,13 @@ Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| critical_threshold | Critical threshold to set, mandatory if `warning_threshold` is set | string | `` | no |
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
-| environment | Architecture environment. | string | - | yes |
+| environment | Architecture environment | string | - | yes |
 | evaluation_delay | Time (in seconds) to delay evaluation, as a non-negative integer. | string | `600` | no |
 | extra_tags | Extra tags to add on this monitor in addition of the standard ones. | map | `<map>` | no |
+| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 | name | Name of Datadog monitor. | string | - | yes |
 | name_use_defaults | Use default name convention | string | `true` | no |
@@ -69,6 +72,7 @@ Inputs
 | thresholds_unit | Unit of the values used as thresholds, used in monitor name. | string | `` | no |
 | timeout_h | The number of hours of the monitor not reporting data before it will automatically resolve from a triggered state. | string | `0` | no |
 | type | Type of monitor query (metric alert or query alert). | string | `metric alert` | no |
+| warning_threshold | Warning threshold to set | string | `` | no |
 
 Related documentation
 ---------------------
