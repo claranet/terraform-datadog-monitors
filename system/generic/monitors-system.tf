@@ -77,8 +77,8 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
 
   query = <<EOF
     min(last_5m): (
-      avg:system.disk.free{${data.template_file.filter.rendered}} by {region,host,device} /
-      avg:system.disk.total{${data.template_file.filter.rendered}} by {region,host,device} * 100
+      avg:system.disk.free{${data.template_file.filter.rendered},dd_disk:enabled} by {region,host,device} /
+      avg:system.disk.total{${data.template_file.filter.rendered},dd_disk:enabled} by {region,host,device} * 100
     ) < ${var.free_disk_space_threshold_critical}
   EOF
 
@@ -110,8 +110,8 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
 
   query = <<EOF
     min(last_5m): (
-      avg:system.fs.inodes.free{${data.template_file.filter.rendered}} by {region,host,device} /
-      avg:system.fs.inodes.total{${data.template_file.filter.rendered}} by {region,host,device} * 100
+      avg:system.fs.inodes.free{${data.template_file.filter.rendered},dd_disk:enabled} by {region,host,device} /
+      avg:system.fs.inodes.total{${data.template_file.filter.rendered},dd_disk:enabled} by {region,host,device} * 100
     ) < ${var.free_disk_inodes_threshold_critical}
   EOF
 
