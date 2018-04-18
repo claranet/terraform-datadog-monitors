@@ -28,7 +28,7 @@ resource "datadog_monitor" "mysql_connection_too_high" {
 
   notify_no_data      = true
   renotify_interval   = 0
-  require_full_window = false
+  require_full_window = true
   timeout_h           = 0
   include_tags        = true
 
@@ -58,7 +58,7 @@ resource "datadog_monitor" "mysql_thread_too_high" {
 
   notify_no_data      = true
   renotify_interval   = 0
-  require_full_window = false
+  require_full_window = true
   timeout_h           = 0
   include_tags        = true
 
