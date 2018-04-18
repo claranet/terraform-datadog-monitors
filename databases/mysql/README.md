@@ -1,5 +1,5 @@
 MySQL DataDog monitors
-==========================================
+======================
 
 How to use this module
 ----------------------
@@ -26,7 +26,7 @@ Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
+| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Environment | string | - | yes |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
