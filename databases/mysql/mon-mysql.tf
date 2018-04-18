@@ -7,7 +7,7 @@ data "template_file" "filter" {
 }
 
 resource "datadog_monitor" "mysql_connection_too_high" {
-  name    = "[${var.environment}] Mysql Connections {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  name    = "[${var.environment}] Mysql Connections {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mysql_connection_message, var.message)}"
   type    = "metric alert"
 
@@ -18,8 +18,8 @@ resource "datadog_monitor" "mysql_connection_too_high" {
     ) * 100 > ${var.mysql_connection_threshold_critical}
   EOF
 
-  evaluation_delay = "${var.evaluation_delay}"
-  new_host_delay   = "${var.evaluation_delay}"
+  evaluation_delay = "${var.delay}"
+  new_host_delay   = "${var.delay}"
 
   thresholds {
     warning  = "${var.mysql_connection_threshold_warning}"
@@ -38,7 +38,7 @@ resource "datadog_monitor" "mysql_connection_too_high" {
 }
 
 resource "datadog_monitor" "mysql_thread_too_high" {
-  name    = "[${var.environment}] Mysql threads {{comparator}} {{#is_alert}}{{threshold}}%{{/is_alert}}{{#is_warning}}{{warn_threshold}}%{{/is_warning}} ({{value}}%)"
+  name    = "[${var.environment}] Mysql threads {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mysql_thread_message, var.message)}"
   type    = "metric alert"
 
@@ -48,8 +48,8 @@ resource "datadog_monitor" "mysql_thread_too_high" {
     ) > ${var.mysql_thread_threshold_critical}
   EOF
 
-  evaluation_delay = "${var.evaluation_delay}"
-  new_host_delay   = "${var.evaluation_delay}"
+  evaluation_delay = "${var.delay}"
+  new_host_delay   = "${var.delay}"
 
   thresholds {
     warning  = "${var.mysql_thread_threshold_warning}"
