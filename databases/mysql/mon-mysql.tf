@@ -13,8 +13,8 @@ resource "datadog_monitor" "mysql_connection_too_high" {
 
   query = <<EOF
     avg(last_15m): (
-      avg:mysql.net.connections{${data.template_file.filter.rendered}} by {region,dd_host} /
-      avg:mysql.net.max_connections{${data.template_file.filter.rendered}} by {region,dd_host}
+      avg:mysql.net.connections{${data.template_file.filter.rendered}} by {region,db_host} /
+      avg:mysql.net.max_connections{${data.template_file.filter.rendered}} by {region,db_host}
     ) * 100 > ${var.mysql_connection_threshold_critical}
   EOF
 
@@ -44,7 +44,7 @@ resource "datadog_monitor" "mysql_thread_too_high" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:mysql.performance.threads_running{${data.template_file.filter.rendered}} by {region,dd_host}
+      avg:mysql.performance.threads_running{${data.template_file.filter.rendered}} by {region,db_host}
     ) > ${var.mysql_thread_threshold_critical}
   EOF
 
