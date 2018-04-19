@@ -38,7 +38,7 @@ resource "datadog_monitor" "mysql_connection_too_high" {
 }
 
 resource "datadog_monitor" "mysql_thread_too_high" {
-  name    = "[${var.environment}] Mysql threads {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
+  name    = "[${var.environment}] Mysql threads {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.mysql_thread_message, var.message)}"
   type    = "metric alert"
 
