@@ -11,8 +11,8 @@ resource "datadog_monitor" "servicebus_status" {
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
-      avg(last_5m): avg:azure.servicebus_namespaces.status{${data.template_file.filter.rendered}} by {resource_group,region,name} != 1
-      EOF
+      min(last_5m): avg:azure.servicebus_namespaces.status{${data.template_file.filter.rendered}} by {resource_group,region,name} != 1
+EOF
 
   type = "metric alert"
 

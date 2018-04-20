@@ -10,7 +10,6 @@ module "datadog-monitors-azure-servicebus" {
 
   message = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
-  subscription_id = "${var.subscription_id}"
 }
 ```
 
@@ -35,5 +34,8 @@ Inputs
 
 Related documentation
 ---------------------
+
+DataDog documentation : [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)  
+You must search `servicebus`, there is no integration for now.
 
 Azure metrics documentation : [https://docs.microsoft.com/fr-fr/azure/monitoring-and-diagnostics/monitoring-supported-metrics#microsoftservicebusnamespaces](https://docs.microsoft.com/fr-fr/azure/monitoring-and-diagnostics/monitoring-supported-metrics#microsoftservicebusnamespaces)
