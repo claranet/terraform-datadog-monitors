@@ -168,6 +168,20 @@ module "redis" {
   server_load_rate_threshold_warning        = "${var.redis_server_load_rate_threshold_warning}"
 }
 
+module "servicebus" {
+  source = "./servicebus"
+
+  environment = "${var.environment}"
+  message     = "${var.message}"
+  delay       = "${var.delay}"
+
+  filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
+  filter_tags_custom       = "${var.filter_tags_custom}"
+
+  status_silenced = "${var.servicebus_status_silenced}"
+  status_message  = "${var.servicebus_status_message}"
+}
+
 module "sqldatabase" {
   source = "./sql-database"
 

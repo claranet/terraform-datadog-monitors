@@ -655,6 +655,19 @@ variable "redis_server_load_rate_threshold_warning" {
   default     = 70
 }
 
+# Azure Service Bus specific variables
+variable "servicebus_status_silenced" {
+  description = "Groups to mute for Service Bus status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "servicebus_status_message" {
+  description = "Custom message for Service Bus status monitor"
+  type        = "string"
+  default     = ""
+}
+
 # Azure SQL Database specific variables
 variable "sqldatabase_cpu_silenced" {
   description = "Groups to mute for SQL CPU monitor"

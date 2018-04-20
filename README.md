@@ -19,6 +19,7 @@ Here is the repository organization:
         - [eventhub](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/eventhub/)
         - [iothubs](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/iothubs/)
         - [redis](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/redis/)
+        - [servicebus](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/servicebus/)
         - [sql-database](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/sql-database/)
         - [storage](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/storage/)
         - [stream-analytics](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/stream-analytics/)
