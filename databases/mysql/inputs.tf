@@ -61,7 +61,7 @@ variable "mysql_thread_threshold_critical" {
 
 variable "mysql_thread_threshold_warning" {
   default     = 400
-  description = "Maximum critical acceptable number of threads"
+  description = "Maximum warning acceptable number of threads"
 }
 
 variable "mysql_thread_silenced" {
