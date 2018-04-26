@@ -38,6 +38,12 @@ variable "es_cluster_status_message" {
   default     = ""
 }
 
+variable "es_cluster_status_timeframe" {
+  description = "Monitor timeframe for ES cluster status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_30m"
+}
+
 variable "es_cluster_volume_size" {
   description = "ElasticSearch Domain volume size (in GB)"
 }
@@ -52,6 +58,12 @@ variable "diskspace_message" {
   description = "Custom message for ES cluster diskspace monitor"
   type        = "string"
   default     = ""
+}
+
+variable "diskspace_timeframe" {
+  description = "Monitor timeframe for ES cluster diskspace [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_15m"
 }
 
 variable "diskspace_threshold_warning" {
@@ -74,6 +86,12 @@ variable "cpu_message" {
   description = "Custom message for ES cluster cpu monitor"
   type        = "string"
   default     = ""
+}
+
+variable "cpu_timeframe" {
+  description = "Monitor timeframe for ES cluster cpu [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_15m"
 }
 
 variable "cpu_threshold_warning" {

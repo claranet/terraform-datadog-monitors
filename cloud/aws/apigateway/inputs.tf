@@ -33,6 +33,12 @@ variable "latency_message" {
   default     = ""
 }
 
+variable "latency_timeframe" {
+  description = "Monitor timeframe for API latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "latency_threshold_critical" {
   default     = 800
   description = "Alerting threshold in milliseconds"
@@ -59,6 +65,12 @@ variable "http_5xx_requests_message" {
   default     = ""
 }
 
+variable "http_5xx_requests_timeframe" {
+  description = "Monitor timeframe for API HTTP 5xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "http_5xx_requests_threshold_critical" {
   default     = 20
   description = "Maximum critical acceptable percent of 5xx errors"
@@ -83,6 +95,12 @@ variable "http_4xx_requests_message" {
   description = "Custom message for API Gateway HTTP 4xx requests monitor"
   type        = "string"
   default     = ""
+}
+
+variable "http_4xx_requests_timeframe" {
+  description = "Monitor timeframe for API HTTP 4xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "http_4xx_requests_threshold_critical" {
