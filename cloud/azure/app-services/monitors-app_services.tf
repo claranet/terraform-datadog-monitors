@@ -44,7 +44,7 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
   message = "${coalesce(var.memory_usage_message, var.message)}"
 
   query = <<EOF
-    avg(last_5m): (
+    avg(${var.memory_usage_timeframe}): (
       avg:azure.app_services.memory_working_set{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.memory_usage_threshold_critical}
   EOF
@@ -75,7 +75,7 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
   message = "${coalesce(var.http_5xx_requests_message, var.message)}"
 
   query = <<EOF
-    sum(last_5m): (
+    sum(${var.http_5xx_requests_timeframe}): (
       avg:azure.app_services.http5xx{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
       avg:azure.app_services.requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
     ) * 100 > ${var.http_5xx_requests_threshold_critical}
@@ -107,7 +107,7 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
   message = "${coalesce(var.http_4xx_requests_message, var.message)}"
 
   query = <<EOF
-    sum(last_5m): (
+    sum(${var.http_4xx_requests_timeframe}): (
       avg:azure.app_services.http4xx{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
       avg:azure.app_services.requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
     ) * 100 > ${var.http_4xx_requests_threshold_critical}
@@ -139,7 +139,7 @@ resource "datadog_monitor" "appservices_http_success_status_rate" {
   message = "${coalesce(var.http_successful_requests_message, var.message)}"
 
   query = <<EOF
-    sum(last_5m): (
+    sum(${var.http_successful_requests_timeframe}): (
       (avg:azure.app_services.http2xx{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
        avg:azure.app_services.http3xx{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()) /
       avg:azure.app_services.requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()

@@ -37,6 +37,12 @@ variable "status_message" {
   default     = ""
 }
 
+variable "status_timeframe" {
+  description = "Monitor timeframe for Event Hub status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "failed_requests_rate_silenced" {
   description = "Groups to mute for Event Hub failed requests monitor"
   type        = "map"
@@ -47,6 +53,12 @@ variable "failed_requests_rate_message" {
   description = "Custom message for Event Hub failed requests monitor"
   type        = "string"
   default     = ""
+}
+
+variable "failed_requests_rate_timeframe" {
+  description = "Monitor timeframe for Event Hub failed requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "failed_requests_rate_thresold_critical" {
@@ -69,6 +81,12 @@ variable "errors_rate_message" {
   description = "Custom message for Event Hub errors monitor"
   type        = "string"
   default     = ""
+}
+
+variable "errors_rate_timeframe" {
+  description = "Monitor timeframe for Event Hub errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "errors_rate_thresold_critical" {

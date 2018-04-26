@@ -37,6 +37,12 @@ variable "cpu_message" {
   default     = ""
 }
 
+variable "cpu_timeframe" {
+  description = "Monitor timeframe for SQL CPU [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_15m"
+}
+
 variable "cpu_threshold_warning" {
   description = "CPU usage in percent (warning threshold)"
   default     = "80"
@@ -57,6 +63,12 @@ variable "diskspace_message" {
   description = "Custom message for SQL disk space monitor"
   type        = "string"
   default     = ""
+}
+
+variable "diskspace_timeframe" {
+  description = "Monitor timeframe for SQL disk space [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_15m"
 }
 
 variable "diskspace_threshold_warning" {
@@ -81,6 +93,12 @@ variable "dtu_message" {
   default     = ""
 }
 
+variable "dtu_timeframe" {
+  description = "Monitor timeframe for SQL DTU [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_15m"
+}
+
 variable "dtu_threshold_warning" {
   description = "Amount of DTU used (warning threshold)"
   default     = "85"
@@ -101,6 +119,12 @@ variable "deadlock_message" {
   description = "Custom message for SQL Deadlock monitor"
   type        = "string"
   default     = ""
+}
+
+variable "deadlock_timeframe" {
+  description = "Monitor timeframe for SQL Deadlock [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "deadlock_threshold_critical" {
