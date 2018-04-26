@@ -13,7 +13,7 @@ resource "datadog_monitor" "apimgt_status" {
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
-      avg(last_5m):avg:azure.apimanagement_service.status{${data.template_file.filter.rendered}} by {resource_group,region,name} < 1
+      avg(${var.status_timeframe}):avg:azure.apimanagement_service.status{${data.template_file.filter.rendered}} by {resource_group,region,name} < 1
       EOF
 
   type = "metric alert"
@@ -42,7 +42,7 @@ resource "datadog_monitor" "apimgt_failed_requests" {
   message = "${coalesce(var.failed_requests_message, var.message)}"
 
   query = <<EOF
-    sum(last_5m): (
+    sum(${var.failed_requests_timeframe}): (
       avg:azure.apimanagement_service.failed_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
       avg:azure.apimanagement_service.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() * 100
     ) > ${var.failed_requests_threshold_critical}
@@ -74,7 +74,7 @@ resource "datadog_monitor" "apimgt_other_requests" {
   message = "${coalesce(var.other_requests_message, var.message)}"
 
   query = <<EOF
-    sum(last_5m): (
+    sum(${var.other_requests_timeframe}): (
       avg:azure.apimanagement_service.other_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
       avg:azure.apimanagement_service.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() * 100
     ) > ${var.other_requests_threshold_critical}
@@ -106,7 +106,7 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
   message = "${coalesce(var.unauthorized_requests_message, var.message)}"
 
   query = <<EOF
-    sum(last_5m): (
+    sum(${var.unauthorized_requests_timeframe}): (
       avg:azure.apimanagement_service.unauthorized_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
       avg:azure.apimanagement_service.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() * 100
     ) > ${var.unauthorized_requests_threshold_critical}
@@ -138,7 +138,7 @@ resource "datadog_monitor" "apimgt_successful_requests" {
   message = "${coalesce(var.successful_requests_message, var.message)}"
 
   query = <<EOF
-    sum(last_5m): (
+    sum(${var.successful_requests_timeframe}): (
       avg:azure.apimanagement_service.successful_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
       avg:azure.apimanagement_service.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() * 100
     ) < ${var.successful_requests_threshold_critical}

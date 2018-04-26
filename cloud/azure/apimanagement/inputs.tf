@@ -37,6 +37,12 @@ variable "status_message" {
   default     = ""
 }
 
+variable "status_timeframe" {
+  description = "Monitor timeframe for API Management status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "failed_requests_silenced" {
   description = "Groups to mute for API Management failed requests monitor"
   type        = "map"
@@ -47,6 +53,12 @@ variable "failed_requests_message" {
   description = "Custom message for API Management failed requests monitor"
   type        = "string"
   default     = ""
+}
+
+variable "failed_requests_timeframe" {
+  description = "Monitor timeframe for API Management failed requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "failed_requests_threshold_critical" {
@@ -71,6 +83,12 @@ variable "other_requests_message" {
   default     = ""
 }
 
+variable "other_requests_timeframe" {
+  description = "Monitor timeframe for API Management other requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "other_requests_threshold_critical" {
   description = "Maximum acceptable percent of other requests"
   default     = 90
@@ -93,6 +111,12 @@ variable "unauthorized_requests_message" {
   default     = ""
 }
 
+variable "unauthorized_requests_timeframe" {
+  description = "Monitor timeframe for API Management unauthorized requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "unauthorized_requests_threshold_critical" {
   description = "Maximum acceptable percent of unauthorized requests"
   default     = 90
@@ -113,6 +137,12 @@ variable "successful_requests_message" {
   description = "Custom message for API Management successful requests monitor"
   type        = "string"
   default     = ""
+}
+
+variable "successful_requests_timeframe" {
+  description = "Monitor timeframe for API Management successful requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "successful_requests_threshold_critical" {
