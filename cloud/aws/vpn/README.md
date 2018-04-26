@@ -32,3 +32,11 @@ Inputs
 | vpn_status_message | Custom message for VPN status monitor | string | `` | no |
 | vpn_status_silenced | Groups to mute for VPN status monitor | map | `<map>` | no |
 | vpn_status_timeframe | Monitor timeframe for VPN status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+
+Related documentation
+---------------------
+
+DataDog documentation: [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/vpn-metricscollected.html](https://docs.datadoghq.com/integrations/amazon_web_services/)
+
+AWS VPN metrics documentation: [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/vpn-metricscollected.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/vpn-metricscollected.html)
+
