@@ -5,8 +5,8 @@ resource "datadog_monitor" "API_Gateway_latency" {
   message = "${coalesce(var.latency_message, var.message)}"
 
   query = <<EOF
-    min(${var.latency_timeframe}): (
-      min:aws.apigateway.latency{${var.filter_tags}} by {region,apiname}
+    ${var.latency_aggregator}(${var.latency_timeframe}): (
+      ${var.latency_aggregator}:aws.apigateway.latency{${var.filter_tags}} by {region,apiname}
     ) > ${var.latency_threshold_critical}
   EOF
 
@@ -36,10 +36,10 @@ resource "datadog_monitor" "API_http_5xx_errors_count" {
   message = "${coalesce(var.http_5xx_requests_message, var.message)}"
 
   query = <<EOF
-    min(${var.http_5xx_requests_timeframe}): (
+    ${var.http_5xx_requests_aggregator}(${var.http_5xx_requests_timeframe}): (
       default(
-        min:aws.apigateway.5xxerror{${var.filter_tags}} by {region,apiname}.as_count() /
-        (min:aws.apigateway.count{${var.filter_tags}} by {region,apiname}.as_count() + ${var.artificial_requests_count}),
+        ${var.http_5xx_requests_aggregator}:aws.apigateway.5xxerror{${var.filter_tags}} by {region,apiname}.as_count() /
+        (${var.http_5xx_requests_aggregator}:aws.apigateway.count{${var.filter_tags}} by {region,apiname}.as_count() + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.http_5xx_requests_threshold_critical}
   EOF
@@ -70,10 +70,10 @@ resource "datadog_monitor" "API_http_4xx_errors_count" {
   message = "${coalesce(var.http_4xx_requests_message, var.message)}"
 
   query = <<EOF
-    min(${var.http_4xx_requests_timeframe}): (
+    ${var.http_4xx_requests_aggregator}(${var.http_4xx_requests_timeframe}): (
       default(
-        min:aws.apigateway.4xxerror{${var.filter_tags}} by {region,apiname}.as_count() /
-        (min:aws.apigateway.count{${var.filter_tags}} by {region,apiname}.as_count() + ${var.artificial_requests_count}),
+        ${var.http_4xx_requests_aggregator}:aws.apigateway.4xxerror{${var.filter_tags}} by {region,apiname}.as_count() /
+        (${var.http_4xx_requests_aggregator}:aws.apigateway.count{${var.filter_tags}} by {region,apiname}.as_count() + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.http_4xx_requests_threshold_critical}
   EOF

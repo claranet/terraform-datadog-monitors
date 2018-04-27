@@ -37,6 +37,12 @@ variable "elb_no_healthy_instance_message" {
   default     = ""
 }
 
+variable "elb_no_healthy_instance_aggregator" {
+  description = "Monitor aggregator for ELB no healty instance [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "elb_no_healthy_instance_timeframe" {
   description = "Monitor timeframe for ELB no healty instance [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -53,6 +59,12 @@ variable "elb_4xx_message" {
   description = "Custom message for ELB 4xx errors monitor"
   type        = "string"
   default     = ""
+}
+
+variable "elb_4xx_aggregator" {
+  description = "Monitor aggregator for ELB 4xx errors [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "elb_4xx_timeframe" {
@@ -83,6 +95,12 @@ variable "elb_5xx_message" {
   default     = ""
 }
 
+variable "elb_5xx_aggregator" {
+  description = "Monitor aggregator for ELB 5xx errors [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "elb_5xx_timeframe" {
   description = "Monitor timeframe for ELB 5xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -109,6 +127,12 @@ variable "elb_backend_4xx_message" {
   description = "Custom message for ELB backend 4xx errors monitor"
   type        = "string"
   default     = ""
+}
+
+variable "elb_backend_4xx_aggregator" {
+  description = "Monitor aggregator for ELB backend 4xx errors [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "elb_backend_4xx_timeframe" {
@@ -139,6 +163,12 @@ variable "elb_backend_5xx_message" {
   default     = ""
 }
 
+variable "elb_backend_5xx_aggregator" {
+  description = "Monitor aggregator for ELB backend 5xx errors [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "elb_backend_5xx_timeframe" {
   description = "Monitor timeframe for ELB backend 5xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -165,6 +195,12 @@ variable "elb_backend_latency_message" {
   description = "Custom message for ELB backend latency monitor"
   type        = "string"
   default     = ""
+}
+
+variable "elb_backend_latency_aggregator" {
+  description = "Monitor aggregator for ELB backend latency [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "elb_backend_latency_timeframe" {
