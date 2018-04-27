@@ -37,6 +37,12 @@ variable "status_message" {
   default     = ""
 }
 
+variable "status_timeframe" {
+  description = "Monitor timeframe for Stream Analytics status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "su_utilization_silenced" {
   description = "Groups to mute for Stream Analytics utilization monitor"
   type        = "map"
@@ -47,6 +53,12 @@ variable "su_utilization_message" {
   description = "Custom message for Stream Analytics utilization monitor"
   type        = "string"
   default     = ""
+}
+
+variable "su_utilization_timeframe" {
+  description = "Monitor timeframe for Stream Analytics utilization [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "su_utilization_threshold_warning" {
@@ -71,6 +83,12 @@ variable "failed_function_requests_message" {
   default     = ""
 }
 
+variable "failed_function_requests_timeframe" {
+  description = "Monitor timeframe for Stream Analytics failed requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "failed_function_requests_threshold_warning" {
   description = "Failed Function Request rate limit (warning threshold)"
   default     = 0
@@ -93,6 +111,12 @@ variable "conversion_errors_message" {
   default     = ""
 }
 
+variable "conversion_errors_timeframe" {
+  description = "Monitor timeframe for Stream Analytics conversion errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "conversion_errors_threshold_warning" {
   description = "Conversion errors limit (warning threshold)"
   default     = 0
@@ -113,6 +137,12 @@ variable "runtime_errors_message" {
   description = "Custom message for Stream Analytics runtime errors monitor"
   type        = "string"
   default     = ""
+}
+
+variable "runtime_errors_timeframe" {
+  description = "Monitor timeframe for Stream Analytics runtime errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "runtime_errors_threshold_warning" {
