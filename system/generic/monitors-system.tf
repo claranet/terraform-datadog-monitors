@@ -74,7 +74,7 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
   message = "${coalesce(var.free_disk_space_message, var.message)}"
 
   query = <<EOF
-    min(last_5m): (
+    min(${var.free_disk_space_timeframe}): (
       avg:system.disk.free{${data.template_file.filter.rendered},dd_disk:enabled} by {region,host,device} /
       avg:system.disk.total{${data.template_file.filter.rendered},dd_disk:enabled} by {region,host,device} * 100
     ) < ${var.free_disk_space_threshold_critical}
@@ -106,7 +106,7 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
   message = "${coalesce(var.free_disk_inodes_message, var.message)}"
 
   query = <<EOF
-    min(last_5m): (
+    min(${var.free_disk_inodes_timeframe}): (
       avg:system.fs.inodes.free{${data.template_file.filter.rendered},dd_disk:enabled} by {region,host,device} /
       avg:system.fs.inodes.total{${data.template_file.filter.rendered},dd_disk:enabled} by {region,host,device} * 100
     ) < ${var.free_disk_inodes_threshold_critical}
@@ -138,7 +138,7 @@ resource "datadog_monitor" "datadog_free_memory" {
   message = "${var.free_memory_message}"
 
   query = <<EOF
-    min(last_1m): (
+    min(${var.free_memory_timeframe}): (
       avg:system.mem.free{${data.template_file.filter.rendered}} by {region,host} /
       avg:system.mem.total{${data.template_file.filter.rendered}} by {region,host} * 100
     ) < ${var.free_memory_threshold_critical}
