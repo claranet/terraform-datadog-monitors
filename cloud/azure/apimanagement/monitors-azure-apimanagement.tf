@@ -13,8 +13,8 @@ resource "datadog_monitor" "apimgt_status" {
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
-      avg(${var.status_timeframe}):avg:azure.apimanagement_service.status{${data.template_file.filter.rendered}} by {resource_group,region,name} < 1
-      EOF
+      ${var.status_aggregator}(${var.status_timeframe}):avg:azure.apimanagement_service.status{${data.template_file.filter.rendered}} by {resource_group,region,name} < 1
+  EOF
 
   type = "metric alert"
 
@@ -42,11 +42,11 @@ resource "datadog_monitor" "apimgt_failed_requests" {
   message = "${coalesce(var.failed_requests_message, var.message)}"
 
   query = <<EOF
-    sum(${var.failed_requests_timeframe}): (
-      avg:azure.apimanagement_service.failed_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
-      avg:azure.apimanagement_service.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() * 100
+    ${var.failed_requests_aggregator}(${var.failed_requests_timeframe}): (
+      ${var.failed_requests_aggregator}:azure.apimanagement_service.failed_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
+      ${var.failed_requests_aggregator}:azure.apimanagement_service.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() * 100
     ) > ${var.failed_requests_threshold_critical}
-    EOF
+  EOF
 
   thresholds {
     critical = "${var.failed_requests_threshold_critical}"
@@ -74,11 +74,11 @@ resource "datadog_monitor" "apimgt_other_requests" {
   message = "${coalesce(var.other_requests_message, var.message)}"
 
   query = <<EOF
-    sum(${var.other_requests_timeframe}): (
-      avg:azure.apimanagement_service.other_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
-      avg:azure.apimanagement_service.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() * 100
+    ${var.other_requests_aggregator}(${var.other_requests_timeframe}): (
+      ${var.other_requests_aggregator}:azure.apimanagement_service.other_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
+      ${var.other_requests_aggregator}:azure.apimanagement_service.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() * 100
     ) > ${var.other_requests_threshold_critical}
-    EOF
+  EOF
 
   thresholds {
     critical = "${var.other_requests_threshold_critical}"
@@ -106,11 +106,11 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
   message = "${coalesce(var.unauthorized_requests_message, var.message)}"
 
   query = <<EOF
-    sum(${var.unauthorized_requests_timeframe}): (
-      avg:azure.apimanagement_service.unauthorized_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
-      avg:azure.apimanagement_service.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() * 100
+    ${var.unauthorized_requests_aggregator}(${var.unauthorized_requests_timeframe}): (
+      ${var.unauthorized_requests_aggregator}:azure.apimanagement_service.unauthorized_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
+      ${var.unauthorized_requests_aggregator}:azure.apimanagement_service.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() * 100
     ) > ${var.unauthorized_requests_threshold_critical}
-    EOF
+  EOF
 
   thresholds {
     critical = "${var.unauthorized_requests_threshold_critical}"
@@ -138,11 +138,11 @@ resource "datadog_monitor" "apimgt_successful_requests" {
   message = "${coalesce(var.successful_requests_message, var.message)}"
 
   query = <<EOF
-    sum(${var.successful_requests_timeframe}): (
-      avg:azure.apimanagement_service.successful_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
-      avg:azure.apimanagement_service.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() * 100
+    ${var.successful_requests_aggregator}(${var.successful_requests_timeframe}): (
+      ${var.successful_requests_aggregator}:azure.apimanagement_service.successful_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
+      ${var.successful_requests_aggregator}:azure.apimanagement_service.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() * 100
     ) < ${var.successful_requests_threshold_critical}
-    EOF
+  EOF
 
   thresholds {
     critical = "${var.successful_requests_threshold_critical}"

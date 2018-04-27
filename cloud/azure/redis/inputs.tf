@@ -37,6 +37,12 @@ variable "status_message" {
   default     = ""
 }
 
+variable "status_aggregator" {
+  description = "Monitor aggregator for Redis status [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "avg"
+}
+
 variable "status_timeframe" {
   description = "Monitor timeframe for Redis status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -53,6 +59,12 @@ variable "evictedkeys_limit_message" {
   description = "Custom message for Redis evicted keys monitor"
   type        = "string"
   default     = ""
+}
+
+variable "evictedkeys_limit_aggregator" {
+  description = "Monitor aggregator for Redis evicted keys [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "avg"
 }
 
 variable "evictedkeys_limit_timeframe" {
@@ -83,6 +95,12 @@ variable "percent_processor_time_message" {
   default     = ""
 }
 
+variable "percent_processor_time_aggregator" {
+  description = "Monitor aggregator for Redis processor [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "avg"
+}
+
 variable "percent_processor_time_timeframe" {
   description = "Monitor timeframe for Redis processor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -109,6 +127,12 @@ variable "server_load_rate_message" {
   description = "Custom message for Redis server load monitor"
   type        = "string"
   default     = ""
+}
+
+variable "server_load_rate_aggregator" {
+  description = "Monitor aggregator for Redis server load [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "avg"
 }
 
 variable "server_load_rate_timeframe" {
