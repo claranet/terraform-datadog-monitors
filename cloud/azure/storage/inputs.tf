@@ -37,6 +37,12 @@ variable "availability_message" {
   default     = ""
 }
 
+variable "availability_aggregator" {
+  description = "Monitor aggregator for Storage availability [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "avg"
+}
+
 variable "availability_timeframe" {
   description = "Monitor timeframe for Storage availability [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -63,6 +69,12 @@ variable "successful_requests_message" {
   description = "Custom message for Storage sucessful requests monitor"
   type        = "string"
   default     = ""
+}
+
+variable "successful_requests_aggregator" {
+  description = "Monitor aggregator for Storage sucessful requests [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "avg"
 }
 
 variable "successful_requests_timeframe" {
@@ -93,6 +105,12 @@ variable "latency_message" {
   default     = ""
 }
 
+variable "latency_aggregator" {
+  description = "Monitor aggregator for Storage latency [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "latency_timeframe" {
   description = "Monitor timeframe for Storage latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -119,6 +137,12 @@ variable "timeout_error_requests_message" {
   description = "Custom message for Storage timeout monitor"
   type        = "string"
   default     = ""
+}
+
+variable "timeout_error_requests_aggregator" {
+  description = "Monitor aggregator for Storage timeout [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "avg"
 }
 
 variable "timeout_error_requests_timeframe" {
@@ -149,6 +173,12 @@ variable "network_error_requests_message" {
   default     = ""
 }
 
+variable "network_error_requests_aggregator" {
+  description = "Monitor aggregator for Storage network errors [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "avg"
+}
+
 variable "network_error_requests_timeframe" {
   description = "Monitor timeframe for Storage network errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -175,6 +205,12 @@ variable "throttling_error_requests_message" {
   description = "Custom message for Storage throttling error monitor"
   type        = "string"
   default     = ""
+}
+
+variable "throttling_error_requests_aggregator" {
+  description = "Monitor aggregator for Storage throttling errors [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "avg"
 }
 
 variable "throttling_error_requests_timeframe" {
@@ -205,6 +241,12 @@ variable "server_other_error_requests_message" {
   default     = ""
 }
 
+variable "server_other_error_requests_aggregator" {
+  description = "Monitor aggregator for Storage other errors [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "avg"
+}
+
 variable "server_other_error_requests_timeframe" {
   description = "Monitor timeframe for Storage server other errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -233,6 +275,12 @@ variable "client_other_error_requests_message" {
   default     = ""
 }
 
+variable "client_other_error_requests_aggregator" {
+  description = "Monitor aggregator for Storage other errors [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "avg"
+}
+
 variable "client_other_error_requests_timeframe" {
   description = "Monitor timeframe for Storage other errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -259,6 +307,12 @@ variable "authorization_error_requests_message" {
   description = "Custom message for Storage authorization errors monitor"
   type        = "string"
   default     = ""
+}
+
+variable "authorization_error_requests_aggregator" {
+  description = "Monitor aggregator for Storage authorization errors [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "avg"
 }
 
 variable "authorization_error_requests_timeframe" {

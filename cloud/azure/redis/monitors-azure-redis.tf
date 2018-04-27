@@ -100,8 +100,8 @@ resource "datadog_monitor" "server_load" {
   message = "${coalesce(var.server_load_rate_message, var.message)}"
 
   query = <<EOF
-    avg(${var.server_load_rate_timeframe}): (
-      avg:azure.cache_redis.server_load{${data.template_file.filter.rendered}} by {resource_group,region,name}
+    ${var.server_load_rate_aggregator}(${var.server_load_rate_timeframe}): (
+      ${var.server_load_rate_aggregator}:azure.cache_redis.server_load{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.server_load_rate_threshold_critical}
 EOF
 
