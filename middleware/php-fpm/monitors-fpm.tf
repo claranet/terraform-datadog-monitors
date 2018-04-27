@@ -13,7 +13,7 @@ resource "datadog_monitor" "datadog_php_fpm_connect_idle" {
   type = "metric alert"
 
   query = <<EOF
-    avg(last_10m): (
+    avg(${var.php_fpm_busy_timeframe}): (
       avg:php_fpm.processes.active{${data.template_file.filter.rendered}} by {region, host} /
       ( avg:php_fpm.processes.idle{${data.template_file.filter.rendered}} by {region, host} +
        avg:php_fpm.processes.active{${data.template_file.filter.rendered}} by {region, host} )
