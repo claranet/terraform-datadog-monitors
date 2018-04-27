@@ -36,3 +36,14 @@ variable "status_message" {
   type        = "string"
   default     = ""
 }
+
+variable "status_aggregator" {
+  description = "Monitor aggregator for Service Bus status [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "status_timeframe" {
+  description = "Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_15m"
+}
