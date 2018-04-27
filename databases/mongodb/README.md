@@ -74,10 +74,11 @@ Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| environment | Architecture Environment | string | - | yes |
 | delay | Delay in seconds for the metric evaluation | string | `15` | no |
+| environment | Architecture Environment | string | - | yes |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 | mongodb_replicaset_message | Custom message for Mongodb replicaset monitor | string | `` | no |
 | mongodb_replicaset_silenced | Groups to mute for Mongodb replicaset monitor | map | `<map>` | no |
+| mongodb_replicaset_timeframe | Monitor timeframe for Mongodb replicaset [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
