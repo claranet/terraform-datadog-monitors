@@ -11,7 +11,7 @@ resource "datadog_monitor" "mongodb_replicaset_state" {
   message = "${coalesce(var.mongodb_replicaset_message, var.message)}"
 
   query = <<EOF
-      avg(last_5m): (
+      avg(${var.mongodb_replicaset_timeframe}): (
         avg:mongodb.replset.health{${data.template_file.filter.rendered}} by {region,replset_name}
       ) < 1
   EOF
