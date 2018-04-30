@@ -36,6 +36,12 @@ variable "mongodb_replicaset_message" {
   default     = ""
 }
 
+variable "mongodb_replicaset_aggregator" {
+  description = "Monitor aggregator for Mongodb replicaset [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "avg"
+}
+
 variable "mongodb_replicaset_timeframe" {
   description = "Monitor timeframe for Mongodb replicaset [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
