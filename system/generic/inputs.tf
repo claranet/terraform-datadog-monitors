@@ -38,6 +38,12 @@ variable "cpu_high_message" {
   default     = ""
 }
 
+variable "cpu_high_aggregator" {
+  description = "Monitor aggregator for CPU high [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "cpu_high_timeframe" {
   description = "Monitor timeframe for CPU high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -64,6 +70,12 @@ variable "cpu_load_message" {
   description = "Custom message for CPU load ratio monitor"
   type        = "string"
   default     = ""
+}
+
+variable "cpu_load_aggregator" {
+  description = "Monitor aggregator for CPU load ratio [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "cpu_load_timeframe" {
@@ -94,6 +106,12 @@ variable "free_disk_space_message" {
   default     = ""
 }
 
+variable "free_disk_space_aggregator" {
+  description = "Monitor aggregator for Free diskspace [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "free_disk_space_timeframe" {
   description = "Monitor timeframe for Free diskspace [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -122,6 +140,12 @@ variable "free_disk_inodes_message" {
   default     = ""
 }
 
+variable "free_disk_inodes_aggregator" {
+  description = "Monitor aggregator for Free disk inodes [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "free_disk_inodes_timeframe" {
   description = "Monitor timeframe for Free disk inodes [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -147,6 +171,12 @@ variable "free_memory_silenced" {
 variable "free_memory_message" {
   description = "Custom message for Free memory monitor"
   type        = "string"
+}
+
+variable "free_memory_aggregator" {
+  description = "Monitor aggregator for Free memory [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "free_memory_timeframe" {
