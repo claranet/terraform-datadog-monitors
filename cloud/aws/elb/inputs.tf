@@ -200,7 +200,7 @@ variable "elb_backend_latency_message" {
 variable "elb_backend_latency_aggregator" {
   description = "Monitor aggregator for ELB backend latency [available values: min, max, sum or avg]"
   type        = "string"
-  default     = "min"
+  default     = "max"
 }
 
 variable "elb_backend_latency_timeframe" {
