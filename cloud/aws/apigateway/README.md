@@ -43,13 +43,14 @@ Inputs
 | http_5xx_requests_threshold_critical | Maximum critical acceptable percent of 5xx errors | string | `20` | no |
 | http_5xx_requests_threshold_warning | Maximum warning acceptable percent of 5xx errors | string | `10` | no |
 | http_5xx_requests_timeframe | Monitor timeframe for API HTTP 5xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| latency_aggregator | Monitor aggregator for API Gateway latency [available values: min, max, sum or avg] | string | `min` | no |
+| latency_aggregator | Monitor aggregator for API Gateway latency [available values: min, max, sum or avg] | string | `max` | no |
 | latency_message | Custom message for API Gateway latency monitor | string | `` | no |
 | latency_silenced | Groups to mute for API Gateway latency monitor | map | `<map>` | no |
 | latency_threshold_critical | Alerting threshold in milliseconds | string | `800` | no |
 | latency_threshold_warning | Warning threshold in milliseconds | string | `400` | no |
 | latency_timeframe | Monitor timeframe for API latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
+
 Related documentation
 ---------------------
 

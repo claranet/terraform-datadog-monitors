@@ -63,7 +63,7 @@ Inputs
 | httpcode_target_5xx_threshold_critical | target 5xx critical threshold in percentage | string | `80` | no |
 | httpcode_target_5xx_threshold_warning | target 5xx warning threshold in percentage | string | `60` | no |
 | httpcode_target_5xx_timeframe | Monitor timeframe for ALB target httpcode 5xx [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| latency_aggregator | Monitor aggregator for ALB latency [available values: min, max, sum or avg] | string | `min` | no |
+| latency_aggregator | Monitor aggregator for ALB latency [available values: min, max, sum or avg] | string | `max` | no |
 | latency_message | Custom message for ALB latency monitor | string | `` | no |
 | latency_silenced | Groups to mute for ALB latency monitor | map | `<map>` | no |
 | latency_threshold_critical | latency critical threshold in milliseconds | string | `1000` | no |

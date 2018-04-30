@@ -36,7 +36,7 @@ variable "latency_message" {
 variable "latency_aggregator" {
   description = "Monitor aggregator for API Gateway latency [available values: min, max, sum or avg]"
   type        = "string"
-  default     = "min"
+  default     = "max"
 }
 
 variable "latency_timeframe" {

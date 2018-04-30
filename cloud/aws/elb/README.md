@@ -56,7 +56,7 @@ Inputs
 | elb_backend_5xx_threshold_critical | loadbalancer backend 5xx critical threshold in percentage | string | `10` | no |
 | elb_backend_5xx_threshold_warning | loadbalancer backend 5xx warning threshold in percentage | string | `5` | no |
 | elb_backend_5xx_timeframe | Monitor timeframe for ELB backend 5xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| elb_backend_latency_aggregator | Monitor aggregator for ELB backend latency [available values: min, max, sum or avg] | string | `min` | no |
+| elb_backend_latency_aggregator | Monitor aggregator for ELB backend latency [available values: min, max, sum or avg] | string | `max` | no |
 | elb_backend_latency_critical | latency critical threshold in seconds | string | `5` | no |
 | elb_backend_latency_message | Custom message for ELB backend latency monitor | string | `` | no |
 | elb_backend_latency_silenced | Groups to mute for ELB backend latency monitor | map | `<map>` | no |
