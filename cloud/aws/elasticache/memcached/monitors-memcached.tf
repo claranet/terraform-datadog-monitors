@@ -6,6 +6,13 @@ data "template_file" "filter" {
   }
 }
 
+module "datadog-monitors-aws-elasticcache" {
+  source = "../."
+
+  message     = "${var.message}"
+  environment = "${var.environment}"
+}
+
 resource "datadog_monitor" "memcached_get_miss" {
   name    = "[${var.environment}] Elasticache Memcached get requests missed {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.get_requests_miss_message, var.message)}"
