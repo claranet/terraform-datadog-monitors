@@ -6,6 +6,13 @@ data "template_file" "filter" {
   }
 }
 
+module "datadog-monitors-aws-elasticcache" {
+  source = "../."
+
+  message     = "${var.message}"
+  environment = "${var.environment}"
+}
+
 resource "datadog_monitor" "redis_cache_miss" {
   name    = "[${var.environment}] Elasticache Redis cache miss {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cache_miss_message, var.message)}"
