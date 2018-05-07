@@ -27,7 +27,6 @@ EOF
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:redis", "team:azure", "provider:azure"]
 }
@@ -60,7 +59,6 @@ EOF
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:redis", "team:azure", "provider:azure"]
 }
@@ -93,7 +91,6 @@ EOF
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:redis", "team:azure", "provider:azure"]
 }
@@ -126,7 +123,6 @@ EOF
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:redis", "team:azure", "provider:azure"]
 }

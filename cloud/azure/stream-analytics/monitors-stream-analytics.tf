@@ -27,7 +27,6 @@ resource "datadog_monitor" "status" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:streamanalytics", "team:azure", "provider:azure"]
 }
@@ -53,7 +52,6 @@ resource "datadog_monitor" "su_utilization" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   thresholds {
     warning  = "${var.su_utilization_threshold_warning}"
@@ -87,7 +85,6 @@ resource "datadog_monitor" "failed_function_requests" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   thresholds {
     warning  = "${var.failed_function_requests_threshold_warning}"
@@ -120,7 +117,6 @@ resource "datadog_monitor" "conversion_errors" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   thresholds {
     warning  = "${var.conversion_errors_threshold_warning}"
@@ -153,7 +149,6 @@ resource "datadog_monitor" "runtime_errors" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   thresholds {
     warning  = "${var.runtime_errors_threshold_warning}"

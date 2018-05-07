@@ -28,7 +28,6 @@ resource "datadog_monitor" "too_many_jobs_failed" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
@@ -63,7 +62,6 @@ resource "datadog_monitor" "too_many_list_jobs_failed" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
@@ -98,7 +96,6 @@ resource "datadog_monitor" "too_many_query_jobs_failed" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
@@ -124,7 +121,6 @@ resource "datadog_monitor" "status" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
@@ -150,7 +146,6 @@ resource "datadog_monitor" "total_devices" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
@@ -185,7 +180,6 @@ resource "datadog_monitor" "too_many_c2d_methods_failed" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
@@ -220,7 +214,6 @@ resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
@@ -255,7 +248,6 @@ resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
@@ -290,7 +282,6 @@ resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
@@ -325,7 +316,6 @@ resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
@@ -363,7 +353,6 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
@@ -401,7 +390,6 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
@@ -439,7 +427,6 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }
@@ -468,7 +455,6 @@ resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:iothub", "team:azure", "provider:azure"]
 }

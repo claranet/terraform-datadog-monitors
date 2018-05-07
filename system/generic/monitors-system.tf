@@ -33,7 +33,6 @@ resource "datadog_monitor" "datadog_cpu_too_high" {
   include_tags        = true
   locked              = false
   require_full_window = true
-  no_data_timeframe   = 20
 
   silenced = "${var.cpu_high_silenced}"
 }
@@ -66,7 +65,6 @@ resource "datadog_monitor" "datadog_load_too_high" {
   include_tags        = true
   locked              = false
   require_full_window = true
-  no_data_timeframe   = 20
 
   silenced = "${var.cpu_load_silenced}"
 }
@@ -99,7 +97,6 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
   include_tags        = true
   locked              = false
   require_full_window = true
-  no_data_timeframe   = 20
 
   silenced = "${var.free_disk_space_silenced}"
 }
@@ -132,7 +129,6 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
   include_tags        = true
   locked              = false
   require_full_window = true
-  no_data_timeframe   = 20
 
   silenced = "${var.free_disk_inodes_silenced}"
 }
@@ -166,7 +162,6 @@ resource "datadog_monitor" "datadog_free_memory" {
   include_tags        = true
   locked              = false
   require_full_window = true
-  no_data_timeframe   = 20
 
   silenced = "${var.free_memory_silenced}"
 }
