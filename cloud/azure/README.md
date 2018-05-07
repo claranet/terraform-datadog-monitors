@@ -21,6 +21,7 @@ Creates a set of Azure DataDog monitors for the following components :
 * Azure SQL monitors
 * Azure Redis monitors
 * Azure Event Hub monitors
+* Azure Service Bus monitors
 * Azure Stream Analytics monitors
 * Azure Storage monitors
 * Azure IOT Hub monitors
@@ -149,6 +150,10 @@ Inputs
 | redis_server_load_rate_threshold_warning | Server CPU load rate (warning threshold) | string | `70` | no |
 | redis_status_message | Custom message for Redis status monitor | string | `` | no |
 | redis_status_silenced | Groups to mute for Redis status monitor | map | `<map>` | no |
+| servicebus_status_message | Custom message for Service Bus status monitor | string | `` | no |
+| servicebus_status_silenced | Groups to mute for Service Bus status monitor | map | `<map>` | no |
+| servicebus_status_timeframe | Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
+| servicebus_status_aggregator | Monitor timeframe aggregator for Service Bus status [available values: min, max, sum or avg] | string | `min` | no |
 | sqldatabase_cpu_message | Custom message for SQL CPU monitor | string | `` | no |
 | sqldatabase_cpu_silenced | Groups to mute for SQL CPU monitor | map | `<map>` | no |
 | sqldatabase_cpu_threshold_critical | CPU usage in percent (critical threshold) | string | `90` | no |
