@@ -37,6 +37,12 @@ variable "availability_message" {
   default     = ""
 }
 
+variable "availability_timeframe" {
+  description = "Monitor timeframe for Storage availability [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "availability_threshold_critical" {
   description = "Minimum acceptable percent of availability for a storage"
   default     = 50
@@ -57,6 +63,12 @@ variable "successful_requests_message" {
   description = "Custom message for Storage sucessful requests monitor"
   type        = "string"
   default     = ""
+}
+
+variable "successful_requests_timeframe" {
+  description = "Monitor timeframe for Storage sucessful requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "successful_requests_threshold_critical" {
@@ -81,6 +93,12 @@ variable "latency_message" {
   default     = ""
 }
 
+variable "latency_timeframe" {
+  description = "Monitor timeframe for Storage latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "latency_threshold_critical" {
   description = "Maximum acceptable end to end latency (ms) for a storage"
   default     = 2000
@@ -101,6 +119,12 @@ variable "timeout_error_requests_message" {
   description = "Custom message for Storage timeout monitor"
   type        = "string"
   default     = ""
+}
+
+variable "timeout_error_requests_timeframe" {
+  description = "Monitor timeframe for Storage timeout [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "timeout_error_requests_threshold_critical" {
@@ -125,6 +149,12 @@ variable "network_error_requests_message" {
   default     = ""
 }
 
+variable "network_error_requests_timeframe" {
+  description = "Monitor timeframe for Storage network errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "network_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of network error requests for a storage"
   default     = 90
@@ -145,6 +175,12 @@ variable "throttling_error_requests_message" {
   description = "Custom message for Storage throttling error monitor"
   type        = "string"
   default     = ""
+}
+
+variable "throttling_error_requests_timeframe" {
+  description = "Monitor timeframe for Storage throttling errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "throttling_error_requests_threshold_critical" {
@@ -169,6 +205,12 @@ variable "server_other_error_requests_message" {
   default     = ""
 }
 
+variable "server_other_error_requests_timeframe" {
+  description = "Monitor timeframe for Storage server other errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "server_other_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of server other error requests for a storage"
   default     = 90
@@ -191,6 +233,12 @@ variable "client_other_error_requests_message" {
   default     = ""
 }
 
+variable "client_other_error_requests_timeframe" {
+  description = "Monitor timeframe for Storage other errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "client_other_error_requests_threshold_critical" {
   description = "Maximum acceptable percent of client other error requests for a storage"
   default     = 90
@@ -211,6 +259,12 @@ variable "authorization_error_requests_message" {
   description = "Custom message for Storage authorization errors monitor"
   type        = "string"
   default     = ""
+}
+
+variable "authorization_error_requests_timeframe" {
+  description = "Monitor timeframe for Storage authorization errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "authorization_error_requests_threshold_critical" {
