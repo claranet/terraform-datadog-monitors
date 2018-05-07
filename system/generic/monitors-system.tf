@@ -139,7 +139,7 @@ resource "datadog_monitor" "datadog_free_memory" {
 
   query = <<EOF
     ${var.free_memory_time_aggregator}(${var.free_memory_timeframe}): (
-      avg:system.mem.free{${data.template_file.filter.rendered}} by {region,host} /
+      avg:system.mem.usable{${data.template_file.filter.rendered}} by {region,host} /
       avg:system.mem.total{${data.template_file.filter.rendered}} by {region,host} * 100
     ) < ${var.free_memory_threshold_critical}
   EOF
