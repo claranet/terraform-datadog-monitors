@@ -33,7 +33,6 @@ resource "datadog_monitor" "apimgt_status" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:apimanagement", "team:azure", "provider:azure"]
 }
@@ -66,7 +65,6 @@ resource "datadog_monitor" "apimgt_failed_requests" {
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:apimanagement", "team:azure", "provider:azure"]
 }
@@ -99,7 +97,6 @@ resource "datadog_monitor" "apimgt_other_requests" {
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:apimanagement", "team:azure", "provider:azure"]
 }
@@ -132,7 +129,6 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:apimanagement", "team:azure", "provider:azure"]
 }
@@ -165,7 +161,6 @@ resource "datadog_monitor" "apimgt_successful_requests" {
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:apimanagement", "team:azure", "provider:azure"]
 }

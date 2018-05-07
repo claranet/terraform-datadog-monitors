@@ -33,7 +33,6 @@ resource "datadog_monitor" "datadog_php_fpm_connect_idle" {
   include_tags        = true
   locked              = false
   require_full_window = true
-  no_data_timeframe   = 20
 
   silenced = "${var.php_fpm_busy_silenced}"
 
@@ -65,7 +64,6 @@ resource "datadog_monitor" "datadog_fpm_process" {
   include_tags        = true
   locked              = false
   require_full_window = true
-  no_data_timeframe   = 20
 
   silenced = "${var.php_fpm_connect_silenced}"
 

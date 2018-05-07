@@ -33,7 +33,6 @@ EOF
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
 }
@@ -65,7 +64,6 @@ EOF
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
 }
@@ -97,7 +95,6 @@ EOF
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
 }
@@ -129,7 +126,6 @@ EOF
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
 }
@@ -161,7 +157,6 @@ EOF
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
 }
@@ -193,7 +188,6 @@ EOF
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
 }
@@ -225,7 +219,6 @@ EOF
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
 }
@@ -257,7 +250,6 @@ EOF
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
 }
@@ -289,7 +281,6 @@ EOF
   new_host_delay      = "${var.delay}"
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
 }

@@ -31,7 +31,6 @@ resource "datadog_monitor" "datadog_apache_process" {
   include_tags        = true
   locked              = false
   require_full_window = true
-  no_data_timeframe   = 20
 
   silenced = "${var.apache_connect_silenced}"
 

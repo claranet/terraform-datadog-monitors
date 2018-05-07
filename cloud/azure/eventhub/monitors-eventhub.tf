@@ -27,7 +27,6 @@ resource "datadog_monitor" "eventhub_status" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:eventhub", "team:azure", "provider:azure"]
 }
@@ -63,7 +62,6 @@ resource "datadog_monitor" "eventhub_failed_requests" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:eventhub", "team:azure", "provider:azure"]
 }
@@ -104,7 +102,6 @@ resource "datadog_monitor" "eventhub_errors" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:eventhub", "team:azure", "provider:azure"]
 }
