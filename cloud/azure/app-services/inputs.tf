@@ -35,6 +35,12 @@ variable "response_time_message" {
   default     = ""
 }
 
+variable "response_time_timeframe" {
+  description = "Monitor timeframe for App Services response time [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "response_time_threshold_critical" {
   default     = 10
   description = "Alerting threshold for response time in seconds"
@@ -55,6 +61,12 @@ variable "memory_usage_message" {
   description = "Custom message for App Services memory usage monitor"
   type        = "string"
   default     = ""
+}
+
+variable "memory_usage_timeframe" {
+  description = "Monitor timeframe for App Services memory usage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "memory_usage_threshold_critical" {
@@ -79,6 +91,12 @@ variable "http_4xx_requests_message" {
   default     = ""
 }
 
+variable "http_4xx_requests_timeframe" {
+  description = "Monitor timeframe for App Services 4xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "http_4xx_requests_threshold_critical" {
   default     = 90
   description = "Maximum critical acceptable percent of 4xx errors"
@@ -101,6 +119,12 @@ variable "http_5xx_requests_message" {
   default     = ""
 }
 
+variable "http_5xx_requests_timeframe" {
+  description = "Monitor timeframe for App Services 5xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "http_5xx_requests_threshold_critical" {
   default     = 90
   description = "Maximum critical acceptable percent of 5xx errors"
@@ -121,6 +145,12 @@ variable "http_successful_requests_message" {
   description = "Custom message for App Services successful requests monitor"
   type        = "string"
   default     = ""
+}
+
+variable "http_successful_requests_timeframe" {
+  description = "Monitor timeframe for App Services successful requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "http_successful_requests_threshold_critical" {

@@ -37,6 +37,12 @@ variable "status_message" {
   default     = ""
 }
 
+variable "status_timeframe" {
+  description = "Monitor timeframe for Redis status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "evictedkeys_limit_silenced" {
   description = "Groups to mute for Redis evicted keys monitor"
   type        = "map"
@@ -47,6 +53,12 @@ variable "evictedkeys_limit_message" {
   description = "Custom message for Redis evicted keys monitor"
   type        = "string"
   default     = ""
+}
+
+variable "evictedkeys_limit_timeframe" {
+  description = "Monitor timeframe for Redis evicted keys [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "evictedkeys_limit_threshold_warning" {
@@ -71,6 +83,12 @@ variable "percent_processor_time_message" {
   default     = ""
 }
 
+variable "percent_processor_time_timeframe" {
+  description = "Monitor timeframe for Redis processor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "percent_processor_time_threshold_critical" {
   description = "Processor time percent (critical threshold)"
   default     = 80
@@ -91,6 +109,12 @@ variable "server_load_rate_message" {
   description = "Custom message for Redis server load monitor"
   type        = "string"
   default     = ""
+}
+
+variable "server_load_rate_timeframe" {
+  description = "Monitor timeframe for Redis server load [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "server_load_rate_threshold_critical" {

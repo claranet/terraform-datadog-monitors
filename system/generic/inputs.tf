@@ -39,7 +39,8 @@ variable "cpu_high_message" {
 }
 
 variable "cpu_high_timeframe" {
-  description = "CPU high timeframe"
+  description = "Monitor timeframe for CPU high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
   default     = "last_5m"
 }
 
@@ -66,7 +67,8 @@ variable "cpu_load_message" {
 }
 
 variable "cpu_load_timeframe" {
-  description = "CPU load ratio timeframe"
+  description = "Monitor timeframe for CPU load ratio [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
   default     = "last_5m"
 }
 
@@ -92,6 +94,12 @@ variable "free_disk_space_message" {
   default     = ""
 }
 
+variable "free_disk_space_timeframe" {
+  description = "Monitor timeframe for Free diskspace [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "free_disk_space_threshold_warning" {
   description = "Free disk space warning threshold"
   default     = 10
@@ -114,6 +122,12 @@ variable "free_disk_inodes_message" {
   default     = ""
 }
 
+variable "free_disk_inodes_timeframe" {
+  description = "Monitor timeframe for Free disk inodes [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "free_disk_inodes_threshold_warning" {
   description = "Free disk space warning threshold"
   default     = 10
@@ -133,6 +147,12 @@ variable "free_memory_silenced" {
 variable "free_memory_message" {
   description = "Custom message for Free memory monitor"
   type        = "string"
+}
+
+variable "free_memory_timeframe" {
+  description = "Monitor timeframe for Free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_1m"
 }
 
 variable "free_memory_threshold_warning" {

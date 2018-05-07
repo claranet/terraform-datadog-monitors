@@ -11,7 +11,7 @@ resource "datadog_monitor" "status" {
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
-    avg(last_5m):avg:azure.cache_redis.status{${data.template_file.filter.rendered}} by {resource_group,region,name} != 1
+    avg(${var.status_timeframe}):avg:azure.cache_redis.status{${data.template_file.filter.rendered}} by {resource_group,region,name} != 1
 EOF
 
   type = "metric alert"
@@ -36,7 +36,7 @@ resource "datadog_monitor" "evictedkeys" {
   message = "${coalesce(var.evictedkeys_limit_message, var.message)}"
 
   query = <<EOF
-    avg(last_5m): (
+    avg(${var.evictedkeys_limit_timeframe}): (
       avg:azure.cache_redis.evictedkeys{${data.template_file.filter.rendered}} by {resource_group,region,name}
      ) > ${var.evictedkeys_limit_threshold_critical}
 EOF
@@ -68,7 +68,7 @@ resource "datadog_monitor" "percent_processor_time" {
   message = "${coalesce(var.percent_processor_time_message, var.message)}"
 
   query = <<EOF
-    avg(last_5m): (
+    avg(${var.percent_processor_time_timeframe}): (
       avg:azure.cache_redis.percent_processor_time{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.percent_processor_time_threshold_critical}
 EOF
@@ -100,7 +100,7 @@ resource "datadog_monitor" "server_load" {
   message = "${coalesce(var.server_load_rate_message, var.message)}"
 
   query = <<EOF
-    avg(last_5m): (
+    avg(${var.server_load_rate_timeframe}): (
       avg:azure.cache_redis.server_load{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.server_load_rate_threshold_critical}
 EOF

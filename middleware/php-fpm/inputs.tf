@@ -38,6 +38,12 @@ variable "php_fpm_busy_message" {
   default     = ""
 }
 
+variable "php_fpm_busy_timeframe" {
+  description = "Monitor timeframe for PHP FPM busy worker [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_10m"
+}
+
 variable "php_fpm_busy_threshold_warning" {
   description = "php fpm busy warning threshold"
   default     = 0.8
