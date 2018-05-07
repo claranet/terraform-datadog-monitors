@@ -10,13 +10,13 @@ module "vpn" {
   
   environment        = "${var.environment}"
   message            = "${module.datadog-message-alerting.alerting-message}"
-  vpn_tunnel_address = "${var.vpn_to_monitor}"
 }
 ```
 
 Purpose
 -------
 Creates a DataDog monitors with the following checks :
+
 * VPN status
 
 Inputs
