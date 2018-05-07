@@ -26,8 +26,8 @@ resource "datadog_monitor" "datadog_php_fpm_connect_idle" {
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.delay_metric}"
-  new_host_delay      = "${var.delay_metric}"
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -46,7 +46,7 @@ resource "datadog_monitor" "datadog_fpm_process" {
   type = "service check"
 
   query = <<EOF
-    "php_fpm.can_ping".over(${data.template_file.filter.rendered}).by("host","port").last(6).count_by_status()
+    "php_fpm.can_ping".over("${data.template_file.filter.rendered}").by("host","port").last(6).count_by_status()
   EOF
 
   thresholds = {
@@ -56,8 +56,8 @@ resource "datadog_monitor" "datadog_fpm_process" {
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.delay_service}"
-  new_host_delay      = "${var.delay_service}"
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
