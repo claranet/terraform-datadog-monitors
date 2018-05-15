@@ -16,9 +16,11 @@ module "datadog-monitors-aws-elasticache" {
 
 ```
 
+This module is used by default when you define `memcached` or `redis` monitors
+
 Purpose
 -------
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 * Eviction
 

@@ -25,35 +25,68 @@ variable "filter_tags_custom" {
 }
 
 # Memcached specific
-variable "get_requests_miss_silenced" {
-  description = "Groups to mute for Elasticache Memcached get requests missed monitor"
+variable "cpu_high_silenced" {
+  description = "Groups to mute for Elasticache memcached cpu high monitor"
   type        = "map"
   default     = {}
 }
 
-variable "get_requests_miss_message" {
-  description = "Custom message for Elasticache Memcached get requests missed monitor"
+variable "cpu_high_message" {
+  description = "Custom message for Elasticache memcached cpu high monitor"
   type        = "string"
   default     = ""
 }
 
-variable "get_requests_miss_aggregator" {
-  description = "Monitor aggregator for Elasticache Memcached get requests missed [available values: min, max, sum or avg]"
+variable "cpu_high_aggregator" {
+  description = "Monitor aggregator for Elasticache memcached cpu high [available values: min, max, sum or avg]"
   type        = "string"
   default     = "min"
 }
 
-variable "get_requests_miss_timeframe" {
-  description = "Monitor timeframe for Elasticache Memcached get requests missed [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+variable "cpu_high_timeframe" {
+  description = "Monitor timeframe for Elasticache memcached cpu high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   default     = "last_15m"
 }
 
-variable "get_requests_miss_threshold_warning" {
-  description = "Elasticache Memcached get requests missed warning threshold in percentage"
-  default     = 80
+variable "cpu_high_threshold_warning" {
+  description = "Elasticache memcached cpu high warning threshold in percentage"
+  default     = 75
 }
 
-variable "get_requests_miss_threshold_critical" {
-  description = "Elasticache Memcached get requests missed critical threshold in percentage"
-  default     = 95
+variable "cpu_high_threshold_critical" {
+  description = "Elasticache memcached cpu high critical threshold in percentage"
+  default     = 90
+}
+
+variable "swap_silenced" {
+  description = "Groups to mute for Elasticache memcached swap monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "swap_message" {
+  description = "Custom message for Elasticache memcached swap monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "swap_aggregator" {
+  description = "Monitor aggregator for Elasticache memcached swap [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "swap_timeframe" {
+  description = "Monitor timeframe for Elasticache memcached swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_5m"
+}
+
+variable "swap_threshold_warning" {
+  description = "Elasticache memcached swap warning threshold in percentage"
+  default     = 0
+}
+
+variable "swap_threshold_critical" {
+  description = "Elasticache memcached swap critical threshold in percentage"
+  default     = 50
 }
