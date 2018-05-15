@@ -10,6 +10,8 @@ module "datadog-monitors-aws-elasticcache" {
 
   message = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  filter_tags = "${var.filter_tags}"
+  resource    = "${var.type_of_resource}"
 }
 
 ```
@@ -18,24 +20,22 @@ Purpose
 -------
 Creates DataDog monitors with the following checks :
 
-* CPU High
+* Eviction
 
 Inputs
 ------
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| cpu_aggregator | Monitor aggregator for Elasticache CPU high [available values: min, max, sum or avg] | string | `min` | no |
-| cpu_message | Custom message for Elasticache CPU high monitor | string | `` | no |
-| cpu_silenced | Groups to mute for Elasticache CPU high monitor | map | `<map>` | no |
-| cpu_threshold_critical | Elasticache CPU high critical threshold in percentage | string | `95` | no |
-| cpu_threshold_warning | Elasticache CPU high warning threshold in percentage | string | `80` | no |
-| cpu_timeframe | Monitor timeframe for Elasticache CPU high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture Environment | string | - | yes |
-| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
-| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
+| eviction_aggregator | Monitor aggregator for Elasticache eviction [available values: min, max, sum or avg] | string | `min` | no |
+| eviction_message | Custom message for Elasticache eviction monitor | string | `` | no |
+| eviction_silenced | Groups to mute for Elasticache eviction monitor | map | `<map>` | no |
+| eviction_timeframe | Monitor timeframe for Elasticache eviction [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| filter_tags | Tags used for filtering | string | - | yes |
 | message | Message sent when an alert is triggered | string | - | yes |
+| resource | Type of Elasticache used | string | - | yes |
 
 Related documentation
 ---------------------

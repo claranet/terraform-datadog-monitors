@@ -1,29 +1,16 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_ec:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
-resource "datadog_monitor" "elasticache_cpu_high" {
-  name    = "[${var.environment}] Elasticache CPU high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = "${coalesce(var.cpu_message, var.message)}"
+resource "datadog_monitor" "elasticache_eviction" {
+  name    = "[${var.environment}] Elasticache ${var.resource} eviction {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}"
+  message = "${coalesce(var.eviction_message, var.message)}"
 
   type = "metric alert"
 
   query = <<EOF
-    ${var.cpu_aggregator}(${var.cpu_timeframe}): (
-      ${var.cpu_aggregator}:aws.elasticache.cpuutilization{${data.template_file.filter.rendered}} by {region,name}
-    ) > ${var.cpu_threshold_critical}
+    ${var.eviction_aggregator}(${var.eviction_timeframe}): (
+      ${var.eviction_aggregator}:aws.elasticache.evictions{${var.filter_tags} by {region,cluster}
+    ) > 0
   EOF
 
-  thresholds {
-    warning  = "${var.cpu_threshold_warning}"
-    critical = "${var.cpu_threshold_critical}"
-  }
-
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -33,7 +20,7 @@ resource "datadog_monitor" "elasticache_cpu_high" {
   require_full_window = false
   new_host_delay      = "${var.delay}"
 
-  silenced = "${var.cpu_silenced}"
+  silenced = "${var.eviction_silenced}"
 
-  tags = ["env:${var.environment}", "resource:elasticache", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "resource:${var.resource}", "team:aws", "provider:aws"]
 }
