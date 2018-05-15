@@ -14,46 +14,34 @@ variable "message" {
   description = "Message sent when an alert is triggered"
 }
 
-variable "filter_tags_use_defaults" {
-  description = "Use default filter tags convention"
-  default     = "true"
+variable "filter_tags" {
+  description = "Tags used for filtering"
 }
 
-variable "filter_tags_custom" {
-  description = "Tags used for custom filtering when filter_tags_use_defaults is false"
-  default     = "*"
+variable "resource" {
+  description = "Type of Elasticache used"
 }
 
 # Elasticache specific
-variable "cpu_silenced" {
-  description = "Groups to mute for Elasticache CPU high monitor"
+variable "eviction_silenced" {
+  description = "Groups to mute for Elasticache eviction monitor"
   type        = "map"
   default     = {}
 }
 
-variable "cpu_message" {
-  description = "Custom message for Elasticache CPU high monitor"
+variable "eviction_message" {
+  description = "Custom message for Elasticache eviction monitor"
   type        = "string"
   default     = ""
 }
 
-variable "cpu_aggregator" {
-  description = "Monitor aggregator for Elasticache CPU high [available values: min, max, sum or avg]"
+variable "eviction_aggregator" {
+  description = "Monitor aggregator for Elasticache eviction [available values: min, max, sum or avg]"
   type        = "string"
   default     = "min"
 }
 
-variable "cpu_timeframe" {
-  description = "Monitor timeframe for Elasticache CPU high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  default     = "last_15m"
-}
-
-variable "cpu_threshold_warning" {
-  description = "Elasticache CPU high warning threshold in percentage"
-  default     = 80
-}
-
-variable "cpu_threshold_critical" {
-  description = "Elasticache CPU high critical threshold in percentage"
-  default     = 95
+variable "eviction_timeframe" {
+  description = "Monitor timeframe for Elasticache eviction [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_5m"
 }
