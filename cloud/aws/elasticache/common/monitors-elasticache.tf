@@ -6,7 +6,7 @@ resource "datadog_monitor" "elasticache_eviction" {
 
   query = <<EOF
     ${var.eviction_aggregator}(${var.eviction_timeframe}): (
-      ${var.eviction_aggregator}:aws.elasticache.evictions{${var.filter_tags} by {region,cluster}
+      ${var.eviction_aggregator}:aws.elasticache.evictions{${var.filter_tags}} by {region,cluster}
     ) > 0
   EOF
 

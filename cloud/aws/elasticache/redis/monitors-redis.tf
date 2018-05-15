@@ -7,7 +7,7 @@ data "template_file" "filter" {
 }
 
 module "datadog-monitors-aws-elasticcache-common" {
-  source = "../."
+  source = "../common"
 
   message     = "${var.message}"
   environment = "${var.environment}"
