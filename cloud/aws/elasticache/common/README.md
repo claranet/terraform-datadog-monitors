@@ -5,8 +5,8 @@ How to use this module
 ----------------------
 
 ```
-module "datadog-monitors-aws-elasticcache" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/aws/elasticcache?ref={revision}"
+module "datadog-monitors-aws-elasticache" {
+  source = "../common"
 
   message = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"

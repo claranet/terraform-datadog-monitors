@@ -17,7 +17,7 @@ module "datadog-monitors-aws-elasticcache-redis" {
 
 Purpose
 -------
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 * Cache Hit
 * CPU High
@@ -54,8 +54,9 @@ Inputs
 Related documentation
 ---------------------
 
-DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_elasticache/](https://docs.datadoghq.com/integrations/amazon_elasticache/)
-And more here :
+DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_elasticache/](https://docs.datadoghq.com/integrations/amazon_elasticache/)  
+And more here:
+
 * [https://www.datadoghq.com/dashboards/elasticache-dashboard-redis/](https://www.datadoghq.com/dashboards/elasticache-dashboard-redis/)
 * [https://www.datadoghq.com/blog/monitoring-elasticache-performance-metrics-with-redis-or-memcached/](https://www.datadoghq.com/blog/monitoring-elasticache-performance-metrics-with-redis-or-memcached/)
 
