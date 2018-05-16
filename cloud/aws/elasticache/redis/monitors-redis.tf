@@ -15,23 +15,23 @@ module "datadog-monitors-aws-elasticcache-common" {
   resource    = "redis"
 }
 
-resource "datadog_monitor" "redis_cache_hit" {
-  name    = "[${var.environment}] Elasticache redis cache hit {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = "${coalesce(var.cache_hit_message, var.message)}"
+resource "datadog_monitor" "redis_cache_hits" {
+  name    = "[${var.environment}] Elasticache redis cache hits {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = "${coalesce(var.cache_hits_message, var.message)}"
 
   type = "metric alert"
 
   query = <<EOF
-    ${var.cache_hit_aggregator}(${var.cache_hit_timeframe}): (
-      ${var.cache_hit_aggregator}:aws.elasticache.cache_hits{${data.template_file.filter.rendered}} by {region,cluster} /
-      (${var.cache_hit_aggregator}:aws.elasticache.cache_hits{${data.template_file.filter.rendered}} by {region,cluster} +
-        ${var.cache_hit_aggregator}:aws.elasticache.cache_misses{${data.template_file.filter.rendered}} by {region,cluster})
-    ) < ${var.cache_hit_threshold_critical}
+    ${var.cache_hits_aggregator}(${var.cache_hits_timeframe}): (
+      ${var.cache_hits_aggregator}:aws.elasticache.cache_hits{${data.template_file.filter.rendered}} by {region,cluster} /
+      (${var.cache_hits_aggregator}:aws.elasticache.cache_hits{${data.template_file.filter.rendered}} by {region,cluster} +
+        ${var.cache_hits_aggregator}:aws.elasticache.cache_misses{${data.template_file.filter.rendered}} by {region,cluster})
+    ) < ${var.cache_hits_threshold_critical}
   EOF
 
   thresholds {
-    warning  = "${var.cache_hit_threshold_warning}"
-    critical = "${var.cache_hit_threshold_critical}"
+    warning  = "${var.cache_hits_threshold_warning}"
+    critical = "${var.cache_hits_threshold_critical}"
   }
 
   notify_no_data      = true
@@ -44,7 +44,7 @@ resource "datadog_monitor" "redis_cache_hit" {
   require_full_window = false
   new_host_delay      = "${var.delay}"
 
-  silenced = "${var.cache_hit_silenced}"
+  silenced = "${var.cache_hits_silenced}"
 
   tags = ["env:${var.environment}", "resource:redis", "team:aws", "provider:aws"]
 }
