@@ -25,6 +25,39 @@ variable "filter_tags_custom" {
 }
 
 # Memcached specific
+variable "get_hits_silenced" {
+  description = "Groups to mute for Elasticache memcached get hits monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "get_hits_message" {
+  description = "Custom message for Elasticache memcached get hits monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "get_hits_aggregator" {
+  description = "Monitor aggregator for Elasticache memcached get hits [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "get_hits_timeframe" {
+  description = "Monitor timeframe for Elasticache memcached get hits [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_15m"
+}
+
+variable "get_hits_threshold_warning" {
+  description = "Elasticache memcached get hits warning threshold in percentage"
+  default     = 20
+}
+
+variable "get_hits_threshold_critical" {
+  description = "Elasticache memcached get hits critical threshold in percentage"
+  default     = 10
+}
+
 variable "cpu_high_silenced" {
   description = "Groups to mute for Elasticache memcached cpu high monitor"
   type        = "map"

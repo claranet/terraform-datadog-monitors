@@ -18,6 +18,7 @@ Purpose
 -------
 Creates DataDog monitors with the following checks :
 
+* Get Hit
 * CPU High
 * Swap
 
@@ -36,6 +37,12 @@ Inputs
 | environment | Architecture Environment | string | - | yes |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
+| get_hits_aggregator | Monitor aggregator for Elasticache memcached get hits [available values: min, max, sum or avg] | string | `min` | no |
+| get_hits_message | Custom message for Elasticache memcached get hits monitor | string | `` | no |
+| get_hits_silenced | Groups to mute for Elasticache memcached get hits monitor | map | `<map>` | no |
+| get_hits_threshold_critical | Elasticache memcached get hits critical threshold in percentage | string | `10` | no |
+| get_hits_threshold_warning | Elasticache memcached get hits warning threshold in percentage | string | `20` | no |
+| get_hits_timeframe | Monitor timeframe for Elasticache memcached get hits [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 | swap_aggregator | Monitor aggregator for Elasticache memcached swap [available values: min, max, sum or avg] | string | `min` | no |
 | swap_message | Custom message for Elasticache memcached swap monitor | string | `` | no |
@@ -47,7 +54,7 @@ Inputs
 Related documentation
 ---------------------
 
-DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_elasticache/](https://docs.datadoghq.com/integrations/amazon_elasticache/)
+DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_elasticache/](https://docs.datadoghq.com/integrations/amazon_elasticache/)  
 And more here:
 
 * [https://www.datadoghq.com/blog/monitoring-elasticache-performance-metrics-with-redis-or-memcached/](https://www.datadoghq.com/blog/monitoring-elasticache-performance-metrics-with-redis-or-memcached/)
