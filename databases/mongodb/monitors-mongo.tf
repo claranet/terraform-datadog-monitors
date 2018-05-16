@@ -2,18 +2,17 @@ data "template_file" "filter" {
   template = "$${filter}"
 
   vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_monitoring_mongodb:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
+    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_mongodb:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
   }
 }
 
-resource "datadog_monitor" "mongodb_replicaset_state" {
-  name    = "[${var.environment}] Member down in the replica set"
-  message = "${coalesce(var.mongodb_replicaset_message, var.message)}"
+resource "datadog_monitor" "mongodb_primary" {
+  name    = "[${var.environment}] MongoDB primary state"
+  message = "${coalesce(var.mongodb_primary_message, var.message)}"
 
   query = <<EOF
-      ${var.mongodb_replicaset_time_aggregator}(${var.mongodb_replicaset_timeframe}): (
-        avg:mongodb.replset.health{${data.template_file.filter.rendered}} by {region,replset_name}
-      ) < 1
+      ${var.mongodb_primary_aggregator}(${var.mongodb_primary_timeframe}):
+      min:mongodb.replset.state{${data.template_file.filter.rendered}} by {replset_name} >= 2
   EOF
 
   type = "metric alert"
@@ -27,7 +26,101 @@ resource "datadog_monitor" "mongodb_replicaset_state" {
   include_tags        = true
   require_full_window = true
 
-  silenced = "${var.mongodb_replicaset_silenced}"
+  silenced = "${var.mongodb_primary_silenced}"
 
   tags = ["env:${var.environment}", "resource:mongodb"]
 }
+
+resource "datadog_monitor" "mongodb_secondary" {
+  name    = "[${var.environment}] MongoDB secondary missing"
+  message = "${coalesce(var.mongodb_secondary_message, var.message)}"
+
+  query = <<EOF
+      ${var.mongodb_secondary_aggregator}(${var.mongodb_secondary_timeframe}):
+      ${var.mongodb_desired_servers_count} -
+      sum:mongodb.replset.health{${data.template_file.filter.rendered}} by {replset_name}
+      > 1
+  EOF
+
+  thresholds {
+    critical = 1
+    warning  = 0
+  }
+
+  type = "metric alert"
+
+  notify_no_data      = false
+  renotify_interval   = 0
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  require_full_window = true
+
+  silenced = "${var.mongodb_secondary_silenced}"
+
+  tags = ["env:${var.environment}", "resource:mongodb"]
+}
+
+resource "datadog_monitor" "mongodb_server_count" {
+  name    = "[${var.environment}] MongoDB too much servers or wrong monitoring config"
+  message = "${coalesce(var.mongodb_server_count_message, var.message)}"
+
+  query = <<EOF
+      ${var.mongodb_server_count_aggregator}(${var.mongodb_server_count_timeframe}):
+      sum:mongodb.replset.health{${data.template_file.filter.rendered}} by {replset_name}
+      > 99
+  EOF
+
+  thresholds {
+    critical = 99
+    warning  = "${var.mongodb_desired_servers_count}"
+  }
+
+  type = "metric alert"
+
+  notify_no_data      = false
+  renotify_interval   = 0
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  require_full_window = true
+
+  silenced = "${var.mongodb_secondary_silenced}"
+
+  tags = ["env:${var.environment}", "resource:mongodb"]
+}
+
+resource "datadog_monitor" "mongodb_replication" {
+  name    = "[${var.environment}] MongoDB replication lag"
+  message = "${coalesce(var.mongodb_replication_message, var.message)}"
+
+  query = <<EOF
+      ${var.mongodb_replication_aggregator}(${var.mongodb_replication_timeframe}):
+      avg:mongodb.replset.replicationlag{${data.template_file.filter.rendered},replset_state:secondary} by {server} > ${var.mongodb_lag_critical}
+  EOF
+
+  thresholds {
+    critical = "${var.mongodb_lag_critical}"
+    warning  = "${var.mongodb_lag_warning}"
+  }
+
+  type = "metric alert"
+
+  notify_no_data      = false
+  renotify_interval   = 0
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  require_full_window = true
+
+  silenced = "${var.mongodb_replication_silenced}"
+
+  tags = ["env:${var.environment}", "resource:mongodb"]
+}
+
