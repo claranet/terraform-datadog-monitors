@@ -107,3 +107,63 @@ resource "datadog_monitor" "redis_swap" {
 
   tags = ["env:${var.environment}", "resource:redis", "team:aws", "provider:aws"]
 }
+
+resource "datadog_monitor" "redis_replication_lag" {
+  name    = "[${var.environment}] Elasticache redis replication lag {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
+  message = "${coalesce(var.replication_lag_message, var.message)}"
+
+  type = "metric alert"
+
+  query = <<EOF
+    ${var.replication_lag_aggregator}(${var.replication_lag_timeframe}): (
+      ${var.replication_lag_aggregator}:aws.elasticache.swap_usage{${data.template_file.filter.rendered}} by {region,cluster,node}
+    ) > ${var.replication_lag_threshold_critical}
+  EOF
+
+  thresholds {
+    warning  = "${var.replication_lag_threshold_warning}"
+    critical = "${var.replication_lag_threshold_critical}"
+  }
+
+  notify_no_data      = false
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
+  new_host_delay      = "${var.delay}"
+
+  silenced = "${var.replication_lag_silenced}"
+
+  tags = ["env:${var.environment}", "resource:redis", "team:aws", "provider:aws"]
+}
+
+resource "datadog_monitor" "redis_commands" {
+  name    = "[${var.environment}] Elasticache redis is receiving no commands"
+  message = "${coalesce(var.commands_message, var.message)}"
+
+  type = "metric alert"
+
+  query = <<EOF
+    ${var.commands_aggregator}(${var.commands_timeframe}): (
+      ${var.commands_aggregator}:aws.elasticache.get_type_cmds{${data.template_file.filter.rendered}} by {region,cluster,node} +
+      ${var.commands_aggregator}:aws.elasticache.set_type_cmds{${data.template_file.filter.rendered}} by {region,cluster,node}
+    ) <= 0
+  EOF
+
+  notify_no_data      = true
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
+  new_host_delay      = "${var.delay}"
+
+  silenced = "${var.commands_silenced}"
+
+  tags = ["env:${var.environment}", "resource:redis", "team:aws", "provider:aws"]
+}
