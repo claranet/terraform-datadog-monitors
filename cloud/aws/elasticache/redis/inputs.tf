@@ -24,12 +24,18 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
-# redis specific
-variable "redis_size" {
-  description = "Size of the Elasticache redis instance"
+# elasticache variable
+variable "elasticache_size" {
+  description = "Size of the Elasticache instance"
   type        = "string"
 }
 
+variable "nodes" {
+  description = "Number of Elasticache nodes"
+  type        = "string"
+}
+
+# redis specific
 variable "cache_hits_silenced" {
   description = "Groups to mute for Elasticache redis cache hits monitor"
   type        = "map"
@@ -173,4 +179,37 @@ variable "commands_aggregator" {
 variable "commands_timeframe" {
   description = "Monitor timeframe for Elasticache redis commands [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   default     = "last_5m"
+}
+
+variable "free_memory_silenced" {
+  description = "Groups to mute for Elasticache redis free memory monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "free_memory_message" {
+  description = "Custom message for Elasticache redis free memory monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "free_memory_aggregator" {
+  description = "Monitor aggregator for Elasticache redis free memory [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "free_memory_timeframe" {
+  description = "Monitor timeframe for Elasticache redis free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_15m"
+}
+
+variable "free_memory_threshold_warning" {
+  description = "Elasticache redis free memory warning threshold in percentage"
+  default     = 10
+}
+
+variable "free_memory_threshold_critical" {
+  description = "Elasticache redis free memory critical threshold in percentage"
+  default     = 5
 }

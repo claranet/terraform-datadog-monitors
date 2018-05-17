@@ -58,7 +58,7 @@ resource "datadog_monitor" "redis_cpu_high" {
   query = <<EOF
     ${var.cpu_high_aggregator}(${var.cpu_high_timeframe}): (
       ${var.cpu_high_aggregator}:aws.elasticache.cpuutilization{${data.template_file.filter.rendered}} by {region,cluster,node}
-    ) > ( ${var.cpu_high_threshold_critical} / ${var.core[var.redis_size]} )
+    ) > ( ${var.cpu_high_threshold_critical} / ${var.core[var.elasticache_size]} )
   EOF
 
   thresholds {
@@ -164,6 +164,39 @@ resource "datadog_monitor" "redis_commands" {
   new_host_delay      = "${var.delay}"
 
   silenced = "${var.commands_silenced}"
+
+  tags = ["env:${var.environment}", "resource:redis", "team:aws", "provider:aws"]
+}
+
+resource "datadog_monitor" "redis_free_memory" {
+  name    = "[${var.environment}] Elasticache redis free memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = "${coalesce(var.free_memory_message, var.message)}"
+
+  type = "metric alert"
+
+  query = <<EOF
+    ${var.free_memory_aggregator}(${var.free_memory_timeframe}): (
+      ${var.free_memory_aggregator}:aws.elasticache.freeable_memory{${data.template_file.filter.rendered}} by {region,cluster,node} /
+      ( ${var.memory[var.elasticache_size]} / ${var.nodes} )
+    ) * 100 < ${var.free_memory_threshold_critical}
+  EOF
+
+  thresholds {
+    warning  = "${var.free_memory_threshold_warning}"
+    critical = "${var.free_memory_threshold_critical}"
+  }
+
+  notify_no_data      = true
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
+  new_host_delay      = "${var.delay}"
+
+  silenced = "${var.free_memory_silenced}"
 
   tags = ["env:${var.environment}", "resource:redis", "team:aws", "provider:aws"]
 }

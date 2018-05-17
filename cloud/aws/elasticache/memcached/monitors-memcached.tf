@@ -112,3 +112,36 @@ resource "datadog_monitor" "memcached_swap" {
 
   tags = ["env:${var.environment}", "resource:memcached", "team:aws", "provider:aws"]
 }
+
+resource "datadog_monitor" "memcached_free_memory" {
+  name    = "[${var.environment}] Elasticache memcached free memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = "${coalesce(var.free_memory_message, var.message)}"
+
+  type = "metric alert"
+
+  query = <<EOF
+    ${var.free_memory_aggregator}(${var.free_memory_timeframe}): (
+      ${var.free_memory_aggregator}:aws.elasticache.freeable_memory{${data.template_file.filter.rendered}} by {region,cluster,node} /
+      ${var.memory[var.elasticache_size]} * 100
+    ) < ${var.free_memory_threshold_critical}
+  EOF
+
+  thresholds {
+    warning  = "${var.free_memory_threshold_warning}"
+    critical = "${var.free_memory_threshold_critical}"
+  }
+
+  notify_no_data      = true
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
+  new_host_delay      = "${var.delay}"
+
+  silenced = "${var.free_memory_silenced}"
+
+  tags = ["env:${var.environment}", "resource:memcached", "team:aws", "provider:aws"]
+}
