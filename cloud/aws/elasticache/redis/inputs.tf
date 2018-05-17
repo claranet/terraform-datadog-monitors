@@ -116,5 +116,61 @@ variable "swap_aggregator" {
 
 variable "swap_timeframe" {
   description = "Monitor timeframe for Elasticache redis swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  default     = "last_15m"
+  default     = "last_5m"
+}
+
+variable "replication_lag_silenced" {
+  description = "Groups to mute for Elasticache redis replication lag monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "replication_lag_message" {
+  description = "Custom message for Elasticache redis replication lag monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "replication_lag_aggregator" {
+  description = "Monitor aggregator for Elasticache redis replication lag [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "replication_lag_timeframe" {
+  description = "Monitor timeframe for Elasticache redis replication lag [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_5m"
+}
+
+variable "replication_lag_threshold_warning" {
+  description = "Elasticache redis replication lag warning threshold in seconds"
+  default     = 0
+}
+
+variable "replication_lag_threshold_critical" {
+  description = "Elasticache redis replication lag critical threshold in seconds"
+  default     = 1
+}
+
+variable "commands_silenced" {
+  description = "Groups to mute for Elasticache redis commands monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "commands_message" {
+  description = "Custom message for Elasticache redis commands monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "commands_aggregator" {
+  description = "Monitor aggregator for Elasticache redis commands [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "commands_timeframe" {
+  description = "Monitor timeframe for Elasticache redis commands [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_5m"
 }
