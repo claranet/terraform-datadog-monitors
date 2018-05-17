@@ -8,9 +8,19 @@ How to use this module
 module "datadog-monitors-aws-elasticcache-redis" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/aws/elasticache/redis?ref={revision}"
 
-  message     = "${module.datadog-message-alerting.alerting-message}"
-  environment = "${var.environment}"
-  redis_size  = "${var.size_of_redis}"
+  message           = "${module.datadog-message-alerting.alerting-message}"
+  environment       = "${var.environment}"
+  elasticache_size  = "${var.size_of_elsaticache}"
+  nodes             = "${data.my_cluster.num_cache_nodes}"
+}
+
+```
+
+You can retrieve the number of nodes using the data source :
+
+```
+data "aws_elasticache_cluster" "my_cluster" {
+  cluster_id = "my-cluster-id"
 }
 
 ```
@@ -24,6 +34,7 @@ Creates DataDog monitors with the following checks:
 * Commands received
 * Replication lag
 * Swap
+* Free memory
 
 Inputs
 ------
@@ -47,11 +58,18 @@ Inputs
 | cpu_high_threshold_warning | Elasticache redis cpu high warning threshold in percentage | string | `75` | no |
 | cpu_high_timeframe | Monitor timeframe for Elasticache redis cpu high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
+| elasticache_size | Size of the Elasticache instance | string | - | yes |
 | environment | Architecture Environment | string | - | yes |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
+| free_memory_aggregator | Monitor aggregator for Elasticache redis free memory [available values: min, max, sum or avg] | string | `min` | no |
+| free_memory_message | Custom message for Elasticache redis free memory monitor | string | `` | no |
+| free_memory_silenced | Groups to mute for Elasticache redis free memory monitor | map | `<map>` | no |
+| free_memory_threshold_critical | Elasticache redis free memory critical threshold in percentage | string | `5` | no |
+| free_memory_threshold_warning | Elasticache redis free memory warning threshold in percentage | string | `10` | no |
+| free_memory_timeframe | Monitor timeframe for Elasticache redis free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
-| redis_size | Size of the Elasticache redis instance | string | - | yes |
+| nodes | Number of Elasticache nodes | string | - | yes |
 | replication_lag_aggregator | Monitor aggregator for Elasticache redis replication lag [available values: min, max, sum or avg] | string | `min` | no |
 | replication_lag_message | Custom message for Elasticache redis replication lag monitor | string | `` | no |
 | replication_lag_silenced | Groups to mute for Elasticache redis replication lag monitor | map | `<map>` | no |

@@ -1,7 +1,7 @@
 variable "core" {
   type = "map"
 
-  description = "Mapping between Redis size and vCPU."
+  description = "Mapping between Elasticache size and vCPU."
 
   default = {
     cache.t2.micro    = "1"

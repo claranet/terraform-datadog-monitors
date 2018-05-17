@@ -24,6 +24,12 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
+# elasticache variable
+variable "elasticache_size" {
+  description = "Size of the Elasticache instance"
+  type        = "string"
+}
+
 # Memcached specific
 variable "get_hits_silenced" {
   description = "Groups to mute for Elasticache memcached get hits monitor"
@@ -122,4 +128,37 @@ variable "swap_threshold_warning" {
 variable "swap_threshold_critical" {
   description = "Elasticache memcached swap critical threshold in percentage"
   default     = 50
+}
+
+variable "free_memory_silenced" {
+  description = "Groups to mute for Elasticache memcached free memory monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "free_memory_message" {
+  description = "Custom message for Elasticache memcached free memory monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "free_memory_aggregator" {
+  description = "Monitor aggregator for Elasticache memcached free memory [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "free_memory_timeframe" {
+  description = "Monitor timeframe for Elasticache memcached free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_15m"
+}
+
+variable "free_memory_threshold_warning" {
+  description = "Elasticache memcached free memory warning threshold in percentage"
+  default     = 10
+}
+
+variable "free_memory_threshold_critical" {
+  description = "Elasticache memcached free memory critical threshold in percentage"
+  default     = 5
 }
