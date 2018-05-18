@@ -38,12 +38,6 @@ variable "incoming_records_message" {
   default     = ""
 }
 
-variable "incoming_records_aggregator" {
-  description = "Monitor aggregator for Kinesis Firehorse incoming records [available values: min, max, sum or avg]"
-  type        = "string"
-  default     = "sum"
-}
-
 variable "incoming_records_timeframe" {
   description = "Monitor timeframe for incoming records metrics evaluation [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   default     = "last_15m"
