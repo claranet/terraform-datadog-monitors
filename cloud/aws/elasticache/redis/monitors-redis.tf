@@ -58,7 +58,7 @@ resource "datadog_monitor" "redis_cpu_high" {
   query = <<EOF
     ${var.cpu_high_aggregator}(${var.cpu_high_timeframe}): (
       ${var.cpu_high_aggregator}:aws.elasticache.cpuutilization{${data.template_file.filter.rendered}} by {region,cluster,node}
-    ) > ( ${var.cpu_high_threshold_critical} / ${var.core[var.elasticache_size]} )
+    ) > ( ${var.cpu_high_threshold_critical} / ${local.core[var.elasticache_size]} )
   EOF
 
   thresholds {
@@ -177,7 +177,7 @@ resource "datadog_monitor" "redis_free_memory" {
   query = <<EOF
     ${var.free_memory_aggregator}(${var.free_memory_timeframe}): (
       ${var.free_memory_aggregator}:aws.elasticache.freeable_memory{${data.template_file.filter.rendered}} by {region,cluster,node} /
-      ( ${var.memory[var.elasticache_size]} / ${var.nodes} )
+      ( ${local.memory[var.elasticache_size]} / ${var.nodes} )
     ) * 100 < ${var.free_memory_threshold_critical}
   EOF
 

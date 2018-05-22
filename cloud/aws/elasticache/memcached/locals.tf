@@ -1,9 +1,5 @@
-variable "memory" {
-  type = "map"
-
-  description = "Mapping between Elasticache size and Memory."
-
-  default = {
+locals {
+  memory = {
     cache.t2.micro    = "595926712"
     cache.t2.small    = "1664299827"
     cache.t2.medium   = "3457448673"
