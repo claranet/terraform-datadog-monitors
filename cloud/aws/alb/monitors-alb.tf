@@ -14,8 +14,8 @@ resource "datadog_monitor" "ALB_no_healthy_instances" {
   message = "${coalesce(var.alb_no_healthy_instances_message, var.message)}"
 
   query = <<EOF
-    ${var.alb_no_healthy_instances_aggregator}(${var.alb_no_healthy_instances_timeframe}): (
-      ${var.alb_no_healthy_instances_aggregator}:aws.applicationelb.healthy_host_count{${data.template_file.filter.rendered}} by {region,loadbalancer}
+    ${var.alb_no_healthy_instances_time_aggregator}(${var.alb_no_healthy_instances_timeframe}): (
+      min:aws.applicationelb.healthy_host_count{${data.template_file.filter.rendered}} by {region,loadbalancer}
     ) <= 0
   EOF
 
@@ -43,8 +43,8 @@ resource "datadog_monitor" "ALB_latency" {
   message = "${coalesce(var.latency_message, var.message)}"
 
   query = <<EOF
-    ${var.latency_aggregator}(${var.latency_timeframe}): (
-      ${var.latency_aggregator}:aws.applicationelb.target_response_time.average{${data.template_file.filter.rendered}} by {region,loadbalancer}
+    ${var.latency_time_aggregator}(${var.latency_timeframe}): (
+      min:aws.applicationelb.target_response_time.average{${data.template_file.filter.rendered}} by {region,loadbalancer}
     ) > ${var.latency_threshold_critical}
   EOF
 
@@ -67,26 +67,26 @@ resource "datadog_monitor" "ALB_latency" {
   tags = ["env:${var.environment}", "resource:alb", "team:aws", "provider:aws"]
 }
 
-resource "datadog_monitor" "ALB_httpcode_elb_5xx" {
+resource "datadog_monitor" "ALB_httpcode_5xx" {
   name    = "[${var.environment}] ALB HTTP code 5xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   type    = "metric alert"
-  message = "${coalesce(var.httpcode_elb_5xx_message, var.message)}"
+  message = "${coalesce(var.httpcode_alb_5xx_message, var.message)}"
 
   query = <<EOF
-    ${var.httpcode_elb_5xx_aggregator}(${var.httpcode_elb_5xx_timeframe}): (
+    sum(${var.httpcode_alb_5xx_timeframe}): (
       default(
-        ${var.httpcode_elb_5xx_aggregator}:aws.applicationelb.httpcode_elb_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
-        (${var.httpcode_elb_5xx_aggregator}:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
+        min:aws.applicationelb.httpcode_alb_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
+        (min:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
       0) * 100
-    ) > ${var.httpcode_elb_5xx_threshold_critical}
+    ) > ${var.httpcode_alb_5xx_threshold_critical}
   EOF
 
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"
 
   thresholds {
-    critical = "${var.httpcode_elb_5xx_threshold_critical}"
-    warning  = "${var.httpcode_elb_5xx_threshold_warning}"
+    critical = "${var.httpcode_alb_5xx_threshold_critical}"
+    warning  = "${var.httpcode_alb_5xx_threshold_warning}"
   }
 
   notify_no_data      = false
@@ -95,31 +95,31 @@ resource "datadog_monitor" "ALB_httpcode_elb_5xx" {
   timeout_h           = 0
   include_tags        = true
 
-  silenced = "${var.httpcode_elb_5xx_silenced}"
+  silenced = "${var.httpcode_alb_5xx_silenced}"
 
   tags = ["env:${var.environment}", "resource:alb", "team:aws", "provider:aws"]
 }
 
-resource "datadog_monitor" "ALB_httpcode_elb_4xx" {
+resource "datadog_monitor" "ALB_httpcode_4xx" {
   name    = "[${var.environment}] ALB HTTP code 4xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   type    = "metric alert"
-  message = "${coalesce(var.httpcode_elb_4xx_message, var.message)}"
+  message = "${coalesce(var.httpcode_alb_4xx_message, var.message)}"
 
   query = <<EOF
-    ${var.httpcode_elb_4xx_aggregator}(${var.httpcode_elb_4xx_timeframe}): (
+    sum(${var.httpcode_alb_4xx_timeframe}): (
       default(
-        ${var.httpcode_elb_4xx_aggregator}:aws.applicationelb.httpcode_elb_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
-        (${var.httpcode_elb_4xx_aggregator}:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
+        min:aws.applicationelb.httpcode_alb_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
+        (min:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
       0) * 100
-    ) > ${var.httpcode_elb_4xx_threshold_critical}
+    ) > ${var.httpcode_alb_4xx_threshold_critical}
   EOF
 
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"
 
   thresholds {
-    critical = "${var.httpcode_elb_4xx_threshold_critical}"
-    warning  = "${var.httpcode_elb_4xx_threshold_warning}"
+    critical = "${var.httpcode_alb_4xx_threshold_critical}"
+    warning  = "${var.httpcode_alb_4xx_threshold_warning}"
   }
 
   notify_no_data      = false
@@ -128,7 +128,7 @@ resource "datadog_monitor" "ALB_httpcode_elb_4xx" {
   timeout_h           = 0
   include_tags        = true
 
-  silenced = "${var.httpcode_elb_4xx_silenced}"
+  silenced = "${var.httpcode_alb_4xx_silenced}"
 
   tags = ["env:${var.environment}", "resource:alb", "team:aws", "provider:aws"]
 }
@@ -139,10 +139,10 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
   message = "${coalesce(var.httpcode_target_5xx_message, var.message)}"
 
   query = <<EOF
-    ${var.httpcode_target_5xx_aggregator}(${var.httpcode_target_5xx_timeframe}): (
+    sum(${var.httpcode_target_5xx_timeframe}): (
       default(
-        ${var.httpcode_target_5xx_aggregator}:aws.applicationelb.httpcode_target_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
-        (${var.httpcode_target_5xx_aggregator}:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
+        min:aws.applicationelb.httpcode_target_5xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
+        (min:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.httpcode_target_5xx_threshold_critical}
   EOF
@@ -172,10 +172,10 @@ resource "datadog_monitor" "ALB_httpcode_target_4xx" {
   message = "${coalesce(var.httpcode_target_4xx_message, var.message)}"
 
   query = <<EOF
-    ${var.httpcode_target_4xx_aggregator}(${var.httpcode_target_4xx_timeframe}): (
+    sum(${var.httpcode_target_4xx_timeframe}): (
       default(
-        ${var.httpcode_target_4xx_aggregator}:aws.applicationelb.httpcode_target_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
-        (${var.httpcode_target_4xx_aggregator}:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
+        min:aws.applicationelb.httpcode_target_4xx{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() /
+        (min:aws.applicationelb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.httpcode_target_4xx_threshold_critical}
   EOF

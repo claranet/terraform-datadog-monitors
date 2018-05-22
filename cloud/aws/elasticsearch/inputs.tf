@@ -38,8 +38,8 @@ variable "es_cluster_status_message" {
   default     = ""
 }
 
-variable "es_cluster_status_aggregator" {
-  description = "Monitor aggregator for ES cluster status [available values: min, max, sum or avg]"
+variable "es_cluster_status_time_aggregator" {
+  description = "Monitor aggregator for ES cluster status [available values: min, max or avg]"
   type        = "string"
   default     = "max"
 }
@@ -66,8 +66,8 @@ variable "diskspace_message" {
   default     = ""
 }
 
-variable "diskspace_aggregator" {
-  description = "Monitor aggregator for ES cluster diskspace [available values: min, max, sum or avg]"
+variable "diskspace_time_aggregator" {
+  description = "Monitor aggregator for ES cluster diskspace [available values: min, max or avg]"
   type        = "string"
   default     = "avg"
 }
@@ -100,8 +100,8 @@ variable "cpu_message" {
   default     = ""
 }
 
-variable "cpu_aggregator" {
-  description = "Monitor aggregator for ES cluster cpu [available values: min, max, sum or avg]"
+variable "cpu_time_aggregator" {
+  description = "Monitor aggregator for ES cluster cpu [available values: min, max or avg]"
   type        = "string"
   default     = "avg"
 }
