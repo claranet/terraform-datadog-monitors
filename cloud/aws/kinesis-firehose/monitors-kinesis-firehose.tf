@@ -14,10 +14,10 @@ resource "datadog_monitor" "firehose_incoming_records" {
   type = "metric alert"
 
   query = <<EOF
-  sum(${var.incoming_records_timeframe}): (
-    avg:aws.firehose.incoming_records{${data.template_file.filter.rendered}} by {region,deliverystreamname}
-  ) <= 0
-EOF
+    sum(${var.incoming_records_timeframe}): (
+      avg:aws.firehose.incoming_records{${data.template_file.filter.rendered}} by {region,deliverystreamname}
+    ) <= 0
+  EOF
 
   thresholds {
     critical = 0
