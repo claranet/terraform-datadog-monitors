@@ -122,7 +122,7 @@ resource "datadog_monitor" "memcached_free_memory" {
   query = <<EOF
     ${var.free_memory_aggregator}(${var.free_memory_timeframe}): (
       ${var.free_memory_aggregator}:aws.elasticache.freeable_memory{${data.template_file.filter.rendered}} by {region,cluster,node} /
-      ${var.memory[var.elasticache_size]} * 100
+      ${local.memory[var.elasticache_size]} * 100
     ) < ${var.free_memory_threshold_critical}
   EOF
 
