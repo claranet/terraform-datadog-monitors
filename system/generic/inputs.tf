@@ -47,7 +47,7 @@ variable "cpu_high_aggregator" {
 variable "cpu_high_timeframe" {
   description = "Monitor timeframe for CPU high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
-  default     = "last_5m"
+  default     = "last_10m"
 }
 
 variable "cpu_high_threshold_warning" {
@@ -182,7 +182,7 @@ variable "free_memory_aggregator" {
 variable "free_memory_timeframe" {
   description = "Monitor timeframe for Free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
-  default     = "last_1m"
+  default     = "last_15m"
 }
 
 variable "free_memory_threshold_warning" {

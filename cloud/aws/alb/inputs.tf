@@ -47,7 +47,7 @@ variable "alb_no_healthy_instances_aggregator" {
 variable "alb_no_healthy_instances_timeframe" {
   description = "Monitor timeframe for ALB no healthy instances [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
-  default     = "last_1m"
+  default     = "last_5m"
 }
 
 variable "latency_silenced" {
@@ -65,7 +65,7 @@ variable "latency_message" {
 variable "latency_aggregator" {
   description = "Monitor aggregator for ALB latency [available values: min, max, sum or avg]"
   type        = "string"
-  default     = "max"
+  default     = "min"
 }
 
 variable "latency_timeframe" {
@@ -99,7 +99,7 @@ variable "httpcode_elb_4xx_message" {
 variable "httpcode_elb_4xx_aggregator" {
   description = "Monitor aggregator for ALB httpcode 4xx [available values: min, max, sum or avg]"
   type        = "string"
-  default     = "min"
+  default     = "sum"
 }
 
 variable "httpcode_elb_4xx_timeframe" {
@@ -133,7 +133,7 @@ variable "httpcode_target_4xx_message" {
 variable "httpcode_target_4xx_aggregator" {
   description = "Monitor aggregator for ALB target httpcode 4xx [available values: min, max, sum or avg]"
   type        = "string"
-  default     = "min"
+  default     = "sum"
 }
 
 variable "httpcode_target_4xx_timeframe" {
@@ -167,7 +167,7 @@ variable "httpcode_elb_5xx_message" {
 variable "httpcode_elb_5xx_aggregator" {
   description = "Monitor aggregator for ALB httpcode 5xx [available values: min, max, sum or avg]"
   type        = "string"
-  default     = "min"
+  default     = "sum"
 }
 
 variable "httpcode_elb_5xx_timeframe" {
@@ -201,7 +201,7 @@ variable "httpcode_target_5xx_message" {
 variable "httpcode_target_5xx_aggregator" {
   description = "Monitor aggregator for ALB target httpcode 5xx [available values: min, max, sum or avg]"
   type        = "string"
-  default     = "min"
+  default     = "sum"
 }
 
 variable "httpcode_target_5xx_timeframe" {
