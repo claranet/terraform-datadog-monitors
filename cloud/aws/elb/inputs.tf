@@ -64,7 +64,7 @@ variable "elb_4xx_message" {
 variable "elb_4xx_aggregator" {
   description = "Monitor aggregator for ELB 4xx errors [available values: min, max, sum or avg]"
   type        = "string"
-  default     = "min"
+  default     = "sum"
 }
 
 variable "elb_4xx_timeframe" {
@@ -98,7 +98,7 @@ variable "elb_5xx_message" {
 variable "elb_5xx_aggregator" {
   description = "Monitor aggregator for ELB 5xx errors [available values: min, max, sum or avg]"
   type        = "string"
-  default     = "min"
+  default     = "sum"
 }
 
 variable "elb_5xx_timeframe" {
@@ -132,7 +132,7 @@ variable "elb_backend_4xx_message" {
 variable "elb_backend_4xx_aggregator" {
   description = "Monitor aggregator for ELB backend 4xx errors [available values: min, max, sum or avg]"
   type        = "string"
-  default     = "min"
+  default     = "sum"
 }
 
 variable "elb_backend_4xx_timeframe" {
@@ -166,7 +166,7 @@ variable "elb_backend_5xx_message" {
 variable "elb_backend_5xx_aggregator" {
   description = "Monitor aggregator for ELB backend 5xx errors [available values: min, max, sum or avg]"
   type        = "string"
-  default     = "min"
+  default     = "sum"
 }
 
 variable "elb_backend_5xx_timeframe" {
@@ -200,7 +200,7 @@ variable "elb_backend_latency_message" {
 variable "elb_backend_latency_aggregator" {
   description = "Monitor aggregator for ELB backend latency [available values: min, max, sum or avg]"
   type        = "string"
-  default     = "max"
+  default     = "min"
 }
 
 variable "elb_backend_latency_timeframe" {

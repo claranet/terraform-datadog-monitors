@@ -36,7 +36,7 @@ variable "latency_message" {
 variable "latency_aggregator" {
   description = "Monitor aggregator for API Gateway latency [available values: min, max, sum or avg]"
   type        = "string"
-  default     = "max"
+  default     = "min"
 }
 
 variable "latency_timeframe" {
@@ -74,7 +74,7 @@ variable "http_5xx_requests_message" {
 variable "http_5xx_requests_aggregator" {
   description = "Monitor aggregator for API Gateway HTTP 5xx requests [available values: min, max, sum or avg]"
   type        = "string"
-  default     = "min"
+  default     = "sum"
 }
 
 variable "http_5xx_requests_timeframe" {
@@ -112,7 +112,7 @@ variable "http_4xx_requests_message" {
 variable "http_4xx_requests_aggregator" {
   description = "Monitor aggregator for API Gateway HTTP 4xx requests [available values: min, max, sum or avg]"
   type        = "string"
-  default     = "min"
+  default     = "sum"
 }
 
 variable "http_4xx_requests_timeframe" {
