@@ -37,8 +37,8 @@ variable "status_message" {
   default     = ""
 }
 
-variable "status_aggregator" {
-  description = "Monitor aggregator for Event Hub status [available values: min, max, sum or avg]"
+variable "status_time_aggregator" {
+  description = "Monitor aggregator for Event Hub status [available values: min, max or avg]"
   type        = "string"
   default     = "avg"
 }
@@ -59,12 +59,6 @@ variable "failed_requests_rate_message" {
   description = "Custom message for Event Hub failed requests monitor"
   type        = "string"
   default     = ""
-}
-
-variable "failed_requests_rate_aggregator" {
-  description = "Monitor aggregator for Event Hub failed requests [available values: min, max, sum or avg]"
-  type        = "string"
-  default     = "sum"
 }
 
 variable "failed_requests_rate_timeframe" {
@@ -93,12 +87,6 @@ variable "errors_rate_message" {
   description = "Custom message for Event Hub errors monitor"
   type        = "string"
   default     = ""
-}
-
-variable "errors_rate_aggregator" {
-  description = "Monitor aggregator for Event Hub errors [available values: min, max, sum or avg]"
-  type        = "string"
-  default     = "sum"
 }
 
 variable "errors_rate_timeframe" {

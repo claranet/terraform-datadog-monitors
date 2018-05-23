@@ -37,8 +37,8 @@ variable "cpu_message" {
   default     = ""
 }
 
-variable "cpu_aggregator" {
-  description = "Monitor aggregator for SQL CPU [available values: min, max, sum or avg]"
+variable "cpu_time_aggregator" {
+  description = "Monitor aggregator for SQL CPU [available values: min, max or avg]"
   type        = "string"
   default     = "avg"
 }
@@ -71,8 +71,8 @@ variable "diskspace_message" {
   default     = ""
 }
 
-variable "diskspace_aggregator" {
-  description = "Monitor aggregator for SQL disk space [available values: min, max, sum or avg]"
+variable "diskspace_time_aggregator" {
+  description = "Monitor aggregator for SQL disk space [available values: min, max or avg]"
   type        = "string"
   default     = "avg"
 }
@@ -105,8 +105,8 @@ variable "dtu_message" {
   default     = ""
 }
 
-variable "dtu_aggregator" {
-  description = "Monitor aggregator for SQL DTU [available values: min, max, sum or avg]"
+variable "dtu_time_aggregator" {
+  description = "Monitor aggregator for SQL DTU [available values: min, max or avg]"
   type        = "string"
   default     = "avg"
 }
@@ -137,12 +137,6 @@ variable "deadlock_message" {
   description = "Custom message for SQL Deadlock monitor"
   type        = "string"
   default     = ""
-}
-
-variable "deadlock_aggregator" {
-  description = "Monitor aggregator for SQL Deadlock [available values: min, max, sum or avg]"
-  type        = "string"
-  default     = "sum"
 }
 
 variable "deadlock_timeframe" {

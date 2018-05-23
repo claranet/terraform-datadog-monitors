@@ -35,8 +35,8 @@ variable "response_time_message" {
   default     = ""
 }
 
-variable "response_time_aggregator" {
-  description = "Monitor aggregator for App Services response time [available values: min, max, sum or avg]"
+variable "response_time_time_aggregator" {
+  description = "Monitor aggregator for App Services response time [available values: min, max or avg]"
   type        = "string"
   default     = "min"
 }
@@ -69,8 +69,8 @@ variable "memory_usage_message" {
   default     = ""
 }
 
-variable "memory_usage_aggregator" {
-  description = "Monitor aggregator for App Services memory usage [available values: min, max, sum or avg]"
+variable "memory_usage_time_aggregator" {
+  description = "Monitor aggregator for App Services memory usage [available values: min, max or avg]"
   type        = "string"
   default     = "avg"
 }
@@ -103,12 +103,6 @@ variable "http_4xx_requests_message" {
   default     = ""
 }
 
-variable "http_4xx_requests_aggregator" {
-  description = "Monitor aggregator for App Services 4xx requests [available values: min, max, sum or avg]"
-  type        = "string"
-  default     = "sum"
-}
-
 variable "http_4xx_requests_timeframe" {
   description = "Monitor timeframe for App Services 4xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -137,12 +131,6 @@ variable "http_5xx_requests_message" {
   default     = ""
 }
 
-variable "http_5xx_requests_aggregator" {
-  description = "Monitor aggregator for App Services 5xx requests [available values: min, max, sum or avg]"
-  type        = "string"
-  default     = "sum"
-}
-
 variable "http_5xx_requests_timeframe" {
   description = "Monitor timeframe for App Services 5xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -169,12 +157,6 @@ variable "http_successful_requests_message" {
   description = "Custom message for App Services successful requests monitor"
   type        = "string"
   default     = ""
-}
-
-variable "http_successful_requests_aggregator" {
-  description = "Monitor aggregator for App Services successful requests [available values: min, max, sum or avg]"
-  type        = "string"
-  default     = "sum"
 }
 
 variable "http_successful_requests_timeframe" {
