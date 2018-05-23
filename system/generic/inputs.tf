@@ -38,8 +38,8 @@ variable "cpu_high_message" {
   default     = ""
 }
 
-variable "cpu_high_aggregator" {
-  description = "Monitor aggregator for CPU high [available values: min, max, sum or avg]"
+variable "cpu_high_time_aggregator" {
+  description = "Monitor aggregator for CPU high [available values: min, max or avg]"
   type        = "string"
   default     = "min"
 }
@@ -72,8 +72,8 @@ variable "cpu_load_message" {
   default     = ""
 }
 
-variable "cpu_load_aggregator" {
-  description = "Monitor aggregator for CPU load ratio [available values: min, max, sum or avg]"
+variable "cpu_load_time_aggregator" {
+  description = "Monitor aggregator for CPU load ratio [available values: min, max or avg]"
   type        = "string"
   default     = "min"
 }
@@ -106,8 +106,8 @@ variable "free_disk_space_message" {
   default     = ""
 }
 
-variable "free_disk_space_aggregator" {
-  description = "Monitor aggregator for Free diskspace [available values: min, max, sum or avg]"
+variable "free_disk_space_time_aggregator" {
+  description = "Monitor aggregator for Free diskspace [available values: min, max or avg]"
   type        = "string"
   default     = "min"
 }
@@ -140,8 +140,8 @@ variable "free_disk_inodes_message" {
   default     = ""
 }
 
-variable "free_disk_inodes_aggregator" {
-  description = "Monitor aggregator for Free disk inodes [available values: min, max, sum or avg]"
+variable "free_disk_inodes_time_aggregator" {
+  description = "Monitor aggregator for Free disk inodes [available values: min, max or avg]"
   type        = "string"
   default     = "min"
 }
@@ -173,8 +173,8 @@ variable "free_memory_message" {
   type        = "string"
 }
 
-variable "free_memory_aggregator" {
-  description = "Monitor aggregator for Free memory [available values: min, max, sum or avg]"
+variable "free_memory_time_aggregator" {
+  description = "Monitor aggregator for Free memory [available values: min, max or avg]"
   type        = "string"
   default     = "min"
 }
