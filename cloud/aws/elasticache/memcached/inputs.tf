@@ -43,12 +43,6 @@ variable "get_hits_message" {
   default     = ""
 }
 
-variable "get_hits_aggregator" {
-  description = "Monitor aggregator for Elasticache memcached get hits [available values: min, max, sum or avg]"
-  type        = "string"
-  default     = "min"
-}
-
 variable "get_hits_timeframe" {
   description = "Monitor timeframe for Elasticache memcached get hits [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   default     = "last_15m"
@@ -76,8 +70,8 @@ variable "cpu_high_message" {
   default     = ""
 }
 
-variable "cpu_high_aggregator" {
-  description = "Monitor aggregator for Elasticache memcached cpu high [available values: min, max, sum or avg]"
+variable "cpu_high_time_aggregator" {
+  description = "Monitor aggregator for Elasticache memcached cpu high [available values: min, max or avg]"
   type        = "string"
   default     = "min"
 }
@@ -109,8 +103,8 @@ variable "swap_message" {
   default     = ""
 }
 
-variable "swap_aggregator" {
-  description = "Monitor aggregator for Elasticache memcached swap [available values: min, max, sum or avg]"
+variable "swap_time_aggregator" {
+  description = "Monitor aggregator for Elasticache memcached swap [available values: min, max or avg]"
   type        = "string"
   default     = "min"
 }
@@ -142,8 +136,8 @@ variable "free_memory_message" {
   default     = ""
 }
 
-variable "free_memory_aggregator" {
-  description = "Monitor aggregator for Elasticache memcached free memory [available values: min, max, sum or avg]"
+variable "free_memory_time_aggregator" {
+  description = "Monitor aggregator for Elasticache memcached free memory [available values: min, max or avg]"
   type        = "string"
   default     = "min"
 }

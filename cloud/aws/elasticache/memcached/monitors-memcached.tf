@@ -22,10 +22,10 @@ resource "datadog_monitor" "memcached_get_hits" {
   type = "metric alert"
 
   query = <<EOF
-    ${var.get_hits_aggregator}(${var.get_hits_timeframe}): (
-      ${var.get_hits_aggregator}:aws.elasticache.get_hits{${data.template_file.filter.rendered}} by {region,cluster} /
-      (${var.get_hits_aggregator}:aws.elasticache.get_hits{${data.template_file.filter.rendered}} by {region,cluster} +
-        ${var.get_hits_aggregator}:aws.elasticache.get_misses{${data.template_file.filter.rendered}} by {region,cluster})
+    sum(${var.get_hits_timeframe}): (
+      avg:aws.elasticache.get_hits{${data.template_file.filter.rendered}} by {region,cluster}.as_count() /
+      (avg:aws.elasticache.get_hits{${data.template_file.filter.rendered}} by {region,cluster}.as_count() +
+        avg:aws.elasticache.get_misses{${data.template_file.filter.rendered}} by {region,cluster}.as_count())
     ) < ${var.get_hits_threshold_critical}
   EOF
 
@@ -56,8 +56,8 @@ resource "datadog_monitor" "memcached_cpu_high" {
   type = "metric alert"
 
   query = <<EOF
-    ${var.cpu_high_aggregator}(${var.cpu_high_timeframe}): (
-      ${var.cpu_high_aggregator}:aws.elasticache.cpuutilization{${data.template_file.filter.rendered}} by {region,cluster,node}
+    ${var.cpu_high_time_aggregator}(${var.cpu_high_timeframe}): (
+      avg:aws.elasticache.cpuutilization{${data.template_file.filter.rendered}} by {region,cluster,node}
     ) > ${var.cpu_high_threshold_critical}
   EOF
 
@@ -88,8 +88,8 @@ resource "datadog_monitor" "memcached_swap" {
   type = "metric alert"
 
   query = <<EOF
-    ${var.swap_aggregator}(${var.swap_timeframe}): (
-      ${var.swap_aggregator}:aws.elasticache.swap_usage{${data.template_file.filter.rendered}} by {region,cluster}
+    ${var.swap_time_aggregator}(${var.swap_timeframe}): (
+      avg:aws.elasticache.swap_usage{${data.template_file.filter.rendered}} by {region,cluster}
     ) > ${var.swap_threshold_critical}
   EOF
 
@@ -120,8 +120,8 @@ resource "datadog_monitor" "memcached_free_memory" {
   type = "metric alert"
 
   query = <<EOF
-    ${var.free_memory_aggregator}(${var.free_memory_timeframe}): (
-      ${var.free_memory_aggregator}:aws.elasticache.freeable_memory{${data.template_file.filter.rendered}} by {region,cluster,node} /
+    ${var.free_memory_time_aggregator}(${var.free_memory_timeframe}): (
+      avg:aws.elasticache.freeable_memory{${data.template_file.filter.rendered}} by {region,cluster,node} /
       ${local.memory[var.elasticache_size]} * 100
     ) < ${var.free_memory_threshold_critical}
   EOF

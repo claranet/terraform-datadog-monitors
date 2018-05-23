@@ -5,8 +5,8 @@ resource "datadog_monitor" "elasticache_eviction" {
   type = "metric alert"
 
   query = <<EOF
-    ${var.eviction_aggregator}(${var.eviction_timeframe}): (
-      ${var.eviction_aggregator}:aws.elasticache.evictions{${var.filter_tags}} by {region,cluster}
+    ${var.eviction_time_aggregator}(${var.eviction_timeframe}): (
+      avg:aws.elasticache.evictions{${var.filter_tags}} by {region,cluster}
     ) > 0
   EOF
 
@@ -32,8 +32,8 @@ resource "datadog_monitor" "elasticache_max_connection" {
   type = "metric alert"
 
   query = <<EOF
-    ${var.max_connection_aggregator}(${var.max_connection_timeframe}): (
-      ${var.max_connection_aggregator}:aws.elasticache.curr_connections{${var.filter_tags}} by {region,cluster}
+    ${var.max_connection_time_aggregator}(${var.max_connection_timeframe}): (
+      avg:aws.elasticache.curr_connections{${var.filter_tags}} by {region,cluster}
     ) >= 65000
   EOF
 
@@ -59,8 +59,8 @@ resource "datadog_monitor" "elasticache_no_connection" {
   type = "metric alert"
 
   query = <<EOF
-    ${var.no_connection_aggregator}(${var.no_connection_timeframe}): (
-      ${var.no_connection_aggregator}:aws.elasticache.curr_connections{${var.filter_tags}} by {region,cluster}
+    ${var.no_connection_time_aggregator}(${var.no_connection_timeframe}): (
+      avg:aws.elasticache.curr_connections{${var.filter_tags}} by {region,cluster}
     ) <= 0
   EOF
 

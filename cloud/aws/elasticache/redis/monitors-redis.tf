@@ -22,10 +22,10 @@ resource "datadog_monitor" "redis_cache_hits" {
   type = "metric alert"
 
   query = <<EOF
-    ${var.cache_hits_aggregator}(${var.cache_hits_timeframe}): (
-      ${var.cache_hits_aggregator}:aws.elasticache.cache_hits{${data.template_file.filter.rendered}} by {region,cluster} /
-      (${var.cache_hits_aggregator}:aws.elasticache.cache_hits{${data.template_file.filter.rendered}} by {region,cluster} +
-        ${var.cache_hits_aggregator}:aws.elasticache.cache_misses{${data.template_file.filter.rendered}} by {region,cluster})
+    sum(${var.cache_hits_timeframe}): (
+      avg:aws.elasticache.cache_hits{${data.template_file.filter.rendered}} by {region,cluster}.as_count() /
+      (avg:aws.elasticache.cache_hits{${data.template_file.filter.rendered}} by {region,cluster}.as_count() +
+        avg:aws.elasticache.cache_misses{${data.template_file.filter.rendered}} by {region,cluster}.as_count())
     ) < ${var.cache_hits_threshold_critical}
   EOF
 
@@ -56,8 +56,8 @@ resource "datadog_monitor" "redis_cpu_high" {
   type = "metric alert"
 
   query = <<EOF
-    ${var.cpu_high_aggregator}(${var.cpu_high_timeframe}): (
-      ${var.cpu_high_aggregator}:aws.elasticache.cpuutilization{${data.template_file.filter.rendered}} by {region,cluster,node}
+    ${var.cpu_high_time_aggregator}(${var.cpu_high_timeframe}): (
+      avg:aws.elasticache.cpuutilization{${data.template_file.filter.rendered}} by {region,cluster,node}
     ) > ( ${var.cpu_high_threshold_critical} / ${local.core[var.elasticache_size]} )
   EOF
 
@@ -88,8 +88,8 @@ resource "datadog_monitor" "redis_swap" {
   type = "metric alert"
 
   query = <<EOF
-    ${var.swap_aggregator}(${var.swap_timeframe}): (
-      ${var.swap_aggregator}:aws.elasticache.swap_usage{${data.template_file.filter.rendered}} by {region,cluster}
+    ${var.swap_time_aggregator}(${var.swap_timeframe}): (
+      avg:aws.elasticache.swap_usage{${data.template_file.filter.rendered}} by {region,cluster}
     ) > 0
   EOF
 
@@ -115,8 +115,8 @@ resource "datadog_monitor" "redis_replication_lag" {
   type = "metric alert"
 
   query = <<EOF
-    ${var.replication_lag_aggregator}(${var.replication_lag_timeframe}): (
-      ${var.replication_lag_aggregator}:aws.elasticache.swap_usage{${data.template_file.filter.rendered}} by {region,cluster,node}
+    ${var.replication_lag_time_aggregator}(${var.replication_lag_timeframe}): (
+      avg:aws.elasticache.swap_usage{${data.template_file.filter.rendered}} by {region,cluster,node}
     ) > ${var.replication_lag_threshold_critical}
   EOF
 
@@ -147,9 +147,9 @@ resource "datadog_monitor" "redis_commands" {
   type = "metric alert"
 
   query = <<EOF
-    ${var.commands_aggregator}(${var.commands_timeframe}): (
-      ${var.commands_aggregator}:aws.elasticache.get_type_cmds{${data.template_file.filter.rendered}} by {region,cluster,node} +
-      ${var.commands_aggregator}:aws.elasticache.set_type_cmds{${data.template_file.filter.rendered}} by {region,cluster,node}
+    sum(${var.commands_timeframe}): (
+      avg:aws.elasticache.get_type_cmds{${data.template_file.filter.rendered}} by {region,cluster,node}.as_count() +
+      avg:aws.elasticache.set_type_cmds{${data.template_file.filter.rendered}} by {region,cluster,node}.as_count()
     ) <= 0
   EOF
 
@@ -175,8 +175,8 @@ resource "datadog_monitor" "redis_free_memory" {
   type = "metric alert"
 
   query = <<EOF
-    ${var.free_memory_aggregator}(${var.free_memory_timeframe}): (
-      ${var.free_memory_aggregator}:aws.elasticache.freeable_memory{${data.template_file.filter.rendered}} by {region,cluster,node} /
+    ${var.free_memory_time_aggregator}(${var.free_memory_timeframe}): (
+      avg:aws.elasticache.freeable_memory{${data.template_file.filter.rendered}} by {region,cluster,node} /
       ( ${local.memory[var.elasticache_size]} / ${var.nodes} )
     ) * 100 < ${var.free_memory_threshold_critical}
   EOF
