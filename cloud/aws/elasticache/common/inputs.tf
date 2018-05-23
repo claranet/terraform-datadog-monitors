@@ -35,8 +35,8 @@ variable "eviction_message" {
   default     = ""
 }
 
-variable "eviction_aggregator" {
-  description = "Monitor aggregator for Elasticache eviction [available values: min, max, sum or avg]"
+variable "eviction_time_aggregator" {
+  description = "Monitor aggregator for Elasticache eviction [available values: min, max or avg]"
   type        = "string"
   default     = "min"
 }
@@ -58,8 +58,8 @@ variable "max_connection_message" {
   default     = ""
 }
 
-variable "max_connection_aggregator" {
-  description = "Monitor aggregator for Elasticache max connection [available values: min, max, sum or avg]"
+variable "max_connection_time_aggregator" {
+  description = "Monitor aggregator for Elasticache max connection [available values: min, max or avg]"
   type        = "string"
   default     = "min"
 }
@@ -81,8 +81,8 @@ variable "no_connection_message" {
   default     = ""
 }
 
-variable "no_connection_aggregator" {
-  description = "Monitor aggregator for Elasticache no connection [available values: min, max, sum or avg]"
+variable "no_connection_time_aggregator" {
+  description = "Monitor aggregator for Elasticache no connection [available values: min, max or avg]"
   type        = "string"
   default     = "min"
 }

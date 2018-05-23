@@ -48,12 +48,6 @@ variable "cache_hits_message" {
   default     = ""
 }
 
-variable "cache_hits_aggregator" {
-  description = "Monitor aggregator for Elasticache redis cache hits [available values: min, max, sum or avg]"
-  type        = "string"
-  default     = "min"
-}
-
 variable "cache_hits_timeframe" {
   description = "Monitor timeframe for Elasticache redis cache hits [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   default     = "last_15m"
@@ -81,8 +75,8 @@ variable "cpu_high_message" {
   default     = ""
 }
 
-variable "cpu_high_aggregator" {
-  description = "Monitor aggregator for Elasticache redis cpu high [available values: min, max, sum or avg]"
+variable "cpu_high_time_aggregator" {
+  description = "Monitor aggregator for Elasticache redis cpu high [available values: min, max or avg]"
   type        = "string"
   default     = "min"
 }
@@ -114,8 +108,8 @@ variable "swap_message" {
   default     = ""
 }
 
-variable "swap_aggregator" {
-  description = "Monitor aggregator for Elasticache redis swap [available values: min, max, sum or avg]"
+variable "swap_time_aggregator" {
+  description = "Monitor aggregator for Elasticache redis swap [available values: min, max or avg]"
   type        = "string"
   default     = "min"
 }
@@ -137,8 +131,8 @@ variable "replication_lag_message" {
   default     = ""
 }
 
-variable "replication_lag_aggregator" {
-  description = "Monitor aggregator for Elasticache redis replication lag [available values: min, max, sum or avg]"
+variable "replication_lag_time_aggregator" {
+  description = "Monitor aggregator for Elasticache redis replication lag [available values: min, max or avg]"
   type        = "string"
   default     = "min"
 }
@@ -170,12 +164,6 @@ variable "commands_message" {
   default     = ""
 }
 
-variable "commands_aggregator" {
-  description = "Monitor aggregator for Elasticache redis commands [available values: min, max, sum or avg]"
-  type        = "string"
-  default     = "min"
-}
-
 variable "commands_timeframe" {
   description = "Monitor timeframe for Elasticache redis commands [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   default     = "last_5m"
@@ -193,8 +181,8 @@ variable "free_memory_message" {
   default     = ""
 }
 
-variable "free_memory_aggregator" {
-  description = "Monitor aggregator for Elasticache redis free memory [available values: min, max, sum or avg]"
+variable "free_memory_time_aggregator" {
+  description = "Monitor aggregator for Elasticache redis free memory [available values: min, max or avg]"
   type        = "string"
   default     = "min"
 }

@@ -33,19 +33,19 @@ Inputs
 |------|-------------|:----:|:-----:|:-----:|
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture Environment | string | - | yes |
-| eviction_aggregator | Monitor aggregator for Elasticache eviction [available values: min, max, sum or avg] | string | `min` | no |
 | eviction_message | Custom message for Elasticache eviction monitor | string | `` | no |
 | eviction_silenced | Groups to mute for Elasticache eviction monitor | map | `<map>` | no |
+| eviction_time_aggregator | Monitor aggregator for Elasticache eviction [available values: min, max or avg] | string | `min` | no |
 | eviction_timeframe | Monitor timeframe for Elasticache eviction [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | filter_tags | Tags used for filtering | string | - | yes |
-| max_connection_aggregator | Monitor aggregator for Elasticache max connection [available values: min, max, sum or avg] | string | `min` | no |
 | max_connection_message | Custom message for Elasticache max connection monitor | string | `` | no |
 | max_connection_silenced | Groups to mute for Elasticache max connection monitor | map | `<map>` | no |
+| max_connection_time_aggregator | Monitor aggregator for Elasticache max connection [available values: min, max or avg] | string | `min` | no |
 | max_connection_timeframe | Monitor timeframe for Elasticache max connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
-| no_connection_aggregator | Monitor aggregator for Elasticache no connection [available values: min, max, sum or avg] | string | `min` | no |
 | no_connection_message | Custom message for Elasticache no connection monitor | string | `` | no |
 | no_connection_silenced | Groups to mute for Elasticache no connection monitor | map | `<map>` | no |
+| no_connection_time_aggregator | Monitor aggregator for Elasticache no connection [available values: min, max or avg] | string | `min` | no |
 | no_connection_timeframe | Monitor timeframe for Elasticache no connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | resource | Type of Elasticache used | string | - | yes |
 
