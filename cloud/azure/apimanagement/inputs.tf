@@ -37,8 +37,8 @@ variable "status_message" {
   default     = ""
 }
 
-variable "status_aggregator" {
-  description = "Monitor aggregator for API Management status [available values: min, max, sum or avg]"
+variable "status_time_aggregator" {
+  description = "Monitor aggregator for API Management status [available values: min, max or avg]"
   type        = "string"
   default     = "avg"
 }
@@ -59,12 +59,6 @@ variable "failed_requests_message" {
   description = "Custom message for API Management failed requests monitor"
   type        = "string"
   default     = ""
-}
-
-variable "failed_requests_aggregator" {
-  description = "Monitor aggregator for API Management failed requests [available values: min, max, sum or avg]"
-  type        = "string"
-  default     = "sum"
 }
 
 variable "failed_requests_timeframe" {
@@ -95,12 +89,6 @@ variable "other_requests_message" {
   default     = ""
 }
 
-variable "other_requests_aggregator" {
-  description = "Monitor aggregator for API Management other requests [available values: min, max, sum or avg]"
-  type        = "string"
-  default     = "sum"
-}
-
 variable "other_requests_timeframe" {
   description = "Monitor timeframe for API Management other requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -129,12 +117,6 @@ variable "unauthorized_requests_message" {
   default     = ""
 }
 
-variable "unauthorized_requests_aggregator" {
-  description = "Monitor aggregator for API Management unauthorized requests [available values: min, max, sum or avg]"
-  type        = "string"
-  default     = "sum"
-}
-
 variable "unauthorized_requests_timeframe" {
   description = "Monitor timeframe for API Management unauthorized requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -161,12 +143,6 @@ variable "successful_requests_message" {
   description = "Custom message for API Management successful requests monitor"
   type        = "string"
   default     = ""
-}
-
-variable "successful_requests_aggregator" {
-  description = "Monitor aggregator for API Management successful requests [available values: min, max, sum or avg]"
-  type        = "string"
-  default     = "sum"
 }
 
 variable "successful_requests_timeframe" {

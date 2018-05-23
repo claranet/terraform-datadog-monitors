@@ -32,7 +32,7 @@ Inputs
 | status_message | Custom message for Service Bus status monitor | string | `` | no |
 | status_silenced | Groups to mute for Service Bus status monitor | map | `<map>` | no |
 | status_timeframe | Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
-| status_aggregator | Monitor aggregator for Service Bus status [available values: min, max, sum or avg] | string | `min` | no |
+| status_time_aggregator | Monitor aggregator for Service Bus status [available values: min, max or avg] | string | `min` | no |
 
 Related documentation
 ---------------------

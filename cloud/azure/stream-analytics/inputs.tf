@@ -37,8 +37,8 @@ variable "status_message" {
   default     = ""
 }
 
-variable "status_aggregator" {
-  description = "Monitor aggregator for Stream Analytics status [available values: min, max, sum or avg]"
+variable "status_time_aggregator" {
+  description = "Monitor aggregator for Stream Analytics status [available values: min, max or avg]"
   type        = "string"
   default     = "avg"
 }
@@ -61,8 +61,8 @@ variable "su_utilization_message" {
   default     = ""
 }
 
-variable "su_utilization_aggregator" {
-  description = "Monitor aggregator for Stream Analytics utilization [available values: min, max, sum or avg]"
+variable "su_utilization_time_aggregator" {
+  description = "Monitor aggregator for Stream Analytics utilization [available values: min, max or avg]"
   type        = "string"
   default     = "avg"
 }
@@ -95,12 +95,6 @@ variable "failed_function_requests_message" {
   default     = ""
 }
 
-variable "failed_function_requests_aggregator" {
-  description = "Monitor aggregator for Stream Analytics failed requests [available values: min, max, sum or avg]"
-  type        = "string"
-  default     = "sum"
-}
-
 variable "failed_function_requests_timeframe" {
   description = "Monitor timeframe for Stream Analytics failed requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -129,8 +123,8 @@ variable "conversion_errors_message" {
   default     = ""
 }
 
-variable "conversion_errors_aggregator" {
-  description = "Monitor aggregator for Stream Analytics conversion errors [available values: min, max, sum or avg]"
+variable "conversion_errors_time_aggregator" {
+  description = "Monitor aggregator for Stream Analytics conversion errors [available values: min, max or avg]"
   type        = "string"
   default     = "avg"
 }
@@ -163,8 +157,8 @@ variable "runtime_errors_message" {
   default     = ""
 }
 
-variable "runtime_errors_aggregator" {
-  description = "Monitor aggregator for Stream Analytics runtime errors [available values: min, max, sum or avg]"
+variable "runtime_errors_time_aggregator" {
+  description = "Monitor aggregator for Stream Analytics runtime errors [available values: min, max or avg]"
   type        = "string"
   default     = "avg"
 }
