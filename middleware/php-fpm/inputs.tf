@@ -38,8 +38,8 @@ variable "php_fpm_busy_message" {
   default     = ""
 }
 
-variable "php_fpm_busy_aggregator" {
-  description = "Monitor aggregator for PHP FPM busy worker [available values: min, max, sum or avg]"
+variable "php_fpm_busy_time_aggregator" {
+  description = "Monitor aggregator for PHP FPM busy worker [available values: min, max or avg]"
   type        = "string"
   default     = "avg"
 }
