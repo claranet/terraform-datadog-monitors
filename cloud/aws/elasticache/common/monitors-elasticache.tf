@@ -26,7 +26,7 @@ resource "datadog_monitor" "elasticache_eviction" {
 }
 
 resource "datadog_monitor" "elasticache_max_connection" {
-  name    = "[${var.environment}] Elasticache ${var.resource} connections {{#is_alert}}{{{comparator}}} {{threshold}} {{/is_alert}}"
+  name    = "[${var.environment}] Elasticache ${var.resource} max connections reached {{#is_alert}}{{{comparator}}} {{threshold}} {{/is_alert}}"
   message = "${coalesce(var.max_connection_message, var.message)}"
 
   type = "metric alert"
