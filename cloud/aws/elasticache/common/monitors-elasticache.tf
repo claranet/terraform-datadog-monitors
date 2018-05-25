@@ -6,7 +6,7 @@ resource "datadog_monitor" "elasticache_eviction" {
 
   query = <<EOF
     ${var.eviction_time_aggregator}(${var.eviction_timeframe}): (
-      avg:aws.elasticache.evictions{${var.filter_tags}} by {region,cluster}
+      avg:aws.elasticache.evictions{${var.filter_tags}} by {region,cacheclusterid}
     ) > 0
   EOF
 
@@ -22,7 +22,7 @@ resource "datadog_monitor" "elasticache_eviction" {
 
   silenced = "${var.eviction_silenced}"
 
-  tags = ["env:${var.environment}", "resource:${var.resource}", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "engine:${var.resource}", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "elasticache_max_connection" {
@@ -33,7 +33,7 @@ resource "datadog_monitor" "elasticache_max_connection" {
 
   query = <<EOF
     ${var.max_connection_time_aggregator}(${var.max_connection_timeframe}): (
-      avg:aws.elasticache.curr_connections{${var.filter_tags}} by {region,cluster}
+      avg:aws.elasticache.curr_connections{${var.filter_tags}} by {region,cacheclusterid}
     ) >= 65000
   EOF
 
@@ -49,7 +49,7 @@ resource "datadog_monitor" "elasticache_max_connection" {
 
   silenced = "${var.max_connection_silenced}"
 
-  tags = ["env:${var.environment}", "resource:${var.resource}", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "engine:${var.resource}", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "elasticache_no_connection" {
@@ -60,7 +60,7 @@ resource "datadog_monitor" "elasticache_no_connection" {
 
   query = <<EOF
     ${var.no_connection_time_aggregator}(${var.no_connection_timeframe}): (
-      avg:aws.elasticache.curr_connections{${var.filter_tags}} by {region,cluster}
+      avg:aws.elasticache.curr_connections{${var.filter_tags}} by {region,cacheclusterid}
     ) <= 0
   EOF
 
@@ -76,5 +76,5 @@ resource "datadog_monitor" "elasticache_no_connection" {
 
   silenced = "${var.no_connection_silenced}"
 
-  tags = ["env:${var.environment}", "resource:${var.resource}", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "engine:${var.resource}", "team:aws", "provider:aws"]
 }
