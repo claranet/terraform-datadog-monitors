@@ -46,7 +46,7 @@ resource "datadog_monitor" "memcached_get_hits" {
 
   silenced = "${var.get_hits_silenced}"
 
-  tags = ["env:${var.environment}", "resource:memcached", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "engine:memcached", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "memcached_cpu_high" {
@@ -78,7 +78,7 @@ resource "datadog_monitor" "memcached_cpu_high" {
 
   silenced = "${var.cpu_high_silenced}"
 
-  tags = ["env:${var.environment}", "resource:memcached", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "engine:memcached", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "memcached_swap" {
@@ -110,7 +110,7 @@ resource "datadog_monitor" "memcached_swap" {
 
   silenced = "${var.swap_silenced}"
 
-  tags = ["env:${var.environment}", "resource:memcached", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "engine:memcached", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "memcached_free_memory" {
@@ -143,5 +143,5 @@ resource "datadog_monitor" "memcached_free_memory" {
 
   silenced = "${var.free_memory_silenced}"
 
-  tags = ["env:${var.environment}", "resource:memcached", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "engine:memcached", "team:aws", "provider:aws"]
 }

@@ -46,7 +46,7 @@ resource "datadog_monitor" "redis_cache_hits" {
 
   silenced = "${var.cache_hits_silenced}"
 
-  tags = ["env:${var.environment}", "resource:redis", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "engine:redis", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "redis_cpu_high" {
@@ -78,7 +78,7 @@ resource "datadog_monitor" "redis_cpu_high" {
 
   silenced = "${var.cpu_high_silenced}"
 
-  tags = ["env:${var.environment}", "resource:redis", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "engine:redis", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "redis_swap" {
@@ -105,7 +105,7 @@ resource "datadog_monitor" "redis_swap" {
 
   silenced = "${var.swap_silenced}"
 
-  tags = ["env:${var.environment}", "resource:redis", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "engine:redis", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "redis_replication_lag" {
@@ -137,7 +137,7 @@ resource "datadog_monitor" "redis_replication_lag" {
 
   silenced = "${var.replication_lag_silenced}"
 
-  tags = ["env:${var.environment}", "resource:redis", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "engine:redis", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "redis_commands" {
@@ -165,7 +165,7 @@ resource "datadog_monitor" "redis_commands" {
 
   silenced = "${var.commands_silenced}"
 
-  tags = ["env:${var.environment}", "resource:redis", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "engine:redis", "team:aws", "provider:aws"]
 }
 
 resource "datadog_monitor" "redis_free_memory" {
@@ -198,5 +198,5 @@ resource "datadog_monitor" "redis_free_memory" {
 
   silenced = "${var.free_memory_silenced}"
 
-  tags = ["env:${var.environment}", "resource:redis", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "engine:redis", "team:aws", "provider:aws"]
 }
