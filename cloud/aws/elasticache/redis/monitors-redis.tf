@@ -23,9 +23,9 @@ resource "datadog_monitor" "redis_cache_hits" {
 
   query = <<EOF
     sum(${var.cache_hits_timeframe}): (
-      avg:aws.elasticache.cache_hits{${data.template_file.filter.rendered}} by {region,cluster}.as_count() /
-      (avg:aws.elasticache.cache_hits{${data.template_file.filter.rendered}} by {region,cluster}.as_count() +
-        avg:aws.elasticache.cache_misses{${data.template_file.filter.rendered}} by {region,cluster}.as_count())
+      avg:aws.elasticache.cache_hits{${data.template_file.filter.rendered}} by {region,cacheclusterid}.as_count() /
+      (avg:aws.elasticache.cache_hits{${data.template_file.filter.rendered}} by {region,cacheclusterid}.as_count() +
+        avg:aws.elasticache.cache_misses{${data.template_file.filter.rendered}} by {region,cacheclusterid}.as_count())
     ) < ${var.cache_hits_threshold_critical}
   EOF
 
@@ -57,7 +57,7 @@ resource "datadog_monitor" "redis_cpu_high" {
 
   query = <<EOF
     ${var.cpu_high_time_aggregator}(${var.cpu_high_timeframe}): (
-      avg:aws.elasticache.cpuutilization{${data.template_file.filter.rendered}} by {region,cluster,node}
+      avg:aws.elasticache.cpuutilization{${data.template_file.filter.rendered}} by {region,cacheclusterid,cachenodeid}
     ) > ( ${var.cpu_high_threshold_critical} / ${local.core[var.elasticache_size]} )
   EOF
 
@@ -89,7 +89,7 @@ resource "datadog_monitor" "redis_swap" {
 
   query = <<EOF
     ${var.swap_time_aggregator}(${var.swap_timeframe}): (
-      avg:aws.elasticache.swap_usage{${data.template_file.filter.rendered}} by {region,cluster}
+      avg:aws.elasticache.swap_usage{${data.template_file.filter.rendered}} by {region,cacheclusterid}
     ) > 0
   EOF
 
@@ -116,7 +116,7 @@ resource "datadog_monitor" "redis_replication_lag" {
 
   query = <<EOF
     ${var.replication_lag_time_aggregator}(${var.replication_lag_timeframe}): (
-      avg:aws.elasticache.swap_usage{${data.template_file.filter.rendered}} by {region,cluster,node}
+      avg:aws.elasticache.swap_usage{${data.template_file.filter.rendered}} by {region,cacheclusterid,cachenodeid}
     ) > ${var.replication_lag_threshold_critical}
   EOF
 
@@ -148,8 +148,8 @@ resource "datadog_monitor" "redis_commands" {
 
   query = <<EOF
     sum(${var.commands_timeframe}): (
-      avg:aws.elasticache.get_type_cmds{${data.template_file.filter.rendered}} by {region,cluster,node}.as_count() +
-      avg:aws.elasticache.set_type_cmds{${data.template_file.filter.rendered}} by {region,cluster,node}.as_count()
+      avg:aws.elasticache.get_type_cmds{${data.template_file.filter.rendered}} by {region,cacheclusterid,cachenodeid}.as_count() +
+      avg:aws.elasticache.set_type_cmds{${data.template_file.filter.rendered}} by {region,cacheclusterid,cachenodeid}.as_count()
     ) <= 0
   EOF
 
@@ -176,7 +176,7 @@ resource "datadog_monitor" "redis_free_memory" {
 
   query = <<EOF
     ${var.free_memory_time_aggregator}(${var.free_memory_timeframe}): (
-      avg:aws.elasticache.freeable_memory{${data.template_file.filter.rendered}} by {region,cluster,node} /
+      avg:aws.elasticache.freeable_memory{${data.template_file.filter.rendered}} by {region,cacheclusterid,cachenodeid} /
       ( ${local.memory[var.elasticache_size]} / ${var.nodes} )
     ) * 100 < ${var.free_memory_threshold_critical}
   EOF
