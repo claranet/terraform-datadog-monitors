@@ -116,7 +116,7 @@ resource "datadog_monitor" "redis_replication_lag" {
 
   query = <<EOF
     ${var.replication_lag_time_aggregator}(${var.replication_lag_timeframe}): (
-      avg:aws.elasticache.swap_usage{${data.template_file.filter.rendered}} by {region,cacheclusterid,cachenodeid}
+      avg:aws.elasticache.replication_lag{${data.template_file.filter.rendered}} by {region,cacheclusterid,cachenodeid}
     ) > ${var.replication_lag_threshold_critical}
   EOF
 
