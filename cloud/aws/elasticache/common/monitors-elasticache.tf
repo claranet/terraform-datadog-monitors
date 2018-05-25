@@ -1,5 +1,5 @@
 resource "datadog_monitor" "elasticache_eviction" {
-  name    = "[${var.environment}] Elasticache ${var.resource} eviction {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}"
+  name    = "[${var.environment}] Elasticache ${var.resource} eviction {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}"
   message = "${coalesce(var.eviction_message, var.message)}"
 
   type = "metric alert"
