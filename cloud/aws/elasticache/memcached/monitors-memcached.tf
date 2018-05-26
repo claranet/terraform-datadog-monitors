@@ -117,13 +117,15 @@ resource "datadog_monitor" "memcached_free_memory" {
   name    = "[${var.environment}] Elasticache memcached free memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.free_memory_message, var.message)}"
 
+  count = "${length(keys(local.memory))}"
+
   type = "metric alert"
 
   query = <<EOF
     ${var.free_memory_time_aggregator}(${var.free_memory_timeframe}): (
-      avg:aws.elasticache.freeable_memory{${data.template_file.filter.rendered}} by {region,cacheclusterid,cachenodeid} /
-      ${local.memory[var.elasticache_size]} * 100
-    ) < ${var.free_memory_threshold_critical}
+      avg:aws.elasticache.freeable_memory{dd_monitoring:enabled,dd_aws_red:enabled,env:${var.environment},cache_node_type:${element(keys(local.memory), count.index)}} by {region,cacheclusterid,cachenodeid} /
+      ${element(values(local.memory), count.index)}
+    ) * 100 < ${var.free_memory_threshold_critical}
   EOF
 
   thresholds {
@@ -131,7 +133,7 @@ resource "datadog_monitor" "memcached_free_memory" {
     critical = "${var.free_memory_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false

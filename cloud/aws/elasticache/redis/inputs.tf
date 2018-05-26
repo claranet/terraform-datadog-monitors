@@ -78,7 +78,7 @@ variable "cpu_high_message" {
 variable "cpu_high_time_aggregator" {
   description = "Monitor aggregator for Elasticache redis cpu high [available values: min, max or avg]"
   type        = "string"
-  default     = "min"
+  default     = "avg"
 }
 
 variable "cpu_high_timeframe" {

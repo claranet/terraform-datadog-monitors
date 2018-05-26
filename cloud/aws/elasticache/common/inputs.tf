@@ -61,7 +61,7 @@ variable "max_connection_message" {
 variable "max_connection_time_aggregator" {
   description = "Monitor aggregator for Elasticache max connection [available values: min, max or avg]"
   type        = "string"
-  default     = "min"
+  default     = "max"
 }
 
 variable "max_connection_timeframe" {
