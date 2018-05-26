@@ -26,7 +26,7 @@ resource "datadog_monitor" "redis_cache_hits" {
       avg:aws.elasticache.cache_hits{${data.template_file.filter.rendered}} by {region,cacheclusterid}.as_count() /
       (avg:aws.elasticache.cache_hits{${data.template_file.filter.rendered}} by {region,cacheclusterid}.as_count() +
         avg:aws.elasticache.cache_misses{${data.template_file.filter.rendered}} by {region,cacheclusterid}.as_count())
-    ) < ${var.cache_hits_threshold_critical}
+    ) * 100 < ${var.cache_hits_threshold_critical}
   EOF
 
   thresholds {
@@ -145,8 +145,8 @@ resource "datadog_monitor" "redis_commands" {
 
   query = <<EOF
     sum(${var.commands_timeframe}): (
-      avg:aws.elasticache.get_type_cmds{${data.template_file.filter.rendered}} by {region,cacheclusterid,cachenodeid}.as_count() +
-      avg:aws.elasticache.set_type_cmds{${data.template_file.filter.rendered}} by {region,cacheclusterid,cachenodeid}.as_count()
+      avg:aws.elasticache.get_type_cmds{${data.template_file.filter.rendered}} by {region,cacheclusterid}.as_count() +
+      avg:aws.elasticache.set_type_cmds{${data.template_file.filter.rendered}} by {region,cacheclusterid}.as_count()
     ) <= 0
   EOF
 
@@ -169,12 +169,14 @@ resource "datadog_monitor" "redis_free_memory" {
   name    = "[${var.environment}] Elasticache redis free memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.free_memory_message, var.message)}"
 
+  count = "${length(keys(local.memory))}"
+
   type = "metric alert"
 
   query = <<EOF
     ${var.free_memory_time_aggregator}(${var.free_memory_timeframe}): (
-      avg:aws.elasticache.freeable_memory{${data.template_file.filter.rendered}} by {region,cacheclusterid,cachenodeid} /
-      ( ${local.memory[var.elasticache_size]} / ${var.nodes} )
+      avg:aws.elasticache.freeable_memory{dd_monitoring:enabled,dd_aws_red:enabled,env:${var.environment},cache_node_type:${element(keys(local.memory), count.index)}} by {region,cacheclusterid,cachenodeid} /
+      ( ${element(values(local.memory), count.index)} / ${var.nodes} )
     ) * 100 < ${var.free_memory_threshold_critical}
   EOF
 
@@ -183,7 +185,7 @@ resource "datadog_monitor" "redis_free_memory" {
     critical = "${var.free_memory_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
