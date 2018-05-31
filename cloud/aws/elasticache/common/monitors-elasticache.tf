@@ -78,3 +78,35 @@ resource "datadog_monitor" "elasticache_no_connection" {
 
   tags = ["env:${var.environment}", "engine:${var.resource}", "team:aws", "provider:aws"]
 }
+
+resource "datadog_monitor" "elasticache_swap" {
+  name    = "[${var.environment}] Elasticache ${var.resource} swap {{#is_alert}}{{{comparator}}} {{threshold}}MB ({{value}}MB){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}MB ({{value}}MB){{/is_warning}}"
+  message = "${coalesce(var.swap_message, var.message)}"
+
+  type = "metric alert"
+
+  query = <<EOF
+    ${var.swap_time_aggregator}(${var.swap_timeframe}): (
+      avg:aws.elasticache.swap_usage{${var.filter_tags}} by {region,cacheclusterid}
+    ) > ${var.swap_threshold_critical}
+  EOF
+
+  thresholds {
+    warning  = "${var.swap_threshold_warning}"
+    critical = "${var.swap_threshold_critical}"
+  }
+
+  notify_no_data      = false
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
+  new_host_delay      = "${var.delay}"
+
+  silenced = "${var.swap_silenced}"
+
+  tags = ["env:${var.environment}", "engine:${var.resource}", "team:aws", "provider:aws"]
+}

@@ -2,11 +2,11 @@ data "template_file" "filter" {
   template = "$${filter}"
 
   vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_red:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
+    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_elasticache_redis:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
   }
 }
 
-module "datadog-monitors-aws-elasticcache-common" {
+module "datadog-monitors-aws-elasticache-common" {
   source = "../common"
 
   message     = "${var.message}"
@@ -59,7 +59,7 @@ resource "datadog_monitor" "redis_cpu_high" {
 
   query = <<EOF
     ${var.cpu_high_time_aggregator}(${var.cpu_high_timeframe}): (
-      avg:aws.elasticache.cpuutilization{dd_monitoring:enabled,dd_aws_red:enabled,env:${var.environment},cache_node_type:${element(keys(local.core), count.index)}} by {region,cacheclusterid,cachenodeid}
+      avg:aws.elasticache.cpuutilization{dd_monitoring:enabled,dd_aws_elasticache_redis:enabled,env:${var.environment},cache_node_type:${element(keys(local.core), count.index)}} by {region,cacheclusterid,cachenodeid}
     ) > ${var.cpu_high_threshold_critical / element(values(local.core), count.index)}
   EOF
 
@@ -74,33 +74,6 @@ resource "datadog_monitor" "redis_cpu_high" {
   new_host_delay      = "${var.delay}"
 
   silenced = "${var.cpu_high_silenced}"
-
-  tags = ["env:${var.environment}", "engine:redis", "team:aws", "provider:aws"]
-}
-
-resource "datadog_monitor" "redis_swap" {
-  name    = "[${var.environment}] Elasticache redis is starting to swap ({{value}}MB)"
-  message = "${coalesce(var.swap_message, var.message)}"
-
-  type = "metric alert"
-
-  query = <<EOF
-    ${var.swap_time_aggregator}(${var.swap_timeframe}): (
-      avg:aws.elasticache.swap_usage{${data.template_file.filter.rendered}} by {region,cacheclusterid}
-    ) > 0
-  EOF
-
-  notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
-  renotify_interval   = 0
-  notify_audit        = false
-  timeout_h           = 0
-  include_tags        = true
-  locked              = false
-  require_full_window = false
-  new_host_delay      = "${var.delay}"
-
-  silenced = "${var.swap_silenced}"
 
   tags = ["env:${var.environment}", "engine:redis", "team:aws", "provider:aws"]
 }
@@ -175,7 +148,7 @@ resource "datadog_monitor" "redis_free_memory" {
 
   query = <<EOF
     ${var.free_memory_time_aggregator}(${var.free_memory_timeframe}): (
-      avg:aws.elasticache.freeable_memory{dd_monitoring:enabled,dd_aws_red:enabled,env:${var.environment},cache_node_type:${element(keys(local.memory), count.index)}} by {region,cacheclusterid,cachenodeid} /
+      avg:aws.elasticache.freeable_memory{dd_monitoring:enabled,dd_aws_elasticache_redis:enabled,env:${var.environment},cache_node_type:${element(keys(local.memory), count.index)}} by {region,cacheclusterid,cachenodeid} /
       ( ${element(values(local.memory), count.index)} / ${var.nodes} )
     ) * 100 < ${var.free_memory_threshold_critical}
   EOF

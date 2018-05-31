@@ -2,7 +2,7 @@ data "template_file" "filter" {
   template = "$${filter}"
 
   vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_mem:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
+    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_elasticache_memcached:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
   }
 }
 
@@ -81,38 +81,6 @@ resource "datadog_monitor" "memcached_cpu_high" {
   tags = ["env:${var.environment}", "engine:memcached", "team:aws", "provider:aws"]
 }
 
-resource "datadog_monitor" "memcached_swap" {
-  name    = "[${var.environment}] Elasticache memcached swap {{#is_alert}}{{{comparator}}} {{threshold}}MB ({{value}}MB){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}MB ({{value}}MB){{/is_warning}}"
-  message = "${coalesce(var.swap_message, var.message)}"
-
-  type = "metric alert"
-
-  query = <<EOF
-    ${var.swap_time_aggregator}(${var.swap_timeframe}): (
-      avg:aws.elasticache.swap_usage{${data.template_file.filter.rendered}} by {region,cacheclusterid}
-    ) > ${var.swap_threshold_critical}
-  EOF
-
-  thresholds {
-    warning  = "${var.swap_threshold_warning}"
-    critical = "${var.swap_threshold_critical}"
-  }
-
-  notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
-  renotify_interval   = 0
-  notify_audit        = false
-  timeout_h           = 0
-  include_tags        = true
-  locked              = false
-  require_full_window = false
-  new_host_delay      = "${var.delay}"
-
-  silenced = "${var.swap_silenced}"
-
-  tags = ["env:${var.environment}", "engine:memcached", "team:aws", "provider:aws"]
-}
-
 resource "datadog_monitor" "memcached_free_memory" {
   name    = "[${var.environment}] Elasticache memcached free memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.free_memory_message, var.message)}"
@@ -123,7 +91,7 @@ resource "datadog_monitor" "memcached_free_memory" {
 
   query = <<EOF
     ${var.free_memory_time_aggregator}(${var.free_memory_timeframe}): (
-      avg:aws.elasticache.freeable_memory{dd_monitoring:enabled,dd_aws_red:enabled,env:${var.environment},cache_node_type:${element(keys(local.memory), count.index)}} by {region,cacheclusterid,cachenodeid} /
+      avg:aws.elasticache.freeable_memory{dd_monitoring:enabled,dd_aws_elasticache_memcached:enabled,env:${var.environment},cache_node_type:${element(keys(local.memory), count.index)}} by {region,cacheclusterid,cachenodeid} /
       ${element(values(local.memory), count.index)}
     ) * 100 < ${var.free_memory_threshold_critical}
   EOF
