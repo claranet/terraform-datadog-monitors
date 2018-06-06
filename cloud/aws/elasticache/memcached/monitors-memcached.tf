@@ -91,9 +91,9 @@ resource "datadog_monitor" "memcached_free_memory" {
 
   query = <<EOF
     ${var.free_memory_time_aggregator}(${var.free_memory_timeframe}): (
-      avg:aws.elasticache.freeable_memory{dd_monitoring:enabled,dd_aws_elasticache_memcached:enabled,env:${var.environment},cache_node_type:${element(keys(local.memory), count.index)}} by {region,cacheclusterid,cachenodeid} /
+      ( avg:aws.elasticache.freeable_memory{dd_monitoring:enabled,dd_aws_elasticache_memcached:enabled,env:${var.environment},cache_node_type:${element(keys(local.memory), count.index)}} by {region,cacheclusterid,cachenodeid} * 100 ) /
       ${element(values(local.memory), count.index)}
-    ) * 100 < ${var.free_memory_threshold_critical}
+    ) < ${var.free_memory_threshold_critical}
   EOF
 
   thresholds {
