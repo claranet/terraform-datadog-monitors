@@ -110,3 +110,35 @@ resource "datadog_monitor" "elasticache_swap" {
 
   tags = ["env:${var.environment}", "engine:${var.resource}", "team:aws", "provider:aws"]
 }
+
+resource "datadog_monitor" "redis_free_memory" {
+  name    = "[${var.environment}] Elasticache ${var.resource} free memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = "${coalesce(var.free_memory_message, var.message)}"
+
+  type = "metric alert"
+
+  query = <<EOF
+    pct_change(avg(${var.free_memory_timeframe}),${var.free_memory_condition_timeframe}):
+      avg:aws.elasticache.freeable_memory{${var.filter_tags}} by {region,cacheclusterid,cachenodeid}
+    < ${var.free_memory_threshold_critical}
+  EOF
+
+  thresholds {
+    warning  = "${var.free_memory_threshold_warning}"
+    critical = "${var.free_memory_threshold_critical}"
+  }
+
+  notify_no_data      = true
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
+  new_host_delay      = "${var.delay}"
+
+  silenced = "${var.free_memory_silenced}"
+
+  tags = ["env:${var.environment}", "engine:${var.resource}", "team:aws", "provider:aws"]
+}

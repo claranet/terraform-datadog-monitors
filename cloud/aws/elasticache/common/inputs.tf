@@ -93,13 +93,13 @@ variable "no_connection_timeframe" {
 }
 
 variable "swap_silenced" {
-  description = "Groups to mute for Elasticache memcached swap monitor"
+  description = "Groups to mute for Elasticache swap monitor"
   type        = "map"
   default     = {}
 }
 
 variable "swap_message" {
-  description = "Custom message for Elasticache memcached swap monitor"
+  description = "Custom message for Elasticache swap monitor"
   type        = "string"
   default     = ""
 }
@@ -111,16 +111,48 @@ variable "swap_time_aggregator" {
 }
 
 variable "swap_timeframe" {
-  description = "Monitor timeframe for Elasticache memcached swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  description = "Monitor timeframe for Elasticache swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   default     = "last_5m"
 }
 
 variable "swap_threshold_warning" {
-  description = "Elasticache memcached swap warning threshold in percentage"
+  description = "Elasticache swap warning threshold in percentage"
   default     = 0
 }
 
 variable "swap_threshold_critical" {
-  description = "Elasticache memcached swap critical threshold in percentage"
-  default     = 50
+  description = "Elasticache swap critical threshold in percentage"
+  default     = 50000000
+}
+
+variable "free_memory_silenced" {
+  description = "Groups to mute for Elasticache free memory monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "free_memory_message" {
+  description = "Custom message for Elasticache free memory monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "free_memory_condition_timeframe" {
+  description = "Monitor condition timeframe for Elasticache free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_15m"
+}
+
+variable "free_memory_timeframe" {
+  description = "Monitor timeframe for Elasticache free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_15m"
+}
+
+variable "free_memory_threshold_warning" {
+  description = "Elasticache free memory warning threshold in percentage"
+  default     = -50
+}
+
+variable "free_memory_threshold_critical" {
+  description = "Elasticache free memory critical threshold in percentage"
+  default     = -70
 }

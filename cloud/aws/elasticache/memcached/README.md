@@ -21,7 +21,6 @@ Creates DataDog monitors with the following checks :
 
 * Get Hit
 * CPU High
-* Free memory
 
 Inputs
 ------
@@ -39,12 +38,6 @@ Inputs
 | environment | Infrastructure Environment | string | - | yes |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
-| free_memory_message | Custom message for Elasticache memcached free memory monitor | string | `` | no |
-| free_memory_silenced | Groups to mute for Elasticache memcached free memory monitor | map | `<map>` | no |
-| free_memory_threshold_critical | Elasticache memcached free memory critical threshold in percentage | string | `5` | no |
-| free_memory_threshold_warning | Elasticache memcached free memory warning threshold in percentage | string | `10` | no |
-| free_memory_time_aggregator | Monitor aggregator for Elasticache memcached free memory [available values: min, max or avg] | string | `min` | no |
-| free_memory_timeframe | Monitor timeframe for Elasticache memcached free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | get_hits_message | Custom message for Elasticache memcached get hits monitor | string | `` | no |
 | get_hits_silenced | Groups to mute for Elasticache memcached get hits monitor | map | `<map>` | no |
 | get_hits_threshold_critical | Elasticache memcached get hits critical threshold in percentage | string | `10` | no |
