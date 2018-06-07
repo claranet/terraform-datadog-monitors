@@ -137,38 +137,3 @@ resource "datadog_monitor" "redis_commands" {
 
   tags = ["env:${var.environment}", "engine:redis", "team:aws", "provider:aws"]
 }
-
-resource "datadog_monitor" "redis_free_memory" {
-  name    = "[${var.environment}] Elasticache redis free memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = "${coalesce(var.free_memory_message, var.message)}"
-
-  count = "${length(keys(local.memory))}"
-
-  type = "metric alert"
-
-  query = <<EOF
-    ${var.free_memory_time_aggregator}(${var.free_memory_timeframe}): (
-      ( avg:aws.elasticache.freeable_memory{dd_monitoring:enabled,dd_aws_elasticache_redis:enabled,env:${var.environment},cache_node_type:${element(keys(local.memory), count.index)}} by {region,cacheclusterid,cachenodeid} * 100 ) /
-      ( ${element(values(local.memory), count.index)} / ${var.nodes} )
-    ) < ${var.free_memory_threshold_critical}
-  EOF
-
-  thresholds {
-    warning  = "${var.free_memory_threshold_warning}"
-    critical = "${var.free_memory_threshold_critical}"
-  }
-
-  notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
-  renotify_interval   = 0
-  notify_audit        = false
-  timeout_h           = 0
-  include_tags        = true
-  locked              = false
-  require_full_window = false
-  new_host_delay      = "${var.delay}"
-
-  silenced = "${var.free_memory_silenced}"
-
-  tags = ["env:${var.environment}", "engine:redis", "team:aws", "provider:aws"]
-}

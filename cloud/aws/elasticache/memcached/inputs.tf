@@ -90,36 +90,3 @@ variable "cpu_high_threshold_critical" {
   description = "Elasticache memcached cpu high critical threshold in percentage"
   default     = 90
 }
-
-variable "free_memory_silenced" {
-  description = "Groups to mute for Elasticache memcached free memory monitor"
-  type        = "map"
-  default     = {}
-}
-
-variable "free_memory_message" {
-  description = "Custom message for Elasticache memcached free memory monitor"
-  type        = "string"
-  default     = ""
-}
-
-variable "free_memory_time_aggregator" {
-  description = "Monitor aggregator for Elasticache memcached free memory [available values: min, max or avg]"
-  type        = "string"
-  default     = "min"
-}
-
-variable "free_memory_timeframe" {
-  description = "Monitor timeframe for Elasticache memcached free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  default     = "last_15m"
-}
-
-variable "free_memory_threshold_warning" {
-  description = "Elasticache memcached free memory warning threshold in percentage"
-  default     = 10
-}
-
-variable "free_memory_threshold_critical" {
-  description = "Elasticache memcached free memory critical threshold in percentage"
-  default     = 5
-}

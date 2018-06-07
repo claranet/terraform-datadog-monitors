@@ -26,6 +26,7 @@ Creates DataDog monitors with the following checks:
 * Swap
 * Max connections
 * No connection
+* Free Memory
 
 Inputs
 ------
@@ -39,6 +40,12 @@ Inputs
 | eviction_time_aggregator | Monitor aggregator for Elasticache eviction [available values: min, max or avg] | string | `min` | no |
 | eviction_timeframe | Monitor timeframe for Elasticache eviction [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | filter_tags | Tags used for filtering | string | - | yes |
+| free_memory_condition_timeframe | Monitor condition timeframe for Elasticache free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
+| free_memory_message | Custom message for Elasticache free memory monitor | string | `` | no |
+| free_memory_silenced | Groups to mute for Elasticache free memory monitor | map | `<map>` | no |
+| free_memory_threshold_critical | Elasticache free memory critical threshold in percentage | string | `300` | no |
+| free_memory_threshold_warning | Elasticache free memory warning threshold in percentage | string | `200` | no |
+| free_memory_timeframe | Monitor timeframe for Elasticache free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | max_connection_message | Custom message for Elasticache max connection monitor | string | `` | no |
 | max_connection_silenced | Groups to mute for Elasticache max connection monitor | map | `<map>` | no |
 | max_connection_time_aggregator | Monitor aggregator for Elasticache max connection [available values: min, max or avg] | string | `max` | no |
@@ -49,12 +56,12 @@ Inputs
 | no_connection_time_aggregator | Monitor aggregator for Elasticache no connection [available values: min, max or avg] | string | `min` | no |
 | no_connection_timeframe | Monitor timeframe for Elasticache no connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | resource | Type of Elasticache used | string | - | yes |
-| swap_message | Custom message for Elasticache memcached swap monitor | string | `` | no |
-| swap_silenced | Groups to mute for Elasticache memcached swap monitor | map | `<map>` | no |
-| swap_threshold_critical | Elasticache memcached swap critical threshold in percentage | string | `50` | no |
-| swap_threshold_warning | Elasticache memcached swap warning threshold in percentage | string | `0` | no |
+| swap_message | Custom message for Elasticache swap monitor | string | `` | no |
+| swap_silenced | Groups to mute for Elasticache swap monitor | map | `<map>` | no |
+| swap_threshold_critical | Elasticache swap critical threshold in percentage | string | `50` | no |
+| swap_threshold_warning | Elasticache swap warning threshold in percentage | string | `0` | no |
 | swap_time_aggregator | Monitor aggregator for Elasticache memcached swap [available values: min, max or avg] | string | `min` | no |
-| swap_timeframe | Monitor timeframe for Elasticache memcached swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| swap_timeframe | Monitor timeframe for Elasticache swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
 Related documentation
 ---------------------

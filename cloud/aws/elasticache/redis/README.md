@@ -33,7 +33,6 @@ Creates DataDog monitors with the following checks:
 * CPU high
 * Commands received
 * Replication lag
-* Free memory
 
 Inputs
 ------
@@ -59,12 +58,6 @@ Inputs
 | environment | Infrastructure Environment | string | - | yes |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
-| free_memory_message | Custom message for Elasticache redis free memory monitor | string | `` | no |
-| free_memory_silenced | Groups to mute for Elasticache redis free memory monitor | map | `<map>` | no |
-| free_memory_threshold_critical | Elasticache redis free memory critical threshold in percentage | string | `5` | no |
-| free_memory_threshold_warning | Elasticache redis free memory warning threshold in percentage | string | `10` | no |
-| free_memory_time_aggregator | Monitor aggregator for Elasticache redis free memory [available values: min, max or avg] | string | `min` | no |
-| free_memory_timeframe | Monitor timeframe for Elasticache redis free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 | nodes | Number of Elasticache nodes | string | - | yes |
 | replication_lag_message | Custom message for Elasticache redis replication lag monitor | string | `` | no |
