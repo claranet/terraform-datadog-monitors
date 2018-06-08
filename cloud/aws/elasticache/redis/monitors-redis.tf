@@ -53,17 +53,15 @@ resource "datadog_monitor" "redis_cpu_high" {
   name    = "[${var.environment}] Elasticache redis CPU {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_high_message, var.message)}"
 
-  count = "${length(keys(local.core))}"
-
   type = "metric alert"
 
   query = <<EOF
     ${var.cpu_high_time_aggregator}(${var.cpu_high_timeframe}): (
-      avg:aws.elasticache.cpuutilization{dd_monitoring:enabled,dd_aws_elasticache_redis:enabled,env:${var.environment},cache_node_type:${element(keys(local.core), count.index)}} by {region,cacheclusterid,cachenodeid}
-    ) > ${var.cpu_high_threshold_critical / element(values(local.core), count.index)}
+      avg:aws.elasticache.engine_cpuutilization{${data.template_file.filter.rendered}} by {region,cacheclusterid,cachenodeid}
+    ) > ${var.cpu_high_threshold_critical}
   EOF
 
-  notify_no_data      = false
+  notify_no_data      = true
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
