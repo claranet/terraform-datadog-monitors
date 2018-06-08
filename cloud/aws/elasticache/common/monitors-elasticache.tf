@@ -111,6 +111,7 @@ resource "datadog_monitor" "elasticache_swap" {
   tags = ["env:${var.environment}", "engine:${var.resource}", "team:aws", "provider:aws"]
 }
 
+# POC - A approfondir
 resource "datadog_monitor" "redis_free_memory" {
   name    = "[${var.environment}] Elasticache ${var.resource} free memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.free_memory_message, var.message)}"
