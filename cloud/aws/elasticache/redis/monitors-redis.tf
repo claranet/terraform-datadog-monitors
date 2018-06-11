@@ -13,6 +13,35 @@ module "datadog-monitors-aws-elasticache-common" {
   environment = "${var.environment}"
   filter_tags = "${data.template_file.filter.rendered}"
   resource    = "redis"
+
+  eviction_message         = "${var.eviction_message}"
+  eviction_silenced        = "${var.eviction_silenced}"
+  eviction_time_aggregator = "${var.eviction_time_aggregator}"
+  eviction_timeframe       = "${var.eviction_timeframe}"
+
+  free_memory_condition_timeframe = "${var.free_memory_condition_timeframe}"
+  free_memory_timeframe           = "${var.free_memory_timeframe}"
+  free_memory_message             = "${var.free_memory_message}"
+  free_memory_silenced            = "${var.free_memory_silenced}"
+  free_memory_threshold_critical  = "${var.free_memory_threshold_critical}"
+  free_memory_threshold_warning   = "${var.free_memory_threshold_warning}"
+
+  max_connection_message         = "${var.max_connection_message}"
+  max_connection_silenced        = "${var.max_connection_silenced}"
+  max_connection_time_aggregator = "${var.max_connection_time_aggregator}"
+  max_connection_timeframe       = "${var.max_connection_timeframe}"
+
+  no_connection_message         = "${var.no_connection_message}"
+  no_connection_silenced        = "${var.no_connection_silenced}"
+  no_connection_time_aggregator = "${var.no_connection_time_aggregator}"
+  no_connection_timeframe       = "${var.no_connection_timeframe}"
+
+  swap_message            = "${var.swap_message}"
+  swap_silenced           = "${var.swap_silenced}"
+  swap_threshold_critical = "${var.swap_threshold_critical}"
+  swap_threshold_warning  = "${var.swap_threshold_warning}"
+  swap_time_aggregator    = "${var.swap_time_aggregator}"
+  swap_timeframe          = "${var.swap_timeframe}"
 }
 
 resource "datadog_monitor" "redis_cache_hits" {
