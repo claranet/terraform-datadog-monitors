@@ -5,7 +5,7 @@ How to use this module
 ----------------------
 
 ```
-module "datadog-monitors-aws-elasticcache-redis" {
+module "datadog-monitors-aws-elasticache-redis" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/aws/elasticache/redis?ref={revision}"
 
   message           = "${module.datadog-message-alerting.alerting-message}"
