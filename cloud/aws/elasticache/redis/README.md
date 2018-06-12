@@ -10,29 +10,29 @@ module "datadog-monitors-aws-elasticache-redis" {
 
   message           = "${module.datadog-message-alerting.alerting-message}"
   environment       = "${var.environment}"
-  elasticache_size  = "${var.size_of_elsaticache}"
-  nodes             = "${data.my_cluster.num_cache_nodes}"
 }
-
 ```
 
-You can retrieve the number of nodes using the data source :
-
-```
-data "aws_elasticache_cluster" "my_cluster" {
-  cluster_id = "my-cluster-id"
-}
-
-```
 
 Purpose
 -------
 Creates DataDog monitors with the following checks:
 
+Redis specific:
+
 * Cache hits
 * CPU high
 * Commands received
 * Replication lag
+
+Elasticache common:
+
+* Eviction
+* Eviction growing
+* Swap
+* Max connections
+* No connection
+* Free Memory
 
 Inputs
 ------

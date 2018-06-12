@@ -10,7 +10,6 @@ module "datadog-monitors-aws-elasticache-redis" {
 
   message           = "${module.datadog-message-alerting.alerting-message}"
   environment       = "${var.environment}"
-  elasticache_size  = "${var.size_of_elsaticache}"
 }
 
 ```
@@ -19,8 +18,20 @@ Purpose
 -------
 Creates DataDog monitors with the following checks :
 
+Memcached specific:
+
 * Get Hit
 * CPU High
+
+Elasticache common:
+
+* Eviction
+* Eviction growing
+* Swap
+* Max connections
+* No connection
+* Free Memory
+
 
 Inputs
 ------

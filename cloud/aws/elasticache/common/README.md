@@ -23,6 +23,7 @@ Purpose
 Creates DataDog monitors with the following checks:
 
 * Eviction
+* Eviction growing
 * Swap
 * Max connections
 * No connection
