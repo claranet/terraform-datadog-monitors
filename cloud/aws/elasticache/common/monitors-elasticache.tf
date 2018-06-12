@@ -112,7 +112,7 @@ resource "datadog_monitor" "elasticache_swap" {
 }
 
 # POC - A approfondir
-resource "datadog_monitor" "redis_free_memory" {
+resource "datadog_monitor" "elasticache_free_memory" {
   name    = "[${var.environment}] Elasticache ${var.resource} free memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.free_memory_message, var.message)}"
 
@@ -140,6 +140,38 @@ resource "datadog_monitor" "redis_free_memory" {
   new_host_delay      = "${var.delay}"
 
   silenced = "${var.free_memory_silenced}"
+
+  tags = ["env:${var.environment}", "engine:${var.resource}", "team:aws", "provider:aws"]
+}
+
+resource "datadog_monitor" "elasticache_eviction_growing" {
+  name    = "[${var.environment}] Elasticache ${var.resource} evictions is growing {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  message = "${coalesce(var.eviction_growing_message, var.message)}"
+
+  type = "metric alert"
+
+  query = <<EOF
+    pct_change(avg(${var.eviction_growing_timeframe}),${var.eviction_growing_condition_timeframe}):
+      avg:aws.elasticache.evictions{${var.filter_tags}} by {region,cacheclusterid}
+    > ${var.eviction_growing_threshold_critical}
+  EOF
+
+  thresholds {
+    warning  = "${var.eviction_growing_threshold_warning}"
+    critical = "${var.eviction_growing_threshold_critical}"
+  }
+
+  notify_no_data      = false
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
+  new_host_delay      = "${var.delay}"
+
+  silenced = "${var.eviction_growing_silenced}"
 
   tags = ["env:${var.environment}", "engine:${var.resource}", "team:aws", "provider:aws"]
 }
