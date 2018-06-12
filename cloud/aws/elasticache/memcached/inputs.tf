@@ -225,3 +225,35 @@ variable "free_memory_threshold_critical" {
   description = "Elasticache free memory critical threshold in percentage"
   default     = -70
 }
+
+variable "eviction_growing_silenced" {
+  description = "Groups to mute for Elasticache eviction growing monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "eviction_growing_message" {
+  description = "Custom message for Elasticache eviction growing monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "eviction_growing_condition_timeframe" {
+  description = "Monitor condition timeframe for Elasticache eviction growing [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_5m"
+}
+
+variable "eviction_growing_timeframe" {
+  description = "Monitor timeframe for Elasticache eviction growing [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_5m"
+}
+
+variable "eviction_growing_threshold_warning" {
+  description = "Elasticache eviction growing warning threshold in percentage"
+  default     = 10
+}
+
+variable "eviction_growing_threshold_critical" {
+  description = "Elasticache eviction growing critical threshold in percentage"
+  default     = 30
+}

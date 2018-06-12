@@ -19,6 +19,13 @@ module "datadog-monitors-aws-elasticache-common" {
   eviction_time_aggregator = "${var.eviction_time_aggregator}"
   eviction_timeframe       = "${var.eviction_timeframe}"
 
+  eviction_growing_condition_timeframe = "${var.eviction_growing_condition_timeframe}"
+  eviction_growing_timeframe           = "${var.eviction_growing_timeframe}"
+  eviction_growing_message             = "${var.eviction_growing_message}"
+  eviction_growing_silenced            = "${var.eviction_growing_silenced}"
+  eviction_growing_threshold_warning   = "${var.eviction_growing_threshold_warning}"
+  eviction_growing_threshold_critical  = "${var.eviction_growing_threshold_critical}"
+
   free_memory_condition_timeframe = "${var.free_memory_condition_timeframe}"
   free_memory_timeframe           = "${var.free_memory_timeframe}"
   free_memory_message             = "${var.free_memory_message}"
