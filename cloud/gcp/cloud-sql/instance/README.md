@@ -1,5 +1,37 @@
+GCP CloudSQL Instance Monitors
+==============================
 
-## Inputs
+How to use this module
+----------------------
+
+```
+module "datadog-monitors-gcp-cloudsql" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/gcp/clouds-sql/instance?ref={revision}"
+
+  project_id  = "${var.gcp_project_id}"
+  environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
+}
+
+```
+
+Purpose
+-------
+Creates DataDog monitors with the following checks :
+
+* CloudSQL Instance CPU Utilization
+* CloudSQL Instance Disk Utilization
+* CloudSQL Instance Memory Utilization
+* CloudSQL Instance Memory Utilization Forecast
+
+Useful links
+------------
+
+* [GCP Metrics for CloudSQL](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-cloudsql)
+* [Datadog Useful monitors for GCP CloudSQL](https://www.datadoghq.com/blog/monitor-google-cloud-sql/)
+
+Inputs
+------
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -18,11 +50,18 @@
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | memory_forecast_history | History for the Memory Utilization Forecast monitor | string | `12h` | no |
+| memory_forecast_history | History for the Memory Utilization Forecast monitor | string | `12h` | no |
+| memory_forecast_interval | Interval for the Memory Utilization Forecast monitor | string | `30m` | no |
 | memory_forecast_interval | Interval for the Memory Utilization Forecast monitor | string | `30m` | no |
 | memory_forecast_message | Custom message for the Memory Utilization Forecast monitor | string | `` | no |
+| memory_forecast_message | Custom message for the Memory Utilization Forecast monitor | string | `` | no |
+| memory_forecast_silenced | Groups to mute for GCP Cloud SQL Memory Utilization Forecast monitor | map | `<map>` | no |
 | memory_forecast_silenced | Groups to mute for GCP Cloud SQL Memory Utilization Forecast monitor | map | `<map>` | no |
 | memory_forecast_threshold_critical | Memory Utilization Forecast in fraction (critical threshold) | string | `0.9` | no |
+| memory_forecast_threshold_critical | Memory Utilization Forecast in fraction (critical threshold) | string | `0.9` | no |
 | memory_forecast_threshold_warning | Memory Utilization Forecast in fraction (warning threshold) | string | `0.8` | no |
+| memory_forecast_threshold_warning | Memory Utilization Forecast in fraction (warning threshold) | string | `0.8` | no |
+| memory_forecast_timeframe | Timeframe for the Memory Utilization Forecast monitor | string | `next_3d` | no |
 | memory_forecast_timeframe | Timeframe for the Memory Utilization Forecast monitor | string | `next_3d` | no |
 | memory_message | Custom message for the Memory Utilization monitor | string | `` | no |
 | memory_silenced | Groups to mute for GCP Cloud SQL Memory Utilization monitor | map | `<map>` | no |
@@ -31,4 +70,3 @@
 | memory_timeframe | Timeframe for the Memory Utilization monitor | string | `last_5m` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 | project_id | ID of the GCP Project | string | - | yes |
-
