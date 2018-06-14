@@ -21,11 +21,9 @@ resource "datadog_monitor" "cpu_utilization" {
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.cpu_timeframe}): (
-    avg:gcp.cloudsql.database.cpu.utilization{${data.template_file.filter.rendered}}
-    )
-    by {database_id}
-    > ${var.cpu_threshold_critical}
+  avg(${var.cpu_timeframe}): avg:gcp.cloudsql.database.cpu.utilization{${data.template_file.filter.rendered}}
+  by {database_id}
+  > ${var.cpu_threshold_critical}
 EOF
 
   thresholds {
@@ -63,9 +61,8 @@ resource "datadog_monitor" "disk_utilization" {
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.disk_timeframe}): (
+  avg(${var.disk_timeframe}):
     avg:gcp.cloudsql.database.disk.utilization{${data.template_file.filter.rendered}}
-    )
     by {database_id}
     > ${var.disk_threshold_critical}
 EOF
@@ -96,26 +93,24 @@ EOF
 }
 
 #
-# Network Connections
+# Memory Utilization
 #
-resource "datadog_monitor" "network_connections" {
-  name    = "[${var.environment}] Cloud SQL Network Connections (hard limit: ${var.network_connections_hard_limit}) {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = "${coalesce(var.network_connections_message, var.message)}"
+resource "datadog_monitor" "memory_utilization" {
+  name    = "[${var.environment}] Cloud SQL Memory Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = "${coalesce(var.memory_message, var.message)}"
 
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.network_connections_timeframe}): (
-    avg:gcp.cloudsql.database.network.connections{${data.template_file.filter.rendered}}
-    /${var.network_connections_hard_limit}
-    )
+  avg(${var.memory_timeframe}):
+    avg:gcp.cloudsql.database.memory.utilization{${data.template_file.filter.rendered}}
     by {database_id}
-    > ${var.network_connections_threshold_critical}
+    > ${var.memory_threshold_critical}
 EOF
 
   thresholds {
-    warning  = "${var.network_connections_threshold_warning}"
-    critical = "${var.network_connections_threshold_critical}"
+    warning  = "${var.memory_threshold_warning}"
+    critical = "${var.memory_threshold_critical}"
   }
 
   include_tags        = true
@@ -128,7 +123,51 @@ EOF
   locked              = false
   evaluation_delay    = "${var.delay}"
   new_host_delay      = "${var.delay}"
-  silenced            = "${var.network_connections_silenced}"
+  silenced            = "${var.memory_silenced}"
+
+  tags = [
+    "team:gcp",
+    "provider:gcp",
+    "env:${var.environment}",
+    "resource:cloud-sql",
+  ]
+}
+
+resource "datadog_monitor" "memory_utilization_forecast" {
+  name    = "[${var.environment}] Cloud SQL Memory Utilization Forecast {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = "${coalesce(var.memory_forecast_message, var.message)}"
+
+  type = "query alert"
+
+  query = <<EOF
+  max(${var.memory_forecast_timeframe}):
+    forecast(
+      avg:gcp.cloudsql.database.memory.utilization{${data.template_file.filter.rendered}} by {database_id},
+      'linear',
+      1,
+      interval='${var.memory_forecast_interval}',
+      history='${var.memory_forecast_history}',
+      model='default'
+      )
+    > ${var.memory_forecast_threshold_critical}
+EOF
+
+  thresholds {
+    warning  = "${var.memory_forecast_threshold_warning}"
+    critical = "${var.memory_forecast_threshold_critical}"
+  }
+
+  include_tags        = true
+  notify_no_data      = true
+  require_full_window = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
+  silenced            = "${var.memory_forecast_silenced}"
 
   tags = [
     "team:gcp",
