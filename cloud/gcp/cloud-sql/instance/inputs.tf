@@ -33,11 +33,6 @@ variable "project_id" {
   description = "ID of the GCP Project"
 }
 
-variable "database_id" {
-  type        = "string"
-  description = "ID of the Cloud SQL Database Instance"
-}
-
 #
 # CPU
 #
