@@ -66,12 +66,6 @@ variable "cpu_silenced" {
   default     = {}
 }
 
-variable "cpu_tags" {
-  description = "Tags to add to the CPU Utilization monitors"
-  type        = "map"
-  default     = {}
-}
-
 #
 # DISK
 #
@@ -101,12 +95,6 @@ variable "disk_threshold_critical" {
 
 variable "disk_silenced" {
   description = "Groups to mute for GCP Cloud SQL Disk Utilization monitor"
-  type        = "map"
-  default     = {}
-}
-
-variable "disk_tags" {
-  description = "Tags to add to the Disk Utilization monitors"
   type        = "map"
   default     = {}
 }
@@ -145,12 +133,6 @@ variable "network_connections_threshold_critical" {
 
 variable "network_connections_silenced" {
   description = "Groups to mute for GCP Cloud SQL Network Connections monitor"
-  type        = "map"
-  default     = {}
-}
-
-variable "network_connections_tags" {
-  description = "Tags to add to the Network Connections monitors"
   type        = "map"
   default     = {}
 }

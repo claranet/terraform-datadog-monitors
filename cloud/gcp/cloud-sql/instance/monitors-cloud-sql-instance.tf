@@ -50,7 +50,6 @@ EOF
     "provider:gcp",
     "env:${var.environment}",
     "resource:cloud-sql",
-    "${var.cpu_tags}",
   ]
 }
 
@@ -93,7 +92,6 @@ EOF
     "provider:gcp",
     "env:${var.environment}",
     "resource:cloud-sql",
-    "${var.disk_tags}",
   ]
 }
 
@@ -137,6 +135,5 @@ EOF
     "provider:gcp",
     "env:${var.environment}",
     "resource:cloud-sql",
-    "${var.network_connections_tags}",
   ]
 }
