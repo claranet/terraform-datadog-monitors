@@ -6,7 +6,7 @@ data "template_file" "filter" {
 
   vars {
     filter = "${var.filter_tags_use_defaults == "true" ?
-             format("project_id:%s", var.project_id) :
+              format("project_id:%s", var.project_id) :
              "${var.filter_tags_custom}"}"
   }
 }
@@ -133,6 +133,9 @@ EOF
   ]
 }
 
+#
+# Memory Utilization Forecast
+#
 resource "datadog_monitor" "memory_utilization_forecast" {
   name    = "[${var.environment}] Cloud SQL Memory Utilization Forecast {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.memory_forecast_message, var.message)}"
