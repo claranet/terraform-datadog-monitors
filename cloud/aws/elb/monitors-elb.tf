@@ -178,7 +178,7 @@ resource "datadog_monitor" "ELB_backend_latency" {
   message = "${coalesce(var.elb_backend_latency_message, var.message)}"
 
   query = <<EOF
-    ${var.elb_backend_latency_time_aggregator}(${var.elb_backend_latency_warning}): (
+    ${var.elb_backend_latency_time_aggregator}(${var.elb_backend_latency_timeframe}): (
         min:aws.elb.latency{${data.template_file.filter.rendered}} by {region,loadbalancername}
     ) > ${var.elb_backend_latency_critical}
   EOF
