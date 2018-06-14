@@ -100,39 +100,69 @@ variable "disk_silenced" {
 }
 
 #
-# Network Connections
+# Memory Utilization
 #
-variable "network_connections_message" {
-  description = "Custom message for the Netowork Connections monitor"
-  type        = "string"
+variable "memory_message" {
+  description = "Custom message for the Memory Utilization monitor"
   default     = ""
 }
 
-variable "network_connections_timeframe" {
-  description = "Timeframe for the Network Connections monitor"
-  type        = "string"
+variable "memory_timeframe" {
+  description = "Timeframe for the Memory Utilization monitor"
   default     = "last_5m"
 }
 
-variable "network_connections_hard_limit" {
-  description = "Max number of network connections"
-  type        = "string"
-}
-
-variable "network_connections_threshold_warning" {
-  description = "Fraction of network connections (warning threshold)"
-  type        = "string"
+variable "memory_threshold_warning" {
+  description = "Memory Utilization in fraction (warning threshold)"
   default     = 0.8
 }
 
-variable "network_connections_threshold_critical" {
-  description = "Fraction of network connections (warning threshold)"
-  type        = "string"
+variable "memory_threshold_critical" {
+  description = "Memory Utilization in fraction (critical threshold)"
   default     = 0.9
 }
 
-variable "network_connections_silenced" {
-  description = "Groups to mute for GCP Cloud SQL Network Connections monitor"
+variable "memory_silenced" {
+  description = "Groups to mute for GCP Cloud SQL Memory Utilization monitor"
+  type        = "map"
+  default     = {}
+}
+
+#
+# Memory Utilization Forecast
+#
+variable "memory_forecast_message" {
+  description = "Custom message for the Memory Utilization Forecast monitor"
+  default     = ""
+}
+
+variable "memory_forecast_timeframe" {
+  description = "Timeframe for the Memory Utilization Forecast monitor"
+  default     = "next_3d"
+}
+
+variable "memory_forecast_interval" {
+  description = "Interval for the Memory Utilization Forecast monitor"
+  default     = "30m"
+}
+
+variable "memory_forecast_history" {
+  description = "History for the Memory Utilization Forecast monitor"
+  default     = "12h"
+}
+
+variable "memory_forecast_threshold_warning" {
+  description = "Memory Utilization Forecast in fraction (warning threshold)"
+  default     = 0.8
+}
+
+variable "memory_forecast_threshold_critical" {
+  description = "Memory Utilization Forecast in fraction (critical threshold)"
+  default     = 0.9
+}
+
+variable "memory_forecast_silenced" {
+  description = "Groups to mute for GCP Cloud SQL Memory Utilization Forecast monitor"
   type        = "map"
   default     = {}
 }
