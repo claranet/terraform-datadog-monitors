@@ -71,3 +71,36 @@ variable "network_connections_silenced" {
   type        = "map"
   default     = {}
 }
+
+#
+# Replication Lag
+#
+variable "replication_lag_message" {
+  description = "Custom message for the Replication Lag monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "replication_lag_timeframe" {
+  description = "Timeframe for the Replication Lag monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "replication_lag_threshold_warning" {
+  description = "Seconds behind the master (warning threshold)"
+  type        = "string"
+  default     = 2000
+}
+
+variable "replication_lag_threshold_critical" {
+  description = "Seconds behind the master (critical threshold)"
+  type        = "string"
+  default     = 2700
+}
+
+variable "replication_lag_silenced" {
+  description = "Groups to mute for GCP Cloud SQL Replication Lag monitor"
+  type        = "map"
+  default     = {}
+}

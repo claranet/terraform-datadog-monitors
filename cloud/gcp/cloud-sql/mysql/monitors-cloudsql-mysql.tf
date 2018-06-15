@@ -52,3 +52,45 @@ EOF
     "engine:mysql",
   ]
 }
+
+#
+# Replication Lag
+#
+resource "datadog_monitor" "datadog_monitor_cloud_sql_mysql_replication_lag" {
+  name    = "[${var.environment}] Cloud SQL MySQL Replication Lag too high"
+  message = "${coalesce(var.replication_lag_message, var.message)}"
+
+  type = "metric alert"
+
+  query = <<EOF
+    min(last_10m):
+      avg:gcp.cloudsql.database.mysql.replication.seconds_behind_master{${data.template_file.filter.rendered}}
+      by {database_id}
+      > ${var.replication_lag_threshold_critical}
+EOF
+
+  thresholds {
+    critical = "${var.replication_lag_threshold_critical}"
+    warning  = "${var.replication_lag_threshold_warning}"
+  }
+
+  include_tags        = true
+  notify_no_data      = true
+  require_full_window = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
+  silenced            = "${var.questions_changing_silenced}"
+
+  tags = [
+    "team:gcp",
+    "provider:gcp",
+    "env:${var.environment}",
+    "resource:cloud-sql",
+    "engine:mysql",
+  ]
+}
