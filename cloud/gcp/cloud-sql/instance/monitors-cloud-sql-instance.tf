@@ -184,7 +184,7 @@ EOF
 # Failover Unavailable
 #
 resource "datadog_monitor" "failover_unavailable" {
-  name    = "[${var.environment}] Cloud SQL MySQL Failover Unavailable {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Cloud SQL Failover Unavailable {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.failover_unavailable_message, var.message)}"
 
   type = "metric alert"
