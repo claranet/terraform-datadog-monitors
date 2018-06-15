@@ -56,7 +56,7 @@ EOF
 #
 # Replication Lag
 #
-resource "datadog_monitor" "datadog_monitor_cloud_sql_mysql_replication_lag" {
+resource "datadog_monitor" "replication_lag" {
   name    = "[${var.environment}] Cloud SQL MySQL Replication Lag too high"
   message = "${coalesce(var.replication_lag_message, var.message)}"
 
@@ -84,7 +84,7 @@ EOF
   locked              = false
   evaluation_delay    = "${var.delay}"
   new_host_delay      = "${var.delay}"
-  silenced            = "${var.questions_changing_silenced}"
+  silenced            = "${var.replication_lag_silenced}"
 
   tags = [
     "team:gcp",
