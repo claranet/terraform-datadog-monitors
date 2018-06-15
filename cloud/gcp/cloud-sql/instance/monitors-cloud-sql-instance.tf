@@ -179,3 +179,43 @@ EOF
     "resource:cloud-sql",
   ]
 }
+
+#
+# Failover Unavailable
+#
+resource "datadog_monitor" "failover_unavailable" {
+  name    = "[${var.environment}] Cloud SQL MySQL Failover Unavailable {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = "${coalesce(var.failover_unavailable_message, var.message)}"
+
+  type = "metric alert"
+
+  query = <<EOF
+    max(${var.failover_unavailable_timeframe}):
+      avg:gcp.cloudsql.database.available_for_failover{${data.template_file.filter.rendered}}
+      by {database_id}
+      <= ${var.failover_unavailable_threshold_critical}
+EOF
+
+  thresholds {
+    critical = "${var.failover_unavailable_threshold_critical}"
+  }
+
+  include_tags        = true
+  notify_no_data      = true
+  require_full_window = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
+  silenced            = "${var.failover_unavailable_silenced}"
+
+  tags = [
+    "team:gcp",
+    "provider:gcp",
+    "env:${var.environment}",
+    "resource:cloud-sql",
+  ]
+}

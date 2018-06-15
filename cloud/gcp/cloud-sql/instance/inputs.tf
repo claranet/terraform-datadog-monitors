@@ -166,3 +166,31 @@ variable "memory_forecast_silenced" {
   type        = "map"
   default     = {}
 }
+
+#
+# Failover Unavailable
+#
+
+variable "failover_unavailable_message" {
+  description = "Custom message for the Failover Unavailable monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "failover_unavailable_timeframe" {
+  description = "Timeframe for the Failover Unavailable monitor"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "failover_unavailable_threshold_critical" {
+  description = "Failover Unavailable critical threshold"
+  type        = "string"
+  default     = 0
+}
+
+variable "failover_unavailable_silenced" {
+  description = "Groups to mute for GCP Cloud SQL Failover Unavailable monitor"
+  type        = "map"
+  default     = {}
+}
