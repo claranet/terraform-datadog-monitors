@@ -104,3 +104,141 @@ variable "replication_lag_silenced" {
   type        = "map"
   default     = {}
 }
+
+#
+# Queries Changing Abnormally
+#
+variable "queries_changing_database_ids" {
+  description = ""
+  type        = "list"
+  default     = []
+}
+
+variable "queries_changing_region" {
+  description = ""
+  type        = "string"
+  default     = ""
+}
+
+variable "queries_changing_message" {
+  description = "Custom message for the Queries Changing monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "queries_changing_timeframe" {
+  description = "Timeframe for the Queries Changing mon monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "queries_changing_anomaly_detection_algorithm" {
+  description = "Anomaly Detection Algorithm used"
+  type        = "string"
+  default     = "robust"
+}
+
+variable "queries_changing_deviations" {
+  description = "Deviations to detect the anomaly"
+  type        = "string"
+  default     = 4
+}
+
+variable "queries_changing_direction" {
+  description = "Direction of the anomaly. It can be both, below or above."
+  type        = "string"
+  default     = "both"
+}
+
+variable "queries_changing_seasonality" {
+  description = "Seasonality of the algorithm"
+  type        = "string"
+  default     = "weekly"
+}
+
+variable "queries_changing_threshold_warning" {
+  description = "Queries Changing warning threshold"
+  type        = "string"
+  default     = 0.5
+}
+
+variable "queries_changing_threshold_critical" {
+  description = "Queries Changing critical threshold"
+  type        = "string"
+  default     = 1
+}
+
+variable "queries_changing_silenced" {
+  description = "Groups to mute for GCP Cloud SQL Queries Changing monitor"
+  type        = "map"
+  default     = {}
+}
+
+#
+# Questions Changing
+#
+variable "questions_changing_message" {
+  description = "Custom message for the Questions Changing monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "questions_changing_timeframe" {
+  description = "Timeframe for the Questions Changing mon monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "questions_changing_database_ids" {
+  description = ""
+  type        = "list"
+  default     = []
+}
+
+variable "questions_changing_region" {
+  description = ""
+  type        = "string"
+  default     = ""
+}
+
+variable "questions_changing_anomaly_detection_algorithm" {
+  description = "Anomaly Detection Algorithm used"
+  type        = "string"
+  default     = "robust"
+}
+
+variable "questions_changing_deviations" {
+  description = "Deviations to detect the anomaly"
+  type        = "string"
+  default     = 4
+}
+
+variable "questions_changing_direction" {
+  description = "Direction of the anomaly. It can be both, below or above."
+  type        = "string"
+  default     = "both"
+}
+
+variable "questions_changing_seasonality" {
+  description = "Seasonality of the algorithm"
+  type        = "string"
+  default     = "weekly"
+}
+
+variable "questions_changing_threshold_warning" {
+  description = "Questions Changing warning threshold"
+  type        = "string"
+  default     = 0.5
+}
+
+variable "questions_changing_threshold_critical" {
+  description = "Questions Changing critical threshold"
+  type        = "string"
+  default     = 1
+}
+
+variable "questions_changing_silenced" {
+  description = "Groups to mute for GCP Cloud SQL Network Connections monitor"
+  type        = "map"
+  default     = {}
+}
