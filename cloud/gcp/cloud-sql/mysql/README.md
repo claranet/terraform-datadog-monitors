@@ -29,6 +29,7 @@ Useful links
 * [GCP Metrics for CloudSQL](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-cloudsql)
 * [Datadog Useful monitors for GCP CloudSQL](https://www.datadoghq.com/blog/monitor-google-cloud-sql/)
 * [Max connections depends on the type of the instance](https://cloud.google.com/sql/docs/quotas#fixed-limits)
+* [Monitoring Replication Lag](https://cloud.google.com/sql/docs/mysql/high-availability#replication-lag-monitor)
 
 Inputs
 ------
@@ -47,3 +48,8 @@ Inputs
 | network_connections_threshold_warning | Number of network connections (warning threshold) | string | `3200` | no |
 | network_connections_timeframe | Timeframe for the Network Connections monitor | string | `last_5m` | no |
 | project_id | ID of the GCP Project | string | - | yes |
+| replication_lag_message | Custom message for the Replication Lag monitor | string | `` | no |
+| replication_lag_silenced | Groups to mute for GCP Cloud SQL Replication Lag monitor | map | `<map>` | no |
+| replication_lag_threshold_critical | Seconds behind the master (critical threshold) | string | `2700` | no |
+| replication_lag_threshold_warning | Seconds behind the master (warning threshold) | string | `2000` | no |
+| replication_lag_timeframe | Timeframe for the Replication Lag monitor | string | `last_10m` | no |
