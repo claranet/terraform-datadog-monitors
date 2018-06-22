@@ -223,7 +223,7 @@ module "servicebus" {
   status_silenced                  = "${var.servicebus_status_silenced}"
   status_message                   = "${var.servicebus_status_message}"
   status_timeframe                 = "${var.servicebus_status_timeframe}"
-  status_timeframe_time_aggregator = "${var.servicebus_status_time_aggregator}"
+  status_time_aggregator = "${var.servicebus_status_time_aggregator}"
 }
 
 module "sqldatabase" {
