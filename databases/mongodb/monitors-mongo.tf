@@ -32,22 +32,55 @@ resource "datadog_monitor" "mongodb_primary" {
 }
 
 resource "datadog_monitor" "mongodb_secondary" {
-  name    = "[${var.environment}] MongoDB secondary state"
+  name    = "[${var.environment}] MongoDB secondary missing"
   message = "${coalesce(var.mongodb_secondary_message, var.message)}"
 
   query = <<EOF
       ${var.mongodb_secondary_aggregator}(${var.mongodb_secondary_timeframe}):
-      max:mongodb.replset.state{${data.template_file.filter.rendered},replset_state:secondary} by {server} >= 6
+      ${var.mongodb_desired_servers_count} -
+      sum:mongodb.replset.health{${data.template_file.filter.rendered}} by {replset_name}
+      > 1
   EOF
 
   thresholds {
-    critical = 6
-    warning  = 3
+    critical = 1
+    warning  = 0
   }
 
   type = "metric alert"
 
-  notify_no_data      = true
+  notify_no_data      = false
+  renotify_interval   = 0
+  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.delay}"
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  require_full_window = true
+
+  silenced = "${var.mongodb_secondary_silenced}"
+
+  tags = ["env:${var.environment}", "resource:mongodb"]
+}
+
+resource "datadog_monitor" "mongodb_server_count" {
+  name    = "[${var.environment}] MongoDB too much servers or wrong monitoring config"
+  message = "${coalesce(var.mongodb_server_count_message, var.message)}"
+
+  query = <<EOF
+      ${var.mongodb_server_count_aggregator}(${var.mongodb_server_count_timeframe}):
+      sum:mongodb.replset.health{${data.template_file.filter.rendered}} by {replset_name}
+      > 99
+  EOF
+
+  thresholds {
+    critical = 99
+    warning  = "${var.mongodb_desired_servers_count}"
+  }
+
+  type = "metric alert"
+
+  notify_no_data      = false
   renotify_interval   = 0
   evaluation_delay    = "${var.delay}"
   new_host_delay      = "${var.delay}"
