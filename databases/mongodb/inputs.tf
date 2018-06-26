@@ -24,6 +24,11 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
+variable "mongodb_desired_servers_count" {
+  description = "Number of servers that should be instanciated for this cluster"
+  default     = 3
+}
+
 variable "mongodb_primary_timeframe" {
   description = "Monitor timeframe for MongoDB wrong state for primary node [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -33,7 +38,13 @@ variable "mongodb_primary_timeframe" {
 variable "mongodb_secondary_timeframe" {
   description = "Monitor timeframe for MongoDB wrong state for secondaries nodes [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
-  default     = "last_1m"
+  default     = "last_5m"
+}
+
+variable "mongodb_server_count_timeframe" {
+  description = "Monitor timeframe for MongoDB wrong state for secondaries nodes [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_15m"
 }
 
 variable "mongodb_replication_timeframe" {
@@ -64,6 +75,12 @@ variable "mongodb_secondary_silenced" {
   default     = {}
 }
 
+variable "mongodb_server_count_silenced" {
+  description = "Groups to mute for Mongodb secondary state monitor"
+  type        = "map"
+  default     = {}
+}
+
 variable "mongodb_replication_silenced" {
   description = "Groups to mute for Mongodb replication lag monitor"
   type        = "map"
@@ -82,6 +99,12 @@ variable "mongodb_secondary_message" {
   default     = ""
 }
 
+variable "mongodb_server_count_message" {
+  description = "Custom message for MongoDB secondary monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "mongodb_replication_message" {
   description = "Custom message for MongoDB replication monitor"
   type        = "string"
@@ -95,6 +118,12 @@ variable "mongodb_primary_aggregator" {
 }
 
 variable "mongodb_secondary_aggregator" {
+  description = "Monitor aggregator for Mongodb secondary state [available values: min, max]"
+  type        = "string"
+  default     = "max"
+}
+
+variable "mongodb_server_count_aggregator" {
   description = "Monitor aggregator for Mongodb secondary state [available values: min, max]"
   type        = "string"
   default     = "max"
