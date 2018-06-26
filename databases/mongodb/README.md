@@ -10,7 +10,7 @@ Add a user to MongoDB (on the primary instance) :
 
 ```
 use admin
-db.auth("admin", "admin-password") ## This is optional is you don't have any admin password
+db.auth("admin", "admin-password") ## This is optional if you don't have any admin password
 db.createUser({"user":"datadog", "pwd": "{{PASSWORD}}", "roles" : [ {role: 'read', db: 'admin' }, {role: 'clusterMonitor', db: 'admin'}, {role: 'read', db: 'local' }]})
 ```
 
@@ -84,24 +84,30 @@ Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | environment | Architecture Environment | string | - | yes |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
-| mongodb_primary_message | Message sent when an alert is triggered on primary state | string | - | no |
-| mongodb_secondary_message | Message sent when an alert is triggered on secondary state | string | - | no |
-| mongodb_replication_message | Message sent when an alert is triggered on replication lag | string | - | no |
-| mongodb_lag_warning | Replication lag in seconds to trigger a warn alert | string | 2 | no |
-| mongodb_lag_critical | Replication lag in seconds to trigger a critical alert | string | 5 | no |
-| mongodb_primary_silenced | Groups to mute for Mongodb primary state monitor | map | `<map>` | no |
-| mongodb_secondary_silenced | Groups to mute for Mongodb secondary state monitor | map | `<map>` | no |
-| mongodb_replication_silenced | Groups to mute for Mongodb replication lag monitor | map | `<map>` | no |
-| mongodb_replication_aggregator | Monitor aggregator for Mongodb state on primary node | string | available values: min, max | no |
-| mongodb_replication_aggregator | Monitor aggregator for Mongodb state for secondaries | string | available values: min, max | no |
-| mongodb_replication_aggregator | Monitor aggregator for Mongodb replication lag | string | available values: min, max, sum or avg | no |
-| mongodb_primary_timeframe | Time frame for MongoDB primary state | string | available values: `last_#m` (1, 5, 10, 15, or 30) | no |
-| mongodb_secondary_timeframe | Time frame for MongoDB secondary state | string | available values: `last_#m` (1, 5, 10, 15, or 30) | no |
-| mongodb_replication_timeframe | Time frame for MongoDB replication lag | string | available values: `last_#m` (1, 5, 10, 15, or 30) | no |
+| mongodb_desired_servers_count | Number of servers that should be instanciated for this cluster | string | `3` | no |
+| mongodb_lag_critical | Critical replication lag in s | string | `5` | no |
+| mongodb_lag_warning | Warn replication lag in s | string | `2` | no |
+| mongodb_primary_aggregator | Monitor aggregator for MongoDB primary state [available values: min, max] | string | `max` | no |
+| mongodb_primary_message | Custom message for MongoDB primary monitor | string | `` | no |
+| mongodb_primary_silenced | Groups to mute for MongoDB primary state monitor | map | `<map>` | no |
+| mongodb_primary_timeframe | Monitor timeframe for MongoDB wrong state for primary node [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_1m` | no |
+| mongodb_replication_aggregator | Monitor aggregator for MongoDB replication lag [available values: min, max, sum or avg] | string | `avg` | no |
+| mongodb_replication_message | Custom message for MongoDB replication monitor | string | `` | no |
+| mongodb_replication_silenced | Groups to mute for MongoDB replication lag monitor | map | `<map>` | no |
+| mongodb_replication_timeframe | Monitor timeframe for MongoDB replication lag  [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_1m` | no |
+| mongodb_secondary_aggregator | Monitor aggregator for MongoDB secondary state [available values: min, max] | string | `max` | no |
+| mongodb_secondary_message | Custom message for MongoDB secondary monitor | string | `` | no |
+| mongodb_secondary_silenced | Groups to mute for MongoDB secondary state monitor | map | `<map>` | no |
+| mongodb_secondary_timeframe | Monitor timeframe for MongoDB wrong state for secondaries nodes [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| mongodb_server_count_aggregator | Monitor aggregator for MongoDB server count [available values: min, max] | string | `min` | no |
+| mongodb_server_count_message | Custom message for MongoDB server count | string | `` | no |
+| mongodb_server_count_silenced | Groups to mute for MongoDB server count monitor | map | `<map>` | no |
+| mongodb_server_count_timeframe | Monitor timeframe for MongoDB wrong server count [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 
 
 Related documentation 
