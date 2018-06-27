@@ -44,7 +44,7 @@ variable "apimanagement_status_message" {
 variable "apimanagement_status_time_aggregator" {
   description = "Monitor aggregator for API Management status [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "max"
 }
 
 variable "apimanagement_status_timeframe" {
@@ -215,7 +215,7 @@ variable "appservices_memory_usage_message" {
 variable "appservices_memory_usage_time_aggregator" {
   description = "Monitor aggregator for App Services memory usage [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "appservices_memory_usage_timeframe" {
@@ -334,7 +334,7 @@ variable "eventhub_status_message" {
 variable "eventhub_status_time_aggregator" {
   description = "Monitor aggregator for Event Hub status [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "max"
 }
 
 variable "eventhub_status_timeframe" {
@@ -415,7 +415,7 @@ variable "iothub_status_message" {
 variable "iothub_status_time_aggregator" {
   description = "Monitor aggregator for IoT Hub status [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "max"
 }
 
 variable "iothub_status_timeframe" {
@@ -439,7 +439,7 @@ variable "iothub_total_devices_message" {
 variable "iothub_total_devices_time_aggregator" {
   description = "Monitor aggregator for IoT Hub total devices [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "iothub_total_devices_timeframe" {
@@ -790,7 +790,7 @@ variable "redis_status_message" {
 variable "redis_status_time_aggregator" {
   description = "Monitor aggregator for Redis status [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "max"
 }
 
 variable "redis_status_timeframe" {
@@ -848,7 +848,7 @@ variable "redis_percent_processor_time_message" {
 variable "redis_percent_processor_time_time_aggregator" {
   description = "Monitor aggregator for Redis processor [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "redis_percent_processor_time_timeframe" {
@@ -882,7 +882,7 @@ variable "redis_server_load_rate_message" {
 variable "redis_server_load_rate_time_aggregator" {
   description = "Monitor aggregator for Redis server load [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "redis_server_load_rate_timeframe" {
@@ -917,7 +917,7 @@ variable "servicebus_status_message" {
 variable "servicebus_status_time_aggregator" {
   description = "Monitor aggregator for Service Bus status [available values: min, max or avg]"
   type        = "string"
-  default     = "min"
+  default     = "max"
 }
 
 variable "servicebus_status_timeframe" {
@@ -941,7 +941,7 @@ variable "sqldatabase_cpu_message" {
 variable "sqldatabase_cpu_time_aggregator" {
   description = "Monitor aggregator for SQL CPU [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "sqldatabase_cpu_timeframe" {
@@ -975,7 +975,7 @@ variable "sqldatabase_diskspace_message" {
 variable "sqldatabase_diskspace_time_aggregator" {
   description = "Monitor aggregator for SQL disk space [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "max"
 }
 
 variable "sqldatabase_diskspace_timeframe" {
@@ -1067,7 +1067,7 @@ variable "storage_availability_message" {
 variable "storage_availability_time_aggregator" {
   description = "Monitor aggregator for Storage availability [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "max"
 }
 
 variable "storage_availability_timeframe" {
@@ -1101,7 +1101,7 @@ variable "storage_successful_requests_message" {
 variable "storage_successful_requests_time_aggregator" {
   description = "Monitor aggregator for Storage sucessful requests [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "max"
 }
 
 variable "storage_successful_requests_timeframe" {
@@ -1169,7 +1169,7 @@ variable "storage_timeout_error_requests_message" {
 variable "storage_timeout_error_requests_time_aggregator" {
   description = "Monitor aggregator for Storage timeout [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "storage_timeout_error_requests_timeframe" {
@@ -1203,7 +1203,7 @@ variable "storage_network_error_requests_message" {
 variable "storage_network_error_requests_time_aggregator" {
   description = "Monitor aggregator for Storage network errors [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "storage_network_error_requests_timeframe" {
@@ -1237,7 +1237,7 @@ variable "storage_throttling_error_requests_message" {
 variable "storage_throttling_error_requests_time_aggregator" {
   description = "Monitor aggregator for Storage throttling errors [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "storage_throttling_error_requests_timeframe" {
@@ -1271,7 +1271,7 @@ variable "storage_server_other_error_requests_message" {
 variable "storage_server_other_error_requests_time_aggregator" {
   description = "Monitor aggregator for Storage other errors [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "storage_server_other_error_requests_timeframe" {
@@ -1305,7 +1305,7 @@ variable "storage_client_other_error_requests_message" {
 variable "storage_client_other_error_requests_time_aggregator" {
   description = "Monitor aggregator for Storage other errors [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "storage_client_other_error_requests_timeframe" {
@@ -1339,7 +1339,7 @@ variable "storage_authorization_error_requests_message" {
 variable "storage_authorization_error_requests_time_aggregator" {
   description = "Monitor aggregator for Storage authorization errors [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "storage_authorization_error_requests_timeframe" {
@@ -1374,7 +1374,7 @@ variable "streamanalytics_status_message" {
 variable "streamanalytics_status_time_aggregator" {
   description = "Monitor aggregator for Stream Analytics status [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "max"
 }
 
 variable "streamanalytics_status_timeframe" {
@@ -1398,7 +1398,7 @@ variable "streamanalytics_su_utilization_message" {
 variable "streamanalytics_su_utilization_time_aggregator" {
   description = "Monitor aggregator for Stream Analytics utilization [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "streamanalytics_su_utilization_timeframe" {
@@ -1460,7 +1460,7 @@ variable "streamanalytics_conversion_errors_message" {
 variable "streamanalytics_conversion_errors_time_aggregator" {
   description = "Monitor aggregator for Stream Analytics conversion errors [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "streamanalytics_conversion_errors_timeframe" {
@@ -1494,7 +1494,7 @@ variable "streamanalytics_runtime_errors_message" {
 variable "streamanalytics_runtime_errors_time_aggregator" {
   description = "Monitor aggregator for Stream Analytics runtime errors [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "streamanalytics_runtime_errors_timeframe" {

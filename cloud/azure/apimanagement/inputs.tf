@@ -40,7 +40,7 @@ variable "status_message" {
 variable "status_time_aggregator" {
   description = "Monitor aggregator for API Management status [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "max"
 }
 
 variable "status_timeframe" {

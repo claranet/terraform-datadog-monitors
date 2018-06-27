@@ -72,7 +72,7 @@ variable "memory_usage_message" {
 variable "memory_usage_time_aggregator" {
   description = "Monitor aggregator for App Services memory usage [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "memory_usage_timeframe" {

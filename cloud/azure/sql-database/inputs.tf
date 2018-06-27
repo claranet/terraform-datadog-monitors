@@ -40,7 +40,7 @@ variable "cpu_message" {
 variable "cpu_time_aggregator" {
   description = "Monitor aggregator for SQL CPU [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "cpu_timeframe" {
@@ -74,7 +74,7 @@ variable "diskspace_message" {
 variable "diskspace_time_aggregator" {
   description = "Monitor aggregator for SQL disk space [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "max"
 }
 
 variable "diskspace_timeframe" {

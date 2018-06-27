@@ -40,7 +40,7 @@ variable "availability_message" {
 variable "availability_time_aggregator" {
   description = "Monitor aggregator for Storage availability [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "max"
 }
 
 variable "availability_timeframe" {
@@ -74,7 +74,7 @@ variable "successful_requests_message" {
 variable "successful_requests_time_aggregator" {
   description = "Monitor aggregator for Storage sucessful requests [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "max"
 }
 
 variable "successful_requests_timeframe" {
@@ -142,7 +142,7 @@ variable "timeout_error_requests_message" {
 variable "timeout_error_requests_time_aggregator" {
   description = "Monitor aggregator for Storage timeout [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "timeout_error_requests_timeframe" {
@@ -176,7 +176,7 @@ variable "network_error_requests_message" {
 variable "network_error_requests_time_aggregator" {
   description = "Monitor aggregator for Storage network errors [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "network_error_requests_timeframe" {
@@ -210,7 +210,7 @@ variable "throttling_error_requests_message" {
 variable "throttling_error_requests_time_aggregator" {
   description = "Monitor aggregator for Storage throttling errors [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "throttling_error_requests_timeframe" {
@@ -244,7 +244,7 @@ variable "server_other_error_requests_message" {
 variable "server_other_error_requests_time_aggregator" {
   description = "Monitor aggregator for Storage other errors [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "server_other_error_requests_timeframe" {
@@ -278,7 +278,7 @@ variable "client_other_error_requests_message" {
 variable "client_other_error_requests_time_aggregator" {
   description = "Monitor aggregator for Storage other errors [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "client_other_error_requests_timeframe" {
@@ -312,7 +312,7 @@ variable "authorization_error_requests_message" {
 variable "authorization_error_requests_time_aggregator" {
   description = "Monitor aggregator for Storage authorization errors [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "authorization_error_requests_timeframe" {
