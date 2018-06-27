@@ -40,7 +40,7 @@ variable "status_message" {
 variable "status_time_aggregator" {
   description = "Monitor aggregator for Stream Analytics status [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "max"
 }
 
 variable "status_timeframe" {
@@ -64,7 +64,7 @@ variable "su_utilization_message" {
 variable "su_utilization_time_aggregator" {
   description = "Monitor aggregator for Stream Analytics utilization [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "su_utilization_timeframe" {
@@ -126,7 +126,7 @@ variable "conversion_errors_message" {
 variable "conversion_errors_time_aggregator" {
   description = "Monitor aggregator for Stream Analytics conversion errors [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "conversion_errors_timeframe" {
@@ -160,7 +160,7 @@ variable "runtime_errors_message" {
 variable "runtime_errors_time_aggregator" {
   description = "Monitor aggregator for Stream Analytics runtime errors [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "runtime_errors_timeframe" {

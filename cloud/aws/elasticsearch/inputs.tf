@@ -69,7 +69,7 @@ variable "diskspace_message" {
 variable "diskspace_time_aggregator" {
   description = "Monitor aggregator for ES cluster diskspace [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "max"
 }
 
 variable "diskspace_timeframe" {
@@ -103,7 +103,7 @@ variable "cpu_message" {
 variable "cpu_time_aggregator" {
   description = "Monitor aggregator for ES cluster cpu [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "cpu_timeframe" {

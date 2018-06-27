@@ -40,7 +40,7 @@ variable "status_message" {
 variable "status_time_aggregator" {
   description = "Monitor aggregator for Redis status [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "max"
 }
 
 variable "status_timeframe" {
@@ -98,7 +98,7 @@ variable "percent_processor_time_message" {
 variable "percent_processor_time_time_aggregator" {
   description = "Monitor aggregator for Redis processor [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "percent_processor_time_timeframe" {
@@ -132,7 +132,7 @@ variable "server_load_rate_message" {
 variable "server_load_rate_time_aggregator" {
   description = "Monitor aggregator for Redis server load [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "server_load_rate_timeframe" {

@@ -52,12 +52,12 @@ variable "cpu_high_timeframe" {
 
 variable "cpu_high_threshold_warning" {
   description = "CPU high warning threshold"
-  default     = 80
+  default     = 85
 }
 
 variable "cpu_high_threshold_critical" {
   description = "CPU high critical threshold"
-  default     = 95
+  default     = 90
 }
 
 variable "cpu_load_silenced" {
@@ -81,17 +81,17 @@ variable "cpu_load_time_aggregator" {
 variable "cpu_load_timeframe" {
   description = "Monitor timeframe for CPU load ratio [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
-  default     = "last_5m"
+  default     = "last_15m"
 }
 
 variable "cpu_load_threshold_warning" {
   description = "CPU load ratio warning threshold"
-  default     = 3
+  default     = 2
 }
 
 variable "cpu_load_threshold_critical" {
   description = "CPU load ratio critical threshold"
-  default     = 4
+  default     = 2.5
 }
 
 variable "free_disk_space_silenced" {
@@ -120,12 +120,12 @@ variable "free_disk_space_timeframe" {
 
 variable "free_disk_space_threshold_warning" {
   description = "Free disk space warning threshold"
-  default     = 10
+  default     = 20
 }
 
 variable "free_disk_space_threshold_critical" {
   description = "Free disk space critical threshold"
-  default     = 5
+  default     = 10
 }
 
 variable "free_disk_inodes_silenced" {
@@ -176,13 +176,13 @@ variable "free_memory_message" {
 variable "free_memory_time_aggregator" {
   description = "Monitor aggregator for Free memory [available values: min, max or avg]"
   type        = "string"
-  default     = "min"
+  default     = "max"
 }
 
 variable "free_memory_timeframe" {
   description = "Monitor timeframe for Free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
-  default     = "last_15m"
+  default     = "last_5m"
 }
 
 variable "free_memory_threshold_warning" {

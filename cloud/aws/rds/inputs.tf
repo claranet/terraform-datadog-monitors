@@ -41,7 +41,7 @@ variable "cpu_message" {
 variable "cpu_time_aggregator" {
   description = "Monitor aggregator for RDS CPU usage [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "cpu_timeframe" {
@@ -75,7 +75,7 @@ variable "diskspace_message" {
 variable "diskspace_time_aggregator" {
   description = "Monitor aggregator for RDS free diskspace [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "diskspace_timeframe" {
