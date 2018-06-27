@@ -54,7 +54,6 @@ Inputs
 | cpu_high_time_aggregator | Monitor aggregator for Elasticache redis cpu high [available values: min, max or avg] | string | `avg` | no |
 | cpu_high_timeframe | Monitor timeframe for Elasticache redis cpu high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
-| elasticache_size | Size of the Elasticache instance | string | - | yes |
 | environment | Infrastructure Environment | string | - | yes |
 | eviction_growing_condition_timeframe | Monitor condition timeframe for Elasticache eviction growing [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | eviction_growing_message | Custom message for Elasticache eviction growing monitor | string | `` | no |
@@ -83,7 +82,6 @@ Inputs
 | no_connection_silenced | Groups to mute for Elasticache no connection monitor | map | `<map>` | no |
 | no_connection_time_aggregator | Monitor aggregator for Elasticache no connection [available values: min, max or avg] | string | `min` | no |
 | no_connection_timeframe | Monitor timeframe for Elasticache no connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| nodes | Number of Elasticache nodes | string | - | yes |
 | replication_lag_message | Custom message for Elasticache redis replication lag monitor | string | `` | no |
 | replication_lag_silenced | Groups to mute for Elasticache redis replication lag monitor | map | `<map>` | no |
 | replication_lag_threshold_critical | Elasticache redis replication lag critical threshold in seconds | string | `1` | no |
@@ -96,6 +94,7 @@ Inputs
 | swap_threshold_warning | Elasticache swap warning threshold in percentage | string | `0` | no |
 | swap_time_aggregator | Monitor aggregator for Elasticache memcached swap [available values: min, max or avg] | string | `min` | no |
 | swap_timeframe | Monitor timeframe for Elasticache swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+
 
 Related documentation
 ---------------------

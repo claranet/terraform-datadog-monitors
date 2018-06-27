@@ -24,12 +24,6 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
-# elasticache variable
-variable "elasticache_size" {
-  description = "Size of the Elasticache instance"
-  type        = "string"
-}
-
 # Memcached specific
 variable "get_hits_silenced" {
   description = "Groups to mute for Elasticache memcached get hits monitor"

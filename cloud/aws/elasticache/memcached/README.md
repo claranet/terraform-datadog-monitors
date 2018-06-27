@@ -45,7 +45,6 @@ Inputs
 | cpu_high_time_aggregator | Monitor aggregator for Elasticache memcached cpu high [available values: min, max or avg] | string | `min` | no |
 | cpu_high_timeframe | Monitor timeframe for Elasticache memcached cpu high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
-| elasticache_size | Size of the Elasticache instance | string | - | yes |
 | environment | Infrastructure Environment | string | - | yes |
 | eviction_growing_condition_timeframe | Monitor condition timeframe for Elasticache eviction growing [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | eviction_growing_message | Custom message for Elasticache eviction growing monitor | string | `` | no |
