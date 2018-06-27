@@ -220,10 +220,10 @@ module "servicebus" {
   filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
   filter_tags_custom       = "${var.filter_tags_custom}"
 
-  status_silenced                  = "${var.servicebus_status_silenced}"
-  status_message                   = "${var.servicebus_status_message}"
-  status_timeframe                 = "${var.servicebus_status_timeframe}"
-  status_timeframe_time_aggregator = "${var.servicebus_status_time_aggregator}"
+  status_silenced        = "${var.servicebus_status_silenced}"
+  status_message         = "${var.servicebus_status_message}"
+  status_timeframe       = "${var.servicebus_status_timeframe}"
+  status_time_aggregator = "${var.servicebus_status_time_aggregator}"
 }
 
 module "sqldatabase" {
