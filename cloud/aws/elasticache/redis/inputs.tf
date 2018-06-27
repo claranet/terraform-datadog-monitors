@@ -24,17 +24,6 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
-# elasticache variable
-variable "elasticache_size" {
-  description = "Size of the Elasticache instance"
-  type        = "string"
-}
-
-variable "nodes" {
-  description = "Number of Elasticache nodes"
-  type        = "string"
-}
-
 # redis specific
 variable "cache_hits_silenced" {
   description = "Groups to mute for Elasticache redis cache hits monitor"
