@@ -1,4 +1,4 @@
-image: hashicorp/terraform:0.10.8
+image: hashicorp/terraform:full
 
 pipelines:
   default:
@@ -13,3 +13,14 @@ pipelines:
           - mv terraform.tfvars.ci terraform.tfvars
           - terraform init
           - terraform validate
+  custom:
+    manual:
+      - step:
+          script:
+            - apk update
+            - apk upgrade
+            - apk add --no-cache bash git
+            - go get github.com/segmentio/terraform-docs
+            - ./scripts/update_readme.sh
+            - git status
+            - git diff
