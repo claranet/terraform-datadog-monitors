@@ -11,8 +11,10 @@ resource "datadog_monitor" "eventhub_status" {
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
-      avg(${var.status_timeframe}): avg:azure.eventhub_namespaces.status{${data.template_file.filter.rendered}} by {resource_group,region,name} != 1
-      EOF
+    ${var.status_time_aggregator}(${var.status_timeframe}): (
+       avg:azure.eventhub_namespaces.status{${data.template_file.filter.rendered}} by {resource_group,region,name}
+    ) != 1
+  EOF
 
   type = "metric alert"
 
@@ -42,7 +44,7 @@ resource "datadog_monitor" "eventhub_failed_requests" {
             avg:azure.eventhub_namespaces.incoming_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count(),
           0) * 100
         ) > ${var.failed_requests_rate_thresold_critical}
-        EOF
+  EOF
 
   type = "metric alert"
 
@@ -82,7 +84,7 @@ resource "datadog_monitor" "eventhub_errors" {
             ),
           0) * 100
         ) > ${var.errors_rate_thresold_critical}
-        EOF
+  EOF
 
   type = "metric alert"
 

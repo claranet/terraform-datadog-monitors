@@ -11,7 +11,7 @@ resource "datadog_monitor" "VPN_status" {
   message = "${coalesce(var.vpn_status_message, var.message)}"
 
   query = <<EOF
-        avg(${var.vpn_status_timeframe}): (
+        ${var.vpn_status_time_aggregator}(${var.vpn_status_timeframe}): (
           avg:aws.vpn.tunnel_state{${data.template_file.filter.rendered}} by {region,name}
         ) < 1
   EOF

@@ -105,7 +105,9 @@ resource "datadog_monitor" "status" {
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
-    avg(${var.status_timeframe}):avg:azure.devices_iothubs.status{${var.filter_tags}} by {resource_group,region,name} < 1
+    ${var.status_time_aggregator}(${var.status_timeframe}): (
+      avg:azure.devices_iothubs.status{${var.filter_tags}} by {resource_group,region,name}
+    ) < 1
   EOF
 
   type = "metric alert"
@@ -130,7 +132,9 @@ resource "datadog_monitor" "total_devices" {
   message = "${coalesce(var.total_devices_message, var.message)}"
 
   query = <<EOF
-    avg(${var.total_devices_timeframe}):avg:azure.devices_iothubs.devices.total_devices{${var.filter_tags}} by {resource_group,region,name} == 0
+    ${var.total_devices_time_aggregator}(${var.total_devices_timeframe}): (
+      avg:azure.devices_iothubs.devices.total_devices{${var.filter_tags}} by {resource_group,region,name}
+    ) == 0
   EOF
 
   type = "metric alert"

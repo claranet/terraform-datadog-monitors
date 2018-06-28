@@ -11,7 +11,7 @@ resource "datadog_monitor" "sql-database_cpu_90_15min" {
   message = "${coalesce(var.cpu_message, var.message)}"
 
   query = <<EOF
-    avg(${var.cpu_timeframe}): (
+    ${var.cpu_time_aggregator}(${var.cpu_timeframe}): (
       avg:azure.sql_servers_databases.cpu_percent{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.cpu_threshold_critical}
   EOF
@@ -44,7 +44,7 @@ resource "datadog_monitor" "sql-database_free_space_low" {
   type = "metric alert"
 
   query = <<EOF
-    avg(${var.diskspace_timeframe}): (
+    ${var.diskspace_time_aggregator}(${var.diskspace_timeframe}): (
       avg:azure.sql_servers_databases.storage_percent{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.diskspace_threshold_critical}
   EOF
@@ -76,7 +76,7 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
   type = "metric alert"
 
   query = <<EOF
-    avg(${var.dtu_timeframe}): (
+    ${var.dtu_time_aggregator}(${var.dtu_timeframe}): (
       azure.sql_servers_databases.dtu_consumption_percent{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.dtu_threshold_critical}
   EOF

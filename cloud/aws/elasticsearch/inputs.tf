@@ -60,6 +60,12 @@ variable "diskspace_message" {
   default     = ""
 }
 
+variable "diskspace_time_aggregator" {
+  description = "Monitor aggregator for ES cluster diskspace [available values: min, max or avg]"
+  type        = "string"
+  default     = "max"
+}
+
 variable "diskspace_timeframe" {
   description = "Monitor timeframe for ES cluster diskspace [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -86,6 +92,12 @@ variable "cpu_message" {
   description = "Custom message for ES cluster cpu monitor"
   type        = "string"
   default     = ""
+}
+
+variable "cpu_time_aggregator" {
+  description = "Monitor aggregator for ES cluster cpu [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "cpu_timeframe" {

@@ -55,12 +55,15 @@ Inputs
 | elb_backend_latency_critical | latency critical threshold in seconds | string | `5` | no |
 | elb_backend_latency_message | Custom message for ELB backend latency monitor | string | `` | no |
 | elb_backend_latency_silenced | Groups to mute for ELB backend latency monitor | map | `<map>` | no |
+| elb_backend_latency_time_aggregator | Monitor aggregator for ELB backend latency [available values: min, max or avg] | string | `min` | no |
 | elb_backend_latency_timeframe | Monitor timeframe for ELB backend latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | elb_backend_latency_warning | latency warning threshold in seconds | string | `1` | no |
 | elb_no_healthy_instance_message | Custom message for ELB no healty instance monitor | string | `` | no |
 | elb_no_healthy_instance_silenced | Groups to mute for ELB no healty instance monitor | map | `<map>` | no |
+| elb_no_healthy_instance_time_aggregator | Monitor aggregator for ELB no healty instance [available values: min or max] | string | `min` | no |
 | elb_no_healthy_instance_timeframe | Monitor timeframe for ELB no healty instance [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | environment | Architecture Environment | string | - | yes |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
+

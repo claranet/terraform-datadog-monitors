@@ -11,7 +11,9 @@ resource "datadog_monitor" "status" {
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
-    avg(${var.status_timeframe}):avg:azure.streamanalytics_streamingjobs.status{${data.template_file.filter.rendered}} by {resource_group,region,name} < 1
+    ${var.status_time_aggregator}(${var.status_timeframe}): (
+      avg:azure.streamanalytics_streamingjobs.status{${data.template_file.filter.rendered}} by {resource_group,region,name}
+    ) < 1
   EOF
 
   type = "metric alert"
@@ -36,7 +38,7 @@ resource "datadog_monitor" "su_utilization" {
   message = "${coalesce(var.su_utilization_message, var.message)}"
 
   query = <<EOF
-    avg(${var.su_utilization_timeframe}): (
+    ${var.su_utilization_time_aggregator}(${var.su_utilization_timeframe}): (
       avg:azure.streamanalytics_streamingjobs.resource_utilization{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.su_utilization_threshold_critical}
   EOF
@@ -101,7 +103,7 @@ resource "datadog_monitor" "conversion_errors" {
   message = "${coalesce(var.conversion_errors_message, var.message)}"
 
   query = <<EOF
-    avg(${var.conversion_errors_timeframe}): (
+    ${var.conversion_errors_time_aggregator}(${var.conversion_errors_timeframe}): (
       avg:azure.streamanalytics_streamingjobs.conversion_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.conversion_errors_threshold_critical}
   EOF
@@ -133,7 +135,7 @@ resource "datadog_monitor" "runtime_errors" {
   message = "${coalesce(var.runtime_errors_message, var.message)}"
 
   query = <<EOF
-    avg(${var.runtime_errors_timeframe}): (
+    ${var.runtime_errors_time_aggregator}(${var.runtime_errors_timeframe}): (
       avg:azure.streamanalytics_streamingjobs.errors{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.runtime_errors_threshold_critical}
   EOF

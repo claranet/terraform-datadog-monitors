@@ -52,7 +52,7 @@ resource "datadog_monitor" "es_free_space_low" {
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.diskspace_timeframe}): (
+  ${var.diskspace_time_aggregator}(${var.diskspace_timeframe}): (
     avg:aws.es.free_storage_space{${data.template_file.filter.rendered}} by {region,name} /
     (${var.es_cluster_volume_size}*1000) * 100
   ) < ${var.diskspace_threshold_critical}
@@ -86,7 +86,7 @@ resource "datadog_monitor" "es_cpu_90_15min" {
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.cpu_timeframe}): (
+  ${var.cpu_time_aggregator}(${var.cpu_timeframe}): (
     avg:aws.es.cpuutilization{${data.template_file.filter.rendered}} by {region,name}
   ) > ${var.cpu_threshold_critical}
 EOF
