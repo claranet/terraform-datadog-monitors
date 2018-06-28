@@ -18,7 +18,7 @@ resource "datadog_monitor" "es_cluster_status" {
   type = "metric alert"
 
   query = <<EOF
-  ${var.es_cluster_status_time_aggregator}(${var.es_cluster_status_timeframe}): (
+  max(${var.es_cluster_status_timeframe}): (
     avg:aws.es.cluster_statusred{${data.template_file.filter.rendered}} by {region,name} * 2 +
     (avg:aws.es.cluster_statusyellow{${data.template_file.filter.rendered}} by {region,name} + 0.1)
   ) >= 2
