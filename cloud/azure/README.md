@@ -305,4 +305,3 @@ Related documentation
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)
 
 Azure metrics documentation: [https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-metrics](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-metrics)
- 

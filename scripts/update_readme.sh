@@ -17,7 +17,8 @@ for dir in $(find -mindepth 2 -name README.md); do
     sed -i '/Inputs/a ------' README.md
     sed -i 's/## Outputs/Outputs/g' README.md
     sed -i '/Outputs/a -------' README.md
-    grep -Pzo '.*Related documentation(.*\n)*' README.md.bak >> README.md
+    grep -Pzo --color=never '.*Related documentation(.*\n)*' README.md.bak | head -n -1 >> README.md
+    dos2unix README.md
     rm README.md.bak
     cd - >> /dev/null
 done
