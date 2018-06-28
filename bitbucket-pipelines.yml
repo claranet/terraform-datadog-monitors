@@ -19,7 +19,7 @@ pipelines:
           script:
             - apk update
             - apk upgrade
-            - apk add --no-cache bash git
+            - apk add --no-cache bash git grep
             - go get github.com/segmentio/terraform-docs
             - ./scripts/update_readme.sh
             - git status
