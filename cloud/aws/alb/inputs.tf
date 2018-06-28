@@ -160,7 +160,7 @@ variable "httpcode_alb_5xx_timeframe" {
 
 variable "httpcode_alb_5xx_threshold_critical" {
   default     = 80
-  description = "loadbalancer 5xxcritical threshold in percentage"
+  description = "loadbalancer 5xx critical threshold in percentage"
 }
 
 variable "httpcode_alb_5xx_threshold_warning" {
