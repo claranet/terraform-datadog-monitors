@@ -179,12 +179,12 @@ variable "swap_timeframe" {
 }
 
 variable "swap_threshold_warning" {
-  description = "Elasticache swap warning threshold in percentage"
-  default     = 0
+  description = "Elasticache swap warning threshold in Bytes"
+  default     = 40000000
 }
 
 variable "swap_threshold_critical" {
-  description = "Elasticache swap critical threshold in percentage"
+  description = "Elasticache swap critical threshold in Bytes"
   default     = 50000000
 }
 

@@ -80,8 +80,8 @@ Inputs
 | no_connection_timeframe | Monitor timeframe for Elasticache no connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | swap_message | Custom message for Elasticache swap monitor | string | `` | no |
 | swap_silenced | Groups to mute for Elasticache swap monitor | map | `<map>` | no |
-| swap_threshold_critical | Elasticache swap critical threshold in percentage | string | `50000000` | no |
-| swap_threshold_warning | Elasticache swap warning threshold in percentage | string | `0` | no |
+| swap_threshold_critical | Elasticache swap critical threshold in Bytes | string | `50000000` | no |
+| swap_threshold_warning | Elasticache swap warning threshold in Bytes | string | `40000000` | no |
 | swap_time_aggregator | Monitor aggregator for Elasticache memcached swap [available values: min, max or avg] | string | `min` | no |
 | swap_timeframe | Monitor timeframe for Elasticache swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
@@ -95,3 +95,5 @@ DataDog documentation:
 
 
 AWS ElasticSearch Service Instance metrics documentation: [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/elasticache-metricscollected.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/elasticache-metricscollected.html)
+
+
