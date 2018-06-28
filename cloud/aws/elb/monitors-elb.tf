@@ -11,7 +11,7 @@ resource "datadog_monitor" "ELB_no_healthy_instances" {
   message = "${coalesce(var.elb_no_healthy_instance_message, var.message)}"
 
   query = <<EOF
-    min(${var.elb_no_healthy_instance_timeframe}): (
+    ${var.elb_no_healthy_instance_time_aggregator}(${var.elb_no_healthy_instance_timeframe}): (
       min:aws.elb.healthy_host_count{${data.template_file.filter.rendered}} by {region,loadbalancername}
     ) < 1
   EOF
@@ -38,10 +38,10 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
   message = "${coalesce(var.elb_4xx_message, var.message)}"
 
   query = <<EOF
-    min(${var.elb_4xx_timeframe}): (
+    sum(${var.elb_4xx_timeframe}): (
       default(
-        min:aws.elb.httpcode_elb_4xx{${data.template_file.filter.rendered}} by {region,loadbalancername}.as_count() /
-        (min:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancername}.as_count() + ${var.artificial_requests_count}),
+        avg:aws.elb.httpcode_elb_4xx{${data.template_file.filter.rendered}} by {region,loadbalancername}.as_count() /
+        (avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancername}.as_count() + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.elb_4xx_threshold_critical}
   EOF
@@ -73,10 +73,10 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
   message = "${coalesce(var.elb_5xx_message, var.message)}"
 
   query = <<EOF
-    min(${var.elb_5xx_timeframe}): (
+    sum(${var.elb_5xx_timeframe}): (
       default(
-        min:aws.elb.httpcode_elb_5xx{${data.template_file.filter.rendered}} by {region,loadbalancername} /
-        (min:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancername} + ${var.artificial_requests_count}),
+        avg:aws.elb.httpcode_elb_5xx{${data.template_file.filter.rendered}} by {region,loadbalancername} /
+        (avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancername} + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.elb_5xx_threshold_critical}
   EOF
@@ -108,10 +108,10 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
   message = "${coalesce(var.elb_backend_4xx_message, var.message)}"
 
   query = <<EOF
-    min(${var.elb_backend_4xx_timeframe}): (
+    sum(${var.elb_backend_4xx_timeframe}): (
       default(
-        min:aws.elb.httpcode_backend_4xx{${data.template_file.filter.rendered}} by {region,loadbalancername} /
-        (min:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancername} + ${var.artificial_requests_count}),
+        avg:aws.elb.httpcode_backend_4xx{${data.template_file.filter.rendered}} by {region,loadbalancername} /
+        (avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancername} + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.elb_backend_4xx_threshold_critical}
   EOF
@@ -143,10 +143,10 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
   message = "${coalesce(var.elb_backend_5xx_message, var.message)}"
 
   query = <<EOF
-    min(${var.elb_backend_5xx_timeframe}): (
+    sum(${var.elb_backend_5xx_timeframe}): (
       default(
-        min:aws.elb.httpcode_backend_5xx{${data.template_file.filter.rendered}} by {region,loadbalancername} /
-        (min:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancername} + ${var.artificial_requests_count}),
+        avg:aws.elb.httpcode_backend_5xx{${data.template_file.filter.rendered}} by {region,loadbalancername} /
+        (avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancername} + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.elb_backend_5xx_threshold_critical}
   EOF
@@ -178,8 +178,8 @@ resource "datadog_monitor" "ELB_backend_latency" {
   message = "${coalesce(var.elb_backend_latency_message, var.message)}"
 
   query = <<EOF
-    min(${var.elb_backend_latency_warning}): (
-      min:aws.elb.latency{${data.template_file.filter.rendered}} by {region,loadbalancername}
+    ${var.elb_backend_latency_time_aggregator}(${var.elb_backend_latency_timeframe}): (
+        avg:aws.elb.latency{${data.template_file.filter.rendered}} by {region,loadbalancername}
     ) > ${var.elb_backend_latency_critical}
   EOF
 

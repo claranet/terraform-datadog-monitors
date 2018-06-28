@@ -99,12 +99,14 @@ Inputs
 | orphaned_d2c_telemetry_egress_timeframe | Monitor timeframe for IoT Hub orphaned d2c telemetry [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | status_message | Custom message for IoT Hub status monitor | string | `` | no |
 | status_silenced | Groups to mute for IoT Hub status monitor | map | `<map>` | no |
+| status_time_aggregator | Monitor aggregator for IoT Hub status [available values: min, max, sum or avg] | string | `max` | no |
 | status_timeframe | Monitor timeframe for IoT Hub status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | too_many_d2c_telemetry_ingress_nosent_message | Custom message for IoT Hub unsent d2c telemetry monitor | string | `` | no |
 | too_many_d2c_telemetry_ingress_nosent_silenced | Groups to mute for IoT Hub unsent d2c telemetry monitor | map | `<map>` | no |
 | too_many_d2c_telemetry_ingress_nosent_timeframe | Monitor timeframe for IoT Hub unsent d2c telemetry [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | total_devices_message | Custom message for IoT Hub total devices monitor | string | `` | no |
 | total_devices_silenced | Groups to mute for IoT Hub total devices monitor | map | `<map>` | no |
+| total_devices_time_aggregator | Monitor aggregator for IoT Hub total devices [available values: min, max, sum or avg] | string | `min` | no |
 | total_devices_timeframe | Monitor timeframe for IoT Hub total devices [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
 Related documentation
@@ -113,3 +115,4 @@ Related documentation
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_iot_hub](https://docs.datadoghq.com/integrations/azure_iot_hub)
 
 Azure IOT Hubs metrics documentation: [https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-monitor-resource-health](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-monitor-resource-health)
+ 

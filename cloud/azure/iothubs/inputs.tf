@@ -32,6 +32,12 @@ variable "status_message" {
   default     = ""
 }
 
+variable "status_time_aggregator" {
+  description = "Monitor aggregator for IoT Hub status [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "max"
+}
+
 variable "status_timeframe" {
   description = "Monitor timeframe for IoT Hub status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -48,6 +54,12 @@ variable "total_devices_message" {
   description = "Custom message for IoT Hub total devices monitor"
   type        = "string"
   default     = ""
+}
+
+variable "total_devices_time_aggregator" {
+  description = "Monitor aggregator for IoT Hub total devices [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "total_devices_timeframe" {

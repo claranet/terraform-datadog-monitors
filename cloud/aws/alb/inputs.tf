@@ -38,10 +38,16 @@ variable "alb_no_healthy_instances_message" {
   default     = ""
 }
 
+variable "alb_no_healthy_instances_time_aggregator" {
+  description = "Monitor aggregator for ALB no healthy instances [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "alb_no_healthy_instances_timeframe" {
   description = "Monitor timeframe for ALB no healthy instances [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
-  default     = "last_1m"
+  default     = "last_5m"
 }
 
 variable "latency_silenced" {
@@ -54,6 +60,12 @@ variable "latency_message" {
   description = "Custom message for ALB latency monitor"
   type        = "string"
   default     = ""
+}
+
+variable "latency_time_aggregator" {
+  description = "Monitor aggregator for ALB latency [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "latency_timeframe" {
@@ -72,30 +84,30 @@ variable "latency_threshold_warning" {
   description = "latency warning threshold in milliseconds"
 }
 
-variable "httpcode_elb_4xx_silenced" {
+variable "httpcode_alb_4xx_silenced" {
   description = "Groups to mute for ALB httpcode 4xx monitor"
   type        = "map"
   default     = {}
 }
 
-variable "httpcode_elb_4xx_message" {
+variable "httpcode_alb_4xx_message" {
   description = "Custom message for ALB httpcode 4xx monitor"
   type        = "string"
   default     = ""
 }
 
-variable "httpcode_elb_4xx_timeframe" {
+variable "httpcode_alb_4xx_timeframe" {
   description = "Monitor timeframe for ALB httpcode 4xx [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
 }
 
-variable "httpcode_elb_4xx_threshold_critical" {
+variable "httpcode_alb_4xx_threshold_critical" {
   default     = 80
   description = "loadbalancer 4xx critical threshold in percentage"
 }
 
-variable "httpcode_elb_4xx_threshold_warning" {
+variable "httpcode_alb_4xx_threshold_warning" {
   default     = 60
   description = "loadbalancer 4xx warning threshold in percentage"
 }
@@ -128,30 +140,30 @@ variable "httpcode_target_4xx_threshold_warning" {
   description = "target 4xx warning threshold in percentage"
 }
 
-variable "httpcode_elb_5xx_silenced" {
+variable "httpcode_alb_5xx_silenced" {
   description = "Groups to mute for ALB httpcode 5xx monitor"
   type        = "map"
   default     = {}
 }
 
-variable "httpcode_elb_5xx_message" {
+variable "httpcode_alb_5xx_message" {
   description = "Custom message for ALB httpcode 5xx monitor"
   type        = "string"
   default     = ""
 }
 
-variable "httpcode_elb_5xx_timeframe" {
+variable "httpcode_alb_5xx_timeframe" {
   description = "Monitor timeframe for ALB httpcode 5xx [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
 }
 
-variable "httpcode_elb_5xx_threshold_critical" {
+variable "httpcode_alb_5xx_threshold_critical" {
   default     = 80
-  description = "loadbalancer 5xxcritical threshold in percentage"
+  description = "loadbalancer 5xx critical threshold in percentage"
 }
 
-variable "httpcode_elb_5xx_threshold_warning" {
+variable "httpcode_alb_5xx_threshold_warning" {
   default     = 60
   description = "loadbalancer 5xx warning threshold in percentage"
 }

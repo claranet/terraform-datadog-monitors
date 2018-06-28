@@ -35,6 +35,12 @@ variable "response_time_message" {
   default     = ""
 }
 
+variable "response_time_time_aggregator" {
+  description = "Monitor aggregator for App Services response time [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "response_time_timeframe" {
   description = "Monitor timeframe for App Services response time [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -61,6 +67,12 @@ variable "memory_usage_message" {
   description = "Custom message for App Services memory usage monitor"
   type        = "string"
   default     = ""
+}
+
+variable "memory_usage_time_aggregator" {
+  description = "Monitor aggregator for App Services memory usage [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "memory_usage_timeframe" {

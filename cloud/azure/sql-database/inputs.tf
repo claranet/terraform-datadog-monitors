@@ -37,6 +37,12 @@ variable "cpu_message" {
   default     = ""
 }
 
+variable "cpu_time_aggregator" {
+  description = "Monitor aggregator for SQL CPU [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "cpu_timeframe" {
   description = "Monitor timeframe for SQL CPU [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -65,6 +71,12 @@ variable "diskspace_message" {
   default     = ""
 }
 
+variable "diskspace_time_aggregator" {
+  description = "Monitor aggregator for SQL disk space [available values: min, max or avg]"
+  type        = "string"
+  default     = "max"
+}
+
 variable "diskspace_timeframe" {
   description = "Monitor timeframe for SQL disk space [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -91,6 +103,12 @@ variable "dtu_message" {
   description = "Custom message for SQL DTU monitor"
   type        = "string"
   default     = ""
+}
+
+variable "dtu_time_aggregator" {
+  description = "Monitor aggregator for SQL DTU [available values: min, max or avg]"
+  type        = "string"
+  default     = "avg"
 }
 
 variable "dtu_timeframe" {

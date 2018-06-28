@@ -36,6 +36,12 @@ variable "vpn_status_message" {
   default     = ""
 }
 
+variable "vpn_status_time_aggregator" {
+  description = "Monitor aggregator for VPN status [available values: min, max or avg]"
+  type        = "string"
+  default     = "max"
+}
+
 variable "vpn_status_timeframe" {
   description = "Monitor timeframe for VPN status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"

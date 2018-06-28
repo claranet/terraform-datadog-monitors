@@ -13,7 +13,7 @@ resource "datadog_monitor" "appservices_response_time" {
   message = "${coalesce(var.response_time_message, var.message)}"
 
   query = <<EOF
-    min(last_5m): (
+    ${var.response_time_time_aggregator}(${var.response_time_timeframe}): (
       avg:azure.app_services.average_response_time{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.response_time_threshold_critical}
   EOF
@@ -44,7 +44,7 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
   message = "${coalesce(var.memory_usage_message, var.message)}"
 
   query = <<EOF
-    avg(${var.memory_usage_timeframe}): (
+    ${var.memory_usage_time_aggregator}(${var.memory_usage_timeframe}): (
       avg:azure.app_services.memory_working_set{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.memory_usage_threshold_critical}
   EOF
