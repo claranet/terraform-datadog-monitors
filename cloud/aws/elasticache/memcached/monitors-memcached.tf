@@ -14,6 +14,8 @@ module "datadog-monitors-aws-elasticache-common" {
   filter_tags = "${data.template_file.filter.rendered}"
   resource    = "memcached"
 
+  delay = "${var.delay}"
+
   eviction_message         = "${var.eviction_message}"
   eviction_silenced        = "${var.eviction_silenced}"
   eviction_time_aggregator = "${var.eviction_time_aggregator}"
