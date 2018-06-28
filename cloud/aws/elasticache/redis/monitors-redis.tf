@@ -70,7 +70,7 @@ resource "datadog_monitor" "redis_cache_hits" {
     critical = "${var.cache_hits_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
