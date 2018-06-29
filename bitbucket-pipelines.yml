@@ -1,15 +1,25 @@
-image: hashicorp/terraform:0.10.8
+image: hashicorp/terraform:full
 
 pipelines:
   default:
     - step:
-        name: Format
+        name: Terraform format
         script:
           - terraform fmt -write=false -diff -check
     - step:
-        name: Validate
+        name: Terraform validate
         script:
           - mv main.tf.ci main.tf
           - mv terraform.tfvars.ci terraform.tfvars
           - terraform init
           - terraform validate
+    - step:
+        name: Readme update
+        script:
+          - apk update
+          - apk upgrade
+          - apk add --no-cache bash git grep
+          - go get github.com/segmentio/terraform-docs
+          - ./scripts/update_readme.sh
+          - git status
+          - git diff --exit-code
