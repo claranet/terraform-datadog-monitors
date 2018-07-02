@@ -109,15 +109,9 @@ variable "replication_lag_silenced" {
 # Queries Changing Abnormally
 #
 variable "queries_changing_database_ids" {
-  description = ""
+  description = "List of database ids for the Queries Changing monitor"
   type        = "list"
   default     = []
-}
-
-variable "queries_changing_region" {
-  description = ""
-  type        = "string"
-  default     = ""
 }
 
 variable "queries_changing_message" {
@@ -184,21 +178,15 @@ variable "questions_changing_message" {
 }
 
 variable "questions_changing_timeframe" {
-  description = "Timeframe for the Questions Changing mon monitor"
+  description = "Timeframe for the Questions Changing monitor"
   type        = "string"
   default     = "last_10m"
 }
 
 variable "questions_changing_database_ids" {
-  description = ""
+  description = "List of database ids for the Questions Changing monitor"
   type        = "list"
   default     = []
-}
-
-variable "questions_changing_region" {
-  description = ""
-  type        = "string"
-  default     = ""
 }
 
 variable "questions_changing_anomaly_detection_algorithm" {

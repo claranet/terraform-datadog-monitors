@@ -32,7 +32,6 @@ EOF
     critical = "${var.network_connections_threshold_critical}"
   }
 
-  include_tags        = true
   notify_no_data      = true
   require_full_window = false
   renotify_interval   = 0
@@ -74,7 +73,6 @@ EOF
     warning  = "${var.replication_lag_threshold_warning}"
   }
 
-  include_tags        = true
   notify_no_data      = true
   require_full_window = false
   renotify_interval   = 0
@@ -101,7 +99,7 @@ EOF
 resource "datadog_monitor" "queries_changing_anomaly" {
   count = "${length(var.queries_changing_database_ids)}"
 
-  name    = "[${var.environment}] Cloud SQL MySQL Queries Count changed abnormally on ${var.project_id}:${var.queries_changing_region}:${var.queries_changing_database_ids[count.index]} {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Cloud SQL MySQL Queries Count changed abnormally on ${var.project_id}:${var.queries_changing_database_ids[count.index]} {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.queries_changing_message, var.message)}"
 
   type = "metric alert"
@@ -110,7 +108,7 @@ resource "datadog_monitor" "queries_changing_anomaly" {
     avg(${var.queries_changing_timeframe}):
       anomalies(
         default(
-          avg:gcp.cloudsql.database.mysql.queries{project_id:${var.project_id},database_id:${var.project_id}:${var.queries_changing_region}:${var.queries_changing_database_ids[count.index]}},
+          avg:gcp.cloudsql.database.mysql.queries{project_id:${var.project_id},database_id:${var.project_id}:${var.queries_changing_database_ids[count.index]}},
           0),
         '${var.queries_changing_anomaly_detection_algorithm}',
         ${var.queries_changing_deviations},
@@ -125,7 +123,6 @@ EOF
     critical = "${var.queries_changing_threshold_critical}"
   }
 
-  include_tags        = true
   notify_no_data      = true
   require_full_window = false
   renotify_interval   = 0
@@ -143,7 +140,7 @@ EOF
     "env:${var.environment}",
     "resource:cloud-sql",
     "engine:mysql",
-    "database_id:${var.project_id}:${var.queries_changing_region}:${var.queries_changing_database_ids[count.index]}}",
+    "database_id:${var.project_id}:${var.queries_changing_database_ids[count.index]}}",
   ]
 }
 
@@ -153,7 +150,7 @@ EOF
 resource "datadog_monitor" "questions_changing_anomaly" {
   count = "${length(var.questions_changing_database_ids)}"
 
-  name    = "[${var.environment}] Cloud SQL MySQL Questions Count changed abnormally on ${var.project_id}:${var.questions_changing_region}:${var.questions_changing_database_ids[count.index]} {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Cloud SQL MySQL Questions Count changed abnormally on ${var.project_id}:${var.questions_changing_database_ids[count.index]} {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.questions_changing_message, var.message)}"
 
   type = "metric alert"
@@ -162,7 +159,7 @@ resource "datadog_monitor" "questions_changing_anomaly" {
     avg(${var.questions_changing_timeframe}):
       anomalies(
         default(
-          avg:gcp.cloudsql.database.mysql.questions{project_id:${var.project_id},database_id:${var.project_id}:${var.questions_changing_region}:${var.questions_changing_database_ids[count.index]}},
+          avg:gcp.cloudsql.database.mysql.questions{project_id:${var.project_id},database_id:${var.project_id}:${var.questions_changing_database_ids[count.index]}},
           0),
         '${var.questions_changing_anomaly_detection_algorithm}',
         ${var.questions_changing_deviations},
@@ -177,7 +174,6 @@ EOF
     critical = "${var.questions_changing_threshold_critical}"
   }
 
-  include_tags        = true
   notify_no_data      = true
   require_full_window = false
   renotify_interval   = 0
@@ -195,6 +191,6 @@ EOF
     "env:${var.environment}",
     "resource:cloud-sql",
     "engine:mysql",
-    "database_id:${var.project_id}:${var.questions_changing_region}:${var.questions_changing_database_ids[count.index]}",
+    "database_id:${var.project_id}:${var.questions_changing_database_ids[count.index]}",
   ]
 }
