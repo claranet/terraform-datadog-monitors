@@ -369,3 +369,25 @@ module "streamanalytics" {
   su_utilization_threshold_critical           = "${var.streamanalytics_su_utilization_threshold_critical}"
   su_utilization_threshold_warning            = "${var.streamanalytics_su_utilization_threshold_warning}"
 }
+
+module "cosmosdb" {
+  source = "./cosmosdb"
+
+  environment     = "${var.environment}"
+  subscription_id = ""
+  message         = "${var.message}"
+  delay           = "${var.delay}"
+
+  filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
+  filter_tags_custom       = "${var.filter_tags_custom}"
+
+  cosmos_db_4xx_request_rate_threshold_critical = "${var.cosmos_db_4xx_request_rate_threshold_critical}"
+  cosmos_db_4xx_request_rate_threshold_warning  = "${var.cosmos_db_4xx_request_rate_threshold_warning}"
+  cosmos_db_4xx_requests_message                = "${var.cosmos_db_4xx_requests_message}"
+  cosmos_db_4xx_requests_silenced               = "${var.cosmos_db_4xx_requests_silenced}"
+
+  cosmos_db_5xx_request_rate_threshold_critical = "${var.cosmos_db_5xx_request_rate_threshold_critical}"
+  cosmos_db_5xx_request_rate_threshold_warning  = "${var.cosmos_db_5xx_request_rate_threshold_warning}"
+  cosmos_db_5xx_requests_message                = "${var.cosmos_db_5xx_requests_message}"
+  cosmos_db_5xx_requests_silenced               = "${var.cosmos_db_5xx_requests_silenced}"
+}

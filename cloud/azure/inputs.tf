@@ -1517,3 +1517,44 @@ variable "streamanalytics_runtime_errors_threshold_critical" {
   description = "Runtime errors limit (critical threshold)"
   default     = 10
 }
+
+# Azure CosmosDB specific variables
+variable "cosmos_db_4xx_requests_message" {
+  description = "Custom message for Cosmos DB 4xx requests monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "cosmos_db_4xx_requests_silenced" {
+  description = "Groups to mute for Cosmos DB 4xx requests monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "cosmos_db_4xx_request_rate_threshold_critical" {
+  default = 80
+}
+
+variable "cosmos_db_4xx_request_rate_threshold_warning" {
+  default = 50
+}
+
+variable "cosmos_db_5xx_requests_message" {
+  description = "Custom message for Cosmos DB 5xx requests monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "cosmos_db_5xx_requests_silenced" {
+  description = "Groups to mute for Cosmos DB 5xx requests monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "cosmos_db_5xx_request_rate_threshold_critical" {
+  default = 80
+}
+
+variable "cosmos_db_5xx_request_rate_threshold_warning" {
+  default = 50
+}
