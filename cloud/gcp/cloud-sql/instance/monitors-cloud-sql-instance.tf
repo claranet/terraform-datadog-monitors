@@ -21,7 +21,8 @@ resource "datadog_monitor" "cpu_utilization" {
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.cpu_timeframe}): avg:gcp.cloudsql.database.cpu.utilization{${data.template_file.filter.rendered}}
+  avg(${var.cpu_timeframe}):
+  avg:gcp.cloudsql.database.cpu.utilization{${data.template_file.filter.rendered}}
   by {database_id}
   > ${var.cpu_threshold_critical}
 EOF
@@ -31,7 +32,6 @@ EOF
     critical = "${var.cpu_threshold_critical}"
   }
 
-  include_tags        = true
   notify_no_data      = true
   require_full_window = false
   renotify_interval   = 0
@@ -72,7 +72,6 @@ EOF
     critical = "${var.disk_threshold_critical}"
   }
 
-  include_tags        = true
   notify_no_data      = true
   require_full_window = false
   renotify_interval   = 0
@@ -113,7 +112,6 @@ EOF
     critical = "${var.memory_threshold_critical}"
   }
 
-  include_tags        = true
   notify_no_data      = true
   require_full_window = false
   renotify_interval   = 0
@@ -160,7 +158,6 @@ EOF
     critical = "${var.memory_forecast_threshold_critical}"
   }
 
-  include_tags        = true
   notify_no_data      = true
   require_full_window = false
   renotify_interval   = 0
@@ -200,7 +197,6 @@ EOF
     critical = "${var.failover_unavailable_threshold_critical}"
   }
 
-  include_tags        = true
   notify_no_data      = true
   require_full_window = false
   renotify_interval   = 0
