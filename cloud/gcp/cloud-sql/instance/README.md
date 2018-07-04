@@ -39,8 +39,8 @@ Inputs
 | cpu_message | Custom message for the CPU Utilization monitor | string | `` | no |
 | cpu_silenced | Groups to mute for GCP Cloud SQL CPU Utilization monitor | map | `<map>` | no |
 | cpu_threshold_critical | CPU Utilization in fraction (critical threshold) | string | `0.9` | no |
-| cpu_threshold_warning | CPU Utilization in fraction (warning threshold) | string | `0.85` | no |
-| cpu_timeframe | Timeframe for the CPU Utilization monitor | string | `last_2h` | no |
+| cpu_threshold_warning | CPU Utilization in fraction (warning threshold) | string | `0.8` | no |
+| cpu_timeframe | Timeframe for the CPU Utilization monitor | string | `last_30m` | no |
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | disk_message | Custom message for the Disk Utilization monitor | string | `` | no |
 | disk_silenced | Groups to mute for GCP Cloud SQL Disk Utilization monitor | map | `<map>` | no |
@@ -68,3 +68,4 @@ Inputs
 | memory_timeframe | Timeframe for the Memory Utilization monitor | string | `last_5m` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 | project_id | ID of the GCP Project | string | - | yes |
+
