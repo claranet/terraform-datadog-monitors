@@ -45,13 +45,13 @@ variable "cpu_message" {
 variable "cpu_timeframe" {
   description = "Timeframe for the CPU Utilization monitor"
   type        = "string"
-  default     = "last_2h"
+  default     = "last_30m"
 }
 
 variable "cpu_threshold_warning" {
   description = "CPU Utilization in fraction (warning threshold)"
   type        = "string"
-  default     = 0.85
+  default     = 0.8
 }
 
 variable "cpu_threshold_critical" {
