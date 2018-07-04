@@ -1532,11 +1532,13 @@ variable "cosmos_db_4xx_requests_silenced" {
 }
 
 variable "cosmos_db_4xx_request_rate_threshold_critical" {
-  default = 80
+  description = "Critical threshold for Cosmos DB 4xx requests monitor"
+  default     = 80
 }
 
 variable "cosmos_db_4xx_request_rate_threshold_warning" {
-  default = 50
+  description = "Warning threshold for Cosmos DB 4xx requests monitor"
+  default     = 50
 }
 
 variable "cosmos_db_5xx_requests_message" {
@@ -1552,9 +1554,50 @@ variable "cosmos_db_5xx_requests_silenced" {
 }
 
 variable "cosmos_db_5xx_request_rate_threshold_critical" {
-  default = 80
+  description = "Critical threshold for Cosmos DB 5xx requests monitor"
+  default     = 80
 }
 
 variable "cosmos_db_5xx_request_rate_threshold_warning" {
-  default = 50
+  description = "Warning threshold for Cosmos DB 5xx requests monitor"
+  default     = 50
+}
+
+variable "cosmos_db_no_request_message" {
+  description = "Custom message for Cosmos DB no request monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "cosmos_db_no_request_silenced" {
+  description = "Groups to mute for Cosmos DB no request monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "cosmos_db_ru_utilization_message" {
+  description = "Custom message for Cosmos DB collection RU utilization monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "cosmos_db_ru_utilization_silenced" {
+  description = "Groups to mute for Cosmos DB collection RU utilization monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "cosmos_db_ru_utilization_rate_threshold_critical" {
+  description = "Critical threshold for Cosmos DB collection RU utilization monitor"
+  default     = 90
+}
+
+variable "cosmos_db_ru_utilization_rate_threshold_warning" {
+  description = "Warning threshold for Cosmos DB collection RU utilization monitor"
+  default     = 80
+}
+
+variable "cosmos_db_ru_utilization_collection" {
+  description = "Group to associate Cosmos DB collection to RU max"
+  type        = "map"
 }

@@ -7,7 +7,7 @@ data "template_file" "filter" {
 }
 
 resource "datadog_monitor" "cosmos_db_4xx_requests" {
-  name    = "[${var.environment}] Cosmos DB 4xx requests rate is too low {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Cosmos DB 4xx requests rate is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cosmos_db_4xx_requests_message, var.message)}"
 
   query = <<EOF
@@ -45,13 +45,12 @@ resource "datadog_monitor" "cosmos_db_4xx_requests" {
   locked              = false
   require_full_window = true
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:cosmos_db", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "cosmos_db_5xx_requests" {
-  name    = "[${var.environment}] Cosmos DB 5xx requests rate is too low {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Cosmos DB 5xx requests rate is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cosmos_db_5xx_requests_message, var.message)}"
 
   query = <<EOF
@@ -81,7 +80,6 @@ resource "datadog_monitor" "cosmos_db_5xx_requests" {
   locked              = false
   require_full_window = true
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:cosmos_db", "team:azure", "provider:azure"]
 }
@@ -109,7 +107,41 @@ resource "datadog_monitor" "cosmos_db_success_no_data" {
   locked              = false
   require_full_window = true
   new_host_delay      = "${var.delay}"
-  no_data_timeframe   = 20
 
   tags = ["env:${var.environment}", "resource:cosmos_db", "team:azure", "provider:azure"]
+}
+
+resource "datadog_monitor" "cosmos_db_ru_utilization" {
+  count = "${length(var.cosmos_db_ru_utilization_collection)}"
+
+  name    = "[${var.environment}] Cosmos DB collection ${element(keys(var.cosmos_db_ru_utilization_collection),count.index)} RU utilization is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = "${coalesce(var.cosmos_db_ru_utilization_message, var.message)}"
+
+  query = <<EOF
+      avg(last_5m): (
+        avg:azure.cosmosdb.total_request_units{${data.template_file.filter.rendered},collectionname:${element(keys(var.cosmos_db_ru_utilization_collection),count.index)}} by {resource_group,name} /
+        ${element(values(var.cosmos_db_ru_utilization_collection),count.index)}
+      ) * 100 > ${var.cosmos_db_ru_utilization_rate_threshold_critical}
+  EOF
+
+  type = "metric alert"
+
+  thresholds {
+    critical = "${var.cosmos_db_ru_utilization_rate_threshold_critical}"
+    warning  = "${var.cosmos_db_ru_utilization_rate_threshold_warning}"
+  }
+
+  silenced = "${var.cosmos_db_ru_utilization_silenced}"
+
+  notify_no_data      = false
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+  new_host_delay      = "${var.delay}"
+
+  tags = ["env:${var.environment}", "resource:cosmos_db", "collection:${element(keys(var.cosmos_db_ru_utilization_collection),count.index)}", "team:azure", "provider:azure"]
 }
