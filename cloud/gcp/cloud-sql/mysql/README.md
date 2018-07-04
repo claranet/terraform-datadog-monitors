@@ -47,7 +47,7 @@ Inputs
 | network_connections_silenced | Groups to mute for GCP Cloud SQL Network Connections monitor | map | `<map>` | no |
 | network_connections_threshold_critical | Number of network connections (critical threshold) | string | `3600` | no |
 | network_connections_threshold_warning | Number of network connections (warning threshold) | string | `3200` | no |
-| network_connections_timeframe | Timeframe for the Network Connections monitor | string | `last_5m` | no |
+| network_connections_timeframe | Timeframe for the Network Connections monitor | string | `last_15m` | no |
 | project_id | ID of the GCP Project | string | - | yes |
 | queries_changing_anomaly_detection_algorithm | Anomaly Detection Algorithm used | string | `robust` | no |
 | queries_changing_database_ids | List of database ids for the Queries Changing monitor | list | `<list>` | no |
@@ -71,7 +71,7 @@ Inputs
 | questions_changing_timeframe | Timeframe for the Questions Changing monitor | string | `last_10m` | no |
 | replication_lag_message | Custom message for the Replication Lag monitor | string | `` | no |
 | replication_lag_silenced | Groups to mute for GCP Cloud SQL Replication Lag monitor | map | `<map>` | no |
-| replication_lag_threshold_critical | Seconds behind the master (critical threshold) | string | `2700` | no |
-| replication_lag_threshold_warning | Seconds behind the master (warning threshold) | string | `2000` | no |
+| replication_lag_threshold_critical | Seconds behind the master (critical threshold) | string | `900` | no |
+| replication_lag_threshold_warning | Seconds behind the master (warning threshold) | string | `300` | no |
 | replication_lag_timeframe | Timeframe for the Replication Lag monitor | string | `last_10m` | no |
 
