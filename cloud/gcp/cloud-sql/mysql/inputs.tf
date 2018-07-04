@@ -45,7 +45,7 @@ variable "network_connections_message" {
 variable "network_connections_timeframe" {
   description = "Timeframe for the Network Connections monitor"
   type        = "string"
-  default     = "last_5m"
+  default     = "last_15m"
 }
 
 variable "network_connections_hard_limit" {
@@ -90,13 +90,13 @@ variable "replication_lag_timeframe" {
 variable "replication_lag_threshold_warning" {
   description = "Seconds behind the master (warning threshold)"
   type        = "string"
-  default     = 2000
+  default     = 300
 }
 
 variable "replication_lag_threshold_critical" {
   description = "Seconds behind the master (critical threshold)"
   type        = "string"
-  default     = 2700
+  default     = 900
 }
 
 variable "replication_lag_silenced" {
