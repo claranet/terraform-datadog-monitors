@@ -390,4 +390,10 @@ module "cosmosdb" {
   cosmos_db_5xx_request_rate_threshold_warning  = "${var.cosmos_db_5xx_request_rate_threshold_warning}"
   cosmos_db_5xx_requests_message                = "${var.cosmos_db_5xx_requests_message}"
   cosmos_db_5xx_requests_silenced               = "${var.cosmos_db_5xx_requests_silenced}"
+
+  cosmos_db_ru_utilization_rate_threshold_critical = "${var.cosmos_db_ru_utilization_rate_threshold_critical}"
+  cosmos_db_ru_utilization_rate_threshold_warning  = "${var.cosmos_db_ru_utilization_rate_threshold_warning}"
+  cosmos_db_ru_utilization_message                 = "${var.cosmos_db_ru_utilization_message}"
+  cosmos_db_ru_utilization_silenced                = "${var.cosmos_db_ru_utilization_silenced}"
+  cosmos_db_ru_utilization_collection              = "${var.cosmos_db_ru_utilization_collection}"
 }

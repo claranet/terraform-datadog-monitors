@@ -83,14 +83,21 @@ Inputs
 | appservices_response_time_threshold_warning | Warning threshold for response time in seconds | string | `5` | no |
 | appservices_response_time_time_aggregator | Monitor aggregator for App Services response time [available values: min, max or avg] | string | `min` | no |
 | appservices_response_time_timeframe | Monitor timeframe for App Services response time [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| cosmos_db_4xx_request_rate_threshold_critical |  | string | `80` | no |
-| cosmos_db_4xx_request_rate_threshold_warning |  | string | `50` | no |
+| cosmos_db_4xx_request_rate_threshold_critical | Critical threshold for Cosmos DB 4xx requests monitor | string | `80` | no |
+| cosmos_db_4xx_request_rate_threshold_warning | Warning threshold for Cosmos DB 4xx requests monitor | string | `50` | no |
 | cosmos_db_4xx_requests_message | Custom message for Cosmos DB 4xx requests monitor | string | `` | no |
 | cosmos_db_4xx_requests_silenced | Groups to mute for Cosmos DB 4xx requests monitor | map | `<map>` | no |
-| cosmos_db_5xx_request_rate_threshold_critical |  | string | `80` | no |
-| cosmos_db_5xx_request_rate_threshold_warning |  | string | `50` | no |
+| cosmos_db_5xx_request_rate_threshold_critical | Critical threshold for Cosmos DB 5xx requests monitor | string | `80` | no |
+| cosmos_db_5xx_request_rate_threshold_warning | Warning threshold for Cosmos DB 5xx requests monitor | string | `50` | no |
 | cosmos_db_5xx_requests_message | Custom message for Cosmos DB 5xx requests monitor | string | `` | no |
 | cosmos_db_5xx_requests_silenced | Groups to mute for Cosmos DB 5xx requests monitor | map | `<map>` | no |
+| cosmos_db_no_request_message | Custom message for Cosmos DB no request monitor | string | `` | no |
+| cosmos_db_no_request_silenced | Groups to mute for Cosmos DB no request monitor | map | `<map>` | no |
+| cosmos_db_ru_utilization_collection | Group to associate Cosmos DB collection to RU max | map | - | yes |
+| cosmos_db_ru_utilization_message | Custom message for Cosmos DB collection RU utilization monitor | string | `` | no |
+| cosmos_db_ru_utilization_rate_threshold_critical | Critical threshold for Cosmos DB collection RU utilization monitor | string | `90` | no |
+| cosmos_db_ru_utilization_rate_threshold_warning | Warning threshold for Cosmos DB collection RU utilization monitor | string | `80` | no |
+| cosmos_db_ru_utilization_silenced | Groups to mute for Cosmos DB collection RU utilization monitor | map | `<map>` | no |
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
 | eventhub_errors_rate_message | Custom message for Event Hub errors monitor | string | `` | no |
