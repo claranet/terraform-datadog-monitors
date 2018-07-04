@@ -32,7 +32,7 @@ EOF
     critical = "${var.network_connections_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   require_full_window = false
   renotify_interval   = 0
   notify_audit        = false
@@ -123,7 +123,7 @@ EOF
     critical = "${var.queries_changing_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   require_full_window = false
   renotify_interval   = 0
   notify_audit        = false
@@ -174,7 +174,7 @@ EOF
     critical = "${var.questions_changing_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   require_full_window = false
   renotify_interval   = 0
   notify_audit        = false
