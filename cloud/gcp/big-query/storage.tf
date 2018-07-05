@@ -34,6 +34,12 @@ variable "stored_bytes_silenced" {
   }
 }
 
+variable "stored_bytes_extra_tags" {
+  description = "Extra tags for GCP Big Query Stored Bytes monitor"
+  type        = "list"
+  default     = []
+}
+
 resource "datadog_monitor" "stored_bytes" {
   name    = "[${var.environment}] GCP Big Query Stored Bytes too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.stored_bytes_message, var.message)}"
@@ -67,5 +73,6 @@ EOF
     "provider:gcp",
     "env:${var.environment}",
     "resource:big-query",
+    "${var.stored_bytes_extra_tags}",
   ]
 }

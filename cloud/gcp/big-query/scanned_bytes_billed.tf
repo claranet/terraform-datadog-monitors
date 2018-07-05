@@ -34,6 +34,12 @@ variable "scanned_bytes_billed_silenced" {
   }
 }
 
+variable "scanned_bytes_billed_extra_tags" {
+  description = "Extra tags for GCP Big Query Scanned Bytes Billed monitor"
+  type        = "list"
+  default     = []
+}
+
 resource "datadog_monitor" "scanned_bytes_billed" {
   name    = "[${var.environment}] GCP Big Query Scanned Bytes Billed too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.scanned_bytes_billed_message, var.message)}"
@@ -66,5 +72,6 @@ EOF
     "provider:gcp",
     "env:${var.environment}",
     "resource:big-query",
+    "${var.scanned_bytes_billed_extra_tags}",
   ]
 }

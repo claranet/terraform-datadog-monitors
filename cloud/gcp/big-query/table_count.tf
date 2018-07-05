@@ -34,6 +34,12 @@ variable "table_count_silenced" {
   }
 }
 
+variable "table_count_extra_tags" {
+  description = "Extra tags for GCP Big Query Table Count monitor"
+  type        = "list"
+  default     = []
+}
+
 resource "datadog_monitor" "table_count" {
   name    = "[${var.environment}] GCP Big Query Table Count too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.table_count_message, var.message)}"
@@ -67,5 +73,6 @@ EOF
     "provider:gcp",
     "env:${var.environment}",
     "resource:big-query",
+    "${var.table_count_extra_tags}",
   ]
 }
