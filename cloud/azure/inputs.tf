@@ -1681,3 +1681,27 @@ variable "cosmos_db_ru_utilization_collection" {
   description = "Group to associate Cosmos DB collection to RU max"
   type        = "map"
 }
+
+# Azure Datalake Store specific variables
+variable "datalakestore_status_silenced" {
+  description = "Groups to mute for Datalake Store status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "datalakestore_status_message" {
+  description = "Custom message for Datalake Store status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "datalakestore_status_time_aggregator" {
+  description = "Monitor aggregator for Datalake Store status [available values: min, max or avg]"
+  type        = "string"
+  default     = "max"
+}
+
+variable "datalakestore_status_timeframe" {
+  description = "Monitor timeframe for Datalake Store status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_15m"
+}

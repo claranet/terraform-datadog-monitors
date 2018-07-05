@@ -390,10 +390,9 @@ module "streamanalytics" {
 module "cosmosdb" {
   source = "./cosmosdb"
 
-  environment     = "${var.environment}"
-  subscription_id = ""
-  message         = "${var.message}"
-  delay           = "${var.delay}"
+  environment = "${var.environment}"
+  message     = "${var.message}"
+  delay       = "${var.delay}"
 
   filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
   filter_tags_custom       = "${var.filter_tags_custom}"
@@ -413,4 +412,20 @@ module "cosmosdb" {
   cosmos_db_ru_utilization_message                 = "${var.cosmos_db_ru_utilization_message}"
   cosmos_db_ru_utilization_silenced                = "${var.cosmos_db_ru_utilization_silenced}"
   cosmos_db_ru_utilization_collection              = "${var.cosmos_db_ru_utilization_collection}"
+}
+
+module "datalakestore" {
+  source = "./datalakestore"
+
+  environment = "${var.environment}"
+  message     = "${var.message}"
+  delay       = "${var.delay}"
+
+  filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
+  filter_tags_custom       = "${var.filter_tags_custom}"
+
+  status_silenced        = "${var.datalakestore_status_silenced}"
+  status_message         = "${var.datalakestore_status_message}"
+  status_timeframe       = "${var.datalakestore_status_timeframe}"
+  status_time_aggregator = "${var.datalakestore_status_time_aggregator}"
 }
