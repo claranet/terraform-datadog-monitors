@@ -2,7 +2,7 @@ data "template_file" "filter" {
   template = "$${filter}"
 
   vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("subscription_id:%s", var.subscription_id) : "${var.filter_tags_custom}"}"
+    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_azure_cosmosdb:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
   }
 }
 
