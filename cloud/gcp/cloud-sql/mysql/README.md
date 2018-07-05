@@ -6,7 +6,7 @@ How to use this module
 
 ```
 module "datadog-monitors-gcp-cloudsql-mysql" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/gcp/clouds-sql/mysql?ref={revision}"
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/gcp/cloud-sql/mysql?ref={revision}"
 
   project_id  = "${var.gcp_project_id}"
   environment = "${var.environment}"
@@ -21,7 +21,8 @@ Creates DataDog monitors with the following checks :
 
 * CloudSQL MySQL Network Connections
 * CloudSQL MySQL Replication Lag
-* CloudSQL MySQL Failover Lag
+* CloudSQL MySQL Queries Changing Anomaly (not created by default)
+* CloudSQL MySQL Questions Changing Anomaly (not created by default)
 
 Useful links
 ------------
