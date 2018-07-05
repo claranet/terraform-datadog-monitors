@@ -43,6 +43,7 @@ Inputs
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
+| network_connections_extra_tags | Extra tags for GCP Cloud SQL Network Connections monitor | list | `<list>` | no |
 | network_connections_hard_limit | Max number of connections for the CloudSQL Instance. Default value is the max value on https://cloud.google.com/sql/docs/quotas#fixed-limits for MySQL | string | `4000` | no |
 | network_connections_message | Custom message for the Network Connections monitor | string | `` | no |
 | network_connections_silenced | Groups to mute for GCP Cloud SQL Network Connections monitor | map | `<map>` | no |
@@ -54,6 +55,7 @@ Inputs
 | queries_changing_database_ids | List of database ids for the Queries Changing monitor | list | `<list>` | no |
 | queries_changing_deviations | Deviations to detect the anomaly | string | `4` | no |
 | queries_changing_direction | Direction of the anomaly. It can be both, below or above. | string | `both` | no |
+| queries_changing_extra_tags | Extra tags for GCP Cloud SQL Queries Changing monitor | list | `<list>` | no |
 | queries_changing_message | Custom message for the Queries Changing monitor | string | `` | no |
 | queries_changing_seasonality | Seasonality of the algorithm | string | `weekly` | no |
 | queries_changing_silenced | Groups to mute for GCP Cloud SQL Queries Changing monitor | map | `<map>` | no |
@@ -64,12 +66,14 @@ Inputs
 | questions_changing_database_ids | List of database ids for the Questions Changing monitor | list | `<list>` | no |
 | questions_changing_deviations | Deviations to detect the anomaly | string | `4` | no |
 | questions_changing_direction | Direction of the anomaly. It can be both, below or above. | string | `both` | no |
+| questions_changing_extra_tags | Extra tags for GCP Cloud SQL Questions Changing monitor | list | `<list>` | no |
 | questions_changing_message | Custom message for the Questions Changing monitor | string | `` | no |
 | questions_changing_seasonality | Seasonality of the algorithm | string | `weekly` | no |
-| questions_changing_silenced | Groups to mute for GCP Cloud SQL Network Connections monitor | map | `<map>` | no |
+| questions_changing_silenced | Groups to mute for GCP Cloud SQL Questions Changing monitor | map | `<map>` | no |
 | questions_changing_threshold_critical | Questions Changing critical threshold | string | `1` | no |
 | questions_changing_threshold_warning | Questions Changing warning threshold | string | `0.5` | no |
 | questions_changing_timeframe | Timeframe for the Questions Changing monitor | string | `last_10m` | no |
+| replication_lag_extra_tags | Extra tags for GCP Cloud SQL SQL Replication monitor | list | `<list>` | no |
 | replication_lag_message | Custom message for the Replication Lag monitor | string | `` | no |
 | replication_lag_silenced | Groups to mute for GCP Cloud SQL Replication Lag monitor | map | `<map>` | no |
 | replication_lag_threshold_critical | Seconds behind the master (critical threshold) | string | `900` | no |

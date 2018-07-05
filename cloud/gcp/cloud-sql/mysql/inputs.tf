@@ -72,6 +72,12 @@ variable "network_connections_silenced" {
   default     = {}
 }
 
+variable "network_connections_extra_tags" {
+  description = "Extra tags for GCP Cloud SQL Network Connections monitor"
+  type        = "list"
+  default     = []
+}
+
 #
 # Replication Lag
 #
@@ -103,6 +109,12 @@ variable "replication_lag_silenced" {
   description = "Groups to mute for GCP Cloud SQL Replication Lag monitor"
   type        = "map"
   default     = {}
+}
+
+variable "replication_lag_extra_tags" {
+  description = "Extra tags for GCP Cloud SQL SQL Replication monitor"
+  type        = "list"
+  default     = []
 }
 
 #
@@ -168,6 +180,12 @@ variable "queries_changing_silenced" {
   default     = {}
 }
 
+variable "queries_changing_extra_tags" {
+  description = "Extra tags for GCP Cloud SQL Queries Changing monitor"
+  type        = "list"
+  default     = []
+}
+
 #
 # Questions Changing
 #
@@ -226,7 +244,13 @@ variable "questions_changing_threshold_critical" {
 }
 
 variable "questions_changing_silenced" {
-  description = "Groups to mute for GCP Cloud SQL Network Connections monitor"
+  description = "Groups to mute for GCP Cloud SQL Questions Changing monitor"
   type        = "map"
   default     = {}
+}
+
+variable "questions_changing_extra_tags" {
+  description = "Extra tags for GCP Cloud SQL Questions Changing monitor"
+  type        = "list"
+  default     = []
 }

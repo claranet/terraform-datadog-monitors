@@ -49,6 +49,7 @@ EOF
     "env:${var.environment}",
     "resource:cloud-sql",
     "engine:mysql",
+    "${var.network_connections_extra_tags}",
   ]
 }
 
@@ -90,6 +91,7 @@ EOF
     "env:${var.environment}",
     "resource:cloud-sql",
     "engine:mysql",
+    "${var.replication_lag_extra_tags}",
   ]
 }
 
@@ -99,10 +101,10 @@ EOF
 resource "datadog_monitor" "queries_changing_anomaly" {
   count = "${length(var.queries_changing_database_ids)}"
 
-  name    = "[${var.environment}] Cloud SQL MySQL Queries Count changed abnormally on ${var.project_id}:${var.queries_changing_database_ids[count.index]} {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] [${var.queries_changing_database_ids[count.index]}] Cloud SQL MySQL Queries Count changed abnormally {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.queries_changing_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOF
     avg(${var.queries_changing_timeframe}):
@@ -141,6 +143,7 @@ EOF
     "resource:cloud-sql",
     "engine:mysql",
     "database_id:${var.project_id}:${var.queries_changing_database_ids[count.index]}}",
+    "${var.queries_changing_extra_tags}",
   ]
 }
 
@@ -150,10 +153,10 @@ EOF
 resource "datadog_monitor" "questions_changing_anomaly" {
   count = "${length(var.questions_changing_database_ids)}"
 
-  name    = "[${var.environment}] Cloud SQL MySQL Questions Count changed abnormally on ${var.project_id}:${var.questions_changing_database_ids[count.index]} {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] [${var.questions_changing_database_ids[count.index]}] Cloud SQL MySQL Questions Count changed abnormally {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.questions_changing_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOF
     avg(${var.questions_changing_timeframe}):
@@ -192,5 +195,6 @@ EOF
     "resource:cloud-sql",
     "engine:mysql",
     "database_id:${var.project_id}:${var.questions_changing_database_ids[count.index]}",
+    "${var.questions_changing_extra_tags}",
   ]
 }
