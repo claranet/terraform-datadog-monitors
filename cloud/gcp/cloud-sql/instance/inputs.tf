@@ -36,135 +36,159 @@ variable "project_id" {
 #
 # CPU
 #
-variable "cpu_message" {
+variable "cpu_utilization_message" {
   description = "Custom message for the CPU Utilization monitor"
   type        = "string"
   default     = ""
 }
 
-variable "cpu_timeframe" {
+variable "cpu_utilization_timeframe" {
   description = "Timeframe for the CPU Utilization monitor"
   type        = "string"
   default     = "last_30m"
 }
 
-variable "cpu_threshold_warning" {
+variable "cpu_utilization_threshold_warning" {
   description = "CPU Utilization in fraction (warning threshold)"
   type        = "string"
   default     = 0.8
 }
 
-variable "cpu_threshold_critical" {
+variable "cpu_utilization_threshold_critical" {
   description = "CPU Utilization in fraction (critical threshold)"
   type        = "string"
   default     = 0.9
 }
 
-variable "cpu_silenced" {
+variable "cpu_utilization_silenced" {
   description = "Groups to mute for GCP Cloud SQL CPU Utilization monitor"
   type        = "map"
   default     = {}
 }
 
+variable "cpu_utilization_extra_tags" {
+  description = "Extra tags for GCP Cloud SQL CPU Utilization monitor"
+  type        = "list"
+  default     = []
+}
+
 #
 # DISK
 #
-variable "disk_message" {
+variable "disk_utilization_message" {
   description = "Custom message for the Disk Utilization monitor"
   type        = "string"
   default     = ""
 }
 
-variable "disk_timeframe" {
+variable "disk_utilization_timeframe" {
   description = "Timeframe for the Disk Utilization monitor"
   type        = "string"
   default     = "last_5m"
 }
 
-variable "disk_threshold_warning" {
+variable "disk_utilization_threshold_warning" {
   description = "Disk Utilization in fraction (warning threshold)"
   type        = "string"
   default     = 0.8
 }
 
-variable "disk_threshold_critical" {
+variable "disk_utilization_threshold_critical" {
   description = "Disk Utilization in fraction (critical threshold)"
   type        = "string"
   default     = 0.9
 }
 
-variable "disk_silenced" {
+variable "disk_utilization_silenced" {
   description = "Groups to mute for GCP Cloud SQL Disk Utilization monitor"
   type        = "map"
   default     = {}
 }
 
+variable "disk_utilization_extra_tags" {
+  description = "Extra tags for GCP Cloud SQL CPU Utilization monitor"
+  type        = "list"
+  default     = []
+}
+
 #
 # Memory Utilization
 #
-variable "memory_message" {
+variable "memory_utilization_message" {
   description = "Custom message for the Memory Utilization monitor"
   default     = ""
 }
 
-variable "memory_timeframe" {
+variable "memory_utilization_timeframe" {
   description = "Timeframe for the Memory Utilization monitor"
   default     = "last_5m"
 }
 
-variable "memory_threshold_warning" {
+variable "memory_utilization_threshold_warning" {
   description = "Memory Utilization in fraction (warning threshold)"
   default     = 0.8
 }
 
-variable "memory_threshold_critical" {
+variable "memory_utilization_threshold_critical" {
   description = "Memory Utilization in fraction (critical threshold)"
   default     = 0.9
 }
 
-variable "memory_silenced" {
+variable "memory_utilization_silenced" {
   description = "Groups to mute for GCP Cloud SQL Memory Utilization monitor"
   type        = "map"
   default     = {}
 }
 
+variable "memory_utilization_extra_tags" {
+  description = "Extra tags for GCP Cloud SQL Memory Utilization monitor"
+  type        = "list"
+  default     = []
+}
+
 #
 # Memory Utilization Forecast
 #
-variable "memory_forecast_message" {
+variable "memory_utilization_forecast_message" {
   description = "Custom message for the Memory Utilization Forecast monitor"
   default     = ""
 }
 
-variable "memory_forecast_timeframe" {
+variable "memory_utilization_forecast_timeframe" {
   description = "Timeframe for the Memory Utilization Forecast monitor"
   default     = "next_3d"
 }
 
-variable "memory_forecast_interval" {
+variable "memory_utilization_forecast_interval" {
   description = "Interval for the Memory Utilization Forecast monitor"
   default     = "30m"
 }
 
-variable "memory_forecast_history" {
+variable "memory_utilization_forecast_history" {
   description = "History for the Memory Utilization Forecast monitor"
   default     = "12h"
 }
 
-variable "memory_forecast_threshold_warning" {
+variable "memory_utilization_forecast_threshold_warning" {
   description = "Memory Utilization Forecast in fraction (warning threshold)"
   default     = 0.8
 }
 
-variable "memory_forecast_threshold_critical" {
+variable "memory_utilization_forecast_threshold_critical" {
   description = "Memory Utilization Forecast in fraction (critical threshold)"
   default     = 0.9
 }
 
-variable "memory_forecast_silenced" {
+variable "memory_utilization_forecast_silenced" {
   description = "Groups to mute for GCP Cloud SQL Memory Utilization Forecast monitor"
   type        = "map"
   default     = {}
+}
+
+variable "memory_utilization_forecast_extra_tags" {
+  description = "Extra tags for GCP Cloud SQL Memory Utilization Forecast monitor"
+  type        = "list"
+  default     = []
 }
 
 #
@@ -193,4 +217,10 @@ variable "failover_unavailable_silenced" {
   description = "Groups to mute for GCP Cloud SQL Failover Unavailable monitor"
   type        = "map"
   default     = {}
+}
+
+variable "failover_unavailable_extra_tags" {
+  description = "Extra tags for GCP Cloud SQL Failover Unavailable monitor"
+  type        = "list"
+  default     = []
 }
