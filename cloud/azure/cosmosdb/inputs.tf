@@ -22,11 +22,6 @@ variable "delay" {
   default     = 900
 }
 
-variable "subscription_id" {
-  description = "ID of the subscription"
-  type        = "string"
-}
-
 # Azure CosmosDB specific variables
 variable "cosmos_db_4xx_requests_message" {
   description = "Custom message for Cosmos DB 4xx requests monitor"
