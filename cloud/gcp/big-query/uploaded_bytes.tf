@@ -34,6 +34,12 @@ variable "uploaded_bytes_silenced" {
   }
 }
 
+variable "uploaded_bytes_extra_tags" {
+  description = "Extra tags for GCP Big Query Uploaded Bytes monitor"
+  type        = "list"
+  default     = []
+}
+
 resource "datadog_monitor" "uploaded_bytes" {
   name    = "[${var.environment}] GCP Big Query Uploaded Bytes too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.uploaded_bytes_message, var.message)}"
@@ -67,5 +73,6 @@ EOF
     "provider:gcp",
     "env:${var.environment}",
     "resource:big-query",
+    "${var.uploaded_bytes_extra_tags}",
   ]
 }
