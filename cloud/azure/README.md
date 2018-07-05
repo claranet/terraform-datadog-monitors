@@ -98,6 +98,10 @@ Inputs
 | cosmos_db_ru_utilization_rate_threshold_critical | Critical threshold for Cosmos DB collection RU utilization monitor | string | `90` | no |
 | cosmos_db_ru_utilization_rate_threshold_warning | Warning threshold for Cosmos DB collection RU utilization monitor | string | `80` | no |
 | cosmos_db_ru_utilization_silenced | Groups to mute for Cosmos DB collection RU utilization monitor | map | `<map>` | no |
+| datalakestore_status_message | Custom message for Datalake Store status monitor | string | `` | no |
+| datalakestore_status_silenced | Groups to mute for Datalake Store status monitor | map | `<map>` | no |
+| datalakestore_status_time_aggregator | Monitor aggregator for Datalake Store status [available values: min, max or avg] | string | `max` | no |
+| datalakestore_status_timeframe | Monitor timeframe for Datalake Store status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
 | eventhub_errors_rate_message | Custom message for Event Hub errors monitor | string | `` | no |

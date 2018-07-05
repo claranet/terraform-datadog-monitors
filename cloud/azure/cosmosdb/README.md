@@ -63,7 +63,6 @@ Inputs
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
-| subscription_id | ID of the subscription | string | - | yes |
 
 Related documentation
 ---------------------
