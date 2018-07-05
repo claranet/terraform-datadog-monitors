@@ -138,7 +138,7 @@ resource "datadog_monitor" "memory_utilization_forecast" {
   name    = "[${var.environment}] Cloud SQL Memory Utilization Forecast {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.memory_forecast_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOF
   max(${var.memory_forecast_timeframe}):
