@@ -12,17 +12,17 @@ resource "datadog_monitor" "cosmos_db_4xx_requests" {
 
   query = <<EOF
       sum(last_5m): (default(
-        ( avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:400} by {resource_group,name}.as_count() +
-        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:403} by {resource_group,name}.as_count() +
-        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:404} by {resource_group,name}.as_count() +
-        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:408} by {resource_group,name}.as_count() +
-        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:409} by {resource_group,name}.as_count() +
-        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:410} by {resource_group,name}.as_count() +
-        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:412} by {resource_group,name}.as_count() +
-        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:413} by {resource_group,name}.as_count() +
-        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:429} by {resource_group,name}.as_count() +
-        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:449} by {resource_group,name}.as_count() ) /
-        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered}} by {resource_group,name}.as_count()
+        ( avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:400} by {resource_group,region,name}.as_count() +
+        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:403} by {resource_group,region,name}.as_count() +
+        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:404} by {resource_group,region,name}.as_count() +
+        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:408} by {resource_group,region,name}.as_count() +
+        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:409} by {resource_group,region,name}.as_count() +
+        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:410} by {resource_group,region,name}.as_count() +
+        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:412} by {resource_group,region,name}.as_count() +
+        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:413} by {resource_group,region,name}.as_count() +
+        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:429} by {resource_group,region,name}.as_count() +
+        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:449} by {resource_group,region,name}.as_count() ) /
+        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
         * 100, 0)
       ) > ${var.cosmos_db_4xx_request_rate_threshold_critical}
       EOF
@@ -55,9 +55,9 @@ resource "datadog_monitor" "cosmos_db_5xx_requests" {
 
   query = <<EOF
       sum(last_5m): (default(
-        ( avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:500} by {resource_group,name}.as_count() +
-        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:503} by {resource_group,name}.as_count() ) /
-        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered}} by {resource_group,name}.as_count()
+        ( avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:500} by {resource_group,region,name}.as_count() +
+        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered},statuscode:503} by {resource_group,region,name}.as_count() ) /
+        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
         * 100, 0)
       ) > ${var.cosmos_db_5xx_request_rate_threshold_critical}
       EOF
@@ -90,7 +90,7 @@ resource "datadog_monitor" "cosmos_db_success_no_data" {
 
   query = <<EOF
       avg(last_5m): (
-        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered}} by {resource_group,name}
+        avg:azure.cosmosdb.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}
       ) < 0
   EOF
 
@@ -119,7 +119,7 @@ resource "datadog_monitor" "cosmos_db_ru_utilization" {
 
   query = <<EOF
       avg(last_5m): (
-        avg:azure.cosmosdb.total_request_units{${data.template_file.filter.rendered},collectionname:${element(keys(var.cosmos_db_ru_utilization_collection),count.index)}} by {resource_group,name} /
+        avg:azure.cosmosdb.total_request_units{${data.template_file.filter.rendered},collectionname:${element(keys(var.cosmos_db_ru_utilization_collection),count.index)}} by {resource_group,region,name} /
         ${element(values(var.cosmos_db_ru_utilization_collection),count.index)}
       ) * 100 > ${var.cosmos_db_ru_utilization_rate_threshold_critical}
   EOF

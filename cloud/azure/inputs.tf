@@ -930,6 +930,86 @@ variable "servicebus_status_timeframe" {
   default     = "last_15m"
 }
 
+variable "servicebus_no_active_connections_silenced" {
+  description = "Groups to mute for Service Bus status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "servicebus_no_active_connections_message" {
+  description = "Custom message for Service Bus status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "servicebus_no_active_connections_time_aggregator" {
+  description = "Monitor aggregator for Service Bus status [available values: min, max or avg]"
+  type        = "string"
+  default     = "max"
+}
+
+variable "servicebus_no_active_connections_timeframe" {
+  description = "Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_15m"
+}
+
+variable "servicebus_server_errors_message" {
+  description = "Custom message for Service Bus server errors monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "servicebus_server_errors_silenced" {
+  description = "Groups to mute for Service Bus server errors monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "servicebus_server_errors_timeframe" {
+  description = "Monitor timeframe for Service Bus server errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "servicebus_server_errors_threshold_critical" {
+  description = "Critical threshold for Service Bus server errors monitor"
+  default     = 90
+}
+
+variable "servicebus_server_errors_threshold_warning" {
+  description = "Warning threshold for Service Bus server errors monitor"
+  default     = 50
+}
+
+variable "servicebus_user_errors_message" {
+  description = "Custom message for Service Bus user errors monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "servicebus_user_errors_silenced" {
+  description = "Groups to mute for Service Bus user errors monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "servicebus_user_errors_timeframe" {
+  description = "Monitor timeframe for Service Bus user errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "servicebus_user_errors_threshold_critical" {
+  description = "Critical threshold for Service Bus user errors monitor"
+  default     = 90
+}
+
+variable "servicebus_user_errors_threshold_warning" {
+  description = "Warning threshold for Service Bus user errors monitor"
+  default     = 50
+}
+
 # Azure SQL Database specific variables
 variable "sqldatabase_cpu_silenced" {
   description = "Groups to mute for SQL CPU monitor"

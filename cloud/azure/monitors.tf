@@ -230,6 +230,23 @@ module "servicebus" {
   status_message         = "${var.servicebus_status_message}"
   status_timeframe       = "${var.servicebus_status_timeframe}"
   status_time_aggregator = "${var.servicebus_status_time_aggregator}"
+
+  no_active_connections_silenced        = "${var.servicebus_no_active_connections_silenced}"
+  no_active_connections_message         = "${var.servicebus_no_active_connections_message}"
+  no_active_connections_timeframe       = "${var.servicebus_no_active_connections_timeframe}"
+  no_active_connections_time_aggregator = "${var.servicebus_no_active_connections_time_aggregator}"
+
+  server_errors_silenced           = "${var.servicebus_server_errors_silenced}"
+  server_errors_message            = "${var.servicebus_server_errors_message}"
+  server_errors_timeframe          = "${var.servicebus_server_errors_timeframe}"
+  server_errors_threshold_critical = "${var.servicebus_server_errors_threshold_critical}"
+  server_errors_threshold_warning  = "${var.servicebus_server_errors_threshold_warning}"
+
+  user_errors_silenced           = "${var.servicebus_user_errors_silenced}"
+  user_errors_message            = "${var.servicebus_user_errors_message}"
+  user_errors_timeframe          = "${var.servicebus_user_errors_timeframe}"
+  user_errors_threshold_critical = "${var.servicebus_user_errors_threshold_critical}"
+  user_errors_threshold_warning  = "${var.servicebus_user_errors_threshold_warning}"
 }
 
 module "sqldatabase" {

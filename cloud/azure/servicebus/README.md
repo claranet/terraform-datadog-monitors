@@ -16,7 +16,10 @@ module "datadog-monitors-cloud-azure-servicebus" {
 
 Creates DataDog monitors with the following checks:
 
-- Service Bus is down
+- Service status check
+- No active connection
+- Server errors rate
+- User errors rate
 
 ## Inputs
 
@@ -27,12 +30,26 @@ Creates DataDog monitors with the following checks:
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
+| no_active_connections_message | Custom message for Service Bus status monitor | string | `` | no |
+| no_active_connections_silenced | Groups to mute for Service Bus status monitor | map | `<map>` | no |
+| no_active_connections_time_aggregator | Monitor aggregator for Service Bus status [available values: min, max or avg] | string | `max` | no |
+| no_active_connections_timeframe | Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
+| server_errors_message | Custom message for Service Bus server errors monitor | string | `` | no |
+| server_errors_silenced | Groups to mute for Service Bus server errors monitor | map | `<map>` | no |
+| server_errors_threshold_critical | Critical threshold for Service Bus server errors monitor | string | `90` | no |
+| server_errors_threshold_warning | Warning threshold for Service Bus server errors monitor | string | `50` | no |
+| server_errors_timeframe | Monitor timeframe for Service Bus server errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 | status_extra_tags | Extra tags for Service Bus status monitor | list | `<list>` | no |
 | status_message | Custom message for Service Bus status monitor | string | `` | no |
 | status_silenced | Groups to mute for Service Bus status monitor | map | `<map>` | no |
 | status_time_aggregator | Monitor aggregator for Service Bus status [available values: min, max or avg] | string | `max` | no |
 | status_timeframe | Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
+| user_errors_message | Custom message for Service Bus user errors monitor | string | `` | no |
+| user_errors_silenced | Groups to mute for Service Bus user errors monitor | map | `<map>` | no |
+| user_errors_threshold_critical | Critical threshold for Service Bus user errors monitor | string | `90` | no |
+| user_errors_threshold_warning | Warning threshold for Service Bus user errors monitor | string | `50` | no |
+| user_errors_timeframe | Monitor timeframe for Service Bus user errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
 ## Outputs
 

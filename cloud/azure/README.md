@@ -206,10 +206,24 @@ Inputs
 | redis_status_silenced | Groups to mute for Redis status monitor | map | `<map>` | no |
 | redis_status_time_aggregator | Monitor aggregator for Redis status [available values: min, max or avg] | string | `max` | no |
 | redis_status_timeframe | Monitor timeframe for Redis status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| servicebus_no_active_connections_message | Custom message for Service Bus status monitor | string | `` | no |
+| servicebus_no_active_connections_silenced | Groups to mute for Service Bus status monitor | map | `<map>` | no |
+| servicebus_no_active_connections_time_aggregator | Monitor aggregator for Service Bus status [available values: min, max or avg] | string | `max` | no |
+| servicebus_no_active_connections_timeframe | Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
+| servicebus_server_errors_message | Custom message for Service Bus server errors monitor | string | `` | no |
+| servicebus_server_errors_silenced | Groups to mute for Service Bus server errors monitor | map | `<map>` | no |
+| servicebus_server_errors_threshold_critical | Critical threshold for Service Bus server errors monitor | string | `90` | no |
+| servicebus_server_errors_threshold_warning | Warning threshold for Service Bus server errors monitor | string | `50` | no |
+| servicebus_server_errors_timeframe | Monitor timeframe for Service Bus server errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | servicebus_status_message | Custom message for Service Bus status monitor | string | `` | no |
 | servicebus_status_silenced | Groups to mute for Service Bus status monitor | map | `<map>` | no |
 | servicebus_status_time_aggregator | Monitor aggregator for Service Bus status [available values: min, max or avg] | string | `max` | no |
 | servicebus_status_timeframe | Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
+| servicebus_user_errors_message | Custom message for Service Bus user errors monitor | string | `` | no |
+| servicebus_user_errors_silenced | Groups to mute for Service Bus user errors monitor | map | `<map>` | no |
+| servicebus_user_errors_threshold_critical | Critical threshold for Service Bus user errors monitor | string | `90` | no |
+| servicebus_user_errors_threshold_warning | Warning threshold for Service Bus user errors monitor | string | `50` | no |
+| servicebus_user_errors_timeframe | Monitor timeframe for Service Bus user errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | sqldatabase_cpu_message | Custom message for SQL CPU monitor | string | `` | no |
 | sqldatabase_cpu_silenced | Groups to mute for SQL CPU monitor | map | `<map>` | no |
 | sqldatabase_cpu_threshold_critical | CPU usage in percent (critical threshold) | string | `90` | no |
