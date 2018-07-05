@@ -5,8 +5,8 @@ How to use this module
 ----------------------
 
 ```
-module "datadog-monitors-gcp-cloudsql" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/gcp/clouds-sql/instance?ref={revision}"
+module "datadog-monitors-gcp-cloudsql-instance" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/gcp/cloud-sql/instance?ref={revision}"
 
   project_id  = "${var.gcp_project_id}"
   environment = "${var.environment}"
