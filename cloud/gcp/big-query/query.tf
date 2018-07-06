@@ -26,9 +26,15 @@ variable "concurrent_queries_threshold_critical" {
 }
 
 variable "concurrent_queries_silenced" {
-  description = "Groups to mute for GCP Big Query  Concurrent Queries monitor"
+  description = "Groups to mute for GCP Big Query Concurrent Queries monitor"
   type        = "map"
   default     = {}
+}
+
+variable "concurrent_queries_extra_tags" {
+  description = "Extra tags for GCP Big Query Concurrent Queries monitor"
+  type        = "list"
+  default     = []
 }
 
 resource "datadog_monitor" "concurrent_queries" {
@@ -63,6 +69,7 @@ EOF
     "provider:gcp",
     "env:${var.environment}",
     "resource:big-query",
+    "${var.concurrent_queries_extra_tags}",
   ]
 }
 
@@ -94,12 +101,18 @@ variable "execution_time_threshold_critical" {
 }
 
 variable "execution_time_silenced" {
-  description = "Groups to mute for GCP Big Query  Execution Time monitor. Muted by default."
+  description = "Groups to mute for GCP Big Query Execution Time monitor. Muted by default."
   type        = "map"
 
   default = {
     "*" = 0
   }
+}
+
+variable "execution_time_extra_tags" {
+  description = "Extra tags for GCP Big Query Execution Time monitor"
+  type        = "list"
+  default     = []
 }
 
 resource "datadog_monitor" "execution_time" {
@@ -134,5 +147,6 @@ EOF
     "provider:gcp",
     "env:${var.environment}",
     "resource:big-query",
+    "${var.execution_time_extra_tags}",
   ]
 }
