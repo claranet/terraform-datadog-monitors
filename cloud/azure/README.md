@@ -186,6 +186,15 @@ Inputs
 | iothub_total_devices_silenced | Groups to mute for IoT Hub total devices monitor | map | `<map>` | no |
 | iothub_total_devices_time_aggregator | Monitor aggregator for IoT Hub total devices [available values: min, max or avg] | string | `min` | no |
 | iothub_total_devices_timeframe | Monitor timeframe for IoT Hub total devices [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| keyvault_api_result_message | Custom message for Key Vault API result monitor | string | `` | no |
+| keyvault_api_result_silenced | Groups to mute for Key Vault API result monitor | map | `<map>` | no |
+| keyvault_api_result_threshold_critical | Critical threshold for Key Vault API result rate | string | `10` | no |
+| keyvault_api_result_threshold_warning | Warning threshold for Key Vault API result rate | string | `30` | no |
+| keyvault_api_result_timeframe | Monitor timeframe for Key Vault API result [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_30m` | no |
+| keyvault_status_message | Custom message for Key Vault status monitor | string | `` | no |
+| keyvault_status_silenced | Groups to mute for Key Vault status monitor | map | `<map>` | no |
+| keyvault_status_time_aggregator | Monitor aggregator for Key Vault status [available values: min, max or avg] | string | `max` | no |
+| keyvault_status_timeframe | Monitor timeframe for Key Vault status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 | non_taggable_filter_tags | Tags used for filtering for components without tag support | string | `*` | no |
 | redis_evictedkeys_limit_message | Custom message for Redis evicted keys monitor | string | `` | no |

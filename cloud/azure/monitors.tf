@@ -429,3 +429,25 @@ module "datalakestore" {
   status_timeframe       = "${var.datalakestore_status_timeframe}"
   status_time_aggregator = "${var.datalakestore_status_time_aggregator}"
 }
+
+module "keyvault" {
+  source = "./keyvault"
+
+  environment = "${var.environment}"
+  message     = "${var.message}"
+  delay       = "${var.delay}"
+
+  filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
+  filter_tags_custom       = "${var.filter_tags_custom}"
+
+  status_silenced        = "${var.keyvault_status_silenced}"
+  status_message         = "${var.keyvault_status_message}"
+  status_timeframe       = "${var.keyvault_status_timeframe}"
+  status_time_aggregator = "${var.keyvault_status_time_aggregator}"
+
+  api_result_silenced           = "${var.keyvault_api_result_silenced}"
+  api_result_message            = "${var.keyvault_api_result_message}"
+  api_result_timeframe          = "${var.keyvault_api_result_timeframe}"
+  api_result_threshold_critical = "${var.keyvault_api_result_threshold_critical}"
+  api_result_threshold_warning  = "${var.keyvault_api_result_threshold_warning}"
+}
