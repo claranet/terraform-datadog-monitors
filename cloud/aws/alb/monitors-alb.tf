@@ -23,7 +23,7 @@ resource "datadog_monitor" "ALB_no_healthy_instances" {
   new_host_delay   = "${var.delay}"
 
   thresholds {
-    critical = 0
+    critical = 1
   }
 
   notify_no_data      = true
