@@ -24,7 +24,7 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
-# Azure Mysql specific variables
+# Azure Databases for MySQL Servers specific variables
 variable "cpu_usage_silenced" {
   description = "Groups to mute for Mysql CPU monitor"
   type        = "map"
