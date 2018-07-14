@@ -61,6 +61,17 @@ Inputs
 | response_time_time_aggregator | Monitor aggregator for App Services response time [available values: min, max or avg] | string | `min` | no |
 | response_time_timeframe | Monitor timeframe for App Services response time [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| appservices_http_4xx_errors_count_id | id for monitor appservices_http_4xx_errors_count |
+| appservices_http_5xx_errors_count_id | id for monitor appservices_http_5xx_errors_count |
+| appservices_http_success_status_rate_id | id for monitor appservices_http_success_status_rate |
+| appservices_memory_usage_count_id | id for monitor appservices_memory_usage_count |
+| appservices_response_time_id | id for monitor appservices_response_time |
+
 Related documentation
 ---------------------
 

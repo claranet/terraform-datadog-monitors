@@ -55,6 +55,16 @@ Inputs
 | status_time_aggregator | Monitor aggregator for Redis status [available values: min, max or avg] | string | `max` | no |
 | status_timeframe | Monitor timeframe for Redis status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| evictedkeys_id | id for monitor evictedkeys |
+| percent_processor_time_id | id for monitor percent_processor_time |
+| server_load_id | id for monitor server_load |
+| status_id | id for monitor status |
+
 Related documentation
 ---------------------
 

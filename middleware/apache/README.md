@@ -32,3 +32,14 @@ Inputs
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| datadog_apache_process_id | id for monitor datadog_apache_process |
+
+Related documentation
+---------------------
+
+DataDog documentation:

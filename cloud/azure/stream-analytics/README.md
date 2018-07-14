@@ -51,6 +51,17 @@ Inputs
 | su_utilization_time_aggregator | Monitor aggregator for Stream Analytics utilization [available values: min, max or avg] | string | `min` | no |
 | su_utilization_timeframe | Monitor timeframe for Stream Analytics utilization [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| conversion_errors_id | id for monitor conversion_errors |
+| failed_function_requests_id | id for monitor failed_function_requests |
+| runtime_errors_id | id for monitor runtime_errors |
+| status_id | id for monitor status |
+| su_utilization_id | id for monitor su_utilization |
+
 Related documentation
 ---------------------
 

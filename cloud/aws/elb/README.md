@@ -67,3 +67,19 @@ Inputs
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| ELB_backend_latency_id | id for monitor ELB_backend_latency |
+| ELB_no_healthy_instances_id | id for monitor ELB_no_healthy_instances |
+| ELB_too_much_4xx_backend_id | id for monitor ELB_too_much_4xx_backend |
+| ELB_too_much_4xx_id | id for monitor ELB_too_much_4xx |
+| ELB_too_much_5xx_backend_id | id for monitor ELB_too_much_5xx_backend |
+| ELB_too_much_5xx_id | id for monitor ELB_too_much_5xx |
+
+Related documentation
+---------------------
+
+DataDog documentation:
