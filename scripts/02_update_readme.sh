@@ -10,7 +10,7 @@ fi
 
 sed -i '/### Monitors summary ###/q' README.md
 echo >> README.md
-for dir in $(find -mindepth 1 \( -path ./incubator -o -path ./scripts -o -path ./testing  -o -path ./.git \) -prune -o -type d -print); do
+for dir in $(find -mindepth 1 \( -path ./incubator -o -path ./scripts -o -path ./testing  -o -path ./.git \) -prune -o -type d -print | sort); do
     count=$(echo ${dir} | tr -cd '/' | wc -c)
     for i in $(seq 1 $((${count}-1))); do
         echo -en "\t" >> README.md
