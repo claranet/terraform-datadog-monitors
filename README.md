@@ -1,40 +1,6 @@
 # DataDog Monitors #
 
-This repository is used to store all our monitors templates.
-
-Here is the repository organization:
-
-- cloud
-    - aws
-        - [alb](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/alb/)
-        - [apigateway](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/apigateway/)
-        - [elasticsearch](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/elasticsearch/)
-        - [elb](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/elb/)
-        - [kinesis-firehose](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/kinesis-firehose/)
-        - [rds](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/rds/)
-        - [vpn](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/vpn/)
-    - azure
-        - [apimanagement](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/apimanagement)
-        - [app-services](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/app-services/r)
-        - [eventhub](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/eventhub/)
-        - [iothubs](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/iothubs/)
-        - [redis](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/redis/)
-        - [servicebus](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/servicebus/)
-        - [sql-database](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/sql-database/)
-        - [storage](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/storage/)
-        - [stream-analytics](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/stream-analytics/)
-- common
-    - [alerting-message](https://bitbucket.org/morea/terraform.feature.datadog/src/master/common/alerting-message/)
-- databases
-    - [mongodb](https://bitbucket.org/morea/terraform.feature.datadog/src/master/databases/mongodb/)
-- incubator
-- middleware
-    - [apache](https://bitbucket.org/morea/terraform.feature.datadog/src/master/middleware/apache/)
-    - [nginx](https://bitbucket.org/morea/terraform.feature.datadog/src/master/middleware/nginx/)
-    - [php-fpm](https://bitbucket.org/morea/terraform.feature.datadog/src/master/middleware/php-fpm/)
-- system
-    - [generic](https://bitbucket.org/morea/terraform.feature.datadog/src/master/system/generic/)
-
+This repository is used to store all our monitors templates ready to use for generic purpose.
 
 ### How to contribute ? ###
 
@@ -101,3 +67,35 @@ module "datadog-monitors-my-monitors-set" {
 
 `my/monitors/set` represents the path to a monitors set sub directory listed above.  
 The `//` is very important, it's a terraform specific syntax used to separate git url and folder path.
+
+### Monitors summary ###
+
+- [middleware](https://bitbucket.org/morea/terraform.feature.datadog/src/master/middleware/)
+	- [nginx](https://bitbucket.org/morea/terraform.feature.datadog/src/master/middleware/nginx/)
+	- [apache](https://bitbucket.org/morea/terraform.feature.datadog/src/master/middleware/apache/)
+	- [php-fpm](https://bitbucket.org/morea/terraform.feature.datadog/src/master/middleware/php-fpm/)
+- [common](https://bitbucket.org/morea/terraform.feature.datadog/src/master/common/)
+	- [alerting-message](https://bitbucket.org/morea/terraform.feature.datadog/src/master/common/alerting-message/)
+- [system](https://bitbucket.org/morea/terraform.feature.datadog/src/master/system/)
+	- [generic](https://bitbucket.org/morea/terraform.feature.datadog/src/master/system/generic/)
+- [cloud](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/)
+	- [aws](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/)
+		- [vpn](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/vpn/)
+		- [apigateway](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/apigateway/)
+		- [elb](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/elb/)
+		- [rds](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/rds/)
+		- [elasticsearch](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/elasticsearch/)
+		- [alb](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/alb/)
+		- [kinesis-firehose](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/kinesis-firehose/)
+	- [azure](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/)
+		- [sql-database](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/sql-database/)
+		- [stream-analytics](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/stream-analytics/)
+		- [storage](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/storage/)
+		- [redis](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/redis/)
+		- [iothubs](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/iothubs/)
+		- [servicebus](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/servicebus/)
+		- [apimanagement](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/apimanagement/)
+		- [app-services](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/app-services/)
+		- [eventhub](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/eventhub/)
+- [databases](https://bitbucket.org/morea/terraform.feature.datadog/src/master/databases/)
+	- [mongodb](https://bitbucket.org/morea/terraform.feature.datadog/src/master/databases/mongodb/)
