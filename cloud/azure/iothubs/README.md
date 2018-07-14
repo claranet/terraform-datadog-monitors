@@ -109,6 +109,26 @@ Inputs
 | total_devices_time_aggregator | Monitor aggregator for IoT Hub total devices [available values: min, max, sum or avg] | string | `min` | no |
 | total_devices_timeframe | Monitor timeframe for IoT Hub total devices [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| status_id | id for monitor status |
+| too_many_c2d_methods_failed_id | id for monitor too_many_c2d_methods_failed |
+| too_many_c2d_twin_read_failed_id | id for monitor too_many_c2d_twin_read_failed |
+| too_many_c2d_twin_update_failed_id | id for monitor too_many_c2d_twin_update_failed |
+| too_many_d2c_telemetry_egress_dropped_id | id for monitor too_many_d2c_telemetry_egress_dropped |
+| too_many_d2c_telemetry_egress_invalid_id | id for monitor too_many_d2c_telemetry_egress_invalid |
+| too_many_d2c_telemetry_egress_orphaned_id | id for monitor too_many_d2c_telemetry_egress_orphaned |
+| too_many_d2c_telemetry_ingress_nosent_id | id for monitor too_many_d2c_telemetry_ingress_nosent |
+| too_many_d2c_twin_read_failed_id | id for monitor too_many_d2c_twin_read_failed |
+| too_many_d2c_twin_update_failed_id | id for monitor too_many_d2c_twin_update_failed |
+| too_many_jobs_failed_id | id for monitor too_many_jobs_failed |
+| too_many_list_jobs_failed_id | id for monitor too_many_list_jobs_failed |
+| too_many_query_jobs_failed_id | id for monitor too_many_query_jobs_failed |
+| total_devices_id | id for monitor total_devices |
+
 Related documentation
 ---------------------
 

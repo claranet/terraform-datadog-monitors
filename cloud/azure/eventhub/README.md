@@ -46,6 +46,15 @@ Inputs
 | status_time_aggregator | Monitor aggregator for Event Hub status [available values: min, max or avg] | string | `max` | no |
 | status_timeframe | Monitor timeframe for Event Hub status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| eventhub_errors_id | id for monitor eventhub_errors |
+| eventhub_failed_requests_id | id for monitor eventhub_failed_requests |
+| eventhub_status_id | id for monitor eventhub_status |
+
 Related documentation
 ---------------------
 

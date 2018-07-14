@@ -64,3 +64,18 @@ Inputs
 | free_memory_timeframe | Monitor timeframe for Free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| datadog_cpu_too_high_id | id for monitor datadog_cpu_too_high |
+| datadog_free_disk_space_inodes_too_low_id | id for monitor datadog_free_disk_space_inodes_too_low |
+| datadog_free_disk_space_too_low_id | id for monitor datadog_free_disk_space_too_low |
+| datadog_free_memory_id | id for monitor datadog_free_memory |
+| datadog_load_too_high_id | id for monitor datadog_load_too_high |
+
+Related documentation
+---------------------
+
+DataDog documentation:

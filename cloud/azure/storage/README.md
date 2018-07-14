@@ -92,6 +92,21 @@ Inputs
 | timeout_error_requests_time_aggregator | Monitor aggregator for Storage timeout [available values: min, max or avg] | string | `min` | no |
 | timeout_error_requests_timeframe | Monitor timeframe for Storage timeout [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| authorization_error_requests_id | id for monitor authorization_error_requests |
+| availability_id | id for monitor availability |
+| client_other_error_requests_id | id for monitor client_other_error_requests |
+| latency_id | id for monitor latency |
+| network_error_requests_id | id for monitor network_error_requests |
+| server_other_error_requests_id | id for monitor server_other_error_requests |
+| successful_requests_id | id for monitor successful_requests |
+| throttling_error_requests_id | id for monitor throttling_error_requests |
+| timeout_error_requests_id | id for monitor timeout_error_requests |
+
 Related documentation
 ---------------------
 

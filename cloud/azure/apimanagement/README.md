@@ -57,6 +57,17 @@ Inputs
 | unauthorized_requests_threshold_warning | Warning regarding acceptable percent of unauthorized requests | string | `50` | no |
 | unauthorized_requests_timeframe | Monitor timeframe for API Management unauthorized requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| apimgt_failed_requests_id | id for monitor apimgt_failed_requests |
+| apimgt_other_requests_id | id for monitor apimgt_other_requests |
+| apimgt_status_id | id for monitor apimgt_status |
+| apimgt_successful_requests_id | id for monitor apimgt_successful_requests |
+| apimgt_unauthorized_requests_id | id for monitor apimgt_unauthorized_requests |
+
 Related documentation
 ---------------------
 

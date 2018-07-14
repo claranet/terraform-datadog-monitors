@@ -55,6 +55,16 @@ Inputs
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| sql-database_cpu_90_15min_id | id for monitor sql-database_cpu_90_15min |
+| sql-database_deadlocks_count_id | id for monitor sql-database_deadlocks_count |
+| sql-database_dtu_consumption_high_id | id for monitor sql-database_dtu_consumption_high |
+| sql-database_free_space_low_id | id for monitor sql-database_free_space_low |
+
 Related documentation
 ---------------------
 

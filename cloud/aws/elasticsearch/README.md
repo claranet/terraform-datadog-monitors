@@ -51,6 +51,15 @@ Inputs
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| es_cluster_status_id | id for monitor es_cluster_status |
+| es_cpu_90_15min_id | id for monitor es_cpu_90_15min |
+| es_free_space_low_id | id for monitor es_free_space_low |
+
 Related documentation
 ---------------------
 

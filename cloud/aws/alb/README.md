@@ -67,6 +67,18 @@ Inputs
 | latency_timeframe | Monitor timeframe for ALB latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| ALB_httpcode_4xx_id | id for monitor ALB_httpcode_4xx |
+| ALB_httpcode_5xx_id | id for monitor ALB_httpcode_5xx |
+| ALB_httpcode_target_4xx_id | id for monitor ALB_httpcode_target_4xx |
+| ALB_httpcode_target_5xx_id | id for monitor ALB_httpcode_target_5xx |
+| ALB_latency_id | id for monitor ALB_latency |
+| ALB_no_healthy_instances_id | id for monitor ALB_no_healthy_instances |
+
 Related documentation
 ---------------------
 
