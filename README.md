@@ -75,6 +75,7 @@ The `//` is very important, it's a terraform specific syntax used to separate gi
 - [caas](https://bitbucket.org/morea/terraform.feature.datadog/src/master/caas/)
 	- [kubernetes](https://bitbucket.org/morea/terraform.feature.datadog/src/master/caas/kubernetes/)
 		- [ingress](https://bitbucket.org/morea/terraform.feature.datadog/src/master/caas/kubernetes/ingress/)
+		- [ark](https://bitbucket.org/morea/terraform.feature.datadog/src/master/caas/k8s/ark/)
 - [cloud](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/)
 	- [aws](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/)
 		- [alb](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/alb/)
