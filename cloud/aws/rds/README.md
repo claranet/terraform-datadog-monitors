@@ -43,6 +43,14 @@ Inputs
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| rds_cpu_90_15min_id | id for monitor rds_cpu_90_15min |
+| rds_free_space_low_id | id for monitor rds_free_space_low |
+
 Related documentation
 ---------------------
 

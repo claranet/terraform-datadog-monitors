@@ -39,3 +39,15 @@ Inputs
 | php_fpm_connect_message | Custom message for PHP FPM process monitor | string | `` | no |
 | php_fpm_connect_silenced | Groups to mute for PHP FPM process monitor | map | `<map>` | no |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| datadog_fpm_process_id | id for monitor datadog_fpm_process |
+| datadog_php_fpm_connect_idle_id | id for monitor datadog_php_fpm_connect_idle |
+
+Related documentation
+---------------------
+
+DataDog documentation:
