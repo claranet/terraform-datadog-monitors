@@ -32,3 +32,14 @@ Inputs
 | nginx_connect_message | Custom message for Nginx process monitor | string | `` | no |
 | nginx_connect_silenced | Groups to mute for Nginx process monitor | map | `<map>` | no |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| datadog_nginx_process_id | id for monitor datadog_nginx_process |
+
+Related documentation
+---------------------
+
+DataDog documentation:

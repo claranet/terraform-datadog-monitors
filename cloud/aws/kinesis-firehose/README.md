@@ -34,6 +34,13 @@ Inputs
 | incoming_records_timeframe | Monitor timeframe for incoming records metrics evaluation [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| firehose_incoming_records_id | id for monitor firehose_incoming_records |
+
 Related documentation
 ---------------------
 

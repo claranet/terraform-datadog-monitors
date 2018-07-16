@@ -84,3 +84,14 @@ Inputs
 | mongodb_replicaset_time_aggregator | Monitor aggregator for Mongodb replicaset [available values: min, max or avg] | string | `max` | no |
 | mongodb_replicaset_timeframe | Monitor timeframe for Mongodb replicaset [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
+Outputs
+-------
+
+| Name | Description |
+|------|-------------|
+| mongodb_replicaset_state_id | id for monitor mongodb_replicaset_state |
+
+Related documentation
+---------------------
+
+DataDog documentation:
