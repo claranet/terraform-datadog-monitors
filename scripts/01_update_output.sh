@@ -1,18 +1,13 @@
 #!/bin/bash
-set -xeo pipefail
+set -xueo pipefail
 
-script_dir=$(dirname $0)
-if [[ "$script_dir" == "." ]]; then
-  cd ..
-else
-  cd "$(dirname $script_dir)"
-fi
+source "$(dirname $0)/utils.sh"
+goto_root
 
-for file in $(find . -path ./incubator -prune -o -name 'monitors-*.tf' -print); do
-    cd $(dirname $file)
-    echo $file
+for path in $(find . -path ./incubator -prune -o -name 'monitors-*.tf' -print); do
+    cd $(dirname $path)
     > outputs.tf
-    for monitor in $(grep 'resource "datadog_monitor"' $(basename $file) | awk '{print $3}' | tr -d '"' ); do
+    for monitor in $(grep 'resource "datadog_monitor"' $(basename $path) | awk '{print $3}' | tr -d '"' ); do
         echo $monitor
         cat <<EOF >> outputs.tf
 output "${monitor}_id" {
