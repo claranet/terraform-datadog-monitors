@@ -1,26 +1,24 @@
-Apache Middleware DataDog monitors
-==================================
+# MIDDLEWARE APACHE DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-apache-middleware" {
+module "datadog-monitors-middleware-apache" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//middleware/apache?ref={revision}"
 
-  message     = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Purpose
--------
-Creates a DataDog monitors with the following checks :
+## Purpose
 
-* Apache connect
+Creates DataDog monitors with the following checks :
 
-Inputs
-------
+- Can't connect to apache vhost status
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -32,14 +30,12 @@ Inputs
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
 | datadog_apache_process_id | id for monitor datadog_apache_process |
 
-Related documentation
----------------------
+## Related documentation
 
-DataDog documentation:
+DataDog documentation: [https://docs.datadoghq.com/integrations/apache/](https://docs.datadoghq.com/integrations/apache/)

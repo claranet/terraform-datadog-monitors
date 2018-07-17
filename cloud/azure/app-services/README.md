@@ -1,30 +1,28 @@
-Azure AppServices (Web, API, Functions) DataDog monitors
-========================================================
+# CLOUD AZURE APP-SERVICES DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-azure-app-services" {
+module "datadog-monitors-cloud-azure-app-services" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/app-services?ref={revision}"
 
-  message     = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Purpose
--------
-Creates a DataDog monitors with the following checks :
+## Purpose
 
-* Response time
-* Memory usage count
-* HTTP 5xx requests
-* HTTP 4xx requests
-* HTTP 2xx requests
+Creates DataDog monitors with the following checks :
 
-Inputs
-------
+- App Services response time too high
+- App Services memory usage
+- App Services HTTP 5xx errors too high
+- App Services HTTP 4xx errors too high
+- App Services HTTP successful responses too low
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -61,8 +59,7 @@ Inputs
 | response_time_time_aggregator | Monitor aggregator for App Services response time [available values: min, max or avg] | string | `min` | no |
 | response_time_timeframe | Monitor timeframe for App Services response time [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
@@ -72,7 +69,6 @@ Outputs
 | appservices_memory_usage_count_id | id for monitor appservices_memory_usage_count |
 | appservices_response_time_id | id for monitor appservices_response_time |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_app_services](https://docs.datadoghq.com/integrations/azure_app_services)

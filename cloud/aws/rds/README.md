@@ -1,27 +1,25 @@
-AWS RDS Instance DataDog monitors
-=================================
+# CLOUD AWS RDS DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-aws-rds" {
+module "datadog-monitors-cloud-aws-rds" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/aws/rds?ref={revision}"
 
-  message     = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Purpose
--------
-Creates a DataDog monitors with the following checks :
+## Purpose
 
-* CPU High
-* Free disk space low
+Creates DataDog monitors with the following checks :
 
-Inputs
-------
+- RDS instance CPU high
+- RDS instance free space
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -43,16 +41,14 @@ Inputs
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
 | rds_cpu_90_15min_id | id for monitor rds_cpu_90_15min |
 | rds_free_space_low_id | id for monitor rds_free_space_low |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_rds/](https://docs.datadoghq.com/integrations/amazon_rds/)
 
