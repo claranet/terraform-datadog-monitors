@@ -53,8 +53,9 @@ Creates DataDog monitors with the following checks :
 EOF
     SAVEIFS=$IFS
     IFS=$(echo -en "\n\b")
-    for match in $(grep name $(basename ${path})); do
-        echo "- $(get_name "${match}")" >> README.md
+    for match in $(grep -E ^[[:space:]]+name[[:space:]]+= $(basename ${path})); do
+        name=$(get_name "${match}")
+        echo "- $name" >> README.md
     done
     IFS=$SAVEIFS
     terraform-docs md ./ >> README.md
