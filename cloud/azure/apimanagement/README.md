@@ -1,29 +1,28 @@
-Azure API Management Datadog monitors
-=====================================
+# CLOUD AZURE APIMANAGEMENT DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
+
 ```
-module "datadog-monitors-azure-apimanagement" {
+module "datadog-monitors-cloud-azure-apimanagement" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/apimanagement?ref={revision}"
 
-  message     = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Purpose
--------
-Creates Datadog monitors with the following checks :
+## Purpose
 
-* Service status
-* Failed requests ratio
-* Other requests ratio
-* Unauthorized requests ratio
-* Successful requests ratio
+Creates DataDog monitors with the following checks :
 
-Inputs
-------
+- API Management is down
+- API Management too many failed requests
+- API Management too many other requests
+- API Management too many unauthorized requests
+- API Management successful requests rate too low
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -57,8 +56,7 @@ Inputs
 | unauthorized_requests_threshold_warning | Warning regarding acceptable percent of unauthorized requests | string | `50` | no |
 | unauthorized_requests_timeframe | Monitor timeframe for API Management unauthorized requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
@@ -68,7 +66,6 @@ Outputs
 | apimgt_successful_requests_id | id for monitor apimgt_successful_requests |
 | apimgt_unauthorized_requests_id | id for monitor apimgt_unauthorized_requests |
 
-Related documentation
----------------------
+## Related documentation
 
 Azure API Management metrics documentation: [https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-use-azure-monitor](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-use-azure-monitor)

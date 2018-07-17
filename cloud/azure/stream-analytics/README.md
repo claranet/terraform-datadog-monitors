@@ -1,20 +1,28 @@
-Azure Stream Analytics DataDog monitors
-=======================================
+# CLOUD AZURE STREAM-ANALYTICS DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-azure-redis" {
+module "datadog-monitors-cloud-azure-stream-analytics" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/stream-analytics?ref={revision}"
 
-  message = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Inputs
-------
+## Purpose
+
+Creates DataDog monitors with the following checks :
+
+- Stream Analytics is down
+- Stream Analytics streaming units utilization too high
+- Stream Analytics too many failed requests
+- Stream Analytics too many conversion errors
+- Stream Analytics too many runtime errors
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -51,8 +59,7 @@ Inputs
 | su_utilization_time_aggregator | Monitor aggregator for Stream Analytics utilization [available values: min, max or avg] | string | `min` | no |
 | su_utilization_timeframe | Monitor timeframe for Stream Analytics utilization [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
@@ -62,7 +69,6 @@ Outputs
 | status_id | id for monitor status |
 | su_utilization_id | id for monitor su_utilization |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)

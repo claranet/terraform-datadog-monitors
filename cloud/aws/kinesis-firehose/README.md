@@ -1,27 +1,24 @@
-AWS Kinesis Firehose DataDog monitors
-==========================================
+# CLOUD AWS KINESIS-FIREHOSE DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-aws-firehose" {
+module "datadog-monitors-cloud-aws-kinesis-firehose" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/aws/kinesis-firehose?ref={revision}"
 
-  message = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message = "${module.datadog-message-alerting.alerting-message}"
 }
 
 ```
 
-Purpose
--------
+## Purpose
+
 Creates DataDog monitors with the following checks :
 
-* No incoming record
+- Kinesis Firehose No incoming records
 
-Inputs
-------
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -34,15 +31,13 @@ Inputs
 | incoming_records_timeframe | Monitor timeframe for incoming records metrics evaluation [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
 | firehose_incoming_records_id | id for monitor firehose_incoming_records |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_firehose/](https://docs.datadoghq.com/integrations/amazon_firehose/)
 

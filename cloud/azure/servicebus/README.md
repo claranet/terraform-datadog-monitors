@@ -1,26 +1,24 @@
-Service Bus Datadog monitor
-===========================
+# CLOUD AZURE SERVICEBUS DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-azure-servicebus" {
+module "datadog-monitors-cloud-azure-servicebus" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/servicebus?ref={revision}"
 
-  message = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Purpose
--------
-Creates a Datadog monitor with the following checks :
+## Purpose
 
-* Service status check
+Creates DataDog monitors with the following checks :
 
-Inputs
-------
+- Service Bus is down
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -34,15 +32,13 @@ Inputs
 | status_time_aggregator | Monitor aggregator for Service Bus status [available values: min, max or avg] | string | `max` | no |
 | status_timeframe | Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
 | servicebus_status_id | id for monitor servicebus_status |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation : [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)  
 You must search `servicebus`, there is no integration for now.

@@ -1,28 +1,26 @@
-Event Hub Datadog monitor
-=========================
+# CLOUD AZURE EVENTHUB DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-azure-eventhub" {
+module "datadog-monitors-cloud-azure-eventhub" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/eventhub?ref={revision}"
 
-  message = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Purpose
--------
-Creates a Datadog monitor with the following checks :
+## Purpose
 
-* Service status check
-* Failed request ratio
-* Erroneous requests ratio
+Creates DataDog monitors with the following checks :
 
-Inputs
-------
+- Event Hub is down
+- Event Hub too many failed requests
+- Event Hub too many errors
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -46,8 +44,7 @@ Inputs
 | status_time_aggregator | Monitor aggregator for Event Hub status [available values: min, max or avg] | string | `max` | no |
 | status_timeframe | Monitor timeframe for Event Hub status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
@@ -55,8 +52,7 @@ Outputs
 | eventhub_failed_requests_id | id for monitor eventhub_failed_requests |
 | eventhub_status_id | id for monitor eventhub_status |
 
-Related documentation
----------------------
+## Related documentation
 
 Datadog documentation : [https://docs.datadoghq.com/integrations/azure_event_hub/](https://docs.datadoghq.com/integrations/azure_event_hub/)
 
