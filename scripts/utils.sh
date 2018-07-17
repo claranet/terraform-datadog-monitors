@@ -18,11 +18,12 @@ function get_name {
     if [[ "${1}" =~ ${regex} ]]; then 
         name="${BASH_REMATCH[1]}"
     else
+        echo "Error: impossible to parse monitor name"
         return 42
     fi
     if [[ "${name}" =~ ^(.*)[[:space:]]\{\{#is_alert\}\}.*$ ]]; then
-        echo "${BASH_REMATCH[1]}"
-    else
-        echo $name
+        name="${BASH_REMATCH[1]}"
     fi
+    echo $name
+    return 0
 }
