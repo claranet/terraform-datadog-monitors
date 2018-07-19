@@ -7,7 +7,7 @@ module "datadog-monitors-cloud-azure-storage" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/storage?ref={revision}"
 
   environment = "${var.environment}"
-  message = "${module.datadog-message-alerting.alerting-message}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
 
 ```
