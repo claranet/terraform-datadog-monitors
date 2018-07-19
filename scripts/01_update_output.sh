@@ -14,7 +14,7 @@ for path in $(find $TO_PARSE -path ./incubator -prune -o -name 'monitors-*.tf' -
     > outputs.tf
     for monitor in $(grep 'resource "datadog_monitor"' $(basename $path) | awk '{print $3}' | tr -d '"' ); do
         echo $monitor
-        cat <<EOF >> outputs.tf
+        cat >> outputs.tf <<EOF
 output "${monitor}_id" {
   description = "id for monitor $monitor"
   value       = "\${datadog_monitor.${monitor}.id}"

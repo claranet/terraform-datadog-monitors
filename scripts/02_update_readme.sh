@@ -46,7 +46,7 @@ module "datadog-monitors-${module_dash}" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//${module_slash}?ref={revision}"
 
   environment = "\${var.environment}"
-  message = "\${module.datadog-message-alerting.alerting-message}"
+  message     = "\${module.datadog-message-alerting.alerting-message}"
 }
 
 \`\`\`
