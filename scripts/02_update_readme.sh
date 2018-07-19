@@ -4,6 +4,11 @@ set -xueo pipefail
 source "$(dirname $0)/utils.sh"
 goto_root
 
+TO_PARSE="."
+if [ ! -z ${1+x} ]; then
+    TO_PARSE="$1"
+fi
+
 sed -i '/### Monitors summary ###/q' README.md
 echo >> README.md
 for path in $(find -mindepth 1 \( -path './incubator' -o -path './scripts' -o -path './testing'  -o -path '*/\.*' \) -prune -o -type d -print | sort); do
@@ -20,7 +25,7 @@ done
 
 PATTERN_DOC="Related documentation"
 
-for path in $(find . -path ./incubator -prune -o -name 'monitors-*.tf' -print); do
+for path in $(find $TO_PARSE -path ./incubator -prune -o -name 'monitors-*.tf' -print); do
     cd $(dirname $path)
     EXIST=0
     if [ -f README.md ]; then
