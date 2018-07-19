@@ -14,7 +14,7 @@ module "datadog-monitors-databases-mongodb" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - Member down in the replica set
 

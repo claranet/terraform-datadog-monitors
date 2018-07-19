@@ -14,7 +14,7 @@ module "datadog-monitors-cloud-azure-sql-database" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - SQL Database CPU too high
 - SQL Database low free space

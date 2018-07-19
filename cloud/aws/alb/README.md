@@ -14,7 +14,7 @@ module "datadog-monitors-cloud-aws-alb" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - ALB no healthy instances
 - ALB latency

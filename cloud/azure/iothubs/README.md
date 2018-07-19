@@ -14,7 +14,7 @@ module "datadog-monitors-cloud-azure-iothubs" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - IOT Hub Too many jobs failed
 - IOT Hub Too many list_jobs failure

@@ -14,7 +14,7 @@ module "datadog-monitors-cloud-azure-storage" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - Azure Storage is down
 - Azure Storage too few successful requests

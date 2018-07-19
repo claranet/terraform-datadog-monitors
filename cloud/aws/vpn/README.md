@@ -14,7 +14,7 @@ module "datadog-monitors-cloud-aws-vpn" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - VPN Down
 

@@ -14,7 +14,7 @@ module "datadog-monitors-middleware-nginx" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - Can't connect to nginx vhost status
 
