@@ -15,7 +15,7 @@ function list_dirs {
 
 function get_name {
     regex='^[[:space:]]+name[[:space:]]+=[[:space:]]+"\[.*\][[:space:]]+(.*)"$'
-    if [[ "${1}" =~ ${regex} ]]; then 
+    if [[ "${1}" =~ ${regex} ]]; then
         name="${BASH_REMATCH[1]}"
     else
         echo "Error: impossible to parse monitor name"
