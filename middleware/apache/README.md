@@ -14,7 +14,7 @@ module "datadog-monitors-middleware-apache" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - Can't connect to apache vhost status
 

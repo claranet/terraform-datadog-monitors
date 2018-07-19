@@ -14,7 +14,7 @@ module "datadog-monitors-cloud-azure-app-services" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - App Services response time too high
 - App Services memory usage

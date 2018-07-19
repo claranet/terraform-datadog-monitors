@@ -14,7 +14,7 @@ module "datadog-monitors-middleware-php-fpm" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - php_fpm busy worker
 - Can't connect to php-fpm

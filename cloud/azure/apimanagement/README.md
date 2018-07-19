@@ -14,7 +14,7 @@ module "datadog-monitors-cloud-azure-apimanagement" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - API Management is down
 - API Management too many failed requests

@@ -14,7 +14,7 @@ module "datadog-monitors-cloud-aws-elb" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - ELB no healthy instances
 - ELB 4xx errors too high

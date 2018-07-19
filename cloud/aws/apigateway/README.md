@@ -14,7 +14,7 @@ module "datadog-monitors-cloud-aws-apigateway" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - API Gateway latency
 - API Gateway HTTP 5xx errors

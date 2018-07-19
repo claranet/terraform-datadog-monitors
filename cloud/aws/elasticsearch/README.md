@@ -14,7 +14,7 @@ module "datadog-monitors-cloud-aws-elasticsearch" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - ElasticSearch cluster status is not green
 - ElasticSearch cluster free storage space

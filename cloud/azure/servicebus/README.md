@@ -14,7 +14,7 @@ module "datadog-monitors-cloud-azure-servicebus" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - Service Bus is down
 

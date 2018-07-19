@@ -14,7 +14,7 @@ module "datadog-monitors-system-generic" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - CPU usage
 - CPU load 5

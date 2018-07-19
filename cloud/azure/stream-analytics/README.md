@@ -14,7 +14,7 @@ module "datadog-monitors-cloud-azure-stream-analytics" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - Stream Analytics is down
 - Stream Analytics streaming units utilization too high

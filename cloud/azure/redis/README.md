@@ -14,7 +14,7 @@ module "datadog-monitors-cloud-azure-redis" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - Redis {{name}} is down
 - Redis too many evictedkeys

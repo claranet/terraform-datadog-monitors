@@ -14,7 +14,7 @@ module "datadog-monitors-cloud-aws-rds" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - RDS instance CPU high
 - RDS instance free space
