@@ -7,7 +7,7 @@ module "datadog-monitors-system-generic" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//system/generic?ref={revision}"
 
   environment = "${var.environment}"
-  message = "${module.datadog-message-alerting.alerting-message}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
 
 ```
