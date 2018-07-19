@@ -53,7 +53,7 @@ module "datadog-monitors-${module_dash}" {
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 EOF
     SAVEIFS=$IFS
