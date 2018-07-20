@@ -166,3 +166,173 @@ variable "keyspace_threshold_warning" {
   description = "Keyspace changement (warning threshold)"
   default     = 70
 }
+
+variable "mem_used_silenced" {
+  description = "Groups to mute for Redis RAM memory used monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "mem_used_message" {
+  description = "Custom message for Redis RAM memory used monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "mem_used_time_aggregator" {
+  description = "Monitor aggregator for Redis RAM memory used [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "mem_used_timeframe" {
+  description = "Monitor timeframe for Redis RAM memory used [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "mem_used_threshold_critical" {
+  description = "RAM memory used limit (critical threshold)"
+  default     = 90
+}
+
+variable "mem_used_threshold_warning" {
+  description = "RAM memory used limit (warning threshold)"
+  default     = 70
+}
+
+variable "mem_frag_silenced" {
+  description = "Groups to mute for Redis memory RAM fragmentation monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "mem_frag_message" {
+  description = "Custom message for Redis memory RAM fragmentation monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "mem_frag_time_aggregator" {
+  description = "Monitor aggregator for Redis memory RAM fragmentation [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "mem_frag_timeframe" {
+  description = "Monitor timeframe for Redis memory RAM fragmentation [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "mem_frag_threshold_critical" {
+  description = "memory RAM fragmentation limit (critical threshold)"
+  default     = 90
+}
+
+variable "mem_frag_threshold_warning" {
+  description = "memory RAM fragmentation limit (warning threshold)"
+  default     = 70
+}
+
+variable "rejected_con_silenced" {
+  description = "Groups to mute for Redis rejected connections errors monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "rejected_con_message" {
+  description = "Custom message for Redis rejected connections errors monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "rejected_con_time_aggregator" {
+  description = "Monitor aggregator for Redis rejected connections errors [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "rejected_con_timeframe" {
+  description = "Monitor timeframe for Redis rejected connections errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "rejected_con_threshold_critical" {
+  description = "rejected connections errors limit (critical threshold)"
+  default     = 90
+}
+
+variable "rejected_con_threshold_warning" {
+  description = "rejected connections errors limit (warning threshold)"
+  default     = 70
+}
+
+variable "latency_silenced" {
+  description = "Groups to mute for Redis latency monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "latency_message" {
+  description = "Custom message for Redis latency monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "latency_time_aggregator" {
+  description = "Monitor aggregator for Redis latency [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "latency_timeframe" {
+  description = "Monitor timeframe for Redis latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "latency_threshold_critical" {
+  description = "latency limit (critical threshold)"
+  default     = 90
+}
+
+variable "latency_threshold_warning" {
+  description = "latency limit (warning threshold)"
+  default     = 70
+}
+
+variable "hitrate_silenced" {
+  description = "Groups to mute for Redis hitrate monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "hitrate_message" {
+  description = "Custom message for Redis hitrate monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "hitrate_time_aggregator" {
+  description = "Monitor aggregator for Redis hitrate [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "hitrate_timeframe" {
+  description = "Monitor timeframe for Redis hitrate [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "hitrate_threshold_critical" {
+  description = "hitrate limit (critical threshold)"
+  default     = 90
+}
+
+variable "hitrate_threshold_warning" {
+  description = "hitrate limit (warning threshold)"
+  default     = 70
+}
