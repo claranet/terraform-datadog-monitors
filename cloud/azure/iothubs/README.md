@@ -1,40 +1,37 @@
-Azure IOT Hubs DataDog monitors
-===============================
+# CLOUD AZURE IOTHUBS DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "iothubs" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/iothubs?ref=MON-80-azure-hub-iot-monitors"
-  
-  message     = "${module.datadog-message-alerting.alerting-message}"
+module "datadog-monitors-cloud-azure-iothubs" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/iothubs?ref={revision}"
+
   environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Purpose
--------
-Creates a DataDog monitors with the following checks :
+## Purpose
 
-* Service status check
-* Jobs failed average check
-* Query Jobs failed average check
-* List Jobs failed average check
-* Total devices count check
-* C2D methods failed average check
-* C2D twin read failed average check
-* C2D twin update failed average check
-* D2C twin read failed average check
-* D2C twin update failed average check
-* D2C telemetry egress dropped count check
-* D2C telemetry egress orphaned count check
-* D2C telemetry egress invalid count check
-* D2C telemetry egress fallback count check
-* D2C telemetry ingress no sent count check
+Creates DataDog monitors with the following checks:
 
-Inputs
-------
+- IOT Hub Too many jobs failed
+- IOT Hub Too many list_jobs failure
+- IOT Hub Too many query_jobs failed
+- IOT Hub is down
+- IOT Hub Total devices is wrong
+- IOT Hub Too many c2d methods failure
+- IOT Hub Too many c2d twin read failure
+- IOT Hub Too many c2d twin update failure
+- IOT Hub Too many d2c twin read failure
+- IOT Hub Too many d2c twin update failure
+- IOT Hub Too many d2c telemetry egress dropped
+- IOT Hub Too many d2c telemetry egress orphaned
+- IOT Hub Too many d2c telemetry egress invalid
+- IOT Hub Too many d2c telemetry ingress not sent
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -109,8 +106,7 @@ Inputs
 | total_devices_time_aggregator | Monitor aggregator for IoT Hub total devices [available values: min, max, sum or avg] | string | `min` | no |
 | total_devices_timeframe | Monitor timeframe for IoT Hub total devices [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
@@ -129,8 +125,7 @@ Outputs
 | too_many_query_jobs_failed_id | id for monitor too_many_query_jobs_failed |
 | total_devices_id | id for monitor total_devices |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_iot_hub](https://docs.datadoghq.com/integrations/azure_iot_hub)
 

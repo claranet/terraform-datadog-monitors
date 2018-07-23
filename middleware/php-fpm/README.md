@@ -1,27 +1,25 @@
-PHP FPM Middleware DataDog monitors
-===================================
+# MIDDLEWARE PHP-FPM DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-php-fpm-middleware" {
+module "datadog-monitors-middleware-php-fpm" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//middleware/php-fpm?ref={revision}"
 
-  message     = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Purpose
--------
-Creates a DataDog monitors with the following checks :
+## Purpose
 
-* PHP FPM connect
-* PHP FPM load
+Creates DataDog monitors with the following checks:
 
-Inputs
-------
+- php_fpm busy worker
+- Can't connect to php-fpm
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -39,15 +37,13 @@ Inputs
 | php_fpm_connect_message | Custom message for PHP FPM process monitor | string | `` | no |
 | php_fpm_connect_silenced | Groups to mute for PHP FPM process monitor | map | `<map>` | no |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
 | datadog_fpm_process_id | id for monitor datadog_fpm_process |
 | datadog_php_fpm_connect_idle_id | id for monitor datadog_php_fpm_connect_idle |
 
-Related documentation
----------------------
+## Related documentation
 
-DataDog documentation:
+DataDog documentation: [https://docs.datadoghq.com/integrations/php_fpm/](https://docs.datadoghq.com/integrations/php_fpm/)

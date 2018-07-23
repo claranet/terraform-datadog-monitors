@@ -1,30 +1,28 @@
-System Generic DataDog monitors
-===============================
+# SYSTEM GENERIC DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
 module "datadog-monitors-system-generic" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//system/generic?ref={revision}"
 
-  message     = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Purpose
--------
-Creates a DataDog monitors with the following checks :
+## Purpose
 
-* CPU usage
-* CPU load ratio
-* Free memory
-* Free disk inodes
-* Free disk space
+Creates DataDog monitors with the following checks:
 
-Inputs
-------
+- CPU usage
+- CPU load 5
+- Free disk space
+- Free disk inodes
+- Free memory
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -64,8 +62,7 @@ Inputs
 | free_memory_timeframe | Monitor timeframe for Free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
@@ -75,7 +72,6 @@ Outputs
 | datadog_free_memory_id | id for monitor datadog_free_memory |
 | datadog_load_too_high_id | id for monitor datadog_load_too_high |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation:

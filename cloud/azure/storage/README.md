@@ -1,34 +1,32 @@
-Azure Storage DataDog monitors
-==============================
+# CLOUD AZURE STORAGE DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-azure-storage" {
+module "datadog-monitors-cloud-azure-storage" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/storage?ref={revision}"
 
-  message = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Purpose
--------
-Creates a DataDog monitors with the following checks :
+## Purpose
 
-* Service availability
-* End to end latency
-* Minimum successful requests
-* Maximum timeout error requests
-* Maximum network error requests
-* Maximum throttling error requests
-* Maximum server other error requests
-* Maximum client other error requests
-* Maximum authorization error requests
+Creates DataDog monitors with the following checks:
 
-Inputs
-------
+- Azure Storage is down
+- Azure Storage too few successful requests
+- Azure Storage too high end to end latency
+- Azure Storage too many timeout errors
+- Azure Storage too many network errors
+- Azure Storage too many throttling errors
+- Azure Storage too many server_other errors
+- Azure Storage too many client_other errors
+- Azure Storage too many authorization errors
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -92,8 +90,7 @@ Inputs
 | timeout_error_requests_time_aggregator | Monitor aggregator for Storage timeout [available values: min, max or avg] | string | `min` | no |
 | timeout_error_requests_timeframe | Monitor timeframe for Storage timeout [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
@@ -107,8 +104,7 @@ Outputs
 | throttling_error_requests_id | id for monitor throttling_error_requests |
 | timeout_error_requests_id | id for monitor timeout_error_requests |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_storage/](https://docs.datadoghq.com/integrations/azure_storage/)
 
