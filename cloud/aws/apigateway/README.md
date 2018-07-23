@@ -7,14 +7,14 @@ module "datadog-monitors-cloud-aws-apigateway" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/aws/apigateway?ref={revision}"
 
   environment = "${var.environment}"
-  message = "${module.datadog-message-alerting.alerting-message}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
 
 ```
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - API Gateway latency
 - API Gateway HTTP 5xx errors
