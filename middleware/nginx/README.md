@@ -1,26 +1,24 @@
-Nginx Middleware DataDog monitors
-=================================
+# MIDDLEWARE NGINX DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-nginx-middleware" {
+module "datadog-monitors-middleware-nginx" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//middleware/nginx?ref={revision}"
 
-  message     = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Purpose
--------
-Creates a DataDog monitors with the following checks :
+## Purpose
 
-* Nginx connect
+Creates DataDog monitors with the following checks:
 
-Inputs
-------
+- Can't connect to nginx vhost status
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -32,14 +30,12 @@ Inputs
 | nginx_connect_message | Custom message for Nginx process monitor | string | `` | no |
 | nginx_connect_silenced | Groups to mute for Nginx process monitor | map | `<map>` | no |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
 | datadog_nginx_process_id | id for monitor datadog_nginx_process |
 
-Related documentation
----------------------
+## Related documentation
 
-DataDog documentation:
+DataDog documentation: [https://docs.datadoghq.com/integrations/nginx/](https://docs.datadoghq.com/integrations/nginx/)

@@ -1,32 +1,29 @@
-AWS ELB DataDog monitors
-========================
+# CLOUD AWS ELB DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-aws-elb" {
+module "datadog-monitors-cloud-aws-elb" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/aws/elb?ref={revision}"
 
   environment = "${var.environment}"
-  message = "${module.datadog-message-alerting.alerting-message}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
 
 ```
 
-Purpose
--------
-Creates DataDog monitors with the following checks :
+## Purpose
 
-* ELB no healthy hosts
-* ELB latency too high
-* ELB http code 4xx percent to high
-* ELB http code 5xx percent to high
-* ELB backend http code 4xx percent to high
-* ELB backend http code 5xx percent to high
+Creates DataDog monitors with the following checks:
 
-Inputs
-------
+- ELB no healthy instances
+- ELB 4xx errors too high
+- ELB 5xx errors too high
+- ELB backend 4xx errors too high
+- ELB backend 5xx errors too high
+- ELB latency too high
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -67,8 +64,7 @@ Inputs
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
@@ -79,7 +75,8 @@ Outputs
 | ELB_too_much_5xx_backend_id | id for monitor ELB_too_much_5xx_backend |
 | ELB_too_much_5xx_id | id for monitor ELB_too_much_5xx |
 
-Related documentation
----------------------
+## Related documentation
 
-DataDog documentation:
+DataDog blog: [https://www.datadoghq.com/blog/monitor-application-load-balancer/](https://www.datadoghq.com/blog/monitor-application-load-balancer/)
+
+AWS ELB metrics documentation: [https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-cloudwatch-metrics.html](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-cloudwatch-metrics.html)
