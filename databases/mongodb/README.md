@@ -7,14 +7,14 @@ module "datadog-monitors-databases-mongodb" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//databases/mongodb?ref={revision}"
 
   environment = "${var.environment}"
-  message = "${module.datadog-message-alerting.alerting-message}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
 
 ```
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 - Member down in the replica set
 
