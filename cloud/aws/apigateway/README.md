@@ -1,29 +1,26 @@
-AWS API Gateway DataDog monitors
-==========================================
+# CLOUD AWS APIGATEWAY DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-aws-api-gateway" {
+module "datadog-monitors-cloud-aws-apigateway" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/aws/apigateway?ref={revision}"
 
   environment = "${var.environment}"
-  message = "${module.datadog-message-alerting.alerting-message}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
 
 ```
 
-Purpose
--------
-Creates DataDog monitors with the following checks :
+## Purpose
 
-* API Gateway too much 5xx errors
-* API Gateway too much 4xx errors
-* API Gateway latency to high
+Creates DataDog monitors with the following checks:
 
-Inputs
-------
+- API Gateway latency
+- API Gateway HTTP 5xx errors
+- API Gateway HTTP 4xx errors
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -49,8 +46,7 @@ Inputs
 | latency_timeframe | Monitor timeframe for API latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
@@ -58,8 +54,7 @@ Outputs
 | API_http_4xx_errors_count_id | id for monitor API_http_4xx_errors_count |
 | API_http_5xx_errors_count_id | id for monitor API_http_5xx_errors_count |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_api_gateway/](https://docs.datadoghq.com/integrations/amazon_api_gateway/)
 

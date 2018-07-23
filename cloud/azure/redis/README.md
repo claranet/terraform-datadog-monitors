@@ -1,29 +1,27 @@
-Azure Redis DataDog monitors
-============================
+# CLOUD AZURE REDIS DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-azure-redis" {
+module "datadog-monitors-cloud-azure-redis" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/redis?ref={revision}"
 
-  message     = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Purpose
--------
-Creates a DataDog monitors with the following checks :
+## Purpose
 
-* Service status check
-* Evicted keys count check
-* Processor time (percent) threshold
-* Server CPU load threshold
+Creates DataDog monitors with the following checks:
 
-Inputs
-------
+- Redis {{name}} is down
+- Redis too many evictedkeys
+- Redis processor time too high
+- Redis server load too high
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -55,8 +53,7 @@ Inputs
 | status_time_aggregator | Monitor aggregator for Redis status [available values: min, max or avg] | string | `max` | no |
 | status_timeframe | Monitor timeframe for Redis status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
@@ -65,8 +62,7 @@ Outputs
 | server_load_id | id for monitor server_load |
 | status_id | id for monitor status |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_redis_cache/](https://docs.datadoghq.com/integrations/azure_redis_cache/)
 

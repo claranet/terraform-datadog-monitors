@@ -1,32 +1,29 @@
-AWS ALB DataDog monitors
-==========================================
+# CLOUD AWS ALB DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-aws-alb" {
+module "datadog-monitors-cloud-aws-alb" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/aws/alb?ref={revision}"
 
   environment = "${var.environment}"
-  message = "${module.datadog-message-alerting.alerting-message}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
 
 ```
 
-Purpose
--------
-Creates DataDog monitors with the following checks :
+## Purpose
 
-* ALB no healthy hosts
-* ALB latency too high
-* ALB http code 5xx percent to high
-* ALB http code 4xx percent to high
-* ALB target http code 5xx percent to high
-* ALB target http code 4xx percent to high
+Creates DataDog monitors with the following checks:
 
-Inputs
-------
+- ALB no healthy instances
+- ALB latency
+- ALB HTTP code 5xx
+- ALB HTTP code 4xx
+- ALB target HTTP code 5xx
+- ALB target HTTP code 4xx
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -67,8 +64,7 @@ Inputs
 | latency_timeframe | Monitor timeframe for ALB latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
@@ -79,8 +75,7 @@ Outputs
 | ALB_latency_id | id for monitor ALB_latency |
 | ALB_no_healthy_instances_id | id for monitor ALB_no_healthy_instances |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog blog: [https://www.datadoghq.com/blog/monitor-application-load-balancer/](https://www.datadoghq.com/blog/monitor-application-load-balancer/)
 

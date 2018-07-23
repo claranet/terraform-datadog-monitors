@@ -1,31 +1,26 @@
-AWS ElasticSearch Service DataDog monitors
-==========================================
+# CLOUD AWS ELASTICSEARCH DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-aws-elasticsearch" {
+module "datadog-monitors-cloud-aws-elasticsearch" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/aws/elasticsearch?ref={revision}"
 
-  message = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
-
-  es_cluster_volume_size = "100"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
 
 ```
 
-Purpose
--------
-Creates DataDog monitors with the following checks :
+## Purpose
 
-* Cluster status not green
-* Free disk space low
-* CPU High
+Creates DataDog monitors with the following checks:
 
-Inputs
-------
+- ElasticSearch cluster status is not green
+- ElasticSearch cluster free storage space
+- ElasticSearch cluster CPU high
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -51,8 +46,7 @@ Inputs
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
@@ -60,8 +54,7 @@ Outputs
 | es_cpu_90_15min_id | id for monitor es_cpu_90_15min |
 | es_free_space_low_id | id for monitor es_free_space_low |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_es/](https://docs.datadoghq.com/integrations/amazon_es/)
 

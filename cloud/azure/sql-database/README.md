@@ -1,29 +1,27 @@
-Azure SQL Database DataDog monitors
-===================================
+# CLOUD AZURE SQL-DATABASE DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-azure-storage" {
+module "datadog-monitors-cloud-azure-sql-database" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/sql-database?ref={revision}"
 
-  message     = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Purpose
--------
-Creates a DataDog monitors with the following checks :
+## Purpose
 
-* CPU High
-* Free disk space low
-* DTU Consumption high
-* SQL deadlocks
+Creates DataDog monitors with the following checks:
 
-Inputs
-------
+- SQL Database CPU too high
+- SQL Database low free space
+- SQL Database DTU Consumption too high
+- SQL Database Deadlocks too high
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -55,8 +53,7 @@ Inputs
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
@@ -65,8 +62,7 @@ Outputs
 | sql-database_dtu_consumption_high_id | id for monitor sql-database_dtu_consumption_high |
 | sql-database_free_space_low_id | id for monitor sql-database_free_space_low |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_sql_database/](https://docs.datadoghq.com/integrations/azure_sql_database/)
 
