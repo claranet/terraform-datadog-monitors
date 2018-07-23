@@ -20,7 +20,7 @@ done
 
 PATTERN_DOC="Related documentation"
 
-for path in $(find . -path ./incubator -prune -o -name 'monitors-*.tf' -print); do
+for path in $(find "$(get_scope $1)" -path ./incubator -prune -o -name 'monitors-*.tf' -print); do
     cd $(dirname $path)
     EXIST=0
     if [ -f README.md ]; then
@@ -41,14 +41,14 @@ module "datadog-monitors-${module_dash}" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//${module_slash}?ref={revision}"
 
   environment = "\${var.environment}"
-  message = "\${module.datadog-message-alerting.alerting-message}"
+  message     = "\${module.datadog-message-alerting.alerting-message}"
 }
 
 \`\`\`
 
 ## Purpose
 
-Creates DataDog monitors with the following checks :
+Creates DataDog monitors with the following checks:
 
 EOF
     SAVEIFS=$IFS

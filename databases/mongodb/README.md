@@ -1,12 +1,50 @@
-AWS MongoDB Service DataDog monitors
-==========================================
+# DATABASES MONGODB DataDog monitors
 
-Link to integration documentation :
+## How to use this module
 
-[https://docs.datadoghq.com/integrations/mongo/](https://docs.datadoghq.com/integrations/mongo/)
+```
+module "datadog-monitors-databases-mongodb" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//databases/mongodb?ref={revision}"
 
+  environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
+}
 
-**Prepare your ReplicaSet** :
+```
+
+## Purpose
+
+Creates DataDog monitors with the following checks:
+
+- Member down in the replica set
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| delay | Delay in seconds for the metric evaluation | string | `15` | no |
+| environment | Architecture Environment | string | - | yes |
+| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
+| message | Message sent when an alert is triggered | string | - | yes |
+| mongodb_replicaset_message | Custom message for Mongodb replicaset monitor | string | `` | no |
+| mongodb_replicaset_silenced | Groups to mute for Mongodb replicaset monitor | map | `<map>` | no |
+| mongodb_replicaset_time_aggregator | Monitor aggregator for Mongodb replicaset [available values: min, max or avg] | string | `max` | no |
+| mongodb_replicaset_timeframe | Monitor timeframe for Mongodb replicaset [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| mongodb_replicaset_state_id | id for monitor mongodb_replicaset_state |
+
+## Related documentation
+
+DataDog documentation: [https://docs.datadoghq.com/integrations/mongo/](https://docs.datadoghq.com/integrations/mongo/)
+
+## Custom settings
+
+### Prepare your ReplicaSet
 
 Add a user to your ReplicaSet (on the primary instance)
 
@@ -17,7 +55,7 @@ db.auth("admin", "admin-password") ## This is optional is you don't have any adm
 db.createUser({"user":"datadog", "pwd": "{{PASSWORD}}", "roles" : [ {role: 'read', db: 'admin' }, {role: 'clusterMonitor', db: 'admin'}, {role: 'read', db: 'local' }]})
 ```
 
-**Configure your Datadog agent**
+### Configure your Datadog agent
 
 Add this file conf.d/mongo.yaml
 
@@ -36,7 +74,7 @@ instances:
               - mytag2
 ```
 
-**Monitor ReplicaSet Health**
+### Monitor ReplicaSet Health
 
 Name: [environment] Replica Set heath for {{ replset_name }}
 
@@ -49,49 +87,3 @@ Metrics are :
 
 This monitor will trigger an alert for each ReplicaSet.
 
-
-How to use this module
-----------------------
-
-```
-module "datadog-monitors-aws-mongodb" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//databases/mongodb?ref={revision}"
-
-  message     = "${module.datadog-message-alerting.alerting-message}"
-  environment = "${var.environment}"
-
-}
-```
-
-Purpose
--------
-
-Creates a DataDog monitors with the following checks : 
-* Mongodb ReplicaSet status
-
-Inputs
-------
-
-| Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| delay | Delay in seconds for the metric evaluation | string | `15` | no |
-| environment | Architecture Environment | string | - | yes |
-| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
-| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
-| message | Message sent when an alert is triggered | string | - | yes |
-| mongodb_replicaset_message | Custom message for Mongodb replicaset monitor | string | `` | no |
-| mongodb_replicaset_silenced | Groups to mute for Mongodb replicaset monitor | map | `<map>` | no |
-| mongodb_replicaset_time_aggregator | Monitor aggregator for Mongodb replicaset [available values: min, max or avg] | string | `max` | no |
-| mongodb_replicaset_timeframe | Monitor timeframe for Mongodb replicaset [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-
-Outputs
--------
-
-| Name | Description |
-|------|-------------|
-| mongodb_replicaset_state_id | id for monitor mongodb_replicaset_state |
-
-Related documentation
----------------------
-
-DataDog documentation:

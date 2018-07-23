@@ -1,26 +1,24 @@
-AWS VPN DataDog monitors
-===============================
+# CLOUD AWS VPN DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "vpn" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/aws/vpn?ref=MON-91-added-aws-vpn-state-check"
-  
-  environment        = "${var.environment}"
-  message            = "${module.datadog-message-alerting.alerting-message}"
+module "datadog-monitors-cloud-aws-vpn" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/aws/vpn?ref={revision}"
+
+  environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Purpose
--------
-Creates a DataDog monitors with the following checks :
+## Purpose
 
-* VPN status
+Creates DataDog monitors with the following checks:
 
-Inputs
-------
+- VPN Down
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -34,17 +32,14 @@ Inputs
 | vpn_status_time_aggregator | Monitor aggregator for VPN status [available values: min, max or avg] | string | `max` | no |
 | vpn_status_timeframe | Monitor timeframe for VPN status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
 | VPN_status_id | id for monitor VPN_status |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation: [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/vpn-metricscollected.html](https://docs.datadoghq.com/integrations/amazon_web_services/)
 
 AWS VPN metrics documentation: [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/vpn-metricscollected.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/vpn-metricscollected.html)
-
