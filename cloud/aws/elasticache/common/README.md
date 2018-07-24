@@ -1,43 +1,29 @@
-AWS ElastiCache Service DataDog monitors
-========================================
+# CLOUD AWS ELASTICACHE COMMON DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-aws-elasticache" {
-  source = "../common"
+module "datadog-monitors-cloud-aws-elasticache-common" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/aws/elasticache/common?ref={revision}"
 
-  message = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
-  filter_tags = "${var.filter_tags}"
-  resource    = "${var.type_of_resource}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
 
 ```
 
-This module is loaded by default when you define `memcached` or `redis` monitors
+## Purpose
 
-Purpose
--------
 Creates DataDog monitors with the following checks:
 
-* Eviction
-* Eviction growing
-* Swap
-* Max connections
-* No connection
-* Free Memory
+- Elasticache ${var.resource} eviction
+- Elasticache ${var.resource} max connections reached
+- Elasticache ${var.resource} connections
+- Elasticache ${var.resource} swap
+- Elasticache ${var.resource} free memory
+- Elasticache ${var.resource} evictions is growing
 
-Related documentation
----------------------
-
-DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_elasticache/](https://docs.datadoghq.com/integrations/amazon_elasticache/)
-
-AWS ElasticSearch Service Instance metrics documentation: [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/elasticache-metricscollected.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/elasticache-metricscollected.html)
-
-Inputs
-------
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -76,3 +62,20 @@ Inputs
 | swap_threshold_warning | Elasticache swap warning threshold in percentage | string | - | yes |
 | swap_time_aggregator | Monitor aggregator for Elasticache memcached swap [available values: min, max or avg] | string | - | yes |
 | swap_timeframe | Monitor timeframe for Elasticache swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | - | yes |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| elasticache_eviction_growing_id | id for monitor elasticache_eviction_growing |
+| elasticache_eviction_id | id for monitor elasticache_eviction |
+| elasticache_free_memory_id | id for monitor elasticache_free_memory |
+| elasticache_max_connection_id | id for monitor elasticache_max_connection |
+| elasticache_no_connection_id | id for monitor elasticache_no_connection |
+| elasticache_swap_id | id for monitor elasticache_swap |
+
+Related documentation
+---------------------
+
+DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_elasticache/](https://docs.datadoghq.com/integrations/amazon_elasticache/)
+

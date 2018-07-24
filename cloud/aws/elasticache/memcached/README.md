@@ -1,51 +1,25 @@
-AWS ElastiCache Memcached Service DataDog monitors
-==================================================
+# CLOUD AWS ELASTICACHE MEMCACHED DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-aws-elasticache-redis" {
+module "datadog-monitors-cloud-aws-elasticache-memcached" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/aws/elasticache/memcached?ref={revision}"
 
-  message           = "${module.datadog-message-alerting.alerting-message}"
-  environment       = "${var.environment}"
+  environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
 
 ```
 
-Purpose
--------
-Creates DataDog monitors with the following checks :
+## Purpose
 
-Memcached specific:
+Creates DataDog monitors with the following checks:
 
-* Get Hit
-* CPU High
+- Elasticache memcached get hits
+- Elasticache memcached CPU
 
-Elasticache common:
-
-* Eviction
-* Eviction growing
-* Swap
-* Max connections
-* No connection
-* Free Memory
-
-Related documentation
----------------------
-
-DataDog documentation:
-
-* [https://docs.datadoghq.com/integrations/amazon_elasticache/](https://docs.datadoghq.com/integrations/amazon_elasticache/)
-* [https://www.datadoghq.com/blog/monitoring-elasticache-performance-metrics-with-redis-or-memcached/](https://www.datadoghq.com/blog/monitoring-elasticache-performance-metrics-with-redis-or-memcached/)
-
-
-AWS ElasticSearch Service Instance metrics documentation: [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/elasticache-metricscollected.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/elasticache-metricscollected.html)
-
-
-Inputs
-------
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -95,3 +69,20 @@ Inputs
 | swap_threshold_warning | Elasticache swap warning threshold in Bytes | string | `40000000` | no |
 | swap_time_aggregator | Monitor aggregator for Elasticache memcached swap [available values: min, max or avg] | string | `min` | no |
 | swap_timeframe | Monitor timeframe for Elasticache swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| memcached_cpu_high_id | id for monitor memcached_cpu_high |
+| memcached_get_hits_id | id for monitor memcached_get_hits |
+
+Related documentation
+---------------------
+
+DataDog documentation:
+
+* [https://docs.datadoghq.com/integrations/amazon_elasticache/](https://docs.datadoghq.com/integrations/amazon_elasticache/)
+* [https://www.datadoghq.com/blog/monitoring-elasticache-performance-metrics-with-redis-or-memcached/](https://www.datadoghq.com/blog/monitoring-elasticache-performance-metrics-with-redis-or-memcached/)
+
+

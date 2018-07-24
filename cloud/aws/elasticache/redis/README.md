@@ -1,53 +1,27 @@
-AWS ElastiCache Redis Service DataDog monitors
-==============================================
+# CLOUD AWS ELASTICACHE REDIS DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-aws-elasticache-redis" {
+module "datadog-monitors-cloud-aws-elasticache-redis" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/aws/elasticache/redis?ref={revision}"
 
-  message           = "${module.datadog-message-alerting.alerting-message}"
-  environment       = "${var.environment}"
+  environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
+## Purpose
 
-Purpose
--------
 Creates DataDog monitors with the following checks:
 
-Redis specific:
+- Elasticache redis cache hits
+- Elasticache redis CPU
+- Elasticache redis replication lag
+- Elasticache redis is receiving no commands
 
-* Cache hits
-* CPU high
-* Commands received
-* Replication lag
-
-Elasticache common:
-
-* Eviction
-* Eviction growing
-* Swap
-* Max connections
-* No connection
-* Free Memory
-
-Related documentation
----------------------
-
-DataDog documentation:
-
-* [https://docs.datadoghq.com/integrations/amazon_elasticache/](https://docs.datadoghq.com/integrations/amazon_elasticache/)
-* [https://www.datadoghq.com/dashboards/elasticache-dashboard-redis/](https://www.datadoghq.com/dashboards/elasticache-dashboard-redis/)
-* [https://www.datadoghq.com/blog/monitoring-elasticache-performance-metrics-with-redis-or-memcached/](https://www.datadoghq.com/blog/monitoring-elasticache-performance-metrics-with-redis-or-memcached/)
-
-AWS ElasticSearch Service Instance metrics documentation: [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/elasticache-metricscollected.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/elasticache-metricscollected.html)
-
-
-Inputs
-------
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -106,3 +80,19 @@ Inputs
 | swap_threshold_warning | Elasticache swap warning threshold in Bytes | string | `40000000` | no |
 | swap_time_aggregator | Monitor aggregator for Elasticache memcached swap [available values: min, max or avg] | string | `min` | no |
 | swap_timeframe | Monitor timeframe for Elasticache swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| redis_cache_hits_id | id for monitor redis_cache_hits |
+| redis_commands_id | id for monitor redis_commands |
+| redis_cpu_high_id | id for monitor redis_cpu_high |
+| redis_replication_lag_id | id for monitor redis_replication_lag |
+
+## Related documentation
+
+* [https://docs.datadoghq.com/integrations/amazon_elasticache/](https://docs.datadoghq.com/integrations/amazon_elasticache/)
+* [https://www.datadoghq.com/blog/monitoring-elasticache-performance-metrics-with-redis-or-memcached/](https://www.datadoghq.com/blog/monitoring-elasticache-performance-metrics-with-redis-or-memcached/)
+
+
