@@ -31,37 +31,37 @@ variable "redis_silenced" {
   default     = {}
 }
 
-variable "evictedkeys_limit_silenced" {
+variable "evictedkeys_change_silenced" {
   description = "Groups to mute for Redis evicted keys monitor"
   type        = "map"
   default     = {}
 }
 
-variable "evictedkeys_limit_message" {
+variable "evictedkeys_change_message" {
   description = "Custom message for Redis evicted keys monitor"
   type        = "string"
   default     = ""
 }
 
-variable "evictedkeys_limit_time_aggregator" {
+variable "evictedkeys_change_time_aggregator" {
   description = "Monitor aggregator for Redis evicted keys [available values: min, max or avg]"
   type        = "string"
   default     = "avg"
 }
 
-variable "evictedkeys_limit_timeframe" {
+variable "evictedkeys_change_timeframe" {
   description = "Monitor timeframe for Redis evicted keys [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
 }
 
-variable "evictedkeys_limit_threshold_warning" {
-  description = "Evicted keys limit (warning threshold)"
-  default     = 0
+variable "evictedkeys_change_threshold_warning" {
+  description = "Evicted keys change (warning threshold)"
+  default     = 20
 }
 
-variable "evictedkeys_limit_threshold_critical" {
-  description = "Evicted keys limit (critical threshold)"
+variable "evictedkeys_change_threshold_critical" {
+  description = "Evicted keys change (critical threshold)"
   default     = 100
 }
 
@@ -71,30 +71,30 @@ variable "expirations_silenced" {
   default     = {}
 }
 
-variable "expirations_limit_message" {
+variable "expirations_rate_message" {
   description = "Custom message for Redis keys expirations monitor"
   type        = "string"
   default     = ""
 }
 
-variable "expirations_limit_time_aggregator" {
+variable "expirations_rate_time_aggregator" {
   description = "Monitor aggregator for Redis keys expirations [available values: min, max or avg]"
   type        = "string"
   default     = "min"
 }
 
-variable "expirations_limit_timeframe" {
+variable "expirations_rate_timeframe" {
   description = "Monitor timeframe for Redis keys expirations [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
 }
 
-variable "expirations_limit_threshold_critical" {
+variable "expirations_rate_threshold_critical" {
   description = "Expirations percent (critical threshold)"
   default     = 80
 }
 
-variable "expirations_limit_threshold_warning" {
+variable "expirations_rate_threshold_warning" {
   description = "Expirations percent (warning threshold)"
   default     = 60
 }
@@ -125,18 +125,21 @@ variable "blocked_clients_timeframe" {
 
 variable "blocked_clients_threshold_critical" {
   description = "Blocked clients rate (critical threshold)"
-  default     = 90
+  default     = 30
 }
 
 variable "blocked_clients_threshold_warning" {
   description = "Blocked clients rate (warning threshold)"
-  default     = 70
+  default     = 10
 }
 
 variable "keyspace_silenced" {
   description = "Groups to mute for Redis keyspace monitor"
   type        = "map"
-  default     = {}
+
+  default = {
+    "*" = 0 # Mute all for now by default
+  }
 }
 
 variable "keyspace_message" {
@@ -158,13 +161,13 @@ variable "keyspace_timeframe" {
 }
 
 variable "keyspace_threshold_critical" {
-  description = "Keyspace changement (critical threshold)"
-  default     = 90
+  description = "Keyspace no changement (critical threshold)"
+  default     = 0
 }
 
 variable "keyspace_threshold_warning" {
-  description = "Keyspace changement (warning threshold)"
-  default     = 70
+  description = "Keyspace no changement (warning threshold)"
+  default     = 1
 }
 
 variable "mem_used_silenced" {
@@ -193,12 +196,12 @@ variable "mem_used_timeframe" {
 
 variable "mem_used_threshold_critical" {
   description = "RAM memory used limit (critical threshold)"
-  default     = 90
+  default     = 95
 }
 
 variable "mem_used_threshold_warning" {
   description = "RAM memory used limit (warning threshold)"
-  default     = 70
+  default     = 85
 }
 
 variable "mem_frag_silenced" {
@@ -227,12 +230,12 @@ variable "mem_frag_timeframe" {
 
 variable "mem_frag_threshold_critical" {
   description = "memory RAM fragmentation limit (critical threshold)"
-  default     = 90
+  default     = 130
 }
 
 variable "mem_frag_threshold_warning" {
   description = "memory RAM fragmentation limit (warning threshold)"
-  default     = 70
+  default     = 100
 }
 
 variable "rejected_con_silenced" {
@@ -261,12 +264,12 @@ variable "rejected_con_timeframe" {
 
 variable "rejected_con_threshold_critical" {
   description = "rejected connections errors limit (critical threshold)"
-  default     = 90
+  default     = 50
 }
 
 variable "rejected_con_threshold_warning" {
   description = "rejected connections errors limit (warning threshold)"
-  default     = 70
+  default     = 10
 }
 
 variable "latency_silenced" {
@@ -295,12 +298,12 @@ variable "latency_timeframe" {
 
 variable "latency_threshold_critical" {
   description = "latency limit (critical threshold)"
-  default     = 90
+  default     = 100
 }
 
 variable "latency_threshold_warning" {
   description = "latency limit (warning threshold)"
-  default     = 70
+  default     = 50
 }
 
 variable "hitrate_silenced" {
@@ -329,10 +332,10 @@ variable "hitrate_timeframe" {
 
 variable "hitrate_threshold_critical" {
   description = "hitrate limit (critical threshold)"
-  default     = 90
+  default     = 10
 }
 
 variable "hitrate_threshold_warning" {
   description = "hitrate limit (warning threshold)"
-  default     = 70
+  default     = 30
 }

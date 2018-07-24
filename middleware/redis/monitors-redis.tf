@@ -7,23 +7,23 @@ data "template_file" "filter" {
 }
 
 resource "datadog_monitor" "redis_evictedkeys" {
-  name    = "[${var.environment}] Redis too many evictedkeys {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
-  message = "${coalesce(var.evictedkeys_limit_message, var.message)}"
+  name    = "[${var.environment}] Redis suddenly too many evicted keys {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  message = "${coalesce(var.evictedkeys_change_message, var.message)}"
 
   query = <<EOL
-    ${var.evictedkeys_limit_time_aggregator}(${var.evictedkeys_limit_timeframe}): (
+    change(${var.evictedkeys_change_time_aggregator}(${var.evictedkeys_change_timeframe}),${var.evictedkeys_change_timeframe}): (
       avg:redis.keys.evicted{${data.template_file.filter.rendered}} by {name,host}
-     ) > ${var.evictedkeys_limit_threshold_critical}
+     ) > ${var.evictedkeys_change_threshold_critical}
 EOL
 
   type = "metric alert"
 
   thresholds {
-    warning  = "${var.evictedkeys_limit_threshold_warning}"
-    critical = "${var.evictedkeys_limit_threshold_critical}"
+    warning  = "${var.evictedkeys_change_threshold_warning}"
+    critical = "${var.evictedkeys_change_threshold_critical}"
   }
 
-  silenced = "${var.evictedkeys_limit_silenced}"
+  silenced = "${var.evictedkeys_change_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
@@ -40,19 +40,19 @@ EOL
 
 resource "datadog_monitor" "redis_expirations" {
   name    = "[${var.environment}] Redis too many expired keys {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
-  message = "${coalesce(var.expirations_limit_message, var.message)}"
+  message = "${coalesce(var.expirations_rate_message, var.message)}"
 
   query = <<EOL
-    ${var.expirations_limit_time_aggregator}(${var.expirations_limit_timeframe}): (
+    ${var.expirations_rate_time_aggregator}(${var.expirations_rate_timeframe}): (
       avg:redis.expires.percent{${data.template_file.filter.rendered}} by {name,host}
-     ) > ${var.expirations_limit_threshold_critical}
+     ) > ${var.expirations_rate_threshold_critical}
 EOL
 
   type = "metric alert"
 
   thresholds {
-    warning  = "${var.expirations_limit_threshold_warning}"
-    critical = "${var.expirations_limit_threshold_critical}"
+    warning  = "${var.expirations_rate_threshold_warning}"
+    critical = "${var.expirations_rate_threshold_critical}"
   }
 
   silenced = "${var.expirations_silenced}"
@@ -76,8 +76,9 @@ resource "datadog_monitor" "redis_blocked_clients" {
 
   query = <<EOL
     ${var.blocked_clients_time_aggregator}(${var.blocked_clients_timeframe}): (
-      avg:redis.clients.blocked{${data.template_file.filter.rendered}} by {name,host}
-     ) > ${var.blocked_clients_threshold_critical}
+      sum:redis.clients.blocked{${data.template_file.filter.rendered}} by {name,host}
+      / sum:redis.net.clients{${data.template_file.filter.rendered}} by {name,host}
+     ) * 100 > ${var.blocked_clients_threshold_critical}
 EOL
 
   type = "metric alert"
@@ -108,8 +109,8 @@ resource "datadog_monitor" "redis_keyspace" {
 
   query = <<EOL
     ${var.keyspace_time_aggregator}(${var.keyspace_timeframe}): (
-      avg:redis.key.length{${data.template_file.filter.rendered}} by {name,host}
-     ) > ${var.keyspace_threshold_critical}
+      abs(diff(avg:redis.keys{${data.template_file.filter.rendered}} by {name,host}))
+     ) == ${var.keyspace_threshold_critical}
 EOL
 
   type = "metric alert"
@@ -141,7 +142,8 @@ resource "datadog_monitor" "redis_mem_used" {
   query = <<EOL
     ${var.mem_used_time_aggregator}(${var.mem_used_timeframe}): (
       avg:redis.mem.used{${data.template_file.filter.rendered}} by {name,host}
-     ) > ${var.mem_used_threshold_critical}
+      / max:redis.mem.maxmemory{${data.template_file.filter.rendered}} by {name,host}
+     ) * 100 > ${var.mem_used_threshold_critical}
 EOL
 
   type = "metric alert"
@@ -173,7 +175,7 @@ resource "datadog_monitor" "redis_mem_frag" {
   query = <<EOL
     ${var.mem_frag_time_aggregator}(${var.mem_frag_timeframe}): (
       avg:redis.mem.fragmentation_ratio{${data.template_file.filter.rendered}} by {name,host}
-     ) > ${var.mem_frag_threshold_critical}
+     ) * 100 > ${var.mem_frag_threshold_critical}
 EOL
 
   type = "metric alert"
@@ -203,7 +205,7 @@ resource "datadog_monitor" "redis_rejected_con" {
   message = "${coalesce(var.rejected_con_message, var.message)}"
 
   query = <<EOL
-    pct_change(${var.rejected_con_time_aggregator}(${var.rejected_con_timeframe}),${var.rejected_con_timeframe}): (
+    change(${var.rejected_con_time_aggregator}(${var.rejected_con_timeframe}),${var.rejected_con_timeframe}): (
       avg:redis.net.rejected{${data.template_file.filter.rendered}} by {name,host}
      ) > ${var.rejected_con_threshold_critical}
 EOL
@@ -235,7 +237,7 @@ resource "datadog_monitor" "redis_latency" {
   message = "${coalesce(var.latency_message, var.message)}"
 
   query = <<EOL
-    ${var.latency_time_aggregator}(${var.latency_timeframe}): (
+    change(${var.latency_time_aggregator}(${var.latency_timeframe}),${var.latency_timeframe}): (
       avg:redis.info.latency_ms{${data.template_file.filter.rendered}} by {name,host}
      ) > ${var.latency_threshold_critical}
 EOL
@@ -268,10 +270,10 @@ resource "datadog_monitor" "redis_hitrate" {
 
   query = <<EOL
     ${var.hitrate_time_aggregator}(${var.hitrate_timeframe}): (
-      avg:redis.stats.keyspace_hits{${data.template_file.filter.rendered}} by {name,host}
-      / (avg:redis.stats.keyspace_hits{${data.template_file.filter.rendered}} by {name,host}
-        + avg:redis.stats.keyspace_misses{${data.template_file.filter.rendered}} by {name,host})
-     ) < ${var.hitrate_threshold_critical}
+      sum:redis.stats.keyspace_hits{${data.template_file.filter.rendered}} by {name,host}
+      / (sum:redis.stats.keyspace_hits{${data.template_file.filter.rendered}} by {name,host}
+        + sum:redis.stats.keyspace_misses{${data.template_file.filter.rendered}} by {name,host})
+     ) * 100 < ${var.hitrate_threshold_critical}
 EOL
 
   type = "metric alert"
