@@ -1,30 +1,28 @@
-Azure Database for MySQL servers DataDog monitors
-=================================================
+# CLOUD AZURE MYSQL DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-azure-mysql" {
+module "datadog-monitors-cloud-azure-mysql" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/mysql?ref={revision}"
 
-  message     = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Purpose
--------
-Creates a DataDog monitors with the following checks :
+## Purpose
 
-* CPU Usage
-* Memory Usage
-* Free disk space
-* No active connection
-* IO consumption
+Creates DataDog monitors with the following checks:
 
-Inputs
-------
+- Mysql Server CPU usage is high
+- Mysql Server has no connection
+- Mysql Server storage is running low
+- Mysql Server IO consumption is high
+- Mysql Server memory usage is high
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -61,6 +59,16 @@ Inputs
 | no_connection_silenced | Groups to mute for Mysql no connection monitor | map | `<map>` | no |
 | no_connection_time_aggregator | Monitor aggregator for Mysql no connection [available values: min, max or avg] | string | `min` | no |
 | no_connection_timeframe | Monitor timeframe for Mysql no connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| mysql_cpu_usage_id | id for monitor mysql_cpu_usage |
+| mysql_free_storage_id | id for monitor mysql_free_storage |
+| mysql_io_consumption_id | id for monitor mysql_io_consumption |
+| mysql_memory_usage_id | id for monitor mysql_memory_usage |
+| mysql_no_connection_id | id for monitor mysql_no_connection |
 
 Related documentation
 ---------------------
