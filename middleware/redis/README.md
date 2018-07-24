@@ -16,10 +16,10 @@ module "datadog-monitors-middleware-redis" {
 
 Creates DataDog monitors with the following checks:
 
-- Redis suddenly too many evicted keys
+- Redis too many evicted keys
 - Redis too many expired keys
 - Redis too many blocked clients
-- Redis keyspace seems full
+- Redis keyspace seems full (no changes since ${var.keyspace_timeframe})
 - Redis too many ram memory used
 - Redis memory ram fragmented
 - Redis too many rejected connections
