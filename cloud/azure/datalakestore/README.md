@@ -1,26 +1,24 @@
-Service Bus Datadog monitor
-===========================
+# CLOUD AZURE DATALAKESTORE DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-azure-datalakestore" {
+module "datadog-monitors-cloud-azure-datalakestore" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/datalakestore?ref={revision}"
 
-  message = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Purpose
--------
-Creates a Datadog monitor with the following checks :
+## Purpose
 
-* Service status check
+Creates DataDog monitors with the following checks:
 
-Inputs
-------
+- Datalake Store is down
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -33,6 +31,12 @@ Inputs
 | status_silenced | Groups to mute for Datalake Store status monitor | map | `<map>` | no |
 | status_time_aggregator | Monitor aggregator for Datalake Store status [available values: min, max or avg] | string | `max` | no |
 | status_timeframe | Monitor timeframe for Datalake Store status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| datalakestore_status_id | id for monitor datalakestore_status |
 
 Related documentation
 ---------------------

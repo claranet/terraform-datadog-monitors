@@ -1,45 +1,27 @@
-Azure Cosmos DB DataDog monitors
-================================
+# CLOUD AZURE COSMOSDB DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-azure-cosmosdb" {
+module "datadog-monitors-cloud-azure-cosmosdb" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/cosmosdb?ref={revision}"
 
-  message = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
-```
-
-How to define cosmos_db_ru_utilization_collection variable
-----------------------------------------------------------
-
-At the time this module is defined, we can't define Cosmos DB collection with Terraform, so we have to define a variable making the connection between collections and RU max
 
 ```
-variable cosmos_db_ru_utilization_collection {
-    type    = "map"
-    default = {
-        "collection_1" = "ru_max_1"
-        "collection_2" = "ru_max_2"
-        ...
-    } 
-}
-```
 
-Purpose
--------
-Creates a DataDog monitors with the following checks :
+## Purpose
 
-* No request
-* Too many 4xx requests
-* Too many 5xx requests
-* Collection RU utilization
+Creates DataDog monitors with the following checks:
 
-Inputs
-------
+- Cosmos DB 4xx requests rate is high
+- Cosmos DB 5xx requests rate is high
+- Cosmos DB has no request
+- Cosmos DB collection ${element(keys(var.cosmos_db_ru_utilization_collection),count.index)} RU utilization is high
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -63,6 +45,15 @@ Inputs
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| cosmos_db_4xx_requests_id | id for monitor cosmos_db_4xx_requests |
+| cosmos_db_5xx_requests_id | id for monitor cosmos_db_5xx_requests |
+| cosmos_db_ru_utilization_id | id for monitor cosmos_db_ru_utilization |
+| cosmos_db_success_no_data_id | id for monitor cosmos_db_success_no_data |
 
 Related documentation
 ---------------------
