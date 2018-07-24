@@ -16,10 +16,10 @@ module "datadog-monitors-cloud-azure-servicebus" {
 
 Creates DataDog monitors with the following checks:
 
-- Service status check
-- No active connection
-- Server errors rate
-- User errors rate
+- Service Bus is down
+- Service Bus has no active connection
+- Service Bus user errors rate is high
+- Service Bus server errors rate is high
 
 ## Inputs
 
@@ -55,6 +55,9 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description |
 |------|-------------|
+| service_bus_no_active_connections_id | id for monitor service_bus_no_active_connections |
+| service_bus_server_errors_id | id for monitor service_bus_server_errors |
+| service_bus_user_errors_id | id for monitor service_bus_user_errors |
 | servicebus_status_id | id for monitor servicebus_status |
 
 ## Related documentation

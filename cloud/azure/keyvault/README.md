@@ -1,27 +1,25 @@
-Key Vault Datadog monitor
-=========================
+# CLOUD AZURE KEYVAULT DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-azure-keyvault" {
+module "datadog-monitors-cloud-azure-keyvault" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/azure/keyvault?ref={revision}"
 
-  message = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
+
 ```
 
-Purpose
--------
-Creates a Datadog monitor with the following checks :
+## Purpose
 
-* Service status check
-* API result rate
+Creates DataDog monitors with the following checks:
 
-Inputs
-------
+- Key Vault is down
+- Key Vault API result rate is low
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -39,6 +37,13 @@ Inputs
 | status_silenced | Groups to mute for Key Vault status monitor | map | `<map>` | no |
 | status_time_aggregator | Monitor aggregator for Key Vault status [available values: min, max or avg] | string | `max` | no |
 | status_timeframe | Monitor timeframe for Key Vault status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| keyvault_api_result_id | id for monitor keyvault_api_result |
+| keyvault_status_id | id for monitor keyvault_status |
 
 Related documentation
 ---------------------
