@@ -66,4 +66,3 @@ resource "datadog_monitor" "custom_webcheck_latency" {
 
   tags = ["env:${var.environment}", "resource:custom_webcheck"]
 }
-

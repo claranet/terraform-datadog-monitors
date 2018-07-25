@@ -81,4 +81,3 @@ variable "custom_webcheck_latency_critical" {
   description = "Critical latency in s"
   default     = 1
 }
-
