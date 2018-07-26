@@ -15,7 +15,7 @@ data "template_file" "filter" {
 # CPU Utilization
 #
 resource "datadog_monitor" "cpu_utilization" {
-  name    = "[${var.environment}] Cloud SQL CPU utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Cloud SQL CPU Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_utilization_message, var.message)}"
 
   type = "metric alert"
@@ -56,7 +56,7 @@ EOF
 # Disk Utilization
 #
 resource "datadog_monitor" "disk_utilization" {
-  name    = "[${var.environment}] Cloud SQL Disk utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Cloud SQL Disk Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.disk_utilization_message, var.message)}"
 
   type = "metric alert"

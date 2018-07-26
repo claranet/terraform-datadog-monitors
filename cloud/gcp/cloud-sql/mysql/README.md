@@ -1,40 +1,27 @@
-GCP CloudSQL MySQL Monitors
-==============================
+# CLOUD GCP CLOUD-SQL MYSQL DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-gcp-cloudsql-mysql" {
+module "datadog-monitors-cloud-gcp-cloud-sql-mysql" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/gcp/cloud-sql/mysql?ref={revision}"
 
-  project_id  = "${var.gcp_project_id}"
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
 }
 
 ```
 
-Purpose
--------
-Creates DataDog monitors with the following checks :
+## Purpose
 
-* CloudSQL MySQL Network Connections
-* CloudSQL MySQL Replication Lag
-* CloudSQL MySQL Queries Changing Anomaly (not created by default)
-* CloudSQL MySQL Questions Changing Anomaly (not created by default)
+Creates DataDog monitors with the following checks:
 
-Useful links
-------------
+- Cloud SQL MySQL Network Connections (hard limit: ${var.network_connections_hard_limit})
+- Cloud SQL MySQL Replication Lag too high
+- Cloud SQL MySQL Queries Count changed abnormally
+- Cloud SQL MySQL Questions Count changed abnormally
 
-* [GCP Metrics for CloudSQL](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-cloudsql)
-* [Datadog Useful monitors for GCP CloudSQL](https://www.datadoghq.com/blog/monitor-google-cloud-sql/)
-* [Max connections depends on the type of the instance](https://cloud.google.com/sql/docs/quotas#fixed-limits)
-* [Monitoring Replication Lag](https://cloud.google.com/sql/docs/mysql/high-availability#replication-lag-monitor)
-* [Monitoring MySQL Performance Metrics](https://www.datadoghq.com/blog/monitoring-mysql-performance-metrics)
-
-Inputs
-------
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -80,3 +67,19 @@ Inputs
 | replication_lag_threshold_warning | Seconds behind the master (warning threshold) | string | `300` | no |
 | replication_lag_timeframe | Timeframe for the Replication Lag monitor | string | `last_10m` | no |
 
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| network_connections_id | id for monitor network_connections |
+| queries_changing_anomaly_id | id for monitor queries_changing_anomaly |
+| questions_changing_anomaly_id | id for monitor questions_changing_anomaly |
+| replication_lag_id | id for monitor replication_lag |
+
+## Related documentation
+
+* [GCP Metrics for CloudSQL](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-cloudsql)
+* [Datadog Useful monitors for GCP CloudSQL](https://www.datadoghq.com/blog/monitor-google-cloud-sql/)
+* [Max connections depends on the type of the instance](https://cloud.google.com/sql/docs/quotas#fixed-limits)
+* [Monitoring Replication Lag](https://cloud.google.com/sql/docs/mysql/high-availability#replication-lag-monitor)
+* [Monitoring MySQL Performance Metrics](https://www.datadoghq.com/blog/monitoring-mysql-performance-metrics)

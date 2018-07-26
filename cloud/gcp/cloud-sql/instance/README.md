@@ -1,38 +1,28 @@
-GCP CloudSQL Instance Monitors
-==============================
+# CLOUD GCP CLOUD-SQL INSTANCE DataDog monitors
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
-module "datadog-monitors-gcp-cloudsql-instance" {
+module "datadog-monitors-cloud-gcp-cloud-sql-instance" {
   source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/gcp/cloud-sql/instance?ref={revision}"
 
-  project_id  = "${var.gcp_project_id}"
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
 }
 
 ```
 
-Purpose
--------
-Creates DataDog monitors with the following checks :
+## Purpose
 
-* CloudSQL Instance CPU Utilization
-* CloudSQL Instance Disk Utilization
-* CloudSQL Instance Memory Utilization
-* CloudSQL Instance Memory Utilization Forecast
-* CloudSQL Instance Failover Unavailable
+Creates DataDog monitors with the following checks:
 
-Useful links
-------------
+- Cloud SQL CPU Utilization
+- Cloud SQL Disk Utilization
+- Cloud SQL Memory Utilization
+- Cloud SQL Memory Utilization Forecast
+- Cloud SQL Failover Unavailable
 
-* [GCP Metrics for CloudSQL](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-cloudsql)
-* [Datadog Useful monitors for GCP CloudSQL](https://www.datadoghq.com/blog/monitor-google-cloud-sql/)
-
-Inputs
-------
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -74,3 +64,17 @@ Inputs
 | message | Message sent when a monitor is triggered | string | - | yes |
 | project_id | ID of the GCP Project | string | - | yes |
 
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| cpu_utilization_id | id for monitor cpu_utilization |
+| disk_utilization_id | id for monitor disk_utilization |
+| failover_unavailable_id | id for monitor failover_unavailable |
+| memory_utilization_forecast_id | id for monitor memory_utilization_forecast |
+| memory_utilization_id | id for monitor memory_utilization |
+
+## Related documentation
+
+* [GCP Metrics for CloudSQL](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-cloudsql)
+* [Datadog Useful monitors for GCP CloudSQL](https://www.datadoghq.com/blog/monitor-google-cloud-sql/)
