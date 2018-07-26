@@ -1,15 +1,19 @@
 output "network_connections_id" {
-  value = "${datadog_monitor.network_connections.id}"
+  description = "id for monitor network_connections"
+  value       = "${datadog_monitor.network_connections.id}"
 }
 
 output "replication_lag_id" {
-  value = "${datadog_monitor.replication_lag.id}"
+  description = "id for monitor replication_lag"
+  value       = "${datadog_monitor.replication_lag.id}"
 }
 
 output "queries_changing_anomaly_id" {
-  value = ["${datadog_monitor.queries_changing_anomaly.*.id}"]
+  description = "id for monitor queries_changing_anomaly"
+  value       = "${datadog_monitor.queries_changing_anomaly.id}"
 }
 
 output "questions_changing_anomaly_id" {
-  value = ["${datadog_monitor.questions_changing_anomaly.*.id}"]
+  description = "id for monitor questions_changing_anomaly"
+  value       = "${datadog_monitor.questions_changing_anomaly.id}"
 }
