@@ -115,4 +115,3 @@ Related documentation
 
 [https://docs.datadoghq.com/integrations/mongo/](https://docs.datadoghq.com/integrations/mongo/)
 
-
