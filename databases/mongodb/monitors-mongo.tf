@@ -123,4 +123,3 @@ resource "datadog_monitor" "mongodb_replication" {
 
   tags = ["env:${var.environment}", "resource:mongodb"]
 }
-
