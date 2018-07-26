@@ -1,10 +1,10 @@
-# MONGODB DataDog monitors
+# DATABASES MONGODB DataDog monitors
 
 ## How to use this module
 
 ```
-module "datadog-monitors-mongodb" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//mongodb?ref={revision}"
+module "datadog-monitors-databases-mongodb" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//databases/mongodb?ref={revision}"
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
@@ -59,8 +59,5 @@ Creates DataDog monitors with the following checks:
 | mongodb_secondary_id | id for monitor mongodb_secondary |
 | mongodb_server_count_id | id for monitor mongodb_server_count |
 
-Related documentation 
----------------------
-
-[https://docs.datadoghq.com/integrations/mongo/](https://docs.datadoghq.com/integrations/mongo/)
+## Related documentation
 
