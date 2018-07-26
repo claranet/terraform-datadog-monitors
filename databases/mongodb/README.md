@@ -1,86 +1,27 @@
-AWS MongoDB Service DataDog monitors
-==========================================
+# MONGODB DataDog monitors
 
-
-
-How to use this module
-----------------------
-
-Add a user to MongoDB (on the primary instance) :
+## How to use this module
 
 ```
-use admin
-db.auth("admin", "admin-password") ## This is optional if you don't have any admin password
-db.createUser({"user":"datadog", "pwd": "{{PASSWORD}}", "roles" : [ {role: 'read', db: 'admin' }, {role: 'clusterMonitor', db: 'admin'}, {role: 'read', db: 'local' }]})
-```
+module "datadog-monitors-mongodb" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//mongodb?ref={revision}"
 
-Add a module in your Terraform project :
-
-```
-module "datadog-monitors-aws-mongodb" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//databases/mongodb?ref={revision}"
-
-  message     = "${module.datadog-message-alerting.alerting-message}"
   environment = "${var.environment}"
-
+  message     = "${module.datadog-message-alerting.alerting-message}"
 }
-```
-
-Configure your Datadog agent for kubernetes with this config :
 
 ```
-datadog:
-  confd:
-    mongo.yaml: |-
-      ad_identifiers:
-        - mongodb
-      init_config:
-      instances:
-        - server: mongodb://datadog:password@%%host%%/admin
-          tags:
-            - dd_monitoring:enabled
-            - dd_mongodb:enabled
-            - env:prod
-```
 
+## Purpose
 
-Purpose
--------
+Creates DataDog monitors with the following checks:
 
-Creates a DataDog monitors with the following checks : 
-* MongoDB Primary status
-* MongoDB Secondaries status
-* MongoDB replication lag
+- MongoDB primary state
+- MongoDB secondary missing
+- MongoDB too much servers or wrong monitoring config
+- MongoDB replication lag
 
-**Monitor MongoDB Primary**
-
-Name: [environment] MongoDB Primary
-
-This monitor will check the health of the Primary node
-
-This monitor will trigger an alert if there's no primary or if the primary state is wrong.
-
-
-**Monitor MongoDB Secondary**
-
-Name: [environment] MongoDB Secondary
-
-This monitor will check the health for secondaries nodes
-
-This monitor will trigger an alert if a secondary is missing or if there's a wrong state
-
-
-**Monitor MongoDB Replication lag**
-
-Name: [environment] MongoDB Replication lag
-
-This monitor will check the replication lag
-
-This monitor will trigger an alert if the replication high is too high
-
-
-Inputs
-------
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -109,6 +50,14 @@ Inputs
 | mongodb_server_count_silenced | Groups to mute for MongoDB server count monitor | map | `<map>` | no |
 | mongodb_server_count_timeframe | Monitor timeframe for MongoDB wrong server count [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| mongodb_primary_id | id for monitor mongodb_primary |
+| mongodb_replication_id | id for monitor mongodb_replication |
+| mongodb_secondary_id | id for monitor mongodb_secondary |
+| mongodb_server_count_id | id for monitor mongodb_server_count |
 
 Related documentation 
 ---------------------
