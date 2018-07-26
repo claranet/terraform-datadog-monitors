@@ -38,8 +38,3 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | VPN_status_id | id for monitor VPN_status |
 
-## Related documentation
-
-DataDog documentation: [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/vpn-metricscollected.html](https://docs.datadoghq.com/integrations/amazon_web_services/)
-
-AWS VPN metrics documentation: [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/vpn-metricscollected.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/vpn-metricscollected.html)
