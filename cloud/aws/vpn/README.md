@@ -38,3 +38,5 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | VPN_status_id | id for monitor VPN_status |
 
+## Related documentation
+

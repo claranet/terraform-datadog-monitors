@@ -1,10 +1,10 @@
-# WEBCHECK DataDog monitors
+# CUSTOM WEBCHECK DataDog monitors
 
 ## How to use this module
 
 ```
-module "datadog-monitors-webcheck" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//webcheck?ref={revision}"
+module "datadog-monitors-custom-webcheck" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//custom/webcheck?ref={revision}"
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
@@ -45,4 +45,6 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | custom_webcheck_error_id | id for monitor custom_webcheck_error |
 | custom_webcheck_latency_id | id for monitor custom_webcheck_latency |
+
+## Related documentation
 
