@@ -18,6 +18,10 @@ resource "datadog_monitor" "appservices_response_time" {
     ) > ${var.response_time_threshold_critical}
   EOF
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"
 
@@ -48,6 +52,10 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
       avg:azure.app_services.memory_working_set{${data.template_file.filter.rendered}} by {resource_group,region,name}
     ) > ${var.memory_usage_threshold_critical}
   EOF
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"
@@ -81,6 +89,10 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
     ) * 100 > ${var.http_5xx_requests_threshold_critical}
   EOF
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"
 
@@ -112,6 +124,10 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
       avg:azure.app_services.requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
     ) * 100 > ${var.http_4xx_requests_threshold_critical}
   EOF
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"
@@ -145,6 +161,10 @@ resource "datadog_monitor" "appservices_http_success_status_rate" {
       avg:azure.app_services.requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
     ) * 100 < ${var.http_successful_requests_threshold_critical}
   EOF
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"

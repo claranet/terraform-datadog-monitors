@@ -18,6 +18,10 @@ resource "datadog_monitor" "status" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   silenced = "${var.status_silenced}"
 
   notify_no_data      = true
@@ -44,6 +48,10 @@ resource "datadog_monitor" "evictedkeys" {
 EOF
 
   type = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   thresholds {
     warning  = "${var.evictedkeys_limit_threshold_warning}"
@@ -77,6 +85,10 @@ EOF
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     warning  = "${var.percent_processor_time_threshold_warning}"
     critical = "${var.percent_processor_time_threshold_critical}"
@@ -108,6 +120,10 @@ resource "datadog_monitor" "server_load" {
 EOF
 
   type = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   thresholds {
     warning  = "${var.server_load_rate_threshold_warning}"

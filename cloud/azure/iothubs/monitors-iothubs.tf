@@ -12,6 +12,10 @@ resource "datadog_monitor" "too_many_jobs_failed" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     warning  = "${var.failed_jobs_rate_threshold_warning}"
     critical = "${var.failed_jobs_rate_threshold_critical}"
@@ -45,6 +49,10 @@ resource "datadog_monitor" "too_many_list_jobs_failed" {
   EOF
 
   type = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   thresholds {
     warning  = "${var.failed_listjobs_rate_threshold_warning}"
@@ -80,6 +88,10 @@ resource "datadog_monitor" "too_many_query_jobs_failed" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     warning  = "${var.failed_queryjobs_rate_threshold_warning}"
     critical = "${var.failed_queryjobs_rate_threshold_critical}"
@@ -112,6 +124,10 @@ resource "datadog_monitor" "status" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   silenced = "${var.status_silenced}"
 
   notify_no_data      = true
@@ -138,6 +154,10 @@ resource "datadog_monitor" "total_devices" {
   EOF
 
   type = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   silenced = "${var.total_devices_silenced}"
 
@@ -167,6 +187,10 @@ resource "datadog_monitor" "too_many_c2d_methods_failed" {
   EOF
 
   type = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   thresholds {
     warning  = "${var.failed_c2d_methods_rate_threshold_warning}"
@@ -202,6 +226,10 @@ resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     warning  = "${var.failed_c2d_twin_read_rate_threshold_warning}"
     critical = "${var.failed_c2d_twin_read_rate_threshold_critical}"
@@ -235,6 +263,10 @@ resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
   EOF
 
   type = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   thresholds {
     warning  = "${var.failed_c2d_twin_update_rate_threshold_warning}"
@@ -270,6 +302,10 @@ resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     warning  = "${var.failed_d2c_twin_read_rate_threshold_warning}"
     critical = "${var.failed_d2c_twin_read_rate_threshold_critical}"
@@ -303,6 +339,10 @@ resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
   EOF
 
   type = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   thresholds {
     warning  = "${var.failed_d2c_twin_update_rate_threshold_warning}"
@@ -341,6 +381,10 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     warning  = "${var.dropped_d2c_telemetry_egress_rate_threshold_warning}"
     critical = "${var.dropped_d2c_telemetry_egress_rate_threshold_critical}"
@@ -377,6 +421,10 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
   EOF
 
   type = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   thresholds {
     warning  = "${var.orphaned_d2c_telemetry_egress_rate_threshold_warning}"
@@ -415,6 +463,10 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     warning  = "${var.invalid_d2c_telemetry_egress_rate_threshold_warning}"
     critical = "${var.invalid_d2c_telemetry_egress_rate_threshold_critical}"
@@ -447,6 +499,10 @@ resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
   EOF
 
   type = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   silenced = "${var.too_many_d2c_telemetry_ingress_nosent_silenced}"
 

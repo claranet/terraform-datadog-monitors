@@ -18,6 +18,10 @@ resource "datadog_monitor" "status" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   silenced = "${var.status_silenced}"
 
   notify_no_data      = true
@@ -44,6 +48,10 @@ resource "datadog_monitor" "su_utilization" {
   EOF
 
   type = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
@@ -78,6 +86,10 @@ resource "datadog_monitor" "failed_function_requests" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 60
@@ -110,6 +122,10 @@ resource "datadog_monitor" "conversion_errors" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -141,6 +157,10 @@ resource "datadog_monitor" "runtime_errors" {
   EOF
 
   type = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"

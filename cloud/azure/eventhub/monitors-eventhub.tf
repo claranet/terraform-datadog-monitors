@@ -18,6 +18,10 @@ resource "datadog_monitor" "eventhub_status" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   silenced = "${var.status_silenced}"
 
   notify_no_data      = true
@@ -47,6 +51,10 @@ resource "datadog_monitor" "eventhub_failed_requests" {
   EOF
 
   type = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   thresholds {
     critical = "${var.failed_requests_rate_thresold_critical}"
@@ -87,6 +95,10 @@ resource "datadog_monitor" "eventhub_errors" {
   EOF
 
   type = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   thresholds {
     critical = "${var.errors_rate_thresold_critical}"

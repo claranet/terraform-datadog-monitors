@@ -18,6 +18,10 @@ EOF
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   silenced = "${var.status_silenced}"
 
   notify_no_data      = true

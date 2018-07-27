@@ -18,6 +18,10 @@ resource "datadog_monitor" "apimgt_status" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     critical = 1
   }
@@ -48,6 +52,12 @@ resource "datadog_monitor" "apimgt_failed_requests" {
     ) > ${var.failed_requests_threshold_critical}
   EOF
 
+  type                = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     critical = "${var.failed_requests_threshold_critical}"
     warning  = "${var.failed_requests_threshold_warning}"
@@ -55,7 +65,6 @@ resource "datadog_monitor" "apimgt_failed_requests" {
 
   silenced = "${var.failed_requests_silenced}"
 
-  type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 1
@@ -80,6 +89,12 @@ resource "datadog_monitor" "apimgt_other_requests" {
     ) > ${var.other_requests_threshold_critical}
   EOF
 
+  type                = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     critical = "${var.other_requests_threshold_critical}"
     warning  = "${var.other_requests_threshold_warning}"
@@ -87,7 +102,6 @@ resource "datadog_monitor" "apimgt_other_requests" {
 
   silenced = "${var.other_requests_silenced}"
 
-  type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 1
@@ -112,6 +126,12 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
     ) > ${var.unauthorized_requests_threshold_critical}
   EOF
 
+  type                = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     critical = "${var.unauthorized_requests_threshold_critical}"
     warning  = "${var.unauthorized_requests_threshold_warning}"
@@ -119,7 +139,6 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
 
   silenced = "${var.unauthorized_requests_silenced}"
 
-  type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 1
@@ -144,6 +163,12 @@ resource "datadog_monitor" "apimgt_successful_requests" {
     ) < ${var.successful_requests_threshold_critical}
   EOF
 
+  type                = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     critical = "${var.successful_requests_threshold_critical}"
     warning  = "${var.successful_requests_threshold_warning}"
@@ -151,7 +176,6 @@ resource "datadog_monitor" "apimgt_successful_requests" {
 
   silenced = "${var.successful_requests_silenced}"
 
-  type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 1

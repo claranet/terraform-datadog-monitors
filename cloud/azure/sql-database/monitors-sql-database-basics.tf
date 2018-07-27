@@ -18,6 +18,10 @@ resource "datadog_monitor" "sql-database_cpu_90_15min" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     critical = "${var.cpu_threshold_critical}"
   }
@@ -42,6 +46,10 @@ resource "datadog_monitor" "sql-database_free_space_low" {
   message = "${coalesce(var.diskspace_message, var.message)}"
 
   type = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   query = <<EOF
     ${var.diskspace_time_aggregator}(${var.diskspace_timeframe}): (
@@ -75,6 +83,10 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   query = <<EOF
     ${var.dtu_time_aggregator}(${var.dtu_timeframe}): (
       azure.sql_servers_databases.dtu_consumption_percent{${data.template_file.filter.rendered}} by {resource_group,region,name}
@@ -106,6 +118,10 @@ resource "datadog_monitor" "sql-database_deadlocks_count" {
   message = "${coalesce(var.deadlock_message, var.message)}"
 
   type = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   query = <<EOF
     sum(${var.deadlock_timeframe}): (
