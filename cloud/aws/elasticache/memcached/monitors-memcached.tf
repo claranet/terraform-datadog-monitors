@@ -67,6 +67,10 @@ resource "datadog_monitor" "memcached_get_hits" {
     ) < ${var.get_hits_threshold_critical}
   EOF
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     warning  = "${var.get_hits_threshold_warning}"
     critical = "${var.get_hits_threshold_critical}"
@@ -98,6 +102,10 @@ resource "datadog_monitor" "memcached_cpu_high" {
       avg:aws.elasticache.cpuutilization{${data.template_file.filter.rendered}} by {region,cacheclusterid,cachenodeid}
     ) > ${var.cpu_high_threshold_critical}
   EOF
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   thresholds {
     warning  = "${var.cpu_high_threshold_warning}"

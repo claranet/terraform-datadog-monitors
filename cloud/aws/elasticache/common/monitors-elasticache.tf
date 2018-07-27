@@ -10,6 +10,10 @@ resource "datadog_monitor" "elasticache_eviction" {
     ) > 0
   EOF
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   notify_no_data      = false
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -36,6 +40,10 @@ resource "datadog_monitor" "elasticache_max_connection" {
       avg:aws.elasticache.curr_connections{${var.filter_tags}} by {region,cacheclusterid}
     ) >= 65000
   EOF
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
@@ -64,6 +72,10 @@ resource "datadog_monitor" "elasticache_no_connection" {
     ) <= 0
   EOF
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   notify_no_data      = true
   evaluation_delay    = "${var.delay}"
   renotify_interval   = 0
@@ -90,6 +102,10 @@ resource "datadog_monitor" "elasticache_swap" {
       avg:aws.elasticache.swap_usage{${var.filter_tags}} by {region,cacheclusterid}
     ) > ${var.swap_threshold_critical}
   EOF
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   thresholds {
     warning  = "${var.swap_threshold_warning}"
@@ -124,6 +140,10 @@ resource "datadog_monitor" "elasticache_free_memory" {
     < ${var.free_memory_threshold_critical}
   EOF
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     warning  = "${var.free_memory_threshold_warning}"
     critical = "${var.free_memory_threshold_critical}"
@@ -155,6 +175,10 @@ resource "datadog_monitor" "elasticache_eviction_growing" {
       avg:aws.elasticache.evictions{${var.filter_tags}} by {region,cacheclusterid}
     > ${var.eviction_growing_threshold_critical}
   EOF
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   thresholds {
     warning  = "${var.eviction_growing_threshold_warning}"
