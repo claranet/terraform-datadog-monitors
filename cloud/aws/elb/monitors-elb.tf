@@ -12,7 +12,7 @@ resource "datadog_monitor" "ELB_no_healthy_instances" {
 
   query = <<EOF
     ${var.elb_no_healthy_instance_time_aggregator}(${var.elb_no_healthy_instance_timeframe}): (
-      min:aws.elb.healthy_host_count{${data.template_file.filter.rendered}} by {region,loadbalancername}
+      sum:aws.elb.healthy_host_count{${data.template_file.filter.rendered}} by {region,loadbalancername}
     ) < 1
   EOF
 
