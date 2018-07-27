@@ -76,6 +76,7 @@ The `//` is very important, it's a terraform specific syntax used to separate gi
 	- [aws](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/)
 		- [alb](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/alb/)
 		- [apigateway](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/apigateway/)
+		- [ecs](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/ecs/)
 		- [elasticsearch](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/elasticsearch/)
 		- [elb](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/elb/)
 		- [kinesis-firehose](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/aws/kinesis-firehose/)
