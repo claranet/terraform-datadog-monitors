@@ -57,16 +57,16 @@ EOF
 # Replication Lag
 #
 resource "datadog_monitor" "replication_lag" {
-  name    = "[${var.environment}] Cloud SQL MySQL Replication Lag too high"
+  name    = "[${var.environment}] Cloud SQL MySQL Replication Lag {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = "${coalesce(var.replication_lag_message, var.message)}"
 
   type = "metric alert"
 
   query = <<EOF
-    min(${var.replication_lag_timeframe}):
-      avg:gcp.cloudsql.database.mysql.replication.seconds_behind_master{${data.template_file.filter.rendered}}
-      by {database_id}
-      > ${var.replication_lag_threshold_critical}
+  min(${var.replication_lag_timeframe}):
+    avg:gcp.cloudsql.database.mysql.replication.seconds_behind_master{${data.template_file.filter.rendered}}
+    by {database_id}
+  > ${var.replication_lag_threshold_critical}
 EOF
 
   thresholds {
@@ -74,16 +74,19 @@ EOF
     warning  = "${var.replication_lag_threshold_warning}"
   }
 
-  notify_no_data      = true
-  require_full_window = false
-  renotify_interval   = 0
   notify_audit        = false
+  locked              = false
   timeout_h           = 0
   include_tags        = true
-  locked              = false
-  evaluation_delay    = "${var.delay}"
-  new_host_delay      = "${var.delay}"
-  silenced            = "${var.replication_lag_silenced}"
+  no_data_timeframe   = 25
+  require_full_window = false
+  notify_no_data      = true
+  renotify_interval   = 0
+
+  evaluation_delay = "${var.delay}"
+  new_host_delay   = "${var.delay}"
+
+  silenced = "${var.replication_lag_silenced}"
 
   tags = [
     "team:gcp",
@@ -99,9 +102,7 @@ EOF
 # Queries Anomaly
 #
 resource "datadog_monitor" "queries_changing_anomaly" {
-  count = "${length(var.queries_changing_database_ids)}"
-
-  name    = "[${var.environment}] [${var.queries_changing_database_ids[count.index]}] Cloud SQL MySQL Queries Count changed abnormally {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Cloud SQL MySQL Queries Count changed abnormally"
   message = "${coalesce(var.queries_changing_message, var.message)}"
 
   type = "query alert"
@@ -109,32 +110,36 @@ resource "datadog_monitor" "queries_changing_anomaly" {
   query = <<EOF
     avg(${var.queries_changing_timeframe}):
       anomalies(
-        default(
-          avg:gcp.cloudsql.database.mysql.queries{project_id:${var.project_id},database_id:${var.project_id}:${var.queries_changing_database_ids[count.index]}},
-          0),
+        avg:gcp.cloudsql.database.mysql.queries{${data.template_file.filter.rendered}} by {database_id}.as_count()
         '${var.queries_changing_anomaly_detection_algorithm}',
         ${var.queries_changing_deviations},
         direction='${var.queries_changing_direction}',
+        alert_window='last_30m',
+        interval=20,
+        count_default_zero='false',
         seasonality='${var.queries_changing_seasonality}'
       )
       > ${var.queries_changing_threshold_critical}
 EOF
 
   thresholds {
-    warning  = "${var.queries_changing_threshold_warning}"
-    critical = "${var.queries_changing_threshold_critical}"
+    warning           = "${var.queries_changing_threshold_warning}"
+    critical          = "${var.queries_changing_threshold_critical}"
+    critical_recovery = "${var.queries_changing_threshold_critical_recovery}"
   }
 
-  notify_no_data      = false
-  require_full_window = false
-  renotify_interval   = 0
   notify_audit        = false
+  locked              = false
   timeout_h           = 0
   include_tags        = true
-  locked              = false
-  evaluation_delay    = "${var.delay}"
-  new_host_delay      = "${var.delay}"
-  silenced            = "${var.queries_changing_silenced}"
+  require_full_window = false
+  notify_no_data      = false
+  renotify_interval   = 0
+
+  evaluation_delay = "${var.delay}"
+  new_host_delay   = "${var.delay}"
+
+  silenced = "${var.queries_changing_silenced}"
 
   tags = [
     "team:gcp",
@@ -142,7 +147,6 @@ EOF
     "env:${var.environment}",
     "resource:cloud-sql",
     "engine:mysql",
-    "database_id:${var.project_id}:${var.queries_changing_database_ids[count.index]}}",
     "${var.queries_changing_extra_tags}",
   ]
 }
@@ -151,42 +155,44 @@ EOF
 # Questions Anomaly
 #
 resource "datadog_monitor" "questions_changing_anomaly" {
-  count = "${length(var.questions_changing_database_ids)}"
-
-  name    = "[${var.environment}] [${var.questions_changing_database_ids[count.index]}] Cloud SQL MySQL Questions Count changed abnormally {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Cloud SQL MySQL Questions Count changed abnormally"
   message = "${coalesce(var.questions_changing_message, var.message)}"
 
   type = "query alert"
 
   query = <<EOF
-    avg(${var.questions_changing_timeframe}):
+    avg(last_1h):
       anomalies(
-        default(
-          avg:gcp.cloudsql.database.mysql.questions{project_id:${var.project_id},database_id:${var.project_id}:${var.questions_changing_database_ids[count.index]}},
-          0),
+        avg:gcp.cloudsql.database.mysql.questions{${data.template_file.filter.rendered}} by {database_id},
         '${var.questions_changing_anomaly_detection_algorithm}',
         ${var.questions_changing_deviations},
         direction='${var.questions_changing_direction}',
+        alert_window='last_30m',
+        interval=20,
+        count_default_zero='false',
         seasonality='${var.questions_changing_seasonality}'
       )
-      > ${var.questions_changing_threshold_critical}
+    > ${var.questions_changing_threshold_critical}
 EOF
 
   thresholds {
-    warning  = "${var.questions_changing_threshold_warning}"
-    critical = "${var.questions_changing_threshold_critical}"
+    warning           = "${var.questions_changing_threshold_warning}"
+    critical          = "${var.questions_changing_threshold_critical}"
+    critical_recovery = "${var.questions_changing_threshold_critical_recovery}"
   }
 
-  notify_no_data      = false
-  require_full_window = false
-  renotify_interval   = 0
   notify_audit        = false
+  locked              = false
   timeout_h           = 0
   include_tags        = true
-  locked              = false
-  evaluation_delay    = "${var.delay}"
-  new_host_delay      = "${var.delay}"
-  silenced            = "${var.questions_changing_silenced}"
+  require_full_window = false
+  notify_no_data      = false
+  renotify_interval   = 0
+
+  evaluation_delay = "${var.delay}"
+  new_host_delay   = "${var.delay}"
+
+  silenced = "${var.questions_changing_silenced}"
 
   tags = [
     "team:gcp",
@@ -194,7 +200,6 @@ EOF
     "env:${var.environment}",
     "resource:cloud-sql",
     "engine:mysql",
-    "database_id:${var.project_id}:${var.questions_changing_database_ids[count.index]}",
     "${var.questions_changing_extra_tags}",
   ]
 }
