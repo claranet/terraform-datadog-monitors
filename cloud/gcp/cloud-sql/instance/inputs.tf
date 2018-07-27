@@ -45,19 +45,19 @@ variable "cpu_utilization_message" {
 variable "cpu_utilization_timeframe" {
   description = "Timeframe for the CPU Utilization monitor"
   type        = "string"
-  default     = "last_30m"
+  default     = "last_15m"
 }
 
 variable "cpu_utilization_threshold_warning" {
-  description = "CPU Utilization in fraction (warning threshold)"
+  description = "CPU Utilization in percentage (warning threshold)"
   type        = "string"
-  default     = 0.8
+  default     = 80
 }
 
 variable "cpu_utilization_threshold_critical" {
-  description = "CPU Utilization in fraction (critical threshold)"
+  description = "CPU Utilization in percentage (critical threshold)"
   type        = "string"
-  default     = 0.9
+  default     = 90
 }
 
 variable "cpu_utilization_silenced" {
@@ -73,7 +73,7 @@ variable "cpu_utilization_extra_tags" {
 }
 
 #
-# DISK
+# DISK Utilization
 #
 variable "disk_utilization_message" {
   description = "Custom message for the Disk Utilization monitor"
@@ -88,15 +88,15 @@ variable "disk_utilization_timeframe" {
 }
 
 variable "disk_utilization_threshold_warning" {
-  description = "Disk Utilization in fraction (warning threshold)"
+  description = "Disk Utilization in percentage (warning threshold)"
   type        = "string"
-  default     = 0.8
+  default     = 80
 }
 
 variable "disk_utilization_threshold_critical" {
-  description = "Disk Utilization in fraction (critical threshold)"
+  description = "Disk Utilization in percentage (critical threshold)"
   type        = "string"
-  default     = 0.9
+  default     = 90
 }
 
 variable "disk_utilization_silenced" {
@@ -106,6 +106,45 @@ variable "disk_utilization_silenced" {
 }
 
 variable "disk_utilization_extra_tags" {
+  description = "Extra tags for GCP Cloud SQL CPU Utilization monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# DISK Utilization Forecast
+#
+variable "disk_utilization_forecast_message" {
+  description = "Custom message for the Disk Utilization monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "disk_utilization_forecast_timeframe" {
+  description = "Timeframe for the Disk Utilization monitor"
+  type        = "string"
+  default     = "next_1w"
+}
+
+variable "disk_utilization_forecast_threshold_critical" {
+  description = "Disk Utilization in percentage (critical threshold)"
+  type        = "string"
+  default     = 80
+}
+
+variable "disk_utilization_forecast_threshold_critical_recovery" {
+  description = "Disk Utilization in percentage (recovery threshold)"
+  type        = "string"
+  default     = 72
+}
+
+variable "disk_utilization_forecast_silenced" {
+  description = "Groups to mute for GCP Cloud SQL Disk Utilization monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "disk_utilization_forecast_extra_tags" {
   description = "Extra tags for GCP Cloud SQL CPU Utilization monitor"
   type        = "list"
   default     = []
@@ -125,13 +164,13 @@ variable "memory_utilization_timeframe" {
 }
 
 variable "memory_utilization_threshold_warning" {
-  description = "Memory Utilization in fraction (warning threshold)"
-  default     = 0.8
+  description = "Memory Utilization in percentage (warning threshold)"
+  default     = 80
 }
 
 variable "memory_utilization_threshold_critical" {
-  description = "Memory Utilization in fraction (critical threshold)"
-  default     = 0.9
+  description = "Memory Utilization in percentage (critical threshold)"
+  default     = 90
 }
 
 variable "memory_utilization_silenced" {
@@ -169,14 +208,14 @@ variable "memory_utilization_forecast_history" {
   default     = "12h"
 }
 
-variable "memory_utilization_forecast_threshold_warning" {
-  description = "Memory Utilization Forecast in fraction (warning threshold)"
-  default     = 0.8
+variable "memory_utilization_forecast_threshold_critical" {
+  description = "Memory Utilization Forecast in percentage (warning threshold)"
+  default     = 90
 }
 
-variable "memory_utilization_forecast_threshold_critical" {
-  description = "Memory Utilization Forecast in fraction (critical threshold)"
-  default     = 0.9
+variable "memory_utilization_forecast_threshold_critical_recovery" {
+  description = "Memory Utilization Forecast in percentage (recovery threshold)"
+  default     = 81
 }
 
 variable "memory_utilization_forecast_silenced" {

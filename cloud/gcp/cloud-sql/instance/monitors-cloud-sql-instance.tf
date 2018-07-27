@@ -15,15 +15,15 @@ data "template_file" "filter" {
 # CPU Utilization
 #
 resource "datadog_monitor" "cpu_utilization" {
-  name    = "[${var.environment}] Cloud SQL CPU Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Cloud SQL CPU utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_utilization_message, var.message)}"
 
   type = "metric alert"
 
   query = <<EOF
   avg(${var.cpu_utilization_timeframe}):
-  avg:gcp.cloudsql.database.cpu.utilization{${data.template_file.filter.rendered}}
-  by {database_id}
+    avg:gcp.cloudsql.database.cpu.utilization{${data.template_file.filter.rendered}}
+    by {database_id} * 100
   > ${var.cpu_utilization_threshold_critical}
 EOF
 
@@ -32,16 +32,19 @@ EOF
     critical = "${var.cpu_utilization_threshold_critical}"
   }
 
-  notify_no_data      = true
-  require_full_window = false
-  renotify_interval   = 0
   notify_audit        = false
+  locked              = false
   timeout_h           = 0
   include_tags        = true
-  locked              = false
-  evaluation_delay    = "${var.delay}"
-  new_host_delay      = "${var.delay}"
-  silenced            = "${var.cpu_utilization_silenced}"
+  no_data_timeframe   = 30
+  require_full_window = false
+  notify_no_data      = true
+  renotify_interval   = 0
+
+  evaluation_delay = "${var.delay}"
+  new_host_delay   = "${var.delay}"
+
+  silenced = "${var.cpu_utilization_silenced}"
 
   tags = [
     "team:gcp",
@@ -56,7 +59,7 @@ EOF
 # Disk Utilization
 #
 resource "datadog_monitor" "disk_utilization" {
-  name    = "[${var.environment}] Cloud SQL Disk Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Cloud SQL Disk utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.disk_utilization_message, var.message)}"
 
   type = "metric alert"
@@ -64,7 +67,7 @@ resource "datadog_monitor" "disk_utilization" {
   query = <<EOF
   avg(${var.disk_utilization_timeframe}):
     avg:gcp.cloudsql.database.disk.utilization{${data.template_file.filter.rendered}}
-    by {database_id}
+    by {database_id} *100
     > ${var.disk_utilization_threshold_critical}
 EOF
 
@@ -73,16 +76,19 @@ EOF
     critical = "${var.disk_utilization_threshold_critical}"
   }
 
-  notify_no_data      = true
-  require_full_window = false
-  renotify_interval   = 0
   notify_audit        = false
+  locked              = false
   timeout_h           = 0
   include_tags        = true
-  locked              = false
-  evaluation_delay    = "${var.delay}"
-  new_host_delay      = "${var.delay}"
-  silenced            = "${var.disk_utilization_silenced}"
+  no_data_timeframe   = 20
+  require_full_window = false
+  notify_no_data      = true
+  renotify_interval   = 0
+
+  evaluation_delay = "${var.delay}"
+  new_host_delay   = "${var.delay}"
+
+  silenced = "${var.disk_utilization_silenced}"
 
   tags = [
     "team:gcp",
@@ -90,6 +96,55 @@ EOF
     "env:${var.environment}",
     "resource:cloud-sql",
     "${var.disk_utilization_extra_tags}",
+  ]
+}
+
+#
+# Disk Utilization Forecast
+#
+resource "datadog_monitor" "disk_utilization_forecast" {
+  name    = "[${var.environment}] Cloud SQL Disk utilization could reach {{#is_alert}}{{threshold}}%{{/is_alert}} in a near future"
+  message = "${coalesce(var.disk_utilization_forecast_message, var.message)}"
+
+  type = "metric alert"
+
+  query = <<EOF
+  max(${var.disk_utilization_forecast_timeframe}):
+    forecast(
+      avg:gcp.cloudsql.database.disk.utilization{${data.template_file.filter.rendered}} by {database_id} * 100,
+      'linear',
+      1,
+      interval='60m',
+      history='3d',
+      model='default'
+    )
+  >= ${var.disk_utilization_forecast_threshold_critical}
+EOF
+
+  thresholds {
+    critical          = "${var.disk_utilization_forecast_threshold_critical}"
+    critical_recovery = "${var.disk_utilization_forecast_threshold_critical_recovery}"
+  }
+
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
+  require_full_window = false
+  notify_no_data      = false
+  renotify_interval   = 0
+
+  evaluation_delay = "${var.delay}"
+  new_host_delay   = "${var.delay}"
+
+  silenced = "${var.disk_utilization_forecast_silenced}"
+
+  tags = [
+    "team:gcp",
+    "provider:gcp",
+    "env:${var.environment}",
+    "resource:cloud-sql",
+    "${var.disk_utilization_forecast_extra_tags}",
   ]
 }
 
@@ -105,8 +160,8 @@ resource "datadog_monitor" "memory_utilization" {
   query = <<EOF
   avg(${var.memory_utilization_timeframe}):
     avg:gcp.cloudsql.database.memory.utilization{${data.template_file.filter.rendered}}
-    by {database_id}
-    > ${var.memory_utilization_threshold_critical}
+    by {database_id} * 100
+  > ${var.memory_utilization_threshold_critical}
 EOF
 
   thresholds {
@@ -114,16 +169,19 @@ EOF
     critical = "${var.memory_utilization_threshold_critical}"
   }
 
-  notify_no_data      = true
-  require_full_window = false
-  renotify_interval   = 0
   notify_audit        = false
+  locked              = false
   timeout_h           = 0
   include_tags        = true
-  locked              = false
-  evaluation_delay    = "${var.delay}"
-  new_host_delay      = "${var.delay}"
-  silenced            = "${var.memory_utilization_silenced}"
+  no_data_timeframe   = 20
+  require_full_window = false
+  notify_no_data      = true
+  renotify_interval   = 0
+
+  evaluation_delay = "${var.delay}"
+  new_host_delay   = "${var.delay}"
+
+  silenced = "${var.memory_utilization_silenced}"
 
   tags = [
     "team:gcp",
@@ -138,7 +196,7 @@ EOF
 # Memory Utilization Forecast
 #
 resource "datadog_monitor" "memory_utilization_forecast" {
-  name    = "[${var.environment}] Cloud SQL Memory Utilization Forecast {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Cloud SQL Memory Utilization could reach {{#is_alert}}{{threshold}}%{{/is_alert}} in a near future"
   message = "${coalesce(var.memory_utilization_forecast_message, var.message)}"
 
   type = "query alert"
@@ -146,31 +204,33 @@ resource "datadog_monitor" "memory_utilization_forecast" {
   query = <<EOF
   max(${var.memory_utilization_forecast_timeframe}):
     forecast(
-      avg:gcp.cloudsql.database.memory.utilization{${data.template_file.filter.rendered}} by {database_id},
+      avg:gcp.cloudsql.database.memory.utilization{${data.template_file.filter.rendered}} by {database_id} * 100,
       'linear',
       1,
       interval='${var.memory_utilization_forecast_interval}',
       history='${var.memory_utilization_forecast_history}',
       model='default'
       )
-    > ${var.memory_utilization_forecast_threshold_critical}
+    >= ${var.memory_utilization_forecast_threshold_critical}
 EOF
 
   thresholds {
-    warning  = "${var.memory_utilization_forecast_threshold_warning}"
-    critical = "${var.memory_utilization_forecast_threshold_critical}"
+    critical          = "${var.memory_utilization_forecast_threshold_critical}"
+    critical_recovery = "${var.memory_utilization_forecast_threshold_critical_recovery}"
   }
 
-  notify_no_data      = true
-  require_full_window = false
-  renotify_interval   = 0
   notify_audit        = false
+  locked              = false
   timeout_h           = 0
   include_tags        = true
-  locked              = false
-  evaluation_delay    = "${var.delay}"
-  new_host_delay      = "${var.delay}"
-  silenced            = "${var.memory_utilization_forecast_silenced}"
+  require_full_window = false
+  notify_no_data      = false
+  renotify_interval   = 0
+
+  evaluation_delay = "${var.delay}"
+  new_host_delay   = "${var.delay}"
+
+  silenced = "${var.memory_utilization_forecast_silenced}"
 
   tags = [
     "team:gcp",
@@ -185,32 +245,35 @@ EOF
 # Failover Unavailable
 #
 resource "datadog_monitor" "failover_unavailable" {
-  name    = "[${var.environment}] Cloud SQL Failover Unavailable {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Cloud SQL Failover Unavailable"
   message = "${coalesce(var.failover_unavailable_message, var.message)}"
 
   type = "metric alert"
 
   query = <<EOF
-    max(${var.failover_unavailable_timeframe}):
-      avg:gcp.cloudsql.database.available_for_failover{${data.template_file.filter.rendered}}
-      by {database_id}
-      <= ${var.failover_unavailable_threshold_critical}
+  max(${var.failover_unavailable_timeframe}):
+    avg:gcp.cloudsql.database.available_for_failover{${data.template_file.filter.rendered}}
+    by {database_id}
+  <= ${var.failover_unavailable_threshold_critical}
 EOF
 
   thresholds {
     critical = "${var.failover_unavailable_threshold_critical}"
   }
 
-  notify_no_data      = true
-  require_full_window = false
-  renotify_interval   = 0
   notify_audit        = false
+  locked              = false
   timeout_h           = 0
   include_tags        = true
-  locked              = false
-  evaluation_delay    = "${var.delay}"
-  new_host_delay      = "${var.delay}"
-  silenced            = "${var.failover_unavailable_silenced}"
+  no_data_timeframe   = 20
+  require_full_window = false
+  notify_no_data      = true
+  renotify_interval   = 0
+
+  evaluation_delay = "${var.delay}"
+  new_host_delay   = "${var.delay}"
+
+  silenced = "${var.failover_unavailable_silenced}"
 
   tags = [
     "team:gcp",
