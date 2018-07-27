@@ -52,7 +52,7 @@ resource "datadog_monitor" "apimgt_failed_requests" {
     ) > ${var.failed_requests_threshold_critical}
   EOF
 
-  type                = "metric alert"
+  type = "metric alert"
 
   lifecycle {
     ignore_changes = ["type"]
@@ -89,7 +89,7 @@ resource "datadog_monitor" "apimgt_other_requests" {
     ) > ${var.other_requests_threshold_critical}
   EOF
 
-  type                = "metric alert"
+  type = "metric alert"
 
   lifecycle {
     ignore_changes = ["type"]
@@ -126,7 +126,7 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
     ) > ${var.unauthorized_requests_threshold_critical}
   EOF
 
-  type                = "metric alert"
+  type = "metric alert"
 
   lifecycle {
     ignore_changes = ["type"]
@@ -163,7 +163,7 @@ resource "datadog_monitor" "apimgt_successful_requests" {
     ) < ${var.successful_requests_threshold_critical}
   EOF
 
-  type                = "metric alert"
+  type = "metric alert"
 
   lifecycle {
     ignore_changes = ["type"]

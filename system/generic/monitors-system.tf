@@ -18,6 +18,10 @@ resource "datadog_monitor" "datadog_cpu_too_high" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     warning  = "${var.cpu_high_threshold_warning}"
     critical = "${var.cpu_high_threshold_critical}"
@@ -49,6 +53,10 @@ resource "datadog_monitor" "datadog_load_too_high" {
   EOF
 
   type = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   thresholds {
     warning  = "${var.cpu_load_threshold_warning}"
@@ -82,6 +90,10 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     warning  = "${var.free_disk_space_threshold_warning}"
     critical = "${var.free_disk_space_threshold_critical}"
@@ -114,6 +126,10 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     warning  = "${var.free_disk_inodes_threshold_warning}"
     critical = "${var.free_disk_inodes_threshold_critical}"
@@ -145,6 +161,10 @@ resource "datadog_monitor" "datadog_free_memory" {
   EOF
 
   type = "metric alert"
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   thresholds {
     warning  = "${var.free_memory_threshold_warning}"

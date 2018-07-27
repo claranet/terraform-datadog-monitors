@@ -14,7 +14,7 @@ resource "datadog_monitor" "availability" {
     ${var.availability_time_aggregator}(${var.availability_timeframe}): (default(
       avg:azure.storage.availability{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
     100)) < ${var.availability_threshold_critical}
-  EOF
+EOF
 
   lifecycle {
     ignore_changes = ["type"]
@@ -49,7 +49,7 @@ resource "datadog_monitor" "successful_requests" {
     ${var.successful_requests_time_aggregator}(${var.successful_requests_timeframe}): (default(
       avg:azure.storage.percent_success{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
     100)) < ${var.successful_requests_threshold_critical}
-  EOF
+EOF
 
   lifecycle {
     ignore_changes = ["type"]
@@ -84,7 +84,7 @@ resource "datadog_monitor" "latency" {
     ${var.latency_time_aggregator}(${var.latency_timeframe}): (default(
       avg:azure.storage.average_e2_e_latency{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
     0)) > ${var.latency_threshold_critical}
-  EOF
+EOF
 
   lifecycle {
     ignore_changes = ["type"]
@@ -119,7 +119,7 @@ resource "datadog_monitor" "timeout_error_requests" {
     ${var.timeout_error_requests_time_aggregator}(${var.timeout_error_requests_timeframe}): (default(
       avg:azure.storage.percent_timeout_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
     0)) > ${var.timeout_error_requests_threshold_critical}
-  EOF
+EOF
 
   lifecycle {
     ignore_changes = ["type"]
@@ -154,7 +154,7 @@ resource "datadog_monitor" "network_error_requests" {
     ${var.network_error_requests_time_aggregator}(${var.network_error_requests_timeframe}): (default(
       avg:azure.storage.percent_network_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
     0)) > ${var.network_error_requests_threshold_critical}
-  EOF
+EOF
 
   lifecycle {
     ignore_changes = ["type"]
@@ -189,7 +189,7 @@ resource "datadog_monitor" "throttling_error_requests" {
     ${var.throttling_error_requests_time_aggregator}(${var.throttling_error_requests_timeframe}): (default(
       avg:azure.storage.percent_throttling_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
     0)) > ${var.throttling_error_requests_threshold_critical}
-  EOF
+EOF
 
   lifecycle {
     ignore_changes = ["type"]
@@ -224,7 +224,7 @@ resource "datadog_monitor" "server_other_error_requests" {
     ${var.server_other_error_requests_time_aggregator}(${var.server_other_error_requests_timeframe}): (default(
       avg:azure.storage.percent_server_other_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
     0)) > ${var.server_other_error_requests_threshold_critical}
-  EOF
+EOF
 
   lifecycle {
     ignore_changes = ["type"]
@@ -259,7 +259,7 @@ resource "datadog_monitor" "client_other_error_requests" {
     ${var.client_other_error_requests_time_aggregator}(${var.client_other_error_requests_timeframe}): (default(
       avg:azure.storage.percent_client_other_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
     0)) > ${var.client_other_error_requests_threshold_critical}
-  EOF
+EOF
 
   lifecycle {
     ignore_changes = ["type"]
@@ -294,7 +294,7 @@ resource "datadog_monitor" "authorization_error_requests" {
     ${var.authorization_error_requests_time_aggregator}(${var.authorization_error_requests_timeframe}): (default(
       avg:azure.storage.percent_authorization_error{${data.template_file.filter.rendered},transaction_type:all} by {resource_group,storage_type,name},
     0)) > ${var.authorization_error_requests_threshold_critical}
-  EOF
+EOF
 
   lifecycle {
     ignore_changes = ["type"]

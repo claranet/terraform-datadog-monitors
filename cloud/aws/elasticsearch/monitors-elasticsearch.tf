@@ -22,7 +22,7 @@ resource "datadog_monitor" "es_cluster_status" {
     avg:aws.es.cluster_statusred{${data.template_file.filter.rendered}} by {region,name} * 2 +
     (avg:aws.es.cluster_statusyellow{${data.template_file.filter.rendered}} by {region,name} + 0.1)
   ) >= 2
-  EOF
+EOF
 
   lifecycle {
     ignore_changes = ["type"]
@@ -60,7 +60,7 @@ resource "datadog_monitor" "es_free_space_low" {
     avg:aws.es.free_storage_space{${data.template_file.filter.rendered}} by {region,name} /
     (${var.es_cluster_volume_size}*1000) * 100
   ) < ${var.diskspace_threshold_critical}
-  EOF
+EOF
 
   lifecycle {
     ignore_changes = ["type"]
@@ -97,7 +97,7 @@ resource "datadog_monitor" "es_cpu_90_15min" {
   ${var.cpu_time_aggregator}(${var.cpu_timeframe}): (
     avg:aws.es.cpuutilization{${data.template_file.filter.rendered}} by {region,name}
   ) > ${var.cpu_threshold_critical}
-  EOF
+EOF
 
   lifecycle {
     ignore_changes = ["type"]

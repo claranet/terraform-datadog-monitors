@@ -18,6 +18,10 @@ resource "datadog_monitor" "mongodb_replicaset_state" {
 
   type = "metric alert"
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   notify_no_data      = true
   renotify_interval   = 0
   evaluation_delay    = "${var.delay}"
