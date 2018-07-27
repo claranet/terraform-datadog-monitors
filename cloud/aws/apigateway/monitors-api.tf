@@ -10,6 +10,10 @@ resource "datadog_monitor" "API_Gateway_latency" {
     ) > ${var.latency_threshold_critical}
   EOF
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"
 
@@ -44,6 +48,10 @@ resource "datadog_monitor" "API_http_5xx_errors_count" {
     ) > ${var.http_5xx_requests_threshold_critical}
   EOF
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"
 
@@ -77,6 +85,10 @@ resource "datadog_monitor" "API_http_4xx_errors_count" {
       0) * 100
     ) > ${var.http_4xx_requests_threshold_critical}
   EOF
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"

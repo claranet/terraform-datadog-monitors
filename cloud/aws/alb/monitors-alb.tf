@@ -19,6 +19,10 @@ resource "datadog_monitor" "ALB_no_healthy_instances" {
     ) < 1
   EOF
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"
 
@@ -47,6 +51,10 @@ resource "datadog_monitor" "ALB_latency" {
       avg:aws.applicationelb.target_response_time.average{${data.template_file.filter.rendered}} by {region,loadbalancer}
     ) > ${var.latency_threshold_critical}
   EOF
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"
@@ -81,6 +89,10 @@ resource "datadog_monitor" "ALB_httpcode_5xx" {
     ) > ${var.httpcode_alb_5xx_threshold_critical}
   EOF
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"
 
@@ -113,6 +125,10 @@ resource "datadog_monitor" "ALB_httpcode_4xx" {
       0) * 100
     ) > ${var.httpcode_alb_4xx_threshold_critical}
   EOF
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"
@@ -147,6 +163,10 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
     ) > ${var.httpcode_target_5xx_threshold_critical}
   EOF
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"
 
@@ -179,6 +199,10 @@ resource "datadog_monitor" "ALB_httpcode_target_4xx" {
       0) * 100
     ) > ${var.httpcode_target_4xx_threshold_critical}
   EOF
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"

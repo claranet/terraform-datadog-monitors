@@ -16,6 +16,10 @@ resource "datadog_monitor" "ELB_no_healthy_instances" {
     ) < 1
   EOF
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   type = "metric alert"
 
   notify_no_data      = true
@@ -45,6 +49,10 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
       0) * 100
     ) > ${var.elb_4xx_threshold_critical}
   EOF
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   type = "metric alert"
 
@@ -81,6 +89,10 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
     ) > ${var.elb_5xx_threshold_critical}
   EOF
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   type = "metric alert"
 
   thresholds {
@@ -115,6 +127,10 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
       0) * 100
     ) > ${var.elb_backend_4xx_threshold_critical}
   EOF
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   type = "metric alert"
 
@@ -151,6 +167,10 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
     ) > ${var.elb_backend_5xx_threshold_critical}
   EOF
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   type = "metric alert"
 
   thresholds {
@@ -182,6 +202,10 @@ resource "datadog_monitor" "ELB_backend_latency" {
         avg:aws.elb.latency{${data.template_file.filter.rendered}} by {region,loadbalancername}
     ) > ${var.elb_backend_latency_critical}
   EOF
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   type = "metric alert"
 

@@ -19,6 +19,10 @@ resource "datadog_monitor" "firehose_incoming_records" {
     ) <= 0
   EOF
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   thresholds {
     critical = 0
   }

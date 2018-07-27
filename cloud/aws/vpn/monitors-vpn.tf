@@ -16,6 +16,10 @@ resource "datadog_monitor" "VPN_status" {
         ) < 1
   EOF
 
+  lifecycle {
+    ignore_changes = ["type"]
+  }
+
   type = "metric alert"
 
   notify_no_data      = true

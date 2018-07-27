@@ -17,7 +17,11 @@ resource "datadog_monitor" "rds_cpu_90_15min" {
     ${var.cpu_time_aggregator}(${var.cpu_timeframe}): (
       avg:aws.rds.cpuutilization{${data.template_file.filter.rendered}} by {region,name}
     ) > ${var.cpu_threshold_critical}
-EOF
+  EOF
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   thresholds {
     warning  = "${var.cpu_threshold_warning}"
@@ -50,7 +54,11 @@ resource "datadog_monitor" "rds_free_space_low" {
     avg:aws.rds.free_storage_space{${data.template_file.filter.rendered}} by {region,name} /
     avg:aws.rds.total_storage_space{${data.template_file.filter.rendered}} by {region,name} * 100
   ) < ${var.diskspace_threshold_critical}
-EOF
+  EOF
+
+  lifecycle {
+    ignore_changes = ["type"]
+  }
 
   thresholds {
     warning  = "${var.diskspace_threshold_warning}"
