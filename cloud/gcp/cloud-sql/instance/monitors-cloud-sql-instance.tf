@@ -17,7 +17,7 @@ data "template_file" "filter" {
 resource "datadog_monitor" "cpu_utilization" {
   count = "${var.cpu_utilization_enabled == "true" ? 1 : 0 }"
 
-  name    = "[${var.environment}] Cloud SQL CPU utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Cloud SQL CPU Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_utilization_message, var.message)}"
 
   type = "metric alert"
@@ -64,7 +64,7 @@ EOF
 resource "datadog_monitor" "disk_utilization" {
   count = "${var.disk_utilization_enabled == "true" ? 1 : 0 }"
 
-  name    = "[${var.environment}] Cloud SQL Disk utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Cloud SQL Disk Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.disk_utilization_message, var.message)}"
 
   type = "metric alert"
@@ -111,7 +111,7 @@ EOF
 resource "datadog_monitor" "disk_utilization_forecast" {
   count = "${var.disk_utilization_forecast_enabled == "true" ? 1 : 0 }"
 
-  name    = "[${var.environment}] Cloud SQL Disk utilization could reach {{#is_alert}}{{threshold}}%{{/is_alert}} in a near future"
+  name    = "[${var.environment}] Cloud SQL Disk Utilization could reach {{#is_alert}}{{threshold}}%{{/is_alert}} in a near future"
   message = "${coalesce(var.disk_utilization_forecast_message, var.message)}"
 
   type = "metric alert"
