@@ -120,11 +120,11 @@ resource "datadog_monitor" "disk_utilization_forecast" {
   max(${var.disk_utilization_forecast_timeframe}):
     forecast(
       avg:gcp.cloudsql.database.disk.utilization{${data.template_file.filter.rendered}} by {database_id} * 100,
-      'linear',
-      1,
-      interval='60m',
-      history='3d',
-      model='default'
+      '${var.disk_utilization_forecast_algorithm}',
+      ${var.disk_utilization_forecast_deviations},
+      interval='${var.disk_utilization_forecast_interval}',
+      ${var.disk_utilization_forecast_algorithm == "linear" ? format("history='%s',model='%s'", var.disk_utilization_forecast_linear_history, var.disk_utilization_forecast_linear_model): ""}
+      ${var.disk_utilization_forecast_algorithm == "seasonal" ? format("seasonality='%s'", var.disk_utilization_forecast_seasonal_seasonality): ""}
     )
   >= ${var.disk_utilization_forecast_threshold_critical}
 EOF
@@ -219,11 +219,11 @@ resource "datadog_monitor" "memory_utilization_forecast" {
   max(${var.memory_utilization_forecast_timeframe}):
     forecast(
       avg:gcp.cloudsql.database.memory.utilization{${data.template_file.filter.rendered}} by {database_id} * 100,
-      'linear',
-      1,
+      '${var.memory_utilization_forecast_algorithm}',
+      ${var.memory_utilization_forecast_deviations},
       interval='${var.memory_utilization_forecast_interval}',
-      history='${var.memory_utilization_forecast_history}',
-      model='default'
+      ${var.memory_utilization_forecast_algorithm == "linear" ? format("history='%s',model='%s'", var.memory_utilization_forecast_linear_history, var.memory_utilization_forecast_linear_model): ""}
+      ${var.memory_utilization_forecast_algorithm == "seasonal" ? format("seasonality='%s'", var.memory_utilization_forecast_seasonal_seasonality): ""}
       )
     >= ${var.memory_utilization_forecast_threshold_critical}
 EOF
