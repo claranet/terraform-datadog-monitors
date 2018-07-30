@@ -16,9 +16,9 @@ module "datadog-monitors-cloud-gcp-cloud-sql-instance" {
 
 Creates DataDog monitors with the following checks:
 
-- Cloud SQL CPU utilization
-- Cloud SQL Disk utilization
-- Cloud SQL Disk utilization could reach
+- Cloud SQL CPU Utilization
+- Cloud SQL Disk Utilization
+- Cloud SQL Disk Utilization could reach
 - Cloud SQL Memory Utilization
 - Cloud SQL Memory Utilization could reach
 - Cloud SQL Failover Unavailable
