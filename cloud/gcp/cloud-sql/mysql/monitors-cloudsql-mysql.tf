@@ -120,7 +120,7 @@ resource "datadog_monitor" "queries_changing_anomaly" {
   query = <<EOF
     avg(${var.queries_changing_anomaly_timeframe}):
       anomalies(
-        avg:gcp.cloudsql.database.mysql.queries{${data.template_file.filter.rendered}} by {database_id}.as_count()
+        avg:gcp.cloudsql.database.mysql.queries{${data.template_file.filter.rendered}} by {database_id}.as_count(),
         '${var.queries_changing_anomaly_detection_algorithm}',
         ${var.queries_changing_anomaly_deviations},
         direction='${var.queries_changing_anomaly_direction}',

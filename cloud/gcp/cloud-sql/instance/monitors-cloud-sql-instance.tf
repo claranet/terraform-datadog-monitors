@@ -72,7 +72,7 @@ resource "datadog_monitor" "disk_utilization" {
   query = <<EOF
   avg(${var.disk_utilization_timeframe}):
     avg:gcp.cloudsql.database.disk.utilization{${data.template_file.filter.rendered}}
-    by {database_id} *100
+    by {database_id} * 100
     > ${var.disk_utilization_threshold_critical}
 EOF
 
