@@ -37,13 +37,19 @@ Creates DataDog monitors with the following checks:
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | disk_utilization_enabled | Whether or not to create the monitor | string | `true` | no |
 | disk_utilization_extra_tags | Extra tags for GCP Cloud SQL CPU Utilization monitor | list | `<list>` | no |
+| disk_utilization_forecast_algorithm | Algorithm for the Disk Utilization Forecast monitor | string | `linear` | no |
+| disk_utilization_forecast_deviations | Deviations for the Disk Utilization Forecast monitor | string | `1` | no |
 | disk_utilization_forecast_enabled | Whether or not to create the monitor | string | `true` | no |
-| disk_utilization_forecast_extra_tags | Extra tags for GCP Cloud SQL CPU Utilization monitor | list | `<list>` | no |
-| disk_utilization_forecast_message | Custom message for the Disk Utilization monitor | string | `` | no |
-| disk_utilization_forecast_silenced | Groups to mute for GCP Cloud SQL Disk Utilization monitor | map | `<map>` | no |
-| disk_utilization_forecast_threshold_critical | Disk Utilization in percentage (critical threshold) | string | `80` | no |
-| disk_utilization_forecast_threshold_critical_recovery | Disk Utilization in percentage (recovery threshold) | string | `72` | no |
-| disk_utilization_forecast_timeframe | Timeframe for the Disk Utilization monitor | string | `next_1w` | no |
+| disk_utilization_forecast_extra_tags | Extra tags for GCP Cloud SQL Disk Utilization Forecast monitor | list | `<list>` | no |
+| disk_utilization_forecast_interval | Interval for the Disk Utilization Forecast monitor | string | `60m` | no |
+| disk_utilization_forecast_linear_history | History for the Disk Utilization Forecast monitor | string | `3d` | no |
+| disk_utilization_forecast_linear_model | Model for the Disk Utilization Forecast monitor | string | `default` | no |
+| disk_utilization_forecast_message | Custom message for the Disk Utilization Forecast monitor | string | `` | no |
+| disk_utilization_forecast_seasonal_seasonality | Seasonality for the Disk Utilization Forecast monitor | string | `weekly` | no |
+| disk_utilization_forecast_silenced | Groups to mute for GCP Cloud SQL Disk Utilization Forecast monitor | map | `<map>` | no |
+| disk_utilization_forecast_threshold_critical | Disk Utilization Forecast in percentage (critical threshold) | string | `80` | no |
+| disk_utilization_forecast_threshold_critical_recovery | Disk Utilization Forecast in percentage (recovery threshold) | string | `72` | no |
+| disk_utilization_forecast_timeframe | Timeframe for the Disk Utilization Forecast monitor | string | `next_1w` | no |
 | disk_utilization_message | Custom message for the Disk Utilization monitor | string | `` | no |
 | disk_utilization_silenced | Groups to mute for GCP Cloud SQL Disk Utilization monitor | map | `<map>` | no |
 | disk_utilization_threshold_critical | Disk Utilization in percentage (critical threshold) | string | `90` | no |
@@ -60,11 +66,15 @@ Creates DataDog monitors with the following checks:
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | memory_utilization_enabled | Whether or not to create the monitor | string | `true` | no |
 | memory_utilization_extra_tags | Extra tags for GCP Cloud SQL Memory Utilization monitor | list | `<list>` | no |
+| memory_utilization_forecast_algorithm | Algorithm for the Memory Utilization Forecast monitor | string | `linear` | no |
+| memory_utilization_forecast_deviations | Deviations for the Memory Utilization Forecast monitor | string | `1` | no |
 | memory_utilization_forecast_enabled | Whether or not to create the monitor | string | `true` | no |
 | memory_utilization_forecast_extra_tags | Extra tags for GCP Cloud SQL Memory Utilization Forecast monitor | list | `<list>` | no |
-| memory_utilization_forecast_history | History for the Memory Utilization Forecast monitor | string | `12h` | no |
 | memory_utilization_forecast_interval | Interval for the Memory Utilization Forecast monitor | string | `30m` | no |
+| memory_utilization_forecast_linear_history | History for the Memory Utilization Forecast monitor | string | `12h` | no |
+| memory_utilization_forecast_linear_model | Model for the Memory Utilization Forecast monitor | string | `default` | no |
 | memory_utilization_forecast_message | Custom message for the Memory Utilization Forecast monitor | string | `` | no |
+| memory_utilization_forecast_seasonal_seasonality | Seasonality for the Memory Utilization Forecast monitor | string | `weekly` | no |
 | memory_utilization_forecast_silenced | Groups to mute for GCP Cloud SQL Memory Utilization Forecast monitor | map | `<map>` | no |
 | memory_utilization_forecast_threshold_critical | Memory Utilization Forecast in percentage (warning threshold) | string | `90` | no |
 | memory_utilization_forecast_threshold_critical_recovery | Memory Utilization Forecast in percentage (recovery threshold) | string | `81` | no |
