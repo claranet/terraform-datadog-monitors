@@ -51,6 +51,7 @@ EOF
     "provider:gcp",
     "resource:cloud-sql",
     "env:${var.environment}",
+    "created_by:terraform",
     "${var.cpu_utilization_extra_tags}",
   ]
 }
@@ -94,6 +95,7 @@ EOF
     "team:gcp",
     "provider:gcp",
     "env:${var.environment}",
+    "created_by:terraform",
     "resource:cloud-sql",
     "${var.disk_utilization_extra_tags}",
   ]
@@ -143,6 +145,7 @@ EOF
     "team:gcp",
     "provider:gcp",
     "env:${var.environment}",
+    "created_by:terraform",
     "resource:cloud-sql",
     "${var.disk_utilization_forecast_extra_tags}",
   ]
@@ -187,6 +190,7 @@ EOF
     "team:gcp",
     "provider:gcp",
     "env:${var.environment}",
+    "created_by:terraform",
     "resource:cloud-sql",
     "${var.memory_utilization_extra_tags}",
   ]
@@ -236,6 +240,7 @@ EOF
     "team:gcp",
     "provider:gcp",
     "env:${var.environment}",
+    "created_by:terraform",
     "resource:cloud-sql",
     "${var.memory_utilization_forecast_extra_tags}",
   ]
@@ -279,6 +284,7 @@ EOF
     "team:gcp",
     "provider:gcp",
     "env:${var.environment}",
+    "created_by:terraform",
     "resource:cloud-sql",
     "${var.failover_unavailable_extra_tags}",
   ]
