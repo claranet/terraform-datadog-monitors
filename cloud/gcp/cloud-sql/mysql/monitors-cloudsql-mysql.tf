@@ -174,7 +174,7 @@ resource "datadog_monitor" "questions_changing_anomaly" {
   type = "query alert"
 
   query = <<EOF
-    avg(last_1h):
+    avg(${var.questions_changing_anomaly_timeframe}):
       anomalies(
         avg:gcp.cloudsql.database.mysql.questions{${data.template_file.filter.rendered}} by {database_id},
         '${var.questions_changing_anomaly_detection_algorithm}',
