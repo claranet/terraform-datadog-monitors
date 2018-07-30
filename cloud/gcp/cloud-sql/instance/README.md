@@ -27,6 +27,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| cpu_utilization_enabled | Whether or not to create the monitor | string | `true` | no |
 | cpu_utilization_extra_tags | Extra tags for GCP Cloud SQL CPU Utilization monitor | list | `<list>` | no |
 | cpu_utilization_message | Custom message for the CPU Utilization monitor | string | `` | no |
 | cpu_utilization_silenced | Groups to mute for GCP Cloud SQL CPU Utilization monitor | map | `<map>` | no |
@@ -34,7 +35,9 @@ Creates DataDog monitors with the following checks:
 | cpu_utilization_threshold_warning | CPU Utilization in percentage (warning threshold) | string | `80` | no |
 | cpu_utilization_timeframe | Timeframe for the CPU Utilization monitor | string | `last_15m` | no |
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
+| disk_utilization_enabled | Whether or not to create the monitor | string | `true` | no |
 | disk_utilization_extra_tags | Extra tags for GCP Cloud SQL CPU Utilization monitor | list | `<list>` | no |
+| disk_utilization_forecast_enabled | Whether or not to create the monitor | string | `true` | no |
 | disk_utilization_forecast_extra_tags | Extra tags for GCP Cloud SQL CPU Utilization monitor | list | `<list>` | no |
 | disk_utilization_forecast_message | Custom message for the Disk Utilization monitor | string | `` | no |
 | disk_utilization_forecast_silenced | Groups to mute for GCP Cloud SQL Disk Utilization monitor | map | `<map>` | no |
@@ -47,6 +50,7 @@ Creates DataDog monitors with the following checks:
 | disk_utilization_threshold_warning | Disk Utilization in percentage (warning threshold) | string | `80` | no |
 | disk_utilization_timeframe | Timeframe for the Disk Utilization monitor | string | `last_5m` | no |
 | environment | Architecture environment | string | - | yes |
+| failover_unavailable_enabled | Whether or not to create the monitor | string | `true` | no |
 | failover_unavailable_extra_tags | Extra tags for GCP Cloud SQL Failover Unavailable monitor | list | `<list>` | no |
 | failover_unavailable_message | Custom message for the Failover Unavailable monitor | string | `` | no |
 | failover_unavailable_silenced | Groups to mute for GCP Cloud SQL Failover Unavailable monitor | map | `<map>` | no |
@@ -54,7 +58,9 @@ Creates DataDog monitors with the following checks:
 | failover_unavailable_timeframe | Timeframe for the Failover Unavailable monitor | string | `last_5m` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
+| memory_utilization_enabled | Whether or not to create the monitor | string | `true` | no |
 | memory_utilization_extra_tags | Extra tags for GCP Cloud SQL Memory Utilization monitor | list | `<list>` | no |
+| memory_utilization_forecast_enabled | Whether or not to create the monitor | string | `true` | no |
 | memory_utilization_forecast_extra_tags | Extra tags for GCP Cloud SQL Memory Utilization Forecast monitor | list | `<list>` | no |
 | memory_utilization_forecast_history | History for the Memory Utilization Forecast monitor | string | `12h` | no |
 | memory_utilization_forecast_interval | Interval for the Memory Utilization Forecast monitor | string | `30m` | no |

@@ -36,6 +36,12 @@ variable "project_id" {
 #
 # Network Connections
 #
+variable "network_connections_enabled" {
+  description = "Whether or not to create the monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "network_connections_message" {
   description = "Custom message for the Network Connections monitor"
   type        = "string"
@@ -81,6 +87,12 @@ variable "network_connections_extra_tags" {
 #
 # Replication Lag
 #
+variable "replication_lag_enabled" {
+  description = "Whether or not to create the monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "replication_lag_message" {
   description = "Custom message for the Replication Lag monitor"
   type        = "string"
@@ -120,6 +132,12 @@ variable "replication_lag_extra_tags" {
 #
 # Queries Changing Abnormally
 #
+variable "queries_changing_enabled" {
+  description = "Whether or not to create the monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "queries_changing_database_ids" {
   description = "List of database ids for the Queries Changing monitor"
   type        = "list"
@@ -195,6 +213,12 @@ variable "queries_changing_extra_tags" {
 #
 # Questions Changing
 #
+variable "questions_changing_enabled" {
+  description = "Whether or not to create the monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "questions_changing_message" {
   description = "Custom message for the Questions Changing monitor"
   type        = "string"
