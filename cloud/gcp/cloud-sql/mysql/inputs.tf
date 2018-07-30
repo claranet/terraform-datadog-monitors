@@ -138,11 +138,6 @@ variable "queries_changing_enabled" {
   default     = "true"
 }
 
-variable "queries_changing_database_ids" {
-  description = "List of database ids for the Queries Changing monitor"
-  type        = "list"
-  default     = []
-}
 
 variable "queries_changing_message" {
   description = "Custom message for the Queries Changing monitor"
@@ -229,12 +224,6 @@ variable "questions_changing_timeframe" {
   description = "Timeframe for the Questions Changing monitor"
   type        = "string"
   default     = "last_1h"
-}
-
-variable "questions_changing_database_ids" {
-  description = "List of database ids for the Questions Changing monitor"
-  type        = "list"
-  default     = []
 }
 
 variable "questions_changing_anomaly_detection_algorithm" {

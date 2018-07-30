@@ -40,7 +40,6 @@ Creates DataDog monitors with the following checks:
 | network_connections_timeframe | Timeframe for the Network Connections monitor | string | `last_15m` | no |
 | project_id | ID of the GCP Project | string | - | yes |
 | queries_changing_anomaly_detection_algorithm | Anomaly Detection Algorithm used | string | `agile` | no |
-| queries_changing_database_ids | List of database ids for the Queries Changing monitor | list | `<list>` | no |
 | queries_changing_deviations | Deviations to detect the anomaly | string | `4` | no |
 | queries_changing_direction | Direction of the anomaly. It can be both, below or above. | string | `both` | no |
 | queries_changing_enabled | Whether or not to create the monitor | string | `true` | no |
@@ -53,7 +52,6 @@ Creates DataDog monitors with the following checks:
 | queries_changing_threshold_warning | Queries Changing warning threshold | string | `0.5` | no |
 | queries_changing_timeframe | Timeframe for the Queries Changing mon monitor | string | `last_1h` | no |
 | questions_changing_anomaly_detection_algorithm | Anomaly Detection Algorithm used | string | `agile` | no |
-| questions_changing_database_ids | List of database ids for the Questions Changing monitor | list | `<list>` | no |
 | questions_changing_deviations | Deviations to detect the anomaly | string | `4` | no |
 | questions_changing_direction | Direction of the anomaly. It can be both, below or above. | string | `both` | no |
 | questions_changing_enabled | Whether or not to create the monitor | string | `true` | no |
