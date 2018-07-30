@@ -41,9 +41,11 @@ EOF
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  evaluation_delay    = "${var.delay}"
-  new_host_delay      = "${var.delay}"
-  silenced            = "${var.network_connections_silenced}"
+
+  evaluation_delay = "${var.delay}"
+  new_host_delay   = "${var.delay}"
+
+  silenced = "${var.network_connections_silenced}"
 
   tags = [
     "team:gcp",
@@ -108,32 +110,32 @@ EOF
 # Queries Anomaly
 #
 resource "datadog_monitor" "queries_changing_anomaly" {
-  count = "${var.queries_changing_enabled} == true ? 1 : 0 "
+  count = "${var.queries_changing_anomaly_enabled} == true ? 1 : 0 "
 
   name    = "[${var.environment}] Cloud SQL MySQL Queries Count changed abnormally"
-  message = "${coalesce(var.queries_changing_message, var.message)}"
+  message = "${coalesce(var.queries_changing_anomaly_message, var.message)}"
 
   type = "query alert"
 
   query = <<EOF
-    avg(${var.queries_changing_timeframe}):
+    avg(${var.queries_changing_anomaly_timeframe}):
       anomalies(
         avg:gcp.cloudsql.database.mysql.queries{${data.template_file.filter.rendered}} by {database_id}.as_count()
         '${var.queries_changing_anomaly_detection_algorithm}',
-        ${var.queries_changing_deviations},
-        direction='${var.queries_changing_direction}',
-        alert_window='last_30m',
-        interval=20,
-        count_default_zero='false',
-        seasonality='${var.queries_changing_seasonality}'
+        ${var.queries_changing_anomaly_deviations},
+        direction='${var.queries_changing_anomaly_direction}',
+        alert_window='${var.queries_changing_anomaly_alert_window}',
+        interval=${var.queries_changing_anomaly_interval},
+        count_default_zero='${var.queries_changing_anomaly_count_default_zero}',
+        seasonality='${var.queries_changing_anomaly_seasonality}'
       )
-      > ${var.queries_changing_threshold_critical}
+      > ${var.queries_changing_anomaly_threshold_critical}
 EOF
 
   thresholds {
-    warning           = "${var.queries_changing_threshold_warning}"
-    critical          = "${var.queries_changing_threshold_critical}"
-    critical_recovery = "${var.queries_changing_threshold_critical_recovery}"
+    warning           = "${var.queries_changing_anomaly_threshold_warning}"
+    critical          = "${var.queries_changing_anomaly_threshold_critical}"
+    critical_recovery = "${var.queries_changing_anomaly_threshold_critical_recovery}"
   }
 
   notify_audit        = false
@@ -147,7 +149,7 @@ EOF
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"
 
-  silenced = "${var.queries_changing_silenced}"
+  silenced = "${var.queries_changing_anomaly_silenced}"
 
   tags = [
     "team:gcp",
@@ -156,7 +158,7 @@ EOF
     "created_by:terraform",
     "resource:cloud-sql",
     "engine:mysql",
-    "${var.queries_changing_extra_tags}",
+    "${var.queries_changing_anomaly_extra_tags}",
   ]
 }
 
@@ -164,10 +166,10 @@ EOF
 # Questions Anomaly
 #
 resource "datadog_monitor" "questions_changing_anomaly" {
-  count = "${var.questions_changing_enabled} == true ? 1 : 0 "
+  count = "${var.questions_changing_anomaly_enabled} == true ? 1 : 0 "
 
   name    = "[${var.environment}] Cloud SQL MySQL Questions Count changed abnormally"
-  message = "${coalesce(var.questions_changing_message, var.message)}"
+  message = "${coalesce(var.questions_changing_anomaly_message, var.message)}"
 
   type = "query alert"
 
@@ -176,20 +178,20 @@ resource "datadog_monitor" "questions_changing_anomaly" {
       anomalies(
         avg:gcp.cloudsql.database.mysql.questions{${data.template_file.filter.rendered}} by {database_id},
         '${var.questions_changing_anomaly_detection_algorithm}',
-        ${var.questions_changing_deviations},
-        direction='${var.questions_changing_direction}',
-        alert_window='last_30m',
-        interval=20,
-        count_default_zero='false',
-        seasonality='${var.questions_changing_seasonality}'
+        ${var.questions_changing_anomaly_deviations},
+        direction='${var.questions_changing_anomaly_direction}',
+        alert_window='${var.questions_changing_anomaly_alert_window}',
+        interval=${var.questions_changing_anomaly_interval},
+        count_default_zero='${var.questions_changing_anomaly_count_default_zero}',
+        seasonality='${var.questions_changing_anomaly_seasonality}'
       )
-    > ${var.questions_changing_threshold_critical}
+    > ${var.questions_changing_anomaly_threshold_critical}
 EOF
 
   thresholds {
-    warning           = "${var.questions_changing_threshold_warning}"
-    critical          = "${var.questions_changing_threshold_critical}"
-    critical_recovery = "${var.questions_changing_threshold_critical_recovery}"
+    warning           = "${var.questions_changing_anomaly_threshold_warning}"
+    critical          = "${var.questions_changing_anomaly_threshold_critical}"
+    critical_recovery = "${var.questions_changing_anomaly_threshold_critical_recovery}"
   }
 
   notify_audit        = false
@@ -203,7 +205,7 @@ EOF
   evaluation_delay = "${var.delay}"
   new_host_delay   = "${var.delay}"
 
-  silenced = "${var.questions_changing_silenced}"
+  silenced = "${var.questions_changing_anomaly_silenced}"
 
   tags = [
     "team:gcp",
@@ -212,6 +214,6 @@ EOF
     "created_by:terraform",
     "resource:cloud-sql",
     "engine:mysql",
-    "${var.questions_changing_extra_tags}",
+    "${var.questions_changing_anomaly_extra_tags}",
   ]
 }

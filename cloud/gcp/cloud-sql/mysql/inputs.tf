@@ -132,20 +132,19 @@ variable "replication_lag_extra_tags" {
 #
 # Queries Changing Abnormally
 #
-variable "queries_changing_enabled" {
+variable "queries_changing_anomaly_enabled" {
   description = "Whether or not to create the monitor"
   type        = "string"
   default     = "true"
 }
 
-
-variable "queries_changing_message" {
+variable "queries_changing_anomaly_message" {
   description = "Custom message for the Queries Changing monitor"
   type        = "string"
   default     = ""
 }
 
-variable "queries_changing_timeframe" {
+variable "queries_changing_anomaly_timeframe" {
   description = "Timeframe for the Queries Changing mon monitor"
   type        = "string"
   default     = "last_1h"
@@ -157,49 +156,67 @@ variable "queries_changing_anomaly_detection_algorithm" {
   default     = "agile"
 }
 
-variable "queries_changing_deviations" {
+variable "queries_changing_anomaly_deviations" {
   description = "Deviations to detect the anomaly"
   type        = "string"
   default     = 4
 }
 
-variable "queries_changing_direction" {
+variable "queries_changing_anomaly_direction" {
   description = "Direction of the anomaly. It can be both, below or above."
   type        = "string"
   default     = "both"
 }
 
-variable "queries_changing_seasonality" {
+variable "queries_changing_anomaly_alert_window" {
+  description = "Alert window."
+  type        = "string"
+  default     = "last_30m"
+}
+
+variable "queries_changing_anomaly_interval" {
+  description = "Interval."
+  type        = "string"
+  default     = 20
+}
+
+variable "queries_changing_anomaly_count_default_zero" {
+  description = "Count default zero."
+  type        = "string"
+  default     = "false"
+}
+
+variable "queries_changing_anomaly_seasonality" {
   description = "Seasonality of the algorithm"
   type        = "string"
   default     = "weekly"
 }
 
-variable "queries_changing_threshold_warning" {
+variable "queries_changing_anomaly_threshold_warning" {
   description = "Queries Changing warning threshold"
   type        = "string"
   default     = 0.5
 }
 
-variable "queries_changing_threshold_critical" {
+variable "queries_changing_anomaly_threshold_critical" {
   description = "Queries Changing critical threshold"
   type        = "string"
   default     = 1
 }
 
-variable "queries_changing_threshold_critical_recovery" {
+variable "queries_changing_anomaly_threshold_critical_recovery" {
   description = "Queries Changing critical recovery threshold"
   type        = "string"
   default     = 0.99
 }
 
-variable "queries_changing_silenced" {
+variable "queries_changing_anomaly_silenced" {
   description = "Groups to mute for GCP Cloud SQL Queries Changing monitor"
   type        = "map"
   default     = {}
 }
 
-variable "queries_changing_extra_tags" {
+variable "queries_changing_anomaly_extra_tags" {
   description = "Extra tags for GCP Cloud SQL Queries Changing monitor"
   type        = "list"
   default     = []
@@ -208,19 +225,19 @@ variable "queries_changing_extra_tags" {
 #
 # Questions Changing
 #
-variable "questions_changing_enabled" {
+variable "questions_changing_anomaly_enabled" {
   description = "Whether or not to create the monitor"
   type        = "string"
   default     = "true"
 }
 
-variable "questions_changing_message" {
+variable "questions_changing_anomaly_message" {
   description = "Custom message for the Questions Changing monitor"
   type        = "string"
   default     = ""
 }
 
-variable "questions_changing_timeframe" {
+variable "questions_changing_anomaly_timeframe" {
   description = "Timeframe for the Questions Changing monitor"
   type        = "string"
   default     = "last_1h"
@@ -232,49 +249,67 @@ variable "questions_changing_anomaly_detection_algorithm" {
   default     = "agile"
 }
 
-variable "questions_changing_deviations" {
+variable "questions_changing_anomaly_alert_window" {
+  description = "Alert window."
+  type        = "string"
+  default     = "last_30m"
+}
+
+variable "questions_changing_anomaly_interval" {
+  description = "Interval."
+  type        = "string"
+  default     = 20
+}
+
+variable "questions_changing_anomaly_count_default_zero" {
+  description = "Count default zero."
+  type        = "string"
+  default     = "false"
+}
+
+variable "questions_changing_anomaly_deviations" {
   description = "Deviations to detect the anomaly"
   type        = "string"
   default     = 4
 }
 
-variable "questions_changing_direction" {
+variable "questions_changing_anomaly_direction" {
   description = "Direction of the anomaly. It can be both, below or above."
   type        = "string"
   default     = "both"
 }
 
-variable "questions_changing_seasonality" {
+variable "questions_changing_anomaly_seasonality" {
   description = "Seasonality of the algorithm"
   type        = "string"
   default     = "weekly"
 }
 
-variable "questions_changing_threshold_warning" {
+variable "questions_changing_anomaly_threshold_warning" {
   description = "Questions Changing warning threshold"
   type        = "string"
   default     = 0.5
 }
 
-variable "questions_changing_threshold_critical" {
+variable "questions_changing_anomaly_threshold_critical" {
   description = "Questions Changing critical threshold"
   type        = "string"
   default     = 1
 }
 
-variable "questions_changing_threshold_critical_recovery" {
+variable "questions_changing_anomaly_threshold_critical_recovery" {
   description = "Questions Changing critical recovery threshold"
   type        = "string"
   default     = 0.99
 }
 
-variable "questions_changing_silenced" {
+variable "questions_changing_anomaly_silenced" {
   description = "Groups to mute for GCP Cloud SQL Questions Changing monitor"
   type        = "map"
   default     = {}
 }
 
-variable "questions_changing_extra_tags" {
+variable "questions_changing_anomaly_extra_tags" {
   description = "Extra tags for GCP Cloud SQL Questions Changing monitor"
   type        = "list"
   default     = []
