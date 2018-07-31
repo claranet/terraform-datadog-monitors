@@ -34,57 +34,6 @@ variable "project_id" {
 }
 
 #
-# Network Connections
-#
-variable "network_connections_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
-
-variable "network_connections_message" {
-  description = "Custom message for the Network Connections monitor"
-  type        = "string"
-  default     = ""
-}
-
-variable "network_connections_timeframe" {
-  description = "Timeframe for the Network Connections monitor"
-  type        = "string"
-  default     = "last_15m"
-}
-
-variable "network_connections_hard_limit" {
-  description = "Max number of connections for the CloudSQL Instance. Default value is the max value on https://cloud.google.com/sql/docs/quotas#fixed-limits for MySQL"
-  type        = "string"
-  default     = 4000
-}
-
-variable "network_connections_threshold_warning" {
-  description = "Number of network connections (warning threshold)"
-  type        = "string"
-  default     = 3200
-}
-
-variable "network_connections_threshold_critical" {
-  description = "Number of network connections (critical threshold)"
-  type        = "string"
-  default     = 3600
-}
-
-variable "network_connections_silenced" {
-  description = "Groups to mute for GCP Cloud SQL Network Connections monitor"
-  type        = "map"
-  default     = {}
-}
-
-variable "network_connections_extra_tags" {
-  description = "Extra tags for GCP Cloud SQL Network Connections monitor"
-  type        = "list"
-  default     = []
-}
-
-#
 # Replication Lag
 #
 variable "replication_lag_enabled" {

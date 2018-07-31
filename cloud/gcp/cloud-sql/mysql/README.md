@@ -16,7 +16,6 @@ module "datadog-monitors-cloud-gcp-cloud-sql-mysql" {
 
 Creates DataDog monitors with the following checks:
 
-- Cloud SQL MySQL Network Connections (hard limit: ${var.network_connections_hard_limit})
 - Cloud SQL MySQL Replication Lag
 - Cloud SQL MySQL Queries Count changed abnormally
 - Cloud SQL MySQL Questions Count changed abnormally
@@ -30,14 +29,6 @@ Creates DataDog monitors with the following checks:
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
-| network_connections_enabled | Whether or not to create the monitor | string | `true` | no |
-| network_connections_extra_tags | Extra tags for GCP Cloud SQL Network Connections monitor | list | `<list>` | no |
-| network_connections_hard_limit | Max number of connections for the CloudSQL Instance. Default value is the max value on https://cloud.google.com/sql/docs/quotas#fixed-limits for MySQL | string | `4000` | no |
-| network_connections_message | Custom message for the Network Connections monitor | string | `` | no |
-| network_connections_silenced | Groups to mute for GCP Cloud SQL Network Connections monitor | map | `<map>` | no |
-| network_connections_threshold_critical | Number of network connections (critical threshold) | string | `3600` | no |
-| network_connections_threshold_warning | Number of network connections (warning threshold) | string | `3200` | no |
-| network_connections_timeframe | Timeframe for the Network Connections monitor | string | `last_15m` | no |
 | project_id | ID of the GCP Project | string | - | yes |
 | queries_changing_anomaly_alert_window | Alert window. | string | `last_30m` | no |
 | queries_changing_anomaly_count_default_zero | Count default zero. | string | `false` | no |
@@ -81,7 +72,6 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description |
 |------|-------------|
-| network_connections_id | id for monitor network_connections |
 | queries_changing_anomaly_id | id for monitor queries_changing_anomaly |
 | questions_changing_anomaly_id | id for monitor questions_changing_anomaly |
 | replication_lag_id | id for monitor replication_lag |
