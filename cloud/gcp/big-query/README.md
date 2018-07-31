@@ -30,14 +30,12 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| available_slots_enabled | Whether or not to create the monitor | string | `true` | no |
 | available_slots_extra_tags | Extra tags for GCP Big Query Available Slots monitor | list | `<list>` | no |
 | available_slots_message | Custom message for the Available Slots monitor | string | `` | no |
 | available_slots_silenced | Groups to mute for GCP Big Query Available Slots monitor. | map | `<map>` | no |
 | available_slots_threshold_critical | Available Slots (critical threshold) | string | `200` | no |
 | available_slots_threshold_warning | Available Slots (warning threshold) | string | `300` | no |
 | available_slots_timeframe | Timeframe for the Available Slots monitor | string | `last_5m` | no |
-| concurrent_queries_enabled | Whether or not to create the monitor | string | `true` | no |
 | concurrent_queries_extra_tags | Extra tags for GCP Big Query Concurrent Queries monitor | list | `<list>` | no |
 | concurrent_queries_message | Custom message for the Concurrent Queries monitor | string | `` | no |
 | concurrent_queries_silenced | Groups to mute for GCP Big Query Concurrent Queries monitor | map | `<map>` | no |
@@ -46,7 +44,6 @@ Creates DataDog monitors with the following checks:
 | concurrent_queries_timeframe | Timeframe for the Concurrent Queries monitor | string | `last_5m` | no |
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
-| execution_time_enabled | Whether or not to create the monitor | string | `true` | no |
 | execution_time_extra_tags | Extra tags for GCP Big Query Execution Time monitor | list | `<list>` | no |
 | execution_time_message | Custom message for the Execution Time monitor | string | `` | no |
 | execution_time_silenced | Groups to mute for GCP Big Query Execution Time monitor. Muted by default. | map | `<map>` | no |
@@ -57,42 +54,36 @@ Creates DataDog monitors with the following checks:
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 | project_id | ID of the GCP Project | string | - | yes |
-| scanned_bytes_billed_enabled | Whether or not to create the monitor | string | `true` | no |
 | scanned_bytes_billed_extra_tags | Extra tags for GCP Big Query Scanned Bytes Billed monitor | list | `<list>` | no |
 | scanned_bytes_billed_message | Custom message for the Scanned Bytes Billed monitor | string | `` | no |
 | scanned_bytes_billed_silenced | Groups to mute for GCP Big Query Scanned Bytes Billed monitor. Muted by default. | map | `<map>` | no |
 | scanned_bytes_billed_threshold_critical | Scanned Bytes Billed Bytes (critical threshold) | string | `1` | no |
 | scanned_bytes_billed_threshold_warning | Scanned Bytes Billed Bytes (warning threshold) | string | `0` | no |
 | scanned_bytes_billed_timeframe | Timeframe for the Scanned Bytes Billed monitor | string | `last_4h` | no |
-| scanned_bytes_enabled | Whether or not to create the monitor | string | `true` | no |
 | scanned_bytes_extra_tags | Extra tags for GCP Big Query Scanned Bytes monitor | list | `<list>` | no |
 | scanned_bytes_message | Custom message for the Scanned Bytes monitor | string | `` | no |
 | scanned_bytes_silenced | Groups to mute for GCP Big Query Scanned Bytes monitor. Muted by default. | map | `<map>` | no |
 | scanned_bytes_threshold_critical | Scanned Bytes Bytes (critical threshold) | string | `1` | no |
 | scanned_bytes_threshold_warning | Scanned Bytes Bytes (warning threshold) | string | `0` | no |
 | scanned_bytes_timeframe | Timeframe for the Scanned Bytes monitor | string | `last_4h` | no |
-| stored_bytes_enabled | Whether or not to create the monitor | string | `true` | no |
 | stored_bytes_extra_tags | Extra tags for GCP Big Query Stored Bytes monitor | list | `<list>` | no |
 | stored_bytes_message | Custom message for the Stored Bytes monitor | string | `` | no |
 | stored_bytes_silenced | Groups to mute for GCP Big Query Stored Bytes monitor. Muted by default. | map | `<map>` | no |
 | stored_bytes_threshold_critical | Stored Bytes in fraction (critical threshold) | string | `1` | no |
 | stored_bytes_threshold_warning | Stored Bytes in fraction (warning threshold) | string | `0` | no |
 | stored_bytes_timeframe | Timeframe for the Stored Bytes monitor | string | `last_5m` | no |
-| table_count_enabled | Whether or not to create the monitor | string | `true` | no |
 | table_count_extra_tags | Extra tags for GCP Big Query Table Count monitor | list | `<list>` | no |
 | table_count_message | Custom message for the Table Count monitor | string | `` | no |
 | table_count_silenced | Groups to mute for GCP Big Query Table Count monitor. Muted by default. | map | `<map>` | no |
 | table_count_threshold_critical | Table Count (critical threshold) | string | `1` | no |
 | table_count_threshold_warning | Table Count (warning threshold) | string | `0` | no |
 | table_count_timeframe | Timeframe for the Table Count monitor | string | `last_4h` | no |
-| uploaded_bytes_billed_enabled | Whether or not to create the monitor | string | `true` | no |
 | uploaded_bytes_billed_extra_tags | Extra tags for GCP Big Query Scanned Bytes monitor | list | `<list>` | no |
 | uploaded_bytes_billed_message | Custom message for the Uploaded Bytes Billed monitor | string | `` | no |
 | uploaded_bytes_billed_silenced | Groups to mute for GCP Big Query Uploaded Bytes Billed monitor. Muted by default. | map | `<map>` | no |
 | uploaded_bytes_billed_threshold_critical | Uploaded Bytes Billed in Bytes (critical threshold) | string | `1` | no |
 | uploaded_bytes_billed_threshold_warning | Uploaded Bytes Billed in Bytes (warning threshold) | string | `0` | no |
 | uploaded_bytes_billed_timeframe | Timeframe for the Uploaded Bytes Billed monitor | string | `last_4h` | no |
-| uploaded_bytes_enabled | Whether or not to create the monitor | string | `true` | no |
 | uploaded_bytes_extra_tags | Extra tags for GCP Big Query Uploaded Bytes monitor | list | `<list>` | no |
 | uploaded_bytes_message | Custom message for the Uploaded Bytes monitor | string | `` | no |
 | uploaded_bytes_silenced | Groups to mute for GCP Big Query Uploaded Bytes monitor. Muted by default. | map | `<map>` | no |

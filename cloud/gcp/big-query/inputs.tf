@@ -1,6 +1,7 @@
 #
 # Datadog global variables
 #
+
 variable "environment" {
   description = "Architecture environment"
   type        = "string"
@@ -28,6 +29,7 @@ variable "delay" {
 #
 # Filter variables
 #
+
 variable "project_id" {
   type        = "string"
   description = "ID of the GCP Project"
@@ -36,11 +38,6 @@ variable "project_id" {
 #
 # Concurrent queries
 #
-variable "concurrent_queries_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "concurrent_queries_message" {
   description = "Custom message for the Concurrent Queries monitor"
@@ -81,11 +78,6 @@ variable "concurrent_queries_extra_tags" {
 #
 # Execution Time
 #
-variable "execution_time_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "execution_time_message" {
   description = "Custom message for the Execution Time monitor"
@@ -127,11 +119,6 @@ variable "execution_time_extra_tags" {
 #
 # Scanned Bytes
 #
-variable "scanned_bytes_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "scanned_bytes_message" {
   description = "Custom message for the Scanned Bytes monitor"
@@ -173,11 +160,6 @@ variable "scanned_bytes_extra_tags" {
 #
 # Scanned Bytes Billed
 #
-variable "scanned_bytes_billed_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "scanned_bytes_billed_message" {
   description = "Custom message for the Scanned Bytes Billed monitor"
@@ -219,11 +201,6 @@ variable "scanned_bytes_billed_extra_tags" {
 #
 # Available Slots
 #
-variable "available_slots_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "available_slots_message" {
   description = "Custom message for the Available Slots monitor"
@@ -264,11 +241,6 @@ variable "available_slots_extra_tags" {
 #
 # Stored Bytes
 #
-variable "stored_bytes_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "stored_bytes_message" {
   description = "Custom message for the Stored Bytes monitor"
@@ -310,11 +282,6 @@ variable "stored_bytes_extra_tags" {
 #
 # Table Count
 #
-variable "table_count_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "table_count_message" {
   description = "Custom message for the Table Count monitor"
@@ -356,11 +323,6 @@ variable "table_count_extra_tags" {
 #
 # Uploaded Bytes
 #
-variable "uploaded_bytes_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "uploaded_bytes_message" {
   description = "Custom message for the Uploaded Bytes monitor"
@@ -402,11 +364,6 @@ variable "uploaded_bytes_extra_tags" {
 #
 # Uploaded Bytes Billed
 #
-variable "uploaded_bytes_billed_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "uploaded_bytes_billed_message" {
   description = "Custom message for the Uploaded Bytes Billed monitor"
