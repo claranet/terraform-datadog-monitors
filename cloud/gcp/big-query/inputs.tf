@@ -115,9 +115,7 @@ variable "execution_time_silenced" {
   description = "Groups to mute for GCP Big Query Execution Time monitor. Muted by default."
   type        = "map"
 
-  default = {
-    "*" = 0
-  }
+  default = {}
 }
 
 variable "execution_time_extra_tags" {
@@ -163,9 +161,7 @@ variable "scanned_bytes_silenced" {
   description = "Groups to mute for GCP Big Query Scanned Bytes monitor. Muted by default."
   type        = "map"
 
-  default = {
-    "*" = 0
-  }
+  default = {}
 }
 
 variable "scanned_bytes_extra_tags" {
@@ -211,9 +207,7 @@ variable "scanned_bytes_billed_silenced" {
   description = "Groups to mute for GCP Big Query Scanned Bytes Billed monitor. Muted by default."
   type        = "map"
 
-  default = {
-    "*" = 0
-  }
+  default = {}
 }
 
 variable "scanned_bytes_billed_extra_tags" {
@@ -304,9 +298,7 @@ variable "stored_bytes_silenced" {
   description = "Groups to mute for GCP Big Query Stored Bytes monitor. Muted by default."
   type        = "map"
 
-  default = {
-    "*" = 0
-  }
+  default = {}
 }
 
 variable "stored_bytes_extra_tags" {
@@ -352,9 +344,7 @@ variable "table_count_silenced" {
   description = "Groups to mute for GCP Big Query Table Count monitor. Muted by default."
   type        = "map"
 
-  default = {
-    "*" = 0
-  }
+  default = {}
 }
 
 variable "table_count_extra_tags" {
@@ -400,9 +390,7 @@ variable "uploaded_bytes_silenced" {
   description = "Groups to mute for GCP Big Query Uploaded Bytes monitor. Muted by default."
   type        = "map"
 
-  default = {
-    "*" = 0
-  }
+  default = {}
 }
 
 variable "uploaded_bytes_extra_tags" {
@@ -448,9 +436,7 @@ variable "uploaded_bytes_billed_silenced" {
   description = "Groups to mute for GCP Big Query Uploaded Bytes Billed monitor. Muted by default."
   type        = "map"
 
-  default = {
-    "*" = 0
-  }
+  default = {}
 }
 
 variable "uploaded_bytes_billed_extra_tags" {
