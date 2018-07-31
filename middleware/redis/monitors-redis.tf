@@ -39,7 +39,12 @@ EOL
   require_full_window = true
   new_host_delay      = "${var.delay}"
 
-  tags = ["env:${var.environment}", "resource:redis"]
+  tags = [
+    "created_by:terraform",
+    "created_by:terraform",
+    "env:${var.environment}",
+    "resource:redis",
+  ]
 }
 
 resource "datadog_monitor" "redis_expirations" {
@@ -75,7 +80,11 @@ EOL
   require_full_window = false
   new_host_delay      = "${var.delay}"
 
-  tags = ["env:${var.environment}", "resource:redis"]
+  tags = [
+    "created_by:terraform",
+    "env:${var.environment}",
+    "resource:redis",
+  ]
 }
 
 resource "datadog_monitor" "redis_blocked_clients" {
@@ -112,7 +121,11 @@ EOL
   require_full_window = false
   new_host_delay      = "${var.delay}"
 
-  tags = ["env:${var.environment}", "resource:redis"]
+  tags = [
+    "created_by:terraform",
+    "env:${var.environment}",
+    "resource:redis",
+  ]
 }
 
 resource "datadog_monitor" "redis_keyspace" {
@@ -148,7 +161,11 @@ EOL
   require_full_window = false
   new_host_delay      = "${var.delay}"
 
-  tags = ["env:${var.environment}", "resource:redis"]
+  tags = [
+    "created_by:terraform",
+    "env:${var.environment}",
+    "resource:redis",
+  ]
 }
 
 resource "datadog_monitor" "redis_mem_used" {
@@ -185,7 +202,11 @@ EOL
   require_full_window = false
   new_host_delay      = "${var.delay}"
 
-  tags = ["env:${var.environment}", "resource:redis"]
+  tags = [
+    "created_by:terraform",
+    "env:${var.environment}",
+    "resource:redis",
+  ]
 }
 
 resource "datadog_monitor" "redis_mem_frag" {
@@ -221,7 +242,11 @@ EOL
   require_full_window = false
   new_host_delay      = "${var.delay}"
 
-  tags = ["env:${var.environment}", "resource:redis"]
+  tags = [
+    "created_by:terraform",
+    "env:${var.environment}",
+    "resource:redis",
+  ]
 }
 
 resource "datadog_monitor" "redis_rejected_con" {
@@ -257,7 +282,11 @@ EOL
   require_full_window = false
   new_host_delay      = "${var.delay}"
 
-  tags = ["env:${var.environment}", "resource:redis"]
+  tags = [
+    "created_by:terraform",
+    "env:${var.environment}",
+    "resource:redis",
+  ]
 }
 
 resource "datadog_monitor" "redis_latency" {
@@ -293,7 +322,11 @@ EOL
   require_full_window = false
   new_host_delay      = "${var.delay}"
 
-  tags = ["env:${var.environment}", "resource:redis"]
+  tags = [
+    "created_by:terraform",
+    "env:${var.environment}",
+    "resource:redis",
+  ]
 }
 
 resource "datadog_monitor" "redis_hitrate" {
@@ -331,5 +364,9 @@ EOL
   require_full_window = false
   new_host_delay      = "${var.delay}"
 
-  tags = ["env:${var.environment}", "resource:redis"]
+  tags = [
+    "created_by:terraform",
+    "env:${var.environment}",
+    "resource:redis",
+  ]
 }
