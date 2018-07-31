@@ -36,11 +36,6 @@ variable "project_id" {
 #
 # Replication Lag
 #
-variable "replication_lag_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "replication_lag_message" {
   description = "Custom message for the Replication Lag monitor"
@@ -81,11 +76,6 @@ variable "replication_lag_extra_tags" {
 #
 # Queries Changing Abnormally
 #
-variable "queries_changing_anomaly_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "queries_changing_anomaly_message" {
   description = "Custom message for the Queries Changing monitor"
@@ -174,11 +164,6 @@ variable "queries_changing_anomaly_extra_tags" {
 #
 # Questions Changing
 #
-variable "questions_changing_anomaly_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "questions_changing_anomaly_message" {
   description = "Custom message for the Questions Changing monitor"
