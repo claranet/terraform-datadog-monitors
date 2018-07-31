@@ -16,15 +16,15 @@ module "datadog-monitors-cloud-gcp-big-query" {
 
 Creates DataDog monitors with the following checks:
 
-- GCP Big Query Available Slots close to the limit
-- GCP Big Query Concurrent Queries close to the limit
-- GCP Big Query Execution Time too high
-- GCP Big Query Scanned Bytes Billed too high
-- GCP Big Query Scanned Bytes too high
-- GCP Big Query Stored Bytes too high
-- GCP Big Query Table Count too high
-- GCP Big Query Uploaded Bytes Billed too high
-- GCP Big Query Uploaded Bytes too high
+- GCP Big Query Available Slots
+- GCP Big Query Concurrent Queries
+- GCP Big Query Execution Time
+- GCP Big Query Scanned Bytes Billed
+- GCP Big Query Scanned Bytes
+- GCP Big Query Stored Bytes
+- GCP Big Query Table Count
+- GCP Big Query Uploaded Bytes Billed
+- GCP Big Query Uploaded Bytes
 
 ## Inputs
 
