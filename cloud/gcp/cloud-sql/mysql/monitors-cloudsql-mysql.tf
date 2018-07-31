@@ -15,8 +15,6 @@ data "template_file" "filter" {
 # Replication Lag
 #
 resource "datadog_monitor" "replication_lag" {
-  count = "${var.replication_lag_enabled == "true" ? 1 : 0 }"
-
   name    = "[${var.environment}] Cloud SQL MySQL Replication Lag {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = "${coalesce(var.replication_lag_message, var.message)}"
 
@@ -63,8 +61,6 @@ EOF
 # Queries Anomaly
 #
 resource "datadog_monitor" "queries_changing_anomaly" {
-  count = "${var.queries_changing_anomaly_enabled == "true" ? 1 : 0 }"
-
   name    = "[${var.environment}] Cloud SQL MySQL Queries Count changed abnormally"
   message = "${coalesce(var.queries_changing_anomaly_message, var.message)}"
 
@@ -119,8 +115,6 @@ EOF
 # Questions Anomaly
 #
 resource "datadog_monitor" "questions_changing_anomaly" {
-  count = "${var.questions_changing_anomaly_enabled == "true" ? 1 : 0 }"
-
   name    = "[${var.environment}] Cloud SQL MySQL Questions Count changed abnormally"
   message = "${coalesce(var.questions_changing_anomaly_message, var.message)}"
 

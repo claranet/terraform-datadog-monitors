@@ -36,11 +36,6 @@ variable "project_id" {
 #
 # CPU
 #
-variable "cpu_utilization_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "cpu_utilization_message" {
   description = "Custom message for the CPU Utilization monitor"
@@ -81,11 +76,6 @@ variable "cpu_utilization_extra_tags" {
 #
 # DISK Utilization
 #
-variable "disk_utilization_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "disk_utilization_message" {
   description = "Custom message for the Disk Utilization monitor"
@@ -126,11 +116,6 @@ variable "disk_utilization_extra_tags" {
 #
 # DISK Utilization Forecast
 #
-variable "disk_utilization_forecast_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "disk_utilization_forecast_message" {
   description = "Custom message for the Disk Utilization Forecast monitor"
@@ -207,11 +192,6 @@ variable "disk_utilization_forecast_extra_tags" {
 #
 # Memory Utilization
 #
-variable "memory_utilization_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "memory_utilization_message" {
   description = "Custom message for the Memory Utilization monitor"
@@ -248,11 +228,6 @@ variable "memory_utilization_extra_tags" {
 #
 # Memory Utilization Forecast
 #
-variable "memory_utilization_forecast_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "memory_utilization_forecast_message" {
   description = "Custom message for the Memory Utilization Forecast monitor"
@@ -325,11 +300,6 @@ variable "memory_utilization_forecast_extra_tags" {
 #
 # Failover Unavailable
 #
-variable "failover_unavailable_enabled" {
-  description = "Whether or not to create the monitor"
-  type        = "string"
-  default     = "true"
-}
 
 variable "failover_unavailable_message" {
   description = "Custom message for the Failover Unavailable monitor"
