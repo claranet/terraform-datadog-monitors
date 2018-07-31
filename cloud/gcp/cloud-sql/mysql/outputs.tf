@@ -1,8 +1,3 @@
-output "network_connections_id" {
-  description = "id for monitor network_connections"
-  value       = "${datadog_monitor.network_connections.id}"
-}
-
 output "replication_lag_id" {
   description = "id for monitor replication_lag"
   value       = "${datadog_monitor.replication_lag.id}"
