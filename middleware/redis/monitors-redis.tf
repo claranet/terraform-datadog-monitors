@@ -6,7 +6,7 @@ data "template_file" "filter" {
   }
 }
 
-resource "datadog_monitor" "redis_evictedkeys" {
+resource "datadog_monitor" "evicted_keys" {
   name    = "[${var.environment}] Redis too many evicted keys {{#is_alert}}{{{comparator}}} {{threshold}}% (+{{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% (+{{value}}%){{/is_warning}}"
   message = "${coalesce(var.evictedkeys_change_message, var.message)}"
 
@@ -41,13 +41,12 @@ EOL
 
   tags = [
     "created_by:terraform",
-    "created_by:terraform",
     "env:${var.environment}",
     "resource:redis",
   ]
 }
 
-resource "datadog_monitor" "redis_expirations" {
+resource "datadog_monitor" "expirations" {
   name    = "[${var.environment}] Redis too many expired keys {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.expirations_rate_message, var.message)}"
 
@@ -87,7 +86,7 @@ EOL
   ]
 }
 
-resource "datadog_monitor" "redis_blocked_clients" {
+resource "datadog_monitor" "blocked_clients" {
   name    = "[${var.environment}] Redis too many blocked clients {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.blocked_clients_message, var.message)}"
 
@@ -128,7 +127,7 @@ EOL
   ]
 }
 
-resource "datadog_monitor" "redis_keyspace" {
+resource "datadog_monitor" "keyspace_full" {
   name    = "[${var.environment}] Redis keyspace seems full (no changes since ${var.keyspace_timeframe})"
   message = "${coalesce(var.keyspace_message, var.message)}"
 
@@ -168,7 +167,7 @@ EOL
   ]
 }
 
-resource "datadog_monitor" "redis_mem_used" {
+resource "datadog_monitor" "memory_used" {
   name    = "[${var.environment}] Redis too many ram memory used {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mem_used_message, var.message)}"
 
@@ -209,7 +208,7 @@ EOL
   ]
 }
 
-resource "datadog_monitor" "redis_mem_frag" {
+resource "datadog_monitor" "memory_frag" {
   name    = "[${var.environment}] Redis memory ram fragmented {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mem_frag_message, var.message)}"
 
@@ -249,7 +248,7 @@ EOL
   ]
 }
 
-resource "datadog_monitor" "redis_rejected_con" {
+resource "datadog_monitor" "rejected_connections" {
   name    = "[${var.environment}] Redis too many rejected connections {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.rejected_con_message, var.message)}"
 
@@ -289,7 +288,7 @@ EOL
   ]
 }
 
-resource "datadog_monitor" "redis_latency" {
+resource "datadog_monitor" "latency" {
   name    = "[${var.environment}] Redis latency is too high {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}){{/is_warning}}"
   message = "${coalesce(var.latency_message, var.message)}"
 
@@ -329,7 +328,7 @@ EOL
   ]
 }
 
-resource "datadog_monitor" "redis_hitrate" {
+resource "datadog_monitor" "hitrate" {
   name    = "[${var.environment}] Redis hitrate is too low {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.hitrate_message, var.message)}"
 
