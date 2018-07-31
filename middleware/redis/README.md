@@ -95,15 +95,15 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description |
 |------|-------------|
-| redis_blocked_clients_id | id for monitor redis_blocked_clients |
-| redis_evictedkeys_id | id for monitor redis_evictedkeys |
-| redis_expirations_id | id for monitor redis_expirations |
-| redis_hitrate_id | id for monitor redis_hitrate |
-| redis_keyspace_id | id for monitor redis_keyspace |
-| redis_latency_id | id for monitor redis_latency |
-| redis_mem_frag_id | id for monitor redis_mem_frag |
-| redis_mem_used_id | id for monitor redis_mem_used |
-| redis_rejected_con_id | id for monitor redis_rejected_con |
+| blocked_clients_id | id for monitor blocked_clients |
+| evicted_keys_id | id for monitor evicted_keys |
+| expirations_id | id for monitor expirations |
+| hitrate_id | id for monitor hitrate |
+| keyspace_full_id | id for monitor keyspace_full |
+| latency_id | id for monitor latency |
+| memory_frag_id | id for monitor memory_frag |
+| memory_used_id | id for monitor memory_used |
+| rejected_connections_id | id for monitor rejected_connections |
 
 ## Related documentation
 

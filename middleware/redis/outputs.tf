@@ -1,44 +1,44 @@
-output "redis_evictedkeys_id" {
-  description = "id for monitor redis_evictedkeys"
-  value       = "${datadog_monitor.redis_evictedkeys.id}"
+output "evicted_keys_id" {
+  description = "id for monitor evicted_keys"
+  value       = "${datadog_monitor.evicted_keys.id}"
 }
 
-output "redis_expirations_id" {
-  description = "id for monitor redis_expirations"
-  value       = "${datadog_monitor.redis_expirations.id}"
+output "expirations_id" {
+  description = "id for monitor expirations"
+  value       = "${datadog_monitor.expirations.id}"
 }
 
-output "redis_blocked_clients_id" {
-  description = "id for monitor redis_blocked_clients"
-  value       = "${datadog_monitor.redis_blocked_clients.id}"
+output "blocked_clients_id" {
+  description = "id for monitor blocked_clients"
+  value       = "${datadog_monitor.blocked_clients.id}"
 }
 
-output "redis_keyspace_id" {
-  description = "id for monitor redis_keyspace"
-  value       = "${datadog_monitor.redis_keyspace.id}"
+output "keyspace_full_id" {
+  description = "id for monitor keyspace_full"
+  value       = "${datadog_monitor.keyspace_full.id}"
 }
 
-output "redis_mem_used_id" {
-  description = "id for monitor redis_mem_used"
-  value       = "${datadog_monitor.redis_mem_used.id}"
+output "memory_used_id" {
+  description = "id for monitor memory_used"
+  value       = "${datadog_monitor.memory_used.id}"
 }
 
-output "redis_mem_frag_id" {
-  description = "id for monitor redis_mem_frag"
-  value       = "${datadog_monitor.redis_mem_frag.id}"
+output "memory_frag_id" {
+  description = "id for monitor memory_frag"
+  value       = "${datadog_monitor.memory_frag.id}"
 }
 
-output "redis_rejected_con_id" {
-  description = "id for monitor redis_rejected_con"
-  value       = "${datadog_monitor.redis_rejected_con.id}"
+output "rejected_connections_id" {
+  description = "id for monitor rejected_connections"
+  value       = "${datadog_monitor.rejected_connections.id}"
 }
 
-output "redis_latency_id" {
-  description = "id for monitor redis_latency"
-  value       = "${datadog_monitor.redis_latency.id}"
+output "latency_id" {
+  description = "id for monitor latency"
+  value       = "${datadog_monitor.latency.id}"
 }
 
-output "redis_hitrate_id" {
-  description = "id for monitor redis_hitrate"
-  value       = "${datadog_monitor.redis_hitrate.id}"
+output "hitrate_id" {
+  description = "id for monitor hitrate"
+  value       = "${datadog_monitor.hitrate.id}"
 }
