@@ -1,28 +1,83 @@
-How to use this module
-----------------------
+# CLOUD GCP LB DataDog monitors
+
+## How to use this module
 
 ```
-module "datadog-monitors-gcp-memorystore" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/gcp/memorystore?ref={revision}"
+module "datadog-monitors-cloud-gcp-lb" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/gcp/lb?ref={revision}"
 
-  project_id  = "${var.gcp_project_id}"
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
 }
 
 ```
 
-Purpose
--------
-Creates DataDog monitors with the following checks :
+## Purpose
 
-* 
+Creates DataDog monitors with the following checks:
 
-Inputs
-------
+- GCP LB 4xx errors
+- GCP LB 5xx errors
+- GCP LB latency
+- GCP LB backend latency
+- GCP LB Requests count increased abruptly
 
-Related documentation
-------------
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| backend_latency_extra_tags | Extra tags for GCP LB Backend Latency monitor | list | `<list>` | no |
+| backend_latency_message | Custom message for the GCP LB Backend Latency monitor | string | `` | no |
+| backend_latency_silenced | Groups to mute for GCP LB Backend Latency monitor | map | `<map>` | no |
+| backend_latency_threshold_critical | Latency in seconds (critical threshold) | string | `4000` | no |
+| backend_latency_threshold_warning | Latency in seconds (warning threshold) | string | `2000` | no |
+| backend_latency_time_aggregator | Timeframe for the GCP LB Backend Latency monitor | string | `min` | no |
+| backend_latency_timeframe | Timeframe for the GCP LB Backend Latency monitor | string | `last_10m` | no |
+| delay | Delay in seconds for the metric evaluation | string | `900` | no |
+| environment | Architecture environment | string | - | yes |
+| error_rate_4xx_extra_tags | Extra tags for GCP LB 4XX Errors monitor | list | `<list>` | no |
+| error_rate_4xx_message | Custom message for the GCP LB 4XX Errors monitor | string | `` | no |
+| error_rate_4xx_silenced | Groups to mute for GCP LB 4XX Errors monitor | map | `<map>` | no |
+| error_rate_4xx_threshold_critical | Rate error in percentage (critical threshold) | string | `50` | no |
+| error_rate_4xx_time_aggregator | Timeframe for the GCP LB 4XX Errors monitor | string | `sum` | no |
+| error_rate_4xx_timeframe | Timeframe for the GCP LB 4XX Errors monitor | string | `last_5m` | no |
+| error_rate_5xx_extra_tags | Extra tags for GCP LB 5XX Errors monitor | list | `<list>` | no |
+| error_rate_5xx_message | Custom message for the GCP LB 5XX Errors monitor | string | `` | no |
+| error_rate_5xx_silenced | Groups to mute for GCP LB 5XX Errors monitor | map | `<map>` | no |
+| error_rate_5xx_threshold_critical | Rate error in percentage (critical threshold) | string | `50` | no |
+| error_rate_5xx_time_aggregator | Timeframe for the GCP LB 5XX Errors monitor | string | `sum` | no |
+| error_rate_5xx_timeframe | Timeframe for the GCP LB 5XX Errors monitor | string | `last_5m` | no |
+| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
+| latency_extra_tags | Extra tags for GCP LB Latency monitor | list | `<list>` | no |
+| latency_message | Custom message for the GCP LB Latency monitor | string | `` | no |
+| latency_silenced | Groups to mute for GCP LB Latency monitor | map | `<map>` | no |
+| latency_threshold_critical | Latency in seconds (critical threshold) | string | `5000` | no |
+| latency_threshold_warning | Latency in seconds (warning threshold) | string | `3000` | no |
+| latency_time_aggregator | Timeframe for the GCP LB Latency monitor | string | `min` | no |
+| latency_timeframe | Timeframe for the GCP LB Latency monitor | string | `last_10m` | no |
+| message | Message sent when a monitor is triggered | string | - | yes |
+| project_id | ID of the GCP Project | string | - | yes |
+| request_count_extra_tags | Extra tags for GCP LB Request Count monitor | list | `<list>` | no |
+| request_count_message | Custom message for the GCP LB Request Count monitor | string | `` | no |
+| request_count_silenced | Groups to mute for GCP LB Request Count monitor | map | `<map>` | no |
+| request_count_threshold_critical | Desviation in percentage (critical threshold) | string | `500` | no |
+| request_count_threshold_warning | Desviation in percentage (warning threshold) | string | `250` | no |
+| request_count_time_aggregator | Timeframe for the GCP LB Request Count monitor | string | `sum` | no |
+| request_count_timeframe | Timeframe for the GCP LB Request Count monitor | string | `last_5m` | no |
+| request_count_timeshift | Timeshift for the GCP LB Request Count monitor | string | `last_5m` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| backend_latency_id | id for monitor backend_latency |
+| error_rate_4xx_id | id for monitor error_rate_4xx |
+| error_rate_5xx_id | id for monitor error_rate_5xx |
+| latency_id | id for monitor latency |
+| request_count_id | id for monitor request_count |
+
+## Related documentation
 
 * [GCP LB Metrics](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-loadbalancing)
 * [Datadog GCP integration](https://docs.datadoghq.com/integrations/google_cloud_platform/)
