@@ -43,6 +43,12 @@ variable "cpu_utilization_message" {
   default     = ""
 }
 
+variable "cpu_utilization_time_aggregator" {
+  description = "Time aggregator for the CPU Utilization monitor"
+  type        = "string"
+  default     = "avg"
+}
+
 variable "cpu_utilization_timeframe" {
   description = "Timeframe for the CPU Utilization monitor"
   type        = "string"
@@ -83,6 +89,12 @@ variable "disk_utilization_message" {
   default     = ""
 }
 
+variable "disk_utilization_time_aggregator" {
+  description = "Time aggregator for the Disk Utilization monitor"
+  type        = "string"
+  default     = "avg"
+}
+
 variable "disk_utilization_timeframe" {
   description = "Timeframe for the Disk Utilization monitor"
   type        = "string"
@@ -121,6 +133,12 @@ variable "disk_utilization_forecast_message" {
   description = "Custom message for the Disk Utilization Forecast monitor"
   type        = "string"
   default     = ""
+}
+
+variable "disk_utilization_forecast_time_aggregator" {
+  description = "Time aggregator for the Disk Utilization Forecast monitor"
+  type        = "string"
+  default     = "max"
 }
 
 variable "disk_utilization_forecast_timeframe" {
@@ -198,6 +216,11 @@ variable "memory_utilization_message" {
   default     = ""
 }
 
+variable "memory_utilization_time_aggregator" {
+  description = "Time aggregator for the Memory Utilization monitor"
+  default     = "avg"
+}
+
 variable "memory_utilization_timeframe" {
   description = "Timeframe for the Memory Utilization monitor"
   default     = "last_5m"
@@ -232,6 +255,11 @@ variable "memory_utilization_extra_tags" {
 variable "memory_utilization_forecast_message" {
   description = "Custom message for the Memory Utilization Forecast monitor"
   default     = ""
+}
+
+variable "memory_utilization_forecast_time_aggregator" {
+  description = "Time aggregator for the Memory Utilization Forecast monitor"
+  default     = "max"
 }
 
 variable "memory_utilization_forecast_timeframe" {
@@ -305,6 +333,12 @@ variable "failover_unavailable_message" {
   description = "Custom message for the Failover Unavailable monitor"
   type        = "string"
   default     = ""
+}
+
+variable "failover_unavailable_time_aggregator" {
+  description = "Time aggreggator for the Failover Unavailable monitor"
+  type        = "string"
+  default     = "max"
 }
 
 variable "failover_unavailable_timeframe" {

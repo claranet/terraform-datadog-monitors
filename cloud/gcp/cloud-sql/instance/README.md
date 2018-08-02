@@ -32,6 +32,7 @@ Creates DataDog monitors with the following checks:
 | cpu_utilization_silenced | Groups to mute for GCP Cloud SQL CPU Utilization monitor | map | `<map>` | no |
 | cpu_utilization_threshold_critical | CPU Utilization in percentage (critical threshold) | string | `90` | no |
 | cpu_utilization_threshold_warning | CPU Utilization in percentage (warning threshold) | string | `80` | no |
+| cpu_utilization_time_aggregator | Time aggregator for the CPU Utilization monitor | string | `avg` | no |
 | cpu_utilization_timeframe | Timeframe for the CPU Utilization monitor | string | `last_15m` | no |
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | disk_utilization_extra_tags | Extra tags for GCP Cloud SQL CPU Utilization monitor | list | `<list>` | no |
@@ -46,17 +47,20 @@ Creates DataDog monitors with the following checks:
 | disk_utilization_forecast_silenced | Groups to mute for GCP Cloud SQL Disk Utilization Forecast monitor | map | `<map>` | no |
 | disk_utilization_forecast_threshold_critical | Disk Utilization Forecast in percentage (critical threshold) | string | `80` | no |
 | disk_utilization_forecast_threshold_critical_recovery | Disk Utilization Forecast in percentage (recovery threshold) | string | `72` | no |
+| disk_utilization_forecast_time_aggregator | Time aggregator for the Disk Utilization Forecast monitor | string | `max` | no |
 | disk_utilization_forecast_timeframe | Timeframe for the Disk Utilization Forecast monitor | string | `next_1w` | no |
 | disk_utilization_message | Custom message for the Disk Utilization monitor | string | `` | no |
 | disk_utilization_silenced | Groups to mute for GCP Cloud SQL Disk Utilization monitor | map | `<map>` | no |
 | disk_utilization_threshold_critical | Disk Utilization in percentage (critical threshold) | string | `90` | no |
 | disk_utilization_threshold_warning | Disk Utilization in percentage (warning threshold) | string | `80` | no |
+| disk_utilization_time_aggregator | Time aggregator for the Disk Utilization monitor | string | `avg` | no |
 | disk_utilization_timeframe | Timeframe for the Disk Utilization monitor | string | `last_5m` | no |
 | environment | Architecture environment | string | - | yes |
 | failover_unavailable_extra_tags | Extra tags for GCP Cloud SQL Failover Unavailable monitor | list | `<list>` | no |
 | failover_unavailable_message | Custom message for the Failover Unavailable monitor | string | `` | no |
 | failover_unavailable_silenced | Groups to mute for GCP Cloud SQL Failover Unavailable monitor | map | `<map>` | no |
 | failover_unavailable_threshold_critical | Failover Unavailable critical threshold | string | `0` | no |
+| failover_unavailable_time_aggregator | Time aggreggator for the Failover Unavailable monitor | string | `max` | no |
 | failover_unavailable_timeframe | Timeframe for the Failover Unavailable monitor | string | `last_5m` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
@@ -72,11 +76,13 @@ Creates DataDog monitors with the following checks:
 | memory_utilization_forecast_silenced | Groups to mute for GCP Cloud SQL Memory Utilization Forecast monitor | map | `<map>` | no |
 | memory_utilization_forecast_threshold_critical | Memory Utilization Forecast in percentage (warning threshold) | string | `90` | no |
 | memory_utilization_forecast_threshold_critical_recovery | Memory Utilization Forecast in percentage (recovery threshold) | string | `81` | no |
+| memory_utilization_forecast_time_aggregator | Time aggregator for the Memory Utilization Forecast monitor | string | `max` | no |
 | memory_utilization_forecast_timeframe | Timeframe for the Memory Utilization Forecast monitor | string | `next_3d` | no |
 | memory_utilization_message | Custom message for the Memory Utilization monitor | string | `` | no |
 | memory_utilization_silenced | Groups to mute for GCP Cloud SQL Memory Utilization monitor | map | `<map>` | no |
 | memory_utilization_threshold_critical | Memory Utilization in percentage (critical threshold) | string | `90` | no |
 | memory_utilization_threshold_warning | Memory Utilization in percentage (warning threshold) | string | `80` | no |
+| memory_utilization_time_aggregator | Time aggregator for the Memory Utilization monitor | string | `avg` | no |
 | memory_utilization_timeframe | Timeframe for the Memory Utilization monitor | string | `last_5m` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 | project_id | ID of the GCP Project | string | - | yes |
