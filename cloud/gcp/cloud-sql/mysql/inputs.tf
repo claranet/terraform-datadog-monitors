@@ -43,6 +43,12 @@ variable "replication_lag_message" {
   default     = ""
 }
 
+variable "replication_lag_time_aggregator" {
+  description = "Time aggregator for the Replication Lag monitor"
+  type        = "string"
+  default     = "min"
+}
+
 variable "replication_lag_timeframe" {
   description = "Timeframe for the Replication Lag monitor"
   type        = "string"
@@ -81,6 +87,12 @@ variable "queries_changing_anomaly_message" {
   description = "Custom message for the Queries Changing monitor"
   type        = "string"
   default     = ""
+}
+
+variable "queries_changing_anomaly_time_aggregator" {
+  description = "Time aggregator for the Queries Changing mon monitor"
+  type        = "string"
+  default     = "avg"
 }
 
 variable "queries_changing_anomaly_timeframe" {
@@ -169,6 +181,12 @@ variable "questions_changing_anomaly_message" {
   description = "Custom message for the Questions Changing monitor"
   type        = "string"
   default     = ""
+}
+
+variable "questions_changing_anomaly_time_aggregator" {
+  description = "Time aggregator for the Questions Changing monitor"
+  type        = "string"
+  default     = "avg"
 }
 
 variable "questions_changing_anomaly_timeframe" {

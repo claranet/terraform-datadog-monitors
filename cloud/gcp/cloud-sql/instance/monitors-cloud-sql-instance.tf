@@ -21,7 +21,7 @@ resource "datadog_monitor" "cpu_utilization" {
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.cpu_utilization_timeframe}):
+  ${var.cpu_utilization_time_aggregator}(${var.cpu_utilization_timeframe}):
     avg:gcp.cloudsql.database.cpu.utilization{${data.template_file.filter.rendered}}
     by {database_id} * 100
   > ${var.cpu_utilization_threshold_critical}
@@ -66,7 +66,7 @@ resource "datadog_monitor" "disk_utilization" {
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.disk_utilization_timeframe}):
+  ${var.disk_utilization_time_aggregator}(${var.disk_utilization_timeframe}):
     avg:gcp.cloudsql.database.disk.utilization{${data.template_file.filter.rendered}}
     by {database_id} * 100
     > ${var.disk_utilization_threshold_critical}
@@ -111,7 +111,7 @@ resource "datadog_monitor" "disk_utilization_forecast" {
   type = "metric alert"
 
   query = <<EOF
-  max(${var.disk_utilization_forecast_timeframe}):
+  ${var.disk_utilization_forecast_time_aggregator}(${var.disk_utilization_forecast_timeframe}):
     forecast(
       avg:gcp.cloudsql.database.disk.utilization{${data.template_file.filter.rendered}} by {database_id} * 100,
       '${var.disk_utilization_forecast_algorithm}',
@@ -161,7 +161,7 @@ resource "datadog_monitor" "memory_utilization" {
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.memory_utilization_timeframe}):
+  ${var.memory_utilization_time_aggregator}(${var.memory_utilization_timeframe}):
     avg:gcp.cloudsql.database.memory.utilization{${data.template_file.filter.rendered}}
     by {database_id} * 100
   > ${var.memory_utilization_threshold_critical}
@@ -206,7 +206,7 @@ resource "datadog_monitor" "memory_utilization_forecast" {
   type = "query alert"
 
   query = <<EOF
-  max(${var.memory_utilization_forecast_timeframe}):
+  ${var.memory_utilization_forecast_time_aggregator}(${var.memory_utilization_forecast_timeframe}):
     forecast(
       avg:gcp.cloudsql.database.memory.utilization{${data.template_file.filter.rendered}} by {database_id} * 100,
       '${var.memory_utilization_forecast_algorithm}',
@@ -256,7 +256,7 @@ resource "datadog_monitor" "failover_unavailable" {
   type = "metric alert"
 
   query = <<EOF
-  max(${var.failover_unavailable_timeframe}):
+  ${var.failover_unavailable_time_aggregator}(${var.failover_unavailable_timeframe}):
     avg:gcp.cloudsql.database.available_for_failover{${data.template_file.filter.rendered}}
     by {database_id}
   <= ${var.failover_unavailable_threshold_critical}

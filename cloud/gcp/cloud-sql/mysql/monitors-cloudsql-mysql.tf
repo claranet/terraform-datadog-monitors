@@ -21,7 +21,7 @@ resource "datadog_monitor" "replication_lag" {
   type = "metric alert"
 
   query = <<EOF
-  min(${var.replication_lag_timeframe}):
+  ${var.replication_lag_time_aggregator}(${var.replication_lag_timeframe}):
     avg:gcp.cloudsql.database.mysql.replication.seconds_behind_master{${data.template_file.filter.rendered}}
     by {database_id}
   > ${var.replication_lag_threshold_critical}
@@ -67,7 +67,7 @@ resource "datadog_monitor" "queries_changing_anomaly" {
   type = "query alert"
 
   query = <<EOF
-    avg(${var.queries_changing_anomaly_timeframe}):
+    ${var.queries_changing_anomaly_time_aggregator}(${var.queries_changing_anomaly_timeframe}):
       anomalies(
         avg:gcp.cloudsql.database.mysql.queries{${data.template_file.filter.rendered}} by {database_id}.as_count(),
         '${var.queries_changing_anomaly_detection_algorithm}',
@@ -121,7 +121,7 @@ resource "datadog_monitor" "questions_changing_anomaly" {
   type = "query alert"
 
   query = <<EOF
-    avg(${var.questions_changing_anomaly_timeframe}):
+    ${var.questions_changing_anomaly_time_aggregator}(${var.questions_changing_anomaly_timeframe}):
       anomalies(
         avg:gcp.cloudsql.database.mysql.questions{${data.template_file.filter.rendered}} by {database_id},
         '${var.questions_changing_anomaly_detection_algorithm}',
