@@ -339,3 +339,45 @@ variable "hitrate_threshold_warning" {
   description = "hitrate limit (warning threshold)"
   default     = 30
 }
+
+#
+# Connection Down
+#
+variable "not_responding_silenced" {
+  description = "Groups to mute for Redis does not respond monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "not_responding_message" {
+  description = "Custom message for Redis does not respond monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "not_responding_by" {
+  description = "Group by for the service check"
+  type        = "string"
+  default     = "\"host\",\"redis_host\",\"redis_port\""
+}
+
+variable "not_responding_last" {
+  description = "Parameter 'last' for the service check"
+  type        = "string"
+  default     = 6
+}
+
+variable "not_responding_threshold_critical" {
+  description = "Not responding limit (critical threshold)"
+  default     = 5
+}
+
+variable "not_responding_threshold_warning" {
+  description = "Not responding limit (warning threshold)"
+  default     = 1
+}
+
+variable "not_responding_threshold_ok" {
+  description = "Not responding limit (ok threshold)"
+  default     = 1
+}

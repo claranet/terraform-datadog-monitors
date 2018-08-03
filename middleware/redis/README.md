@@ -25,6 +25,7 @@ Creates DataDog monitors with the following checks:
 - Redis too many rejected connections
 - Redis latency is too high
 - Redis hitrate is too low
+- Redis does not respond
 
 ## Inputs
 
@@ -83,6 +84,13 @@ Creates DataDog monitors with the following checks:
 | mem_used_time_aggregator | Monitor aggregator for Redis RAM memory used [available values: min, max or avg] | string | `min` | no |
 | mem_used_timeframe | Monitor timeframe for Redis RAM memory used [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when a Redis monitor is triggered | string | - | yes |
+| not_responding_by | Group by for the service check | string | `"host","redis_host","redis_port"` | no |
+| not_responding_last | Parameter 'last' for the service check | string | `6` | no |
+| not_responding_message | Custom message for Redis does not respond monitor | string | `` | no |
+| not_responding_silenced | Groups to mute for Redis does not respond monitor | map | `<map>` | no |
+| not_responding_threshold_critical | Not responding limit (critical threshold) | string | `5` | no |
+| not_responding_threshold_ok | Not responding limit (ok threshold) | string | `1` | no |
+| not_responding_threshold_warning | Not responding limit (warning threshold) | string | `1` | no |
 | redis_silenced | Groups to mute for Redis monitors | map | `<map>` | no |
 | rejected_con_message | Custom message for Redis rejected connections errors monitor | string | `` | no |
 | rejected_con_silenced | Groups to mute for Redis rejected connections errors monitor | map | `<map>` | no |
@@ -103,6 +111,7 @@ Creates DataDog monitors with the following checks:
 | latency_id | id for monitor latency |
 | memory_frag_id | id for monitor memory_frag |
 | memory_used_id | id for monitor memory_used |
+| not_responding_id | id for monitor not_responding |
 | rejected_connections_id | id for monitor rejected_connections |
 
 ## Related documentation

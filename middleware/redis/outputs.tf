@@ -42,3 +42,8 @@ output "hitrate_id" {
   description = "id for monitor hitrate"
   value       = "${datadog_monitor.hitrate.id}"
 }
+
+output "not_responding_id" {
+  description = "id for monitor not_responding"
+  value       = "${datadog_monitor.not_responding.id}"
+}
