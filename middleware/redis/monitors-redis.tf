@@ -369,3 +369,43 @@ EOL
     "resource:redis",
   ]
 }
+
+#
+# Service Check
+#
+resource "datadog_monitor" "not_responding" {
+  name    = "[${var.environment}] Redis does not respond"
+  message = "${coalesce(var.not_responding_message, var.message)}"
+
+  query = <<EOL
+    "redis.can_connect".over("${replace(data.template_file.filter.rendered, ",", "\",\"")}").by(${var.not_responding_by}).last(${var.not_responding_last}).count_by_status()
+EOL
+
+  type = "service check"
+
+  thresholds {
+    warning  = "${var.not_responding_threshold_warning}"
+    critical = "${var.not_responding_threshold_critical}"
+    ok       = "${var.not_responding_threshold_ok}"
+  }
+
+  silenced = "${var.not_responding_silenced}"
+
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
+  no_data_timeframe   = 2
+  require_full_window = true
+  notify_no_data      = true
+  renotify_interval   = 0
+
+  evaluation_delay = "${var.delay}"
+  new_host_delay   = "${var.delay}"
+
+  tags = [
+    "created_by:terraform",
+    "env:${var.environment}",
+    "resource:redis",
+  ]
+}
