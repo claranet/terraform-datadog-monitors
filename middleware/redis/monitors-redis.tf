@@ -395,13 +395,11 @@ EOL
   locked              = false
   timeout_h           = 0
   include_tags        = true
-  no_data_timeframe   = 2
   require_full_window = true
   notify_no_data      = true
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  new_host_delay = "${var.delay}"
 
   tags = [
     "created_by:terraform",
