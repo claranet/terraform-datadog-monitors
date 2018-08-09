@@ -16,7 +16,7 @@ module "datadog-monitors-cloud-aws-vpn" {
 
 Creates DataDog monitors with the following checks:
 
-- VPN Down
+- VPN tunnel down
 
 ## Inputs
 
@@ -24,8 +24,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|:----:|:-----:|:-----:|
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture Environment | string | - | yes |
-| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
-| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
+| filter_tags | Tags used for metrics filtering | string | `*` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 | vpn_status_message | Custom message for VPN status monitor | string | `` | no |
 | vpn_status_silenced | Groups to mute for VPN status monitor | map | `<map>` | no |
