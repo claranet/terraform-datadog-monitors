@@ -61,3 +61,5 @@ Creates DataDog monitors with the following checks:
 
 ## Related documentation
 
+DataDog documentation: [https://docs.datadoghq.com/integrations/mongo/](https://docs.datadoghq.com/integrations/mongo/)
+MongoDB documentation: [https://docs.mongodb.com/manual/administration/monitoring/](https://docs.mongodb.com/manual/administration/monitoring/)
