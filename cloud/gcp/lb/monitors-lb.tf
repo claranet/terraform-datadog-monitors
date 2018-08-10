@@ -24,7 +24,7 @@ resource "datadog_monitor" "error_rate_4xx" {
   ${var.error_rate_4xx_time_aggregator}(${var.error_rate_4xx_timeframe}):
     avg:gcp.loadbalancing.https.request_count{${data.template_file.filter.rendered},response_code_class:400} by {backend_target_name}.as_count().fill(zero)
     /
-    (avg:gcp.loadbalancing.https.request_count{${data.template_file.filter.rendered}} by {backend_target_name}.as_count().fill(zero) + 5 ) * 100
+    (avg:gcp.loadbalancing.https.request_count{${data.template_file.filter.rendered}} by {backend_target_name}.as_count().fill(zero) + ${var.error_rate_4xx_artificial_request} ) * 100
   > ${var.error_rate_4xx_threshold_critical}
 EOF
 
@@ -68,7 +68,7 @@ resource "datadog_monitor" "error_rate_5xx" {
   ${var.error_rate_5xx_time_aggregator}(${var.error_rate_5xx_timeframe}):
     avg:gcp.loadbalancing.https.request_count{${data.template_file.filter.rendered},response_code_class:400} by {backend_target_name}.as_count().fill(zero)
     /
-    (avg:gcp.loadbalancing.https.request_count{${data.template_file.filter.rendered}} by {backend_target_name}.as_count().fill(zero) + 5 ) * 100
+    (avg:gcp.loadbalancing.https.request_count{${data.template_file.filter.rendered}} by {backend_target_name}.as_count().fill(zero) + ${var.error_rate_5xx_artificial_request} ) * 100
   > ${var.error_rate_5xx_threshold_critical}
 EOF
 
@@ -189,7 +189,7 @@ EOF
 # Request Count
 #
 resource "datadog_monitor" "request_count" {
-  name    = "[${var.environment}] GCP LB Requests count increased abruptly"
+  name    = "[${var.environment}] GCP LB Requests count increased abruptly {{#is_alert}}{{value}}%{{/is_alert}}{{#is_warning}}{{value}}%{{/is_warning}}"
   message = "${coalesce(var.request_count_message, var.message)}"
 
   type = "query alert"

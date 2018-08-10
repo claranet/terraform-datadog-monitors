@@ -35,12 +35,14 @@ Creates DataDog monitors with the following checks:
 | backend_latency_timeframe | Timeframe for the GCP LB Backend Latency monitor | string | `last_10m` | no |
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
+| error_rate_4xx_artificial_request | Divisor Delta for the GCP LB 4XX Errors monitor | string | `5` | no |
 | error_rate_4xx_extra_tags | Extra tags for GCP LB 4XX Errors monitor | list | `<list>` | no |
 | error_rate_4xx_message | Custom message for the GCP LB 4XX Errors monitor | string | `` | no |
 | error_rate_4xx_silenced | Groups to mute for GCP LB 4XX Errors monitor | map | `<map>` | no |
 | error_rate_4xx_threshold_critical | Rate error in percentage (critical threshold) | string | `50` | no |
 | error_rate_4xx_time_aggregator | Timeframe for the GCP LB 4XX Errors monitor | string | `sum` | no |
 | error_rate_4xx_timeframe | Timeframe for the GCP LB 4XX Errors monitor | string | `last_5m` | no |
+| error_rate_5xx_artificial_request | Divisor Delta for the GCP LB 5XX Errors monitor | string | `5` | no |
 | error_rate_5xx_extra_tags | Extra tags for GCP LB 5XX Errors monitor | list | `<list>` | no |
 | error_rate_5xx_message | Custom message for the GCP LB 5XX Errors monitor | string | `` | no |
 | error_rate_5xx_silenced | Groups to mute for GCP LB 5XX Errors monitor | map | `<map>` | no |

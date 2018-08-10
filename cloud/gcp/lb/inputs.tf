@@ -54,6 +54,12 @@ variable "error_rate_4xx_timeframe" {
   default     = "last_5m"
 }
 
+variable "error_rate_4xx_artificial_request" {
+  description = "Divisor Delta for the GCP LB 4XX Errors monitor"
+  type        = "string"
+  default     = 5
+}
+
 variable "error_rate_4xx_threshold_critical" {
   description = "Rate error in percentage (critical threshold)"
   type        = "string"
@@ -91,6 +97,12 @@ variable "error_rate_5xx_timeframe" {
   description = "Timeframe for the GCP LB 5XX Errors monitor"
   type        = "string"
   default     = "last_5m"
+}
+
+variable "error_rate_5xx_artificial_request" {
+  description = "Divisor Delta for the GCP LB 5XX Errors monitor"
+  type        = "string"
+  default     = 5
 }
 
 variable "error_rate_5xx_threshold_critical" {
