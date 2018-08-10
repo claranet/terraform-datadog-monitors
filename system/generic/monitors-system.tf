@@ -122,7 +122,7 @@ resource "datadog_monitor" "datadog_free_disk_space_forecast" {
   locked              = false
   timeout_h           = 0
   include_tags        = true
-  require_full_window = false
+  require_full_window = true
   notify_no_data      = false
   renotify_interval   = 0
 
