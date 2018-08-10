@@ -34,7 +34,6 @@ EOF
   locked              = false
   timeout_h           = 0
   include_tags        = true
-  no_data_timeframe   = 45
   require_full_window = false
   notify_no_data      = true
   renotify_interval   = 0
@@ -78,7 +77,6 @@ EOF
   locked              = false
   timeout_h           = 0
   include_tags        = true
-  no_data_timeframe   = 25
   require_full_window = false
   notify_no_data      = true
   renotify_interval   = 0
