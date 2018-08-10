@@ -7,4 +7,3 @@ output "service_check" {
   description = "The full filtering pattern including braces for query alert monitor type"
   value       = "(\"${replace(local.filters, ",", "\",\"")}\")"
 }
-
