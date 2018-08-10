@@ -1,8 +1,6 @@
-Alerting Message Datadog Generator
-==================================
+# ALERTING MESSAGE Datadog Generator
 
-How to use this module
-----------------------
+## How to use this module
 
 ```
 module "datadog-message-alerting" {
@@ -14,8 +12,7 @@ module "datadog-message-alerting" {
 }
 ```
 
-Purpose
--------
+## Purpose
 
 Creates a DataDog monitor alert message with the following inputs :
 
@@ -25,8 +22,7 @@ Creates a DataDog monitor alert message with the following inputs :
 * Prepend text free string
 * Append text free string
 
-Inputs
-------
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -36,14 +32,11 @@ Inputs
 | message_warning | Define a broadcast channel for warning alerts | string | - | yes |
 | prepend_text | Optional free text string to prepend to alert | string | `` | no |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
 | alerting-message | The generated message string |
 
-Related documentation
----------------------
+## Related documentation
 
-DataDog documentation: [https://docs.datadoghq.com/integrations/azure_app_services](https://docs.datadoghq.com/integrations/azure_app_services)
