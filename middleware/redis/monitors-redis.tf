@@ -30,14 +30,14 @@ EOL
   silenced = "${var.evictedkeys_change_silenced}"
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = true
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = [
     "created_by:terraform",
@@ -70,14 +70,14 @@ EOL
   silenced = "${var.expirations_silenced}"
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = [
     "created_by:terraform",
@@ -111,14 +111,14 @@ EOL
   silenced = "${var.blocked_clients_silenced}"
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = [
     "created_by:terraform",
@@ -151,14 +151,14 @@ EOL
   silenced = "${var.keyspace_silenced}"
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = [
     "created_by:terraform",
@@ -192,14 +192,14 @@ EOL
   silenced = "${var.mem_used_silenced}"
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = [
     "created_by:terraform",
@@ -232,14 +232,14 @@ EOL
   silenced = "${var.mem_frag_silenced}"
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = [
     "created_by:terraform",
@@ -272,14 +272,14 @@ EOL
   silenced = "${var.rejected_con_silenced}"
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = [
     "created_by:terraform",
@@ -312,14 +312,14 @@ EOL
   silenced = "${var.latency_silenced}"
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = [
     "created_by:terraform",
@@ -354,14 +354,14 @@ EOL
   silenced = "${var.hitrate_silenced}"
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = [
     "created_by:terraform",
@@ -399,7 +399,7 @@ EOL
   notify_no_data      = true
   renotify_interval   = 0
 
-  new_host_delay = "${var.delay}"
+  new_host_delay = "${var.new_host_delay}"
 
   tags = [
     "created_by:terraform",

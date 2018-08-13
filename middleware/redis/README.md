@@ -37,8 +37,8 @@ Creates DataDog monitors with the following checks:
 | blocked_clients_threshold_warning | Blocked clients rate (warning threshold) | string | `10` | no |
 | blocked_clients_time_aggregator | Monitor aggregator for Redis Blocked clients [available values: min, max or avg] | string | `min` | no |
 | blocked_clients_timeframe | Monitor timeframe for Redis Blocked clients [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | evictedkeys_change_message | Custom message for Redis evicted keys monitor | string | `` | no |
 | evictedkeys_change_silenced | Groups to mute for Redis evicted keys monitor | map | `<map>` | no |
 | evictedkeys_change_threshold_critical | Evicted keys change (critical threshold) | string | `100` | no |
@@ -84,6 +84,7 @@ Creates DataDog monitors with the following checks:
 | mem_used_time_aggregator | Monitor aggregator for Redis RAM memory used [available values: min, max or avg] | string | `min` | no |
 | mem_used_timeframe | Monitor timeframe for Redis RAM memory used [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when a Redis monitor is triggered | string | - | yes |
+| new_host_delay | Delay in seconds for the metric evaluation | string | `300` | no |
 | not_responding_by | Group by for the service check | string | `"host","redis_host","redis_port"` | no |
 | not_responding_last | Parameter 'last' for the service check | string | `6` | no |
 | not_responding_message | Custom message for Redis does not respond monitor | string | `` | no |
