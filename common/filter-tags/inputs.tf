@@ -17,3 +17,11 @@ variable "filter_tags_custom" {
   description = "Tags used for custom filtering when filter_tags_use_defaults is false"
   default     = "*"
 }
+
+variable "extra_tags" {
+  description = "Extra optional tags"
+  type        = "list"
+  default     = []
+
+  # Example of value to add optional tags : ["tag1:val1", "tag2:val2"]
+}
