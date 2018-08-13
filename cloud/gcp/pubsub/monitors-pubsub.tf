@@ -1,17 +1,4 @@
 #
-# FILTER
-#
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ?
-              format("project_id:%s", var.project_id) :
-             "${var.filter_tags_custom}"}"
-  }
-}
-
-#
 # Sending Operations Count
 #
 resource "datadog_monitor" "sending_operations_count" {
@@ -22,7 +9,7 @@ resource "datadog_monitor" "sending_operations_count" {
 
   query = <<EOF
   ${var.sending_operations_count_time_aggregator}(${var.sending_operations_count_timeframe}):
-    default(avg:gcp.pubsub.topic.send_message_operation_count{${data.template_file.filter.rendered}} by {topic_id}.as_count(), 0)
+    default(avg:gcp.pubsub.topic.send_message_operation_count{${var.filter_tags}} by {topic_id}.as_count(), 0)
     <= ${var.sending_operations_count_threshold_critical}
 EOF
 
@@ -38,8 +25,8 @@ EOF
   notify_no_data      = true
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.sending_operations_count_silenced}"
 
@@ -64,7 +51,7 @@ resource "datadog_monitor" "unavailable_sending_operations_count" {
 
   query = <<EOF
   ${var.unavailable_sending_operations_count_time_aggregator}(${var.unavailable_sending_operations_count_timeframe}):
-    default(avg:gcp.pubsub.topic.send_message_operation_count{${data.template_file.filter.rendered},response_code:unavailable} by {topic_id}.as_count(), 0) 
+    default(avg:gcp.pubsub.topic.send_message_operation_count{${var.filter_tags},response_code:unavailable} by {topic_id}.as_count(), 0) 
     >= ${var.unavailable_sending_operations_count_threshold_critical}
 EOF
 
@@ -81,8 +68,8 @@ EOF
   notify_no_data      = true
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.unavailable_sending_operations_count_silenced}"
 

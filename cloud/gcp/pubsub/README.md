@@ -23,12 +23,11 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
-| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
-| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
+| filter_tags | Tags used for filtering | string | `*` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
-| project_id | ID of the GCP Project | string | - | yes |
+| new_host_delay | Delay in seconds for the new host evaluation | string | `300` | no |
 | sending_operations_count_extra_tags | Extra tags for GCP Pub/Sub Sending Operations Count monitor | list | `<list>` | no |
 | sending_operations_count_message | Custom message for the GCP Pub/Sub Sending Operations Count monitor | string | `` | no |
 | sending_operations_count_silenced | Groups to mute for GCP Pub/Sub Sending Operations Count monitor | map | `<map>` | no |
