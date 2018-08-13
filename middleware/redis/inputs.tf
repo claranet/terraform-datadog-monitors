@@ -321,7 +321,7 @@ variable "hitrate_message" {
 variable "hitrate_time_aggregator" {
   description = "Monitor aggregator for Redis hitrate [available values: min, max or avg]"
   type        = "string"
-  default     = "min"
+  default     = "max"
 }
 
 variable "hitrate_timeframe" {

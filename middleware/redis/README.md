@@ -57,7 +57,7 @@ Creates DataDog monitors with the following checks:
 | hitrate_silenced | Groups to mute for Redis hitrate monitor | map | `<map>` | no |
 | hitrate_threshold_critical | hitrate limit (critical threshold) | string | `10` | no |
 | hitrate_threshold_warning | hitrate limit (warning threshold) | string | `30` | no |
-| hitrate_time_aggregator | Monitor aggregator for Redis hitrate [available values: min, max or avg] | string | `min` | no |
+| hitrate_time_aggregator | Monitor aggregator for Redis hitrate [available values: min, max or avg] | string | `max` | no |
 | hitrate_timeframe | Monitor timeframe for Redis hitrate [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | keyspace_message | Custom message for Redis keyspace monitor | string | `` | no |
 | keyspace_silenced | Groups to mute for Redis keyspace monitor | map | `<map>` | no |
