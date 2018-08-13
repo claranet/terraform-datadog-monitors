@@ -1,0 +1,1097 @@
+#
+# Datadog global variables
+#
+variable "environment" {
+  description = "Architecture environment"
+  type        = "string"
+}
+
+variable "filter_tags_use_defaults" {
+  description = "Use default filter tags convention"
+  default     = "true"
+}
+
+variable "filter_tags_custom" {
+  description = "Tags used for custom filtering when filter_tags_use_defaults is false"
+  default     = "*"
+}
+
+variable "message" {
+  description = "Message sent when a monitor is triggered"
+}
+
+variable "evaluation_delay" {
+  description = "Delay in seconds for the metric evaluation"
+  default     = 0
+}
+
+variable "new_host_delay" {
+  description = "Delay in seconds for the metric evaluation"
+  default     = 300
+}
+
+#
+# Cluster Status Not Green
+#
+variable "cluster_status_not_green_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "cluster_status_not_green_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "cluster_status_not_green_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "cluster_status_not_green_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 1
+}
+
+variable "cluster_status_not_green_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 0
+}
+
+variable "cluster_status_not_green_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "cluster_status_not_green_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# Cluster Initializing Shards
+#
+variable "cluster_initializing_shards_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "cluster_initializing_shards_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "cluster_initializing_shards_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "cluster_initializing_shards_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 1
+}
+
+variable "cluster_initializing_shards_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 2
+}
+
+variable "cluster_initializing_shards_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "cluster_initializing_shards_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# Cluster Relocating Shards
+#
+variable "cluster_relocating_shards_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "cluster_relocating_shards_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "cluster_relocating_shards_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "cluster_relocating_shards_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 1
+}
+
+variable "cluster_relocating_shards_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 2
+}
+
+variable "cluster_relocating_shards_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "cluster_relocating_shards_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# Cluster Unassigned Shards
+#
+variable "cluster_unassigned_shards_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "cluster_unassigned_shards_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "cluster_unassigned_shards_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "cluster_unassigned_shards_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 1
+}
+
+variable "cluster_unassigned_shards_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 2
+}
+
+variable "cluster_unassigned_shards_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "cluster_unassigned_shards_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# Free Space in nodes
+#
+variable "node_free_space_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "node_free_space_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "sum"
+}
+
+variable "node_free_space_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "node_free_space_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 20
+}
+
+variable "node_free_space_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 10
+}
+
+variable "node_free_space_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "node_free_space_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# JVM Heap Memory Usage
+#
+variable "jvm_heap_memory_usage_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "jvm_heap_memory_usage_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "jvm_heap_memory_usage_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "jvm_heap_memory_usage_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 80
+}
+
+variable "jvm_heap_memory_usage_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 90
+}
+
+variable "jvm_heap_memory_usage_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "jvm_heap_memory_usage_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# JVM Memory Young Usage
+#
+variable "jvm_memory_young_usage_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "jvm_memory_young_usage_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "jvm_memory_young_usage_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "jvm_memory_young_usage_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 80
+}
+
+variable "jvm_memory_young_usage_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 90
+}
+
+variable "jvm_memory_young_usage_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "jvm_memory_young_usage_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# JVM Memory Old Usage
+#
+variable "jvm_memory_old_usage_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "jvm_memory_old_usage_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "jvm_memory_old_usage_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "jvm_memory_old_usage_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 80
+}
+
+variable "jvm_memory_old_usage_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 90
+}
+
+variable "jvm_memory_old_usage_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "jvm_memory_old_usage_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# JVM Garbace Collector Old Collection Latency
+#
+variable "jvm_gc_old_collection_latency_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "jvm_gc_old_collection_latency_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "jvm_gc_old_collection_latency_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "jvm_gc_old_collection_latency_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 160
+}
+
+variable "jvm_gc_old_collection_latency_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 200
+}
+
+variable "jvm_gc_old_collection_latency_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "jvm_gc_old_collection_latency_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# JVM Garbace Collector Young Collection Latency
+#
+variable "jvm_gc_young_collection_latency_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "jvm_gc_young_collection_latency_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "jvm_gc_young_collection_latency_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "jvm_gc_young_collection_latency_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 20
+}
+
+variable "jvm_gc_young_collection_latency_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 25
+}
+
+variable "jvm_gc_young_collection_latency_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "jvm_gc_young_collection_latency_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# Indexing Latency
+#
+variable "indexing_latency_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "indexing_latency_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "indexing_latency_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "indexing_latency_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 10
+}
+
+variable "indexing_latency_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 15
+}
+
+variable "indexing_latency_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "indexing_latency_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# Flush Latency
+#
+variable "flush_latency_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "flush_latency_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "flush_latency_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "flush_latency_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 50
+}
+
+variable "flush_latency_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 100
+}
+
+variable "flush_latency_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "flush_latency_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# Open HTTP Connections Anomaly
+#
+variable "http_connections_anomaly_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "http_connections_anomaly_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "http_connections_anomaly_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_4h"
+}
+
+variable "http_connections_anomaly_detection_algorithm" {
+  description = "Anomaly Detection Algorithm used"
+  type        = "string"
+  default     = "agile"
+}
+
+variable "http_connections_anomaly_deviations" {
+  description = "Deviations to detect the anomaly"
+  type        = "string"
+  default     = 2
+}
+
+variable "http_connections_anomaly_direction" {
+  description = "Direction of the anomaly. It can be both, below or above."
+  type        = "string"
+  default     = "above"
+}
+
+variable "http_connections_anomaly_alert_window" {
+  description = "Alert window."
+  type        = "string"
+  default     = "last_15m"
+}
+
+variable "http_connections_anomaly_interval" {
+  description = "Interval."
+  type        = "string"
+  default     = 60
+}
+
+variable "http_connections_anomaly_count_default_zero" {
+  description = "Count default zero."
+  type        = "string"
+  default     = "true"
+}
+
+variable "http_connections_anomaly_seasonality" {
+  description = "Seasonality of the algorithm"
+  type        = "string"
+  default     = "hourly"
+}
+
+variable "http_connections_anomaly_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 0.75
+}
+
+variable "http_connections_anomaly_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 1
+}
+
+variable "http_connections_anomaly_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "http_connections_anomaly_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# Query Latency
+#
+variable "search_query_latency_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "search_query_latency_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "search_query_latency_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "search_query_latency_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 0.5
+}
+
+variable "search_query_latency_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 1
+}
+
+variable "search_query_latency_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "search_query_latency_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# Fetch Latency
+#
+variable "fetch_latency_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "fetch_latency_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "fetch_latency_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "fetch_latency_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 2
+}
+
+variable "fetch_latency_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 4
+}
+
+variable "fetch_latency_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "fetch_latency_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# Search Query Change
+#
+variable "search_query_change_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "search_query_change_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "search_query_change_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "search_query_change_timeshift" {
+  description = "Timeshift for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "search_query_change_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 75
+}
+
+variable "search_query_change_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 100
+}
+
+variable "search_query_change_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "search_query_change_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# Fetch Change
+#
+variable "fetch_change_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "fetch_change_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "fetch_change_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "fetch_change_timeshift" {
+  description = "Timeshift for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "fetch_change_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 75
+}
+
+variable "fetch_change_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 100
+}
+
+variable "fetch_change_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "fetch_change_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# Field Data Evictions
+#
+variable "field_data_evictions_change_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "field_data_evictions_change_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "field_data_evictions_change_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_15m"
+}
+
+variable "field_data_evictions_change_timeshift" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_15m"
+}
+
+variable "field_data_evictions_change_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 60
+}
+
+variable "field_data_evictions_change_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 120
+}
+
+variable "field_data_evictions_change_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "field_data_evictions_change_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# Query Cache Evictions
+#
+variable "query_cache_evictions_change_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "query_cache_evictions_change_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "query_cache_evictions_change_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_15m"
+}
+
+variable "query_cache_evictions_change_timeshift" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_15m"
+}
+
+variable "query_cache_evictions_change_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 60
+}
+
+variable "query_cache_evictions_change_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 120
+}
+
+variable "query_cache_evictions_change_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "query_cache_evictions_change_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# Request Cache Evictions
+#
+variable "request_cache_evictions_change_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "request_cache_evictions_change_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "request_cache_evictions_change_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_15m"
+}
+
+variable "request_cache_evictions_change_timeshift" {
+  description = "Timeshift for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_15m"
+}
+
+variable "request_cache_evictions_change_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 60
+}
+
+variable "request_cache_evictions_change_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 120
+}
+
+variable "request_cache_evictions_change_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "request_cache_evictions_change_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# Task Time in Queue
+#
+variable "task_time_in_queue_change_message" {
+  description = "Custom message for the Cluster Status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "task_time_in_queue_change_time_aggregator" {
+  description = "Time aggregator for the Cluster Status monitor"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "task_time_in_queue_change_timeframe" {
+  description = "Timeframe for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "task_time_in_queue_change_timeshift" {
+  description = "Timeshift for the Cluster Status monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "task_time_in_queue_change_threshold_warning" {
+  description = "Cluster Status warning threshold"
+  type        = "string"
+  default     = 100
+}
+
+variable "task_time_in_queue_change_threshold_critical" {
+  description = "Cluster Status  critical threshold"
+  type        = "string"
+  default     = 200
+}
+
+variable "task_time_in_queue_change_silenced" {
+  description = "Groups to mute for Cluster Status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "task_time_in_queue_change_extra_tags" {
+  description = "Extra tags for Cluster Status monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# Service Check
+#
+variable "not_responding_silenced" {
+  description = "Groups to mute for Elasticsearch does not respond monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "not_responding_message" {
+  description = "Custom message for Elasticsearch does not respond monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "not_responding_by" {
+  description = "Group by for the service check"
+  type        = "string"
+  default     = "\"port\",\"server\""
+}
+
+variable "not_responding_last" {
+  description = "Parameter 'last' for the service check"
+  type        = "string"
+  default     = 1
+}
+
+variable "not_responding_threshold_critical" {
+  description = "Not responding limit (critical threshold)"
+  default     = 5
+}
+
+variable "not_responding_threshold_warning" {
+  description = "Not responding limit (warning threshold)"
+  default     = 0
+}
+
+variable "not_responding_extra_tags" {
+  description = "Extra tags for Elasticsearch does not respond monitor"
+  type        = "list"
+  default     = []
+}
