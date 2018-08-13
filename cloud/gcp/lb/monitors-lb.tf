@@ -1,17 +1,4 @@
 #
-# FILTER
-#
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ?
-              format("project_id:%s", var.project_id) :
-             "${var.filter_tags_custom}"}"
-  }
-}
-
-#
 # 4XX Errors
 #
 resource "datadog_monitor" "error_rate_4xx" {
@@ -22,9 +9,9 @@ resource "datadog_monitor" "error_rate_4xx" {
 
   query = <<EOF
   ${var.error_rate_4xx_time_aggregator}(${var.error_rate_4xx_timeframe}):
-    avg:gcp.loadbalancing.https.request_count{${data.template_file.filter.rendered},response_code_class:400} by {backend_target_name}.as_count().fill(zero)
+    avg:gcp.loadbalancing.https.request_count{${var.filter_tags},response_code_class:400} by {backend_target_name}.as_count().fill(zero)
     /
-    (avg:gcp.loadbalancing.https.request_count{${data.template_file.filter.rendered}} by {backend_target_name}.as_count().fill(zero) + ${var.error_rate_4xx_artificial_request} ) * 100
+    (avg:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {backend_target_name}.as_count().fill(zero) + ${var.error_rate_4xx_artificial_request} ) * 100
   > ${var.error_rate_4xx_threshold_critical}
 EOF
 
@@ -40,8 +27,8 @@ EOF
   notify_no_data      = false
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.error_rate_4xx_silenced}"
 
@@ -66,9 +53,9 @@ resource "datadog_monitor" "error_rate_5xx" {
 
   query = <<EOF
   ${var.error_rate_5xx_time_aggregator}(${var.error_rate_5xx_timeframe}):
-    avg:gcp.loadbalancing.https.request_count{${data.template_file.filter.rendered},response_code_class:400} by {backend_target_name}.as_count().fill(zero)
+    avg:gcp.loadbalancing.https.request_count{${var.filter_tags},response_code_class:400} by {backend_target_name}.as_count().fill(zero)
     /
-    (avg:gcp.loadbalancing.https.request_count{${data.template_file.filter.rendered}} by {backend_target_name}.as_count().fill(zero) + ${var.error_rate_5xx_artificial_request} ) * 100
+    (avg:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {backend_target_name}.as_count().fill(zero) + ${var.error_rate_5xx_artificial_request} ) * 100
   > ${var.error_rate_5xx_threshold_critical}
 EOF
 
@@ -84,8 +71,8 @@ EOF
   notify_no_data      = false
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.error_rate_5xx_silenced}"
 
@@ -110,7 +97,7 @@ resource "datadog_monitor" "latency" {
 
   query = <<EOF
   ${var.latency_time_aggregator}(${var.latency_timeframe}):
-    min:gcp.loadbalancing.https.total_latencies.avg{${data.template_file.filter.rendered}} by {backend_target_name}
+    min:gcp.loadbalancing.https.total_latencies.avg{${var.filter_tags}} by {backend_target_name}
   > ${var.latency_threshold_critical}
 EOF
 
@@ -127,8 +114,8 @@ EOF
   notify_no_data      = false
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.latency_silenced}"
 
@@ -153,7 +140,7 @@ resource "datadog_monitor" "backend_latency" {
 
   query = <<EOF
   ${var.backend_latency_time_aggregator}(${var.backend_latency_timeframe}):
-    min:gcp.loadbalancing.https.backend_latencies.avg{${data.template_file.filter.rendered}} by {backend_target_name}
+    min:gcp.loadbalancing.https.backend_latencies.avg{${var.filter_tags}} by {backend_target_name}
   > ${var.backend_latency_threshold_critical}
 EOF
 
@@ -170,8 +157,8 @@ EOF
   notify_no_data      = false
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.backend_latency_silenced}"
 
@@ -196,7 +183,7 @@ resource "datadog_monitor" "request_count" {
 
   query = <<EOF
   pct_change(${var.request_count_time_aggregator}(${var.request_count_timeframe}),${var.request_count_timeshift}):
-    avg:gcp.loadbalancing.https.request_count{${data.template_file.filter.rendered}} by {backend_target_name}.as_count().fill(zero)
+    avg:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {backend_target_name}.as_count().fill(zero)
   > ${var.request_count_threshold_critical}
 EOF
 
@@ -213,8 +200,8 @@ EOF
   notify_no_data      = false
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.request_count_silenced}"
 
