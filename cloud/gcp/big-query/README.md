@@ -42,18 +42,17 @@ Creates DataDog monitors with the following checks:
 | concurrent_queries_threshold_critical | Concurrent Queries (critical threshold) (hard limit 50) | string | `45` | no |
 | concurrent_queries_threshold_warning | Concurrent Queries (warning threshold) (hard limit 50) | string | `40` | no |
 | concurrent_queries_timeframe | Timeframe for the Concurrent Queries monitor | string | `last_5m` | no |
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | execution_time_extra_tags | Extra tags for GCP Big Query Execution Time monitor | list | `<list>` | no |
 | execution_time_message | Custom message for the Execution Time monitor | string | `` | no |
 | execution_time_silenced | Groups to mute for GCP Big Query Execution Time monitor. Muted by default. | map | `<map>` | no |
 | execution_time_threshold_critical | Average Execution Time in seconds (critical threshold) | string | `150` | no |
 | execution_time_threshold_warning | Average Execution Time in seconds (warning threshold) | string | `100` | no |
 | execution_time_timeframe | Timeframe for the Execution Time monitor | string | `last_5m` | no |
-| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
-| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
+| filter_tags | Tags used for filtering | string | `*` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
-| project_id | ID of the GCP Project | string | - | yes |
+| new_host_delay | Delay in seconds for the new host evaluation | string | `300` | no |
 | scanned_bytes_billed_extra_tags | Extra tags for GCP Big Query Scanned Bytes Billed monitor | list | `<list>` | no |
 | scanned_bytes_billed_message | Custom message for the Scanned Bytes Billed monitor | string | `` | no |
 | scanned_bytes_billed_silenced | Groups to mute for GCP Big Query Scanned Bytes Billed monitor. Muted by default. | map | `<map>` | no |
