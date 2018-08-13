@@ -245,4 +245,5 @@ Creates DataDog monitors with the following checks:
 | task_time_in_queue_change_id | id for monitor task_time_in_queue_change |
 
 ## Related documentation
-
+* [Integration Datadog & ElasticSearch](https://docs.datadoghq.com/integrations/elastic/)
+* [How to monitor ElasticSearch with Datadog](https://www.datadoghq.com/blog/monitor-elasticsearch-datadog/)
