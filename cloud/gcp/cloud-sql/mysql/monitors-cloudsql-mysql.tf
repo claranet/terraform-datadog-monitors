@@ -1,17 +1,4 @@
 #
-# FILTERS
-#
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ?
-             format("project_id:%s",var.project_id) :
-             "${var.filter_tags_custom}"}"
-  }
-}
-
-#
 # Replication Lag
 #
 resource "datadog_monitor" "replication_lag" {
@@ -22,7 +9,7 @@ resource "datadog_monitor" "replication_lag" {
 
   query = <<EOF
   ${var.replication_lag_time_aggregator}(${var.replication_lag_timeframe}):
-    avg:gcp.cloudsql.database.mysql.replication.seconds_behind_master{${data.template_file.filter.rendered}}
+    avg:gcp.cloudsql.database.mysql.replication.seconds_behind_master{${var.filter_tags}}
     by {database_id}
   > ${var.replication_lag_threshold_critical}
 EOF
@@ -68,7 +55,7 @@ resource "datadog_monitor" "queries_changing_anomaly" {
   query = <<EOF
     ${var.queries_changing_anomaly_time_aggregator}(${var.queries_changing_anomaly_timeframe}):
       anomalies(
-        avg:gcp.cloudsql.database.mysql.queries{${data.template_file.filter.rendered}} by {database_id}.as_count(),
+        avg:gcp.cloudsql.database.mysql.queries{${var.filter_tags}} by {database_id}.as_count(),
         '${var.queries_changing_anomaly_detection_algorithm}',
         ${var.queries_changing_anomaly_deviations},
         direction='${var.queries_changing_anomaly_direction}',
@@ -122,7 +109,7 @@ resource "datadog_monitor" "questions_changing_anomaly" {
   query = <<EOF
     ${var.questions_changing_anomaly_time_aggregator}(${var.questions_changing_anomaly_timeframe}):
       anomalies(
-        avg:gcp.cloudsql.database.mysql.questions{${data.template_file.filter.rendered}} by {database_id},
+        avg:gcp.cloudsql.database.mysql.questions{${var.filter_tags}} by {database_id},
         '${var.questions_changing_anomaly_detection_algorithm}',
         ${var.questions_changing_anomaly_deviations},
         direction='${var.questions_changing_anomaly_direction}',
