@@ -6,13 +6,8 @@ variable "environment" {
   type        = "string"
 }
 
-variable "filter_tags_use_defaults" {
-  description = "Use default filter tags convention"
-  default     = "true"
-}
-
-variable "filter_tags_custom" {
-  description = "Tags used for custom filtering when filter_tags_use_defaults is false"
+variable "filter_tags" {
+  description = "Tags used for filtering"
   default     = "*"
 }
 
@@ -28,14 +23,6 @@ variable "evaluation_delay" {
 variable "new_host_delay" {
   description = "Delay in seconds for the new host evaluation"
   default     = 300
-}
-
-#
-# Filter variables
-#
-variable "project_id" {
-  type        = "string"
-  description = "ID of the GCP Project"
 }
 
 #

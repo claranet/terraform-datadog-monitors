@@ -62,8 +62,7 @@ Creates DataDog monitors with the following checks:
 | failover_unavailable_threshold_critical | Failover Unavailable critical threshold | string | `0` | no |
 | failover_unavailable_time_aggregator | Time aggreggator for the Failover Unavailable monitor | string | `max` | no |
 | failover_unavailable_timeframe | Timeframe for the Failover Unavailable monitor | string | `last_5m` | no |
-| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
-| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
+| filter_tags | Tags used for filtering | string | `*` | no |
 | memory_utilization_extra_tags | Extra tags for GCP Cloud SQL Memory Utilization monitor | list | `<list>` | no |
 | memory_utilization_forecast_algorithm | Algorithm for the Memory Utilization Forecast monitor | string | `linear` | no |
 | memory_utilization_forecast_deviations | Deviations for the Memory Utilization Forecast monitor | string | `1` | no |
@@ -86,7 +85,6 @@ Creates DataDog monitors with the following checks:
 | memory_utilization_timeframe | Timeframe for the Memory Utilization monitor | string | `last_5m` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 | new_host_delay | Delay in seconds for the new host evaluation | string | `300` | no |
-| project_id | ID of the GCP Project | string | - | yes |
 
 ## Outputs
 

@@ -26,11 +26,9 @@ Creates DataDog monitors with the following checks:
 |------|-------------|:----:|:-----:|:-----:|
 | environment | Architecture environment | string | - | yes |
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
-| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
-| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
+| filter_tags | Tags used for filtering | string | `*` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 | new_host_delay | Delay in seconds for the new host evaluation | string | `300` | no |
-| project_id | ID of the GCP Project | string | - | yes |
 | queries_changing_anomaly_alert_window | Alert window. | string | `last_30m` | no |
 | queries_changing_anomaly_count_default_zero | Count default zero. | string | `false` | no |
 | queries_changing_anomaly_detection_algorithm | Anomaly Detection Algorithm used | string | `agile` | no |
