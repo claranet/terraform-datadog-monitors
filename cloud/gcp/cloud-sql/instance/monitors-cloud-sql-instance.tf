@@ -40,8 +40,8 @@ EOF
   notify_no_data      = true
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.cpu_utilization_silenced}"
 
@@ -84,8 +84,8 @@ EOF
   notify_no_data      = true
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.disk_utilization_silenced}"
 
@@ -134,8 +134,8 @@ EOF
   notify_no_data      = false
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.disk_utilization_forecast_silenced}"
 
@@ -178,8 +178,8 @@ EOF
   notify_no_data      = true
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.memory_utilization_silenced}"
 
@@ -228,8 +228,8 @@ EOF
   notify_no_data      = false
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.memory_utilization_forecast_silenced}"
 
@@ -271,8 +271,8 @@ EOF
   notify_no_data      = true
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.failover_unavailable_silenced}"
 

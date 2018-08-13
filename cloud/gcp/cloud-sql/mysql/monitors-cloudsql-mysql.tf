@@ -40,8 +40,8 @@ EOF
   notify_no_data      = true
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.replication_lag_silenced}"
 
@@ -94,8 +94,8 @@ EOF
   notify_no_data      = false
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.queries_changing_anomaly_silenced}"
 
@@ -148,8 +148,8 @@ EOF
   notify_no_data      = false
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.questions_changing_anomaly_silenced}"
 
