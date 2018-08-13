@@ -73,8 +73,8 @@ Creates DataDog monitors with the following checks:
 | latency_timeframe | Monitor timeframe for Redis latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | mem_frag_message | Custom message for Redis memory RAM fragmentation monitor | string | `` | no |
 | mem_frag_silenced | Groups to mute for Redis memory RAM fragmentation monitor | map | `<map>` | no |
-| mem_frag_threshold_critical | memory RAM fragmentation limit (critical threshold) | string | `130` | no |
-| mem_frag_threshold_warning | memory RAM fragmentation limit (warning threshold) | string | `100` | no |
+| mem_frag_threshold_critical | memory RAM fragmentation limit (critical threshold) | string | `150` | no |
+| mem_frag_threshold_warning | memory RAM fragmentation limit (warning threshold) | string | `130` | no |
 | mem_frag_time_aggregator | Monitor aggregator for Redis memory RAM fragmentation [available values: min, max or avg] | string | `min` | no |
 | mem_frag_timeframe | Monitor timeframe for Redis memory RAM fragmentation [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | mem_used_message | Custom message for Redis RAM memory used monitor | string | `` | no |
