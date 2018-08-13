@@ -9,7 +9,7 @@ resource "datadog_monitor" "cpu_utilization" {
 
   query = <<EOF
   ${var.cpu_utilization_time_aggregator}(${var.cpu_utilization_timeframe}):
-    avg:gcp.cloudsql.database.cpu.utilization{${var.filter_tags}}}
+    avg:gcp.cloudsql.database.cpu.utilization{${var.filter_tags}}
     by {database_id} * 100
   > ${var.cpu_utilization_threshold_critical}
 EOF
@@ -53,7 +53,7 @@ resource "datadog_monitor" "disk_utilization" {
 
   query = <<EOF
   ${var.disk_utilization_time_aggregator}(${var.disk_utilization_timeframe}):
-    avg:gcp.cloudsql.database.disk.utilization{${var.filter_tags}}}
+    avg:gcp.cloudsql.database.disk.utilization{${var.filter_tags}}
     by {database_id} * 100
     > ${var.disk_utilization_threshold_critical}
 EOF
@@ -98,7 +98,7 @@ resource "datadog_monitor" "disk_utilization_forecast" {
   query = <<EOF
   ${var.disk_utilization_forecast_time_aggregator}(${var.disk_utilization_forecast_timeframe}):
     forecast(
-      avg:gcp.cloudsql.database.disk.utilization{${var.filter_tags}}} by {database_id} * 100,
+      avg:gcp.cloudsql.database.disk.utilization{${var.filter_tags}} by {database_id} * 100,
       '${var.disk_utilization_forecast_algorithm}',
       ${var.disk_utilization_forecast_deviations},
       interval='${var.disk_utilization_forecast_interval}',
@@ -147,7 +147,7 @@ resource "datadog_monitor" "memory_utilization" {
 
   query = <<EOF
   ${var.memory_utilization_time_aggregator}(${var.memory_utilization_timeframe}):
-    avg:gcp.cloudsql.database.memory.utilization{${var.filter_tags}}}
+    avg:gcp.cloudsql.database.memory.utilization{${var.filter_tags}}
     by {database_id} * 100
   > ${var.memory_utilization_threshold_critical}
 EOF
@@ -192,7 +192,7 @@ resource "datadog_monitor" "memory_utilization_forecast" {
   query = <<EOF
   ${var.memory_utilization_forecast_time_aggregator}(${var.memory_utilization_forecast_timeframe}):
     forecast(
-      avg:gcp.cloudsql.database.memory.utilization{${var.filter_tags}}} by {database_id} * 100,
+      avg:gcp.cloudsql.database.memory.utilization{${var.filter_tags}} by {database_id} * 100,
       '${var.memory_utilization_forecast_algorithm}',
       ${var.memory_utilization_forecast_deviations},
       interval='${var.memory_utilization_forecast_interval}',
@@ -241,7 +241,7 @@ resource "datadog_monitor" "failover_unavailable" {
 
   query = <<EOF
   ${var.failover_unavailable_time_aggregator}(${var.failover_unavailable_timeframe}):
-    avg:gcp.cloudsql.database.available_for_failover{${var.filter_tags}}}
+    avg:gcp.cloudsql.database.available_for_failover{${var.filter_tags}}
     by {database_id}
   <= ${var.failover_unavailable_threshold_critical}
 EOF
