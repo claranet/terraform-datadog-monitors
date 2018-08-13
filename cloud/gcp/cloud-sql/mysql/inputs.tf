@@ -20,9 +20,14 @@ variable "message" {
   description = "Message sent when a monitor is triggered"
 }
 
-variable "delay" {
+variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 900
+}
+
+variable "new_host_delay" {
+  description = "Delay in seconds for the new host evaluation"
+  default     = 300
 }
 
 #
