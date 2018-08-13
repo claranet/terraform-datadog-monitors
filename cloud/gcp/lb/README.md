@@ -33,7 +33,6 @@ Creates DataDog monitors with the following checks:
 | backend_latency_threshold_warning | Latency in seconds (warning threshold) | string | `2000` | no |
 | backend_latency_time_aggregator | Timeframe for the GCP LB Backend Latency monitor | string | `min` | no |
 | backend_latency_timeframe | Timeframe for the GCP LB Backend Latency monitor | string | `last_10m` | no |
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
 | error_rate_4xx_artificial_request | Divisor Delta for the GCP LB 4XX Errors monitor | string | `5` | no |
 | error_rate_4xx_extra_tags | Extra tags for GCP LB 4XX Errors monitor | list | `<list>` | no |
@@ -49,8 +48,8 @@ Creates DataDog monitors with the following checks:
 | error_rate_5xx_threshold_critical | Rate error in percentage (critical threshold) | string | `50` | no |
 | error_rate_5xx_time_aggregator | Timeframe for the GCP LB 5XX Errors monitor | string | `sum` | no |
 | error_rate_5xx_timeframe | Timeframe for the GCP LB 5XX Errors monitor | string | `last_5m` | no |
-| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
-| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
+| filter_tags | Tags used for filtering | string | `*` | no |
 | latency_extra_tags | Extra tags for GCP LB Latency monitor | list | `<list>` | no |
 | latency_message | Custom message for the GCP LB Latency monitor | string | `` | no |
 | latency_silenced | Groups to mute for GCP LB Latency monitor | map | `<map>` | no |
@@ -59,7 +58,7 @@ Creates DataDog monitors with the following checks:
 | latency_time_aggregator | Timeframe for the GCP LB Latency monitor | string | `min` | no |
 | latency_timeframe | Timeframe for the GCP LB Latency monitor | string | `last_10m` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
-| project_id | ID of the GCP Project | string | - | yes |
+| new_host_delay | Delay in seconds for the new host evaluation | string | `300` | no |
 | request_count_extra_tags | Extra tags for GCP LB Request Count monitor | list | `<list>` | no |
 | request_count_message | Custom message for the GCP LB Request Count monitor | string | `` | no |
 | request_count_silenced | Groups to mute for GCP LB Request Count monitor | map | `<map>` | no |
