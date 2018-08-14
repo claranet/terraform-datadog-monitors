@@ -1,18 +1,10 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_azure_servicebus:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
 resource "datadog_monitor" "servicebus_status" {
   name    = "[${var.environment}] Service Bus is down"
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
       ${var.status_time_aggregator}(${var.status_timeframe}): (
-        avg:azure.servicebus_namespaces.status{${data.template_file.filter.rendered}} by {resource_group,region,name}
+        avg:azure.servicebus_namespaces.status${module.filter-tags.query_alert} by {resource_group,region,name}
       ) != 1
 EOF
 

@@ -1,18 +1,10 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_mongodb:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
 resource "datadog_monitor" "mongodb_primary" {
   name    = "[${var.environment}] MongoDB primary state"
   message = "${coalesce(var.mongodb_primary_message, var.message)}"
 
   query = <<EOF
       ${var.mongodb_primary_aggregator}(${var.mongodb_primary_timeframe}):
-      min:mongodb.replset.state{${data.template_file.filter.rendered}} by {replset_name} >= 2
+      min:mongodb.replset.state${module.filter-tags.query_alert} by {replset_name} >= 2
   EOF
 
   type = "metric alert"
@@ -38,7 +30,7 @@ resource "datadog_monitor" "mongodb_secondary" {
   query = <<EOF
       ${var.mongodb_secondary_aggregator}(${var.mongodb_secondary_timeframe}):
       ${var.mongodb_desired_servers_count} -
-      sum:mongodb.replset.health{${data.template_file.filter.rendered}} by {replset_name}
+      sum:mongodb.replset.health${module.filter-tags.query_alert} by {replset_name}
       > 1
   EOF
 
@@ -69,7 +61,7 @@ resource "datadog_monitor" "mongodb_server_count" {
 
   query = <<EOF
       ${var.mongodb_server_count_aggregator}(${var.mongodb_server_count_timeframe}):
-      sum:mongodb.replset.health{${data.template_file.filter.rendered}} by {replset_name}
+      sum:mongodb.replset.health${module.filter-tags.query_alert} by {replset_name}
       > 99
   EOF
 
@@ -100,7 +92,7 @@ resource "datadog_monitor" "mongodb_replication" {
 
   query = <<EOF
       ${var.mongodb_replication_aggregator}(${var.mongodb_replication_timeframe}):
-      avg:mongodb.replset.replicationlag{${data.template_file.filter.rendered},replset_state:secondary} by {server} > ${var.mongodb_lag_critical}
+      avg:mongodb.replset.replicationlag${module.filter-tags-secondary.query_alert} by {server} > ${var.mongodb_lag_critical}
   EOF
 
   thresholds {

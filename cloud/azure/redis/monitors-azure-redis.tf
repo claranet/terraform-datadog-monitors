@@ -1,18 +1,10 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_azure_redis:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
 resource "datadog_monitor" "status" {
   name    = "[${var.environment}] Redis {{name}} is down"
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
     ${var.status_time_aggregator}(${var.status_timeframe}): (
-      avg:azure.cache_redis.status{${data.template_file.filter.rendered}} by {resource_group,region,name}
+      avg:azure.cache_redis.status${module.filter-tags.query_alert} by {resource_group,region,name}
     ) != 1
   EOF
 
@@ -39,7 +31,7 @@ resource "datadog_monitor" "evictedkeys" {
 
   query = <<EOF
     ${var.evictedkeys_limit_time_aggregator}(${var.evictedkeys_limit_timeframe}): (
-      avg:azure.cache_redis.evictedkeys{${data.template_file.filter.rendered}} by {resource_group,region,name}
+      avg:azure.cache_redis.evictedkeys${module.filter-tags.query_alert} by {resource_group,region,name}
      ) > ${var.evictedkeys_limit_threshold_critical}
 EOF
 
@@ -71,7 +63,7 @@ resource "datadog_monitor" "percent_processor_time" {
 
   query = <<EOF
     ${var.percent_processor_time_time_aggregator}(${var.percent_processor_time_timeframe}): (
-      avg:azure.cache_redis.percent_processor_time{${data.template_file.filter.rendered}} by {resource_group,region,name}
+      avg:azure.cache_redis.percent_processor_time${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.percent_processor_time_threshold_critical}
 EOF
 
@@ -103,7 +95,7 @@ resource "datadog_monitor" "server_load" {
 
   query = <<EOF
     ${var.server_load_rate_time_aggregator}(${var.server_load_rate_timeframe}): (
-      avg:azure.cache_redis.server_load{${data.template_file.filter.rendered}} by {resource_group,region,name}
+      avg:azure.cache_redis.server_load${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.server_load_rate_threshold_critical}
 EOF
 

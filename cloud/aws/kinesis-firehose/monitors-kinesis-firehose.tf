@@ -1,11 +1,3 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_firehose:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
 ### Kinesis Firehose Incoming records ###
 resource "datadog_monitor" "firehose_incoming_records" {
   name    = "[${var.environment}] Kinesis Firehose No incoming records"
@@ -15,7 +7,7 @@ resource "datadog_monitor" "firehose_incoming_records" {
 
   query = <<EOF
     sum(${var.incoming_records_timeframe}): (
-      avg:aws.firehose.incoming_records{${data.template_file.filter.rendered}} by {region,deliverystreamname}
+      avg:aws.firehose.incoming_records${module.filter-tags.query_alert} by {region,deliverystreamname}
     ) <= 0
   EOF
 
