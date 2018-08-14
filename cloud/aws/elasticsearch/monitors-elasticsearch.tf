@@ -1,11 +1,3 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_es:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
 ### Elasticsearch cluster status monitor ###
 /* Note about the query
     - If aws.es.cluster_statusred is 1 --> query value (= 2.1) > 2 : critical
@@ -19,8 +11,8 @@ resource "datadog_monitor" "es_cluster_status" {
 
   query = <<EOF
   max(${var.es_cluster_status_timeframe}): (
-    avg:aws.es.cluster_statusred{${data.template_file.filter.rendered}} by {region,name} * 2 +
-    (avg:aws.es.cluster_statusyellow{${data.template_file.filter.rendered}} by {region,name} + 0.1)
+    avg:aws.es.cluster_statusred${module.filter-tags.query_alert} by {region,name} * 2 +
+    (avg:aws.es.cluster_statusyellow${module.filter-tags.query_alert} by {region,name} + 0.1)
   ) >= 2
 EOF
 
@@ -53,7 +45,7 @@ resource "datadog_monitor" "es_free_space_low" {
 
   query = <<EOF
   ${var.diskspace_time_aggregator}(${var.diskspace_timeframe}): (
-    avg:aws.es.free_storage_space{${data.template_file.filter.rendered}} by {region,name} /
+    avg:aws.es.free_storage_space${module.filter-tags.query_alert} by {region,name} /
     (${var.es_cluster_volume_size}*1000) * 100
   ) < ${var.diskspace_threshold_critical}
 EOF
@@ -87,7 +79,7 @@ resource "datadog_monitor" "es_cpu_90_15min" {
 
   query = <<EOF
   ${var.cpu_time_aggregator}(${var.cpu_timeframe}): (
-    avg:aws.es.cpuutilization{${data.template_file.filter.rendered}} by {region,name}
+    avg:aws.es.cpuutilization${module.filter-tags.query_alert} by {region,name}
   ) > ${var.cpu_threshold_critical}
 EOF
 

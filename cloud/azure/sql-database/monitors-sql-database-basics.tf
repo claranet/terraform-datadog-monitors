@@ -1,18 +1,10 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_azure_sqldatabase:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
 resource "datadog_monitor" "sql-database_cpu_90_15min" {
   name    = "[${var.environment}] SQL Database CPU too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_message, var.message)}"
 
   query = <<EOF
     ${var.cpu_time_aggregator}(${var.cpu_timeframe}): (
-      avg:azure.sql_servers_databases.cpu_percent{${data.template_file.filter.rendered}} by {resource_group,region,name}
+      avg:azure.sql_servers_databases.cpu_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.cpu_threshold_critical}
   EOF
 
@@ -45,7 +37,7 @@ resource "datadog_monitor" "sql-database_free_space_low" {
 
   query = <<EOF
     ${var.diskspace_time_aggregator}(${var.diskspace_timeframe}): (
-      avg:azure.sql_servers_databases.storage_percent{${data.template_file.filter.rendered}} by {resource_group,region,name}
+      avg:azure.sql_servers_databases.storage_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.diskspace_threshold_critical}
   EOF
 
@@ -77,7 +69,7 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
 
   query = <<EOF
     ${var.dtu_time_aggregator}(${var.dtu_timeframe}): (
-      azure.sql_servers_databases.dtu_consumption_percent{${data.template_file.filter.rendered}} by {resource_group,region,name}
+      azure.sql_servers_databases.dtu_consumption_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.dtu_threshold_critical}
   EOF
 
@@ -109,7 +101,7 @@ resource "datadog_monitor" "sql-database_deadlocks_count" {
 
   query = <<EOF
     sum(${var.deadlock_timeframe}): (
-      avg:azure.sql_servers_databases.deadlock{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
+      avg:azure.sql_servers_databases.deadlock${module.filter-tags.query_alert} by {resource_group,region,name}.as_count()
     ) > ${var.deadlock_threshold_critical}
   EOF
 

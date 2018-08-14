@@ -1,19 +1,9 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ?
-             format("dd_monitoring:enabled,dd_azure_apimanagement:enabled,env:%s", var.environment) :
-             "${var.filter_tags_custom}"}"
-  }
-}
-
 resource "datadog_monitor" "apimgt_status" {
   name    = "[${var.environment}] API Management is down"
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
-      ${var.status_time_aggregator}(${var.status_timeframe}):avg:azure.apimanagement_service.status{${data.template_file.filter.rendered}} by {resource_group,region,name} < 1
+      ${var.status_time_aggregator}(${var.status_timeframe}):avg:azure.apimanagement_service.status${module.filter-tags.query_alert} by {resource_group,region,name} < 1
   EOF
 
   type = "metric alert"
@@ -43,8 +33,8 @@ resource "datadog_monitor" "apimgt_failed_requests" {
 
   query = <<EOF
     sum(${var.failed_requests_timeframe}): (
-      avg:azure.apimanagement_service.failed_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
-      avg:azure.apimanagement_service.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() * 100
+      avg:azure.apimanagement_service.failed_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() /
+      avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() * 100
     ) > ${var.failed_requests_threshold_critical}
   EOF
 
@@ -75,8 +65,8 @@ resource "datadog_monitor" "apimgt_other_requests" {
 
   query = <<EOF
     sum(${var.other_requests_timeframe}): (
-      avg:azure.apimanagement_service.other_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
-      avg:azure.apimanagement_service.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() * 100
+      avg:azure.apimanagement_service.other_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() /
+      avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() * 100
     ) > ${var.other_requests_threshold_critical}
   EOF
 
@@ -107,8 +97,8 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
 
   query = <<EOF
     sum(${var.unauthorized_requests_timeframe}): (
-      avg:azure.apimanagement_service.unauthorized_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
-      avg:azure.apimanagement_service.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() * 100
+      avg:azure.apimanagement_service.unauthorized_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() /
+      avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() * 100
     ) > ${var.unauthorized_requests_threshold_critical}
   EOF
 
@@ -139,8 +129,8 @@ resource "datadog_monitor" "apimgt_successful_requests" {
 
   query = <<EOF
     sum(${var.successful_requests_timeframe}): (
-      avg:azure.apimanagement_service.successful_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
-      avg:azure.apimanagement_service.total_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() * 100
+      avg:azure.apimanagement_service.successful_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() /
+      avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() * 100
     ) < ${var.successful_requests_threshold_critical}
   EOF
 
