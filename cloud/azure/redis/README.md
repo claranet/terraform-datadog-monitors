@@ -25,8 +25,8 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | evictedkeys_limit_message | Custom message for Redis evicted keys monitor | string | `` | no |
 | evictedkeys_limit_silenced | Groups to mute for Redis evicted keys monitor | map | `<map>` | no |
 | evictedkeys_limit_threshold_critical | Evicted keys limit (critical threshold) | string | `100` | no |
@@ -36,6 +36,7 @@ Creates DataDog monitors with the following checks:
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when a Redis monitor is triggered | string | - | yes |
+| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 | percent_processor_time_message | Custom message for Redis processor monitor | string | `` | no |
 | percent_processor_time_silenced | Groups to mute for Redis processor monitor | map | `<map>` | no |
 | percent_processor_time_threshold_critical | Processor time percent (critical threshold) | string | `80` | no |

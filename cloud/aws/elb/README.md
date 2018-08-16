@@ -28,7 +28,6 @@ Creates DataDog monitors with the following checks:
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | artificial_requests_count | Number of false requests used to mitigate false positive in case of low trafic | string | `5` | no |
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | elb_4xx_message | Custom message for ELB 4xx errors monitor | string | `` | no |
 | elb_4xx_silenced | Groups to mute for ELB 4xx errors monitor | map | `<map>` | no |
 | elb_4xx_threshold_critical | loadbalancer 4xx critical threshold in percentage | string | `10` | no |
@@ -60,9 +59,11 @@ Creates DataDog monitors with the following checks:
 | elb_no_healthy_instance_time_aggregator | Monitor aggregator for ELB no healty instance [available values: min or max] | string | `min` | no |
 | elb_no_healthy_instance_timeframe | Monitor timeframe for ELB no healty instance [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | environment | Architecture Environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
+| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 
 ## Outputs
 

@@ -14,7 +14,7 @@ resource "datadog_monitor" "datadog_apache_process" {
   }
 
   notify_no_data      = true
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
