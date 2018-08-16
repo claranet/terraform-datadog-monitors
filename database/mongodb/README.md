@@ -1,10 +1,10 @@
-# DATABASES MONGODB DataDog monitors
+# DATABASE MONGODB DataDog monitors
 
 ## How to use this module
 
 ```
-module "datadog-monitors-databases-mongodb" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//databases/mongodb?ref={revision}"
+module "datadog-monitors-database-mongodb" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//database/mongodb?ref={revision}"
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
