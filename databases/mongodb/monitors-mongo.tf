@@ -11,8 +11,8 @@ resource "datadog_monitor" "mongodb_primary" {
 
   notify_no_data      = true
   renotify_interval   = 0
-  evaluation_delay    = "${var.delay}"
-  new_host_delay      = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
+  new_host_delay      = "${var.new_host_delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -43,8 +43,8 @@ resource "datadog_monitor" "mongodb_secondary" {
 
   notify_no_data      = false
   renotify_interval   = 0
-  evaluation_delay    = "${var.delay}"
-  new_host_delay      = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
+  new_host_delay      = "${var.new_host_delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -74,8 +74,8 @@ resource "datadog_monitor" "mongodb_server_count" {
 
   notify_no_data      = false
   renotify_interval   = 0
-  evaluation_delay    = "${var.delay}"
-  new_host_delay      = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
+  new_host_delay      = "${var.new_host_delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -104,8 +104,8 @@ resource "datadog_monitor" "mongodb_replication" {
 
   notify_no_data      = false
   renotify_interval   = 0
-  evaluation_delay    = "${var.delay}"
-  new_host_delay      = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
+  new_host_delay      = "${var.new_host_delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true

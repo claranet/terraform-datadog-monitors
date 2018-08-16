@@ -30,7 +30,6 @@ Creates DataDog monitors with the following checks:
 | cpu_threshold_warning | CPU usage in percent (warning threshold) | string | `80` | no |
 | cpu_time_aggregator | Monitor aggregator for ES cluster cpu [available values: min, max or avg] | string | `min` | no |
 | cpu_timeframe | Monitor timeframe for ES cluster cpu [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | diskspace_message | Custom message for ES cluster diskspace monitor | string | `` | no |
 | diskspace_silenced | Groups to mute for ES cluster diskspace monitor | map | `<map>` | no |
 | diskspace_threshold_critical | Disk free space in percent (critical threshold) | string | `10` | no |
@@ -42,9 +41,11 @@ Creates DataDog monitors with the following checks:
 | es_cluster_status_silenced | Groups to mute for ES cluster status monitor | map | `<map>` | no |
 | es_cluster_status_timeframe | Monitor timeframe for ES cluster status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_30m` | no |
 | es_cluster_volume_size | ElasticSearch Domain volume size (in GB) | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
+| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 
 ## Outputs
 

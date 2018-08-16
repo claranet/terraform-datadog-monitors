@@ -26,8 +26,8 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | http_4xx_requests_message | Custom message for App Services 4xx requests monitor | string | `` | no |
@@ -52,6 +52,7 @@ Creates DataDog monitors with the following checks:
 | memory_usage_time_aggregator | Monitor aggregator for App Services memory usage [available values: min, max or avg] | string | `min` | no |
 | memory_usage_timeframe | Monitor timeframe for App Services memory usage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
+| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 | response_time_message | Custom message for App Services response time monitor | string | `` | no |
 | response_time_silenced | Groups to mute for App Services response time monitor | map | `<map>` | no |
 | response_time_threshold_critical | Alerting threshold for response time in seconds | string | `10` | no |

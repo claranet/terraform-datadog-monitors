@@ -32,8 +32,8 @@ Creates DataDog monitors with the following checks:
 | conversion_errors_threshold_warning | Conversion errors limit (warning threshold) | string | `0` | no |
 | conversion_errors_time_aggregator | Monitor aggregator for Stream Analytics conversion errors [available values: min, max or avg] | string | `min` | no |
 | conversion_errors_timeframe | Monitor timeframe for Stream Analytics conversion errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | failed_function_requests_message | Custom message for Stream Analytics failed requests monitor | string | `` | no |
 | failed_function_requests_silenced | Groups to mute for Stream Analytics failed requests monitor | map | `<map>` | no |
 | failed_function_requests_threshold_critical | Failed Function Request rate limit (critical threshold) | string | `10` | no |
@@ -42,6 +42,7 @@ Creates DataDog monitors with the following checks:
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when a Redis monitor is triggered | string | - | yes |
+| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 | runtime_errors_message | Custom message for Stream Analytics runtime errors monitor | string | `` | no |
 | runtime_errors_silenced | Groups to mute for Stream Analytics runtime errors monitor | map | `<map>` | no |
 | runtime_errors_threshold_critical | Runtime errors limit (critical threshold) | string | `10` | no |

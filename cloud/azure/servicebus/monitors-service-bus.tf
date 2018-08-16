@@ -13,14 +13,14 @@ EOF
   silenced = "${var.status_silenced}"
 
   notify_no_data      = true
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = ["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
 }
