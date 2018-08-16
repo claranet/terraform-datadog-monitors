@@ -16,8 +16,8 @@ module "datadog-monitors-middleware-php-fpm" {
 
 Creates DataDog monitors with the following checks:
 
-- php_fpm busy worker
-- Can't connect to php-fpm
+- Php-fpm busy worker
+- Php-fpm ping url does not respond
 
 ## Inputs
 
