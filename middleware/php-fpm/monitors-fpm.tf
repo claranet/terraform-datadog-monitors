@@ -44,11 +44,10 @@ resource "datadog_monitor" "datadog_fpm_process" {
   thresholds = {
     ok       = 1
     warning  = 2
-    critical = 4
+    critical = 5
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.delay}"
   new_host_delay      = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
