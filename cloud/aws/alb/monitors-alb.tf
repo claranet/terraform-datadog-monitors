@@ -24,7 +24,7 @@ resource "datadog_monitor" "ALB_no_healthy_instances" {
 
   silenced = "${var.alb_no_healthy_instances_silenced}"
 
-  tags = ["env:${var.environment}", "resource:alb", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "ALB_latency" {
@@ -54,7 +54,7 @@ resource "datadog_monitor" "ALB_latency" {
 
   silenced = "${var.latency_silenced}"
 
-  tags = ["env:${var.environment}", "resource:alb", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "ALB_httpcode_5xx" {
@@ -87,7 +87,7 @@ resource "datadog_monitor" "ALB_httpcode_5xx" {
 
   silenced = "${var.httpcode_alb_5xx_silenced}"
 
-  tags = ["env:${var.environment}", "resource:alb", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "ALB_httpcode_4xx" {
@@ -120,7 +120,7 @@ resource "datadog_monitor" "ALB_httpcode_4xx" {
 
   silenced = "${var.httpcode_alb_4xx_silenced}"
 
-  tags = ["env:${var.environment}", "resource:alb", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "ALB_httpcode_target_5xx" {
@@ -153,7 +153,7 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
 
   silenced = "${var.httpcode_target_5xx_silenced}"
 
-  tags = ["env:${var.environment}", "resource:alb", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "ALB_httpcode_target_4xx" {
@@ -186,5 +186,5 @@ resource "datadog_monitor" "ALB_httpcode_target_4xx" {
 
   silenced = "${var.httpcode_target_4xx_silenced}"
 
-  tags = ["env:${var.environment}", "resource:alb", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"]
 }

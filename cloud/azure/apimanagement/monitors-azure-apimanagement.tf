@@ -24,7 +24,7 @@ resource "datadog_monitor" "apimgt_status" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "resource:apimanagement", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "apimgt_failed_requests" {
@@ -56,7 +56,7 @@ resource "datadog_monitor" "apimgt_failed_requests" {
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "resource:apimanagement", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "apimgt_other_requests" {
@@ -88,7 +88,7 @@ resource "datadog_monitor" "apimgt_other_requests" {
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "resource:apimanagement", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "apimgt_unauthorized_requests" {
@@ -120,7 +120,7 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "resource:apimanagement", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "apimgt_successful_requests" {
@@ -152,5 +152,5 @@ resource "datadog_monitor" "apimgt_successful_requests" {
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "resource:apimanagement", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"]
 }
