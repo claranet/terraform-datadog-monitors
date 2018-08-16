@@ -1,5 +1,5 @@
 resource "datadog_monitor" "datadog_php_fpm_connect_idle" {
-  name    = "[${var.environment}] php_fpm busy worker {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Php-fpm busy worker {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.php_fpm_busy_message, var.message)}"
 
   type = "metric alert"
@@ -32,7 +32,7 @@ resource "datadog_monitor" "datadog_php_fpm_connect_idle" {
 }
 
 resource "datadog_monitor" "datadog_fpm_process" {
-  name    = "[${var.environment}] Can't connect to php-fpm"
+  name    = "[${var.environment}] Php-fpm ping url does not respond"
   message = "${coalesce(var.php_fpm_connect_message, var.message)}"
 
   type = "service check"

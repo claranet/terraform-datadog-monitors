@@ -1,5 +1,5 @@
 resource "datadog_monitor" "datadog_nginx_process" {
-  name    = "[${var.environment}] Can't connect to nginx vhost status"
+  name    = "[${var.environment}] Nginx vhost status does not respond"
   message = "${coalesce(var.nginx_connect_message, var.message)}"
 
   type = "service check"
