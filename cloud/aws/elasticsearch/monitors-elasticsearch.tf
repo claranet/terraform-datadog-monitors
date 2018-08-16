@@ -33,7 +33,7 @@ EOF
 
   silenced = "${var.es_cluster_status_silenced}"
 
-  tags = ["env:${var.environment}", "resource:elasticsearch", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticsearch", "team:claranet", "created-by:terraform"]
 }
 
 ### Elasticsearch cluster free storage space monitor ###
@@ -67,7 +67,7 @@ EOF
 
   silenced = "${var.diskspace_silenced}"
 
-  tags = ["env:${var.environment}", "resource:elasticsearch", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticsearch", "team:claranet", "created-by:terraform"]
 }
 
 ### Elasticsearch cluster CPU monitor ###
@@ -100,5 +100,5 @@ EOF
 
   silenced = "${var.cpu_silenced}"
 
-  tags = ["env:${var.environment}", "resource:elasticsearch", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticsearch", "team:claranet", "created-by:terraform"]
 }

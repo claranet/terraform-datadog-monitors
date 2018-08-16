@@ -21,5 +21,5 @@ resource "datadog_monitor" "VPN_status" {
 
   silenced = "${var.vpn_status_silenced}"
 
-  tags = ["env: ${var.environment}", "resource:vpn", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:vpn", "team:claranet", "created-by:terraform"]
 }

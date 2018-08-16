@@ -22,7 +22,7 @@ resource "datadog_monitor" "eventhub_status" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "resource:eventhub", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventhub", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "eventhub_failed_requests" {
@@ -57,7 +57,7 @@ resource "datadog_monitor" "eventhub_failed_requests" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "resource:eventhub", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventhub", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "eventhub_errors" {
@@ -97,5 +97,5 @@ resource "datadog_monitor" "eventhub_errors" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "resource:eventhub", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventhub", "team:claranet", "created-by:terraform"]
 }

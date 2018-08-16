@@ -15,7 +15,7 @@ resource "datadog_monitor" "datadog_cpu_too_high" {
     critical = "${var.cpu_high_threshold_critical}"
   }
 
-  tags = ["env:${var.environment}", "type:system", "resource:cpu"]
+  tags = ["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform"]
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -47,7 +47,7 @@ resource "datadog_monitor" "datadog_load_too_high" {
     critical = "${var.cpu_load_threshold_critical}"
   }
 
-  tags = ["env:${var.environment}", "type:system", "resource:load"]
+  tags = ["env:${var.environment}", "type:system", "provider:system-core", "resource:generic", "team:claranet", "created-by:terraform"]
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -79,7 +79,7 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
     critical = "${var.free_disk_space_threshold_critical}"
   }
 
-  tags = ["env:${var.environment}", "type:system", "resource:disk"]
+  tags = ["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"]
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -111,7 +111,7 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
     critical = "${var.free_disk_inodes_threshold_critical}"
   }
 
-  tags = ["env:${var.environment}", "type:system", "resource:disk"]
+  tags = ["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"]
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -143,7 +143,7 @@ resource "datadog_monitor" "datadog_free_memory" {
     critical = "${var.free_memory_threshold_critical}"
   }
 
-  tags = ["env:${var.environment}", "type:system", "resource:memory"]
+  tags = ["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform"]
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
