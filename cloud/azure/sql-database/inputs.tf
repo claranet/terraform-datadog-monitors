@@ -36,6 +36,12 @@ variable "cpu_silenced" {
   default     = {}
 }
 
+variable "cpu_extra_tags" {
+  description = "Extra tags for SQL CPU monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "cpu_message" {
   description = "Custom message for SQL CPU monitor"
   type        = "string"
@@ -68,6 +74,12 @@ variable "diskspace_silenced" {
   description = "Groups to mute for SQL disk space monitor"
   type        = "map"
   default     = {}
+}
+
+variable "diskspace_extra_tags" {
+  description = "Extra tags for SQL disk space monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "diskspace_message" {
@@ -104,6 +116,12 @@ variable "dtu_silenced" {
   default     = {}
 }
 
+variable "dtu_extra_tags" {
+  description = "Extra tags for SQL DTU monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "dtu_message" {
   description = "Custom message for SQL DTU monitor"
   type        = "string"
@@ -136,6 +154,12 @@ variable "deadlock_silenced" {
   description = "Groups to mute for SQL Deadlock monitor"
   type        = "map"
   default     = {}
+}
+
+variable "deadlock_extra_tags" {
+  description = "Extra tags for SQL Deadlock monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "deadlock_message" {

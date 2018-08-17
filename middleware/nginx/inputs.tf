@@ -37,6 +37,12 @@ variable "nginx_connect_silenced" {
   default     = {}
 }
 
+variable "nginx_connect_extra_tags" {
+  description = "Extra tags for Nginx process monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "nginx_connect_message" {
   description = "Custom message for Nginx status monitor"
   type        = "string"
