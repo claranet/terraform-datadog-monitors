@@ -20,7 +20,7 @@ resource "datadog_monitor" "mongodb_primary" {
 
   silenced = "${var.mongodb_primary_silenced}"
 
-  tags = ["env:${var.environment}", "type:database", "provider:mongodb", "resource:mongodb", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:database", "provider:mongodb", "resource:mongodb", "team:claranet", "created-by:terraform", "${var.mongodb_primary_extra_tags}"]
 }
 
 resource "datadog_monitor" "mongodb_secondary" {
@@ -52,7 +52,7 @@ resource "datadog_monitor" "mongodb_secondary" {
 
   silenced = "${var.mongodb_secondary_silenced}"
 
-  tags = ["env:${var.environment}", "type:database", "provider:mongodb", "resource:mongodb", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:database", "provider:mongodb", "resource:mongodb", "team:claranet", "created-by:terraform", "${var.mongodb_secondary_extra_tags}"]
 }
 
 resource "datadog_monitor" "mongodb_server_count" {
@@ -83,7 +83,7 @@ resource "datadog_monitor" "mongodb_server_count" {
 
   silenced = "${var.mongodb_secondary_silenced}"
 
-  tags = ["env:${var.environment}", "type:database", "provider:mongodb", "resource:mongodb", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:database", "provider:mongodb", "resource:mongodb", "team:claranet", "created-by:terraform", "${var.mongodb_secondary_extra_tags}"]
 }
 
 resource "datadog_monitor" "mongodb_replication" {
@@ -113,5 +113,5 @@ resource "datadog_monitor" "mongodb_replication" {
 
   silenced = "${var.mongodb_replication_silenced}"
 
-  tags = ["env:${var.environment}", "type:database", "provider:mongodb", "resource:mongodb", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:database", "provider:mongodb", "resource:mongodb", "team:claranet", "created-by:terraform", "${var.mongodb_replication_extra_tags}"]
 }

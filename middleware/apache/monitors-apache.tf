@@ -24,5 +24,5 @@ resource "datadog_monitor" "datadog_apache_process" {
 
   silenced = "${var.apache_connect_silenced}"
 
-  tags = ["env:${var.environment}", "type:middleware", "provider:apache", "resource:apache", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:middleware", "provider:apache", "resource:apache", "team:claranet", "created-by:terraform", "${var.apache_connect_extra_tags}"]
 }
