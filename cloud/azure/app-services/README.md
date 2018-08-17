@@ -30,21 +30,25 @@ Creates DataDog monitors with the following checks:
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
+| http_4xx_requests_extra_tags | Extra tags for App Services 4xx requests monitor | list | `<list>` | no |
 | http_4xx_requests_message | Custom message for App Services 4xx requests monitor | string | `` | no |
 | http_4xx_requests_silenced | Groups to mute for App Services 4xx requests monitor | map | `<map>` | no |
 | http_4xx_requests_threshold_critical | Maximum critical acceptable percent of 4xx errors | string | `90` | no |
 | http_4xx_requests_threshold_warning | Warning regarding acceptable percent of 4xx errors | string | `50` | no |
 | http_4xx_requests_timeframe | Monitor timeframe for App Services 4xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| http_5xx_requests_extra_tags | Extra tags for App Services 5xx requests monitor | list | `<list>` | no |
 | http_5xx_requests_message | Custom message for App Services 5xx requests monitor | string | `` | no |
 | http_5xx_requests_silenced | Groups to mute for App Services 5xx requests monitor | map | `<map>` | no |
 | http_5xx_requests_threshold_critical | Maximum critical acceptable percent of 5xx errors | string | `90` | no |
 | http_5xx_requests_threshold_warning | Warning regarding acceptable percent of 5xx errors | string | `50` | no |
 | http_5xx_requests_timeframe | Monitor timeframe for App Services 5xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| http_successful_requests_extra_tags | Extra tags for App Services successful requests monitor | list | `<list>` | no |
 | http_successful_requests_message | Custom message for App Services successful requests monitor | string | `` | no |
 | http_successful_requests_silenced | Groups to mute for App Services successful requests monitor | map | `<map>` | no |
 | http_successful_requests_threshold_critical | Minimum critical acceptable percent of 2xx & 3xx requests | string | `10` | no |
 | http_successful_requests_threshold_warning | Warning regarding acceptable percent of 2xx & 3xx requests | string | `30` | no |
 | http_successful_requests_timeframe | Monitor timeframe for App Services successful requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| memory_usage_extra_tags | Extra tags for App Services memory usage monitor | list | `<list>` | no |
 | memory_usage_message | Custom message for App Services memory usage monitor | string | `` | no |
 | memory_usage_silenced | Groups to mute for App Services memory usage monitor | map | `<map>` | no |
 | memory_usage_threshold_critical | Alerting threshold in Mib | string | `1073741824` | no |
@@ -53,6 +57,7 @@ Creates DataDog monitors with the following checks:
 | memory_usage_timeframe | Monitor timeframe for App Services memory usage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
+| response_time_extra_tags | Extra tags for App Services response time monitor | list | `<list>` | no |
 | response_time_message | Custom message for App Services response time monitor | string | `` | no |
 | response_time_silenced | Groups to mute for App Services response time monitor | map | `<map>` | no |
 | response_time_threshold_critical | Alerting threshold for response time in seconds | string | `10` | no |
