@@ -37,6 +37,12 @@ variable "incoming_records_silenced" {
   default     = {}
 }
 
+variable "incoming_records_extra_tags" {
+  description = "Extra tags for Kinesis Firehorse incoming records monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "incoming_records_message" {
   description = "Custom message for Kinesis Firehorse incoming records monitor"
   type        = "string"

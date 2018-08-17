@@ -36,6 +36,12 @@ variable "status_silenced" {
   default     = {}
 }
 
+variable "status_extra_tags" {
+  description = "Extra tags for Service Bus status monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "status_message" {
   description = "Custom message for Service Bus status monitor"
   type        = "string"
