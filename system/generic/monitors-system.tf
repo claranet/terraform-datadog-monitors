@@ -26,7 +26,7 @@ resource "datadog_monitor" "datadog_cpu_too_high" {
 
   silenced = "${var.cpu_high_silenced}"
 
-  tags = ["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform", "${var.cpu_high_extra_tags}"]
 }
 
 resource "datadog_monitor" "datadog_load_too_high" {
@@ -58,7 +58,7 @@ resource "datadog_monitor" "datadog_load_too_high" {
 
   silenced = "${var.cpu_load_silenced}"
 
-  tags = ["env:${var.environment}", "type:system", "provider:system-core", "resource:generic", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:system", "provider:system-core", "resource:generic", "team:claranet", "created-by:terraform", "${var.cpu_load_extra_tags}"]
 }
 
 resource "datadog_monitor" "datadog_free_disk_space_too_low" {
@@ -90,7 +90,7 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
 
   silenced = "${var.free_disk_space_silenced}"
 
-  tags = ["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform", "${var.free_disk_space_extra_tags}"]
 }
 
 resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
@@ -122,7 +122,7 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
 
   silenced = "${var.free_disk_inodes_silenced}"
 
-  tags = ["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform", "${var.free_disk_inodes_extra_tags}"]
 }
 
 resource "datadog_monitor" "datadog_free_memory" {
@@ -155,5 +155,5 @@ resource "datadog_monitor" "datadog_free_memory" {
 
   silenced = "${var.free_memory_silenced}"
 
-  tags = ["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform", "${var.free_memory_extra_tags}"]
 }

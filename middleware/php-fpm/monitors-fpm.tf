@@ -28,7 +28,7 @@ resource "datadog_monitor" "datadog_php_fpm_connect_idle" {
 
   silenced = "${var.php_fpm_busy_silenced}"
 
-  tags = ["env:${var.environment}", "type:middleware", "provider:php-fpm", "resource:php-fpm", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:middleware", "provider:php-fpm", "resource:php-fpm", "team:claranet", "created-by:terraform", "${var.php_fpm_busy_extra_tags}"]
 }
 
 resource "datadog_monitor" "datadog_fpm_process" {
@@ -58,5 +58,5 @@ resource "datadog_monitor" "datadog_fpm_process" {
 
   silenced = "${var.php_fpm_connect_silenced}"
 
-  tags = ["env:${var.environment}", "type:middleware", "provider:php-fpm", "resource:php-fpm", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:middleware", "provider:php-fpm", "resource:php-fpm", "team:claranet", "created-by:terraform", "${var.php_fpm_connect_extra_tags}"]
 }

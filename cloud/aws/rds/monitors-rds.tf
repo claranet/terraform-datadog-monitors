@@ -27,7 +27,7 @@ EOF
 
   silenced = "${var.cpu_silenced}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform", "${var.cpu_extra_tags}"]
 }
 
 ### RDS instance free space monitor ###
@@ -60,5 +60,5 @@ EOF
 
   silenced = "${var.diskspace_silenced}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform", "${var.diskspace_extra_tags}"]
 }
