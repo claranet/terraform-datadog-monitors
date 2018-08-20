@@ -26,7 +26,7 @@ resource "datadog_monitor" "API_Gateway_latency" {
 
   silenced = "${var.latency_silenced}"
 
-  tags = ["env:${var.environment}", "resource:apigateway", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"]
 }
 
 # Monitoring API Gateway 5xx errors percent
@@ -60,7 +60,7 @@ resource "datadog_monitor" "API_http_5xx_errors_count" {
 
   silenced = "${var.http_5xx_requests_silenced}"
 
-  tags = ["env:${var.environment}", "resource:apigateway", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"]
 }
 
 # Monitoring API Gateway 4xx errors percent
@@ -94,5 +94,5 @@ resource "datadog_monitor" "API_http_4xx_errors_count" {
 
   silenced = "${var.http_4xx_requests_silenced}"
 
-  tags = ["env:${var.environment}", "resource:apigateway", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"]
 }

@@ -27,5 +27,5 @@ resource "datadog_monitor" "firehose_incoming_records" {
 
   silenced = "${var.incoming_records_silenced}"
 
-  tags = ["env:${var.environment}", "resource:kinesis-firehose", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:kinesis-firehose", "team:claranet", "created-by:terraform"]
 }
