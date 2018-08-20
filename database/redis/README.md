@@ -1,10 +1,10 @@
-# MIDDLEWARE REDIS DataDog monitors
+# DATABASES REDIS DataDog monitors
 
 ## How to use this module
 
 ```
-module "datadog-monitors-middleware-redis" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//middleware/redis?ref={revision}"
+module "datadog-monitors-databases-redis" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//databases/redis?ref={revision}"
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
