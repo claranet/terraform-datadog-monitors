@@ -22,7 +22,7 @@ resource "datadog_monitor" "status" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "resource:streamanalytics", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "su_utilization" {
@@ -54,7 +54,7 @@ resource "datadog_monitor" "su_utilization" {
 
   silenced = "${var.su_utilization_silenced}"
 
-  tags = ["env:${var.environment}", "resource:streamanalytics", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "failed_function_requests" {
@@ -87,7 +87,7 @@ resource "datadog_monitor" "failed_function_requests" {
 
   silenced = "${var.failed_function_requests_silenced}"
 
-  tags = ["env:${var.environment}", "resource:streamanalytics", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "conversion_errors" {
@@ -119,7 +119,7 @@ resource "datadog_monitor" "conversion_errors" {
 
   silenced = "${var.conversion_errors_silenced}"
 
-  tags = ["env:${var.environment}", "resource:streamanalytics", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "runtime_errors" {
@@ -151,5 +151,5 @@ resource "datadog_monitor" "runtime_errors" {
 
   silenced = "${var.runtime_errors_silenced}"
 
-  tags = ["env:${var.environment}", "resource:streamanalytics", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"]
 }

@@ -26,7 +26,7 @@ EOF
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "successful_requests" {
@@ -57,7 +57,7 @@ EOF
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "latency" {
@@ -88,7 +88,7 @@ EOF
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "timeout_error_requests" {
@@ -119,7 +119,7 @@ EOF
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "network_error_requests" {
@@ -150,7 +150,7 @@ EOF
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "throttling_error_requests" {
@@ -181,7 +181,7 @@ EOF
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "server_other_error_requests" {
@@ -212,7 +212,7 @@ EOF
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "client_other_error_requests" {
@@ -243,7 +243,7 @@ EOF
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"]
 }
 
 resource "datadog_monitor" "authorization_error_requests" {
@@ -274,5 +274,5 @@ EOF
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"]
 }
