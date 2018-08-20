@@ -17,14 +17,14 @@ resource "datadog_monitor" "sql-database_cpu_90_15min" {
   silenced = "${var.cpu_silenced}"
 
   notify_no_data      = true
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = ["env:${var.environment}", "resource:sqldatabase", "team:azure", "provider:azure"]
 }
@@ -49,14 +49,14 @@ resource "datadog_monitor" "sql-database_free_space_low" {
   silenced = "${var.diskspace_silenced}"
 
   notify_no_data      = true
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = ["env:${var.environment}", "resource:sqldatabase", "team:azure", "provider:azure"]
 }
@@ -81,14 +81,14 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
   silenced = "${var.dtu_silenced}"
 
   notify_no_data      = true
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = ["env:${var.environment}", "resource:sqldatabase", "team:azure", "provider:azure"]
 }
@@ -112,14 +112,14 @@ resource "datadog_monitor" "sql-database_deadlocks_count" {
   silenced = "${var.deadlock_silenced}"
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = ["env:${var.environment}", "resource:sqldatabase", "team:azure", "provider:azure"]
 }

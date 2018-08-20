@@ -17,9 +17,14 @@ variable "message" {
   description = "Message sent when a monitor is triggered"
 }
 
-variable "delay" {
+variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 900
+}
+
+variable "new_host_delay" {
+  description = "Delay in seconds before monitor new resource"
+  default     = 300
 }
 
 # Azure App Services specific variables

@@ -26,8 +26,8 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | failed_requests_message | Custom message for API Management failed requests monitor | string | `` | no |
 | failed_requests_silenced | Groups to mute for API Management failed requests monitor | map | `<map>` | no |
 | failed_requests_threshold_critical | Maximum acceptable percent of failed requests | string | `90` | no |
@@ -36,6 +36,7 @@ Creates DataDog monitors with the following checks:
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when a Redis monitor is triggered | string | - | yes |
+| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 | other_requests_message | Custom message for API Management other requests monitor | string | `` | no |
 | other_requests_silenced | Groups to mute for API Management other requests monitor | map | `<map>` | no |
 | other_requests_threshold_critical | Maximum acceptable percent of other requests | string | `90` | no |

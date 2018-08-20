@@ -48,8 +48,8 @@ Creates DataDog monitors with the following checks:
 | client_other_error_requests_threshold_warning | Warning regarding acceptable percent of client other error requests for a storage | string | `50` | no |
 | client_other_error_requests_time_aggregator | Monitor aggregator for Storage other errors [available values: min, max or avg] | string | `min` | no |
 | client_other_error_requests_timeframe | Monitor timeframe for Storage other errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | latency_message | Custom message for Storage latency monitor | string | `` | no |
@@ -65,6 +65,7 @@ Creates DataDog monitors with the following checks:
 | network_error_requests_threshold_warning | Warning regarding acceptable percent of network error requests for a storage | string | `50` | no |
 | network_error_requests_time_aggregator | Monitor aggregator for Storage network errors [available values: min, max or avg] | string | `min` | no |
 | network_error_requests_timeframe | Monitor timeframe for Storage network errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 | server_other_error_requests_message | Custom message for Storage server other errors monitor | string | `` | no |
 | server_other_error_requests_silenced | Groups to mute for Storage server other errors monitor | map | `<map>` | no |
 | server_other_error_requests_threshold_critical | Maximum acceptable percent of server other error requests for a storage | string | `90` | no |

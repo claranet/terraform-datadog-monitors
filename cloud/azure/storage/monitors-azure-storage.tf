@@ -22,8 +22,8 @@ EOF
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
-  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
@@ -53,8 +53,8 @@ EOF
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
-  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
@@ -84,8 +84,8 @@ EOF
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
-  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
@@ -115,8 +115,8 @@ EOF
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
-  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
@@ -146,8 +146,8 @@ EOF
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
-  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
@@ -177,8 +177,8 @@ EOF
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
-  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
@@ -208,8 +208,8 @@ EOF
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
-  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
@@ -239,8 +239,8 @@ EOF
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
-  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]
@@ -270,8 +270,8 @@ EOF
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
-  evaluation_delay    = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
 
   tags = ["env:${var.environment}", "resource:storage", "team:azure", "provider:azure"]

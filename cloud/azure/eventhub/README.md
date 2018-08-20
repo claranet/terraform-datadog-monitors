@@ -24,13 +24,13 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
 | errors_rate_message | Custom message for Event Hub errors monitor | string | `` | no |
 | errors_rate_silenced | Groups to mute for Event Hub errors monitor | map | `<map>` | no |
 | errors_rate_thresold_critical | Errors ratio (percentage) to trigger the critical alert | string | `90` | no |
 | errors_rate_thresold_warning | Errors ratio (percentage) to trigger a warning alert | string | `50` | no |
 | errors_rate_timeframe | Monitor timeframe for Event Hub errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | failed_requests_rate_message | Custom message for Event Hub failed requests monitor | string | `` | no |
 | failed_requests_rate_silenced | Groups to mute for Event Hub failed requests monitor | map | `<map>` | no |
 | failed_requests_rate_thresold_critical | Failed requests ratio (percentage) to trigger the critical alert | string | `90` | no |
@@ -39,6 +39,7 @@ Creates DataDog monitors with the following checks:
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
+| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 | status_message | Custom message for Event Hub status monitor | string | `` | no |
 | status_silenced | Groups to mute for Event Hub status monitor | map | `<map>` | no |
 | status_time_aggregator | Monitor aggregator for Event Hub status [available values: min, max or avg] | string | `max` | no |

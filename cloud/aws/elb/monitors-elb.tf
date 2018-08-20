@@ -11,14 +11,14 @@ resource "datadog_monitor" "ELB_no_healthy_instances" {
   type = "metric alert"
 
   notify_no_data      = true
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   silenced = "${var.elb_no_healthy_instance_silenced}"
 
@@ -46,14 +46,14 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
   }
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   silenced = "${var.elb_4xx_silenced}"
 
@@ -81,14 +81,14 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
   }
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   silenced = "${var.elb_5xx_silenced}"
 
@@ -116,14 +116,14 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
   }
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   silenced = "${var.elb_backend_4xx_silenced}"
 
@@ -151,14 +151,14 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
   }
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   silenced = "${var.elb_backend_5xx_silenced}"
 
@@ -183,14 +183,14 @@ resource "datadog_monitor" "ELB_backend_latency" {
   }
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   silenced = "${var.elb_backend_latency_silenced}"
 

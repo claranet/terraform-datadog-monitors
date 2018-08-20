@@ -35,7 +35,6 @@ Creates DataDog monitors with the following checks:
 | deadlock_silenced | Groups to mute for SQL Deadlock monitor | map | `<map>` | no |
 | deadlock_threshold_critical | Amount of Deadlocks (critical threshold) | string | `1` | no |
 | deadlock_timeframe | Monitor timeframe for SQL Deadlock [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | diskspace_message | Custom message for SQL disk space monitor | string | `` | no |
 | diskspace_silenced | Groups to mute for SQL disk space monitor | map | `<map>` | no |
 | diskspace_threshold_critical | Disk space used in percent (critical threshold) | string | `90` | no |
@@ -49,9 +48,11 @@ Creates DataDog monitors with the following checks:
 | dtu_time_aggregator | Monitor aggregator for SQL DTU [available values: min, max or avg] | string | `avg` | no |
 | dtu_timeframe | Monitor timeframe for SQL DTU [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | environment | Architecture Environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
+| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 
 ## Outputs
 

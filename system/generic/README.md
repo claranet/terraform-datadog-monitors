@@ -38,8 +38,8 @@ Creates DataDog monitors with the following checks:
 | cpu_load_threshold_warning | CPU load ratio warning threshold | string | `2` | no |
 | cpu_load_time_aggregator | Monitor aggregator for CPU load ratio [available values: min, max or avg] | string | `min` | no |
 | cpu_load_timeframe | Monitor timeframe for CPU load ratio [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
-| delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | environment | Architecture Environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | free_disk_inodes_message | Custom message for Free disk inodes monitor | string | `` | no |
@@ -61,6 +61,7 @@ Creates DataDog monitors with the following checks:
 | free_memory_time_aggregator | Monitor aggregator for Free memory [available values: min, max or avg] | string | `max` | no |
 | free_memory_timeframe | Monitor timeframe for Free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
+| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 
 ## Outputs
 

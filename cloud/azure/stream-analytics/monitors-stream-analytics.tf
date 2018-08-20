@@ -13,14 +13,14 @@ resource "datadog_monitor" "status" {
   silenced = "${var.status_silenced}"
 
   notify_no_data      = true
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = ["env:${var.environment}", "resource:streamanalytics", "team:azure", "provider:azure"]
 }
@@ -38,14 +38,14 @@ resource "datadog_monitor" "su_utilization" {
   type = "metric alert"
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   thresholds {
     warning  = "${var.su_utilization_threshold_warning}"
@@ -71,14 +71,14 @@ resource "datadog_monitor" "failed_function_requests" {
   type = "metric alert"
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 60
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   thresholds {
     warning  = "${var.failed_function_requests_threshold_warning}"
@@ -103,14 +103,14 @@ resource "datadog_monitor" "conversion_errors" {
   type = "metric alert"
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   thresholds {
     warning  = "${var.conversion_errors_threshold_warning}"
@@ -135,14 +135,14 @@ resource "datadog_monitor" "runtime_errors" {
   type = "metric alert"
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   thresholds {
     warning  = "${var.runtime_errors_threshold_warning}"
