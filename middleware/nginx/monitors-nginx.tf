@@ -1,21 +1,19 @@
 resource "datadog_monitor" "datadog_nginx_process" {
-  name    = "[${var.environment}] Can't connect to nginx vhost status"
+  name    = "[${var.environment}] Nginx vhost status does not respond"
   message = "${coalesce(var.nginx_connect_message, var.message)}"
 
   type = "service check"
 
   query = <<EOF
-    "nginx.can_connect".over${module.filter-tags.service_check}.by("host","port").last(6).count_by_status()
+    "nginx.can_connect".over${module.filter-tags.service_check}.by("host","port","server").last(1).pct_by_status()
   EOF
 
   thresholds = {
-    ok       = 1
-    warning  = 2
-    critical = 4
+    warning  = 0
+    critical = "${var.nginx_connect_threshold_critical}"
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.delay}"
   new_host_delay      = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false

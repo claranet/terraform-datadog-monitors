@@ -1,21 +1,19 @@
 resource "datadog_monitor" "datadog_apache_process" {
-  name    = "[${var.environment}] Can't connect to apache vhost status"
+  name    = "[${var.environment}] Apache vhost status does not respond"
   message = "${coalesce(var.apache_connect_message, var.message)}"
 
   type = "service check"
 
   query = <<EOF
-    "apache.can_connect".over${module.filter-tags.service_check}.by("host","port").last(6).count_by_status()
+    "apache.can_connect".over${module.filter-tags.service_check}.by("host","port","server").last(1).pct_by_status()
   EOF
 
   thresholds = {
-    ok       = 1
-    warning  = 2
-    critical = 4
+    warning  = 0
+    critical = "${var.apache_connect_threshold_critical}"
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.delay}"
   new_host_delay      = "${var.delay}"
   renotify_interval   = 0
   notify_audit        = false
