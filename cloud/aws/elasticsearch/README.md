@@ -24,12 +24,14 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| cpu_extra_tags | Extra tags for ES cluster cpu monitor | list | `<list>` | no |
 | cpu_message | Custom message for ES cluster cpu monitor | string | `` | no |
 | cpu_silenced | Groups to mute for ES cluster cpu monitor | map | `<map>` | no |
 | cpu_threshold_critical | CPU usage in percent (critical threshold) | string | `90` | no |
 | cpu_threshold_warning | CPU usage in percent (warning threshold) | string | `80` | no |
 | cpu_time_aggregator | Monitor aggregator for ES cluster cpu [available values: min, max or avg] | string | `min` | no |
 | cpu_timeframe | Monitor timeframe for ES cluster cpu [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
+| diskspace_extra_tags | Extra tags for ES cluster diskspace monitor | list | `<list>` | no |
 | diskspace_message | Custom message for ES cluster diskspace monitor | string | `` | no |
 | diskspace_silenced | Groups to mute for ES cluster diskspace monitor | map | `<map>` | no |
 | diskspace_threshold_critical | Disk free space in percent (critical threshold) | string | `10` | no |
@@ -37,6 +39,7 @@ Creates DataDog monitors with the following checks:
 | diskspace_time_aggregator | Monitor aggregator for ES cluster diskspace [available values: min, max or avg] | string | `max` | no |
 | diskspace_timeframe | Monitor timeframe for ES cluster diskspace [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | environment | Architecture Environment | string | - | yes |
+| es_cluster_status_extra_tags | Extra tags for ES cluster status monitor | list | `<list>` | no |
 | es_cluster_status_message | Custom message for ES cluster status monitor | string | `` | no |
 | es_cluster_status_silenced | Groups to mute for ES cluster status monitor | map | `<map>` | no |
 | es_cluster_status_timeframe | Monitor timeframe for ES cluster status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_30m` | no |

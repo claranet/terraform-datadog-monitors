@@ -26,7 +26,7 @@ resource "datadog_monitor" "sql-database_cpu_90_15min" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform", "${var.cpu_extra_tags}"]
 }
 
 resource "datadog_monitor" "sql-database_free_space_low" {
@@ -58,7 +58,7 @@ resource "datadog_monitor" "sql-database_free_space_low" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform", "${var.diskspace_extra_tags}"]
 }
 
 resource "datadog_monitor" "sql-database_dtu_consumption_high" {
@@ -90,7 +90,7 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform", "${var.dtu_extra_tags}"]
 }
 
 resource "datadog_monitor" "sql-database_deadlocks_count" {
@@ -121,5 +121,5 @@ resource "datadog_monitor" "sql-database_deadlocks_count" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform", "${var.deadlock_extra_tags}"]
 }

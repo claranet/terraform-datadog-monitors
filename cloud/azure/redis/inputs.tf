@@ -36,6 +36,12 @@ variable "status_silenced" {
   default     = {}
 }
 
+variable "status_extra_tags" {
+  description = "Extra tags for Redis status monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "status_message" {
   description = "Custom message for Redis status monitor"
   type        = "string"
@@ -58,6 +64,12 @@ variable "evictedkeys_limit_silenced" {
   description = "Groups to mute for Redis evicted keys monitor"
   type        = "map"
   default     = {}
+}
+
+variable "evictedkeys_limit_extra_tags" {
+  description = "Extra tags for Redis evicted keys monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "evictedkeys_limit_message" {
@@ -94,6 +106,12 @@ variable "percent_processor_time_silenced" {
   default     = {}
 }
 
+variable "percent_processor_time_extra_tags" {
+  description = "Extra tags for Redis processor monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "percent_processor_time_message" {
   description = "Custom message for Redis processor monitor"
   type        = "string"
@@ -126,6 +144,12 @@ variable "server_load_rate_silenced" {
   description = "Groups to mute for Redis server load monitor"
   type        = "map"
   default     = {}
+}
+
+variable "server_load_rate_extra_tags" {
+  description = "Extra tags for Redis server load monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "server_load_rate_message" {

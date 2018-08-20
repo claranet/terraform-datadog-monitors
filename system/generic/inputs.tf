@@ -37,6 +37,12 @@ variable "cpu_high_silenced" {
   default     = {}
 }
 
+variable "cpu_high_extra_tags" {
+  description = "Extra tags for CPU high monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "cpu_high_message" {
   description = "Custom message for CPU high monitor"
   type        = "string"
@@ -69,6 +75,12 @@ variable "cpu_load_silenced" {
   description = "Groups to mute for CPU load ratio monitor"
   type        = "map"
   default     = {}
+}
+
+variable "cpu_load_extra_tags" {
+  description = "Extra tags for CPU load ratio monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "cpu_load_message" {
@@ -105,6 +117,12 @@ variable "free_disk_space_silenced" {
   default     = {}
 }
 
+variable "free_disk_space_extra_tags" {
+  description = "Extra tags for Free diskspace monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "free_disk_space_message" {
   description = "Custom message for Free diskspace monitor"
   type        = "string"
@@ -139,6 +157,12 @@ variable "free_disk_inodes_silenced" {
   default     = {}
 }
 
+variable "free_disk_inodes_extra_tags" {
+  description = "Extra tags for Free disk inodes monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "free_disk_inodes_message" {
   description = "Custom message for Free disk inodes monitor"
   type        = "string"
@@ -171,6 +195,12 @@ variable "free_memory_silenced" {
   description = "Groups to mute for Free memory monitor"
   type        = "map"
   default     = {}
+}
+
+variable "free_memory_extra_tags" {
+  description = "Extra tags for Free memory monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "free_memory_message" {

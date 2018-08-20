@@ -36,6 +36,12 @@ variable "availability_silenced" {
   default     = {}
 }
 
+variable "availability_extra_tags" {
+  description = "Extra tags for Storage availability monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "availability_message" {
   description = "Custom message for Storage availability monitor"
   type        = "string"
@@ -68,6 +74,12 @@ variable "successful_requests_silenced" {
   description = "Groups to mute for Storage sucessful requests monitor"
   type        = "map"
   default     = {}
+}
+
+variable "successful_requests_extra_tags" {
+  description = "Extra tags for Storage sucessful requests monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "successful_requests_message" {
@@ -104,6 +116,12 @@ variable "latency_silenced" {
   default     = {}
 }
 
+variable "latency_extra_tags" {
+  description = "Extra tags for Storage latency monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "latency_message" {
   description = "Custom message for Storage latency monitor"
   type        = "string"
@@ -136,6 +154,12 @@ variable "timeout_error_requests_silenced" {
   description = "Groups to mute for Storage timeout monitor"
   type        = "map"
   default     = {}
+}
+
+variable "timeout_error_requests_extra_tags" {
+  description = "Extra tags for Storage timeout monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "timeout_error_requests_message" {
@@ -172,6 +196,12 @@ variable "network_error_requests_silenced" {
   default     = {}
 }
 
+variable "network_error_requests_extra_tags" {
+  description = "Extra tags for Storage network errors monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "network_error_requests_message" {
   description = "Custom message for Storage network errors monitor"
   type        = "string"
@@ -204,6 +234,12 @@ variable "throttling_error_requests_silenced" {
   description = "Groups to mute for Storage throttling error monitor"
   type        = "map"
   default     = {}
+}
+
+variable "throttling_error_requests_extra_tags" {
+  description = "Extra tags for Storage throttling error monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "throttling_error_requests_message" {
@@ -240,6 +276,12 @@ variable "server_other_error_requests_silenced" {
   default     = {}
 }
 
+variable "server_other_error_requests_extra_tags" {
+  description = "Extra tags for Storage server other errors monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "server_other_error_requests_message" {
   description = "Custom message for Storage server other errors monitor"
   type        = "string"
@@ -274,6 +316,12 @@ variable "client_other_error_requests_silenced" {
   default     = {}
 }
 
+variable "client_other_error_requests_extra_tags" {
+  description = "Extra tags for Storage other errors monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "client_other_error_requests_message" {
   description = "Custom message for Storage other errors monitor"
   type        = "string"
@@ -306,6 +354,12 @@ variable "authorization_error_requests_silenced" {
   description = "Groups to mute for Storage authorization errors monitor"
   type        = "map"
   default     = {}
+}
+
+variable "authorization_error_requests_extra_tags" {
+  description = "Extra tags for Storage authorization errors monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "authorization_error_requests_message" {

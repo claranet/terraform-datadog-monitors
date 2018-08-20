@@ -22,7 +22,7 @@ resource "datadog_monitor" "status" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform", "${var.status_extra_tags}"]
 }
 
 resource "datadog_monitor" "evictedkeys" {
@@ -54,7 +54,7 @@ EOF
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform", "${var.evictedkeys_limit_extra_tags}"]
 }
 
 resource "datadog_monitor" "percent_processor_time" {
@@ -86,7 +86,7 @@ EOF
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform", "${var.percent_processor_time_extra_tags}"]
 }
 
 resource "datadog_monitor" "server_load" {
@@ -118,5 +118,5 @@ EOF
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform", "${var.server_load_rate_extra_tags}"]
 }

@@ -15,8 +15,6 @@ resource "datadog_monitor" "datadog_cpu_too_high" {
     critical = "${var.cpu_high_threshold_critical}"
   }
 
-  tags = ["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform"]
-
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
   new_host_delay      = "${var.new_host_delay}"
@@ -27,6 +25,8 @@ resource "datadog_monitor" "datadog_cpu_too_high" {
   require_full_window = true
 
   silenced = "${var.cpu_high_silenced}"
+
+  tags = ["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform", "${var.cpu_high_extra_tags}"]
 }
 
 resource "datadog_monitor" "datadog_load_too_high" {
@@ -47,8 +47,6 @@ resource "datadog_monitor" "datadog_load_too_high" {
     critical = "${var.cpu_load_threshold_critical}"
   }
 
-  tags = ["env:${var.environment}", "type:system", "provider:system-core", "resource:generic", "team:claranet", "created-by:terraform"]
-
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
   new_host_delay      = "${var.new_host_delay}"
@@ -59,6 +57,8 @@ resource "datadog_monitor" "datadog_load_too_high" {
   require_full_window = true
 
   silenced = "${var.cpu_load_silenced}"
+
+  tags = ["env:${var.environment}", "type:system", "provider:system-core", "resource:generic", "team:claranet", "created-by:terraform", "${var.cpu_load_extra_tags}"]
 }
 
 resource "datadog_monitor" "datadog_free_disk_space_too_low" {
@@ -79,8 +79,6 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
     critical = "${var.free_disk_space_threshold_critical}"
   }
 
-  tags = ["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"]
-
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
   new_host_delay      = "${var.new_host_delay}"
@@ -91,6 +89,8 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
   require_full_window = true
 
   silenced = "${var.free_disk_space_silenced}"
+
+  tags = ["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform", "${var.free_disk_space_extra_tags}"]
 }
 
 resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
@@ -111,8 +111,6 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
     critical = "${var.free_disk_inodes_threshold_critical}"
   }
 
-  tags = ["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"]
-
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
   new_host_delay      = "${var.new_host_delay}"
@@ -123,6 +121,8 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
   require_full_window = true
 
   silenced = "${var.free_disk_inodes_silenced}"
+
+  tags = ["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform", "${var.free_disk_inodes_extra_tags}"]
 }
 
 resource "datadog_monitor" "datadog_free_memory" {
@@ -143,8 +143,6 @@ resource "datadog_monitor" "datadog_free_memory" {
     critical = "${var.free_memory_threshold_critical}"
   }
 
-  tags = ["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform"]
-
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
   new_host_delay      = "${var.new_host_delay}"
@@ -156,4 +154,6 @@ resource "datadog_monitor" "datadog_free_memory" {
   require_full_window = true
 
   silenced = "${var.free_memory_silenced}"
+
+  tags = ["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform", "${var.free_memory_extra_tags}"]
 }

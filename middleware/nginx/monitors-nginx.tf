@@ -24,5 +24,5 @@ resource "datadog_monitor" "datadog_nginx_process" {
 
   silenced = "${var.nginx_connect_silenced}"
 
-  tags = ["env:${var.environment}", "type:middleware", "provider:nginx", "resource:nginx", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:middleware", "provider:nginx", "resource:nginx", "team:claranet", "created-by:terraform", "${var.nginx_connect_extra_tags}"]
 }
