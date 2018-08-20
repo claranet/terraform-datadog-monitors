@@ -28,7 +28,7 @@ Creates all kinds of filters tags patterns depending of the monitor type and dir
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | environment | Architecture Environment | string | - | yes |
-| extra_tags | Extra optional tags | list | `<list>` | no |
+| extra_tags | Extra optional tags (i.e. ["tag1:val1", "tag2:val2"]) | list | `<list>` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | resource | The dedicated tag for the resource | string | - | yes |

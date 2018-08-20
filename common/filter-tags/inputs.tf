@@ -19,9 +19,7 @@ variable "filter_tags_custom" {
 }
 
 variable "extra_tags" {
-  description = "Extra optional tags"
+  description = "Extra optional tags (i.e. [\"tag1:val1\", \"tag2:val2\"])"
   type        = "list"
   default     = []
-
-  # Example of value to add optional tags : ["tag1:val1", "tag2:val2"]
 }
