@@ -22,13 +22,14 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| apache_connect_threshold_critical | Nginx status monitor (critical threshold) | string | `1.1754943508222875e-38` | no |
 | delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | environment | Architecture Environment | string | - | yes |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
-| nginx_connect_message | Custom message for Nginx process monitor | string | `` | no |
-| nginx_connect_silenced | Groups to mute for Nginx process monitor | map | `<map>` | no |
+| nginx_connect_message | Custom message for Nginx status monitor | string | `` | no |
+| nginx_connect_silenced | Groups to mute for Nginx status monitor | map | `<map>` | no |
 
 ## Outputs
 

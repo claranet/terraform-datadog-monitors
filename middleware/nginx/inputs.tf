@@ -27,13 +27,19 @@ variable "filter_tags_custom" {
 # Nginx Middleware specific
 
 variable "nginx_connect_silenced" {
-  description = "Groups to mute for Nginx process monitor"
+  description = "Groups to mute for Nginx status monitor"
   type        = "map"
   default     = {}
 }
 
 variable "nginx_connect_message" {
-  description = "Custom message for Nginx process monitor"
+  description = "Custom message for Nginx status monitor"
   type        = "string"
   default     = ""
+}
+
+variable "apache_connect_threshold_critical" {
+  description = "Nginx status monitor (critical threshold)"
+  type        = "string"
+  default     = 1.1754943508222875e-38
 }
