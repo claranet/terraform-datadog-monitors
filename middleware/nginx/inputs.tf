@@ -38,7 +38,7 @@ variable "nginx_connect_message" {
   default     = ""
 }
 
-variable "apache_connect_threshold_critical" {
+variable "nginx_connect_threshold_critical" {
   description = "Nginx status monitor (critical threshold)"
   type        = "string"
   default     = 1.1754943508222875e-38
