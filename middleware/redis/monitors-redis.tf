@@ -213,9 +213,9 @@ resource "datadog_monitor" "memory_frag" {
   message = "${coalesce(var.mem_frag_message, var.message)}"
 
   query = <<EOL
-    ${var.mem_frag_time_aggregator}(${var.mem_frag_timeframe}): (
+    ${var.mem_frag_time_aggregator}(${var.mem_frag_timeframe}):
       avg:redis.mem.fragmentation_ratio{${data.template_file.filter.rendered}} by {redis_host,redis_port}
-     ) * 100 > ${var.mem_frag_threshold_critical}
+     * 100 > ${var.mem_frag_threshold_critical}
 EOL
 
   type = "metric alert"
