@@ -36,6 +36,12 @@ variable "status_silenced" {
   default     = {}
 }
 
+variable "status_extra_tags" {
+  description = "Extra tags for Event Hub status monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "status_message" {
   description = "Custom message for Event Hub status monitor"
   type        = "string"
@@ -58,6 +64,12 @@ variable "failed_requests_rate_silenced" {
   description = "Groups to mute for Event Hub failed requests monitor"
   type        = "map"
   default     = {}
+}
+
+variable "failed_requests_rate_extra_tags" {
+  description = "Extra tags for Event Hub failed requests monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "failed_requests_rate_message" {
@@ -86,6 +98,12 @@ variable "errors_rate_silenced" {
   description = "Groups to mute for Event Hub errors monitor"
   type        = "map"
   default     = {}
+}
+
+variable "errors_rate_extra_tags" {
+  description = "Extra tags for Event Hub errors monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "errors_rate_message" {

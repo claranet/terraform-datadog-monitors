@@ -32,6 +32,12 @@ variable "latency_silenced" {
   default     = {}
 }
 
+variable "latency_extra_tags" {
+  description = "Extra tags for API Gateway latency monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "latency_message" {
   description = "Custom message for API Gateway latency monitor"
   type        = "string"
@@ -70,6 +76,12 @@ variable "http_5xx_requests_silenced" {
   default     = {}
 }
 
+variable "http_5xx_requests_extra_tags" {
+  description = "Extra tags for API Gateway HTTP 5xx requests monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "http_5xx_requests_message" {
   description = "Custom message for API Gateway HTTP 5xx requests monitor"
   type        = "string"
@@ -100,6 +112,12 @@ variable "http_4xx_requests_silenced" {
   description = "Groups to mute for API Gateway HTTP 4xx requests monitor"
   type        = "map"
   default     = {}
+}
+
+variable "http_4xx_requests_extra_tags" {
+  description = "Extra tags for API Gateway HTTP 4xx requests monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "http_4xx_requests_message" {

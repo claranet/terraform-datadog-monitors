@@ -22,7 +22,7 @@ resource "datadog_monitor" "ELB_no_healthy_instances" {
 
   silenced = "${var.elb_no_healthy_instance_silenced}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform", "${var.elb_no_healthy_instance_extra_tags}"]
 }
 
 resource "datadog_monitor" "ELB_too_much_4xx" {
@@ -57,7 +57,7 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
 
   silenced = "${var.elb_4xx_silenced}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform", "${var.elb_4xx_extra_tags}"]
 }
 
 resource "datadog_monitor" "ELB_too_much_5xx" {
@@ -92,7 +92,7 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
 
   silenced = "${var.elb_5xx_silenced}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform", "${var.elb_5xx_extra_tags}"]
 }
 
 resource "datadog_monitor" "ELB_too_much_4xx_backend" {
@@ -127,7 +127,7 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
 
   silenced = "${var.elb_backend_4xx_silenced}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform", "${var.elb_backend_4xx_extra_tags}"]
 }
 
 resource "datadog_monitor" "ELB_too_much_5xx_backend" {
@@ -162,7 +162,7 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
 
   silenced = "${var.elb_backend_5xx_silenced}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform", "${var.elb_backend_5xx_extra_tags}"]
 }
 
 resource "datadog_monitor" "ELB_backend_latency" {
@@ -194,5 +194,5 @@ resource "datadog_monitor" "ELB_backend_latency" {
 
   silenced = "${var.elb_backend_latency_silenced}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform", "${var.elb_backend_latency_extra_tags}"]
 }
