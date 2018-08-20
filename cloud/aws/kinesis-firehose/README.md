@@ -22,14 +22,15 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | incoming_records_message | Custom message for Kinesis Firehorse incoming records monitor | string | `` | no |
 | incoming_records_silenced | Groups to mute for Kinesis Firehorse incoming records monitor | map | `<map>` | no |
 | incoming_records_timeframe | Monitor timeframe for incoming records metrics evaluation [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
+| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 
 ## Outputs
 

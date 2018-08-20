@@ -23,11 +23,12 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | environment | Architecture Environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
+| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 | php_fpm_busy_message | Custom message for PHP FPM busy worker monitor | string | `` | no |
 | php_fpm_busy_silenced | Groups to mute for PHP FPM busy worker monitor | map | `<map>` | no |
 | php_fpm_busy_threshold_critical | php fpm busy critical threshold | string | `0.9` | no |

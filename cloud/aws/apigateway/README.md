@@ -25,8 +25,8 @@ Creates DataDog monitors with the following checks:
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | artificial_requests_count | Number of false requests used to mitigate false positive in case of low trafic | string | `5` | no |
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | filter_tags | Tags used for filtering | string | `*` | no |
 | http_4xx_requests_message | Custom message for API Gateway HTTP 4xx requests monitor | string | `` | no |
 | http_4xx_requests_silenced | Groups to mute for API Gateway HTTP 4xx requests monitor | map | `<map>` | no |
@@ -45,6 +45,7 @@ Creates DataDog monitors with the following checks:
 | latency_time_aggregator | Monitor aggregator for API Gateway latency [available values: min, max or avg] | string | `min` | no |
 | latency_timeframe | Monitor timeframe for API latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
+| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 
 ## Outputs
 

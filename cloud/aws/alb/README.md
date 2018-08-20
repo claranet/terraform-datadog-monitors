@@ -32,8 +32,8 @@ Creates DataDog monitors with the following checks:
 | alb_no_healthy_instances_time_aggregator | Monitor aggregator for ALB no healthy instances [available values: min, max or avg] | string | `min` | no |
 | alb_no_healthy_instances_timeframe | Monitor timeframe for ALB no healthy instances [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | artificial_requests_count | Number of false requests used to mitigate false positive in case of low trafic | string | `5` | no |
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | httpcode_alb_4xx_message | Custom message for ALB httpcode 4xx monitor | string | `` | no |
@@ -63,6 +63,7 @@ Creates DataDog monitors with the following checks:
 | latency_time_aggregator | Monitor aggregator for ALB latency [available values: min, max or avg] | string | `min` | no |
 | latency_timeframe | Monitor timeframe for ALB latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
+| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 
 ## Outputs
 

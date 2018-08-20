@@ -22,10 +22,11 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture Environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | filter_tags | Tags used for metrics filtering | string | `*` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
+| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 | vpn_status_message | Custom message for VPN status monitor | string | `` | no |
 | vpn_status_silenced | Groups to mute for VPN status monitor | map | `<map>` | no |
 | vpn_status_time_aggregator | Monitor aggregator for VPN status [available values: min, max or avg] | string | `max` | no |

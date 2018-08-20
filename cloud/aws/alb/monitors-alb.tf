@@ -9,8 +9,8 @@ resource "datadog_monitor" "ALB_no_healthy_instances" {
     ) < 1
   EOF
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   thresholds {
     critical = 1
@@ -38,8 +38,8 @@ resource "datadog_monitor" "ALB_latency" {
     ) > ${var.latency_threshold_critical}
   EOF
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   thresholds {
     critical = "${var.latency_threshold_critical}"
@@ -71,8 +71,8 @@ resource "datadog_monitor" "ALB_httpcode_5xx" {
     ) > ${var.httpcode_alb_5xx_threshold_critical}
   EOF
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   thresholds {
     critical = "${var.httpcode_alb_5xx_threshold_critical}"
@@ -104,8 +104,8 @@ resource "datadog_monitor" "ALB_httpcode_4xx" {
     ) > ${var.httpcode_alb_4xx_threshold_critical}
   EOF
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   thresholds {
     critical = "${var.httpcode_alb_4xx_threshold_critical}"
@@ -137,8 +137,8 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
     ) > ${var.httpcode_target_5xx_threshold_critical}
   EOF
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   thresholds {
     critical = "${var.httpcode_target_5xx_threshold_critical}"
@@ -170,8 +170,8 @@ resource "datadog_monitor" "ALB_httpcode_target_4xx" {
     ) > ${var.httpcode_target_4xx_threshold_critical}
   EOF
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   thresholds {
     critical = "${var.httpcode_target_4xx_threshold_critical}"
