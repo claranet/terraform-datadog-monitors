@@ -22,8 +22,9 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| apache_connect_message | Custom message for Apache process monitor | string | `` | no |
-| apache_connect_silenced | Groups to mute for Apache process monitor | map | `<map>` | no |
+| apache_connect_message | Custom message for Apache status monitor | string | `` | no |
+| apache_connect_silenced | Groups to mute for Apache status monitor | map | `<map>` | no |
+| apache_connect_threshold_critical | Apache status monitor (critical threshold) | string | `1.1754943508222875e-38` | no |
 | delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | environment | Architecture Environment | string | - | yes |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |

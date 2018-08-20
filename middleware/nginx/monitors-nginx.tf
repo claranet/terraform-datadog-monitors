@@ -10,7 +10,7 @@ resource "datadog_monitor" "datadog_nginx_process" {
 
   thresholds = {
     warning  = 0
-    critical = 1.1754943508222875e-38
+    critical = "${var.nginx_connect_threshold_critical}"
   }
 
   notify_no_data      = true

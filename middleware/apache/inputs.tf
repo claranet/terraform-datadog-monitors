@@ -27,13 +27,19 @@ variable "filter_tags_custom" {
 # Apache Middleware specific
 
 variable "apache_connect_silenced" {
-  description = "Groups to mute for Apache process monitor"
+  description = "Groups to mute for Apache status monitor"
   type        = "map"
   default     = {}
 }
 
 variable "apache_connect_message" {
-  description = "Custom message for Apache process monitor"
+  description = "Custom message for Apache status monitor"
   type        = "string"
   default     = ""
+}
+
+variable "apache_connect_threshold_critical" {
+  description = "Apache status monitor (critical threshold)"
+  type        = "string"
+  default     = 1.1754943508222875e-38
 }
