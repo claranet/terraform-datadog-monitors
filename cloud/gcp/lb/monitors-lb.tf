@@ -53,7 +53,7 @@ resource "datadog_monitor" "error_rate_5xx" {
 
   query = <<EOF
   ${var.error_rate_5xx_time_aggregator}(${var.error_rate_5xx_timeframe}):
-    avg:gcp.loadbalancing.https.request_count{${var.filter_tags},response_code_class:400} by {backend_target_name}.as_count().fill(zero)
+    avg:gcp.loadbalancing.https.request_count{${var.filter_tags},response_code_class:500} by {backend_target_name}.as_count().fill(zero)
     /
     (avg:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {backend_target_name}.as_count().fill(zero) + ${var.error_rate_5xx_artificial_request} ) * 100
   > ${var.error_rate_5xx_threshold_critical}
