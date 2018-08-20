@@ -1,18 +1,10 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_elb:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
 resource "datadog_monitor" "ELB_no_healthy_instances" {
   name    = "[${var.environment}] ELB no healthy instances"
   message = "${coalesce(var.elb_no_healthy_instance_message, var.message)}"
 
   query = <<EOF
     ${var.elb_no_healthy_instance_time_aggregator}(${var.elb_no_healthy_instance_timeframe}): (
-      sum:aws.elb.healthy_host_count{${data.template_file.filter.rendered}} by {region,loadbalancername}
+      sum:aws.elb.healthy_host_count${module.filter-tags.query_alert} by {region,loadbalancername}
     ) < 1
   EOF
 
@@ -40,8 +32,8 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
   query = <<EOF
     sum(${var.elb_4xx_timeframe}): (
       default(
-        avg:aws.elb.httpcode_elb_4xx{${data.template_file.filter.rendered}} by {region,loadbalancername}.as_count() /
-        (avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancername}.as_count() + ${var.artificial_requests_count}),
+        avg:aws.elb.httpcode_elb_4xx${module.filter-tags.query_alert} by {region,loadbalancername}.as_count() /
+        (avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_count() + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.elb_4xx_threshold_critical}
   EOF
@@ -75,8 +67,8 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
   query = <<EOF
     sum(${var.elb_5xx_timeframe}): (
       default(
-        avg:aws.elb.httpcode_elb_5xx{${data.template_file.filter.rendered}} by {region,loadbalancername} /
-        (avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancername} + ${var.artificial_requests_count}),
+        avg:aws.elb.httpcode_elb_5xx${module.filter-tags.query_alert} by {region,loadbalancername} /
+        (avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername} + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.elb_5xx_threshold_critical}
   EOF
@@ -110,8 +102,8 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
   query = <<EOF
     sum(${var.elb_backend_4xx_timeframe}): (
       default(
-        avg:aws.elb.httpcode_backend_4xx{${data.template_file.filter.rendered}} by {region,loadbalancername} /
-        (avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancername} + ${var.artificial_requests_count}),
+        avg:aws.elb.httpcode_backend_4xx${module.filter-tags.query_alert} by {region,loadbalancername} /
+        (avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername} + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.elb_backend_4xx_threshold_critical}
   EOF
@@ -145,8 +137,8 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
   query = <<EOF
     sum(${var.elb_backend_5xx_timeframe}): (
       default(
-        avg:aws.elb.httpcode_backend_5xx{${data.template_file.filter.rendered}} by {region,loadbalancername} /
-        (avg:aws.elb.request_count{${data.template_file.filter.rendered}} by {region,loadbalancername} + ${var.artificial_requests_count}),
+        avg:aws.elb.httpcode_backend_5xx${module.filter-tags.query_alert} by {region,loadbalancername} /
+        (avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername} + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.elb_backend_5xx_threshold_critical}
   EOF
@@ -179,7 +171,7 @@ resource "datadog_monitor" "ELB_backend_latency" {
 
   query = <<EOF
     ${var.elb_backend_latency_time_aggregator}(${var.elb_backend_latency_timeframe}): (
-        avg:aws.elb.latency{${data.template_file.filter.rendered}} by {region,loadbalancername}
+        avg:aws.elb.latency${module.filter-tags.query_alert} by {region,loadbalancername}
     ) > ${var.elb_backend_latency_critical}
   EOF
 

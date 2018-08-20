@@ -1,18 +1,10 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_azure_eventhub:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
 resource "datadog_monitor" "eventhub_status" {
   name    = "[${var.environment}] Event Hub is down"
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
     ${var.status_time_aggregator}(${var.status_timeframe}): (
-       avg:azure.eventhub_namespaces.status{${data.template_file.filter.rendered}} by {resource_group,region,name}
+       avg:azure.eventhub_namespaces.status${module.filter-tags.query_alert} by {resource_group,region,name}
     ) != 1
   EOF
 
@@ -40,8 +32,8 @@ resource "datadog_monitor" "eventhub_failed_requests" {
   query = <<EOF
         sum(${var.failed_requests_rate_timeframe}): (
           default(
-            avg:azure.eventhub_namespaces.failed_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
-            avg:azure.eventhub_namespaces.incoming_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count(),
+            avg:azure.eventhub_namespaces.failed_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() /
+            avg:azure.eventhub_namespaces.incoming_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count(),
           0) * 100
         ) > ${var.failed_requests_rate_thresold_critical}
   EOF
@@ -76,11 +68,11 @@ resource "datadog_monitor" "eventhub_errors" {
         sum(${var.errors_rate_timeframe}): (
           default(
             (
-              avg:azure.eventhub_namespaces.internal_server_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
-              avg:azure.eventhub_namespaces.server_busy_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() +
-              avg:azure.eventhub_namespaces.other_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
+              avg:azure.eventhub_namespaces.internal_server_errors${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() +
+              avg:azure.eventhub_namespaces.server_busy_errors${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() +
+              avg:azure.eventhub_namespaces.other_errors${module.filter-tags.query_alert} by {resource_group,region,name}.as_count()
             ) / (
-              avg:eventhub_namespaces.incoming_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
+              avg:eventhub_namespaces.incoming_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count()
             ),
           0) * 100
         ) > ${var.errors_rate_thresold_critical}

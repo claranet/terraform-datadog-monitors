@@ -1,18 +1,10 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_azure_streamanalytics:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
 resource "datadog_monitor" "status" {
   name    = "[${var.environment}] Stream Analytics is down"
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
     ${var.status_time_aggregator}(${var.status_timeframe}): (
-      avg:azure.streamanalytics_streamingjobs.status{${data.template_file.filter.rendered}} by {resource_group,region,name}
+      avg:azure.streamanalytics_streamingjobs.status${module.filter-tags.query_alert} by {resource_group,region,name}
     ) < 1
   EOF
 
@@ -39,7 +31,7 @@ resource "datadog_monitor" "su_utilization" {
 
   query = <<EOF
     ${var.su_utilization_time_aggregator}(${var.su_utilization_timeframe}): (
-      avg:azure.streamanalytics_streamingjobs.resource_utilization{${data.template_file.filter.rendered}} by {resource_group,region,name}
+      avg:azure.streamanalytics_streamingjobs.resource_utilization${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.su_utilization_threshold_critical}
   EOF
 
@@ -71,8 +63,8 @@ resource "datadog_monitor" "failed_function_requests" {
 
   query = <<EOF
     sum(${var.failed_function_requests_timeframe}): (
-      avg:azure.streamanalytics_streamingjobs.aml_callout_failed_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
-       avg:azure.streamanalytics_streamingjobs.aml_callout_requests{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
+      avg:azure.streamanalytics_streamingjobs.aml_callout_failed_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() /
+       avg:azure.streamanalytics_streamingjobs.aml_callout_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count()
     ) * 100 > ${var.failed_function_requests_threshold_critical}
   EOF
 
@@ -104,7 +96,7 @@ resource "datadog_monitor" "conversion_errors" {
 
   query = <<EOF
     ${var.conversion_errors_time_aggregator}(${var.conversion_errors_timeframe}): (
-      avg:azure.streamanalytics_streamingjobs.conversion_errors{${data.template_file.filter.rendered}} by {resource_group,region,name}
+      avg:azure.streamanalytics_streamingjobs.conversion_errors${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.conversion_errors_threshold_critical}
   EOF
 
@@ -136,7 +128,7 @@ resource "datadog_monitor" "runtime_errors" {
 
   query = <<EOF
     ${var.runtime_errors_time_aggregator}(${var.runtime_errors_timeframe}): (
-      avg:azure.streamanalytics_streamingjobs.errors{${data.template_file.filter.rendered}} by {resource_group,region,name}
+      avg:azure.streamanalytics_streamingjobs.errors${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.runtime_errors_threshold_critical}
   EOF
 
