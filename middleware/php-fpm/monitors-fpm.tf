@@ -1,11 +1,3 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_php_fpm:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
 resource "datadog_monitor" "datadog_php_fpm_connect_idle" {
   name    = "[${var.environment}] php_fpm busy worker {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.php_fpm_busy_message, var.message)}"
@@ -14,9 +6,9 @@ resource "datadog_monitor" "datadog_php_fpm_connect_idle" {
 
   query = <<EOF
     ${var.php_fpm_busy_time_aggregator}(${var.php_fpm_busy_timeframe}): (
-      avg:php_fpm.processes.active{${data.template_file.filter.rendered}} by {region, host} /
-      ( avg:php_fpm.processes.idle{${data.template_file.filter.rendered}} by {region, host} +
-       avg:php_fpm.processes.active{${data.template_file.filter.rendered}} by {region, host} )
+      avg:php_fpm.processes.active${module.filter-tags.query_alert} by {region, host} /
+      ( avg:php_fpm.processes.idle${module.filter-tags.query_alert} by {region, host} +
+       avg:php_fpm.processes.active${module.filter-tags.query_alert} by {region, host} )
     ) > ${var.php_fpm_busy_threshold_critical}
   EOF
 
@@ -46,7 +38,7 @@ resource "datadog_monitor" "datadog_fpm_process" {
   type = "service check"
 
   query = <<EOF
-    "php_fpm.can_ping".over("${data.template_file.filter.rendered}").by("host","ping_url").last(6).count_by_status()
+    "php_fpm.can_ping".over${module.filter-tags.service_check}.by("host","ping_url").last(6).count_by_status()
   EOF
 
   thresholds = {

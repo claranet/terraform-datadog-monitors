@@ -1,18 +1,10 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_system:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
 resource "datadog_monitor" "datadog_cpu_too_high" {
   name    = "[${var.environment}] CPU usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_high_message, var.message)}"
 
   query = <<EOF
     ${var.cpu_high_time_aggregator}(${var.cpu_high_timeframe}): (
-      100 - avg:system.cpu.idle{${data.template_file.filter.rendered}} by {region,host}
+      100 - avg:system.cpu.idle${module.filter-tags.query_alert} by {region,host}
     ) > ${var.cpu_high_threshold_critical}
   EOF
 
@@ -43,8 +35,8 @@ resource "datadog_monitor" "datadog_load_too_high" {
 
   query = <<EOF
     ${var.cpu_load_time_aggregator}(${var.cpu_load_timeframe}): (
-      avg:system.load.5{${data.template_file.filter.rendered}} by {region,host} /
-      avg:system.core.count{${data.template_file.filter.rendered}} by {region,host}
+      avg:system.load.5${module.filter-tags.query_alert} by {region,host} /
+      avg:system.core.count${module.filter-tags.query_alert} by {region,host}
     ) > ${var.cpu_load_threshold_critical}
   EOF
 
@@ -75,8 +67,8 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
 
   query = <<EOF
     ${var.free_disk_space_time_aggregator}(${var.free_disk_space_timeframe}): (
-      avg:system.disk.free{${data.template_file.filter.rendered},dd_disk:enabled} by {region,host,device} /
-      avg:system.disk.total{${data.template_file.filter.rendered},dd_disk:enabled} by {region,host,device} * 100
+      avg:system.disk.free${module.filter-tags-disk.query_alert} by {region,host,device} /
+      avg:system.disk.total${module.filter-tags-disk.query_alert} by {region,host,device} * 100
     ) < ${var.free_disk_space_threshold_critical}
   EOF
 
@@ -107,8 +99,8 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
 
   query = <<EOF
     ${var.free_disk_inodes_time_aggregator}(${var.free_disk_inodes_timeframe}): (
-      avg:system.fs.inodes.free{${data.template_file.filter.rendered},dd_disk:enabled} by {region,host,device} /
-      avg:system.fs.inodes.total{${data.template_file.filter.rendered},dd_disk:enabled} by {region,host,device} * 100
+      avg:system.fs.inodes.free${module.filter-tags-disk.query_alert} by {region,host,device} /
+      avg:system.fs.inodes.total${module.filter-tags-disk.query_alert} by {region,host,device} * 100
     ) < ${var.free_disk_inodes_threshold_critical}
   EOF
 
@@ -139,8 +131,8 @@ resource "datadog_monitor" "datadog_free_memory" {
 
   query = <<EOF
     ${var.free_memory_time_aggregator}(${var.free_memory_timeframe}): (
-      avg:system.mem.usable{${data.template_file.filter.rendered}} by {region,host} /
-      avg:system.mem.total{${data.template_file.filter.rendered}} by {region,host} * 100
+      avg:system.mem.usable${module.filter-tags.query_alert} by {region,host} /
+      avg:system.mem.total${module.filter-tags.query_alert} by {region,host} * 100
     ) < ${var.free_memory_threshold_critical}
   EOF
 

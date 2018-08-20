@@ -1,11 +1,3 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_rds:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
 ### RDS instance CPU monitor ###
 resource "datadog_monitor" "rds_cpu_90_15min" {
   name    = "[${var.environment}] RDS instance CPU high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
@@ -15,7 +7,7 @@ resource "datadog_monitor" "rds_cpu_90_15min" {
 
   query = <<EOF
     ${var.cpu_time_aggregator}(${var.cpu_timeframe}): (
-      avg:aws.rds.cpuutilization{${data.template_file.filter.rendered}} by {region,name}
+      avg:aws.rds.cpuutilization${module.filter-tags.query_alert} by {region,name}
     ) > ${var.cpu_threshold_critical}
 EOF
 
@@ -47,8 +39,8 @@ resource "datadog_monitor" "rds_free_space_low" {
 
   query = <<EOF
   ${var.diskspace_time_aggregator}(${var.diskspace_timeframe}): (
-    avg:aws.rds.free_storage_space{${data.template_file.filter.rendered}} by {region,name} /
-    avg:aws.rds.total_storage_space{${data.template_file.filter.rendered}} by {region,name} * 100
+    avg:aws.rds.free_storage_space${module.filter-tags.query_alert} by {region,name} /
+    avg:aws.rds.total_storage_space${module.filter-tags.query_alert} by {region,name} * 100
   ) < ${var.diskspace_threshold_critical}
 EOF
 
