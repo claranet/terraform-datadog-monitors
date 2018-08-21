@@ -84,6 +84,7 @@ Creates DataDog monitors with the following checks:
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 | unreachable_extra_tags | Extra tags for Host unreachable monitor | list | `<list>` | no |
 | unreachable_message | Custom message for Host unreachable monitor | string | `` | no |
+| unreachable_no_data_timeframe | Timeframe for Host unreachable monitor to alert on no data | string | `2` | no |
 | unreachable_silenced | Groups to mute for Host unreachable monitor | map | `<map>` | no |
 
 ## Outputs
