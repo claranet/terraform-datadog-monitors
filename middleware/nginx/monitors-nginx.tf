@@ -54,5 +54,3 @@ resource "datadog_monitor" "datadog_nginx_dropped_connections" {
 
   tags = ["env:${var.environment}", "type:middleware", "provider:nginx", "resource:nginx", "team:claranet", "created-by:terraform", "${var.nginx_dropped_extra_tags}"]
 }
-
-
