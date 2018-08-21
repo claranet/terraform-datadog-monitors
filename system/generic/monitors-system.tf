@@ -19,6 +19,7 @@ resource "datadog_monitor" "datadog_host_unreachable" {
   include_tags        = true
   locked              = false
   require_full_window = true
+  no_data_timeframe   = "${var.unreachable_no_data_timeframe}"
 
   silenced = "${var.unreachable_silenced}"
 

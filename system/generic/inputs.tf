@@ -49,6 +49,12 @@ variable "unreachable_message" {
   default     = ""
 }
 
+variable "unreachable_no_data_timeframe" {
+  description = "Timeframe for Host unreachable monitor to alert on no data"
+  type        = "string"
+  default     = 2
+}
+
 variable "cpu_high_silenced" {
   description = "Groups to mute for CPU high monitor"
   type        = "map"
