@@ -60,3 +60,38 @@ variable "nginx_connect_threshold_critical" {
   type        = "string"
   default     = "1.1754943508222875e-38"
 }
+
+variable "nginx_dropped_silenced" {
+  description = "Groups to mute for Nginx dropped connections monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "nginx_dropped_extra_tags" {
+  description = "Extra tags for Nginx dropped connections monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "nginx_dropped_message" {
+  description = "Custom message for Nginx dropped connections monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "nginx_dropped_time_aggregator" {
+  description = "Monitor aggregator for Nginx dropped connections [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "nginx_dropped_timeframe" {
+  description = "Monitor timeframe for Nginx dropped connections [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "nginx_dropped_threshold_critical" {
+  description = "php fpm busy critical threshold"
+  default     = 0
+}
