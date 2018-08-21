@@ -69,12 +69,12 @@ variable "php_fpm_busy_timeframe" {
 
 variable "php_fpm_busy_threshold_warning" {
   description = "php fpm busy warning threshold"
-  default     = 0.8
+  default     = 80
 }
 
 variable "php_fpm_busy_threshold_critical" {
   description = "php fpm busy critical threshold"
-  default     = 0.9
+  default     = 90
 }
 
 variable "php_fpm_connect_silenced" {
