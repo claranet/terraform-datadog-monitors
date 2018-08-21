@@ -55,16 +55,17 @@ Creates DataDog monitors with the following checks:
 | free_disk_space_extra_tags | Extra tags for Free diskspace monitor | list | `<list>` | no |
 | free_disk_space_forecast_algorithm | Algorithm for the Free diskspace Forecast monitor | string | `linear` | no |
 | free_disk_space_forecast_deviations | Deviations for the Free diskspace Forecast monitor | string | `1` | no |
+| free_disk_space_forecast_extra_tags | Extra tags for Free diskspace forecast monitor | list | `<list>` | no |
 | free_disk_space_forecast_interval | Interval for the Free diskspace Forecast monitor | string | `60m` | no |
 | free_disk_space_forecast_linear_history | History for the Free diskspace Forecast monitor | string | `1w` | no |
 | free_disk_space_forecast_linear_model | Model for the Free diskspace Forecast monitor | string | `default` | no |
-| free_disk_space_forecast_message | Custom message for Free diskspace monitor | string | `` | no |
+| free_disk_space_forecast_message | Custom message for Free diskspace forecast monitor | string | `` | no |
 | free_disk_space_forecast_seasonal_seasonality | Seasonality for the Free diskspace Forecast monitor | string | `weekly` | no |
-| free_disk_space_forecast_silenced | Groups to mute for Free diskspace monitor | map | `<map>` | no |
-| free_disk_space_forecast_threshold_critical | Free disk space critical threshold | string | `80` | no |
-| free_disk_space_forecast_threshold_critical_recovery | Free disk space warning threshold | string | `72` | no |
-| free_disk_space_forecast_time_aggregator | Monitor aggregator for Free diskspace [available values: min, max or avg] | string | `max` | no |
-| free_disk_space_forecast_timeframe | Monitor timeframe for Free diskspace [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `next_1w` | no |
+| free_disk_space_forecast_silenced | Groups to mute for Free diskspace forecast  monitor | map | `<map>` | no |
+| free_disk_space_forecast_threshold_critical | Free disk space forecast critical threshold | string | `80` | no |
+| free_disk_space_forecast_threshold_critical_recovery | Free disk space forecast recovery threshold | string | `72` | no |
+| free_disk_space_forecast_time_aggregator | Monitor aggregator for Free diskspace forecast [available values: min, max or avg] | string | `max` | no |
+| free_disk_space_forecast_timeframe | Monitor timeframe for Free diskspace forecast [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `next_1w` | no |
 | free_disk_space_message | Custom message for Free diskspace monitor | string | `` | no |
 | free_disk_space_silenced | Groups to mute for Free diskspace monitor | map | `<map>` | no |
 | free_disk_space_threshold_critical | Free disk space critical threshold | string | `10` | no |
