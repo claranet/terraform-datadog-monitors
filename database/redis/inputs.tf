@@ -76,7 +76,7 @@ variable "evictedkeys_change_threshold_critical" {
   default     = 100
 }
 
-variable "expirations_silenced" {
+variable "expirations_rate_silenced" {
   description = "Groups to mute for Redis keys expirations monitor"
   type        = "map"
   default     = {}
