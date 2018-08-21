@@ -30,14 +30,7 @@ EOF
 
   silenced = "${var.concurrent_queries_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "env:${var.environment}",
-    "resource:big-query",
-    "created_by:terraform",
-    "${var.concurrent_queries_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.concurrent_queries_extra_tags}"]
 }
 
 #
@@ -72,14 +65,7 @@ EOF
 
   silenced = "${var.execution_time_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "env:${var.environment}",
-    "resource:big-query",
-    "created_by:terraform",
-    "${var.execution_time_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.execution_time_extra_tags}"]
 }
 
 #
@@ -114,14 +100,7 @@ EOF
 
   silenced = "${var.scanned_bytes_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "env:${var.environment}",
-    "resource:big-query",
-    "created_by:terraform",
-    "${var.scanned_bytes_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.scanned_bytes_extra_tags}"]
 }
 
 #
@@ -156,14 +135,7 @@ EOF
 
   silenced = "${var.scanned_bytes_billed_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "env:${var.environment}",
-    "resource:big-query",
-    "created_by:terraform",
-    "${var.scanned_bytes_billed_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.scanned_bytes_billed_extra_tags}"]
 }
 
 #
@@ -198,14 +170,7 @@ EOF
 
   silenced = "${var.available_slots_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "env:${var.environment}",
-    "resource:big-query",
-    "created_by:terraform",
-    "${var.available_slots_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.available_slots_extra_tags}"]
 }
 
 #
@@ -241,14 +206,7 @@ EOF
 
   silenced = "${var.stored_bytes_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "env:${var.environment}",
-    "resource:big-query",
-    "created_by:terraform",
-    "${var.stored_bytes_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.stored_bytes_extra_tags}"]
 }
 
 #
@@ -284,14 +242,7 @@ EOF
 
   silenced = "${var.table_count_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "env:${var.environment}",
-    "resource:big-query",
-    "created_by:terraform",
-    "${var.table_count_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.table_count_extra_tags}"]
 }
 
 #
@@ -327,14 +278,7 @@ EOF
 
   silenced = "${var.uploaded_bytes_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "env:${var.environment}",
-    "resource:big-query",
-    "created_by:terraform",
-    "${var.uploaded_bytes_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.uploaded_bytes_extra_tags}"]
 }
 
 #
@@ -370,12 +314,5 @@ EOF
 
   silenced = "${var.uploaded_bytes_billed_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "env:${var.environment}",
-    "resource:big-query",
-    "created_by:terraform",
-    "${var.uploaded_bytes_billed_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.uploaded_bytes_billed_extra_tags}"]
 }
