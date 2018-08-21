@@ -37,7 +37,7 @@ Creates DataDog monitors with the following checks:
 | nginx_dropped_extra_tags | Extra tags for Nginx dropped connections monitor | list | `<list>` | no |
 | nginx_dropped_message | Custom message for Nginx dropped connections monitor | string | `` | no |
 | nginx_dropped_silenced | Groups to mute for Nginx dropped connections monitor | map | `<map>` | no |
-| nginx_dropped_threshold_critical | php fpm busy critical threshold | string | `0` | no |
+| nginx_dropped_threshold_critical | Nginx dropped connections critical threshold | string | `0` | no |
 | nginx_dropped_time_aggregator | Monitor aggregator for Nginx dropped connections [available values: min, max or avg] | string | `min` | no |
 | nginx_dropped_timeframe | Monitor timeframe for Nginx dropped connections [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
