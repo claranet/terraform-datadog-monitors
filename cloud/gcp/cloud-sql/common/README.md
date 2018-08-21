@@ -1,10 +1,10 @@
-# CLOUD GCP CLOUD-SQL INSTANCE DataDog monitors
+# CLOUD GCP CLOUD-SQL COMMON DataDog monitors
 
 ## How to use this module
 
 ```
-module "datadog-monitors-cloud-gcp-cloud-sql-instance" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/gcp/cloud-sql/instance?ref={revision}"
+module "datadog-monitors-cloud-gcp-cloud-sql-common" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/gcp/cloud-sql/common?ref={revision}"
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
