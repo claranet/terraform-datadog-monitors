@@ -116,8 +116,6 @@ resource "datadog_monitor" "datadog_free_disk_space_forecast" {
     critical          = "${var.free_disk_space_forecast_threshold_critical}"
   }
 
-  tags = ["env:${var.environment}", "type:system", "resource:disk"]
-
   notify_audit        = false
   locked              = false
   timeout_h           = 0
@@ -130,6 +128,8 @@ resource "datadog_monitor" "datadog_free_disk_space_forecast" {
   new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.free_disk_space_forecast_silenced}"
+
+  tags = ["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform", "${var.free_disk_space_forecast_extra_tags}"]
 }
 
 resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {

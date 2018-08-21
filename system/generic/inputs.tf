@@ -152,25 +152,31 @@ variable "free_disk_space_threshold_critical" {
 }
 
 variable "free_disk_space_forecast_silenced" {
-  description = "Groups to mute for Free diskspace monitor"
+  description = "Groups to mute for Free diskspace forecast  monitor"
   type        = "map"
   default     = {}
 }
 
+variable "free_disk_space_forecast_extra_tags" {
+  description = "Extra tags for Free diskspace forecast monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "free_disk_space_forecast_message" {
-  description = "Custom message for Free diskspace monitor"
+  description = "Custom message for Free diskspace forecast monitor"
   type        = "string"
   default     = ""
 }
 
 variable "free_disk_space_forecast_time_aggregator" {
-  description = "Monitor aggregator for Free diskspace [available values: min, max or avg]"
+  description = "Monitor aggregator for Free diskspace forecast [available values: min, max or avg]"
   type        = "string"
   default     = "max"
 }
 
 variable "free_disk_space_forecast_timeframe" {
-  description = "Monitor timeframe for Free diskspace [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  description = "Monitor timeframe for Free diskspace forecast [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "next_1w"
 }
@@ -212,12 +218,12 @@ variable "free_disk_space_forecast_seasonal_seasonality" {
 }
 
 variable "free_disk_space_forecast_threshold_critical_recovery" {
-  description = "Free disk space warning threshold"
+  description = "Free disk space forecast recovery threshold"
   default     = 72
 }
 
 variable "free_disk_space_forecast_threshold_critical" {
-  description = "Free disk space critical threshold"
+  description = "Free disk space forecast critical threshold"
   default     = 80
 }
 
