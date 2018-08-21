@@ -7,9 +7,9 @@ resource "datadog_monitor" "datadog_php_fpm_connect_idle" {
 
   query = <<EOF
     ${var.php_fpm_busy_time_aggregator}(${var.php_fpm_busy_timeframe}): (
-      avg:php_fpm.processes.active${module.filter-tags.query_alert} by {region, host, pool} /
-      ( avg:php_fpm.processes.idle${module.filter-tags.query_alert} by {region, host, pool} +
-       avg:php_fpm.processes.active${module.filter-tags.query_alert} by {region, host, pool} )
+      avg:php_fpm.processes.active${module.filter-tags.query_alert} by {host, pool} /
+      ( avg:php_fpm.processes.idle${module.filter-tags.query_alert} by {host, pool} +
+       avg:php_fpm.processes.active${module.filter-tags.query_alert} by {host, pool} )
     ) * 100 > ${var.php_fpm_busy_threshold_critical}
   EOF
 
