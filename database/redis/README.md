@@ -93,14 +93,9 @@ Creates DataDog monitors with the following checks:
 | mem_used_timeframe | Monitor timeframe for Redis RAM memory used [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when a Redis monitor is triggered | string | - | yes |
 | new_host_delay | Delay in seconds for the metric evaluation | string | `300` | no |
-| not_responding_by | Group by for the service check | string | `"host","redis_host","redis_port"` | no |
 | not_responding_extra_tags | Extra tags for Redis does not respond monitor | string | `` | no |
-| not_responding_last | Parameter 'last' for the service check | string | `6` | no |
 | not_responding_message | Custom message for Redis does not respond monitor | string | `` | no |
 | not_responding_silenced | Groups to mute for Redis does not respond monitor | map | `<map>` | no |
-| not_responding_threshold_critical | Not responding limit (critical threshold) | string | `5` | no |
-| not_responding_threshold_ok | Not responding limit (ok threshold) | string | `1` | no |
-| not_responding_threshold_warning | Not responding limit (warning threshold) | string | `1` | no |
 | redis_silenced | Groups to mute for Redis monitors | map | `<map>` | no |
 | rejected_con_extra_tags | Extra tags for Redis rejected connections errors monitor | string | `` | no |
 | rejected_con_message | Custom message for Redis rejected connections errors monitor | string | `` | no |

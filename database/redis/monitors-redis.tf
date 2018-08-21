@@ -333,16 +333,15 @@ resource "datadog_monitor" "not_responding" {
   name    = "[${var.environment}] Redis does not respond"
   message = "${coalesce(var.not_responding_message, var.message)}"
 
-  query = <<EOL
-    "redis.can_connect".over${module.filter-tags.service_check}.by(${var.not_responding_by}).last(${var.not_responding_last}).count_by_status()
-EOL
-
   type = "service check"
 
+  query = <<EOF
+    "redis.can_connect".over${module.filter-tags.service_check}.by("host","redis_host","redis_port").last(6).count_by_status()
+  EOF
+
   thresholds {
-    warning  = "${var.not_responding_threshold_warning}"
-    critical = "${var.not_responding_threshold_critical}"
-    ok       = "${var.not_responding_threshold_ok}"
+    ok       = 1
+    critical = 5
   }
 
   silenced = "${var.not_responding_silenced}"
