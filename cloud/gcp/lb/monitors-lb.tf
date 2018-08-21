@@ -32,14 +32,7 @@ EOF
 
   silenced = "${var.error_rate_4xx_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "resource:lb",
-    "env:${var.environment}",
-    "created_by:terraform",
-    "${var.error_rate_4xx_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", "${var.error_rate_4xx_extra_tags}"]
 }
 
 #
@@ -76,14 +69,7 @@ EOF
 
   silenced = "${var.error_rate_5xx_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "resource:lb",
-    "env:${var.environment}",
-    "created_by:terraform",
-    "${var.error_rate_5xx_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", "${var.error_rate_5xx_extra_tags}"]
 }
 
 #
@@ -119,14 +105,7 @@ EOF
 
   silenced = "${var.latency_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "resource:lb",
-    "env:${var.environment}",
-    "created_by:terraform",
-    "${var.latency_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", "${var.latency_extra_tags}"]
 }
 
 #
@@ -162,14 +141,7 @@ EOF
 
   silenced = "${var.backend_latency_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "resource:lb",
-    "env:${var.environment}",
-    "created_by:terraform",
-    "${var.backend_latency_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", "${var.backend_latency_extra_tags}"]
 }
 
 #
@@ -205,12 +177,5 @@ EOF
 
   silenced = "${var.request_count_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "resource:lb",
-    "env:${var.environment}",
-    "created_by:terraform",
-    "${var.request_count_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", "${var.request_count_extra_tags}"]
 }
