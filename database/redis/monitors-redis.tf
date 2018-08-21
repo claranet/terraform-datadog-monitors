@@ -55,7 +55,7 @@ EOL
     critical = "${var.expirations_rate_threshold_critical}"
   }
 
-  silenced = "${var.expirations_silenced}"
+  silenced = "${var.expirations_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -67,7 +67,7 @@ EOL
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", "${var.expirations_extra_tags}"]
+  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", "${var.expirations_rate_extra_tags}"]
 }
 
 resource "datadog_monitor" "blocked_clients" {
