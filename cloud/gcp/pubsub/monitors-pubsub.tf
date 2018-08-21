@@ -30,14 +30,7 @@ EOF
 
   silenced = "${var.sending_operations_count_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "resource:pubsub",
-    "env:${var.environment}",
-    "created_by:terraform",
-    "${var.sending_operations_count_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "team:claranet", "created-by:terraform", "${var.sending_operations_count_extra_tags}"]
 }
 
 #
@@ -73,12 +66,5 @@ EOF
 
   silenced = "${var.unavailable_sending_operations_count_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "resource:pubsub",
-    "env:${var.environment}",
-    "created_by:terraform",
-    "${var.unavailable_sending_operations_count_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "team:claranet", "created-by:terraform", "${var.unavailable_sending_operations_count_extra_tags}"]
 }
