@@ -29,7 +29,25 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
-# Custom CPU instance specific
+# System generic specific
+
+variable "unreachable_silenced" {
+  description = "Groups to mute for Host unreachable monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "unreachable_extra_tags" {
+  description = "Extra tags for Host unreachable monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "unreachable_message" {
+  description = "Custom message for Host unreachable monitor"
+  type        = "string"
+  default     = ""
+}
 
 variable "cpu_high_silenced" {
   description = "Groups to mute for CPU high monitor"
