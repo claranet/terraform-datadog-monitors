@@ -32,15 +32,7 @@ EOF
 
   silenced = "${var.replication_lag_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "env:${var.environment}",
-    "created_by:terraform",
-    "resource:cloud-sql",
-    "engine:mysql",
-    "${var.replication_lag_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "engine:mysql", "${var.replication_lag_extra_tags}"]
 }
 
 #
@@ -86,15 +78,7 @@ EOF
 
   silenced = "${var.queries_changing_anomaly_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "env:${var.environment}",
-    "created_by:terraform",
-    "resource:cloud-sql",
-    "engine:mysql",
-    "${var.queries_changing_anomaly_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "engine:mysql", "${var.queries_changing_anomaly_extra_tags}"]
 }
 
 #
@@ -140,13 +124,5 @@ EOF
 
   silenced = "${var.questions_changing_anomaly_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "env:${var.environment}",
-    "created_by:terraform",
-    "resource:cloud-sql",
-    "engine:mysql",
-    "${var.questions_changing_anomaly_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "engine:mysql", "${var.questions_changing_anomaly_extra_tags}"]
 }

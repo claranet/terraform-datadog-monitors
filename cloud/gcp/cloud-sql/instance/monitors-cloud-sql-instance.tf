@@ -32,14 +32,7 @@ EOF
 
   silenced = "${var.cpu_utilization_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "resource:cloud-sql",
-    "env:${var.environment}",
-    "created_by:terraform",
-    "${var.cpu_utilization_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.cpu_utilization_extra_tags}"]
 }
 
 #
@@ -76,14 +69,7 @@ EOF
 
   silenced = "${var.disk_utilization_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "env:${var.environment}",
-    "created_by:terraform",
-    "resource:cloud-sql",
-    "${var.disk_utilization_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.disk_utilization_extra_tags}"]
 }
 
 #
@@ -126,14 +112,7 @@ EOF
 
   silenced = "${var.disk_utilization_forecast_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "env:${var.environment}",
-    "created_by:terraform",
-    "resource:cloud-sql",
-    "${var.disk_utilization_forecast_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.disk_utilization_forecast_extra_tags}"]
 }
 
 #
@@ -170,14 +149,7 @@ EOF
 
   silenced = "${var.memory_utilization_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "env:${var.environment}",
-    "created_by:terraform",
-    "resource:cloud-sql",
-    "${var.memory_utilization_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.memory_utilization_extra_tags}"]
 }
 
 #
@@ -220,14 +192,7 @@ EOF
 
   silenced = "${var.memory_utilization_forecast_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "env:${var.environment}",
-    "created_by:terraform",
-    "resource:cloud-sql",
-    "${var.memory_utilization_forecast_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.memory_utilization_forecast_extra_tags}"]
 }
 
 #
@@ -263,12 +228,5 @@ EOF
 
   silenced = "${var.failover_unavailable_silenced}"
 
-  tags = [
-    "team:gcp",
-    "provider:gcp",
-    "env:${var.environment}",
-    "created_by:terraform",
-    "resource:cloud-sql",
-    "${var.failover_unavailable_extra_tags}",
-  ]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.failover_unavailable_extra_tags}"]
 }
