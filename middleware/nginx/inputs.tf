@@ -92,6 +92,6 @@ variable "nginx_dropped_timeframe" {
 }
 
 variable "nginx_dropped_threshold_critical" {
-  description = "php fpm busy critical threshold"
+  description = "Nginx dropped connections critical threshold"
   default     = 0
 }
