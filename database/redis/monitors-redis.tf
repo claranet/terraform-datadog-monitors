@@ -31,11 +31,7 @@ EOL
   require_full_window = true
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = [
-    "created_by:terraform",
-    "env:${var.environment}",
-    "resource:redis",
-  ]
+  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", "${var.evictedkeys_change_extra_tags}"]
 }
 
 resource "datadog_monitor" "expirations" {
@@ -71,11 +67,7 @@ EOL
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = [
-    "created_by:terraform",
-    "env:${var.environment}",
-    "resource:redis",
-  ]
+  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", "${var.expirations_extra_tags}"]
 }
 
 resource "datadog_monitor" "blocked_clients" {
@@ -112,11 +104,7 @@ EOL
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = [
-    "created_by:terraform",
-    "env:${var.environment}",
-    "resource:redis",
-  ]
+  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", "${var.blocked_clients_extra_tags}"]
 }
 
 resource "datadog_monitor" "keyspace_full" {
@@ -152,11 +140,7 @@ EOL
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = [
-    "created_by:terraform",
-    "env:${var.environment}",
-    "resource:redis",
-  ]
+  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", "${var.keyspace_extra_tags}"]
 }
 
 resource "datadog_monitor" "memory_used" {
@@ -193,11 +177,7 @@ EOL
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = [
-    "created_by:terraform",
-    "env:${var.environment}",
-    "resource:redis",
-  ]
+  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", "${var.mem_used_extra_tags}"]
 }
 
 resource "datadog_monitor" "memory_frag" {
@@ -233,11 +213,7 @@ EOL
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = [
-    "created_by:terraform",
-    "env:${var.environment}",
-    "resource:redis",
-  ]
+  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", "${var.mem_frag_extra_tags}"]
 }
 
 resource "datadog_monitor" "rejected_connections" {
@@ -273,11 +249,7 @@ EOL
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = [
-    "created_by:terraform",
-    "env:${var.environment}",
-    "resource:redis",
-  ]
+  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", "${var.rejected_con_extra_tags}"]
 }
 
 resource "datadog_monitor" "latency" {
@@ -313,11 +285,7 @@ EOL
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = [
-    "created_by:terraform",
-    "env:${var.environment}",
-    "resource:redis",
-  ]
+  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", "${var.latency_extra_tags}"]
 }
 
 resource "datadog_monitor" "hitrate" {
@@ -355,11 +323,7 @@ EOL
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = [
-    "created_by:terraform",
-    "env:${var.environment}",
-    "resource:redis",
-  ]
+  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", "${var.hitrate_extra_tags}"]
 }
 
 #
@@ -393,9 +357,5 @@ EOL
 
   new_host_delay = "${var.new_host_delay}"
 
-  tags = [
-    "created_by:terraform",
-    "env:${var.environment}",
-    "resource:redis",
-  ]
+  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", "${var.not_responding_extra_tags}"]
 }

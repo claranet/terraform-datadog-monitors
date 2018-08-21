@@ -48,6 +48,12 @@ variable "evictedkeys_change_message" {
   default     = ""
 }
 
+variable "evictedkeys_change_extra_tags" {
+  description = "Extra tags for Redis evicted keys monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "evictedkeys_change_time_aggregator" {
   description = "Monitor aggregator for Redis evicted keys [available values: min, max or avg]"
   type        = "string"
@@ -82,6 +88,12 @@ variable "expirations_rate_message" {
   default     = ""
 }
 
+variable "expirations_rate_extra_tags" {
+  description = "Extra tags for Redis keys expirations monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "expirations_rate_time_aggregator" {
   description = "Monitor aggregator for Redis keys expirations [available values: min, max or avg]"
   type        = "string"
@@ -112,6 +124,12 @@ variable "blocked_clients_silenced" {
 
 variable "blocked_clients_message" {
   description = "Custom message for Redis Blocked clients monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "blocked_clients_extra_tags" {
+  description = "Extra tags for Redis Blocked clients monitor"
   type        = "string"
   default     = ""
 }
@@ -153,6 +171,12 @@ variable "keyspace_message" {
   default     = ""
 }
 
+variable "keyspace_extra_tags" {
+  description = "Extra tags for Redis keyspace monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "keyspace_time_aggregator" {
   description = "Monitor aggregator for Redis keyspace [available values: min, max or avg]"
   type        = "string"
@@ -183,6 +207,12 @@ variable "mem_used_silenced" {
 
 variable "mem_used_message" {
   description = "Custom message for Redis RAM memory used monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "mem_used_extra_tags" {
+  description = "Extra tags for Redis RAM memory used monitor"
   type        = "string"
   default     = ""
 }
@@ -221,6 +251,12 @@ variable "mem_frag_message" {
   default     = ""
 }
 
+variable "mem_frag_extra_tags" {
+  description = "Extra tags for Redis memory RAM fragmentation monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "mem_frag_time_aggregator" {
   description = "Monitor aggregator for Redis memory RAM fragmentation [available values: min, max or avg]"
   type        = "string"
@@ -251,6 +287,12 @@ variable "rejected_con_silenced" {
 
 variable "rejected_con_message" {
   description = "Custom message for Redis rejected connections errors monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "rejected_con_extra_tags" {
+  description = "Extra tags for Redis rejected connections errors monitor"
   type        = "string"
   default     = ""
 }
@@ -289,6 +331,12 @@ variable "latency_message" {
   default     = ""
 }
 
+variable "latency_extra_tags" {
+  description = "Extra tags for Redis latency monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "latency_time_aggregator" {
   description = "Monitor aggregator for Redis latency [available values: min, max or avg]"
   type        = "string"
@@ -319,6 +367,12 @@ variable "hitrate_silenced" {
 
 variable "hitrate_message" {
   description = "Custom message for Redis hitrate monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "hitrate_extra_tags" {
+  description = "Extra tags for Redis hitrate monitor"
   type        = "string"
   default     = ""
 }
@@ -356,6 +410,12 @@ variable "not_responding_silenced" {
 
 variable "not_responding_message" {
   description = "Custom message for Redis does not respond monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "not_responding_extra_tags" {
+  description = "Extra tags for Redis does not respond monitor"
   type        = "string"
   default     = ""
 }
