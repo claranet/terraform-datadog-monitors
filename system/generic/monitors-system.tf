@@ -99,7 +99,7 @@ resource "datadog_monitor" "datadog_free_disk_space_forecast" {
 
   query = <<EOF
     ${var.free_disk_space_forecast_time_aggregator}(${var.free_disk_space_forecast_timeframe}):
-      forecast(avg:system.disk.in_use{${data.template_file.filter.rendered}} by {host,device} * 100,
+      forecast(avg:system.disk.in_use${module.filter-tags-disk.query_alert} by {host,device} * 100,
               '${var.free_disk_space_forecast_algorithm}',
                ${var.free_disk_space_forecast_deviations},
                interval='${var.free_disk_space_forecast_interval}',
