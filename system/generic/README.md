@@ -19,7 +19,7 @@ Creates DataDog monitors with the following checks:
 - CPU usage
 - CPU load 5
 - Free disk space
-- Disk Space could reach
+- Disk Space forecast
 - Free disk inodes
 - Free memory
 
