@@ -52,5 +52,5 @@ variable "apache_connect_message" {
 variable "apache_connect_threshold_critical" {
   description = "Apache status monitor (critical threshold)"
   type        = "string"
-  default     = 1.1754943508222875e-38
+  default     = "1.1754943508222875e-38"
 }
