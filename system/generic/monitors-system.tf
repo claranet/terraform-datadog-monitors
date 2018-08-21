@@ -126,8 +126,8 @@ resource "datadog_monitor" "datadog_free_disk_space_forecast" {
   notify_no_data      = false
   renotify_interval   = 0
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   silenced = "${var.free_disk_space_forecast_silenced}"
 }
