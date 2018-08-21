@@ -1,18 +1,10 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_redis:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
 resource "datadog_monitor" "evicted_keys" {
   name    = "[${var.environment}] Redis evicted keys {{#is_alert}}{{{comparator}}} {{threshold}}% (+{{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% (+{{value}}%){{/is_warning}}"
   message = "${coalesce(var.evictedkeys_change_message, var.message)}"
 
   query = <<EOL
     change(${var.evictedkeys_change_time_aggregator}(${var.evictedkeys_change_timeframe}),${var.evictedkeys_change_timeframe}): (
-      avg:redis.keys.evicted{${data.template_file.filter.rendered}} by {redis_host,redis_port}
+      avg:redis.keys.evicted${module.filter-tags.query_alert} by {redis_host,redis_port}
      ) > ${var.evictedkeys_change_threshold_critical}
 EOL
 
@@ -52,7 +44,7 @@ resource "datadog_monitor" "expirations" {
 
   query = <<EOL
     ${var.expirations_rate_time_aggregator}(${var.expirations_rate_timeframe}): (
-      avg:redis.expires.percent{${data.template_file.filter.rendered}} by {redis_host,redis_port}
+      avg:redis.expires.percent${module.filter-tags.query_alert} by {redis_host,redis_port}
      ) > ${var.expirations_rate_threshold_critical}
 EOL
 
@@ -92,8 +84,8 @@ resource "datadog_monitor" "blocked_clients" {
 
   query = <<EOL
     ${var.blocked_clients_time_aggregator}(${var.blocked_clients_timeframe}): (
-      sum:redis.clients.blocked{${data.template_file.filter.rendered}} by {redis_host,redis_port}
-      / sum:redis.net.clients{${data.template_file.filter.rendered}} by {redis_host,redis_port}
+      sum:redis.clients.blocked${module.filter-tags.query_alert} by {redis_host,redis_port}
+      / sum:redis.net.clients${module.filter-tags.query_alert} by {redis_host,redis_port}
      ) * 100 > ${var.blocked_clients_threshold_critical}
 EOL
 
@@ -133,7 +125,7 @@ resource "datadog_monitor" "keyspace_full" {
 
   query = <<EOL
     ${var.keyspace_time_aggregator}(${var.keyspace_timeframe}): (
-      abs(diff(avg:redis.keys{${data.template_file.filter.rendered}} by {redis_host,redis_port}))
+      abs(diff(avg:redis.keys${module.filter-tags.query_alert} by {redis_host,redis_port}))
      ) == ${var.keyspace_threshold_critical}
 EOL
 
@@ -173,8 +165,8 @@ resource "datadog_monitor" "memory_used" {
 
   query = <<EOL
     ${var.mem_used_time_aggregator}(${var.mem_used_timeframe}): (
-      avg:redis.mem.used{${data.template_file.filter.rendered}} by {redis_host,redis_port}
-      / max:redis.mem.maxmemory{${data.template_file.filter.rendered}} by {redis_host,redis_port}
+      avg:redis.mem.used${module.filter-tags.query_alert} by {redis_host,redis_port}
+      / max:redis.mem.maxmemory${module.filter-tags.query_alert} by {redis_host,redis_port}
      ) * 100 > ${var.mem_used_threshold_critical}
 EOL
 
@@ -214,7 +206,7 @@ resource "datadog_monitor" "memory_frag" {
 
   query = <<EOL
     ${var.mem_frag_time_aggregator}(${var.mem_frag_timeframe}):
-      avg:redis.mem.fragmentation_ratio{${data.template_file.filter.rendered}} by {redis_host,redis_port}
+      avg:redis.mem.fragmentation_ratio${module.filter-tags.query_alert} by {redis_host,redis_port}
      * 100 > ${var.mem_frag_threshold_critical}
 EOL
 
@@ -254,7 +246,7 @@ resource "datadog_monitor" "rejected_connections" {
 
   query = <<EOL
     change(${var.rejected_con_time_aggregator}(${var.rejected_con_timeframe}),${var.rejected_con_timeframe}): (
-      avg:redis.net.rejected{${data.template_file.filter.rendered}} by {redis_host,redis_port}
+      avg:redis.net.rejected${module.filter-tags.query_alert} by {redis_host,redis_port}
      ) > ${var.rejected_con_threshold_critical}
 EOL
 
@@ -294,7 +286,7 @@ resource "datadog_monitor" "latency" {
 
   query = <<EOL
     change(${var.latency_time_aggregator}(${var.latency_timeframe}),${var.latency_timeframe}): (
-      avg:redis.info.latency_ms{${data.template_file.filter.rendered}} by {redis_host,redis_port}
+      avg:redis.info.latency_ms${module.filter-tags.query_alert} by {redis_host,redis_port}
      ) > ${var.latency_threshold_critical}
 EOL
 
@@ -334,9 +326,9 @@ resource "datadog_monitor" "hitrate" {
 
   query = <<EOL
     ${var.hitrate_time_aggregator}(${var.hitrate_timeframe}): (
-      sum:redis.stats.keyspace_hits{${data.template_file.filter.rendered}} by {redis_host,redis_port}
-      / (sum:redis.stats.keyspace_hits{${data.template_file.filter.rendered}} by {redis_host,redis_port}
-        + sum:redis.stats.keyspace_misses{${data.template_file.filter.rendered}} by {redis_host,redis_port})
+      sum:redis.stats.keyspace_hits${module.filter-tags.query_alert} by {redis_host,redis_port}
+      / (sum:redis.stats.keyspace_hits${module.filter-tags.query_alert} by {redis_host,redis_port}
+        + sum:redis.stats.keyspace_misses${module.filter-tags.query_alert} by {redis_host,redis_port})
      ) * 100 < ${var.hitrate_threshold_critical}
 EOL
 
@@ -378,7 +370,7 @@ resource "datadog_monitor" "not_responding" {
   message = "${coalesce(var.not_responding_message, var.message)}"
 
   query = <<EOL
-    "redis.can_connect".over("${replace(data.template_file.filter.rendered, ",", "\",\"")}").by(${var.not_responding_by}).last(${var.not_responding_last}).count_by_status()
+    "redis.can_connect".over${module.filter-tags.service_check}.by(${var.not_responding_by}).last(${var.not_responding_last}).count_by_status()
 EOL
 
   type = "service check"

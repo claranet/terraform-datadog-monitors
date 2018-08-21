@@ -1,10 +1,10 @@
-# DATABASES REDIS DataDog monitors
+# DATABASE REDIS DataDog monitors
 
 ## How to use this module
 
 ```
-module "datadog-monitors-databases-redis" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//databases/redis?ref={revision}"
+module "datadog-monitors-database-redis" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//database/redis?ref={revision}"
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
@@ -16,15 +16,15 @@ module "datadog-monitors-databases-redis" {
 
 Creates DataDog monitors with the following checks:
 
-- Redis too many evicted keys
-- Redis too many expired keys
-- Redis too many blocked clients
+- Redis evicted keys
+- Redis expired keys
+- Redis blocked clients
 - Redis keyspace seems full (no changes since ${var.keyspace_timeframe})
-- Redis too many ram memory used
-- Redis memory ram fragmented
-- Redis too many rejected connections
-- Redis latency is too high
-- Redis hitrate is too low
+- Redis memory used
+- Redis memory fragmented
+- Redis rejected connections
+- Redis latency
+- Redis hitrate
 - Redis does not respond
 
 ## Inputs
