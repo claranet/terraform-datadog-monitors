@@ -6,7 +6,7 @@ goto_root
 
 sed -i '/### Monitors summary ###/q' README.md
 echo >> README.md
-for path in $(find -mindepth 1 \( -path './incubator' -o -path './scripts' -o -path './testing'  -o -path '*/\.*' \) -prune -o -type d -print | sort); do
+for path in $(find -mindepth 1 \( -path './incubator' -o -path './scripts' -o -path './testing'  -o -path '*/\.*' \) -prune -o -type d -print | sort -fdbi); do
     directories=($(list_dirs $path))
     for i in $(seq 1 $((${#directories[@]}-1))); do
         echo -en "\t" >> README.md
@@ -20,7 +20,7 @@ done
 
 PATTERN_DOC="Related documentation"
 
-for path in $(find "$(get_scope $1)" -path ./incubator -prune -o -name 'monitors-*.tf' -print); do
+for path in $(find "$(get_scope $1)" -path ./incubator -prune -o -name 'monitors-*.tf' -print | sort -fdbi); do
     cd $(dirname $path)
     EXIST=0
     if [ -f README.md ]; then
@@ -53,7 +53,7 @@ Creates DataDog monitors with the following checks:
 EOF
     SAVEIFS=$IFS
     IFS=$(echo -en "\n\b")
-    for match in $(grep -E ^[[:space:]]+name[[:space:]]+= $(basename ${path})); do
+    for match in $(grep -E ^[[:space:]]+name[[:space:]]+= $(basename ${path}) | sort -fdbi); do
         name=$(get_name "${match}")
         echo "- ${name/could reach/forecast}" >> README.md
     done
