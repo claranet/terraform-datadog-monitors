@@ -4,7 +4,7 @@ set -xueo pipefail
 source "$(dirname $0)/utils.sh"
 goto_root
 
-for path in $(find "$(get_scope $1)" -path ./incubator -prune -o -name 'monitors-*.tf' -print); do
+for path in $(find "$(get_scope $1)" -path ./incubator -prune -o -name 'monitors-*.tf' -print | sort -fdbi); do
     cd $(dirname $path)
     > outputs.tf
     for monitor in $(grep 'resource "datadog_monitor"' $(basename $path) | awk '{print $3}' | tr -d '"' ); do
@@ -19,4 +19,3 @@ EOF
     done
     cd - >> /dev/null
 done
-terraform fmt "$(get_scope $1)"

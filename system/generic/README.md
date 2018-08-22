@@ -16,13 +16,13 @@ module "datadog-monitors-system-generic" {
 
 Creates DataDog monitors with the following checks:
 
-- Host unreachable
-- CPU usage
 - CPU load 5
-- Free disk space
+- CPU usage
 - Disk Space forecast
 - Free disk inodes
+- Free disk space
 - Free memory
+- Host unreachable
 
 ## Inputs
 

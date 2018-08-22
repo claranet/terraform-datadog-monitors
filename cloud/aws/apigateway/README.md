@@ -16,9 +16,9 @@ module "datadog-monitors-cloud-aws-apigateway" {
 
 Creates DataDog monitors with the following checks:
 
-- API Gateway latency
-- API Gateway HTTP 5xx errors
 - API Gateway HTTP 4xx errors
+- API Gateway HTTP 5xx errors
+- API Gateway latency
 
 ## Inputs
 
