@@ -23,8 +23,8 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | environment | Environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
@@ -36,6 +36,7 @@ Creates DataDog monitors with the following checks:
 | mysql_thread_silenced | Groups to mute mysql threads monitor | map | `<map>` | no |
 | mysql_thread_threshold_critical | Maximum critical acceptable number of threads | string | `500` | no |
 | mysql_thread_threshold_warning | Maximum warning acceptable number of threads | string | `400` | no |
+| new_host_delay | Delay in seconds for the metric evaluation | string | `300` | no |
 
 ## Outputs
 
