@@ -61,7 +61,7 @@ Creates DataDog monitors with the following checks:
 | free_disk_space_forecast_linear_model | Model for the Free diskspace Forecast monitor [available values: `default`, `simple` or `reactive`] | string | `default` | no |
 | free_disk_space_forecast_message | Custom message for Free diskspace forecast monitor | string | `` | no |
 | free_disk_space_forecast_seasonal_seasonality | Seasonality for the Free diskspace Forecast monitor | string | `weekly` | no |
-| free_disk_space_forecast_silenced | Groups to mute for Free diskspace forecast  monitor | map | `<map>` | no |
+| free_disk_space_forecast_silenced | Groups to mute for Free diskspace forecast monitor | map | `<map>` | no |
 | free_disk_space_forecast_threshold_critical | Free disk space forecast critical threshold | string | `80` | no |
 | free_disk_space_forecast_threshold_critical_recovery | Free disk space forecast recovery threshold | string | `72` | no |
 | free_disk_space_forecast_time_aggregator | Monitor aggregator for Free diskspace forecast [available values: min, max or avg] | string | `max` | no |

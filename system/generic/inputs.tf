@@ -152,7 +152,7 @@ variable "free_disk_space_threshold_critical" {
 }
 
 variable "free_disk_space_forecast_silenced" {
-  description = "Groups to mute for Free diskspace forecast  monitor"
+  description = "Groups to mute for Free diskspace forecast monitor"
   type        = "map"
   default     = {}
 }
