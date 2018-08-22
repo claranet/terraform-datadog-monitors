@@ -1,11 +1,3 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_mysql:enabled,db_env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
 resource "datadog_monitor" "mysql_connection_too_high" {
   name    = "[${var.environment}] Mysql Connections {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mysql_connection_message, var.message)}"
@@ -13,8 +5,8 @@ resource "datadog_monitor" "mysql_connection_too_high" {
 
   query = <<EOF
     avg(last_15m): (
-      avg:mysql.net.connections{${data.template_file.filter.rendered}} by {region,db_host} /
-      avg:mysql.net.max_connections_available{${data.template_file.filter.rendered}} by {region,db_host}
+      avg:mysql.net.connections${module.filter-tags.query_alert} by {region,db_host} /
+      avg:mysql.net.max_connections_available${module.filter-tags.query_alert} by {region,db_host}
     ) * 100 > ${var.mysql_connection_threshold_critical}
   EOF
 
@@ -44,7 +36,7 @@ resource "datadog_monitor" "mysql_thread_too_high" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:mysql.performance.threads_running{${data.template_file.filter.rendered}} by {region,db_host}
+      avg:mysql.performance.threads_running${module.filter-tags.query_alert} by {region,db_host}
     ) > ${var.mysql_thread_threshold_critical}
   EOF
 
