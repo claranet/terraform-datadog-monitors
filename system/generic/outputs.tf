@@ -13,6 +13,11 @@ output "datadog_free_disk_space_too_low_id" {
   value       = "${datadog_monitor.datadog_free_disk_space_too_low.id}"
 }
 
+output "datadog_free_disk_space_forecast_id" {
+  description = "id for monitor datadog_free_disk_space_forecast"
+  value       = "${datadog_monitor.datadog_free_disk_space_forecast.id}"
+}
+
 output "datadog_free_disk_space_inodes_too_low_id" {
   description = "id for monitor datadog_free_disk_space_inodes_too_low"
   value       = "${datadog_monitor.datadog_free_disk_space_inodes_too_low.id}"
