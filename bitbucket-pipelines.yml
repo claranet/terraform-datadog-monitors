@@ -3,22 +3,11 @@ image: hashicorp/terraform:full
 pipelines:
   default:
     - step:
-        name: Terraform format
-        script:
-          - terraform fmt -write=false -diff -check
-    - step:
-        name: Terraform validate
-        script:
-          - mv main.tf.ci main.tf
-          - mv terraform.tfvars.ci terraform.tfvars
-          - terraform init
-          - terraform validate
-    - step:
         name: Check auto update
         script:
           - apk update
           - apk upgrade
-          - apk add --no-cache bash git grep
+          - apk add --no-cache bash git grep coreutils
           - go get github.com/segmentio/terraform-docs
           - ./scripts/auto_update.sh
           - git status

@@ -17,9 +17,9 @@ module "datadog-monitors-database-mongodb" {
 Creates DataDog monitors with the following checks:
 
 - MongoDB primary state
+- MongoDB replication lag
 - MongoDB secondary missing
 - MongoDB too much servers or wrong monitoring config
-- MongoDB replication lag
 
 ## Inputs
 
