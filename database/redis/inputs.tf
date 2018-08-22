@@ -50,8 +50,8 @@ variable "evictedkeys_change_message" {
 
 variable "evictedkeys_change_extra_tags" {
   description = "Extra tags for Redis evicted keys monitor"
-  type        = "string"
-  default     = ""
+  type        = "list"
+  default     = []
 }
 
 variable "evictedkeys_change_time_aggregator" {
@@ -90,8 +90,8 @@ variable "expirations_rate_message" {
 
 variable "expirations_rate_extra_tags" {
   description = "Extra tags for Redis keys expirations monitor"
-  type        = "string"
-  default     = ""
+  type        = "list"
+  default     = []
 }
 
 variable "expirations_rate_time_aggregator" {
@@ -130,8 +130,8 @@ variable "blocked_clients_message" {
 
 variable "blocked_clients_extra_tags" {
   description = "Extra tags for Redis Blocked clients monitor"
-  type        = "string"
-  default     = ""
+  type        = "list"
+  default     = []
 }
 
 variable "blocked_clients_time_aggregator" {
@@ -173,8 +173,8 @@ variable "keyspace_message" {
 
 variable "keyspace_extra_tags" {
   description = "Extra tags for Redis keyspace monitor"
-  type        = "string"
-  default     = ""
+  type        = "list"
+  default     = []
 }
 
 variable "keyspace_time_aggregator" {
@@ -213,8 +213,8 @@ variable "mem_used_message" {
 
 variable "mem_used_extra_tags" {
   description = "Extra tags for Redis RAM memory used monitor"
-  type        = "string"
-  default     = ""
+  type        = "list"
+  default     = []
 }
 
 variable "mem_used_time_aggregator" {
@@ -253,8 +253,8 @@ variable "mem_frag_message" {
 
 variable "mem_frag_extra_tags" {
   description = "Extra tags for Redis memory RAM fragmentation monitor"
-  type        = "string"
-  default     = ""
+  type        = "list"
+  default     = []
 }
 
 variable "mem_frag_time_aggregator" {
@@ -293,8 +293,8 @@ variable "rejected_con_message" {
 
 variable "rejected_con_extra_tags" {
   description = "Extra tags for Redis rejected connections errors monitor"
-  type        = "string"
-  default     = ""
+  type        = "list"
+  default     = []
 }
 
 variable "rejected_con_time_aggregator" {
@@ -333,8 +333,8 @@ variable "latency_message" {
 
 variable "latency_extra_tags" {
   description = "Extra tags for Redis latency monitor"
-  type        = "string"
-  default     = ""
+  type        = "list"
+  default     = []
 }
 
 variable "latency_time_aggregator" {
@@ -373,8 +373,8 @@ variable "hitrate_message" {
 
 variable "hitrate_extra_tags" {
   description = "Extra tags for Redis hitrate monitor"
-  type        = "string"
-  default     = ""
+  type        = "list"
+  default     = []
 }
 
 variable "hitrate_time_aggregator" {
@@ -416,6 +416,6 @@ variable "not_responding_message" {
 
 variable "not_responding_extra_tags" {
   description = "Extra tags for Redis does not respond monitor"
-  type        = "string"
-  default     = ""
+  type        = "list"
+  default     = []
 }
