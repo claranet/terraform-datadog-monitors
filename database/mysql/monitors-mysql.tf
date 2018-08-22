@@ -10,8 +10,8 @@ resource "datadog_monitor" "mysql_connection_too_high" {
     ) * 100 > ${var.mysql_connection_threshold_critical}
   EOF
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   thresholds {
     warning  = "${var.mysql_connection_threshold_warning}"
@@ -40,8 +40,8 @@ resource "datadog_monitor" "mysql_thread_too_high" {
     ) > ${var.mysql_thread_threshold_critical}
   EOF
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   thresholds {
     warning  = "${var.mysql_thread_threshold_warning}"
