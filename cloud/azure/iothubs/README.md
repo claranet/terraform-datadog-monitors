@@ -16,20 +16,20 @@ module "datadog-monitors-cloud-azure-iothubs" {
 
 Creates DataDog monitors with the following checks:
 
-- IOT Hub Too many jobs failed
-- IOT Hub Too many list_jobs failure
-- IOT Hub Too many query_jobs failed
 - IOT Hub is down
-- IOT Hub Total devices is wrong
 - IOT Hub Too many c2d methods failure
 - IOT Hub Too many c2d twin read failure
 - IOT Hub Too many c2d twin update failure
+- IOT Hub Too many d2c telemetry egress dropped
+- IOT Hub Too many d2c telemetry egress invalid
+- IOT Hub Too many d2c telemetry egress orphaned
+- IOT Hub Too many d2c telemetry ingress not sent
 - IOT Hub Too many d2c twin read failure
 - IOT Hub Too many d2c twin update failure
-- IOT Hub Too many d2c telemetry egress dropped
-- IOT Hub Too many d2c telemetry egress orphaned
-- IOT Hub Too many d2c telemetry egress invalid
-- IOT Hub Too many d2c telemetry ingress not sent
+- IOT Hub Too many jobs failed
+- IOT Hub Too many list_jobs failure
+- IOT Hub Too many query_jobs failed
+- IOT Hub Total devices is wrong
 
 ## Inputs
 
