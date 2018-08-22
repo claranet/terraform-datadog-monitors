@@ -1,3 +1,31 @@
+resource "datadog_monitor" "datadog_host_unreachable" {
+  name    = "[${var.environment}] Host unreachable"
+  message = "${coalesce(var.unreachable_message, var.message)}"
+
+  query = "\"datadog.agent.up\".over${module.filter-tags.service_check}.last(6).count_by_status()"
+
+  type = "service check"
+
+  thresholds {
+    ok       = 1
+    warning  = 1
+    critical = 5
+  }
+
+  notify_no_data      = true
+  new_host_delay      = "${var.new_host_delay}"
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+  no_data_timeframe   = "${var.unreachable_no_data_timeframe}"
+
+  silenced = "${var.unreachable_silenced}"
+
+  tags = ["env:${var.environment}", "type:system", "provider:host", "resource:generic", "team:claranet", "created-by:terraform", "${var.unreachable_extra_tags}"]
+}
+
 resource "datadog_monitor" "datadog_cpu_too_high" {
   name    = "[${var.environment}] CPU usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_high_message, var.message)}"
