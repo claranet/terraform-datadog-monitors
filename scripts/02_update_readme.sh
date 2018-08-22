@@ -55,7 +55,7 @@ EOF
     IFS=$(echo -en "\n\b")
     for match in $(grep -E ^[[:space:]]+name[[:space:]]+= $(basename ${path})); do
         name=$(get_name "${match}")
-        echo "- $name" >> README.md
+        echo "- ${name/could reach/forecast}" >> README.md
     done
     IFS=$SAVEIFS
     terraform-docs md ./ >> README.md

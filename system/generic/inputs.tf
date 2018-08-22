@@ -151,6 +151,82 @@ variable "free_disk_space_threshold_critical" {
   default     = 10
 }
 
+variable "free_disk_space_forecast_silenced" {
+  description = "Groups to mute for Free diskspace forecast monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "free_disk_space_forecast_extra_tags" {
+  description = "Extra tags for Free diskspace forecast monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "free_disk_space_forecast_message" {
+  description = "Custom message for Free diskspace forecast monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "free_disk_space_forecast_time_aggregator" {
+  description = "Monitor aggregator for Free diskspace forecast [available values: min, max or avg]"
+  type        = "string"
+  default     = "max"
+}
+
+variable "free_disk_space_forecast_timeframe" {
+  description = "Monitor timeframe for Free diskspace forecast [available values: `next_12h`, `next_#d` (1, 2, or 3), `next_#w` (1 or 2) or `next_#mo` (1, 2 or 3)]"
+  type        = "string"
+  default     = "next_1w"
+}
+
+variable "free_disk_space_forecast_algorithm" {
+  description = "Algorithm for the Free diskspace Forecast monitor [available values: `linear` or `seasonal`]"
+  type        = "string"
+  default     = "linear"
+}
+
+variable "free_disk_space_forecast_deviations" {
+  description = "Deviations for the Free diskspace Forecast monitor [available values: `1`, `2`, `3`, `4` or `5`]"
+  type        = "string"
+  default     = 1
+}
+
+variable "free_disk_space_forecast_interval" {
+  description = "Interval for the Free diskspace Forecast monitor [available values: `30m`, `60m` or `120m`]"
+  type        = "string"
+  default     = "60m"
+}
+
+variable "free_disk_space_forecast_linear_history" {
+  description = "History for the Free diskspace Forecast monitor [available values: `12h`, `#d` (1, 2, or 3), `#w` (1, or 2) or `#mo` (1, 2 or 3)]"
+  type        = "string"
+  default     = "1w"
+}
+
+variable "free_disk_space_forecast_linear_model" {
+  description = "Model for the Free diskspace Forecast monitor [available values: `default`, `simple` or `reactive`]"
+  type        = "string"
+  default     = "default"
+}
+
+variable "free_disk_space_forecast_seasonal_seasonality" {
+  description = "Seasonality for the Free diskspace Forecast monitor"
+  type        = "string"
+  default     = "weekly"
+}
+
+variable "free_disk_space_forecast_threshold_critical_recovery" {
+  description = "Free disk space forecast recovery threshold"
+  default     = 72
+}
+
+variable "free_disk_space_forecast_threshold_critical" {
+  description = "Free disk space forecast critical threshold"
+  default     = 80
+}
+
 variable "free_disk_inodes_silenced" {
   description = "Groups to mute for Free disk inodes monitor"
   type        = "map"

@@ -93,6 +93,45 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
   tags = ["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform", "${var.free_disk_space_extra_tags}"]
 }
 
+resource "datadog_monitor" "datadog_free_disk_space_forecast" {
+  name    = "[${var.environment}] Disk Space could reach {{#is_alert}}{{threshold}}%{{/is_alert}} in a near future"
+  message = "${coalesce(var.free_disk_space_forecast_message, var.message)}"
+
+  query = <<EOF
+    ${var.free_disk_space_forecast_time_aggregator}(${var.free_disk_space_forecast_timeframe}):
+      forecast(avg:system.disk.in_use${module.filter-tags-disk.query_alert} by {host,device} * 100,
+              '${var.free_disk_space_forecast_algorithm}',
+               ${var.free_disk_space_forecast_deviations},
+               interval='${var.free_disk_space_forecast_interval}',
+               ${var.free_disk_space_forecast_algorithm == "linear" ? format("history='%s',model='%s'", var.free_disk_space_forecast_linear_history, var.free_disk_space_forecast_linear_model): ""}
+               ${var.free_disk_space_forecast_algorithm == "seasonal" ? format("seasonality='%s'", var.free_disk_space_forecast_seasonal_seasonality): ""}
+              )
+    >= ${var.free_disk_space_forecast_threshold_critical}
+  EOF
+
+  type = "query alert"
+
+  thresholds {
+    critical_recovery = "${var.free_disk_space_forecast_threshold_critical_recovery}"
+    critical          = "${var.free_disk_space_forecast_threshold_critical}"
+  }
+
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
+  require_full_window = true
+  notify_no_data      = false
+  renotify_interval   = 0
+
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
+
+  silenced = "${var.free_disk_space_forecast_silenced}"
+
+  tags = ["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform", "${var.free_disk_space_forecast_extra_tags}"]
+}
+
 resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
   name    = "[${var.environment}] Free disk inodes {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.free_disk_inodes_message, var.message)}"

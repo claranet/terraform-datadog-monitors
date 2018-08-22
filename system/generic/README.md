@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 - CPU usage
 - CPU load 5
 - Free disk space
+- Disk Space forecast
 - Free disk inodes
 - Free memory
 
@@ -52,6 +53,19 @@ Creates DataDog monitors with the following checks:
 | free_disk_inodes_time_aggregator | Monitor aggregator for Free disk inodes [available values: min, max or avg] | string | `min` | no |
 | free_disk_inodes_timeframe | Monitor timeframe for Free disk inodes [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | free_disk_space_extra_tags | Extra tags for Free diskspace monitor | list | `<list>` | no |
+| free_disk_space_forecast_algorithm | Algorithm for the Free diskspace Forecast monitor [available values: `linear` or `seasonal`] | string | `linear` | no |
+| free_disk_space_forecast_deviations | Deviations for the Free diskspace Forecast monitor [available values: `1`, `2`, `3`, `4` or `5`] | string | `1` | no |
+| free_disk_space_forecast_extra_tags | Extra tags for Free diskspace forecast monitor | list | `<list>` | no |
+| free_disk_space_forecast_interval | Interval for the Free diskspace Forecast monitor [available values: `30m`, `60m` or `120m`] | string | `60m` | no |
+| free_disk_space_forecast_linear_history | History for the Free diskspace Forecast monitor [available values: `12h`, `#d` (1, 2, or 3), `#w` (1, or 2) or `#mo` (1, 2 or 3)] | string | `1w` | no |
+| free_disk_space_forecast_linear_model | Model for the Free diskspace Forecast monitor [available values: `default`, `simple` or `reactive`] | string | `default` | no |
+| free_disk_space_forecast_message | Custom message for Free diskspace forecast monitor | string | `` | no |
+| free_disk_space_forecast_seasonal_seasonality | Seasonality for the Free diskspace Forecast monitor | string | `weekly` | no |
+| free_disk_space_forecast_silenced | Groups to mute for Free diskspace forecast monitor | map | `<map>` | no |
+| free_disk_space_forecast_threshold_critical | Free disk space forecast critical threshold | string | `80` | no |
+| free_disk_space_forecast_threshold_critical_recovery | Free disk space forecast recovery threshold | string | `72` | no |
+| free_disk_space_forecast_time_aggregator | Monitor aggregator for Free diskspace forecast [available values: min, max or avg] | string | `max` | no |
+| free_disk_space_forecast_timeframe | Monitor timeframe for Free diskspace forecast [available values: `next_12h`, `next_#d` (1, 2, or 3), `next_#w` (1 or 2) or `next_#mo` (1, 2 or 3)] | string | `next_1w` | no |
 | free_disk_space_message | Custom message for Free diskspace monitor | string | `` | no |
 | free_disk_space_silenced | Groups to mute for Free diskspace monitor | map | `<map>` | no |
 | free_disk_space_threshold_critical | Free disk space critical threshold | string | `10` | no |
@@ -73,6 +87,7 @@ Creates DataDog monitors with the following checks:
 | Name | Description |
 |------|-------------|
 | datadog_cpu_too_high_id | id for monitor datadog_cpu_too_high |
+| datadog_free_disk_space_forecast_id | id for monitor datadog_free_disk_space_forecast |
 | datadog_free_disk_space_inodes_too_low_id | id for monitor datadog_free_disk_space_inodes_too_low |
 | datadog_free_disk_space_too_low_id | id for monitor datadog_free_disk_space_too_low |
 | datadog_free_memory_id | id for monitor datadog_free_memory |
