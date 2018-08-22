@@ -54,6 +54,12 @@ variable "mysql_connection_message" {
   default     = ""
 }
 
+variable "mysql_connection_extra_tags" {
+  description = "Extra tags for MySQL connection monitor"
+  type        = "list"
+  default     = []
+}
+
 #################################
 ###   MySQL threads           ###
 #################################
@@ -78,4 +84,10 @@ variable "mysql_thread_message" {
   description = "Custom message for MySQL thread monitor"
   type        = "string"
   default     = ""
+}
+
+variable "mysql_thread_extra_tags" {
+  description = "Extra tags for MySQL thread monitor"
+  type        = "list"
+  default     = []
 }

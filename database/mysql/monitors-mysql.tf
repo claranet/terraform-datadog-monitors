@@ -18,7 +18,7 @@ resource "datadog_monitor" "mysql_connection_too_high" {
     critical = "${var.mysql_connection_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
   timeout_h           = 0
@@ -26,7 +26,7 @@ resource "datadog_monitor" "mysql_connection_too_high" {
 
   silenced = "${var.mysql_connection_silenced}"
 
-  tags = ["env:${var.environment}", "resource:mysql"]
+  tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_connection_extra_tags}"]
 }
 
 resource "datadog_monitor" "mysql_thread_too_high" {
@@ -48,7 +48,7 @@ resource "datadog_monitor" "mysql_thread_too_high" {
     critical = "${var.mysql_thread_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
   timeout_h           = 0
@@ -56,5 +56,5 @@ resource "datadog_monitor" "mysql_thread_too_high" {
 
   silenced = "${var.mysql_thread_silenced}"
 
-  tags = ["env:${var.environment}", "resource:mysql"]
+  tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_thread_extra_tags}"]
 }
