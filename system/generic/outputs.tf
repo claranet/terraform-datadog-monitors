@@ -1,3 +1,8 @@
+output "datadog_host_unreachable_id" {
+  description = "id for monitor datadog_host_unreachable"
+  value       = "${datadog_monitor.datadog_host_unreachable.id}"
+}
+
 output "datadog_cpu_too_high_id" {
   description = "id for monitor datadog_cpu_too_high"
   value       = "${datadog_monitor.datadog_cpu_too_high.id}"
