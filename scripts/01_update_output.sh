@@ -19,4 +19,3 @@ EOF
     done
     cd - >> /dev/null
 done
-terraform fmt "$(get_scope $1)"

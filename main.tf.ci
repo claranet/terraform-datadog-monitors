@@ -1,7 +1,0 @@
-variable "aws_region" {}
-
-provider "aws" {
-  version = "1.2.0"
-
-  region = "${var.aws_region}"
-}
