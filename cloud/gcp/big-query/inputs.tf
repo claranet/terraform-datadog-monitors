@@ -124,13 +124,13 @@ variable "scanned_bytes_timeframe" {
 }
 
 variable "scanned_bytes_threshold_warning" {
-  description = "Scanned Bytes Bytes (warning threshold)"
+  description = "Scanned Bytes (warning threshold)"
   type        = "string"
   default     = 0
 }
 
 variable "scanned_bytes_threshold_critical" {
-  description = "Scanned Bytes Bytes (critical threshold)"
+  description = "Scanned Bytes (critical threshold)"
   type        = "string"
   default     = 1
 }
@@ -165,13 +165,13 @@ variable "scanned_bytes_billed_timeframe" {
 }
 
 variable "scanned_bytes_billed_threshold_warning" {
-  description = "Scanned Bytes Billed Bytes (warning threshold)"
+  description = "Scanned Bytes Billed (warning threshold)"
   type        = "string"
   default     = 0
 }
 
 variable "scanned_bytes_billed_threshold_critical" {
-  description = "Scanned Bytes Billed Bytes (critical threshold)"
+  description = "Scanned Bytes Billed (critical threshold)"
   type        = "string"
   default     = 1
 }
@@ -328,13 +328,13 @@ variable "uploaded_bytes_timeframe" {
 }
 
 variable "uploaded_bytes_threshold_warning" {
-  description = "Uploaded Bytes in Bytes (warning threshold)"
+  description = "Uploaded Bytes (warning threshold)"
   type        = "string"
   default     = 0
 }
 
 variable "uploaded_bytes_threshold_critical" {
-  description = "Uploaded Bytes in Bytes (critical threshold)"
+  description = "Uploaded Bytes (critical threshold)"
   type        = "string"
   default     = 1
 }
@@ -369,13 +369,13 @@ variable "uploaded_bytes_billed_timeframe" {
 }
 
 variable "uploaded_bytes_billed_threshold_warning" {
-  description = "Uploaded Bytes Billed in Bytes (warning threshold)"
+  description = "Uploaded Bytes Billed (warning threshold)"
   type        = "string"
   default     = 0
 }
 
 variable "uploaded_bytes_billed_threshold_critical" {
-  description = "Uploaded Bytes Billed in Bytes (critical threshold)"
+  description = "Uploaded Bytes Billed (critical threshold)"
   type        = "string"
   default     = 1
 }

@@ -56,14 +56,14 @@ Creates DataDog monitors with the following checks:
 | scanned_bytes_billed_extra_tags | Extra tags for GCP Big Query Scanned Bytes Billed monitor | list | `<list>` | no |
 | scanned_bytes_billed_message | Custom message for the Scanned Bytes Billed monitor | string | `` | no |
 | scanned_bytes_billed_silenced | Groups to mute for GCP Big Query Scanned Bytes Billed monitor. Muted by default. | map | `<map>` | no |
-| scanned_bytes_billed_threshold_critical | Scanned Bytes Billed Bytes (critical threshold) | string | `1` | no |
-| scanned_bytes_billed_threshold_warning | Scanned Bytes Billed Bytes (warning threshold) | string | `0` | no |
+| scanned_bytes_billed_threshold_critical | Scanned Bytes Billed (critical threshold) | string | `1` | no |
+| scanned_bytes_billed_threshold_warning | Scanned Bytes Billed (warning threshold) | string | `0` | no |
 | scanned_bytes_billed_timeframe | Timeframe for the Scanned Bytes Billed monitor | string | `last_4h` | no |
 | scanned_bytes_extra_tags | Extra tags for GCP Big Query Scanned Bytes monitor | list | `<list>` | no |
 | scanned_bytes_message | Custom message for the Scanned Bytes monitor | string | `` | no |
 | scanned_bytes_silenced | Groups to mute for GCP Big Query Scanned Bytes monitor. Muted by default. | map | `<map>` | no |
-| scanned_bytes_threshold_critical | Scanned Bytes Bytes (critical threshold) | string | `1` | no |
-| scanned_bytes_threshold_warning | Scanned Bytes Bytes (warning threshold) | string | `0` | no |
+| scanned_bytes_threshold_critical | Scanned Bytes (critical threshold) | string | `1` | no |
+| scanned_bytes_threshold_warning | Scanned Bytes (warning threshold) | string | `0` | no |
 | scanned_bytes_timeframe | Timeframe for the Scanned Bytes monitor | string | `last_4h` | no |
 | stored_bytes_extra_tags | Extra tags for GCP Big Query Stored Bytes monitor | list | `<list>` | no |
 | stored_bytes_message | Custom message for the Stored Bytes monitor | string | `` | no |
@@ -80,14 +80,14 @@ Creates DataDog monitors with the following checks:
 | uploaded_bytes_billed_extra_tags | Extra tags for GCP Big Query Scanned Bytes monitor | list | `<list>` | no |
 | uploaded_bytes_billed_message | Custom message for the Uploaded Bytes Billed monitor | string | `` | no |
 | uploaded_bytes_billed_silenced | Groups to mute for GCP Big Query Uploaded Bytes Billed monitor. Muted by default. | map | `<map>` | no |
-| uploaded_bytes_billed_threshold_critical | Uploaded Bytes Billed in Bytes (critical threshold) | string | `1` | no |
-| uploaded_bytes_billed_threshold_warning | Uploaded Bytes Billed in Bytes (warning threshold) | string | `0` | no |
+| uploaded_bytes_billed_threshold_critical | Uploaded Bytes Billed (critical threshold) | string | `1` | no |
+| uploaded_bytes_billed_threshold_warning | Uploaded Bytes Billed (warning threshold) | string | `0` | no |
 | uploaded_bytes_billed_timeframe | Timeframe for the Uploaded Bytes Billed monitor | string | `last_4h` | no |
 | uploaded_bytes_extra_tags | Extra tags for GCP Big Query Uploaded Bytes monitor | list | `<list>` | no |
 | uploaded_bytes_message | Custom message for the Uploaded Bytes monitor | string | `` | no |
 | uploaded_bytes_silenced | Groups to mute for GCP Big Query Uploaded Bytes monitor. Muted by default. | map | `<map>` | no |
-| uploaded_bytes_threshold_critical | Uploaded Bytes in Bytes (critical threshold) | string | `1` | no |
-| uploaded_bytes_threshold_warning | Uploaded Bytes in Bytes (warning threshold) | string | `0` | no |
+| uploaded_bytes_threshold_critical | Uploaded Bytes (critical threshold) | string | `1` | no |
+| uploaded_bytes_threshold_warning | Uploaded Bytes (warning threshold) | string | `0` | no |
 | uploaded_bytes_timeframe | Timeframe for the Uploaded Bytes monitor | string | `last_4h` | no |
 
 ## Outputs
