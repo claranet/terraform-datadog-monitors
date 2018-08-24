@@ -9,9 +9,9 @@ resource "datadog_monitor" "error_rate_4xx" {
 
   query = <<EOF
   ${var.error_rate_4xx_time_aggregator}(${var.error_rate_4xx_timeframe}):
-    avg:gcp.loadbalancing.https.request_count{${var.filter_tags},response_code_class:400} by {backend_target_name}.as_count().fill(zero)
+    avg:gcp.loadbalancing.https.request_count{${var.filter_tags},response_code_class:400} by {forwarding_rule_name}.as_count().fill(zero)
     /
-    (avg:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {backend_target_name}.as_count().fill(zero) + ${var.error_rate_4xx_artificial_request} ) * 100
+    (avg:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {forwarding_rule_name}.as_count().fill(zero) + ${var.error_rate_4xx_artificial_request} ) * 100
   > ${var.error_rate_4xx_threshold_critical}
 EOF
 
@@ -46,9 +46,9 @@ resource "datadog_monitor" "error_rate_5xx" {
 
   query = <<EOF
   ${var.error_rate_5xx_time_aggregator}(${var.error_rate_5xx_timeframe}):
-    avg:gcp.loadbalancing.https.request_count{${var.filter_tags},response_code_class:500} by {backend_target_name}.as_count().fill(zero)
+    avg:gcp.loadbalancing.https.request_count{${var.filter_tags},response_code_class:500} by {forwarding_rule_name}.as_count().fill(zero)
     /
-    (avg:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {backend_target_name}.as_count().fill(zero) + ${var.error_rate_5xx_artificial_request} ) * 100
+    (avg:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {forwarding_rule_name}.as_count().fill(zero) + ${var.error_rate_5xx_artificial_request} ) * 100
   > ${var.error_rate_5xx_threshold_critical}
 EOF
 
@@ -83,7 +83,7 @@ resource "datadog_monitor" "latency" {
 
   query = <<EOF
   ${var.latency_time_aggregator}(${var.latency_timeframe}):
-    min:gcp.loadbalancing.https.total_latencies.avg{${var.filter_tags}} by {backend_target_name}
+    min:gcp.loadbalancing.https.total_latencies.avg{${var.filter_tags}} by {forwarding_rule_name}
   > ${var.latency_threshold_critical}
 EOF
 
@@ -119,7 +119,7 @@ resource "datadog_monitor" "backend_latency" {
 
   query = <<EOF
   ${var.backend_latency_time_aggregator}(${var.backend_latency_timeframe}):
-    min:gcp.loadbalancing.https.backend_latencies.avg{${var.filter_tags}} by {backend_target_name}
+    min:gcp.loadbalancing.https.backend_latencies.avg{${var.filter_tags}} by {forwarding_rule_name}
   > ${var.backend_latency_threshold_critical}
 EOF
 
@@ -155,7 +155,7 @@ resource "datadog_monitor" "request_count" {
 
   query = <<EOF
   pct_change(${var.request_count_time_aggregator}(${var.request_count_timeframe}),${var.request_count_timeshift}):
-    avg:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {backend_target_name}.as_count().fill(zero)
+    avg:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {forwarding_rule_name}.as_count().fill(zero)
   > ${var.request_count_threshold_critical}
 EOF
 
