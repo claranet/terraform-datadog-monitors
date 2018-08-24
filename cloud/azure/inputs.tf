@@ -8,9 +8,14 @@ variable "message" {
   type        = "string"
 }
 
-variable "delay" {
+variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 900
+}
+
+variable "new_host_delay" {
+  description = "Delay in seconds before begin to monitor"
+  default     = 300
 }
 
 variable "filter_tags_use_defaults" {

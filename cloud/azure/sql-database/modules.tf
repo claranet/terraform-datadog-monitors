@@ -1,5 +1,5 @@
 module "filter-tags" {
-  source = "../../common/filter-tags"
+  source = "../../../common/filter-tags"
 
   environment              = "${var.environment}"
   resource                 = "sql-database"
