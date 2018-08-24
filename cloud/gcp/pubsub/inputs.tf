@@ -47,7 +47,7 @@ variable "sending_operations_count_timeframe" {
 }
 
 variable "sending_operations_count_threshold_critical" {
-  description = "Critical threshold"
+  description = "Critical threshold for the number of sending operations."
   type        = "string"
   default     = 0
 }
@@ -86,13 +86,13 @@ variable "unavailable_sending_operations_count_timeframe" {
 }
 
 variable "unavailable_sending_operations_count_threshold_warning" {
-  description = "Warning threshold"
+  description = "Warning threshold for the number of unavailable sending operations"
   type        = "string"
   default     = 2
 }
 
 variable "unavailable_sending_operations_count_threshold_critical" {
-  description = "Critical threshold"
+  description = "Critical threshold for the number of unavailable sending operations"
   type        = "string"
   default     = 4
 }
