@@ -10,10 +10,6 @@ EOL
 
   type = "metric alert"
 
-  lifecycle {
-    ignore_changes = ["type"]
-  }
-
   thresholds {
     warning  = "${var.evictedkeys_change_threshold_warning}"
     critical = "${var.evictedkeys_change_threshold_critical}"
@@ -45,10 +41,6 @@ resource "datadog_monitor" "expirations" {
 EOL
 
   type = "metric alert"
-
-  lifecycle {
-    ignore_changes = ["type"]
-  }
 
   thresholds {
     warning  = "${var.expirations_rate_threshold_warning}"
@@ -83,10 +75,6 @@ EOL
 
   type = "metric alert"
 
-  lifecycle {
-    ignore_changes = ["type"]
-  }
-
   thresholds {
     warning  = "${var.blocked_clients_threshold_warning}"
     critical = "${var.blocked_clients_threshold_critical}"
@@ -118,10 +106,6 @@ resource "datadog_monitor" "keyspace_full" {
 EOL
 
   type = "metric alert"
-
-  lifecycle {
-    ignore_changes = ["type"]
-  }
 
   thresholds {
     warning  = "${var.keyspace_threshold_warning}"
@@ -156,10 +140,6 @@ EOL
 
   type = "metric alert"
 
-  lifecycle {
-    ignore_changes = ["type"]
-  }
-
   thresholds {
     warning  = "${var.mem_used_threshold_warning}"
     critical = "${var.mem_used_threshold_critical}"
@@ -191,10 +171,6 @@ resource "datadog_monitor" "memory_frag" {
 EOL
 
   type = "metric alert"
-
-  lifecycle {
-    ignore_changes = ["type"]
-  }
 
   thresholds {
     warning  = "${var.mem_frag_threshold_warning}"
@@ -228,10 +204,6 @@ EOL
 
   type = "metric alert"
 
-  lifecycle {
-    ignore_changes = ["type"]
-  }
-
   thresholds {
     warning  = "${var.rejected_con_threshold_warning}"
     critical = "${var.rejected_con_threshold_critical}"
@@ -263,10 +235,6 @@ resource "datadog_monitor" "latency" {
 EOL
 
   type = "metric alert"
-
-  lifecycle {
-    ignore_changes = ["type"]
-  }
 
   thresholds {
     warning  = "${var.latency_threshold_warning}"
@@ -301,10 +269,6 @@ resource "datadog_monitor" "hitrate" {
 EOL
 
   type = "metric alert"
-
-  lifecycle {
-    ignore_changes = ["type"]
-  }
 
   thresholds {
     warning  = "${var.hitrate_threshold_warning}"
