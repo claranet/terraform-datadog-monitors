@@ -927,7 +927,7 @@ variable "servicebus_status_time_aggregator" {
 
 variable "servicebus_status_timeframe" {
   description = "Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  default     = "last_15m"
+  default     = "last_5m"
 }
 
 variable "servicebus_no_active_connections_silenced" {
@@ -951,7 +951,7 @@ variable "servicebus_no_active_connections_time_aggregator" {
 variable "servicebus_no_active_connections_timeframe" {
   description = "Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
-  default     = "last_15m"
+  default     = "last_5m"
 }
 
 variable "servicebus_server_errors_message" {
@@ -1599,6 +1599,36 @@ variable "streamanalytics_runtime_errors_threshold_critical" {
 }
 
 # Azure CosmosDB specific variables
+variable "cosmos_db_status_silenced" {
+  description = "Groups to mute for Cosmos DB status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "cosmos_db_status_extra_tags" {
+  description = "Extra tags for Cosmos DB status monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "cosmos_db_status_message" {
+  description = "Custom message for Cosmos DB status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "cosmos_db_status_time_aggregator" {
+  description = "Monitor aggregator for Cosmos DB status [available values: min, max or avg]"
+  type        = "string"
+  default     = "max"
+}
+
+variable "cosmos_db_status_timeframe" {
+  description = "Monitor timeframe for Cosmos DB status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "cosmos_db_4xx_requests_message" {
   description = "Custom message for Cosmos DB 4xx requests monitor"
   type        = "string"
@@ -1619,6 +1649,24 @@ variable "cosmos_db_4xx_request_rate_threshold_critical" {
 variable "cosmos_db_4xx_request_rate_threshold_warning" {
   description = "Warning threshold for Cosmos DB 4xx requests monitor"
   default     = 50
+}
+
+variable "cosmos_db_4xx_request_extra_tags" {
+  description = "Extra tags for Cosmos DB 4xx requests monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "cosmos_db_4xx_request_time_aggregator" {
+  description = "Monitor aggregator for Cosmos DB 4xx requests [available values: min, max or avg]"
+  type        = "string"
+  default     = "sum"
+}
+
+variable "cosmos_db_4xx_request_timeframe" {
+  description = "Monitor timeframe for Cosmos DB 4xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "cosmos_db_5xx_requests_message" {
@@ -1643,6 +1691,24 @@ variable "cosmos_db_5xx_request_rate_threshold_warning" {
   default     = 50
 }
 
+variable "cosmos_db_5xx_request_rate_extra_tags" {
+  description = "Extra tags for Cosmos DB 5xx requests monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "cosmos_db_5xx_request_time_aggregator" {
+  description = "Monitor aggregator for Cosmos DB 5xx requests [available values: min, max or avg]"
+  type        = "string"
+  default     = "sum"
+}
+
+variable "cosmos_db_5xx_request_timeframe" {
+  description = "Monitor timeframe for Cosmos DB 5xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
 variable "cosmos_db_no_request_message" {
   description = "Custom message for Cosmos DB no request monitor"
   type        = "string"
@@ -1653,6 +1719,24 @@ variable "cosmos_db_no_request_silenced" {
   description = "Groups to mute for Cosmos DB no request monitor"
   type        = "map"
   default     = {}
+}
+
+variable "cosmos_db_no_request_extra_tags" {
+  description = "Extra tags for Cosmos DB no request monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "cosmos_db_no_request_time_aggregator" {
+  description = "Monitor aggregator for Cosmos DB no request [available values: min, max or avg]"
+  type        = "string"
+  default     = "max"
+}
+
+variable "cosmos_db_no_request_timeframe" {
+  description = "Monitor timeframe for Cosmos DB no request [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
 }
 
 variable "cosmos_db_ru_utilization_message" {
@@ -1677,7 +1761,25 @@ variable "cosmos_db_ru_utilization_rate_threshold_warning" {
   default     = 80
 }
 
-variable "cosmos_db_ru_utilization_collection" {
+variable "cosmos_db_ru_utilization_extra_tags" {
+  description = "Extra tags for Cosmos DB collection RU utilization monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "cosmos_db_ru_utilization_time_aggregator" {
+  description = "Monitor aggregator for Cosmos DB RU utilization [available values: min, max or avg]"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "cosmos_db_ru_utilization_timeframe" {
+  description = "Monitor timeframe for Cosmos DB RU utilization [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "cosmos_db_ru_utilization_collections" {
   description = "Group to associate Cosmos DB collection to RU max"
   type        = "map"
 }
@@ -1703,7 +1805,13 @@ variable "datalakestore_status_time_aggregator" {
 
 variable "datalakestore_status_timeframe" {
   description = "Monitor timeframe for Datalake Store status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  default     = "last_15m"
+  default     = "last_5m"
+}
+
+variable "datalakestore_status_extra_tags" {
+  description = "Extra tags for Datalake Store status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "list"
+  default     = []
 }
 
 variable "keyvault_status_silenced" {
@@ -1726,7 +1834,13 @@ variable "keyvault_status_time_aggregator" {
 
 variable "keyvault_status_timeframe" {
   description = "Monitor timeframe for Key Vault status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  default     = "last_15m"
+  default     = "last_5m"
+}
+
+variable "keyvault_status_extra_tags" {
+  description = "Extra tags for Key Vault status monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "keyvault_api_result_silenced" {
@@ -1741,9 +1855,15 @@ variable "keyvault_api_result_message" {
   default     = ""
 }
 
+variable "keyvault_api_result_time_aggregator" {
+  description = "Monitor aggregator for Key Vault API result [available values: min, max or avg]"
+  type        = "string"
+  default     = "sum"
+}
+
 variable "keyvault_api_result_timeframe" {
   description = "Monitor timeframe for Key Vault API result [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  default     = "last_30m"
+  default     = "last_5m"
 }
 
 variable "keyvault_api_result_threshold_critical" {
@@ -1754,4 +1874,49 @@ variable "keyvault_api_result_threshold_critical" {
 variable "keyvault_api_result_threshold_warning" {
   description = "Warning threshold for Key Vault API result rate"
   default     = 30
+}
+
+variable "keyvault_api_result_extra_tags" {
+  description = "Extra tags for Key Vault API result monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "keyvault_api_latency_silenced" {
+  description = "Groups to mute for Key Vault API latency monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "keyvault_api_latency_message" {
+  description = "Custom message for Key Vault API latency monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "keyvault_api_latency_time_aggregator" {
+  description = "Monitor aggregator for Key Vault API latency [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "keyvault_api_latency_timeframe" {
+  description = "Monitor timeframe for Key Vault API latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_5m"
+}
+
+variable "keyvault_api_latency_threshold_critical" {
+  description = "Critical threshold for Key Vault API latency rate"
+  default     = 100
+}
+
+variable "keyvault_api_latency_threshold_warning" {
+  description = "Warning threshold for Key Vault API latency rate"
+  default     = 80
+}
+
+variable "keyvault_api_latency_extra_tags" {
+  description = "Extra tags for Key Vault API latency monitor"
+  type        = "list"
+  default     = []
 }

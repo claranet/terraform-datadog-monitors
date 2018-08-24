@@ -17,9 +17,14 @@ variable "message" {
   description = "Message sent when a monitor is triggered"
 }
 
-variable "delay" {
+variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 900
+}
+
+variable "new_host_delay" {
+  description = "Delay in seconds before monitor new resource"
+  default     = 300
 }
 
 # Azure Datalake Store specific variables
@@ -43,5 +48,11 @@ variable "status_time_aggregator" {
 
 variable "status_timeframe" {
   description = "Monitor timeframe for Datalake Store status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  default     = "last_15m"
+  default     = "last_5m"
+}
+
+variable "status_extra_tags" {
+  description = "Extra tags for Datalake Store status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "list"
+  default     = []
 }

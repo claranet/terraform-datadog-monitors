@@ -31,7 +31,7 @@ resource "datadog_monitor" "service_bus_no_active_connections" {
 
   query = <<EOF
     ${var.no_active_connections_time_aggregator}(${var.no_active_connections_timeframe}): (
-      avg:azure.servicebus_namespaces.active_connections_preview{${data.template_file.filter.rendered}} by {resource_group,region,name}
+      avg:azure.servicebus_namespaces.active_connections_preview${module.filter-tags.query_alert} by {resource_group,region,name}
       ) < 1
   EOF
 
@@ -40,14 +40,14 @@ resource "datadog_monitor" "service_bus_no_active_connections" {
   silenced = "${var.no_active_connections_silenced}"
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = true
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = ["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
 }
@@ -58,8 +58,8 @@ resource "datadog_monitor" "service_bus_user_errors" {
 
   query = <<EOF
       sum(${var.user_errors_timeframe}): (default(
-        avg:azure.servicebus_namespaces.user_errors.preview{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
-        avg:azure.servicebus_namespaces.incoming_requests_preview{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
+        avg:azure.servicebus_namespaces.user_errors.preview${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() /
+        avg:azure.servicebus_namespaces.incoming_requests_preview${module.filter-tags.query_alert} by {resource_group,region,name}.as_count()
         * 100, 0)
       ) > ${var.user_errors_threshold_critical}
   EOF
@@ -74,14 +74,14 @@ resource "datadog_monitor" "service_bus_user_errors" {
   silenced = "${var.user_errors_silenced}"
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = true
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = ["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
 }
@@ -92,8 +92,8 @@ resource "datadog_monitor" "service_bus_server_errors" {
 
   query = <<EOF
       sum(${var.server_errors_timeframe}): (default(
-        avg:azure.servicebus_namespaces.server_errors.preview{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count() /
-        avg:azure.servicebus_namespaces.incoming_requests_preview{${data.template_file.filter.rendered}} by {resource_group,region,name}.as_count()
+        avg:azure.servicebus_namespaces.server_errors.preview${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() /
+        avg:azure.servicebus_namespaces.incoming_requests_preview${module.filter-tags.query_alert} by {resource_group,region,name}.as_count()
         * 100, 0)
       ) > ${var.server_errors_threshold_critical}
   EOF
@@ -108,14 +108,14 @@ resource "datadog_monitor" "service_bus_server_errors" {
   silenced = "${var.server_errors_silenced}"
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = true
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   tags = ["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
 }

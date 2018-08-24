@@ -56,7 +56,7 @@ variable "status_time_aggregator" {
 
 variable "status_timeframe" {
   description = "Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  default     = "last_15m"
+  default     = "last_5m"
 }
 
 variable "no_active_connections_silenced" {
@@ -80,7 +80,7 @@ variable "no_active_connections_time_aggregator" {
 variable "no_active_connections_timeframe" {
   description = "Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
-  default     = "last_15m"
+  default     = "last_5m"
 }
 
 variable "server_errors_message" {
