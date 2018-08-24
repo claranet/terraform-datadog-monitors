@@ -16,10 +16,10 @@ module "datadog-monitors-cloud-azure-servicebus" {
 
 Creates DataDog monitors with the following checks:
 
-- Service Bus is down
 - Service Bus has no active connection
-- Service Bus user errors rate is high
+- Service Bus is down
 - Service Bus server errors rate is high
+- Service Bus user errors rate is high
 
 ## Inputs
 
@@ -30,6 +30,7 @@ Creates DataDog monitors with the following checks:
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
+| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 | no_active_connections_message | Custom message for Service Bus status monitor | string | `` | no |
 | no_active_connections_silenced | Groups to mute for Service Bus status monitor | map | `<map>` | no |
 | no_active_connections_time_aggregator | Monitor aggregator for Service Bus status [available values: min, max or avg] | string | `max` | no |
@@ -39,7 +40,6 @@ Creates DataDog monitors with the following checks:
 | server_errors_threshold_critical | Critical threshold for Service Bus server errors monitor | string | `90` | no |
 | server_errors_threshold_warning | Warning threshold for Service Bus server errors monitor | string | `50` | no |
 | server_errors_timeframe | Monitor timeframe for Service Bus server errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 | status_extra_tags | Extra tags for Service Bus status monitor | list | `<list>` | no |
 | status_message | Custom message for Service Bus status monitor | string | `` | no |
 | status_silenced | Groups to mute for Service Bus status monitor | map | `<map>` | no |
