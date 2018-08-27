@@ -69,7 +69,7 @@ Creates DataDog monitors with the following checks:
 | mysql_queries_alert_window | Alert window. | string | `last_15m` | no |
 | mysql_queries_count_default_zero | Count default zero. | string | `true` | no |
 | mysql_queries_detection_algorithm | Anomaly Detection Algorithm used | string | `agile` | no |
-| mysql_queries_deviations | Deviations to detect the anomaly | string | `2` | no |
+| mysql_queries_deviations | Deviations to detect the anomaly | string | `5` | no |
 | mysql_queries_direction | Direction of the anomaly. It can be both, below or above. | string | `both` | no |
 | mysql_queries_extra_tags | Extra tags for MySQL queries monitor | list | `<list>` | no |
 | mysql_queries_interval | Interval. | string | `60` | no |

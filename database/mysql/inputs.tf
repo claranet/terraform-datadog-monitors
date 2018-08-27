@@ -376,7 +376,7 @@ variable "mysql_queries_detection_algorithm" {
 variable "mysql_queries_deviations" {
   description = "Deviations to detect the anomaly"
   type        = "string"
-  default     = 2
+  default     = 5
 }
 
 variable "mysql_queries_direction" {
