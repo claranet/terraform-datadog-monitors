@@ -211,6 +211,11 @@ resource "datadog_monitor" "mysql_threads_anomaly" {
     critical_recovery = 0
   }
 
+  threshold_windows = {
+    recovery_window = "${var.mysql_threads_alert_window}"
+	trigger_window = "${var.mysql_threads_alert_window}"
+  }
+
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
@@ -248,6 +253,11 @@ resource "datadog_monitor" "mysql_queries_anomaly" {
   thresholds {
     critical          = "${var.mysql_queries_threshold_critical}"
     critical_recovery = 0
+  }
+
+  threshold_windows = {
+    recovery_window = "${var.mysql_queries_alert_window}"
+	trigger_window = "${var.mysql_queries_alert_window}"
   }
 
   notify_no_data      = false
