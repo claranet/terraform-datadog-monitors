@@ -1,4 +1,6 @@
 resource "datadog_monitor" "datalakestore_status" {
+  count = "${var.status_enabled ? 1 : 0}"
+
   name    = "[${var.environment}] Datalake Store is down"
   message = "${coalesce(var.status_message, var.message)}"
 

@@ -28,6 +28,12 @@ variable "new_host_delay" {
 }
 
 # Azure CosmosDB specific variables
+variable "status_enabled" {
+  description = "Flag to enable Cosmos DB status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "status_silenced" {
   description = "Groups to mute for Cosmos DB status monitor"
   type        = "map"
@@ -62,6 +68,12 @@ variable "cosmos_db_4xx_requests_message" {
   description = "Custom message for Cosmos DB 4xx requests monitor"
   type        = "string"
   default     = ""
+}
+
+variable "cosmos_db_4xx_requests_enabled" {
+  description = "Flag to enable Cosmos DB 4xx requests monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "cosmos_db_4xx_requests_silenced" {
@@ -104,6 +116,12 @@ variable "cosmos_db_5xx_requests_message" {
   default     = ""
 }
 
+variable "cosmos_db_5xx_requests_enabled" {
+  description = "Flag to enable Cosmos DB 5xx requests monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "cosmos_db_5xx_requests_silenced" {
   description = "Groups to mute for Cosmos DB 5xx requests monitor"
   type        = "map"
@@ -144,6 +162,12 @@ variable "cosmos_db_no_request_message" {
   default     = ""
 }
 
+variable "cosmos_db_no_request_enabled" {
+  description = "Flag to enable Cosmos DB no request monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "cosmos_db_no_request_silenced" {
   description = "Groups to mute for Cosmos DB no request monitor"
   type        = "map"
@@ -172,6 +196,12 @@ variable "cosmos_db_ru_utilization_message" {
   description = "Custom message for Cosmos DB collection RU utilization monitor"
   type        = "string"
   default     = ""
+}
+
+variable "cosmos_db_ru_utilization_enabled" {
+  description = "Flag to enable Cosmos DB collection RU utilization monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "cosmos_db_ru_utilization_silenced" {

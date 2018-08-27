@@ -398,12 +398,14 @@ module "cosmosdb" {
   filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
   filter_tags_custom       = "${var.filter_tags_custom}"
 
+  status_enabled         = "${var.cosmos_db_status_enabled}"
   status_message         = "${var.cosmos_db_status_message}"
   status_silenced        = "${var.cosmos_db_status_silenced}"
   status_extra_tags      = "${var.cosmos_db_status_extra_tags}"
   status_time_aggregator = "${var.cosmos_db_status_time_aggregator}"
   status_timeframe       = "${var.cosmos_db_status_timeframe}"
 
+  cosmos_db_4xx_requests_enabled                = "${var.cosmos_db_4xx_requests_enabled}"
   cosmos_db_4xx_request_rate_threshold_critical = "${var.cosmos_db_4xx_request_rate_threshold_critical}"
   cosmos_db_4xx_request_rate_threshold_warning  = "${var.cosmos_db_4xx_request_rate_threshold_warning}"
   cosmos_db_4xx_requests_message                = "${var.cosmos_db_4xx_requests_message}"
@@ -412,6 +414,7 @@ module "cosmosdb" {
   cosmos_db_4xx_request_time_aggregator         = "${var.cosmos_db_4xx_request_time_aggregator}"
   cosmos_db_4xx_request_timeframe               = "${var.cosmos_db_4xx_request_timeframe}"
 
+  cosmos_db_5xx_requests_enabled                = "${var.cosmos_db_5xx_requests_enabled}"
   cosmos_db_5xx_request_rate_threshold_critical = "${var.cosmos_db_5xx_request_rate_threshold_critical}"
   cosmos_db_5xx_request_rate_threshold_warning  = "${var.cosmos_db_5xx_request_rate_threshold_warning}"
   cosmos_db_5xx_requests_message                = "${var.cosmos_db_5xx_requests_message}"
@@ -420,12 +423,14 @@ module "cosmosdb" {
   cosmos_db_5xx_request_time_aggregator         = "${var.cosmos_db_5xx_request_time_aggregator}"
   cosmos_db_5xx_request_timeframe               = "${var.cosmos_db_5xx_request_timeframe}"
 
+  cosmos_db_no_request_enabled         = "${var.cosmos_db_no_request_enabled}"
   cosmos_db_no_request_message         = "${var.cosmos_db_no_request_message}"
   cosmos_db_no_request_silenced        = "${var.cosmos_db_no_request_silenced}"
   cosmos_db_no_request_extra_tags      = "${var.cosmos_db_no_request_extra_tags}"
   cosmos_db_no_request_time_aggregator = "${var.cosmos_db_no_request_time_aggregator}"
   cosmos_db_no_request_timeframe       = "${var.cosmos_db_no_request_timeframe}"
 
+  cosmos_db_ru_utilization_enabled                 = "${var.cosmos_db_ru_utilization_enabled}"
   cosmos_db_ru_utilization_rate_threshold_critical = "${var.cosmos_db_ru_utilization_rate_threshold_critical}"
   cosmos_db_ru_utilization_rate_threshold_warning  = "${var.cosmos_db_ru_utilization_rate_threshold_warning}"
   cosmos_db_ru_utilization_message                 = "${var.cosmos_db_ru_utilization_message}"
@@ -447,6 +452,7 @@ module "datalakestore" {
   filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
   filter_tags_custom       = "${var.filter_tags_custom}"
 
+  status_enabled         = "${var.datalakestore_status_enabled}"
   status_silenced        = "${var.datalakestore_status_silenced}"
   status_message         = "${var.datalakestore_status_message}"
   status_timeframe       = "${var.datalakestore_status_timeframe}"
@@ -465,6 +471,7 @@ module "keyvault" {
   filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
   filter_tags_custom       = "${var.filter_tags_custom}"
 
+  status_enabled         = "${var.keyvault_status_enabled}"
   status_silenced        = "${var.keyvault_status_silenced}"
   status_message         = "${var.keyvault_status_message}"
   status_timeframe       = "${var.keyvault_status_timeframe}"
@@ -480,6 +487,7 @@ module "keyvault" {
   api_result_threshold_warning  = "${var.keyvault_api_result_threshold_warning}"
   api_result_extra_tags         = "${var.keyvault_api_result_extra_tags}"
 
+  api_latency_enabled            = "${var.keyvault_api_latency_enabled}"
   api_latency_silenced           = "${var.keyvault_api_latency_silenced}"
   api_latency_message            = "${var.keyvault_api_latency_message}"
   api_latency_timeframe          = "${var.keyvault_api_latency_timeframe}"

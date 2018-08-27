@@ -907,6 +907,12 @@ variable "redis_server_load_rate_threshold_warning" {
 }
 
 # Azure Service Bus specific variables
+variable "servicebus_status_enabled" {
+  description = "Flag to enable Service Bus status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "servicebus_status_silenced" {
   description = "Groups to mute for Service Bus status monitor"
   type        = "map"
@@ -928,6 +934,12 @@ variable "servicebus_status_time_aggregator" {
 variable "servicebus_status_timeframe" {
   description = "Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   default     = "last_5m"
+}
+
+variable "servicebus_no_active_connections_enabled" {
+  description = "Flag to enable Service Bus status monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "servicebus_no_active_connections_silenced" {
@@ -960,6 +972,12 @@ variable "servicebus_server_errors_message" {
   default     = ""
 }
 
+variable "servicebus_server_errors_enabled" {
+  description = "Flag to enable Service Bus server errors monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "servicebus_server_errors_silenced" {
   description = "Groups to mute for Service Bus server errors monitor"
   type        = "map"
@@ -986,6 +1004,12 @@ variable "servicebus_user_errors_message" {
   description = "Custom message for Service Bus user errors monitor"
   type        = "string"
   default     = ""
+}
+
+variable "servicebus_user_errors_enabled" {
+  description = "Flag to enable Service Bus user errors monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "servicebus_user_errors_silenced" {
@@ -1599,6 +1623,12 @@ variable "streamanalytics_runtime_errors_threshold_critical" {
 }
 
 # Azure CosmosDB specific variables
+variable "cosmos_db_status_enabled" {
+  description = "Flag to enable Cosmos DB status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "cosmos_db_status_silenced" {
   description = "Groups to mute for Cosmos DB status monitor"
   type        = "map"
@@ -1633,6 +1663,12 @@ variable "cosmos_db_4xx_requests_message" {
   description = "Custom message for Cosmos DB 4xx requests monitor"
   type        = "string"
   default     = ""
+}
+
+variable "cosmos_db_4xx_requests_enabled" {
+  description = "Flag to enable Cosmos DB 4xx requests monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "cosmos_db_4xx_requests_silenced" {
@@ -1675,6 +1711,12 @@ variable "cosmos_db_5xx_requests_message" {
   default     = ""
 }
 
+variable "cosmos_db_5xx_requests_enabled" {
+  description = "Flag to enable Cosmos DB 5xx requests monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "cosmos_db_5xx_requests_silenced" {
   description = "Groups to mute for Cosmos DB 5xx requests monitor"
   type        = "map"
@@ -1715,6 +1757,12 @@ variable "cosmos_db_no_request_message" {
   default     = ""
 }
 
+variable "cosmos_db_no_request_enabled" {
+  description = "Flag to enable Cosmos DB no request monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "cosmos_db_no_request_silenced" {
   description = "Groups to mute for Cosmos DB no request monitor"
   type        = "map"
@@ -1743,6 +1791,12 @@ variable "cosmos_db_ru_utilization_message" {
   description = "Custom message for Cosmos DB collection RU utilization monitor"
   type        = "string"
   default     = ""
+}
+
+variable "cosmos_db_ru_utilization_enabled" {
+  description = "Flag to enable Cosmos DB collection RU utilization monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "cosmos_db_ru_utilization_silenced" {
@@ -1785,6 +1839,12 @@ variable "cosmos_db_ru_utilization_collections" {
 }
 
 # Azure Datalake Store specific variables
+variable "datalakestore_status_enabled" {
+  description = "Flag to enable Datalake Store status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "datalakestore_status_silenced" {
   description = "Groups to mute for Datalake Store status monitor"
   type        = "map"
@@ -1814,6 +1874,12 @@ variable "datalakestore_status_extra_tags" {
   default     = []
 }
 
+variable "keyvault_status_enabled" {
+  description = "Flag to enable Key Vault status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "keyvault_status_silenced" {
   description = "Groups to mute for Key Vault status monitor"
   type        = "map"
@@ -1841,6 +1907,12 @@ variable "keyvault_status_extra_tags" {
   description = "Extra tags for Key Vault status monitor"
   type        = "list"
   default     = []
+}
+
+variable "keyvault_api_result_enabled" {
+  description = "Flag to enable Key Vault API result monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "keyvault_api_result_silenced" {
@@ -1880,6 +1952,12 @@ variable "keyvault_api_result_extra_tags" {
   description = "Extra tags for Key Vault API result monitor"
   type        = "list"
   default     = []
+}
+
+variable "keyvault_api_latency_enabled" {
+  description = "Flag to enable Key Vault API latency monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "keyvault_api_latency_silenced" {
