@@ -17,3 +17,8 @@ output "cosmos_db_success_no_data_id" {
   description = "id for monitor cosmos_db_success_no_data"
   value       = "${datadog_monitor.cosmos_db_success_no_data.id}"
 }
+
+output "cosmos_db_ru_utilization_id" {
+  description = "id for monitor cosmos_db_ru_utilization"
+  value       = "${datadog_monitor.cosmos_db_ru_utilization.*.id}"
+}

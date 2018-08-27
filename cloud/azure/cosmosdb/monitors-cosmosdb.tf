@@ -173,8 +173,8 @@ resource "datadog_monitor" "cosmos_db_ru_utilization" {
   query = <<EOF
       ${var.cosmos_db_ru_utilization_time_aggregator}(${var.cosmos_db_ru_utilization_timeframe}): (
         (
-          avg:azure.cosmosdb.total_request_units${format(module.filter-tags-collection.query_alert,lower(element(keys(var.cosmos_db_ru_utilization_collections),count.index)))} by {resource_group,region,name,collectionname} +
-          avg:azure.documentdb_databaseaccounts.total_request_units${format(module.filter-tags-collection.query_alert,lower(element(keys(var.cosmos_db_ru_utilization_collections),count.index)))} by {resource_group,region,name,collectionname}
+          sum:azure.cosmosdb.total_request_units${format(module.filter-tags-collection.query_alert,lower(element(keys(var.cosmos_db_ru_utilization_collections),count.index)))} by {resource_group,region,name,collectionname} +
+          sum:azure.documentdb_databaseaccounts.total_request_units${format(module.filter-tags-collection.query_alert,lower(element(keys(var.cosmos_db_ru_utilization_collections),count.index)))} by {resource_group,region,name,collectionname}
         ) /
         ${element(values(var.cosmos_db_ru_utilization_collections),count.index)}
       ) * 100 > ${var.cosmos_db_ru_utilization_rate_threshold_critical}

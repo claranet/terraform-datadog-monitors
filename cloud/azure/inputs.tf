@@ -1824,7 +1824,7 @@ variable "cosmos_db_ru_utilization_extra_tags" {
 variable "cosmos_db_ru_utilization_time_aggregator" {
   description = "Monitor aggregator for Cosmos DB RU utilization [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "sum"
 }
 
 variable "cosmos_db_ru_utilization_timeframe" {
@@ -1834,7 +1834,7 @@ variable "cosmos_db_ru_utilization_timeframe" {
 }
 
 variable "cosmos_db_ru_utilization_collections" {
-  description = "Group to associate Cosmos DB collection to RU max"
+  description = "Group to associate Cosmos DB collection to RU max. RU value has to be correlated with the monitor timeframe"
   type        = "map"
 }
 
