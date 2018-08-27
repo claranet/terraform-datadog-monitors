@@ -9,9 +9,9 @@ resource "datadog_monitor" "error_rate_4xx" {
 
   query = <<EOF
   ${var.error_rate_4xx_time_aggregator}(${var.error_rate_4xx_timeframe}):
-    avg:gcp.loadbalancing.https.request_count{${var.filter_tags},response_code_class:400} by {forwarding_rule_name}.as_count().fill(zero)
-    /
-    (avg:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {forwarding_rule_name}.as_count().fill(zero) + ${var.error_rate_4xx_artificial_request} ) * 100
+    default(sum:gcp.loadbalancing.https.request_count{${var.filter_tags},response_code_class:400} by {forwarding_rule_name}.as_count(), 0)
+    / (default(sum:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {forwarding_rule_name}.as_count(), 0)
+    + ${var.error_rate_4xx_artificial_request}) * 100
   > ${var.error_rate_4xx_threshold_critical}
 EOF
 
@@ -45,11 +45,11 @@ resource "datadog_monitor" "error_rate_5xx" {
   type = "metric alert"
 
   query = <<EOF
-  ${var.error_rate_5xx_time_aggregator}(${var.error_rate_5xx_timeframe}):
-    avg:gcp.loadbalancing.https.request_count{${var.filter_tags},response_code_class:500} by {forwarding_rule_name}.as_count().fill(zero)
-    /
-    (avg:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {forwarding_rule_name}.as_count().fill(zero) + ${var.error_rate_5xx_artificial_request} ) * 100
-  > ${var.error_rate_5xx_threshold_critical}
+  ${var.error_rate_4xx_time_aggregator}(${var.error_rate_4xx_timeframe}):
+    default(sum:gcp.loadbalancing.https.request_count{${var.filter_tags},response_code_class:500} by {forwarding_rule_name}.as_count(), 0)
+    / (default(sum:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {forwarding_rule_name}.as_count(), 0)
+    + ${var.error_rate_4xx_artificial_request}) * 100
+  > ${var.error_rate_4xx_threshold_critical}
 EOF
 
   thresholds {
@@ -155,7 +155,7 @@ resource "datadog_monitor" "request_count" {
 
   query = <<EOF
   pct_change(${var.request_count_time_aggregator}(${var.request_count_timeframe}),${var.request_count_timeshift}):
-    avg:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {forwarding_rule_name}.as_count().fill(zero)
+  default(sum:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {forwarding_rule_name}.as_count(), 0)
   > ${var.request_count_threshold_critical}
 EOF
 
