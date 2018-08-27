@@ -1,9 +1,10 @@
 module "apimanagement" {
   source = "./apimanagement"
 
-  environment = "${var.environment}"
-  message     = "${var.message}"
-  delay       = "${var.delay}"
+  environment      = "${var.environment}"
+  message          = "${var.message}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
   filter_tags_custom       = "${var.filter_tags_custom}"
@@ -37,9 +38,10 @@ module "apimanagement" {
 module "appservices" {
   source = "./app-services"
 
-  environment = "${var.environment}"
-  message     = "${var.message}"
-  delay       = "${var.delay}"
+  environment      = "${var.environment}"
+  message          = "${var.message}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
   filter_tags_custom       = "${var.filter_tags_custom}"
@@ -76,9 +78,10 @@ module "appservices" {
 module "eventhub" {
   source = "./eventhub"
 
-  environment = "${var.environment}"
-  message     = "${var.message}"
-  delay       = "${var.delay}"
+  environment      = "${var.environment}"
+  message          = "${var.message}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
   filter_tags_custom       = "${var.filter_tags_custom}"
@@ -102,9 +105,10 @@ module "eventhub" {
 module "iothub" {
   source = "./iothubs"
 
-  environment = "${var.environment}"
-  message     = "${var.message}"
-  delay       = "${var.delay}"
+  environment      = "${var.environment}"
+  message          = "${var.message}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   filter_tags = "${var.non_taggable_filter_tags}"
 
@@ -179,9 +183,10 @@ module "iothub" {
 module "redis" {
   source = "./redis"
 
-  environment = "${var.environment}"
-  message     = "${var.message}"
-  delay       = "${var.delay}"
+  environment      = "${var.environment}"
+  message          = "${var.message}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
   filter_tags_custom       = "${var.filter_tags_custom}"
@@ -213,9 +218,10 @@ module "redis" {
 module "servicebus" {
   source = "./servicebus"
 
-  environment = "${var.environment}"
-  message     = "${var.message}"
-  delay       = "${var.delay}"
+  environment      = "${var.environment}"
+  message          = "${var.message}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
   filter_tags_custom       = "${var.filter_tags_custom}"
@@ -229,9 +235,10 @@ module "servicebus" {
 module "sqldatabase" {
   source = "./sql-database"
 
-  environment = "${var.environment}"
-  message     = "${var.message}"
-  delay       = "${var.delay}"
+  environment      = "${var.environment}"
+  message          = "${var.message}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
   filter_tags_custom       = "${var.filter_tags_custom}"
@@ -263,9 +270,10 @@ module "sqldatabase" {
 module "storage" {
   source = "./storage"
 
-  environment = "${var.environment}"
-  message     = "${var.message}"
-  delay       = "${var.delay}"
+  environment      = "${var.environment}"
+  message          = "${var.message}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
   filter_tags_custom       = "${var.filter_tags_custom}"
@@ -329,9 +337,10 @@ module "storage" {
 module "streamanalytics" {
   source = "./stream-analytics"
 
-  environment = "${var.environment}"
-  message     = "${var.message}"
-  delay       = "${var.delay}"
+  environment      = "${var.environment}"
+  message          = "${var.message}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
   filter_tags_custom       = "${var.filter_tags_custom}"
