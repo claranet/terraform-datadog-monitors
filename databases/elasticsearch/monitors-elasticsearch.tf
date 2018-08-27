@@ -182,7 +182,10 @@ resource "datadog_monitor" "node_free_space" {
 
   query = <<EOF
   ${var.node_free_space_time_aggregator}(${var.node_free_space_timeframe}):
-    min:elasticsearch.fs.total.available_in_bytes{${data.template_file.filter.rendered}} by {node_name} / min:elasticsearch.fs.total.total_in_bytes{${data.template_file.filter.rendered}} by {node_name} * 100
+    (min:elasticsearch.fs.total.available_in_bytes{${data.template_file.filter.rendered}} by {node_name}
+    /
+    min:elasticsearch.fs.total.total_in_bytes{${data.template_file.filter.rendered}} by {node_name}
+    ) * 100
   < ${var.node_free_space_threshold_critical}
 EOF
 
@@ -812,7 +815,7 @@ resource "datadog_monitor" "request_cache_evictions_change" {
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
   query = <<EOF
   change(${var.request_cache_evictions_change_time_aggregator}(${var.request_cache_evictions_change_timeframe}),${var.request_cache_evictions_change_timeshift}):
-    avg:elasticsearch.indices.request_cache.evictions{${data.template_file.filter.rendered}} by {node_cache}
+    avg:elasticsearch.indices.request_cache.evictions{${data.template_file.filter.rendered}} by {node_name}
   > ${var.request_cache_evictions_change_threshold_critical}
 EOF
 
