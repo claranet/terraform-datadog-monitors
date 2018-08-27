@@ -57,7 +57,6 @@ variable "mysql_availability_threshold_critical" {
   default     = 1.1754943508222875e-38
 }
 
-
 #################################
 ###   MySQL connections       ###
 #################################
