@@ -66,7 +66,7 @@ resource "datadog_monitor" "mysql_aborted" {
   query = <<EOF
     ${var.mysql_aborted_time_aggregator}(${var.mysql_aborted_timeframe}): (
       avg:mysql.net.aborted_connects${module.filter-tags.query_alert} by {server} /
-      avg:mysql.performance.queries_connected${module.filter-tags.query_alert} by {server}
+      avg:mysql.performance.threads_connected${module.filter-tags.query_alert} by {server}
     ) * 100 > ${var.mysql_aborted_threshold_critical}
   EOF
 
