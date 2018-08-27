@@ -17,7 +17,7 @@ module "datadog-monitors-database-mysql" {
 Creates DataDog monitors with the following checks:
 
 - Mysql server does not respond
-- Mysql Connections
+- Mysql Connections limit
 - Mysql Aborted connects
 - Mysql Slow queries
 - Mysql Innodb buffer pool efficiency

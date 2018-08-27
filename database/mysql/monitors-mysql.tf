@@ -213,7 +213,7 @@ resource "datadog_monitor" "mysql_threads_anomaly" {
 
   threshold_windows = {
     recovery_window = "${var.mysql_threads_alert_window}"
-	trigger_window = "${var.mysql_threads_alert_window}"
+    trigger_window  = "${var.mysql_threads_alert_window}"
   }
 
   notify_no_data      = false
@@ -257,7 +257,7 @@ resource "datadog_monitor" "mysql_queries_anomaly" {
 
   threshold_windows = {
     recovery_window = "${var.mysql_queries_alert_window}"
-	trigger_window = "${var.mysql_queries_alert_window}"
+    trigger_window  = "${var.mysql_queries_alert_window}"
   }
 
   notify_no_data      = false
