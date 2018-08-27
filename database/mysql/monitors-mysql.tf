@@ -27,7 +27,6 @@ resource "datadog_monitor" "mysql_availability" {
   tags = ["env:${var.environment}", "type:middleware", "provider:php-fpm", "resource:php-fpm", "team:claranet", "created-by:terraform", "${var.mysql_availability_extra_tags}"]
 }
 
-
 resource "datadog_monitor" "mysql_connection" {
   name    = "[${var.environment}] Mysql Connections {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mysql_connection_message, var.message)}"
@@ -208,7 +207,7 @@ resource "datadog_monitor" "mysql_threads_anomaly" {
   new_host_delay   = "${var.new_host_delay}"
 
   thresholds {
-    critical = "${var.mysql_threads_threshold_critical}"
+    critical          = "${var.mysql_threads_threshold_critical}"
     critical_recovery = 0
   }
 
@@ -247,7 +246,7 @@ resource "datadog_monitor" "mysql_queries_anomaly" {
   new_host_delay   = "${var.new_host_delay}"
 
   thresholds {
-    critical = "${var.mysql_queries_threshold_critical}"
+    critical          = "${var.mysql_queries_threshold_critical}"
     critical_recovery = 0
   }
 
