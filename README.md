@@ -101,6 +101,7 @@ The `//` is very important, it's a terraform specific syntax used to separate gi
 	- [alerting-message](https://bitbucket.org/morea/terraform.feature.datadog/src/master/common/alerting-message/)
 	- [filter-tags](https://bitbucket.org/morea/terraform.feature.datadog/src/master/common/filter-tags/)
 - [database](https://bitbucket.org/morea/terraform.feature.datadog/src/master/database/)
+	- [elasticsearch](https://bitbucket.org/morea/terraform.feature.datadog/src/master/database/elasticsearch/)
 	- [mongodb](https://bitbucket.org/morea/terraform.feature.datadog/src/master/database/mongodb/)
 	- [mysql](https://bitbucket.org/morea/terraform.feature.datadog/src/master/database/mysql/)
 	- [redis](https://bitbucket.org/morea/terraform.feature.datadog/src/master/database/redis/)

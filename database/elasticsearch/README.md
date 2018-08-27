@@ -1,10 +1,10 @@
-# DATABASES ELASTICSEARCH DataDog monitors
+# DATABASE ELASTICSEARCH DataDog monitors
 
 ## How to use this module
 
 ```
-module "datadog-monitors-databases-elasticsearch" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//databases/elasticsearch?ref={revision}"
+module "datadog-monitors-database-elasticsearch" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//database/elasticsearch?ref={revision}"
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
