@@ -28,7 +28,7 @@ resource "datadog_monitor" "mysql_availability" {
 }
 
 resource "datadog_monitor" "mysql_connection" {
-  name    = "[${var.environment}] Mysql Connections {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Mysql Connections limit {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mysql_connection_message, var.message)}"
   type    = "metric alert"
 
