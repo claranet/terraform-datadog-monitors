@@ -28,6 +28,12 @@ variable "new_host_delay" {
 }
 
 # Azure Key Vault specific variables
+variable "status_enabled" {
+  description = "Flag to enable Key Vault status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "status_silenced" {
   description = "Groups to mute for Key Vault status monitor"
   type        = "map"
@@ -55,6 +61,12 @@ variable "status_extra_tags" {
   description = "Extra tags for Key Vault status monitor"
   type        = "list"
   default     = []
+}
+
+variable "api_result_enabled" {
+  description = "Flag to enable Key Vault API result monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "api_result_silenced" {
@@ -94,6 +106,12 @@ variable "api_result_extra_tags" {
   description = "Extra tags for Key Vault API result monitor"
   type        = "list"
   default     = []
+}
+
+variable "api_latency_enabled" {
+  description = "Flag to enable Key Vault API latency monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "api_latency_silenced" {

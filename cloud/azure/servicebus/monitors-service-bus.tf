@@ -1,4 +1,6 @@
 resource "datadog_monitor" "servicebus_status" {
+  count = "${var.status_enabled ? 1 : 0}"
+
   name    = "[${var.environment}] Service Bus is down"
   message = "${coalesce(var.status_message, var.message)}"
 
@@ -26,6 +28,8 @@ EOF
 }
 
 resource "datadog_monitor" "service_bus_no_active_connections" {
+  count = "${var.no_active_connections_enabled ? 1 : 0}"
+
   name    = "[${var.environment}] Service Bus has no active connection"
   message = "${coalesce(var.no_active_connections_message, var.message)}"
 
@@ -53,6 +57,8 @@ resource "datadog_monitor" "service_bus_no_active_connections" {
 }
 
 resource "datadog_monitor" "service_bus_user_errors" {
+  count = "${var.user_errors_enabled ? 1 : 0}"
+
   name    = "[${var.environment}] Service Bus user errors rate is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.user_errors_message, var.message)}"
 
@@ -87,6 +93,8 @@ resource "datadog_monitor" "service_bus_user_errors" {
 }
 
 resource "datadog_monitor" "service_bus_server_errors" {
+  count = "${var.server_errors_enabled ? 1 : 0}"
+
   name    = "[${var.environment}] Service Bus server errors rate is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.server_errors_message, var.message)}"
 

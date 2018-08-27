@@ -28,6 +28,12 @@ variable "new_host_delay" {
 }
 
 # Azure Datalake Store specific variables
+variable "status_enabled" {
+  description = "Flag to enable Datalake Store status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "status_silenced" {
   description = "Groups to mute for Datalake Store status monitor"
   type        = "map"

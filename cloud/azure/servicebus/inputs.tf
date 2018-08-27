@@ -30,6 +30,12 @@ variable "filter_tags_custom" {
 }
 
 # Azure Service Bus specific variables
+variable "status_enabled" {
+  description = "Flag to enable Service Bus status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "status_silenced" {
   description = "Groups to mute for Service Bus status monitor"
   type        = "map"
@@ -57,6 +63,12 @@ variable "status_time_aggregator" {
 variable "status_timeframe" {
   description = "Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   default     = "last_5m"
+}
+
+variable "no_active_connections_enabled" {
+  description = "Flag to enable Service Bus status monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "no_active_connections_silenced" {
@@ -89,6 +101,12 @@ variable "server_errors_message" {
   default     = ""
 }
 
+variable "server_errors_enabled" {
+  description = "Flag to enable Service Bus server errors monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "server_errors_silenced" {
   description = "Groups to mute for Service Bus server errors monitor"
   type        = "map"
@@ -115,6 +133,12 @@ variable "user_errors_message" {
   description = "Custom message for Service Bus user errors monitor"
   type        = "string"
   default     = ""
+}
+
+variable "user_errors_enabled" {
+  description = "Flag to enable Service Bus user errors monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "user_errors_silenced" {

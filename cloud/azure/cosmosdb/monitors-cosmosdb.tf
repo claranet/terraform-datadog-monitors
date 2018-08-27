@@ -1,4 +1,6 @@
 resource "datadog_monitor" "cosmos_db_status" {
+  count = "${var.status_enabled ? 1 : 0}"
+
   name    = "[${var.environment}] Cosmos DB is down"
   message = "${coalesce(var.status_message, var.message)}"
 
@@ -31,6 +33,8 @@ resource "datadog_monitor" "cosmos_db_status" {
 }
 
 resource "datadog_monitor" "cosmos_db_4xx_requests" {
+  count = "${var.cosmos_db_4xx_requests_enabled ? 1 : 0}"
+
   name    = "[${var.environment}] Cosmos DB 4xx requests rate is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cosmos_db_4xx_requests_message, var.message)}"
 
@@ -88,6 +92,8 @@ resource "datadog_monitor" "cosmos_db_4xx_requests" {
 }
 
 resource "datadog_monitor" "cosmos_db_5xx_requests" {
+  count = "${var.cosmos_db_5xx_requests_enabled ? 1 : 0}"
+
   name    = "[${var.environment}] Cosmos DB 5xx requests rate is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cosmos_db_5xx_requests_message, var.message)}"
 
@@ -129,6 +135,8 @@ resource "datadog_monitor" "cosmos_db_5xx_requests" {
 }
 
 resource "datadog_monitor" "cosmos_db_success_no_data" {
+  count = "${var.cosmos_db_no_request_enabled ? 1 : 0}"
+
   name    = "[${var.environment}] Cosmos DB has no request"
   message = "${coalesce(var.cosmos_db_no_request_message, var.message)}"
 
@@ -157,7 +165,7 @@ resource "datadog_monitor" "cosmos_db_success_no_data" {
 }
 
 resource "datadog_monitor" "cosmos_db_ru_utilization" {
-  count = "${length(var.cosmos_db_ru_utilization_collections)}"
+  count = "${var.cosmos_db_ru_utilization_enabled ? length(var.cosmos_db_ru_utilization_collections) : 0}"
 
   name    = "[${var.environment}] Cosmos DB collection ${element(keys(var.cosmos_db_ru_utilization_collections),count.index)} RU utilization is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cosmos_db_ru_utilization_message, var.message)}"
