@@ -41,29 +41,29 @@ resource "datadog_monitor" "cosmos_db_4xx_requests" {
   query = <<EOF
       ${var.cosmos_db_4xx_request_time_aggregator}(${var.cosmos_db_4xx_request_timeframe}): (default(
         (
-          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "400")} by {resource_group,region,name}.as_count() +
-          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "401")} by {resource_group,region,name}.as_count() +
-          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "403")} by {resource_group,region,name}.as_count() +
-          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "404")} by {resource_group,region,name}.as_count() +
-          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "408")} by {resource_group,region,name}.as_count() +
-          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "409")} by {resource_group,region,name}.as_count() +
-          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "412")} by {resource_group,region,name}.as_count() +
-          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "413")} by {resource_group,region,name}.as_count() +
-          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "429")} by {resource_group,region,name}.as_count() +
-          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "449")} by {resource_group,region,name}.as_count() +
-          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "400")} by {resource_group,region,name}.as_count() +
-          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "401")} by {resource_group,region,name}.as_count() +
-          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "403")} by {resource_group,region,name}.as_count() +
-          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "404")} by {resource_group,region,name}.as_count() +
-          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "408")} by {resource_group,region,name}.as_count() +
-          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "409")} by {resource_group,region,name}.as_count() +
-          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "412")} by {resource_group,region,name}.as_count() +
-          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "413")} by {resource_group,region,name}.as_count() +
-          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "429")} by {resource_group,region,name}.as_count() +
-          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "449")} by {resource_group,region,name}.as_count()
+          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "400")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "401")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "403")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "404")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "408")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "409")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "412")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "413")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "429")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "449")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "400")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "401")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "403")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "404")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "408")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "409")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "412")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "413")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "429")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "449")} by {resource_group,region,name,collectionname}.as_count()
         ) / (
-          avg:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() +
-          avg:azure.documentdb_databaseaccounts.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count()
+          avg:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.documentdb_databaseaccounts.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_count()
         )
         * 100, 0)
       ) > ${var.cosmos_db_4xx_request_rate_threshold_critical}
@@ -100,13 +100,13 @@ resource "datadog_monitor" "cosmos_db_5xx_requests" {
   query = <<EOF
       ${var.cosmos_db_5xx_request_time_aggregator}(${var.cosmos_db_5xx_request_timeframe}): (default(
         (
-          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "500")} by {resource_group,region,name}.as_count() +
-          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "503")} by {resource_group,region,name}.as_count() +
-          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "500")} by {resource_group,region,name}.as_count() +
-          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "503")} by {resource_group,region,name}.as_count()
+          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "500")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "503")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "500")} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "503")} by {resource_group,region,name,collectionname}.as_count()
         ) / (
-          avg:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() +
-          avg:azure.documentdb_databaseaccounts.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count()
+          avg:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_count() +
+          avg:azure.documentdb_databaseaccounts.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_count()
         )
         * 100, 0)
       ) > ${var.cosmos_db_5xx_request_rate_threshold_critical}
@@ -142,8 +142,8 @@ resource "datadog_monitor" "cosmos_db_success_no_data" {
 
   query = <<EOF
       ${var.cosmos_db_no_request_time_aggregator}(${var.cosmos_db_no_request_timeframe}): (
-        avg:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name} +
-        avg:azure.documentdb_databaseaccounts.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}
+        avg:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname} +
+        avg:azure.documentdb_databaseaccounts.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}
       ) < 0
   EOF
 
