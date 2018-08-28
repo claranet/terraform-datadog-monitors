@@ -8,6 +8,12 @@ module "datadog-monitors-cloud-azure-cosmosdb" {
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
+
+  # MyDocumentCollection is provisioned with 1000 RU/s in Azure so,
+  # we set the RU value for 5 minutes as input because 5m is the default evalutation timeframe
+  cosmos_db_ru_utilization_collections = {
+    "MyDocumentCollection" = 300000   # 1000 * 60 * 5
+  }
 }
 
 ```
