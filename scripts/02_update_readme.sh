@@ -31,6 +31,7 @@ for path in $(find "$(get_scope $1)" -path ./incubator -prune -o -name 'monitors
     module_space=${module^^}
     module_dash=${module//[ ]/-}
     module_slash=${module//[ ]/\/}
+
     cat <<EOF > README.md
 # ${module_space} DataDog monitors
 
@@ -42,6 +43,13 @@ module "datadog-monitors-${module_dash}" {
 
   environment = "\${var.environment}"
   message     = "\${module.datadog-message-alerting.alerting-message}"
+EOF
+
+    if [[ $EXIST -eq 1 ]]; then
+        sed -n '/^[[:space:]]*message[[:space:]]*=.*/,/^\}/p' README.md.bak | tail -n +2 | head -n -1 >> README.md
+    fi
+
+    cat <<EOF >> README.md
 }
 
 \`\`\`
