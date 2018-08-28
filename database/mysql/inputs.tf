@@ -52,7 +52,7 @@ variable "mysql_availability_message" {
 }
 
 variable "mysql_availability_threshold_critical" {
-  description = "Nginx status monitor (critical threshold)"
+  description = "Mysql availability monitor (critical threshold)"
   type        = "string"
   default     = 1.1754943508222875e-38
 }

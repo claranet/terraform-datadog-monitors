@@ -44,7 +44,7 @@ Creates DataDog monitors with the following checks:
 | mysql_availability_extra_tags | Extra tags for Mysql availability monitor | list | `<list>` | no |
 | mysql_availability_message | Custom message for Mysql availability monitor | string | `` | no |
 | mysql_availability_silenced | Groups to mute for Mysql availability monitor | map | `<map>` | no |
-| mysql_availability_threshold_critical | Nginx status monitor (critical threshold) | string | `1.1754943508222875e-38` | no |
+| mysql_availability_threshold_critical | Mysql availability monitor (critical threshold) | string | `1.1754943508222875e-38` | no |
 | mysql_connection_extra_tags | Extra tags for MySQL connection monitor | list | `<list>` | no |
 | mysql_connection_message | Custom message for MySQL connection monitor | string | `` | no |
 | mysql_connection_silenced | Groups to mute MySQL connection monitor | map | `<map>` | no |
