@@ -37,6 +37,12 @@ variable "alb_no_healthy_instances_silenced" {
   default     = {}
 }
 
+variable "alb_no_healthy_instances_enabled" {
+  description = "Flag to enable ALB no healthy instances monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "alb_no_healthy_instances_extra_tags" {
   description = "Extra tags for ALB no healthy instances monitor"
   type        = "list"
@@ -65,6 +71,12 @@ variable "latency_silenced" {
   description = "Groups to mute for ALB latency monitor"
   type        = "map"
   default     = {}
+}
+
+variable "latency_enabled" {
+  description = "Flag to enable ALB latency monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "latency_extra_tags" {
@@ -107,6 +119,12 @@ variable "httpcode_alb_4xx_silenced" {
   default     = {}
 }
 
+variable "httpcode_alb_4xx_enabled" {
+  description = "Flag to enable ALB httpcode 4xx monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "httpcode_alb_4xx_extra_tags" {
   description = "Extra tags for ALB httpcode 4xx monitor"
   type        = "list"
@@ -139,6 +157,12 @@ variable "httpcode_target_4xx_silenced" {
   description = "Groups to mute for ALB target httpcode 4xx monitor"
   type        = "map"
   default     = {}
+}
+
+variable "httpcode_target_4xx_enabled" {
+  description = "Flag to enable ALB target httpcode 4xx monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "httpcode_target_4xx_extra_tags" {
@@ -175,6 +199,12 @@ variable "httpcode_alb_5xx_silenced" {
   default     = {}
 }
 
+variable "httpcode_alb_5xx_enabled" {
+  description = "Flag to enable ALB httpcode 5xx monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "httpcode_alb_5xx_extra_tags" {
   description = "Extra tags for ALB httpcode 5xx monitor"
   type        = "list"
@@ -207,6 +237,12 @@ variable "httpcode_target_5xx_silenced" {
   description = "Groups to mute for ALB target httpcode 5xx monitor"
   type        = "map"
   default     = {}
+}
+
+variable "httpcode_target_5xx_enabled" {
+  description = "Flag to enable ALB target httpcode 5xx monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "httpcode_target_5xx_extra_tags" {

@@ -30,6 +30,12 @@ variable "vpn_status_silenced" {
   default     = {}
 }
 
+variable "vpn_status_enabled" {
+  description = "Flag to enable VPN status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "vpn_status_extra_tags" {
   description = "Extra tags for VPN status monitor"
   type        = "list"

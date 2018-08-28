@@ -36,6 +36,12 @@ variable "status_silenced" {
   default     = {}
 }
 
+variable "status_enabled" {
+  description = "Flag to enable Redis status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "status_extra_tags" {
   description = "Extra tags for Redis status monitor"
   type        = "list"
@@ -64,6 +70,12 @@ variable "evictedkeys_limit_silenced" {
   description = "Groups to mute for Redis evicted keys monitor"
   type        = "map"
   default     = {}
+}
+
+variable "evictedkeys_limit_enabled" {
+  description = "Flag to enable Redis evicted keys monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "evictedkeys_limit_extra_tags" {
@@ -106,6 +118,12 @@ variable "percent_processor_time_silenced" {
   default     = {}
 }
 
+variable "percent_processor_time_enabled" {
+  description = "Flag to enable Redis processor monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "percent_processor_time_extra_tags" {
   description = "Extra tags for Redis processor monitor"
   type        = "list"
@@ -144,6 +162,12 @@ variable "server_load_rate_silenced" {
   description = "Groups to mute for Redis server load monitor"
   type        = "map"
   default     = {}
+}
+
+variable "server_load_rate_enabled" {
+  description = "Flag to enable Redis server load monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "server_load_rate_extra_tags" {

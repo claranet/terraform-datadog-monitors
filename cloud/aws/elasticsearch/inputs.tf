@@ -37,6 +37,12 @@ variable "es_cluster_status_silenced" {
   default     = {}
 }
 
+variable "es_cluster_status_enabled" {
+  description = "Flag to enable ES cluster status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "es_cluster_status_extra_tags" {
   description = "Extra tags for ES cluster status monitor"
   type        = "list"
@@ -63,6 +69,12 @@ variable "diskspace_silenced" {
   description = "Groups to mute for ES cluster diskspace monitor"
   type        = "map"
   default     = {}
+}
+
+variable "diskspace_enabled" {
+  description = "Flag to enable ES cluster diskspace monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "diskspace_extra_tags" {
@@ -103,6 +115,12 @@ variable "cpu_silenced" {
   description = "Groups to mute for ES cluster cpu monitor"
   type        = "map"
   default     = {}
+}
+
+variable "cpu_enabled" {
+  description = "Flag to enable ES cluster cpu monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "cpu_extra_tags" {

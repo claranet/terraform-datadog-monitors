@@ -25,6 +25,7 @@ Creates DataDog monitors with the following checks:
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | environment | Architecture environment | string | - | yes |
+| errors_rate_enabled | Flag to enable Event Hub errors monitor | string | `true` | no |
 | errors_rate_extra_tags | Extra tags for Event Hub errors monitor | list | `<list>` | no |
 | errors_rate_message | Custom message for Event Hub errors monitor | string | `` | no |
 | errors_rate_silenced | Groups to mute for Event Hub errors monitor | map | `<map>` | no |
@@ -32,6 +33,7 @@ Creates DataDog monitors with the following checks:
 | errors_rate_thresold_warning | Errors ratio (percentage) to trigger a warning alert | string | `50` | no |
 | errors_rate_timeframe | Monitor timeframe for Event Hub errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
+| failed_requests_rate_enabled | Flag to enable Event Hub failed requests monitor | string | `true` | no |
 | failed_requests_rate_extra_tags | Extra tags for Event Hub failed requests monitor | list | `<list>` | no |
 | failed_requests_rate_message | Custom message for Event Hub failed requests monitor | string | `` | no |
 | failed_requests_rate_silenced | Groups to mute for Event Hub failed requests monitor | map | `<map>` | no |
@@ -42,6 +44,7 @@ Creates DataDog monitors with the following checks:
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
+| status_enabled | Flag to enable Event Hub status monitor | string | `true` | no |
 | status_extra_tags | Extra tags for Event Hub status monitor | list | `<list>` | no |
 | status_message | Custom message for Event Hub status monitor | string | `` | no |
 | status_silenced | Groups to mute for Event Hub status monitor | map | `<map>` | no |

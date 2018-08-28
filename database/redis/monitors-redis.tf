@@ -1,4 +1,5 @@
 resource "datadog_monitor" "evicted_keys" {
+  count   = "${var.evictedkeys_change_enabled ? 1 : 0}"
   name    = "[${var.environment}] Redis evicted keys {{#is_alert}}{{{comparator}}} {{threshold}}% (+{{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% (+{{value}}%){{/is_warning}}"
   message = "${coalesce(var.evictedkeys_change_message, var.message)}"
 
@@ -31,6 +32,7 @@ EOL
 }
 
 resource "datadog_monitor" "expirations" {
+  count   = "${var.expirations_rate_enabled ? 1 : 0}"
   name    = "[${var.environment}] Redis expired keys {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.expirations_rate_message, var.message)}"
 
@@ -63,6 +65,7 @@ EOL
 }
 
 resource "datadog_monitor" "blocked_clients" {
+  count   = "${var.blocked_clients_enabled ? 1 : 0}"
   name    = "[${var.environment}] Redis blocked clients {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.blocked_clients_message, var.message)}"
 
@@ -96,6 +99,7 @@ EOL
 }
 
 resource "datadog_monitor" "keyspace_full" {
+  count   = "${var.keyspace_enabled ? 1 : 0}"
   name    = "[${var.environment}] Redis keyspace seems full (no changes since ${var.keyspace_timeframe})"
   message = "${coalesce(var.keyspace_message, var.message)}"
 
@@ -128,6 +132,7 @@ EOL
 }
 
 resource "datadog_monitor" "memory_used" {
+  count   = "${var.mem_used_enabled ? 1 : 0}"
   name    = "[${var.environment}] Redis memory used {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mem_used_message, var.message)}"
 
@@ -161,6 +166,7 @@ EOL
 }
 
 resource "datadog_monitor" "memory_frag" {
+  count   = "${var.mem_frag_enabled ? 1 : 0}"
   name    = "[${var.environment}] Redis memory fragmented {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mem_frag_message, var.message)}"
 
@@ -193,6 +199,7 @@ EOL
 }
 
 resource "datadog_monitor" "rejected_connections" {
+  count   = "${var.rejected_con_enabled ? 1 : 0}"
   name    = "[${var.environment}] Redis rejected connections {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.rejected_con_message, var.message)}"
 
@@ -225,6 +232,7 @@ EOL
 }
 
 resource "datadog_monitor" "latency" {
+  count   = "${var.latency_enabled ? 1 : 0}"
   name    = "[${var.environment}] Redis latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}){{/is_warning}}"
   message = "${coalesce(var.latency_message, var.message)}"
 
@@ -257,6 +265,7 @@ EOL
 }
 
 resource "datadog_monitor" "hitrate" {
+  count   = "${var.hitrate_enabled ? 1 : 0}"
   name    = "[${var.environment}] Redis hitrate {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.hitrate_message, var.message)}"
 
@@ -294,6 +303,7 @@ EOL
 # Service Check
 #
 resource "datadog_monitor" "not_responding" {
+  count   = "${var.not_responding_enabled ? 1 : 0}"
   name    = "[${var.environment}] Redis does not respond"
   message = "${coalesce(var.not_responding_message, var.message)}"
 

@@ -37,6 +37,12 @@ variable "php_fpm_busy_silenced" {
   default     = {}
 }
 
+variable "php_fpm_busy_enabled" {
+  description = "Flag to enable PHP FPM busy worker monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "php_fpm_busy_extra_tags" {
   description = "Extra tags for PHP FPM busy worker monitor"
   type        = "list"
@@ -75,6 +81,12 @@ variable "php_fpm_connect_silenced" {
   description = "Groups to mute for PHP FPM process monitor"
   type        = "map"
   default     = {}
+}
+
+variable "php_fpm_connect_enabled" {
+  description = "Flag to enable PHP FPM process monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "php_fpm_connect_extra_tags" {

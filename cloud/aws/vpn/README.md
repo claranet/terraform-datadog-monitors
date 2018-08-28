@@ -27,6 +27,7 @@ Creates DataDog monitors with the following checks:
 | filter_tags | Tags used for metrics filtering | string | `*` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
+| vpn_status_enabled | Flag to enable VPN status monitor | string | `true` | no |
 | vpn_status_extra_tags | Extra tags for VPN status monitor | list | `<list>` | no |
 | vpn_status_message | Custom message for VPN status monitor | string | `` | no |
 | vpn_status_silenced | Groups to mute for VPN status monitor | map | `<map>` | no |

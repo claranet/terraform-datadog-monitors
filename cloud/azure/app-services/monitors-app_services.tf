@@ -1,5 +1,6 @@
 # Monitoring App Services response time
 resource "datadog_monitor" "appservices_response_time" {
+  count   = "${var.response_time_enabled ? 1 : 0}"
   name    = "[${var.environment}] App Services response time too high {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.response_time_message, var.message)}"
@@ -31,6 +32,7 @@ resource "datadog_monitor" "appservices_response_time" {
 
 # Monitoring App Services memory usage
 resource "datadog_monitor" "appservices_memory_usage_count" {
+  count   = "${var.memory_usage_enabled ? 1 : 0}"
   name    = "[${var.environment}] App Services memory usage {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.memory_usage_message, var.message)}"
@@ -62,6 +64,7 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
 
 # Monitoring App Services 5xx errors percent
 resource "datadog_monitor" "appservices_http_5xx_errors_count" {
+  count   = "${var.http_5xx_requests_enabled ? 1 : 0}"
   name    = "[${var.environment}] App Services HTTP 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.http_5xx_requests_message, var.message)}"
@@ -94,6 +97,7 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
 
 # Monitoring App Services 4xx errors percent
 resource "datadog_monitor" "appservices_http_4xx_errors_count" {
+  count   = "${var.http_4xx_requests_enabled ? 1 : 0}"
   name    = "[${var.environment}] App Services HTTP 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.http_4xx_requests_message, var.message)}"
@@ -126,6 +130,7 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
 
 # Monitoring App Services HTTP 2xx & 3xx status pages percent
 resource "datadog_monitor" "appservices_http_success_status_rate" {
+  count   = "${var.http_successful_requests_enabled ? 1 : 0}"
   name    = "[${var.environment}] App Services HTTP successful responses too low {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.http_successful_requests_message, var.message)}"

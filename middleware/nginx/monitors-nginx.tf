@@ -1,4 +1,5 @@
 resource "datadog_monitor" "datadog_nginx_process" {
+  count   = "${var.nginx_connect_enabled ? 1 : 0}"
   name    = "[${var.environment}] Nginx vhost status does not respond"
   message = "${coalesce(var.nginx_connect_message, var.message)}"
 
