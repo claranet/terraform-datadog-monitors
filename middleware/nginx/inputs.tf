@@ -37,6 +37,12 @@ variable "nginx_connect_silenced" {
   default     = {}
 }
 
+variable "nginx_connect_enabled" {
+  description = "Flag to enable Nginx status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "nginx_connect_extra_tags" {
   description = "Extra tags for Nginx process monitor"
   type        = "list"

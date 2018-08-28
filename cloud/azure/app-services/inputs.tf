@@ -34,6 +34,12 @@ variable "response_time_silenced" {
   default     = {}
 }
 
+variable "response_time_enabled" {
+  description = "Flag to enable App Services response time monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "response_time_extra_tags" {
   description = "Extra tags for App Services response time monitor"
   type        = "list"
@@ -72,6 +78,12 @@ variable "memory_usage_silenced" {
   description = "Groups to mute for App Services memory usage monitor"
   type        = "map"
   default     = {}
+}
+
+variable "memory_usage_enabled" {
+  description = "Flag to enable App Services memory usage monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "memory_usage_extra_tags" {
@@ -114,6 +126,12 @@ variable "http_4xx_requests_silenced" {
   default     = {}
 }
 
+variable "http_4xx_requests_enabled" {
+  description = "Flag to enable App Services 4xx requests monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "http_4xx_requests_extra_tags" {
   description = "Extra tags for App Services 4xx requests monitor"
   type        = "list"
@@ -148,6 +166,12 @@ variable "http_5xx_requests_silenced" {
   default     = {}
 }
 
+variable "http_5xx_requests_enabled" {
+  description = "Flag to enable App Services 5xx requests monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "http_5xx_requests_extra_tags" {
   description = "Extra tags for App Services 5xx requests monitor"
   type        = "list"
@@ -180,6 +204,12 @@ variable "http_successful_requests_silenced" {
   description = "Groups to mute for App Services successful requests monitor"
   type        = "map"
   default     = {}
+}
+
+variable "http_successful_requests_enabled" {
+  description = "Flag to enable App Services successful requests monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "http_successful_requests_extra_tags" {

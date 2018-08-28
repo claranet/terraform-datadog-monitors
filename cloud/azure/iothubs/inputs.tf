@@ -31,6 +31,12 @@ variable "status_silenced" {
   default     = {}
 }
 
+variable "status_enabled" {
+  description = "Flag to enable IoT Hub status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "status_extra_tags" {
   description = "Extra tags for IoT Hub status monitor"
   type        = "list"
@@ -59,6 +65,12 @@ variable "total_devices_silenced" {
   description = "Groups to mute for IoT Hub total devices monitor"
   type        = "map"
   default     = {}
+}
+
+variable "total_devices_enabled" {
+  description = "Flag to enable IoT Hub total devices monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "total_devices_extra_tags" {
@@ -91,6 +103,12 @@ variable "too_many_d2c_telemetry_ingress_nosent_silenced" {
   default     = {}
 }
 
+variable "too_many_d2c_telemetry_ingress_nosent_enabled" {
+  description = "Flag to enable IoT Hub unsent d2c telemetry monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "too_many_d2c_telemetry_ingress_nosent_extra_tags" {
   description = "Extra tags for IoT Hub unsent d2c telemetry monitor"
   type        = "list"
@@ -113,6 +131,12 @@ variable "failed_jobs_rate_silenced" {
   description = "Groups to mute for IoT Hub failed jobs monitor"
   type        = "map"
   default     = {}
+}
+
+variable "failed_jobs_rate_enabled" {
+  description = "Flag to enable IoT Hub failed jobs monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "failed_jobs_rate_extra_tags" {
@@ -149,6 +173,12 @@ variable "failed_listjobs_rate_silenced" {
   default     = {}
 }
 
+variable "failed_listjobs_rate_enabled" {
+  description = "Flag to enable IoT Hub failed list jobs monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "failed_listjobs_rate_extra_tags" {
   description = "Extra tags for IoT Hub failed list jobs monitor"
   type        = "list"
@@ -181,6 +211,12 @@ variable "failed_queryjobs_rate_silenced" {
   description = "Groups to mute for IoT Hub failed query jobs monitor"
   type        = "map"
   default     = {}
+}
+
+variable "failed_queryjobs_rate_enabled" {
+  description = "Flag to enable IoT Hub failed query jobs monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "failed_queryjobs_rate_extra_tags" {
@@ -217,6 +253,12 @@ variable "failed_c2d_methods_rate_silenced" {
   default     = {}
 }
 
+variable "failed_c2d_methods_rate_enabled" {
+  description = "Flag to enable IoT Hub failed c2d methods monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "failed_c2d_methods_rate_extra_tags" {
   description = "Extra tags for IoT Hub failed c2d methods monitor"
   type        = "list"
@@ -249,6 +291,12 @@ variable "failed_c2d_twin_read_rate_silenced" {
   description = "Groups to mute for IoT Hub failed c2d twin read monitor"
   type        = "map"
   default     = {}
+}
+
+variable "failed_c2d_twin_read_rate_enabled" {
+  description = "Flag to enable IoT Hub failed c2d twin read monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "failed_c2d_twin_read_rate_extra_tags" {
@@ -285,6 +333,12 @@ variable "failed_c2d_twin_update_rate_silenced" {
   default     = {}
 }
 
+variable "failed_c2d_twin_update_rate_enabled" {
+  description = "Flag to enable IoT Hub failed c2d twin update monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "failed_c2d_twin_update_rate_extra_tags" {
   description = "Extra tags for IoT Hub failed c2d twin update monitor"
   type        = "list"
@@ -317,6 +371,12 @@ variable "failed_d2c_twin_read_rate_silenced" {
   description = "Groups to mute for IoT Hub failed d2c twin read monitor"
   type        = "map"
   default     = {}
+}
+
+variable "failed_d2c_twin_read_rate_enabled" {
+  description = "Flag to enable IoT Hub failed d2c twin read monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "failed_d2c_twin_read_rate_extra_tags" {
@@ -353,6 +413,12 @@ variable "failed_d2c_twin_update_rate_silenced" {
   default     = {}
 }
 
+variable "failed_d2c_twin_update_rate_enabled" {
+  description = "Flag to enable IoT Hub failed d2c twin update monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "failed_d2c_twin_update_rate_extra_tags" {
   description = "Extra tags for IoT Hub failed d2c twin update monitor"
   type        = "list"
@@ -385,6 +451,12 @@ variable "dropped_d2c_telemetry_egress_silenced" {
   description = "Groups to mute for IoT Hub dropped d2c telemetry monitor"
   type        = "map"
   default     = {}
+}
+
+variable "dropped_d2c_telemetry_egress_enabled" {
+  description = "Flag to enable IoT Hub dropped d2c telemetry monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "dropped_d2c_telemetry_egress_extra_tags" {
@@ -421,6 +493,12 @@ variable "orphaned_d2c_telemetry_egress_silenced" {
   default     = {}
 }
 
+variable "orphaned_d2c_telemetry_egress_enabled" {
+  description = "Flag to enable IoT Hub orphaned d2c telemetry monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "orphaned_d2c_telemetry_egress_extra_tags" {
   description = "Extra tags for IoT Hub orphaned d2c telemetry monitor"
   type        = "list"
@@ -453,6 +531,12 @@ variable "invalid_d2c_telemetry_egress_silenced" {
   description = "Groups to mute for IoT Hub invalid d2c telemetry monitor"
   type        = "map"
   default     = {}
+}
+
+variable "invalid_d2c_telemetry_egress_enabled" {
+  description = "Flag to enable IoT Hub invalid d2c telemetry monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "invalid_d2c_telemetry_egress_extra_tags" {
