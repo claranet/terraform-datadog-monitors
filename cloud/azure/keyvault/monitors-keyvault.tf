@@ -83,7 +83,7 @@ resource "datadog_monitor" "keyvault_api_latency" {
 
   silenced = "${var.api_latency_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
