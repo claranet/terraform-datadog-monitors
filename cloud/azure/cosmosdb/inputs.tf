@@ -156,42 +156,6 @@ variable "cosmos_db_5xx_request_timeframe" {
   default     = "last_5m"
 }
 
-variable "cosmos_db_no_request_message" {
-  description = "Custom message for Cosmos DB no request monitor"
-  type        = "string"
-  default     = ""
-}
-
-variable "cosmos_db_no_request_enabled" {
-  description = "Flag to enable Cosmos DB no request monitor"
-  type        = "string"
-  default     = "true"
-}
-
-variable "cosmos_db_no_request_silenced" {
-  description = "Groups to mute for Cosmos DB no request monitor"
-  type        = "map"
-  default     = {}
-}
-
-variable "cosmos_db_no_request_extra_tags" {
-  description = "Extra tags for Cosmos DB no request monitor"
-  type        = "list"
-  default     = []
-}
-
-variable "cosmos_db_no_request_time_aggregator" {
-  description = "Monitor aggregator for Cosmos DB no request [available values: min, max or avg]"
-  type        = "string"
-  default     = "max"
-}
-
-variable "cosmos_db_no_request_timeframe" {
-  description = "Monitor timeframe for Cosmos DB no request [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
-  default     = "last_5m"
-}
-
 variable "cosmos_db_ru_utilization_message" {
   description = "Custom message for Cosmos DB collection RU utilization monitor"
   type        = "string"

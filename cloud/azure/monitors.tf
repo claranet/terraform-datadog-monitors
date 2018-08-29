@@ -423,13 +423,6 @@ module "cosmosdb" {
   cosmos_db_5xx_request_time_aggregator         = "${var.cosmos_db_5xx_request_time_aggregator}"
   cosmos_db_5xx_request_timeframe               = "${var.cosmos_db_5xx_request_timeframe}"
 
-  cosmos_db_no_request_enabled         = "${var.cosmos_db_no_request_enabled}"
-  cosmos_db_no_request_message         = "${var.cosmos_db_no_request_message}"
-  cosmos_db_no_request_silenced        = "${var.cosmos_db_no_request_silenced}"
-  cosmos_db_no_request_extra_tags      = "${var.cosmos_db_no_request_extra_tags}"
-  cosmos_db_no_request_time_aggregator = "${var.cosmos_db_no_request_time_aggregator}"
-  cosmos_db_no_request_timeframe       = "${var.cosmos_db_no_request_timeframe}"
-
   cosmos_db_ru_utilization_enabled                 = "${var.cosmos_db_ru_utilization_enabled}"
   cosmos_db_ru_utilization_rate_threshold_critical = "${var.cosmos_db_ru_utilization_rate_threshold_critical}"
   cosmos_db_ru_utilization_rate_threshold_warning  = "${var.cosmos_db_ru_utilization_rate_threshold_warning}"

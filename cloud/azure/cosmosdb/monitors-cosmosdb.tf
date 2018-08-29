@@ -134,36 +134,6 @@ resource "datadog_monitor" "cosmos_db_5xx_requests" {
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:cosmos_db", "team:claranet", "created-by:terraform", "${var.cosmos_db_5xx_request_rate_extra_tags}"]
 }
 
-resource "datadog_monitor" "cosmos_db_success_no_data" {
-  count = "${var.cosmos_db_no_request_enabled ? 1 : 0}"
-
-  name    = "[${var.environment}] Cosmos DB has no request"
-  message = "${coalesce(var.cosmos_db_no_request_message, var.message)}"
-
-  query = <<EOF
-      ${var.cosmos_db_no_request_time_aggregator}(${var.cosmos_db_no_request_timeframe}): (
-        avg:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname} +
-        avg:azure.documentdb_databaseaccounts.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}
-      ) < 0
-  EOF
-
-  type = "metric alert"
-
-  silenced = "${var.cosmos_db_no_request_silenced}"
-
-  notify_no_data      = true
-  evaluation_delay    = "${var.evaluation_delay}"
-  renotify_interval   = 0
-  notify_audit        = false
-  timeout_h           = 0
-  include_tags        = true
-  locked              = false
-  require_full_window = true
-  new_host_delay      = "${var.new_host_delay}"
-
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:cosmos_db", "team:claranet", "created-by:terraform", "${var.cosmos_db_no_request_extra_tags}"]
-}
-
 resource "datadog_monitor" "cosmos_db_ru_utilization" {
   count = "${var.cosmos_db_ru_utilization_enabled ? length(var.cosmos_db_ru_utilization_collections) : 0}"
 
