@@ -25,7 +25,6 @@ Creates DataDog monitors with the following checks:
 - Cosmos DB 4xx requests rate is high
 - Cosmos DB 5xx requests rate is high
 - Cosmos DB collection ${element(keys(var.cosmos_db_ru_utilization_collections),count.index)} RU utilization is high
-- Cosmos DB has no request
 - Cosmos DB is down
 
 ## Inputs
@@ -48,12 +47,6 @@ Creates DataDog monitors with the following checks:
 | cosmos_db_5xx_requests_enabled | Flag to enable Cosmos DB 5xx requests monitor | string | `true` | no |
 | cosmos_db_5xx_requests_message | Custom message for Cosmos DB 5xx requests monitor | string | `` | no |
 | cosmos_db_5xx_requests_silenced | Groups to mute for Cosmos DB 5xx requests monitor | map | `<map>` | no |
-| cosmos_db_no_request_enabled | Flag to enable Cosmos DB no request monitor | string | `true` | no |
-| cosmos_db_no_request_extra_tags | Extra tags for Cosmos DB no request monitor | list | `<list>` | no |
-| cosmos_db_no_request_message | Custom message for Cosmos DB no request monitor | string | `` | no |
-| cosmos_db_no_request_silenced | Groups to mute for Cosmos DB no request monitor | map | `<map>` | no |
-| cosmos_db_no_request_time_aggregator | Monitor aggregator for Cosmos DB no request [available values: min, max or avg] | string | `max` | no |
-| cosmos_db_no_request_timeframe | Monitor timeframe for Cosmos DB no request [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | cosmos_db_ru_utilization_collections | Group to associate Cosmos DB collection to RU max. RU value has to be correlated with the monitor timeframe | map | - | yes |
 | cosmos_db_ru_utilization_enabled | Flag to enable Cosmos DB collection RU utilization monitor | string | `true` | no |
 | cosmos_db_ru_utilization_extra_tags | Extra tags for Cosmos DB collection RU utilization monitor | list | `<list>` | no |
@@ -84,7 +77,6 @@ Creates DataDog monitors with the following checks:
 | cosmos_db_5xx_requests_id | id for monitor cosmos_db_5xx_requests |
 | cosmos_db_ru_utilization_id | id for monitor cosmos_db_ru_utilization |
 | cosmos_db_status_id | id for monitor cosmos_db_status |
-| cosmos_db_success_no_data_id | id for monitor cosmos_db_success_no_data |
 
 Related documentation
 ---------------------
