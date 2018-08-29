@@ -36,6 +36,12 @@ variable "elb_no_healthy_instance_silenced" {
   default     = {}
 }
 
+variable "elb_no_healthy_instance_enabled" {
+  description = "Flag to enable ELB no healty instance monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "elb_no_healthy_instance_extra_tags" {
   description = "Extra tags for ELB no healty instance monitor"
   type        = "list"
@@ -64,6 +70,12 @@ variable "elb_4xx_silenced" {
   description = "Groups to mute for ELB 4xx errors monitor"
   type        = "map"
   default     = {}
+}
+
+variable "elb_4xx_enabled" {
+  description = "Flag to enable ELB 4xx errors monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "elb_4xx_extra_tags" {
@@ -100,6 +112,12 @@ variable "elb_5xx_silenced" {
   default     = {}
 }
 
+variable "elb_5xx_enabled" {
+  description = "Flag to enable ELB 5xx errors monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "elb_5xx_extra_tags" {
   description = "Extra tags for ELB 5xx errors monitor"
   type        = "list"
@@ -132,6 +150,12 @@ variable "elb_backend_4xx_silenced" {
   description = "Groups to mute for ELB backend 4xx errors monitor"
   type        = "map"
   default     = {}
+}
+
+variable "elb_backend_4xx_enabled" {
+  description = "Flag to enable ELB backend 4xx errors monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "elb_backend_4xx_extra_tags" {
@@ -168,6 +192,12 @@ variable "elb_backend_5xx_silenced" {
   default     = {}
 }
 
+variable "elb_backend_5xx_enabled" {
+  description = "Flag to enable ELB backend 5xx errors monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "elb_backend_5xx_extra_tags" {
   description = "Extra tags for ELB backend 5xx errors monitor"
   type        = "list"
@@ -200,6 +230,12 @@ variable "elb_backend_latency_silenced" {
   description = "Groups to mute for ELB backend latency monitor"
   type        = "map"
   default     = {}
+}
+
+variable "elb_backend_latency_enabled" {
+  description = "Flag to enable ELB backend latency monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "elb_backend_latency_extra_tags" {

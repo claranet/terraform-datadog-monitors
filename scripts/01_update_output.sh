@@ -12,7 +12,7 @@ for path in $(find "$(get_scope $1)" -path ./incubator -prune -o -name 'monitors
         cat >> outputs.tf <<EOF
 output "${monitor}_id" {
   description = "id for monitor $monitor"
-  value       = "\${datadog_monitor.${monitor}.id}"
+  value       = "\${datadog_monitor.${monitor}.*.id}"
 }
 
 EOF

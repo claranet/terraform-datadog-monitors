@@ -36,6 +36,12 @@ variable "status_silenced" {
   default     = {}
 }
 
+variable "status_enabled" {
+  description = "Flag to enable Event Hub status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "status_extra_tags" {
   description = "Extra tags for Event Hub status monitor"
   type        = "list"
@@ -64,6 +70,12 @@ variable "failed_requests_rate_silenced" {
   description = "Groups to mute for Event Hub failed requests monitor"
   type        = "map"
   default     = {}
+}
+
+variable "failed_requests_rate_enabled" {
+  description = "Flag to enable Event Hub failed requests monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "failed_requests_rate_extra_tags" {
@@ -98,6 +110,12 @@ variable "errors_rate_silenced" {
   description = "Groups to mute for Event Hub errors monitor"
   type        = "map"
   default     = {}
+}
+
+variable "errors_rate_enabled" {
+  description = "Flag to enable Event Hub errors monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "errors_rate_extra_tags" {

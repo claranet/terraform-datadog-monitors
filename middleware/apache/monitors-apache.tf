@@ -1,4 +1,5 @@
 resource "datadog_monitor" "datadog_apache_process" {
+  count   = "${var.apache_connect_enabled ? 1 : 0}"
   name    = "[${var.environment}] Apache vhost status does not respond"
   message = "${coalesce(var.apache_connect_message, var.message)}"
 

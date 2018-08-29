@@ -37,6 +37,12 @@ variable "apache_connect_silenced" {
   default     = {}
 }
 
+variable "apache_connect_enabled" {
+  description = "Flag to enable Apache status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "apache_connect_extra_tags" {
   description = "Extra tags for Apache process monitor"
   type        = "list"

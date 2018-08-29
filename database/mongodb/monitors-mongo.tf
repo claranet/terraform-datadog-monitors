@@ -1,4 +1,5 @@
 resource "datadog_monitor" "mongodb_primary" {
+  count   = "${var.mongodb_primary_enabled ? 1 : 0}"
   name    = "[${var.environment}] MongoDB primary state"
   message = "${coalesce(var.mongodb_primary_message, var.message)}"
 
@@ -24,6 +25,7 @@ resource "datadog_monitor" "mongodb_primary" {
 }
 
 resource "datadog_monitor" "mongodb_secondary" {
+  count   = "${var.mongodb_secondary_enabled ? 1 : 0}"
   name    = "[${var.environment}] MongoDB secondary missing"
   message = "${coalesce(var.mongodb_secondary_message, var.message)}"
 
@@ -56,6 +58,7 @@ resource "datadog_monitor" "mongodb_secondary" {
 }
 
 resource "datadog_monitor" "mongodb_server_count" {
+  count   = "${var.mongodb_server_count_enabled ? 1 : 0}"
   name    = "[${var.environment}] MongoDB too much servers or wrong monitoring config"
   message = "${coalesce(var.mongodb_server_count_message, var.message)}"
 
@@ -87,6 +90,7 @@ resource "datadog_monitor" "mongodb_server_count" {
 }
 
 resource "datadog_monitor" "mongodb_replication" {
+  count   = "${var.mongodb_replication_enabled ? 1 : 0}"
   name    = "[${var.environment}] MongoDB replication lag"
   message = "${coalesce(var.mongodb_replication_message, var.message)}"
 

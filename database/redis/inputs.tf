@@ -30,16 +30,17 @@ variable "filter_tags_custom" {
 }
 
 # Redis specific variables
-variable "redis_silenced" {
-  description = "Groups to mute for Redis monitors"
-  type        = "map"
-  default     = {}
-}
 
 variable "evictedkeys_change_silenced" {
   description = "Groups to mute for Redis evicted keys monitor"
   type        = "map"
   default     = {}
+}
+
+variable "evictedkeys_change_enabled" {
+  description = "Flag to enable Redis evicted keys monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "evictedkeys_change_message" {
@@ -82,6 +83,12 @@ variable "expirations_rate_silenced" {
   default     = {}
 }
 
+variable "expirations_rate_enabled" {
+  description = "Flag to enable Redis keys expirations monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "expirations_rate_message" {
   description = "Custom message for Redis keys expirations monitor"
   type        = "string"
@@ -120,6 +127,12 @@ variable "blocked_clients_silenced" {
   description = "Groups to mute for Redis Blocked clients monitor"
   type        = "map"
   default     = {}
+}
+
+variable "blocked_clients_enabled" {
+  description = "Flag to enable Redis Blocked clients monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "blocked_clients_message" {
@@ -165,6 +178,12 @@ variable "keyspace_silenced" {
   }
 }
 
+variable "keyspace_enabled" {
+  description = "Flag to enable Redis keyspace monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "keyspace_message" {
   description = "Custom message for Redis keyspace monitor"
   type        = "string"
@@ -203,6 +222,12 @@ variable "mem_used_silenced" {
   description = "Groups to mute for Redis RAM memory used monitor"
   type        = "map"
   default     = {}
+}
+
+variable "mem_used_enabled" {
+  description = "Flag to enable Redis RAM memory used monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "mem_used_message" {
@@ -245,6 +270,12 @@ variable "mem_frag_silenced" {
   default     = {}
 }
 
+variable "mem_frag_enabled" {
+  description = "Flag to enable Redis memory RAM fragmentation monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "mem_frag_message" {
   description = "Custom message for Redis memory RAM fragmentation monitor"
   type        = "string"
@@ -283,6 +314,12 @@ variable "rejected_con_silenced" {
   description = "Groups to mute for Redis rejected connections errors monitor"
   type        = "map"
   default     = {}
+}
+
+variable "rejected_con_enabled" {
+  description = "Flag to enable Redis rejected connections errors monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "rejected_con_message" {
@@ -325,6 +362,12 @@ variable "latency_silenced" {
   default     = {}
 }
 
+variable "latency_enabled" {
+  description = "Flag to enable Redis latency monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "latency_message" {
   description = "Custom message for Redis latency monitor"
   type        = "string"
@@ -363,6 +406,12 @@ variable "hitrate_silenced" {
   description = "Groups to mute for Redis hitrate monitor"
   type        = "map"
   default     = {}
+}
+
+variable "hitrate_enabled" {
+  description = "Flag to enable Redis hitrate monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "hitrate_message" {
@@ -406,6 +455,12 @@ variable "not_responding_silenced" {
   description = "Groups to mute for Redis does not respond monitor"
   type        = "map"
   default     = {}
+}
+
+variable "not_responding_enabled" {
+  description = "Flag to enable Redis does not respond monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "not_responding_message" {
