@@ -1,5 +1,6 @@
 ### RDS instance CPU monitor ###
 resource "datadog_monitor" "rds_cpu_90_15min" {
+  count   = "${var.cpu_enabled ? 1 : 0}"
   name    = "[${var.environment}] RDS instance CPU high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_message, var.message)}"
 
@@ -32,6 +33,7 @@ EOF
 
 ### RDS instance free space monitor ###
 resource "datadog_monitor" "rds_free_space_low" {
+  count   = "${var.diskspace_enabled ? 1 : 0}"
   name    = "[${var.environment}] RDS instance free space {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.diskspace_message, var.message)}"
 
