@@ -18,21 +18,28 @@ Creates DataDog monitors with the following checks:
 
 - GCP LB 4xx errors
 - GCP LB 5xx errors
-- GCP LB latency
-- GCP LB backend latency
+- GCP LB bucket backend latency
 - GCP LB Requests count increased abruptly
+- GCP LB service backend latency
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| backend_latency_extra_tags | Extra tags for GCP LB Backend Latency monitor | list | `<list>` | no |
-| backend_latency_message | Custom message for the GCP LB Backend Latency monitor | string | `` | no |
-| backend_latency_silenced | Groups to mute for GCP LB Backend Latency monitor | map | `<map>` | no |
-| backend_latency_threshold_critical | Latency in seconds (critical threshold) | string | `4000` | no |
-| backend_latency_threshold_warning | Latency in seconds (warning threshold) | string | `2000` | no |
-| backend_latency_time_aggregator | Timeframe for the GCP LB Backend Latency monitor | string | `min` | no |
-| backend_latency_timeframe | Timeframe for the GCP LB Backend Latency monitor | string | `last_10m` | no |
+| backend_latency_bucket_extra_tags | Extra tags for GCP LB Backend Latency monitor | list | `<list>` | no |
+| backend_latency_bucket_message | Custom message for the GCP LB Backend Latency monitor | string | `` | no |
+| backend_latency_bucket_silenced | Groups to mute for GCP LB Backend Latency monitor | map | `<map>` | no |
+| backend_latency_bucket_threshold_critical | Latency in seconds (critical threshold) | string | `8000` | no |
+| backend_latency_bucket_threshold_warning | Latency in seconds (warning threshold) | string | `4000` | no |
+| backend_latency_bucket_time_aggregator | Timeframe for the GCP LB Backend Latency monitor | string | `min` | no |
+| backend_latency_bucket_timeframe | Timeframe for the GCP LB Backend Latency monitor | string | `last_10m` | no |
+| backend_latency_service_extra_tags | Extra tags for GCP LB Backend Latency monitor | list | `<list>` | no |
+| backend_latency_service_message | Custom message for the GCP LB Backend Latency monitor | string | `` | no |
+| backend_latency_service_silenced | Groups to mute for GCP LB Backend Latency monitor | map | `<map>` | no |
+| backend_latency_service_threshold_critical | Latency in seconds (critical threshold) | string | `1500` | no |
+| backend_latency_service_threshold_warning | Latency in seconds (warning threshold) | string | `1000` | no |
+| backend_latency_service_time_aggregator | Timeframe for the GCP LB Backend Latency monitor | string | `min` | no |
+| backend_latency_service_timeframe | Timeframe for the GCP LB Backend Latency monitor | string | `last_10m` | no |
 | environment | Architecture environment | string | - | yes |
 | error_rate_4xx_artificial_request | Divisor Delta for the GCP LB 4XX Errors monitor | string | `5` | no |
 | error_rate_4xx_extra_tags | Extra tags for GCP LB 4XX Errors monitor | list | `<list>` | no |
@@ -50,13 +57,6 @@ Creates DataDog monitors with the following checks:
 | error_rate_5xx_timeframe | Timeframe for the GCP LB 5XX Errors monitor | string | `last_5m` | no |
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | filter_tags | Tags used for filtering | string | `*` | no |
-| latency_extra_tags | Extra tags for GCP LB Latency monitor | list | `<list>` | no |
-| latency_message | Custom message for the GCP LB Latency monitor | string | `` | no |
-| latency_silenced | Groups to mute for GCP LB Latency monitor | map | `<map>` | no |
-| latency_threshold_critical | Latency in seconds (critical threshold) | string | `5000` | no |
-| latency_threshold_warning | Latency in seconds (warning threshold) | string | `3000` | no |
-| latency_time_aggregator | Timeframe for the GCP LB Latency monitor | string | `min` | no |
-| latency_timeframe | Timeframe for the GCP LB Latency monitor | string | `last_10m` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 | new_host_delay | Delay in seconds for the new host evaluation | string | `300` | no |
 | request_count_extra_tags | Extra tags for GCP LB Request Count monitor | list | `<list>` | no |
@@ -72,10 +72,10 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description |
 |------|-------------|
-| backend_latency_id | id for monitor backend_latency |
+| backend_latency_bucket_id | id for monitor backend_latency_bucket |
+| backend_latency_service_id | id for monitor backend_latency_service |
 | error_rate_4xx_id | id for monitor error_rate_4xx |
 | error_rate_5xx_id | id for monitor error_rate_5xx |
-| latency_id | id for monitor latency |
 | request_count_id | id for monitor request_count |
 
 ## Related documentation
