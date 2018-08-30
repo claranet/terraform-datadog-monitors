@@ -105,8 +105,6 @@ The `//` is very important, it's a terraform specific syntax used to separate gi
 	- [mongodb](https://bitbucket.org/morea/terraform.feature.datadog/src/master/database/mongodb/)
 	- [mysql](https://bitbucket.org/morea/terraform.feature.datadog/src/master/database/mysql/)
 	- [redis](https://bitbucket.org/morea/terraform.feature.datadog/src/master/database/redis/)
-- [databases](https://bitbucket.org/morea/terraform.feature.datadog/src/master/databases/)
-	- [elasticsearch](https://bitbucket.org/morea/terraform.feature.datadog/src/master/databases/elasticsearch/)
 - [middleware](https://bitbucket.org/morea/terraform.feature.datadog/src/master/middleware/)
 	- [apache](https://bitbucket.org/morea/terraform.feature.datadog/src/master/middleware/apache/)
 	- [nginx](https://bitbucket.org/morea/terraform.feature.datadog/src/master/middleware/nginx/)
