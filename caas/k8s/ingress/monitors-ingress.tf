@@ -13,8 +13,8 @@ resource "datadog_monitor" "Nginx_ingress_too_many_5xx" {
   query = <<EOF
     sum(${var.ingress_5xx_timeframe}): (
       default(
-        avg:nginx_ingress.nginx_upstream_responses_total{status_code:5xx,${data.template_file.filter.rendered},!upstream:upstream-default-backend} by {upstream,ingress_class} /
-        (avg:nginx_ingress.nginx_upstream_requests_total{${data.template_file.filter.rendered},!upstream:upstream-default-backend} by {upstream,ingress_class} + ${var.artificial_requests_count}),
+        avg:nginx_ingress.nginx_upstream_responses_total${module.filter-tags-5xx.query_alert} by {upstream,ingress_class} /
+        (avg:nginx_ingress.nginx_upstream_requests_total${module.filter-tags.query_alert} by {upstream,ingress_class} + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.ingress_5xx_threshold_critical}
   EOF
