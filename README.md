@@ -92,6 +92,7 @@ The `//` is very important, it's a terraform specific syntax used to separate gi
 		- [storage](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/storage/)
 		- [stream-analytics](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/stream-analytics/)
 	- [gcp](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/gcp/)
+		- [big-query](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/gcp/big-query/)
 		- [cloud-sql](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/gcp/cloud-sql/)
 			- [common](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/gcp/cloud-sql/common/)
 			- [mysql](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/gcp/cloud-sql/mysql/)
