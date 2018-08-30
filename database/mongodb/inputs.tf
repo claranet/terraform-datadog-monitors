@@ -74,6 +74,12 @@ variable "mongodb_primary_silenced" {
   default     = {}
 }
 
+variable "mongodb_primary_enabled" {
+  description = "Flag to enable MongoDB primary state monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "mongodb_primary_extra_tags" {
   description = "Extra tags for MongoDB primary state monitor"
   type        = "list"
@@ -84,6 +90,12 @@ variable "mongodb_secondary_silenced" {
   description = "Groups to mute for MongoDB secondary state monitor"
   type        = "map"
   default     = {}
+}
+
+variable "mongodb_secondary_enabled" {
+  description = "Flag to enable MongoDB secondary state monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "mongodb_secondary_extra_tags" {
@@ -98,10 +110,22 @@ variable "mongodb_server_count_silenced" {
   default     = {}
 }
 
+variable "mongodb_server_count_enabled" {
+  description = "Flag to enable MongoDB server count monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "mongodb_replication_silenced" {
   description = "Groups to mute for MongoDB replication lag monitor"
   type        = "map"
   default     = {}
+}
+
+variable "mongodb_replication_enabled" {
+  description = "Flag to enable MongoDB replication lag monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "mongodb_replication_extra_tags" {

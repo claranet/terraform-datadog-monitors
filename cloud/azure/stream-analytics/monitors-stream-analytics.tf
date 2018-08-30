@@ -1,4 +1,5 @@
 resource "datadog_monitor" "status" {
+  count   = "${var.status_enabled ? 1 : 0}"
   name    = "[${var.environment}] Stream Analytics is down"
   message = "${coalesce(var.status_message, var.message)}"
 
@@ -26,6 +27,7 @@ resource "datadog_monitor" "status" {
 }
 
 resource "datadog_monitor" "su_utilization" {
+  count   = "${var.su_utilization_enabled ? 1 : 0}"
   name    = "[${var.environment}] Stream Analytics streaming units utilization too high {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.su_utilization_message, var.message)}"
 
@@ -58,6 +60,7 @@ resource "datadog_monitor" "su_utilization" {
 }
 
 resource "datadog_monitor" "failed_function_requests" {
+  count   = "${var.failed_function_requests_enabled ? 1 : 0}"
   name    = "[${var.environment}] Stream Analytics too many failed requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.failed_function_requests_message, var.message)}"
 
@@ -91,6 +94,7 @@ resource "datadog_monitor" "failed_function_requests" {
 }
 
 resource "datadog_monitor" "conversion_errors" {
+  count   = "${var.conversion_errors_enabled ? 1 : 0}"
   name    = "[${var.environment}] Stream Analytics too many conversion errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.conversion_errors_message, var.message)}"
 
@@ -123,6 +127,7 @@ resource "datadog_monitor" "conversion_errors" {
 }
 
 resource "datadog_monitor" "runtime_errors" {
+  count   = "${var.runtime_errors_enabled ? 1 : 0}"
   name    = "[${var.environment}] Stream Analytics too many runtime errors {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.runtime_errors_message, var.message)}"
 

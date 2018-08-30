@@ -37,6 +37,12 @@ variable "unreachable_silenced" {
   default     = {}
 }
 
+variable "unreachable_enabled" {
+  description = "Flag to enable Host unreachable monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "unreachable_extra_tags" {
   description = "Extra tags for Host unreachable monitor"
   type        = "list"
@@ -59,6 +65,12 @@ variable "cpu_high_silenced" {
   description = "Groups to mute for CPU high monitor"
   type        = "map"
   default     = {}
+}
+
+variable "cpu_high_enabled" {
+  description = "Flag to enable CPU high monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "cpu_high_extra_tags" {
@@ -101,6 +113,12 @@ variable "cpu_load_silenced" {
   default     = {}
 }
 
+variable "cpu_load_enabled" {
+  description = "Flag to enable CPU load ratio monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "cpu_load_extra_tags" {
   description = "Extra tags for CPU load ratio monitor"
   type        = "list"
@@ -141,6 +159,12 @@ variable "free_disk_space_silenced" {
   default     = {}
 }
 
+variable "free_disk_space_enabled" {
+  description = "Flag to enable Free diskspace monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "free_disk_space_extra_tags" {
   description = "Extra tags for Free diskspace monitor"
   type        = "list"
@@ -179,6 +203,12 @@ variable "free_disk_space_forecast_silenced" {
   description = "Groups to mute for Free diskspace forecast monitor"
   type        = "map"
   default     = {}
+}
+
+variable "free_disk_space_forecast_enabled" {
+  description = "Flag to enable Free diskspace forecast monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "free_disk_space_forecast_extra_tags" {
@@ -257,6 +287,12 @@ variable "free_disk_inodes_silenced" {
   default     = {}
 }
 
+variable "free_disk_inodes_enabled" {
+  description = "Flag to enable Free disk inodes monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "free_disk_inodes_extra_tags" {
   description = "Extra tags for Free disk inodes monitor"
   type        = "list"
@@ -295,6 +331,12 @@ variable "free_memory_silenced" {
   description = "Groups to mute for Free memory monitor"
   type        = "map"
   default     = {}
+}
+
+variable "free_memory_enabled" {
+  description = "Flag to enable Free memory monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "free_memory_extra_tags" {
