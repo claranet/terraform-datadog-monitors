@@ -29,15 +29,15 @@ Creates DataDog monitors with the following checks:
 | backend_latency_bucket_extra_tags | Extra tags for GCP LB Backend Latency monitor | list | `<list>` | no |
 | backend_latency_bucket_message | Custom message for the GCP LB Backend Latency monitor | string | `` | no |
 | backend_latency_bucket_silenced | Groups to mute for GCP LB Backend Latency monitor | map | `<map>` | no |
-| backend_latency_bucket_threshold_critical | Latency in seconds (critical threshold) | string | `8000` | no |
-| backend_latency_bucket_threshold_warning | Latency in seconds (warning threshold) | string | `4000` | no |
+| backend_latency_bucket_threshold_critical | Latency in milliseconds (critical threshold) | string | `8000` | no |
+| backend_latency_bucket_threshold_warning | Latency in milliseconds (warning threshold) | string | `4000` | no |
 | backend_latency_bucket_time_aggregator | Timeframe for the GCP LB Backend Latency monitor | string | `min` | no |
 | backend_latency_bucket_timeframe | Timeframe for the GCP LB Backend Latency monitor | string | `last_10m` | no |
 | backend_latency_service_extra_tags | Extra tags for GCP LB Backend Latency monitor | list | `<list>` | no |
 | backend_latency_service_message | Custom message for the GCP LB Backend Latency monitor | string | `` | no |
 | backend_latency_service_silenced | Groups to mute for GCP LB Backend Latency monitor | map | `<map>` | no |
-| backend_latency_service_threshold_critical | Latency in seconds (critical threshold) | string | `1500` | no |
-| backend_latency_service_threshold_warning | Latency in seconds (warning threshold) | string | `1000` | no |
+| backend_latency_service_threshold_critical | Latency in milliseconds (critical threshold) | string | `1500` | no |
+| backend_latency_service_threshold_warning | Latency in milliseconds (warning threshold) | string | `1000` | no |
 | backend_latency_service_time_aggregator | Timeframe for the GCP LB Backend Latency monitor | string | `min` | no |
 | backend_latency_service_timeframe | Timeframe for the GCP LB Backend Latency monitor | string | `last_10m` | no |
 | environment | Architecture environment | string | - | yes |
