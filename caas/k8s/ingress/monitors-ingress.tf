@@ -27,7 +27,7 @@ resource "datadog_monitor" "Nginx_ingress_too_many_5xx" {
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = false
+  require_full_window = true
 
   silenced = "${var.ingress_5xx_silenced}"
 
