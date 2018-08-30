@@ -22,11 +22,11 @@ variable "message" {
 
 variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
-  default     = 0
+  default     = 15
 }
 
 variable "new_host_delay" {
-  description = "Delay in seconds for the metric evaluation"
+  description = "Delay in seconds before begin to monitor new host"
   default     = 300
 }
 
