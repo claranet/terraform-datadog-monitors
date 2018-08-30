@@ -91,11 +91,6 @@ Inputs
 | cosmos_db_5xx_request_rate_threshold_warning | Warning threshold for Cosmos DB 5xx requests monitor | string | `50` | no |
 | cosmos_db_5xx_requests_message | Custom message for Cosmos DB 5xx requests monitor | string | `` | no |
 | cosmos_db_5xx_requests_silenced | Groups to mute for Cosmos DB 5xx requests monitor | map | `<map>` | no |
-| cosmos_db_ru_utilization_collection | Group to associate Cosmos DB collection to RU max | map | - | yes |
-| cosmos_db_ru_utilization_message | Custom message for Cosmos DB collection RU utilization monitor | string | `` | no |
-| cosmos_db_ru_utilization_rate_threshold_critical | Critical threshold for Cosmos DB collection RU utilization monitor | string | `90` | no |
-| cosmos_db_ru_utilization_rate_threshold_warning | Warning threshold for Cosmos DB collection RU utilization monitor | string | `80` | no |
-| cosmos_db_ru_utilization_silenced | Groups to mute for Cosmos DB collection RU utilization monitor | map | `<map>` | no |
 | datalakestore_status_message | Custom message for Datalake Store status monitor | string | `` | no |
 | datalakestore_status_silenced | Groups to mute for Datalake Store status monitor | map | `<map>` | no |
 | datalakestore_status_time_aggregator | Monitor aggregator for Datalake Store status [available values: min, max or avg] | string | `max` | no |

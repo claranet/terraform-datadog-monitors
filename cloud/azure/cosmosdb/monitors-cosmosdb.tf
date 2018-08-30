@@ -38,6 +38,7 @@ resource "datadog_monitor" "cosmos_db_4xx_requests" {
   name    = "[${var.environment}] Cosmos DB 4xx requests rate is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cosmos_db_4xx_requests_message, var.message)}"
 
+  # List of available status codes : https://docs.microsoft.com/en-us/rest/api/cosmos-db/http-status-codes-for-cosmosdb
   query = <<EOF
       ${var.cosmos_db_4xx_request_time_aggregator}(${var.cosmos_db_4xx_request_timeframe}): (default(
         (
@@ -132,42 +133,4 @@ resource "datadog_monitor" "cosmos_db_5xx_requests" {
   new_host_delay      = "${var.new_host_delay}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:cosmos_db", "team:claranet", "created-by:terraform", "${var.cosmos_db_5xx_request_rate_extra_tags}"]
-}
-
-resource "datadog_monitor" "cosmos_db_ru_utilization" {
-  count = "${var.cosmos_db_ru_utilization_enabled ? length(var.cosmos_db_ru_utilization_collections) : 0}"
-
-  name    = "[${var.environment}] Cosmos DB collection ${element(keys(var.cosmos_db_ru_utilization_collections),count.index)} RU utilization is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = "${coalesce(var.cosmos_db_ru_utilization_message, var.message)}"
-
-  query = <<EOF
-      ${var.cosmos_db_ru_utilization_time_aggregator}(${var.cosmos_db_ru_utilization_timeframe}): (
-        (
-          sum:azure.cosmosdb.total_request_units${format(module.filter-tags-collection.query_alert,lower(element(keys(var.cosmos_db_ru_utilization_collections),count.index)))} by {resource_group,region,name,collectionname} +
-          sum:azure.documentdb_databaseaccounts.total_request_units${format(module.filter-tags-collection.query_alert,lower(element(keys(var.cosmos_db_ru_utilization_collections),count.index)))} by {resource_group,region,name,collectionname}
-        ) /
-        ${element(values(var.cosmos_db_ru_utilization_collections),count.index)}
-      ) * 100 > ${var.cosmos_db_ru_utilization_rate_threshold_critical}
-  EOF
-
-  type = "metric alert"
-
-  thresholds {
-    critical = "${var.cosmos_db_ru_utilization_rate_threshold_critical}"
-    warning  = "${var.cosmos_db_ru_utilization_rate_threshold_warning}"
-  }
-
-  silenced = "${var.cosmos_db_ru_utilization_silenced}"
-
-  notify_no_data      = false
-  evaluation_delay    = "${var.evaluation_delay}"
-  renotify_interval   = 0
-  notify_audit        = false
-  timeout_h           = 0
-  include_tags        = true
-  locked              = false
-  require_full_window = true
-  new_host_delay      = "${var.new_host_delay}"
-
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:cosmos_db", "team:claranet", "created-by:terraform", "${var.cosmos_db_ru_utilization_extra_tags}"]
 }
