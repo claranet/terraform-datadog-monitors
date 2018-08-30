@@ -76,7 +76,7 @@ EOF
 # Backend Latency for service
 #
 resource "datadog_monitor" "backend_latency_service" {
-  name    = "[${var.environment}] GCP LB service backend latency {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
+  name    = "[${var.environment}] GCP LB service backend latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = "${coalesce(var.backend_latency_service_message, var.message)}"
 
   type = "metric alert"
@@ -112,7 +112,7 @@ EOF
 # Backend Latency for bucket
 #
 resource "datadog_monitor" "backend_latency_bucket" {
-  name    = "[${var.environment}] GCP LB bucket backend latency {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
+  name    = "[${var.environment}] GCP LB bucket backend latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = "${coalesce(var.backend_latency_bucket_message, var.message)}"
 
   type = "metric alert"

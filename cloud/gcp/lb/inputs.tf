@@ -137,13 +137,13 @@ variable "backend_latency_service_timeframe" {
 }
 
 variable "backend_latency_service_threshold_warning" {
-  description = "Latency in seconds (warning threshold)"
+  description = "Latency in milliseconds (warning threshold)"
   type        = "string"
   default     = 1000
 }
 
 variable "backend_latency_service_threshold_critical" {
-  description = "Latency in seconds (critical threshold)"
+  description = "Latency in milliseconds (critical threshold)"
   type        = "string"
   default     = 1500
 }
@@ -182,13 +182,13 @@ variable "backend_latency_bucket_timeframe" {
 }
 
 variable "backend_latency_bucket_threshold_warning" {
-  description = "Latency in seconds (warning threshold)"
+  description = "Latency in milliseconds (warning threshold)"
   type        = "string"
   default     = 4000
 }
 
 variable "backend_latency_bucket_threshold_critical" {
-  description = "Latency in seconds (critical threshold)"
+  description = "Latency in milliseconds (critical threshold)"
   type        = "string"
   default     = 8000
 }
