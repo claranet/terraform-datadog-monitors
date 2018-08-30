@@ -23,8 +23,8 @@ Creates DataDog monitors with the following checks:
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | artificial_requests_count | Number of false requests used to mitigate false positive in case of low trafic | string | `5` | no |
-| delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture Environment | string | - | yes |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | ingress_5xx_message | Message sent when an alert is triggered | string | `` | no |
@@ -33,6 +33,7 @@ Creates DataDog monitors with the following checks:
 | ingress_5xx_threshold_warning |  | string | `5` | no |
 | ingress_5xx_timeframe | Monitor timeframe for Ingress 5xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
+| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 | team | Global Terraform | string | `k8s` | no |
 
 ## Outputs
