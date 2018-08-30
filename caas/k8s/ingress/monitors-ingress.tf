@@ -1,12 +1,5 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_k8s_ingress:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
 resource "datadog_monitor" "Nginx_ingress_too_many_5xx" {
+  count   = "${var.ingress_5xx_enabled ? 1 : 0}"
   name    = "[${var.environment}] [${var.team}] Nginx Ingress 5xx errors too high for {{ingress_class.name}} on {{upstream.name}} {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.ingress_5xx_message, var.message)}"
 
@@ -38,5 +31,5 @@ resource "datadog_monitor" "Nginx_ingress_too_many_5xx" {
 
   silenced = "${var.ingress_5xx_silenced}"
 
-  tags = ["env:${var.environment}", "resource:ingress", "team:${var.team}", "provider:k8s"]
+  tags = ["env:${var.environment}", "type:caas", "provider:prometheus", "resource:nginx-ingress-controller", "team:claranet", "created-by:terraform", "${var.ingress_5xx_extra_tags}"]
 }

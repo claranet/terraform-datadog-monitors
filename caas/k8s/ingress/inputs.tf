@@ -41,6 +41,18 @@ variable "ingress_5xx_silenced" {
   default     = {}
 }
 
+variable "ingress_5xx_enabled" {
+  description = "Flag to enable Ingress 5xx errors monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "ingress_5xx_extra_tags" {
+  description = "Extra tags for Ingress 5xx errors monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "ingress_5xx_message" {
   description = "Message sent when an alert is triggered"
   default     = ""
