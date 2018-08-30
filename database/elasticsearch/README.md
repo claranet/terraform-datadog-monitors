@@ -72,7 +72,7 @@ Creates DataDog monitors with the following checks:
 | cluster_unassigned_shards_time_aggregator | Time aggregator for the Cluster Status monitor | string | `avg` | no |
 | cluster_unassigned_shards_timeframe | Timeframe for the Cluster Status monitor | string | `last_5m` | no |
 | environment | Architecture environment | string | - | yes |
-| evaluation_delay | Delay in seconds for the metric evaluation | string | `0` | no |
+| evaluation_delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | fetch_change_extra_tags | Extra tags for Cluster Status monitor | list | `<list>` | no |
 | fetch_change_message | Custom message for the Cluster Status monitor | string | `` | no |
 | fetch_change_silenced | Groups to mute for Cluster Status monitor | map | `<map>` | no |
@@ -162,7 +162,7 @@ Creates DataDog monitors with the following checks:
 | jvm_memory_young_usage_time_aggregator | Time aggregator for the Cluster Status monitor | string | `avg` | no |
 | jvm_memory_young_usage_timeframe | Timeframe for the Cluster Status monitor | string | `last_10m` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
-| new_host_delay | Delay in seconds for the metric evaluation | string | `300` | no |
+| new_host_delay | Delay in seconds before begin to monitor new host | string | `300` | no |
 | node_free_space_extra_tags | Extra tags for Cluster Status monitor | list | `<list>` | no |
 | node_free_space_message | Custom message for the Cluster Status monitor | string | `` | no |
 | node_free_space_silenced | Groups to mute for Cluster Status monitor | map | `<map>` | no |
