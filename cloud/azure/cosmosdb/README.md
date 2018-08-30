@@ -8,12 +8,6 @@ module "datadog-monitors-cloud-azure-cosmosdb" {
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
-
-  # MyDocumentCollection is provisioned with 1000 RU/s in Azure so,
-  # we set the RU value for 5 minutes as input because 5m is the default evalutation timeframe
-  cosmos_db_ru_utilization_collections = {
-    "MyDocumentCollection" = 300000   # 1000 * 60 * 5
-  }
 }
 
 ```
@@ -24,7 +18,6 @@ Creates DataDog monitors with the following checks:
 
 - Cosmos DB 4xx requests rate is high
 - Cosmos DB 5xx requests rate is high
-- Cosmos DB collection ${element(keys(var.cosmos_db_ru_utilization_collections),count.index)} RU utilization is high
 - Cosmos DB is down
 
 ## Inputs
@@ -47,15 +40,6 @@ Creates DataDog monitors with the following checks:
 | cosmos_db_5xx_requests_enabled | Flag to enable Cosmos DB 5xx requests monitor | string | `true` | no |
 | cosmos_db_5xx_requests_message | Custom message for Cosmos DB 5xx requests monitor | string | `` | no |
 | cosmos_db_5xx_requests_silenced | Groups to mute for Cosmos DB 5xx requests monitor | map | `<map>` | no |
-| cosmos_db_ru_utilization_collections | Group to associate Cosmos DB collection to RU max. RU value has to be correlated with the monitor timeframe | map | - | yes |
-| cosmos_db_ru_utilization_enabled | Flag to enable Cosmos DB collection RU utilization monitor | string | `true` | no |
-| cosmos_db_ru_utilization_extra_tags | Extra tags for Cosmos DB collection RU utilization monitor | list | `<list>` | no |
-| cosmos_db_ru_utilization_message | Custom message for Cosmos DB collection RU utilization monitor | string | `` | no |
-| cosmos_db_ru_utilization_rate_threshold_critical | Critical threshold for Cosmos DB collection RU utilization monitor | string | `90` | no |
-| cosmos_db_ru_utilization_rate_threshold_warning | Warning threshold for Cosmos DB collection RU utilization monitor | string | `80` | no |
-| cosmos_db_ru_utilization_silenced | Groups to mute for Cosmos DB collection RU utilization monitor | map | `<map>` | no |
-| cosmos_db_ru_utilization_time_aggregator | Monitor aggregator for Cosmos DB RU utilization [available values: min, max or avg] | string | `sum` | no |
-| cosmos_db_ru_utilization_timeframe | Monitor timeframe for Cosmos DB RU utilization [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | environment | Architecture environment | string | - | yes |
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
@@ -75,7 +59,6 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | cosmos_db_4xx_requests_id | id for monitor cosmos_db_4xx_requests |
 | cosmos_db_5xx_requests_id | id for monitor cosmos_db_5xx_requests |
-| cosmos_db_ru_utilization_id | id for monitor cosmos_db_ru_utilization |
 | cosmos_db_status_id | id for monitor cosmos_db_status |
 
 Related documentation
