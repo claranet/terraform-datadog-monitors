@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 - Cosmos DB 4xx requests rate is high
 - Cosmos DB 5xx requests rate is high
 - Cosmos DB is down
+- Cosmos DB max scaling reached for collection
 
 ## Inputs
 
@@ -40,6 +41,14 @@ Creates DataDog monitors with the following checks:
 | cosmos_db_5xx_requests_enabled | Flag to enable Cosmos DB 5xx requests monitor | string | `true` | no |
 | cosmos_db_5xx_requests_message | Custom message for Cosmos DB 5xx requests monitor | string | `` | no |
 | cosmos_db_5xx_requests_silenced | Groups to mute for Cosmos DB 5xx requests monitor | map | `<map>` | no |
+| cosmos_db_scaling_enabled | Flag to enable Cosmos DB scaling monitor | string | `true` | no |
+| cosmos_db_scaling_error_rate_threshold_critical | Critical threshold for Cosmos DB scaling monitor | string | `10` | no |
+| cosmos_db_scaling_error_rate_threshold_warning | Warning threshold for Cosmos DB scaling monitor | string | `5` | no |
+| cosmos_db_scaling_extra_tags | Extra tags for Cosmos DB scaling monitor | list | `<list>` | no |
+| cosmos_db_scaling_message | Custom message for Cosmos DB scaling monitor | string | `` | no |
+| cosmos_db_scaling_silenced | Groups to mute for Cosmos DB scaling monitor | map | `<map>` | no |
+| cosmos_db_scaling_time_aggregator | Monitor aggregator for Cosmos DB scaling [available values: min, max or avg] | string | `sum` | no |
+| cosmos_db_scaling_timeframe | Monitor timeframe for Cosmos DB scaling [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | environment | Architecture environment | string | - | yes |
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
@@ -59,6 +68,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | cosmos_db_4xx_requests_id | id for monitor cosmos_db_4xx_requests |
 | cosmos_db_5xx_requests_id | id for monitor cosmos_db_5xx_requests |
+| cosmos_db_scaling_id | id for monitor cosmos_db_scaling |
 | cosmos_db_status_id | id for monitor cosmos_db_status |
 
 Related documentation
