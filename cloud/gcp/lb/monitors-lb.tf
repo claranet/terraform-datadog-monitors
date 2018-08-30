@@ -73,59 +73,23 @@ EOF
 }
 
 #
-# Latency
+# Backend Latency for service
 #
-resource "datadog_monitor" "latency" {
-  name    = "[${var.environment}] GCP LB latency {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
-  message = "${coalesce(var.latency_message, var.message)}"
-
-  type = "query alert"
-
-  query = <<EOF
-  ${var.latency_time_aggregator}(${var.latency_timeframe}):
-    min:gcp.loadbalancing.https.total_latencies.avg{${var.filter_tags}} by {forwarding_rule_name}
-  > ${var.latency_threshold_critical}
-EOF
-
-  thresholds {
-    warning  = "${var.latency_threshold_warning}"
-    critical = "${var.latency_threshold_critical}"
-  }
-
-  notify_audit        = false
-  locked              = false
-  timeout_h           = 0
-  include_tags        = true
-  require_full_window = false
-  notify_no_data      = false
-  renotify_interval   = 0
-
-  evaluation_delay = "${var.evaluation_delay}"
-  new_host_delay   = "${var.new_host_delay}"
-
-  silenced = "${var.latency_silenced}"
-
-  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", "${var.latency_extra_tags}"]
-}
-
-#
-# Backend Latency
-#
-resource "datadog_monitor" "backend_latency" {
-  name    = "[${var.environment}] GCP LB backend latency {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
-  message = "${coalesce(var.backend_latency_message, var.message)}"
+resource "datadog_monitor" "backend_latency_service" {
+  name    = "[${var.environment}] GCP LB service backend latency {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
+  message = "${coalesce(var.backend_latency_service_message, var.message)}"
 
   type = "metric alert"
 
   query = <<EOF
-  ${var.backend_latency_time_aggregator}(${var.backend_latency_timeframe}):
-    min:gcp.loadbalancing.https.backend_latencies.avg{${var.filter_tags}} by {forwarding_rule_name}
-  > ${var.backend_latency_threshold_critical}
+  ${var.backend_latency_service_time_aggregator}(${var.backend_latency_service_timeframe}):
+    min:gcp.loadbalancing.https.backend_latencies.avg{${var.filter_tags},backend_target_type:backend_service} by {backend_target_name,forwarding_rule_name}
+  > ${var.backend_latency_service_threshold_critical}
 EOF
 
   thresholds {
-    warning  = "${var.backend_latency_threshold_warning}"
-    critical = "${var.backend_latency_threshold_critical}"
+    warning  = "${var.backend_latency_service_threshold_warning}"
+    critical = "${var.backend_latency_service_threshold_critical}"
   }
 
   notify_audit        = false
@@ -139,9 +103,45 @@ EOF
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.backend_latency_silenced}"
+  silenced = "${var.backend_latency_service_silenced}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", "${var.backend_latency_extra_tags}"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", "${var.backend_latency_service_extra_tags}"]
+}
+
+#
+# Backend Latency for bucket
+#
+resource "datadog_monitor" "backend_latency_bucket" {
+  name    = "[${var.environment}] GCP LB bucket backend latency {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
+  message = "${coalesce(var.backend_latency_bucket_message, var.message)}"
+
+  type = "metric alert"
+
+  query = <<EOF
+  ${var.backend_latency_bucket_time_aggregator}(${var.backend_latency_bucket_timeframe}):
+    min:gcp.loadbalancing.https.backend_latencies.avg{${var.filter_tags},backend_target_type:backend_bucket} by {backend_target_name,forwarding_rule_name}
+  > ${var.backend_latency_bucket_threshold_critical}
+EOF
+
+  thresholds {
+    warning  = "${var.backend_latency_bucket_threshold_warning}"
+    critical = "${var.backend_latency_bucket_threshold_critical}"
+  }
+
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
+  require_full_window = false
+  notify_no_data      = false
+  renotify_interval   = 0
+
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
+
+  silenced = "${var.backend_latency_bucket_silenced}"
+
+  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", "${var.backend_latency_bucket_extra_tags}"]
 }
 
 #
