@@ -16,8 +16,8 @@ module "datadog-monitors-middleware-nginx" {
 
 Creates DataDog monitors with the following checks:
 
-- Nginx vhost status does not respond
 - Nginx dropped connections
+- Nginx vhost status does not respond
 
 ## Inputs
 
