@@ -116,90 +116,90 @@ variable "error_rate_5xx_extra_tags" {
 }
 
 #
-# Latency
+# Latency Backend service
 #
-variable "latency_message" {
-  description = "Custom message for the GCP LB Latency monitor"
-  type        = "string"
-  default     = ""
-}
-
-variable "latency_time_aggregator" {
-  description = "Timeframe for the GCP LB Latency monitor"
-  type        = "string"
-  default     = "min"
-}
-
-variable "latency_timeframe" {
-  description = "Timeframe for the GCP LB Latency monitor"
-  type        = "string"
-  default     = "last_10m"
-}
-
-variable "latency_threshold_warning" {
-  description = "Latency in seconds (warning threshold)"
-  type        = "string"
-  default     = 3000
-}
-
-variable "latency_threshold_critical" {
-  description = "Latency in seconds (critical threshold)"
-  type        = "string"
-  default     = 5000
-}
-
-variable "latency_silenced" {
-  description = "Groups to mute for GCP LB Latency monitor"
-  type        = "map"
-  default     = {}
-}
-
-variable "latency_extra_tags" {
-  description = "Extra tags for GCP LB Latency monitor"
-  type        = "list"
-  default     = []
-}
-
-#
-# Latency Backend
-#
-variable "backend_latency_message" {
+variable "backend_latency_service_message" {
   description = "Custom message for the GCP LB Backend Latency monitor"
   type        = "string"
   default     = ""
 }
 
-variable "backend_latency_time_aggregator" {
+variable "backend_latency_service_time_aggregator" {
   description = "Timeframe for the GCP LB Backend Latency monitor"
   type        = "string"
   default     = "min"
 }
 
-variable "backend_latency_timeframe" {
+variable "backend_latency_service_timeframe" {
   description = "Timeframe for the GCP LB Backend Latency monitor"
   type        = "string"
   default     = "last_10m"
 }
 
-variable "backend_latency_threshold_warning" {
+variable "backend_latency_service_threshold_warning" {
   description = "Latency in seconds (warning threshold)"
   type        = "string"
-  default     = 2000
+  default     = 1000
 }
 
-variable "backend_latency_threshold_critical" {
+variable "backend_latency_service_threshold_critical" {
   description = "Latency in seconds (critical threshold)"
   type        = "string"
-  default     = 4000
+  default     = 1500
 }
 
-variable "backend_latency_silenced" {
+variable "backend_latency_service_silenced" {
   description = "Groups to mute for GCP LB Backend Latency monitor"
   type        = "map"
   default     = {}
 }
 
-variable "backend_latency_extra_tags" {
+variable "backend_latency_service_extra_tags" {
+  description = "Extra tags for GCP LB Backend Latency monitor"
+  type        = "list"
+  default     = []
+}
+
+#
+# Latency Backend bucket
+#
+variable "backend_latency_bucket_message" {
+  description = "Custom message for the GCP LB Backend Latency monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "backend_latency_bucket_time_aggregator" {
+  description = "Timeframe for the GCP LB Backend Latency monitor"
+  type        = "string"
+  default     = "min"
+}
+
+variable "backend_latency_bucket_timeframe" {
+  description = "Timeframe for the GCP LB Backend Latency monitor"
+  type        = "string"
+  default     = "last_10m"
+}
+
+variable "backend_latency_bucket_threshold_warning" {
+  description = "Latency in seconds (warning threshold)"
+  type        = "string"
+  default     = 4000
+}
+
+variable "backend_latency_bucket_threshold_critical" {
+  description = "Latency in seconds (critical threshold)"
+  type        = "string"
+  default     = 8000
+}
+
+variable "backend_latency_bucket_silenced" {
+  description = "Groups to mute for GCP LB Backend Latency monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "backend_latency_bucket_extra_tags" {
   description = "Extra tags for GCP LB Backend Latency monitor"
   type        = "list"
   default     = []
