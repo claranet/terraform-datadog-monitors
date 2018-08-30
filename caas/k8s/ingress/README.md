@@ -1,5 +1,24 @@
-Inputs
-------
+# CAAS K8S INGRESS DataDog monitors
+
+## How to use this module
+
+```
+module "datadog-monitors-caas-k8s-ingress" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//caas/k8s/ingress?ref={revision}"
+
+  environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
+}
+
+```
+
+## Purpose
+
+Creates DataDog monitors with the following checks:
+
+- Nginx Ingress 5xx errors too high for {{ingress_class.name}} on {{upstream.name}}
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -16,8 +35,7 @@ Inputs
 | message | Message sent when an alert is triggered | string | - | yes |
 | team | Global Terraform | string | `k8s` | no |
 
-Outputs
--------
+## Outputs
 
 | Name | Description |
 |------|-------------|
