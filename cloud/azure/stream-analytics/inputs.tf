@@ -36,6 +36,12 @@ variable "status_silenced" {
   default     = {}
 }
 
+variable "status_enabled" {
+  description = "Flag to enable Stream Analytics status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "status_extra_tags" {
   description = "Extra tags for Stream Analytics status monitor"
   type        = "list"
@@ -64,6 +70,12 @@ variable "su_utilization_silenced" {
   description = "Groups to mute for Stream Analytics utilization monitor"
   type        = "map"
   default     = {}
+}
+
+variable "su_utilization_enabled" {
+  description = "Flag to enable Stream Analytics utilization monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "su_utilization_extra_tags" {
@@ -106,6 +118,12 @@ variable "failed_function_requests_silenced" {
   default     = {}
 }
 
+variable "failed_function_requests_enabled" {
+  description = "Flag to enable Stream Analytics failed requests monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "failed_function_requests_extra_tags" {
   description = "Extra tags for Stream Analytics failed requests monitor"
   type        = "list"
@@ -138,6 +156,12 @@ variable "conversion_errors_silenced" {
   description = "Groups to mute for Stream Analytics conversion errors monitor"
   type        = "map"
   default     = {}
+}
+
+variable "conversion_errors_enabled" {
+  description = "Flag to enable Stream Analytics conversion errors monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "conversion_errors_extra_tags" {
@@ -178,6 +202,12 @@ variable "runtime_errors_silenced" {
   description = "Groups to mute for Stream Analytics runtime errors monitor"
   type        = "map"
   default     = {}
+}
+
+variable "runtime_errors_enabled" {
+  description = "Flag to enable Stream Analytics runtime errors monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "runtime_errors_extra_tags" {

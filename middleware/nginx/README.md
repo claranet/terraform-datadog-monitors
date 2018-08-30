@@ -28,6 +28,7 @@ Creates DataDog monitors with the following checks:
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
+| nginx_connect_enabled | Flag to enable Nginx status monitor | string | `true` | no |
 | nginx_connect_extra_tags | Extra tags for Nginx process monitor | list | `<list>` | no |
 | nginx_connect_message | Custom message for Nginx status monitor | string | `` | no |
 | nginx_connect_silenced | Groups to mute for Nginx status monitor | map | `<map>` | no |

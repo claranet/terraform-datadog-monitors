@@ -23,6 +23,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| cpu_enabled | Flag to enable RDS CPU usage monitor | string | `true` | no |
 | cpu_extra_tags | Extra tags for RDS CPU usage monitor | list | `<list>` | no |
 | cpu_message | Custom message for RDS CPU usage monitor | string | `` | no |
 | cpu_silenced | Groups to mute for RDS CPU usage monitor | map | `<map>` | no |
@@ -30,6 +31,7 @@ Creates DataDog monitors with the following checks:
 | cpu_threshold_warning | CPU usage in percent (warning threshold) | string | `80` | no |
 | cpu_time_aggregator | Monitor aggregator for RDS CPU usage [available values: min, max or avg] | string | `min` | no |
 | cpu_timeframe | Monitor timeframe for RDS CPU usage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
+| diskspace_enabled | Flag to enable RDS free diskspace monitor | string | `true` | no |
 | diskspace_extra_tags | Extra tags for RDS free diskspace monitor | list | `<list>` | no |
 | diskspace_message | Custom message for RDS free diskspace monitor | string | `` | no |
 | diskspace_silenced | Groups to mute for RDS free diskspace monitor | map | `<map>` | no |

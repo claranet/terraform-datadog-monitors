@@ -36,6 +36,12 @@ variable "status_silenced" {
   default     = {}
 }
 
+variable "status_enabled" {
+  description = "Flag to enable API Management status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "status_extra_tags" {
   description = "Extra tags for API Management status monitor"
   type        = "list"
@@ -64,6 +70,12 @@ variable "failed_requests_silenced" {
   description = "Groups to mute for API Management failed requests monitor"
   type        = "map"
   default     = {}
+}
+
+variable "failed_requests_enabled" {
+  description = "Flag to enable API Management failed requests monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "failed_requests_extra_tags" {
@@ -100,6 +112,12 @@ variable "other_requests_silenced" {
   default     = {}
 }
 
+variable "other_requests_enabled" {
+  description = "Flag to enable API Management other requests monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "other_requests_extra_tags" {
   description = "Extra tags for API Management other requests monitor"
   type        = "list"
@@ -134,6 +152,12 @@ variable "unauthorized_requests_silenced" {
   default     = {}
 }
 
+variable "unauthorized_requests_enabled" {
+  description = "Flag to enable API Management unauthorized requests monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "unauthorized_requests_extra_tags" {
   description = "Extra tags for API Management unauthorized requests monitor"
   type        = "list"
@@ -166,6 +190,12 @@ variable "successful_requests_silenced" {
   description = "Groups to mute for API Management successful requests monitor"
   type        = "map"
   default     = {}
+}
+
+variable "successful_requests_enabled" {
+  description = "Flag to enable API Management successful requests monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "successful_requests_extra_tags" {

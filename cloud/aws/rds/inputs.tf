@@ -37,6 +37,12 @@ variable "cpu_silenced" {
   default     = {}
 }
 
+variable "cpu_enabled" {
+  description = "Flag to enable RDS CPU usage monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "cpu_extra_tags" {
   description = "Extra tags for RDS CPU usage monitor"
   type        = "list"
@@ -75,6 +81,12 @@ variable "diskspace_silenced" {
   description = "Groups to mute for RDS free diskspace monitor"
   type        = "map"
   default     = {}
+}
+
+variable "diskspace_enabled" {
+  description = "Flag to enable RDS free diskspace monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "diskspace_extra_tags" {
