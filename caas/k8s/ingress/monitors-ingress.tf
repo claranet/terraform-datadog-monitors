@@ -27,14 +27,14 @@ resource "datadog_monitor" "Nginx_ingress_too_many_5xx" {
   }
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
+  new_host_delay      = "${var.new_host_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
 
   silenced = "${var.ingress_5xx_silenced}"
 
