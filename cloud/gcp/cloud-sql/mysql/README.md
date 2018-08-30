@@ -16,9 +16,9 @@ module "datadog-monitors-cloud-gcp-cloud-sql-mysql" {
 
 Creates DataDog monitors with the following checks:
 
-- Cloud SQL MySQL Replication Lag
 - Cloud SQL MySQL Queries Count changed abnormally
 - Cloud SQL MySQL Questions Count changed abnormally
+- Cloud SQL MySQL Replication Lag
 
 ## Inputs
 
