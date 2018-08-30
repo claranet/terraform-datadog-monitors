@@ -10,9 +10,14 @@ variable "environment" {
 }
 
 # Global DataDog
-variable "delay" {
+variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
-  default     = 900
+  default     = 15
+}
+
+variable "new_host_delay" {
+  description = "Delay in seconds before monitor new resource"
+  default     = 300
 }
 
 variable "message" {
