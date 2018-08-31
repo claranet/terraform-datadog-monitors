@@ -1,10 +1,10 @@
-# CAAS K8S INGRESS DataDog monitors
+# CAAS KUBERNETES INGRESS DataDog monitors
 
 ## How to use this module
 
 ```
-module "datadog-monitors-caas-k8s-ingress" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//caas/k8s/ingress?ref={revision}"
+module "datadog-monitors-caas-kubernetes-ingress" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//caas/kubernetes/ingress?ref={revision}"
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
@@ -16,7 +16,7 @@ module "datadog-monitors-caas-k8s-ingress" {
 
 Creates DataDog monitors with the following checks:
 
-- Nginx Ingress 5xx errors too high for {{ingress_class.name}} on {{upstream.name}}
+- Nginx Ingress 5xx errors
 
 ## Inputs
 
@@ -36,7 +36,6 @@ Creates DataDog monitors with the following checks:
 | ingress_5xx_timeframe | Monitor timeframe for Ingress 5xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
-| team | Global Terraform | string | `k8s` | no |
 
 ## Outputs
 
@@ -74,7 +73,7 @@ datadog:
           # Adapt the tags to the current convention and verify that the monitor will match
           tags:
               - dd_monitoring:enabled
-              - dd_k8s_ingress:enabled
+              - dd_ingress:enabled
               - dd_ingress_class:nginx
               - env:prod
 ```
