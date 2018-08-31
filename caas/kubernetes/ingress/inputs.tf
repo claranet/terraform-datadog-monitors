@@ -1,9 +1,4 @@
 # Global Terraform
-variable "team" {
-  type    = "string"
-  default = "k8s"
-}
-
 variable "environment" {
   description = "Architecture Environment"
   type        = "string"
