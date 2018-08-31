@@ -61,12 +61,51 @@ variable "ingress_5xx_timeframe" {
 
 variable "ingress_5xx_threshold_critical" {
   type    = "string"
-  default = "10"
+  default = "20"
 }
 
 variable "ingress_5xx_threshold_warning" {
   type    = "string"
-  default = "5"
+  default = "10"
+}
+
+variable "ingress_4xx_silenced" {
+  description = "Groups to mute for Ingress 4xx errors monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "ingress_4xx_enabled" {
+  description = "Flag to enable Ingress 4xx errors monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "ingress_4xx_extra_tags" {
+  description = "Extra tags for Ingress 4xx errors monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "ingress_4xx_message" {
+  description = "Message sent when an alert is triggered"
+  default     = ""
+}
+
+variable "ingress_4xx_timeframe" {
+  description = "Monitor timeframe for Ingress 4xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "ingress_4xx_threshold_critical" {
+  type    = "string"
+  default = "40"
+}
+
+variable "ingress_4xx_threshold_warning" {
+  type    = "string"
+  default = "20"
 }
 
 variable "artificial_requests_count" {
