@@ -1,20 +1,10 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ?
-             format("dd_monitoring:enabled,dd_k8s:enabled,env:%s", var.environment) :
-             "${var.filter_tags_custom}"}"
-  }
-}
-
 resource "datadog_monitor" "ark_schedules_monitor" {
   name    = "[${var.environment}] Ark backup failed on {{schedule.name}}"
   type    = "metric alert"
   message = "${coalesce(var.ark_schedules_monitor_message, var.message)}"
 
   query = <<EOF
-    sum(${var.ark_schedules_monitor_timeframe}):min:ark.ark_backup_failure_total{${data.template_file.filter.rendered}} by {schedule}.as_count() > 1
+    sum(${var.ark_schedules_monitor_timeframe}):min:ark.ark_backup_failure_total${module.filter-tags-5xx.query_alert} by {schedule}.as_count() > 1
   EOF
 
   thresholds {
