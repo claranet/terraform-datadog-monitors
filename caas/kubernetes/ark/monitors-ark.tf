@@ -9,7 +9,7 @@ data "template_file" "filter" {
 }
 
 resource "datadog_monitor" "ark_schedules_monitor" {
-  name    = "[${var.environment}] [${var.team}] Ark backup failed on {{schedule.name}}"
+  name    = "[${var.environment}] Ark backup failed on {{schedule.name}}"
   type    = "metric alert"
   message = "${coalesce(var.ark_schedules_monitor_message, var.message)}"
 
@@ -35,5 +35,5 @@ resource "datadog_monitor" "ark_schedules_monitor" {
   require_full_window = false
 
   silenced = "${var.ark_schedules_monitor_silenced}"
-  tags     = ["team:${var.team}", "env:${var.environment}", "resource:ark", "provider:prometheus"]
+  tags = ["env:${var.environment}", "type:caas", "provider:prometheus", "resource:ark", "team:claranet", "created-by:terraform"]
 }
