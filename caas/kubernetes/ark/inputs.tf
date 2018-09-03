@@ -1,10 +1,5 @@
 # Datadog global variables
 
-variable "team" {
-  type    = "string"
-  default = "k8s"
-}
-
 variable "environment" {
   description = "Architecture environment"
 }
@@ -29,7 +24,6 @@ variable "delay" {
 }
 
 # Datadog monitors variables
-# N/A
 
 variable "ark_schedules_monitor_message" {
   description = "Custom message for Ark schedules monitor"
