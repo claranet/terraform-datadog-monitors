@@ -18,9 +18,14 @@ variable "message" {
   description = "Message sent when a monitor is triggered"
 }
 
-variable "delay" {
+variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
-  default     = 60
+  default     = 15
+}
+
+variable "new_host_delay" {
+  description = "Delay in seconds before monitor new resource"
+  default     = 300
 }
 
 # Datadog monitors variables
