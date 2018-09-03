@@ -61,6 +61,6 @@ variable "ark_schedules_extra_tags" {
 }
 
 variable "ark_schedules_monitor_no_data_timeframe" {
-  description = "No data timeframe"
+  description = "No data timeframe in minutes"
   default     = 1440
 }
