@@ -48,6 +48,18 @@ variable "ark_schedules_monitor_silenced" {
   default     = {}
 }
 
+variable "ark_schedules_enabled" {
+  description = "Flag to enable Ark schedules monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "ark_schedules_extra_tags" {
+  description = "Extra tags for Ark schedules monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "ark_schedules_monitor_no_data_timeframe" {
   description = "No data timeframe"
   default     = 1440
