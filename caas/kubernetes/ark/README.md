@@ -77,7 +77,7 @@ spec:
               "prometheus_url": "http://%%host%%:8085/metrics",
               "namespace": "ark",
               "metrics": ["ark_backup_*"],
-              "tags": ["dd_monitoring:enabled","dd_k8s:enabled","env:prod"]
+              "tags": ["dd_monitoring:enabled","dd_ark:enabled","env:prod"]
             }
           ]
 ```

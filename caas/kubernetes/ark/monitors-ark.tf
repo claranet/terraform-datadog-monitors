@@ -1,6 +1,6 @@
 resource "datadog_monitor" "ark_schedules_monitor" {
   count   = "${var.ark_schedules_enabled ? 1 : 0}"
-  name    = "[${var.environment}] Ark backup failed on {{schedule.name}}"
+  name    = "[${var.environment}] Ark backup failed"
   type    = "metric alert"
   message = "${coalesce(var.ark_schedules_monitor_message, var.message)}"
 
@@ -26,5 +26,5 @@ resource "datadog_monitor" "ark_schedules_monitor" {
   require_full_window = false
 
   silenced = "${var.ark_schedules_monitor_silenced}"
-  tags = ["env:${var.environment}", "type:caas", "provider:prometheus", "resource:ark", "team:claranet", "created-by:terraform", "${var.ark_schedules_extra_tags}"]
+  tags     = ["env:${var.environment}", "type:caas", "provider:prometheus", "resource:ark", "team:claranet", "created-by:terraform", "${var.ark_schedules_extra_tags}"]
 }
