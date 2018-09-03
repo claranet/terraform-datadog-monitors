@@ -17,3 +17,8 @@ output "service_bus_server_errors_id" {
   description = "id for monitor service_bus_server_errors"
   value       = "${datadog_monitor.service_bus_server_errors.*.id}"
 }
+
+output "service_bus_queue_growing_id" {
+  description = "id for monitor service_bus_queue_growing"
+  value       = "${datadog_monitor.service_bus_queue_growing.*.id}"
+}

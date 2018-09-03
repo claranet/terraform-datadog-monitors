@@ -71,33 +71,39 @@ variable "status_timeframe" {
 }
 
 variable "no_active_connections_enabled" {
-  description = "Flag to enable Service Bus status monitor"
+  description = "Flag to enable Service Bus no active connection monitor"
   type        = "string"
   default     = "true"
 }
 
 variable "no_active_connections_silenced" {
-  description = "Groups to mute for Service Bus status monitor"
+  description = "Groups to mute for Service Bus no active connection monitor"
   type        = "map"
   default     = {}
 }
 
 variable "no_active_connections_message" {
-  description = "Custom message for Service Bus status monitor"
+  description = "Custom message for Service Bus no active connection monitor"
   type        = "string"
   default     = ""
 }
 
 variable "no_active_connections_time_aggregator" {
-  description = "Monitor aggregator for Service Bus status [available values: min, max or avg]"
+  description = "Monitor aggregator for Service Bus no active connection [available values: min, max or avg]"
   type        = "string"
   default     = "max"
 }
 
 variable "no_active_connections_timeframe" {
-  description = "Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  description = "Monitor timeframe for Service Bus no active connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
+}
+
+variable "no_active_connections_extra_tags" {
+  description = "Extra tags for Service Bus no active connection monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "server_errors_message" {
@@ -140,6 +146,12 @@ variable "server_errors_threshold_warning" {
   default     = 50
 }
 
+variable "server_errors_extra_tags" {
+  description = "Extra tags for Service Bus server errors monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "user_errors_message" {
   description = "Custom message for Service Bus user errors monitor"
   type        = "string"
@@ -178,4 +190,52 @@ variable "user_errors_threshold_critical" {
 variable "user_errors_threshold_warning" {
   description = "Warning threshold for Service Bus user errors monitor"
   default     = 50
+}
+
+variable "user_errors_extra_tags" {
+  description = "Extra tags for Service Bus user errors monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "queue_growing_message" {
+  description = "Custom message for Service Bus quickly growing queue monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "queue_growing_enabled" {
+  description = "Flag to enable Service Bus quickly growing queue monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "queue_growing_config" {
+  description = "Configuration for Service Bus quickly growing queue monitor as {\"<timeframe>\" = \"<critical_threshold>,<warning_threshold>\",...} ie. {\"last_5m\" = \"50,30\", \"last_1d\" = \"50,30\"}"
+  type        = "map"
+
+  default = {
+    "last_5m"  = "50,30"
+    "last_30m" = "50,30"
+    "last_2h"  = "50,30"
+    "last_1d"  = "50,30"
+  }
+}
+
+variable "queue_growing_silenced" {
+  description = "Groups to mute for Service Bus quickly growing queue monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "queue_growing_time_aggregator" {
+  description = "Monitor aggregator for Service Bus no quickly growing queue [available values: min, max or avg]"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "queue_growing_extra_tags" {
+  description = "Extra tags for Service Bus quickly growing queue monitor"
+  type        = "list"
+  default     = []
 }

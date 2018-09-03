@@ -53,7 +53,7 @@ resource "datadog_monitor" "service_bus_no_active_connections" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform", "${var.no_active_connections_extra_tags}"]
 }
 
 resource "datadog_monitor" "service_bus_user_errors" {
@@ -88,7 +88,7 @@ resource "datadog_monitor" "service_bus_user_errors" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform", "${var.user_errors_extra_tags}"]
 }
 
 resource "datadog_monitor" "service_bus_server_errors" {
@@ -123,5 +123,41 @@ resource "datadog_monitor" "service_bus_server_errors" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform", "${var.server_errors_extra_tags}"]
+}
+
+resource "datadog_monitor" "service_bus_queue_growing" {
+  count = "${var.queue_growing_enabled ? length(keys(var.queue_growing_config)) : 0}"
+
+  name    = "[${var.environment}] Service Bus queue is growing for ${replace(element(keys(var.queue_growing_config), count.index), "_", " ")} {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = "${coalesce(var.queue_growing_message, var.message)}"
+
+  query = <<EOF
+      ${var.queue_growing_time_aggregator}(${element(keys(var.queue_growing_config), count.index)}): default(
+        diff(sum:azure.servicebus_namespaces.count_of_messages_in_a_queue_topic.preview${module.filter-tags.query_alert} by {resource_group,region,name,entityname})
+         /
+        avg:azure.servicebus_namespaces.count_of_messages_in_a_queue_topic.preview${module.filter-tags.query_alert} by {resource_group,region,name,entityname}
+        * 100, 0) > ${element(split(",", element(values(var.queue_growing_config), count.index)), 0)}
+  EOF
+
+  type = "metric alert"
+
+  thresholds {
+    critical = "${element(split(",", element(values(var.queue_growing_config), count.index)), 0)}"
+    warning  = "${element(split(",", element(values(var.queue_growing_config), count.index)), 1)}"
+  }
+
+  silenced = "${var.queue_growing_silenced}"
+
+  notify_no_data      = false
+  evaluation_delay    = "${var.evaluation_delay}"
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+  new_host_delay      = "${var.new_host_delay}"
+
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform", "${var.queue_growing_extra_tags}"]
 }
