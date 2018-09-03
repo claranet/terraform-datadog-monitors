@@ -5,7 +5,7 @@ resource "datadog_monitor" "ark_schedules_monitor" {
   message = "${coalesce(var.ark_schedules_monitor_message, var.message)}"
 
   query = <<EOF
-    sum(${var.ark_schedules_monitor_timeframe}):min:ark.ark_backup_failure_total${module.filter-tags-5xx.query_alert} by {schedule}.as_count() > 1
+    sum(${var.ark_schedules_monitor_timeframe}):min:ark.ark_backup_failure_total${module.filter-tags.query_alert} by {schedule}.as_count() > 1
   EOF
 
   thresholds {
