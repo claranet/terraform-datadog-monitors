@@ -8,7 +8,7 @@ resource "datadog_monitor" "concurrent_queries" {
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.concurrent_queries_timeframe}): avg:gcp.bigquery.query.count{${var.filter_tags}}
+  default(avg(${var.concurrent_queries_timeframe}):avg:gcp.bigquery.query.count{${var.filter_tags}}, 0)
   > ${var.concurrent_queries_threshold_critical}
 EOF
 
@@ -43,7 +43,7 @@ resource "datadog_monitor" "execution_time" {
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.execution_time_timeframe}): avg:gcp.bigquery.query.execution_times.avg{${var.filter_tags}}
+  default(avg(${var.execution_time_timeframe}):avg:gcp.bigquery.query.execution_times.avg{${var.filter_tags}}, 0)
   > ${var.execution_time_threshold_critical}
 EOF
 
@@ -78,7 +78,7 @@ resource "datadog_monitor" "scanned_bytes" {
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.scanned_bytes_timeframe}): avg:gcp.bigquery.query.scanned_bytes{${var.filter_tags}}
+  default(avg(${var.scanned_bytes_timeframe}):avg:gcp.bigquery.query.scanned_bytes{${var.filter_tags}}, 0)
   > ${var.scanned_bytes_threshold_critical}
 EOF
 
@@ -113,7 +113,7 @@ resource "datadog_monitor" "scanned_bytes_billed" {
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.scanned_bytes_billed_timeframe}): avg:gcp.bigquery.query.scanned_bytes_billed{${var.filter_tags}}
+  default(avg(${var.scanned_bytes_billed_timeframe}):avg:gcp.bigquery.query.scanned_bytes_billed{${var.filter_tags}}, 0)
   > ${var.scanned_bytes_billed_threshold_critical}
 EOF
 
@@ -148,7 +148,7 @@ resource "datadog_monitor" "available_slots" {
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.available_slots_timeframe}): avg:gcp.bigquery.slots.total_available{${var.filter_tags}}
+  avg(${var.available_slots_timeframe}):avg:gcp.bigquery.slots.total_available{${var.filter_tags}}
   < ${var.available_slots_threshold_critical}
 EOF
 
@@ -183,7 +183,7 @@ resource "datadog_monitor" "stored_bytes" {
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.stored_bytes_timeframe}): avg:gcp.bigquery.storage.stored_bytes{${var.filter_tags}}
+  default(avg(${var.stored_bytes_timeframe}):avg:gcp.bigquery.storage.stored_bytes{${var.filter_tags}}, 0)
   by {dataset_id,table}
   > ${var.stored_bytes_threshold_critical}
 EOF
@@ -219,7 +219,7 @@ resource "datadog_monitor" "table_count" {
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.table_count_timeframe}): avg:gcp.bigquery.storage.table_count{${var.filter_tags}}
+  avg(${var.table_count_timeframe}):avg:gcp.bigquery.storage.table_count{${var.filter_tags}}
   by {dataset_id}
   > ${var.table_count_threshold_critical}
 EOF
@@ -255,7 +255,7 @@ resource "datadog_monitor" "uploaded_bytes" {
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.uploaded_bytes_timeframe}): avg:gcp.bigquery.storage.uploaded_bytes{${var.filter_tags}}
+  default(avg(${var.uploaded_bytes_timeframe}):avg:gcp.bigquery.storage.uploaded_bytes{${var.filter_tags}}, 0)
   by {dataset_id,table}
   > ${var.uploaded_bytes_threshold_critical}
 EOF
@@ -291,7 +291,7 @@ resource "datadog_monitor" "uploaded_bytes_billed" {
   type = "metric alert"
 
   query = <<EOF
-  avg(${var.uploaded_bytes_billed_timeframe}): avg:gcp.bigquery.storage.uploaded_bytes{${var.filter_tags}}
+  default(avg(${var.uploaded_bytes_billed_timeframe}): avg:gcp.bigquery.storage.uploaded_bytes_billed{${var.filter_tags}}, 0)
   by {dataset_id,table}
   > ${var.uploaded_bytes_billed_threshold_critical}
 EOF
