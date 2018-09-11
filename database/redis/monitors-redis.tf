@@ -1,3 +1,38 @@
+#
+# Service Check
+#
+resource "datadog_monitor" "not_responding" {
+  count   = "${var.not_responding_enabled ? 1 : 0}"
+  name    = "[${var.environment}] Redis does not respond"
+  message = "${coalesce(var.not_responding_message, var.message)}"
+
+  type = "service check"
+
+  query = <<EOF
+    "redis.can_connect".over${module.filter-tags.service_check}.by("redis_host","redis_port").last(6).count_by_status()
+  EOF
+
+  thresholds {
+    warning  = "${var.not_responding_threshold_warning}"
+    critical = 5
+  }
+
+  silenced = "${var.not_responding_silenced}"
+
+  notify_no_data      = true
+  no_data_timeframe   = "${var.not_responding_no_data_timeframe}"
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
+  require_full_window = true
+  renotify_interval   = 0
+
+  new_host_delay = "${var.new_host_delay}"
+
+  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", "${var.not_responding_extra_tags}"]
+}
+
 resource "datadog_monitor" "evicted_keys" {
   count   = "${var.evictedkeys_change_enabled ? 1 : 0}"
   name    = "[${var.environment}] Redis evicted keys {{#is_alert}}{{{comparator}}} {{threshold}}% (+{{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% (+{{value}}%){{/is_warning}}"
@@ -297,38 +332,4 @@ EOL
   new_host_delay      = "${var.new_host_delay}"
 
   tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", "${var.hitrate_extra_tags}"]
-}
-
-#
-# Service Check
-#
-resource "datadog_monitor" "not_responding" {
-  count   = "${var.not_responding_enabled ? 1 : 0}"
-  name    = "[${var.environment}] Redis does not respond"
-  message = "${coalesce(var.not_responding_message, var.message)}"
-
-  type = "service check"
-
-  query = <<EOF
-    "redis.can_connect".over${module.filter-tags.service_check}.by("host","redis_host","redis_port").last(6).count_by_status()
-  EOF
-
-  thresholds {
-    ok       = 1
-    critical = 5
-  }
-
-  silenced = "${var.not_responding_silenced}"
-
-  notify_audit        = false
-  locked              = false
-  timeout_h           = 0
-  include_tags        = true
-  require_full_window = true
-  notify_no_data      = true
-  renotify_interval   = 0
-
-  new_host_delay = "${var.new_host_delay}"
-
-  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", "${var.not_responding_extra_tags}"]
 }
