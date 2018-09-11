@@ -43,8 +43,9 @@ Creates DataDog monitors with the following checks:
 | mysql_aborted_timeframe | Monitor timeframe for MySQL aborted connects monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_10m` | no |
 | mysql_availability_extra_tags | Extra tags for Mysql availability monitor | list | `<list>` | no |
 | mysql_availability_message | Custom message for Mysql availability monitor | string | `` | no |
+| mysql_availability_no_data_timeframe | Mysql availability monitor no data timeframe | string | `10` | no |
 | mysql_availability_silenced | Groups to mute for Mysql availability monitor | map | `<map>` | no |
-| mysql_availability_threshold_critical | Mysql availability monitor (critical threshold) | string | `1.1754943508222875e-38` | no |
+| mysql_availability_threshold_warning | Mysql availability monitor (warning threshold) | string | `3` | no |
 | mysql_connection_extra_tags | Extra tags for MySQL connection monitor | list | `<list>` | no |
 | mysql_connection_message | Custom message for MySQL connection monitor | string | `` | no |
 | mysql_connection_silenced | Groups to mute MySQL connection monitor | map | `<map>` | no |

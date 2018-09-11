@@ -51,10 +51,16 @@ variable "mysql_availability_message" {
   default     = ""
 }
 
-variable "mysql_availability_threshold_critical" {
-  description = "Mysql availability monitor (critical threshold)"
+variable "mysql_availability_threshold_warning" {
+  description = "Mysql availability monitor (warning threshold)"
   type        = "string"
-  default     = 1.1754943508222875e-38
+  default     = 3
+}
+
+variable "mysql_availability_no_data_timeframe" {
+  description = "Mysql availability monitor no data timeframe"
+  type        = "string"
+  default     = 10
 }
 
 #################################
