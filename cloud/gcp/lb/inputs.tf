@@ -52,10 +52,16 @@ variable "error_rate_4xx_artificial_request" {
   default     = 5
 }
 
+variable "error_rate_4xx_threshold_warning" {
+  description = "Rate error in percentage (warning threshold)"
+  type        = "string"
+  default     = 50
+}
+
 variable "error_rate_4xx_threshold_critical" {
   description = "Rate error in percentage (critical threshold)"
   type        = "string"
-  default     = 50
+  default     = 60
 }
 
 variable "error_rate_4xx_silenced" {
@@ -97,10 +103,16 @@ variable "error_rate_5xx_artificial_request" {
   default     = 5
 }
 
+variable "error_rate_5xx_threshold_warning" {
+  description = "Rate error in percentage (warning threshold)"
+  type        = "string"
+  default     = 30
+}
+
 variable "error_rate_5xx_threshold_critical" {
   description = "Rate error in percentage (critical threshold)"
   type        = "string"
-  default     = 50
+  default     = 40
 }
 
 variable "error_rate_5xx_silenced" {
