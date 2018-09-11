@@ -9,12 +9,12 @@ resource "datadog_monitor" "mysql_availability" {
   EOF
 
   thresholds = {
-    warning  = 5
+    warning  = "${var.mysql_availability_threshold_warning}"
     critical = 5
   }
 
   notify_no_data      = true
-  no_data_timeframe   = 10
+  no_data_timeframe   = "${var.mysql_availability_no_data_timeframe}"
   new_host_delay      = "${var.new_host_delay}"
   renotify_interval   = 0
   notify_audit        = false
