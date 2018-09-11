@@ -78,25 +78,37 @@ variable "php_fpm_busy_threshold_critical" {
 }
 
 variable "php_fpm_connect_silenced" {
-  description = "Groups to mute for PHP FPM process monitor"
+  description = "Groups to mute for PHP FPM status monitor"
   type        = "map"
   default     = {}
 }
 
 variable "php_fpm_connect_enabled" {
-  description = "Flag to enable PHP FPM process monitor"
+  description = "Flag to enable PHP FPM status monitor"
   type        = "string"
   default     = "true"
 }
 
 variable "php_fpm_connect_extra_tags" {
-  description = "Extra tags for PHP FPM process monitor"
+  description = "Extra tags for PHP FPM status monitor"
   type        = "list"
   default     = []
 }
 
 variable "php_fpm_connect_message" {
-  description = "Custom message for PHP FPM process monitor"
+  description = "Custom message for PHP FPM status monitor"
   type        = "string"
   default     = ""
+}
+
+variable "php_fpm_connect_threshold_warning" {
+  description = "PHP FPM status monitor (warning threshold)"
+  type        = "string"
+  default     = 3
+}
+
+variable "php_fpm_connect_no_data_timeframe" {
+  description = "PHP FPM status monitor no data timeframe"
+  type        = "string"
+  default     = 10
 }
