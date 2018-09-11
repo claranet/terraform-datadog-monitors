@@ -31,36 +31,6 @@ variable "filter_tags_custom" {
 
 # System generic specific
 
-variable "unreachable_silenced" {
-  description = "Groups to mute for Host unreachable monitor"
-  type        = "map"
-  default     = {}
-}
-
-variable "unreachable_enabled" {
-  description = "Flag to enable Host unreachable monitor"
-  type        = "string"
-  default     = "true"
-}
-
-variable "unreachable_extra_tags" {
-  description = "Extra tags for Host unreachable monitor"
-  type        = "list"
-  default     = []
-}
-
-variable "unreachable_message" {
-  description = "Custom message for Host unreachable monitor"
-  type        = "string"
-  default     = ""
-}
-
-variable "unreachable_no_data_timeframe" {
-  description = "Timeframe for Host unreachable monitor to alert on no data"
-  type        = "string"
-  default     = 20
-}
-
 variable "cpu_high_silenced" {
   description = "Groups to mute for CPU high monitor"
   type        = "map"
