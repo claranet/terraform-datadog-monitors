@@ -46,11 +46,11 @@ resource "datadog_monitor" "error_rate_5xx" {
   type = "metric alert"
 
   query = <<EOF
-  ${var.error_rate_4xx_time_aggregator}(${var.error_rate_4xx_timeframe}):
+  ${var.error_rate_5xx_time_aggregator}(${var.error_rate_5xx_timeframe}):
     default(sum:gcp.loadbalancing.https.request_count{${var.filter_tags},response_code_class:500} by {forwarding_rule_name}.as_count(), 0)
     / (default(sum:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {forwarding_rule_name}.as_count(), 0)
-    + ${var.error_rate_4xx_artificial_request}) * 100
-  > ${var.error_rate_4xx_threshold_critical}
+    + ${var.error_rate_5xx_artificial_request}) * 100
+  > ${var.error_rate_5xx_threshold_critical}
 EOF
 
   thresholds {
