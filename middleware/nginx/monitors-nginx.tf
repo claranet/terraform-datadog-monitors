@@ -6,15 +6,16 @@ resource "datadog_monitor" "datadog_nginx_process" {
   type = "service check"
 
   query = <<EOF
-    "nginx.can_connect".over${module.filter-tags.service_check}.by("host","port","server").last(1).pct_by_status()
+    "nginx.can_connect".over${module.filter-tags.service_check}.by("server","port").last(6).count_by_status()
   EOF
 
   thresholds = {
-    warning  = 0
-    critical = "${var.nginx_connect_threshold_critical}"
+    warning  = "${var.nginx_connect_threshold_warning}"
+    critical = 5
   }
 
   notify_no_data      = true
+  no_data_timeframe   = "${var.nginx_connect_no_data_timeframe}"
   new_host_delay      = "${var.new_host_delay}"
   renotify_interval   = 0
   notify_audit        = false
