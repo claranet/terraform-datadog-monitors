@@ -16,6 +16,7 @@ resource "datadog_monitor" "error_rate_4xx" {
 EOF
 
   thresholds {
+    warning  = "${var.error_rate_4xx_threshold_warning}"
     critical = "${var.error_rate_4xx_threshold_critical}"
   }
 
@@ -53,6 +54,7 @@ resource "datadog_monitor" "error_rate_5xx" {
 EOF
 
   thresholds {
+    warning  = "${var.error_rate_5xx_threshold_warning}"
     critical = "${var.error_rate_5xx_threshold_critical}"
   }
 

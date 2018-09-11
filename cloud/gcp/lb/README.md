@@ -45,14 +45,16 @@ Creates DataDog monitors with the following checks:
 | error_rate_4xx_extra_tags | Extra tags for GCP LB 4XX Errors monitor | list | `<list>` | no |
 | error_rate_4xx_message | Custom message for the GCP LB 4XX Errors monitor | string | `` | no |
 | error_rate_4xx_silenced | Groups to mute for GCP LB 4XX Errors monitor | map | `<map>` | no |
-| error_rate_4xx_threshold_critical | Rate error in percentage (critical threshold) | string | `50` | no |
+| error_rate_4xx_threshold_critical | Rate error in percentage (critical threshold) | string | `60` | no |
+| error_rate_4xx_threshold_warning | Rate error in percentage (warning threshold) | string | `50` | no |
 | error_rate_4xx_time_aggregator | Timeframe for the GCP LB 4XX Errors monitor | string | `sum` | no |
 | error_rate_4xx_timeframe | Timeframe for the GCP LB 4XX Errors monitor | string | `last_5m` | no |
 | error_rate_5xx_artificial_request | Divisor Delta for the GCP LB 5XX Errors monitor | string | `5` | no |
 | error_rate_5xx_extra_tags | Extra tags for GCP LB 5XX Errors monitor | list | `<list>` | no |
 | error_rate_5xx_message | Custom message for the GCP LB 5XX Errors monitor | string | `` | no |
 | error_rate_5xx_silenced | Groups to mute for GCP LB 5XX Errors monitor | map | `<map>` | no |
-| error_rate_5xx_threshold_critical | Rate error in percentage (critical threshold) | string | `50` | no |
+| error_rate_5xx_threshold_critical | Rate error in percentage (critical threshold) | string | `40` | no |
+| error_rate_5xx_threshold_warning | Rate error in percentage (warning threshold) | string | `30` | no |
 | error_rate_5xx_time_aggregator | Timeframe for the GCP LB 5XX Errors monitor | string | `sum` | no |
 | error_rate_5xx_timeframe | Timeframe for the GCP LB 5XX Errors monitor | string | `last_5m` | no |
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
