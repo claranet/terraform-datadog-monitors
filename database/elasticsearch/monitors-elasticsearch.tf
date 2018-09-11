@@ -1,4 +1,46 @@
 #
+# Service Check
+#
+resource "datadog_monitor" "not_responding" {
+  name    = "[${var.environment}] ElasticSearch does not respond"
+  message = "${coalesce(var.not_responding_message, var.message)}"
+
+  query = <<EOL
+    "elasticsearch.can_connect".over${module.filter-tags.service_check}.by("server","port").last(6).count_by_status()
+EOL
+
+  type = "service check"
+
+  thresholds {
+    warning  = "${var.not_responding_threshold_warning}"
+    critical = 5
+  }
+
+  silenced = "${var.not_responding_silenced}"
+
+  no_data_timeframe   = "${var.not_responding_no_data_timeframe}"
+  notify_no_data      = true
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
+  require_full_window = true
+  renotify_interval   = 0
+
+  new_host_delay = "${var.new_host_delay}"
+
+  tags = [
+    "created-by:terraform",
+    "team:claranet",
+    "type:databases",
+    "provider:elasticsearch",
+    "env:${var.environment}",
+    "resource:elasticsearch",
+    "${var.not_responding_extra_tags}",
+  ]
+}
+
+#
 # Cluster Status Not Green
 #
 resource "datadog_monitor" "cluster_status_not_green" {
@@ -875,46 +917,5 @@ EOF
     "type:databases",
     "provider:elasticsearch",
     "${var.task_time_in_queue_change_extra_tags}",
-  ]
-}
-
-#
-# Service Check
-#
-resource "datadog_monitor" "not_responding" {
-  name    = "[${var.environment}] ElasticSearch does not respond"
-  message = "${coalesce(var.not_responding_message, var.message)}"
-
-  query = <<EOL
-    "elasticsearch.can_connect".over${module.filter-tags.service_check}.by(${var.not_responding_by}).last(${var.not_responding_last}).pct_by_status()
-EOL
-
-  type = "service check"
-
-  thresholds {
-    warning  = "${var.not_responding_threshold_warning}"
-    critical = "${var.not_responding_threshold_critical}"
-  }
-
-  silenced = "${var.not_responding_silenced}"
-
-  notify_audit        = false
-  locked              = false
-  timeout_h           = 0
-  include_tags        = true
-  require_full_window = true
-  notify_no_data      = true
-  renotify_interval   = 0
-
-  new_host_delay = "${var.new_host_delay}"
-
-  tags = [
-    "created-by:terraform",
-    "team:claranet",
-    "type:databases",
-    "provider:elasticsearch",
-    "env:${var.environment}",
-    "resource:elasticsearch",
-    "${var.not_responding_extra_tags}",
   ]
 }
