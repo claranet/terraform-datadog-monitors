@@ -170,13 +170,11 @@ Creates DataDog monitors with the following checks:
 | node_free_space_threshold_warning | Cluster Status warning threshold | string | `20` | no |
 | node_free_space_time_aggregator | Time aggregator for the Cluster Status monitor | string | `sum` | no |
 | node_free_space_timeframe | Timeframe for the Cluster Status monitor | string | `last_5m` | no |
-| not_responding_by | Group by for the service check | string | `"port","server"` | no |
 | not_responding_extra_tags | Extra tags for Elasticsearch does not respond monitor | list | `<list>` | no |
-| not_responding_last | Parameter 'last' for the service check | string | `1` | no |
 | not_responding_message | Custom message for Elasticsearch does not respond monitor | string | `` | no |
+| not_responding_no_data_timeframe | Elasticsearch not responding monitor no data timeframe | string | `10` | no |
 | not_responding_silenced | Groups to mute for Elasticsearch does not respond monitor | map | `<map>` | no |
-| not_responding_threshold_critical | Not responding limit (critical threshold) | string | `5` | no |
-| not_responding_threshold_warning | Not responding limit (warning threshold) | string | `0` | no |
+| not_responding_threshold_warning | Elasticsearch not responding limit (warning threshold) | string | `3` | no |
 | query_cache_evictions_change_extra_tags | Extra tags for Cluster Status monitor | list | `<list>` | no |
 | query_cache_evictions_change_message | Custom message for the Cluster Status monitor | string | `` | no |
 | query_cache_evictions_change_silenced | Groups to mute for Cluster Status monitor | map | `<map>` | no |
