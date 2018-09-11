@@ -5,15 +5,16 @@ resource "datadog_monitor" "mysql_availability" {
   type = "service check"
 
   query = <<EOF
-    "mysql.can_connect".over${module.filter-tags.service_check}.by("host","port","server").last(1).pct_by_status()
+    "mysql.can_connect".over${module.filter-tags.service_check}.by("port","server").last(6).count_by_status()
   EOF
 
   thresholds = {
-    warning  = 0
-    critical = "${var.mysql_availability_threshold_critical}"
+    warning  = 5
+    critical = 5
   }
 
   notify_no_data      = true
+  no_data_timeframe   = 10
   new_host_delay      = "${var.new_host_delay}"
   renotify_interval   = 0
   notify_audit        = false
