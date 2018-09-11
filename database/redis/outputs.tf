@@ -1,3 +1,8 @@
+output "not_responding_id" {
+  description = "id for monitor not_responding"
+  value       = "${datadog_monitor.not_responding.*.id}"
+}
+
 output "evicted_keys_id" {
   description = "id for monitor evicted_keys"
   value       = "${datadog_monitor.evicted_keys.*.id}"
@@ -41,9 +46,4 @@ output "latency_id" {
 output "hitrate_id" {
   description = "id for monitor hitrate"
   value       = "${datadog_monitor.hitrate.*.id}"
-}
-
-output "not_responding_id" {
-  description = "id for monitor not_responding"
-  value       = "${datadog_monitor.not_responding.*.id}"
 }
