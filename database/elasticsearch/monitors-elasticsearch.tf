@@ -65,7 +65,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -106,7 +106,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -147,7 +147,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -188,7 +188,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -232,7 +232,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -273,7 +273,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -314,7 +314,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -355,7 +355,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -396,7 +396,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -437,7 +437,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -479,7 +479,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -521,7 +521,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -570,7 +570,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -612,7 +612,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -654,7 +654,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -695,7 +695,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -736,7 +736,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -778,7 +778,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -820,7 +820,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -862,7 +862,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -903,7 +903,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
