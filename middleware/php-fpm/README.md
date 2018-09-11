@@ -48,8 +48,8 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description |
 |------|-------------|
-| datadog_fpm_process_id | id for monitor datadog_fpm_process |
-| datadog_php_fpm_connect_idle_id | id for monitor datadog_php_fpm_connect_idle |
+| php_fpm_connect_id | id for monitor php_fpm_connect |
+| php_fpm_connect_idle_id | id for monitor php_fpm_connect_idle |
 
 ## Related documentation
 

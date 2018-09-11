@@ -1,9 +1,9 @@
-output "datadog_fpm_process_id" {
-  description = "id for monitor datadog_fpm_process"
-  value       = "${datadog_monitor.datadog_fpm_process.*.id}"
+output "php_fpm_connect_id" {
+  description = "id for monitor php_fpm_connect"
+  value       = "${datadog_monitor.php_fpm_connect.*.id}"
 }
 
-output "datadog_php_fpm_connect_idle_id" {
-  description = "id for monitor datadog_php_fpm_connect_idle"
-  value       = "${datadog_monitor.datadog_php_fpm_connect_idle.*.id}"
+output "php_fpm_connect_idle_id" {
+  description = "id for monitor php_fpm_connect_idle"
+  value       = "${datadog_monitor.php_fpm_connect_idle.*.id}"
 }
