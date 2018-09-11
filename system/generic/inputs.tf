@@ -58,7 +58,7 @@ variable "unreachable_message" {
 variable "unreachable_no_data_timeframe" {
   description = "Timeframe for Host unreachable monitor to alert on no data"
   type        = "string"
-  default     = 2
+  default     = 20
 }
 
 variable "cpu_high_silenced" {

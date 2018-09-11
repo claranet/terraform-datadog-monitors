@@ -14,13 +14,13 @@ resource "datadog_monitor" "datadog_host_unreachable" {
   }
 
   notify_no_data      = true
+  no_data_timeframe   = "${var.unreachable_no_data_timeframe}"
   new_host_delay      = "${var.new_host_delay}"
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = true
-  no_data_timeframe   = "${var.unreachable_no_data_timeframe}"
 
   silenced = "${var.unreachable_silenced}"
 
@@ -45,7 +45,7 @@ resource "datadog_monitor" "datadog_cpu_too_high" {
     critical = "${var.cpu_high_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   new_host_delay      = "${var.new_host_delay}"
   notify_audit        = false
@@ -78,7 +78,7 @@ resource "datadog_monitor" "datadog_load_too_high" {
     critical = "${var.cpu_load_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   new_host_delay      = "${var.new_host_delay}"
   notify_audit        = false
@@ -111,7 +111,7 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
     critical = "${var.free_disk_space_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   new_host_delay      = "${var.new_host_delay}"
   notify_audit        = false
@@ -184,7 +184,7 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
     critical = "${var.free_disk_inodes_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   new_host_delay      = "${var.new_host_delay}"
   notify_audit        = false
@@ -217,7 +217,7 @@ resource "datadog_monitor" "datadog_free_memory" {
     critical = "${var.free_memory_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   new_host_delay      = "${var.new_host_delay}"
   renotify_interval   = 0
