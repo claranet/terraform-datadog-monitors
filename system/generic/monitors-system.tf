@@ -1,32 +1,3 @@
-resource "datadog_monitor" "datadog_host_unreachable" {
-  count   = "${var.unreachable_enabled ? 1 : 0}"
-  name    = "[${var.environment}] Host unreachable"
-  message = "${coalesce(var.unreachable_message, var.message)}"
-
-  query = "\"datadog.agent.up\".over${module.filter-tags.service_check}.last(6).count_by_status()"
-
-  type = "service check"
-
-  thresholds {
-    ok       = 1
-    warning  = 1
-    critical = 5
-  }
-
-  notify_no_data      = true
-  new_host_delay      = "${var.new_host_delay}"
-  notify_audit        = false
-  timeout_h           = 0
-  include_tags        = true
-  locked              = false
-  require_full_window = true
-  no_data_timeframe   = "${var.unreachable_no_data_timeframe}"
-
-  silenced = "${var.unreachable_silenced}"
-
-  tags = ["env:${var.environment}", "type:system", "provider:host", "resource:generic", "team:claranet", "created-by:terraform", "${var.unreachable_extra_tags}"]
-}
-
 resource "datadog_monitor" "datadog_cpu_too_high" {
   count   = "${var.cpu_high_enabled ? 1 : 0}"
   name    = "[${var.environment}] CPU usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
@@ -45,7 +16,7 @@ resource "datadog_monitor" "datadog_cpu_too_high" {
     critical = "${var.cpu_high_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   new_host_delay      = "${var.new_host_delay}"
   notify_audit        = false
@@ -78,7 +49,7 @@ resource "datadog_monitor" "datadog_load_too_high" {
     critical = "${var.cpu_load_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   new_host_delay      = "${var.new_host_delay}"
   notify_audit        = false
@@ -111,7 +82,7 @@ resource "datadog_monitor" "datadog_free_disk_space_too_low" {
     critical = "${var.free_disk_space_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   new_host_delay      = "${var.new_host_delay}"
   notify_audit        = false
@@ -184,7 +155,7 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_too_low" {
     critical = "${var.free_disk_inodes_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   new_host_delay      = "${var.new_host_delay}"
   notify_audit        = false
@@ -217,7 +188,7 @@ resource "datadog_monitor" "datadog_free_memory" {
     critical = "${var.free_memory_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   new_host_delay      = "${var.new_host_delay}"
   renotify_interval   = 0
