@@ -22,7 +22,6 @@ Creates DataDog monitors with the following checks:
 - Free disk inodes
 - Free disk space
 - Free memory
-- Host unreachable
 
 ## Inputs
 
@@ -88,11 +87,6 @@ Creates DataDog monitors with the following checks:
 | free_memory_timeframe | Monitor timeframe for Free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
-| unreachable_enabled | Flag to enable Host unreachable monitor | string | `true` | no |
-| unreachable_extra_tags | Extra tags for Host unreachable monitor | list | `<list>` | no |
-| unreachable_message | Custom message for Host unreachable monitor | string | `` | no |
-| unreachable_no_data_timeframe | Timeframe for Host unreachable monitor to alert on no data | string | `2` | no |
-| unreachable_silenced | Groups to mute for Host unreachable monitor | map | `<map>` | no |
 
 ## Outputs
 
@@ -103,7 +97,6 @@ Creates DataDog monitors with the following checks:
 | datadog_free_disk_space_inodes_too_low_id | id for monitor datadog_free_disk_space_inodes_too_low |
 | datadog_free_disk_space_too_low_id | id for monitor datadog_free_disk_space_too_low |
 | datadog_free_memory_id | id for monitor datadog_free_memory |
-| datadog_host_unreachable_id | id for monitor datadog_host_unreachable |
 | datadog_load_too_high_id | id for monitor datadog_load_too_high |
 
 ## Related documentation
