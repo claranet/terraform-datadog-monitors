@@ -26,6 +26,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| backend_latency_bucket_enabled | Flag to enable GCP LB Backend Latency monitor | string | `true` | no |
 | backend_latency_bucket_extra_tags | Extra tags for GCP LB Backend Latency monitor | list | `<list>` | no |
 | backend_latency_bucket_message | Custom message for the GCP LB Backend Latency monitor | string | `` | no |
 | backend_latency_bucket_silenced | Groups to mute for GCP LB Backend Latency monitor | map | `<map>` | no |
@@ -33,6 +34,7 @@ Creates DataDog monitors with the following checks:
 | backend_latency_bucket_threshold_warning | Latency in milliseconds (warning threshold) | string | `4000` | no |
 | backend_latency_bucket_time_aggregator | Timeframe for the GCP LB Backend Latency monitor | string | `min` | no |
 | backend_latency_bucket_timeframe | Timeframe for the GCP LB Backend Latency monitor | string | `last_10m` | no |
+| backend_latency_service_enabled | Flag to enable GCP LB Backend Latency monitor | string | `true` | no |
 | backend_latency_service_extra_tags | Extra tags for GCP LB Backend Latency monitor | list | `<list>` | no |
 | backend_latency_service_message | Custom message for the GCP LB Backend Latency monitor | string | `` | no |
 | backend_latency_service_silenced | Groups to mute for GCP LB Backend Latency monitor | map | `<map>` | no |
@@ -42,6 +44,7 @@ Creates DataDog monitors with the following checks:
 | backend_latency_service_timeframe | Timeframe for the GCP LB Backend Latency monitor | string | `last_10m` | no |
 | environment | Architecture environment | string | - | yes |
 | error_rate_4xx_artificial_request | Divisor Delta for the GCP LB 4XX Errors monitor | string | `5` | no |
+| error_rate_4xx_enabled | Flag to enable GCP LB 4XX Errors monitor | string | `true` | no |
 | error_rate_4xx_extra_tags | Extra tags for GCP LB 4XX Errors monitor | list | `<list>` | no |
 | error_rate_4xx_message | Custom message for the GCP LB 4XX Errors monitor | string | `` | no |
 | error_rate_4xx_silenced | Groups to mute for GCP LB 4XX Errors monitor | map | `<map>` | no |
@@ -50,6 +53,7 @@ Creates DataDog monitors with the following checks:
 | error_rate_4xx_time_aggregator | Timeframe for the GCP LB 4XX Errors monitor | string | `sum` | no |
 | error_rate_4xx_timeframe | Timeframe for the GCP LB 4XX Errors monitor | string | `last_5m` | no |
 | error_rate_5xx_artificial_request | Divisor Delta for the GCP LB 5XX Errors monitor | string | `5` | no |
+| error_rate_5xx_enabled | Flag to enable GCP LB 5XX Errors monitor | string | `true` | no |
 | error_rate_5xx_extra_tags | Extra tags for GCP LB 5XX Errors monitor | list | `<list>` | no |
 | error_rate_5xx_message | Custom message for the GCP LB 5XX Errors monitor | string | `` | no |
 | error_rate_5xx_silenced | Groups to mute for GCP LB 5XX Errors monitor | map | `<map>` | no |
@@ -61,6 +65,7 @@ Creates DataDog monitors with the following checks:
 | filter_tags | Tags used for filtering | string | `*` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 | new_host_delay | Delay in seconds for the new host evaluation | string | `300` | no |
+| request_count_enabled | Flag to enable GCP LB Request Count monitor | string | `true` | no |
 | request_count_extra_tags | Extra tags for GCP LB Request Count monitor | list | `<list>` | no |
 | request_count_message | Custom message for the GCP LB Request Count monitor | string | `` | no |
 | request_count_silenced | Groups to mute for GCP LB Request Count monitor | map | `<map>` | no |

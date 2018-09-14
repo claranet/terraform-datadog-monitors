@@ -73,6 +73,12 @@ variable "nginx_dropped_silenced" {
   default     = {}
 }
 
+variable "nginx_dropped_enabled" {
+  description = "Flag to enable Nginx dropped monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "nginx_dropped_extra_tags" {
   description = "Extra tags for Nginx dropped connections monitor"
   type        = "list"

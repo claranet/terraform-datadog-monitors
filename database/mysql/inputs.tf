@@ -39,6 +39,12 @@ variable "mysql_availability_silenced" {
   default     = {}
 }
 
+variable "mysql_availability_enabled" {
+  description = "Flag to enable Mysql availability monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "mysql_availability_extra_tags" {
   description = "Extra tags for Mysql availability monitor"
   type        = "list"
@@ -67,6 +73,30 @@ variable "mysql_availability_no_data_timeframe" {
 ###   MySQL connections       ###
 #################################
 
+variable "mysql_connection_silenced" {
+  description = "Groups to mute for MySQL connection monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "mysql_connection_enabled" {
+  description = "Flag to enable MySQL connection monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "mysql_connection_extra_tags" {
+  description = "Extra tags for MySQL connection monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "mysql_connection_message" {
+  description = "Custom message for MySQL connection monitor"
+  type        = "string"
+  default     = ""
+}
+
 variable "mysql_connection_threshold_critical" {
   default     = 80
   description = "Maximum critical acceptable percent of connections"
@@ -89,27 +119,33 @@ variable "mysql_connection_timeframe" {
   default     = "last_10m"
 }
 
-variable "mysql_connection_silenced" {
-  description = "Groups to mute MySQL connection monitor"
+#################################
+###   MySQL aborted connects  ###
+#################################
+
+variable "mysql_aborted_silenced" {
+  description = "Groups to mute for MySQL aborted connects monitor"
   type        = "map"
   default     = {}
 }
 
-variable "mysql_connection_message" {
-  description = "Custom message for MySQL connection monitor"
+variable "mysql_aborted_enabled" {
+  description = "Flag to enable MySQL aborted connects monitor"
   type        = "string"
-  default     = ""
+  default     = "true"
 }
 
-variable "mysql_connection_extra_tags" {
-  description = "Extra tags for MySQL connection monitor"
+variable "mysql_aborted_extra_tags" {
+  description = "Extra tags for MySQL aborted connects monitor"
   type        = "list"
   default     = []
 }
 
-#################################
-###   MySQL aborted connects  ###
-#################################
+variable "mysql_aborted_message" {
+  description = "Custom message for MySQL aborted connects monitor"
+  type        = "string"
+  default     = ""
+}
 
 variable "mysql_aborted_threshold_critical" {
   default     = 10
@@ -133,27 +169,33 @@ variable "mysql_aborted_timeframe" {
   default     = "last_10m"
 }
 
-variable "mysql_aborted_silenced" {
-  description = "Groups to mute MySQL aborted connects monitor"
+#################################
+###   MySQL slow queries      ###
+#################################
+
+variable "mysql_slow_silenced" {
+  description = "Groups to mute for MySQL slow queries monitor"
   type        = "map"
   default     = {}
 }
 
-variable "mysql_aborted_message" {
-  description = "Custom message for MySQL aborted connects monitor"
+variable "mysql_slow_enabled" {
+  description = "Flag to enable MySQL slow queries monitor"
   type        = "string"
-  default     = ""
+  default     = "true"
 }
 
-variable "mysql_aborted_extra_tags" {
-  description = "Extra tags for MySQL aborted connects monitor"
+variable "mysql_slow_extra_tags" {
+  description = "Extra tags for MySQL slow queries monitor"
   type        = "list"
   default     = []
 }
 
-#################################
-###   MySQL slow queries      ###
-#################################
+variable "mysql_slow_message" {
+  description = "Custom message for MySQL slow queries monitor"
+  type        = "string"
+  default     = ""
+}
 
 variable "mysql_slow_threshold_critical" {
   default     = 20
@@ -177,27 +219,33 @@ variable "mysql_slow_timeframe" {
   default     = "last_15m"
 }
 
-variable "mysql_slow_silenced" {
-  description = "Groups to mute MySQL slow queries monitor"
+#################################
+# MySQL innodb pool efficiency  #
+#################################
+
+variable "mysql_pool_efficiency_silenced" {
+  description = "Groups to mute for MySQL innodb buffer pool efficiency monitor"
   type        = "map"
   default     = {}
 }
 
-variable "mysql_slow_message" {
-  description = "Custom message for MySQL slow queries monitor"
+variable "mysql_pool_efficiency_enabled" {
+  description = "Flag to enable MySQL innodb buffer pool efficiency monitor"
   type        = "string"
-  default     = ""
+  default     = "true"
 }
 
-variable "mysql_slow_extra_tags" {
-  description = "Extra tags for MySQL slow queries monitor"
+variable "mysql_pool_efficiency_extra_tags" {
+  description = "Extra tags for MySQL innodb buffer pool efficiency monitor"
   type        = "list"
   default     = []
 }
 
-#################################
-# MySQL innodb pool efficiency  #
-#################################
+variable "mysql_pool_efficiency_message" {
+  description = "Custom message for MySQL innodb buffer pool efficiency monitor"
+  type        = "string"
+  default     = ""
+}
 
 variable "mysql_pool_efficiency_threshold_critical" {
   default     = 20
@@ -221,27 +269,33 @@ variable "mysql_pool_efficiency_timeframe" {
   default     = "last_1h"
 }
 
-variable "mysql_pool_efficiency_silenced" {
-  description = "Groups to mute MySQL innodb buffer pool efficiency monitor"
+#################################
+# MySQL innodb pool utilization #
+#################################
+
+variable "mysql_pool_utilization_silenced" {
+  description = "Groups to mute for MySQL innodb buffer pool utilization monitor"
   type        = "map"
   default     = {}
 }
 
-variable "mysql_pool_efficiency_message" {
-  description = "Custom message for MySQL innodb buffer pool efficiency monitor"
+variable "mysql_pool_utilization_enabled" {
+  description = "Flag to enable MySQL innodb buffer pool utilization monitor"
   type        = "string"
-  default     = ""
+  default     = "true"
 }
 
-variable "mysql_pool_efficiency_extra_tags" {
-  description = "Extra tags for MySQL innodb buffer pool efficiency monitor"
+variable "mysql_pool_utilization_extra_tags" {
+  description = "Extra tags for MySQL innodb buffer pool utilization monitor"
   type        = "list"
   default     = []
 }
 
-#################################
-# MySQL innodb pool utilization #
-#################################
+variable "mysql_pool_utilization_message" {
+  description = "Custom message for MySQL innodb buffer pool utilization monitor"
+  type        = "string"
+  default     = ""
+}
 
 variable "mysql_pool_utilization_threshold_critical" {
   default     = 90
@@ -265,27 +319,33 @@ variable "mysql_pool_utilization_timeframe" {
   default     = "last_4h"
 }
 
-variable "mysql_pool_utilization_silenced" {
-  description = "Groups to mute MySQL innodb buffer pool utilization monitor"
+#################################
+###   MySQL threads           ###
+#################################
+
+variable "mysql_threads_silenced" {
+  description = "Groups to mute for mysql threads monitor"
   type        = "map"
   default     = {}
 }
 
-variable "mysql_pool_utilization_message" {
-  description = "Custom message for MySQL innodb buffer pool utilization monitor"
+variable "mysql_threads_enabled" {
+  description = "Flag to enable mysql threads monitor"
   type        = "string"
-  default     = ""
+  default     = "true"
 }
 
-variable "mysql_pool_utilization_extra_tags" {
-  description = "Extra tags for MySQL innodb buffer pool utilization monitor"
+variable "mysql_threads_extra_tags" {
+  description = "Extra tags for MySQL threads monitor"
   type        = "list"
   default     = []
 }
 
-#################################
-###   MySQL threads           ###
-#################################
+variable "mysql_threads_message" {
+  description = "Custom message for MySQL threads monitor"
+  type        = "string"
+  default     = ""
+}
 
 variable "mysql_threads_threshold_critical" {
   default     = 1
@@ -346,27 +406,33 @@ variable "mysql_threads_timeframe" {
   default     = "last_4h"
 }
 
-variable "mysql_threads_silenced" {
-  description = "Groups to mute mysql threads monitor"
+#################################
+###   MySQL queries           ###
+#################################
+
+variable "mysql_queries_silenced" {
+  description = "Groups to mute for mysql queries monitor"
   type        = "map"
   default     = {}
 }
 
-variable "mysql_threads_message" {
-  description = "Custom message for MySQL threads monitor"
+variable "mysql_queries_enabled" {
+  description = "Flag to enable mysql queries monitor"
   type        = "string"
-  default     = ""
+  default     = "true"
 }
 
-variable "mysql_threads_extra_tags" {
-  description = "Extra tags for MySQL threads monitor"
+variable "mysql_queries_extra_tags" {
+  description = "Extra tags for MySQL queries monitor"
   type        = "list"
   default     = []
 }
 
-#################################
-###   MySQL queries           ###
-#################################
+variable "mysql_queries_message" {
+  description = "Custom message for MySQL queries monitor"
+  type        = "string"
+  default     = ""
+}
 
 variable "mysql_queries_threshold_critical" {
   default     = 1
@@ -425,22 +491,4 @@ variable "mysql_queries_timeframe" {
   description = "Monitor timeframe for MySQL queries monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_4h"
-}
-
-variable "mysql_queries_silenced" {
-  description = "Groups to mute mysql queries monitor"
-  type        = "map"
-  default     = {}
-}
-
-variable "mysql_queries_message" {
-  description = "Custom message for MySQL queries monitor"
-  type        = "string"
-  default     = ""
-}
-
-variable "mysql_queries_extra_tags" {
-  description = "Extra tags for MySQL queries monitor"
-  type        = "list"
-  default     = []
 }

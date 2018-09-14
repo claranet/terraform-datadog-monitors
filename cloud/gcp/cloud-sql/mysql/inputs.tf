@@ -65,6 +65,12 @@ variable "replication_lag_silenced" {
   default     = {}
 }
 
+variable "replication_lag_enabled" {
+  description = "Flag to enable GCP Cloud SQL Replication Lag monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "replication_lag_extra_tags" {
   description = "Extra tags for GCP Cloud SQL SQL Replication monitor"
   type        = "list"

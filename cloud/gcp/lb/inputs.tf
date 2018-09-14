@@ -70,6 +70,12 @@ variable "error_rate_4xx_silenced" {
   default     = {}
 }
 
+variable "error_rate_4xx_enabled" {
+  description = "Flag to enable GCP LB 4XX Errors monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "error_rate_4xx_extra_tags" {
   description = "Extra tags for GCP LB 4XX Errors monitor"
   type        = "list"
@@ -121,6 +127,12 @@ variable "error_rate_5xx_silenced" {
   default     = {}
 }
 
+variable "error_rate_5xx_enabled" {
+  description = "Flag to enable GCP LB 5XX Errors monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "error_rate_5xx_extra_tags" {
   description = "Extra tags for GCP LB 5XX Errors monitor"
   type        = "list"
@@ -166,6 +178,12 @@ variable "backend_latency_service_silenced" {
   default     = {}
 }
 
+variable "backend_latency_service_enabled" {
+  description = "Flag to enable GCP LB Backend Latency monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "backend_latency_service_extra_tags" {
   description = "Extra tags for GCP LB Backend Latency monitor"
   type        = "list"
@@ -209,6 +227,12 @@ variable "backend_latency_bucket_silenced" {
   description = "Groups to mute for GCP LB Backend Latency monitor"
   type        = "map"
   default     = {}
+}
+
+variable "backend_latency_bucket_enabled" {
+  description = "Flag to enable GCP LB Backend Latency monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "backend_latency_bucket_extra_tags" {
@@ -260,6 +284,12 @@ variable "request_count_silenced" {
   description = "Groups to mute for GCP LB Request Count monitor"
   type        = "map"
   default     = {}
+}
+
+variable "request_count_enabled" {
+  description = "Flag to enable GCP LB Request Count monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "request_count_extra_tags" {

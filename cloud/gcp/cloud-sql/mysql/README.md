@@ -27,6 +27,7 @@ Creates DataDog monitors with the following checks:
 | filter_tags | Tags used for filtering | string | `*` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 | new_host_delay | Delay in seconds for the new host evaluation | string | `300` | no |
+| replication_lag_enabled | Flag to enable GCP Cloud SQL Replication Lag monitor | string | `true` | no |
 | replication_lag_extra_tags | Extra tags for GCP Cloud SQL SQL Replication monitor | list | `<list>` | no |
 | replication_lag_message | Custom message for the Replication Lag monitor | string | `` | no |
 | replication_lag_silenced | Groups to mute for GCP Cloud SQL Replication Lag monitor | map | `<map>` | no |
