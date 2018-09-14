@@ -85,7 +85,7 @@ resource "datadog_monitor" "backend_latency_service" {
 
   query = <<EOF
   ${var.backend_latency_service_time_aggregator}(${var.backend_latency_service_timeframe}):
-    min:gcp.loadbalancing.https.backend_latencies.avg{${var.filter_tags},backend_target_type:backend_service} by {backend_target_name,forwarding_rule_name}
+    default(min:gcp.loadbalancing.https.backend_latencies.avg{${var.filter_tags},backend_target_type:backend_service} by {backend_target_name,forwarding_rule_name}, 0)
   > ${var.backend_latency_service_threshold_critical}
 EOF
 
@@ -121,7 +121,7 @@ resource "datadog_monitor" "backend_latency_bucket" {
 
   query = <<EOF
   ${var.backend_latency_bucket_time_aggregator}(${var.backend_latency_bucket_timeframe}):
-    min:gcp.loadbalancing.https.backend_latencies.avg{${var.filter_tags},backend_target_type:backend_bucket} by {backend_target_name,forwarding_rule_name}
+    default(min:gcp.loadbalancing.https.backend_latencies.avg{${var.filter_tags},backend_target_type:backend_bucket} by {backend_target_name,forwarding_rule_name}, 0)
   > ${var.backend_latency_bucket_threshold_critical}
 EOF
 
