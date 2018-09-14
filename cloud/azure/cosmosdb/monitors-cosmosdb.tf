@@ -171,7 +171,7 @@ resource "datadog_monitor" "cosmos_db_scaling" {
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:cosmos_db", "team:claranet", "created-by:terraform", "${var.cosmos_db_scaling_extra_tags}"]
