@@ -5,9 +5,14 @@ variable "environment" {
 }
 
 # Global DataDog
-variable "delay" {
+variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 900
+}
+
+variable "new_host_delay" {
+  description = "Delay in seconds before monitor new resource"
+  default     = 300
 }
 
 variable "message" {
@@ -24,12 +29,6 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
-variable "aurora_cluster_type" {
-  description = "RDS Aurora cluster monitoring.  If empty, single RDS instance monitoring. [available values: `mysql`, `postgresql`]"
-  type        = "string"
-  default     = ""
-}
-
 # AWS RDS instance specific
 
 variable "cpu_silenced" {
@@ -38,10 +37,28 @@ variable "cpu_silenced" {
   default     = {}
 }
 
+variable "cpu_enabled" {
+  description = "Flag to enable RDS CPU usage monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "cpu_extra_tags" {
+  description = "Extra tags for RDS CPU usage monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "cpu_message" {
   description = "Custom message for RDS CPU usage monitor"
   type        = "string"
   default     = ""
+}
+
+variable "cpu_time_aggregator" {
+  description = "Monitor aggregator for RDS CPU usage [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "cpu_timeframe" {
@@ -66,10 +83,28 @@ variable "diskspace_silenced" {
   default     = {}
 }
 
+variable "diskspace_enabled" {
+  description = "Flag to enable RDS free diskspace monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "diskspace_extra_tags" {
+  description = "Extra tags for RDS free diskspace monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "diskspace_message" {
   description = "Custom message for RDS free diskspace monitor"
   type        = "string"
   default     = ""
+}
+
+variable "diskspace_time_aggregator" {
+  description = "Monitor aggregator for RDS free diskspace [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "diskspace_timeframe" {
@@ -88,30 +123,3 @@ variable "diskspace_threshold_critical" {
   default     = "10"
 }
 
-variable "aurora_replicalag_silenced" {
-  description = "Groups to mute for RDS Aurora replica lag monitor"
-  type        = "map"
-  default     = {}
-}
-
-variable "aurora_replicalag_message" {
-  description = "Custom message for RDS Aurora replica lag monitor"
-  type        = "string"
-  default     = ""
-}
-
-variable "aurora_replicalag_timeframe" {
-  description = "Monitor timeframe for RDS Aurora replica lag monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
-  default     = "last_5m"
-}
-
-variable "aurora_replicalag_threshold_warning" {
-  description = "Aurora replica lag in milliseconds (warning threshold)"
-  default     = "100"
-}
-
-variable "aurora_replicalag_threshold_critical" {
-  description = "Aurora replica lag in milliseconds (critical threshold)"
-  default     = "200"
-}
