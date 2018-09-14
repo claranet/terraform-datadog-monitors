@@ -907,6 +907,12 @@ variable "redis_server_load_rate_threshold_warning" {
 }
 
 # Azure Service Bus specific variables
+variable "servicebus_status_enabled" {
+  description = "Flag to enable Service Bus status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "servicebus_status_silenced" {
   description = "Groups to mute for Service Bus status monitor"
   type        = "map"
@@ -927,7 +933,105 @@ variable "servicebus_status_time_aggregator" {
 
 variable "servicebus_status_timeframe" {
   description = "Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  default     = "last_15m"
+  default     = "last_5m"
+}
+
+variable "servicebus_no_active_connections_enabled" {
+  description = "Flag to enable Service Bus status monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "servicebus_no_active_connections_silenced" {
+  description = "Groups to mute for Service Bus status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "servicebus_no_active_connections_message" {
+  description = "Custom message for Service Bus status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "servicebus_no_active_connections_time_aggregator" {
+  description = "Monitor aggregator for Service Bus status [available values: min, max or avg]"
+  type        = "string"
+  default     = "max"
+}
+
+variable "servicebus_no_active_connections_timeframe" {
+  description = "Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "servicebus_server_errors_message" {
+  description = "Custom message for Service Bus server errors monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "servicebus_server_errors_enabled" {
+  description = "Flag to enable Service Bus server errors monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "servicebus_server_errors_silenced" {
+  description = "Groups to mute for Service Bus server errors monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "servicebus_server_errors_timeframe" {
+  description = "Monitor timeframe for Service Bus server errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "servicebus_server_errors_threshold_critical" {
+  description = "Critical threshold for Service Bus server errors monitor"
+  default     = 90
+}
+
+variable "servicebus_server_errors_threshold_warning" {
+  description = "Warning threshold for Service Bus server errors monitor"
+  default     = 50
+}
+
+variable "servicebus_user_errors_message" {
+  description = "Custom message for Service Bus user errors monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "servicebus_user_errors_enabled" {
+  description = "Flag to enable Service Bus user errors monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "servicebus_user_errors_silenced" {
+  description = "Groups to mute for Service Bus user errors monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "servicebus_user_errors_timeframe" {
+  description = "Monitor timeframe for Service Bus user errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "servicebus_user_errors_threshold_critical" {
+  description = "Critical threshold for Service Bus user errors monitor"
+  default     = 90
+}
+
+variable "servicebus_user_errors_threshold_warning" {
+  description = "Warning threshold for Service Bus user errors monitor"
+  default     = 50
 }
 
 # Azure SQL Database specific variables
@@ -1516,4 +1620,294 @@ variable "streamanalytics_runtime_errors_threshold_warning" {
 variable "streamanalytics_runtime_errors_threshold_critical" {
   description = "Runtime errors limit (critical threshold)"
   default     = 10
+}
+
+# Azure CosmosDB specific variables
+variable "cosmos_db_status_enabled" {
+  description = "Flag to enable Cosmos DB status monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "cosmos_db_status_silenced" {
+  description = "Groups to mute for Cosmos DB status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "cosmos_db_status_extra_tags" {
+  description = "Extra tags for Cosmos DB status monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "cosmos_db_status_message" {
+  description = "Custom message for Cosmos DB status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "cosmos_db_status_time_aggregator" {
+  description = "Monitor aggregator for Cosmos DB status [available values: min, max or avg]"
+  type        = "string"
+  default     = "max"
+}
+
+variable "cosmos_db_status_timeframe" {
+  description = "Monitor timeframe for Cosmos DB status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "cosmos_db_4xx_requests_message" {
+  description = "Custom message for Cosmos DB 4xx requests monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "cosmos_db_4xx_requests_enabled" {
+  description = "Flag to enable Cosmos DB 4xx requests monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "cosmos_db_4xx_requests_silenced" {
+  description = "Groups to mute for Cosmos DB 4xx requests monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "cosmos_db_4xx_request_rate_threshold_critical" {
+  description = "Critical threshold for Cosmos DB 4xx requests monitor"
+  default     = 80
+}
+
+variable "cosmos_db_4xx_request_rate_threshold_warning" {
+  description = "Warning threshold for Cosmos DB 4xx requests monitor"
+  default     = 50
+}
+
+variable "cosmos_db_4xx_request_extra_tags" {
+  description = "Extra tags for Cosmos DB 4xx requests monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "cosmos_db_4xx_request_time_aggregator" {
+  description = "Monitor aggregator for Cosmos DB 4xx requests [available values: min, max or avg]"
+  type        = "string"
+  default     = "sum"
+}
+
+variable "cosmos_db_4xx_request_timeframe" {
+  description = "Monitor timeframe for Cosmos DB 4xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "cosmos_db_5xx_requests_message" {
+  description = "Custom message for Cosmos DB 5xx requests monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "cosmos_db_5xx_requests_enabled" {
+  description = "Flag to enable Cosmos DB 5xx requests monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "cosmos_db_5xx_requests_silenced" {
+  description = "Groups to mute for Cosmos DB 5xx requests monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "cosmos_db_5xx_request_rate_threshold_critical" {
+  description = "Critical threshold for Cosmos DB 5xx requests monitor"
+  default     = 80
+}
+
+variable "cosmos_db_5xx_request_rate_threshold_warning" {
+  description = "Warning threshold for Cosmos DB 5xx requests monitor"
+  default     = 50
+}
+
+variable "cosmos_db_5xx_request_rate_extra_tags" {
+  description = "Extra tags for Cosmos DB 5xx requests monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "cosmos_db_5xx_request_time_aggregator" {
+  description = "Monitor aggregator for Cosmos DB 5xx requests [available values: min, max or avg]"
+  type        = "string"
+  default     = "sum"
+}
+
+variable "cosmos_db_5xx_request_timeframe" {
+  description = "Monitor timeframe for Cosmos DB 5xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+# Azure Datalake Store specific variables
+variable "datalakestore_status_enabled" {
+  description = "Flag to enable Datalake Store status monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "datalakestore_status_silenced" {
+  description = "Groups to mute for Datalake Store status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "datalakestore_status_message" {
+  description = "Custom message for Datalake Store status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "datalakestore_status_time_aggregator" {
+  description = "Monitor aggregator for Datalake Store status [available values: min, max or avg]"
+  type        = "string"
+  default     = "max"
+}
+
+variable "datalakestore_status_timeframe" {
+  description = "Monitor timeframe for Datalake Store status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_5m"
+}
+
+variable "datalakestore_status_extra_tags" {
+  description = "Extra tags for Datalake Store status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "list"
+  default     = []
+}
+
+variable "keyvault_status_enabled" {
+  description = "Flag to enable Key Vault status monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "keyvault_status_silenced" {
+  description = "Groups to mute for Key Vault status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "keyvault_status_message" {
+  description = "Custom message for Key Vault status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "keyvault_status_time_aggregator" {
+  description = "Monitor aggregator for Key Vault status [available values: min, max or avg]"
+  type        = "string"
+  default     = "max"
+}
+
+variable "keyvault_status_timeframe" {
+  description = "Monitor timeframe for Key Vault status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_5m"
+}
+
+variable "keyvault_status_extra_tags" {
+  description = "Extra tags for Key Vault status monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "keyvault_api_result_enabled" {
+  description = "Flag to enable Key Vault API result monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "keyvault_api_result_silenced" {
+  description = "Groups to mute for Key Vault API result monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "keyvault_api_result_message" {
+  description = "Custom message for Key Vault API result monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "keyvault_api_result_time_aggregator" {
+  description = "Monitor aggregator for Key Vault API result [available values: min, max or avg]"
+  type        = "string"
+  default     = "sum"
+}
+
+variable "keyvault_api_result_timeframe" {
+  description = "Monitor timeframe for Key Vault API result [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_5m"
+}
+
+variable "keyvault_api_result_threshold_critical" {
+  description = "Critical threshold for Key Vault API result rate"
+  default     = 10
+}
+
+variable "keyvault_api_result_threshold_warning" {
+  description = "Warning threshold for Key Vault API result rate"
+  default     = 30
+}
+
+variable "keyvault_api_result_extra_tags" {
+  description = "Extra tags for Key Vault API result monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "keyvault_api_latency_enabled" {
+  description = "Flag to enable Key Vault API latency monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "keyvault_api_latency_silenced" {
+  description = "Groups to mute for Key Vault API latency monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "keyvault_api_latency_message" {
+  description = "Custom message for Key Vault API latency monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "keyvault_api_latency_time_aggregator" {
+  description = "Monitor aggregator for Key Vault API latency [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "keyvault_api_latency_timeframe" {
+  description = "Monitor timeframe for Key Vault API latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  default     = "last_5m"
+}
+
+variable "keyvault_api_latency_threshold_critical" {
+  description = "Critical threshold for Key Vault API latency rate"
+  default     = 100
+}
+
+variable "keyvault_api_latency_threshold_warning" {
+  description = "Warning threshold for Key Vault API latency rate"
+  default     = 80
+}
+
+variable "keyvault_api_latency_extra_tags" {
+  description = "Extra tags for Key Vault API latency monitor"
+  type        = "list"
+  default     = []
 }
