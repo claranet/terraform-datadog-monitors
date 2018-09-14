@@ -32,7 +32,7 @@ EOL
   tags = [
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "env:${var.environment}",
     "resource:elasticsearch",
@@ -76,7 +76,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.cluster_status_not_green_extra_tags}",
   ]
@@ -117,7 +117,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.cluster_initializing_shards_extra_tags}",
   ]
@@ -158,7 +158,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.cluster_relocating_shards_extra_tags}",
   ]
@@ -199,7 +199,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.cluster_unassigned_shards_extra_tags}",
   ]
@@ -243,7 +243,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.node_free_space_extra_tags}",
   ]
@@ -284,7 +284,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.jvm_heap_memory_usage_extra_tags}",
   ]
@@ -325,7 +325,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.jvm_memory_young_usage_extra_tags}",
   ]
@@ -366,7 +366,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.jvm_memory_old_usage_extra_tags}",
   ]
@@ -407,7 +407,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.jvm_gc_old_collection_latency_extra_tags}",
   ]
@@ -448,7 +448,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.jvm_gc_young_collection_latency_extra_tags}",
   ]
@@ -490,7 +490,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.indexing_latency_extra_tags}",
   ]
@@ -532,7 +532,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.flush_latency_extra_tags}",
   ]
@@ -581,7 +581,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.http_connections_anomaly_extra_tags}",
   ]
@@ -623,7 +623,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.search_query_latency_extra_tags}",
   ]
@@ -665,7 +665,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.fetch_latency_extra_tags}",
   ]
@@ -706,7 +706,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.search_query_change_extra_tags}",
   ]
@@ -747,7 +747,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.fetch_change_extra_tags}",
   ]
@@ -789,7 +789,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.field_data_evictions_change_extra_tags}",
   ]
@@ -831,7 +831,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.query_cache_evictions_change_extra_tags}",
   ]
@@ -873,7 +873,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.request_cache_evictions_change_extra_tags}",
   ]
@@ -914,7 +914,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.task_time_in_queue_change_extra_tags}",
   ]
