@@ -474,3 +474,15 @@ variable "not_responding_extra_tags" {
   type        = "list"
   default     = []
 }
+
+variable "not_responding_threshold_warning" {
+  description = "Redis does not respond monitor (warning threshold)"
+  type        = "string"
+  default     = 3
+}
+
+variable "not_responding_no_data_timeframe" {
+  description = "Redis does not respond monitor no data timeframe"
+  type        = "string"
+  default     = 10
+}

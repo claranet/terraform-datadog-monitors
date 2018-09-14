@@ -104,7 +104,9 @@ Creates DataDog monitors with the following checks:
 | not_responding_enabled | Flag to enable Redis does not respond monitor | string | `true` | no |
 | not_responding_extra_tags | Extra tags for Redis does not respond monitor | list | `<list>` | no |
 | not_responding_message | Custom message for Redis does not respond monitor | string | `` | no |
+| not_responding_no_data_timeframe | Redis does not respond monitor no data timeframe | string | `10` | no |
 | not_responding_silenced | Groups to mute for Redis does not respond monitor | map | `<map>` | no |
+| not_responding_threshold_warning | Redis does not respond monitor (warning threshold) | string | `3` | no |
 | rejected_con_enabled | Flag to enable Redis rejected connections errors monitor | string | `true` | no |
 | rejected_con_extra_tags | Extra tags for Redis rejected connections errors monitor | list | `<list>` | no |
 | rejected_con_message | Custom message for Redis rejected connections errors monitor | string | `` | no |
