@@ -55,10 +55,16 @@ variable "nginx_connect_message" {
   default     = ""
 }
 
-variable "nginx_connect_threshold_critical" {
-  description = "Nginx status monitor (critical threshold)"
+variable "nginx_connect_threshold_warning" {
+  description = "Nginx status monitor (warning threshold)"
   type        = "string"
-  default     = "1.1754943508222875e-38"
+  default     = 3
+}
+
+variable "nginx_connect_no_data_timeframe" {
+  description = "Nginx status monitor no data timeframe"
+  type        = "string"
+  default     = 10
 }
 
 variable "nginx_dropped_silenced" {
