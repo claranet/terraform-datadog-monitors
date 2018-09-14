@@ -65,6 +65,12 @@ variable "cpu_utilization_silenced" {
   default     = {}
 }
 
+variable "cpu_utilization_enabled" {
+  description = "Flag to enable GCP Cloud SQL CPU Utilization monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "cpu_utilization_extra_tags" {
   description = "Extra tags for GCP Cloud SQL CPU Utilization monitor"
   type        = "list"
@@ -109,6 +115,12 @@ variable "disk_utilization_silenced" {
   description = "Groups to mute for GCP Cloud SQL Disk Utilization monitor"
   type        = "map"
   default     = {}
+}
+
+variable "disk_utilization_enabled" {
+  description = "Flag to enable GCP Cloud SQL Disk Utilization monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "disk_utilization_extra_tags" {
@@ -193,6 +205,12 @@ variable "disk_utilization_forecast_silenced" {
   default     = {}
 }
 
+variable "disk_utilization_forecast_enabled" {
+  description = "Flag to enable GCP Cloud SQL Disk Utilization Forecast monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "disk_utilization_forecast_extra_tags" {
   description = "Extra tags for GCP Cloud SQL Disk Utilization Forecast monitor"
   type        = "list"
@@ -232,6 +250,12 @@ variable "memory_utilization_silenced" {
   description = "Groups to mute for GCP Cloud SQL Memory Utilization monitor"
   type        = "map"
   default     = {}
+}
+
+variable "memory_utilization_enabled" {
+  description = "Flag to enable GCP Cloud SQL Memory Utilization monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "memory_utilization_extra_tags" {
@@ -311,6 +335,12 @@ variable "memory_utilization_forecast_silenced" {
   default     = {}
 }
 
+variable "memory_utilization_forecast_enabled" {
+  description = "Flag to enable GCP Cloud SQL Memory Utilization Forecast monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "memory_utilization_forecast_extra_tags" {
   description = "Extra tags for GCP Cloud SQL Memory Utilization Forecast monitor"
   type        = "list"
@@ -349,6 +379,12 @@ variable "failover_unavailable_silenced" {
   description = "Groups to mute for GCP Cloud SQL Failover Unavailable monitor"
   type        = "map"
   default     = {}
+}
+
+variable "failover_unavailable_enabled" {
+  description = "Flag to enable GCP Cloud SQL Failover Unavailable monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "failover_unavailable_extra_tags" {

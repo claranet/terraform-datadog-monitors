@@ -2,6 +2,7 @@
 # Service Check
 #
 resource "datadog_monitor" "not_responding" {
+  count   = "${var.not_responding_enabled ? 1 : 0}"
   name    = "[${var.environment}] ElasticSearch does not respond"
   message = "${coalesce(var.not_responding_message, var.message)}"
 
@@ -44,6 +45,7 @@ EOL
 # Cluster Status Not Green
 #
 resource "datadog_monitor" "cluster_status_not_green" {
+  count   = "${var.cluster_status_not_green_enabled ? 1 : 0}"
   name    = "[${var.environment}] ElasticSearch Cluster status not green"
   message = "${coalesce(var.cluster_status_not_green_message, var.message)}"
 
@@ -86,6 +88,7 @@ EOF
 # Cluster Initializing Shards
 #
 resource "datadog_monitor" "cluster_initializing_shards" {
+  count   = "${var.cluster_initializing_shards_enabled ? 1 : 0}"
   name    = "[${var.environment}] ElasticSearch Cluster is initializing shards"
   message = "${coalesce(var.cluster_initializing_shards_message, var.message)}"
 
@@ -127,6 +130,7 @@ EOF
 # Cluster Relocating Shards
 #
 resource "datadog_monitor" "cluster_relocating_shards" {
+  count   = "${var.cluster_relocating_shards_enabled ? 1 : 0}"
   name    = "[${var.environment}] ElasticSearch Cluster is relocating shards"
   message = "${coalesce(var.cluster_relocating_shards_message, var.message)}"
 
@@ -168,6 +172,7 @@ EOF
 # Cluster Unassigned Shards
 #
 resource "datadog_monitor" "cluster_unassigned_shards" {
+  count   = "${var.cluster_unassigned_shards_enabled ? 1 : 0}"
   name    = "[${var.environment}] ElasticSearch Cluster has unassigned shards"
   message = "${coalesce(var.cluster_unassigned_shards_message, var.message)}"
 
@@ -209,6 +214,7 @@ EOF
 # Free Space in nodes
 #
 resource "datadog_monitor" "node_free_space" {
+  count   = "${var.node_free_space_enabled ? 1 : 0}"
   name    = "[${var.environment}] ElasticSearch free space < 10%"
   message = "${coalesce(var.node_free_space_message, var.message)}"
 
@@ -253,6 +259,7 @@ EOF
 # JVM Heap Memory Usage
 #
 resource "datadog_monitor" "jvm_heap_memory_usage" {
+  count   = "${var.jvm_heap_memory_usage_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticsearch JVM HEAP memory usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.jvm_heap_memory_usage_message, var.message)}"
 
@@ -294,6 +301,7 @@ EOF
 # JVM Memory Young Usage
 #
 resource "datadog_monitor" "jvm_memory_young_usage" {
+  count   = "${var.jvm_memory_young_usage_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticsearch JVM memory Young usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.jvm_memory_young_usage_message, var.message)}"
 
@@ -335,6 +343,7 @@ EOF
 # JVM Memory Old Usage
 #
 resource "datadog_monitor" "jvm_memory_old_usage" {
+  count   = "${var.jvm_memory_old_usage_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticsearch JVM memory Old usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.jvm_memory_old_usage_message, var.message)}"
 
@@ -376,6 +385,7 @@ EOF
 # JVM Garbace Collector Old Collection Latency
 #
 resource "datadog_monitor" "jvm_gc_old_collection_latency" {
+  count   = "${var.jvm_gc_old_collection_latency_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticsearch average Old-generation garbage collections latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = "${coalesce(var.jvm_gc_old_collection_latency_message, var.message)}"
 
@@ -417,6 +427,7 @@ EOF
 # JVM Garbace Collector Young Collection Latency
 #
 resource "datadog_monitor" "jvm_gc_young_collection_latency" {
+  count   = "${var.jvm_gc_young_collection_latency_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticsearch average Young-generation garbage collections latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = "${coalesce(var.jvm_gc_young_collection_latency_message, var.message)}"
 
@@ -458,6 +469,7 @@ EOF
 # Indexing Latency
 #
 resource "datadog_monitor" "indexing_latency" {
+  count   = "${var.indexing_latency_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticsearch average indexing time by document {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = "${coalesce(var.indexing_latency_message, var.message)}"
 
@@ -500,6 +512,7 @@ EOF
 # Flush Latency
 #
 resource "datadog_monitor" "flush_latency" {
+  count   = "${var.flush_latency_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticsearch average index flushing to disk latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = "${coalesce(var.flush_latency_message, var.message)}"
 
@@ -542,6 +555,7 @@ EOF
 # Open HTTP Connections Anomaly
 #
 resource "datadog_monitor" "http_connections_anomaly" {
+  count   = "${var.http_connections_anomaly_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticsearch number of current open HTTP connections anomaly detected"
   message = "${coalesce(var.http_connections_anomaly_message, var.message)}"
 
@@ -591,6 +605,7 @@ EOF
 # Query Latency
 #
 resource "datadog_monitor" "search_query_latency" {
+  count   = "${var.search_query_latency_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticsearch average search query latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = "${coalesce(var.search_query_latency_message, var.message)}"
 
@@ -633,6 +648,7 @@ EOF
 # Fetch Latency
 #
 resource "datadog_monitor" "fetch_latency" {
+  count   = "${var.fetch_latency_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticsearch average search fetch latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = "${coalesce(var.fetch_latency_message, var.message)}"
 
@@ -675,6 +691,7 @@ EOF
 # Search Query Change
 #
 resource "datadog_monitor" "search_query_change" {
+  count   = "${var.search_query_change_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticsearch change alert on the number of currently active queries"
   message = "${coalesce(var.search_query_change_message, var.message)}"
 
@@ -716,6 +733,7 @@ EOF
 # Fetch Change
 #
 resource "datadog_monitor" "fetch_change" {
+  count   = "${var.fetch_change_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticsearch change alert on the number of search fetches currently running"
   message = "${coalesce(var.fetch_change_message, var.message)}"
 
@@ -757,6 +775,7 @@ EOF
 # Field Data Evictions
 #
 resource "datadog_monitor" "field_data_evictions_change" {
+  count   = "${var.field_data_evictions_change_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticsearch change alert on the total number of evictions from the fielddata cache"
   message = "${coalesce(var.field_data_evictions_change_message, var.message)}"
 
@@ -799,6 +818,7 @@ EOF
 # Query Cache Evictions
 #
 resource "datadog_monitor" "query_cache_evictions_change" {
+  count   = "${var.query_cache_evictions_change_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticsearch change alert on the number of query cache evictions"
   message = "${coalesce(var.query_cache_evictions_change_message, var.message)}"
 
@@ -841,6 +861,7 @@ EOF
 # Request Cache Evictions
 #
 resource "datadog_monitor" "request_cache_evictions_change" {
+  count   = "${var.request_cache_evictions_change_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticsearch change alert on the number of request cache evictions"
   message = "${coalesce(var.request_cache_evictions_change_message, var.message)}"
 
@@ -883,6 +904,7 @@ EOF
 # Task Time in Queue
 #
 resource "datadog_monitor" "task_time_in_queue_change" {
+  count   = "${var.task_time_in_queue_change_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticsearch change alert on the average time spent by tasks in the queue"
   message = "${coalesce(var.task_time_in_queue_change_message, var.message)}"
 
