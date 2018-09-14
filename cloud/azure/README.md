@@ -83,6 +83,18 @@ Inputs
 | appservices_response_time_threshold_warning | Warning threshold for response time in seconds | string | `5` | no |
 | appservices_response_time_time_aggregator | Monitor aggregator for App Services response time [available values: min, max or avg] | string | `min` | no |
 | appservices_response_time_timeframe | Monitor timeframe for App Services response time [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| cosmos_db_4xx_request_rate_threshold_critical | Critical threshold for Cosmos DB 4xx requests monitor | string | `80` | no |
+| cosmos_db_4xx_request_rate_threshold_warning | Warning threshold for Cosmos DB 4xx requests monitor | string | `50` | no |
+| cosmos_db_4xx_requests_message | Custom message for Cosmos DB 4xx requests monitor | string | `` | no |
+| cosmos_db_4xx_requests_silenced | Groups to mute for Cosmos DB 4xx requests monitor | map | `<map>` | no |
+| cosmos_db_5xx_request_rate_threshold_critical | Critical threshold for Cosmos DB 5xx requests monitor | string | `80` | no |
+| cosmos_db_5xx_request_rate_threshold_warning | Warning threshold for Cosmos DB 5xx requests monitor | string | `50` | no |
+| cosmos_db_5xx_requests_message | Custom message for Cosmos DB 5xx requests monitor | string | `` | no |
+| cosmos_db_5xx_requests_silenced | Groups to mute for Cosmos DB 5xx requests monitor | map | `<map>` | no |
+| datalakestore_status_message | Custom message for Datalake Store status monitor | string | `` | no |
+| datalakestore_status_silenced | Groups to mute for Datalake Store status monitor | map | `<map>` | no |
+| datalakestore_status_time_aggregator | Monitor aggregator for Datalake Store status [available values: min, max or avg] | string | `max` | no |
+| datalakestore_status_timeframe | Monitor timeframe for Datalake Store status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | environment | Architecture environment | string | - | yes |
 | eventhub_errors_rate_message | Custom message for Event Hub errors monitor | string | `` | no |
@@ -167,6 +179,15 @@ Inputs
 | iothub_total_devices_silenced | Groups to mute for IoT Hub total devices monitor | map | `<map>` | no |
 | iothub_total_devices_time_aggregator | Monitor aggregator for IoT Hub total devices [available values: min, max or avg] | string | `min` | no |
 | iothub_total_devices_timeframe | Monitor timeframe for IoT Hub total devices [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| keyvault_api_result_message | Custom message for Key Vault API result monitor | string | `` | no |
+| keyvault_api_result_silenced | Groups to mute for Key Vault API result monitor | map | `<map>` | no |
+| keyvault_api_result_threshold_critical | Critical threshold for Key Vault API result rate | string | `10` | no |
+| keyvault_api_result_threshold_warning | Warning threshold for Key Vault API result rate | string | `30` | no |
+| keyvault_api_result_timeframe | Monitor timeframe for Key Vault API result [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_30m` | no |
+| keyvault_status_message | Custom message for Key Vault status monitor | string | `` | no |
+| keyvault_status_silenced | Groups to mute for Key Vault status monitor | map | `<map>` | no |
+| keyvault_status_time_aggregator | Monitor aggregator for Key Vault status [available values: min, max or avg] | string | `max` | no |
+| keyvault_status_timeframe | Monitor timeframe for Key Vault status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 | non_taggable_filter_tags | Tags used for filtering for components without tag support | string | `*` | no |
 | redis_evictedkeys_limit_message | Custom message for Redis evicted keys monitor | string | `` | no |
@@ -191,10 +212,24 @@ Inputs
 | redis_status_silenced | Groups to mute for Redis status monitor | map | `<map>` | no |
 | redis_status_time_aggregator | Monitor aggregator for Redis status [available values: min, max or avg] | string | `max` | no |
 | redis_status_timeframe | Monitor timeframe for Redis status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| servicebus_no_active_connections_message | Custom message for Service Bus status monitor | string | `` | no |
+| servicebus_no_active_connections_silenced | Groups to mute for Service Bus status monitor | map | `<map>` | no |
+| servicebus_no_active_connections_time_aggregator | Monitor aggregator for Service Bus status [available values: min, max or avg] | string | `max` | no |
+| servicebus_no_active_connections_timeframe | Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
+| servicebus_server_errors_message | Custom message for Service Bus server errors monitor | string | `` | no |
+| servicebus_server_errors_silenced | Groups to mute for Service Bus server errors monitor | map | `<map>` | no |
+| servicebus_server_errors_threshold_critical | Critical threshold for Service Bus server errors monitor | string | `90` | no |
+| servicebus_server_errors_threshold_warning | Warning threshold for Service Bus server errors monitor | string | `50` | no |
+| servicebus_server_errors_timeframe | Monitor timeframe for Service Bus server errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | servicebus_status_message | Custom message for Service Bus status monitor | string | `` | no |
 | servicebus_status_silenced | Groups to mute for Service Bus status monitor | map | `<map>` | no |
 | servicebus_status_time_aggregator | Monitor aggregator for Service Bus status [available values: min, max or avg] | string | `max` | no |
 | servicebus_status_timeframe | Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
+| servicebus_user_errors_message | Custom message for Service Bus user errors monitor | string | `` | no |
+| servicebus_user_errors_silenced | Groups to mute for Service Bus user errors monitor | map | `<map>` | no |
+| servicebus_user_errors_threshold_critical | Critical threshold for Service Bus user errors monitor | string | `90` | no |
+| servicebus_user_errors_threshold_warning | Warning threshold for Service Bus user errors monitor | string | `50` | no |
+| servicebus_user_errors_timeframe | Monitor timeframe for Service Bus user errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | sqldatabase_cpu_message | Custom message for SQL CPU monitor | string | `` | no |
 | sqldatabase_cpu_silenced | Groups to mute for SQL CPU monitor | map | `<map>` | no |
 | sqldatabase_cpu_threshold_critical | CPU usage in percent (critical threshold) | string | `90` | no |
