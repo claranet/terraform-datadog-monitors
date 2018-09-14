@@ -122,4 +122,3 @@ variable "diskspace_threshold_critical" {
   description = "Disk free space in percent (critical threshold)"
   default     = "10"
 }
-

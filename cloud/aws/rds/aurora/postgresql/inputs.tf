@@ -37,6 +37,18 @@ variable "aurora_replicalag_silenced" {
   default     = {}
 }
 
+variable "aurora_replicalag_enabled" {
+  description = "Flag to enable RDS CPU usage monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "aurora_replicalag_extra_tags" {
+  description = "Extra tags for RDS CPU usage monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "aurora_replicalag_message" {
   description = "Custom message for RDS Aurora replica lag monitor"
   type        = "string"
@@ -58,4 +70,3 @@ variable "aurora_replicalag_threshold_critical" {
   description = "Aurora replica lag in milliseconds (critical threshold)"
   default     = "200"
 }
-

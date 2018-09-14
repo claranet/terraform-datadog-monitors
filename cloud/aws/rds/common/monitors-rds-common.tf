@@ -64,4 +64,3 @@ EOF
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform", "${var.diskspace_extra_tags}"]
 }
-

@@ -1,10 +1,10 @@
-# CLOUD AWS RDS DataDog monitors
+# CLOUD AWS RDS COMMON DataDog monitors
 
 ## How to use this module
 
 ```
-module "datadog-monitors-cloud-aws-rds" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/aws/rds?ref={revision}"
+module "datadog-monitors-cloud-aws-rds-common" {
+  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//cloud/aws/rds/common?ref={revision}"
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
