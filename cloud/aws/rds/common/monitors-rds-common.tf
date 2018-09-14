@@ -64,3 +64,36 @@ EOF
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform", "${var.diskspace_extra_tags}"]
 }
+
+### RDS Replica Lag monitor ###
+resource "datadog_monitor" "rds_replica_lag" {
+  count   = "${var.replicalag_enabled ? 1 : 0}"
+  name    = "[${var.environment}] RDS replica lag {{#is_alert}}{{{comparator}}} {{threshold}} ms ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ms ({{value}}%){{/is_warning}}"
+  message = "${coalesce(var.replicalag_message, var.message)}"
+
+  type = "metric alert"
+
+  query = <<EOF
+  avg(${var.replicalag_timeframe}): (
+    avg:aws.rds.replica_lag${module.filter-tags.query_alert} by {region,name}
+  ) > ${var.replicalag_threshold_critical}
+EOF
+
+  thresholds {
+    warning  = "${var.replicalag_threshold_warning}"
+    critical = "${var.replicalag_threshold_critical}"
+  }
+
+  notify_no_data      = true
+  evaluation_delay    = "${var.evaluation_delay}"
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
+  new_host_delay      = "${var.new_host_delay}"
+
+  silenced = "${var.replicalag_silenced}"
+
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform", "${var.replicalag_extra_tags}"]
+}
