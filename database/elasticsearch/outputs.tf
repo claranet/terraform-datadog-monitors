@@ -1,3 +1,8 @@
+output "not_responding_id" {
+  description = "id for monitor not_responding"
+  value       = "${datadog_monitor.not_responding.*.id}"
+}
+
 output "cluster_status_not_green_id" {
   description = "id for monitor cluster_status_not_green"
   value       = "${datadog_monitor.cluster_status_not_green.*.id}"
@@ -101,9 +106,4 @@ output "request_cache_evictions_change_id" {
 output "task_time_in_queue_change_id" {
   description = "id for monitor task_time_in_queue_change"
   value       = "${datadog_monitor.task_time_in_queue_change.*.id}"
-}
-
-output "not_responding_id" {
-  description = "id for monitor not_responding"
-  value       = "${datadog_monitor.not_responding.*.id}"
 }

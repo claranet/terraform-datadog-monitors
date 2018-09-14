@@ -1068,26 +1068,15 @@ variable "not_responding_message" {
   default     = ""
 }
 
-variable "not_responding_by" {
-  description = "Group by for the service check"
-  type        = "string"
-  default     = "\"port\",\"server\""
-}
-
-variable "not_responding_last" {
-  description = "Parameter 'last' for the service check"
-  type        = "string"
-  default     = 1
-}
-
-variable "not_responding_threshold_critical" {
-  description = "Not responding limit (critical threshold)"
-  default     = 5
-}
-
 variable "not_responding_threshold_warning" {
-  description = "Not responding limit (warning threshold)"
-  default     = 0
+  description = "Elasticsearch not responding limit (warning threshold)"
+  default     = 3
+}
+
+variable "not_responding_no_data_timeframe" {
+  description = "Elasticsearch not responding monitor no data timeframe"
+  type        = "string"
+  default     = 10
 }
 
 variable "not_responding_extra_tags" {

@@ -1,4 +1,46 @@
 #
+# Service Check
+#
+resource "datadog_monitor" "not_responding" {
+  name    = "[${var.environment}] ElasticSearch does not respond"
+  message = "${coalesce(var.not_responding_message, var.message)}"
+
+  query = <<EOL
+    "elasticsearch.can_connect".over${module.filter-tags.service_check}.by("server","port").last(6).count_by_status()
+EOL
+
+  type = "service check"
+
+  thresholds {
+    warning  = "${var.not_responding_threshold_warning}"
+    critical = 5
+  }
+
+  silenced = "${var.not_responding_silenced}"
+
+  no_data_timeframe   = "${var.not_responding_no_data_timeframe}"
+  notify_no_data      = true
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
+  require_full_window = true
+  renotify_interval   = 0
+
+  new_host_delay = "${var.new_host_delay}"
+
+  tags = [
+    "created-by:terraform",
+    "team:claranet",
+    "type:database",
+    "provider:elasticsearch",
+    "env:${var.environment}",
+    "resource:elasticsearch",
+    "${var.not_responding_extra_tags}",
+  ]
+}
+
+#
 # Cluster Status Not Green
 #
 resource "datadog_monitor" "cluster_status_not_green" {
@@ -23,7 +65,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -34,7 +76,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.cluster_status_not_green_extra_tags}",
   ]
@@ -64,7 +106,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -75,7 +117,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.cluster_initializing_shards_extra_tags}",
   ]
@@ -105,7 +147,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -116,7 +158,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.cluster_relocating_shards_extra_tags}",
   ]
@@ -146,7 +188,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -157,7 +199,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.cluster_unassigned_shards_extra_tags}",
   ]
@@ -190,7 +232,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -201,7 +243,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.node_free_space_extra_tags}",
   ]
@@ -231,7 +273,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -242,7 +284,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.jvm_heap_memory_usage_extra_tags}",
   ]
@@ -272,7 +314,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -283,7 +325,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.jvm_memory_young_usage_extra_tags}",
   ]
@@ -313,7 +355,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -324,7 +366,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.jvm_memory_old_usage_extra_tags}",
   ]
@@ -354,7 +396,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -365,7 +407,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.jvm_gc_old_collection_latency_extra_tags}",
   ]
@@ -395,7 +437,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -406,7 +448,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.jvm_gc_young_collection_latency_extra_tags}",
   ]
@@ -437,7 +479,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -448,7 +490,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.indexing_latency_extra_tags}",
   ]
@@ -479,7 +521,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -490,7 +532,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.flush_latency_extra_tags}",
   ]
@@ -528,7 +570,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -539,7 +581,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.http_connections_anomaly_extra_tags}",
   ]
@@ -570,7 +612,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -581,7 +623,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.search_query_latency_extra_tags}",
   ]
@@ -612,7 +654,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -623,7 +665,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.fetch_latency_extra_tags}",
   ]
@@ -653,7 +695,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -664,7 +706,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.search_query_change_extra_tags}",
   ]
@@ -694,7 +736,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -705,7 +747,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.fetch_change_extra_tags}",
   ]
@@ -736,7 +778,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -747,7 +789,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.field_data_evictions_change_extra_tags}",
   ]
@@ -778,7 +820,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -789,7 +831,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.query_cache_evictions_change_extra_tags}",
   ]
@@ -820,7 +862,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -831,7 +873,7 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.request_cache_evictions_change_extra_tags}",
   ]
@@ -861,7 +903,7 @@ EOF
   locked              = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = true
+  notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
 
@@ -872,49 +914,8 @@ EOF
     "env:${var.environment}",
     "created-by:terraform",
     "team:claranet",
-    "type:databases",
+    "type:database",
     "provider:elasticsearch",
     "${var.task_time_in_queue_change_extra_tags}",
-  ]
-}
-
-#
-# Service Check
-#
-resource "datadog_monitor" "not_responding" {
-  name    = "[${var.environment}] ElasticSearch does not respond"
-  message = "${coalesce(var.not_responding_message, var.message)}"
-
-  query = <<EOL
-    "elasticsearch.can_connect".over${module.filter-tags.service_check}.by(${var.not_responding_by}).last(${var.not_responding_last}).pct_by_status()
-EOL
-
-  type = "service check"
-
-  thresholds {
-    warning  = "${var.not_responding_threshold_warning}"
-    critical = "${var.not_responding_threshold_critical}"
-  }
-
-  silenced = "${var.not_responding_silenced}"
-
-  notify_audit        = false
-  locked              = false
-  timeout_h           = 0
-  include_tags        = true
-  require_full_window = true
-  notify_no_data      = true
-  renotify_interval   = 0
-
-  new_host_delay = "${var.new_host_delay}"
-
-  tags = [
-    "created-by:terraform",
-    "team:claranet",
-    "type:databases",
-    "provider:elasticsearch",
-    "env:${var.environment}",
-    "resource:elasticsearch",
-    "${var.not_responding_extra_tags}",
   ]
 }
