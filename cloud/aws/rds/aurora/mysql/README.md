@@ -22,8 +22,8 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| aurora_replicalag_enabled | Flag to enable RDS CPU usage monitor | string | `true` | no |
-| aurora_replicalag_extra_tags | Extra tags for RDS CPU usage monitor | list | `<list>` | no |
+| aurora_replicalag_enabled | Flag to enable RDS Aurora replica lag monitor | string | `true` | no |
+| aurora_replicalag_extra_tags | Extra tags for RDS Aurora replica lag monitor | list | `<list>` | no |
 | aurora_replicalag_message | Custom message for RDS Aurora replica lag monitor | string | `` | no |
 | aurora_replicalag_silenced | Groups to mute for RDS Aurora replica lag monitor | map | `<map>` | no |
 | aurora_replicalag_threshold_critical | Aurora replica lag in milliseconds (critical threshold) | string | `200` | no |

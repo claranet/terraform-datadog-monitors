@@ -7,3 +7,8 @@ output "rds_free_space_low_id" {
   description = "id for monitor rds_free_space_low"
   value       = "${datadog_monitor.rds_free_space_low.*.id}"
 }
+
+output "rds_replica_lag_id" {
+  description = "id for monitor rds_replica_lag"
+  value       = "${datadog_monitor.rds_replica_lag.*.id}"
+}

@@ -18,6 +18,7 @@ Creates DataDog monitors with the following checks:
 
 - RDS instance CPU high
 - RDS instance free space
+- RDS replica lag
 
 ## Inputs
 
@@ -45,6 +46,13 @@ Creates DataDog monitors with the following checks:
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
+| replicalag_enabled | Flag to enable RDS replica lag monitor | string | `true` | no |
+| replicalag_extra_tags | Extra tags for RDS replica lag monitor | list | `<list>` | no |
+| replicalag_message | Custom message for RDS replica lag monitor | string | `` | no |
+| replicalag_silenced | Groups to mute for RDS replica lag monitor | map | `<map>` | no |
+| replicalag_threshold_critical | replica lag in seconds (critical threshold) | string | `300` | no |
+| replicalag_threshold_warning | replica lag in seconds (warning threshold) | string | `200` | no |
+| replicalag_timeframe | Monitor timeframe for RDS replica lag monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
 ## Outputs
 
@@ -52,6 +60,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | rds_cpu_90_15min_id | id for monitor rds_cpu_90_15min |
 | rds_free_space_low_id | id for monitor rds_free_space_low |
+| rds_replica_lag_id | id for monitor rds_replica_lag |
 
 ## Related documentation
 

@@ -122,3 +122,43 @@ variable "diskspace_threshold_critical" {
   description = "Disk free space in percent (critical threshold)"
   default     = "10"
 }
+
+variable "replicalag_silenced" {
+  description = "Groups to mute for RDS replica lag monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "replicalag_enabled" {
+  description = "Flag to enable RDS replica lag monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "replicalag_extra_tags" {
+  description = "Extra tags for RDS replica lag monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "replicalag_message" {
+  description = "Custom message for RDS replica lag monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "replicalag_timeframe" {
+  description = "Monitor timeframe for RDS replica lag monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "replicalag_threshold_warning" {
+  description = "replica lag in seconds (warning threshold)"
+  default     = "200"
+}
+
+variable "replicalag_threshold_critical" {
+  description = "replica lag in seconds (critical threshold)"
+  default     = "300"
+}
