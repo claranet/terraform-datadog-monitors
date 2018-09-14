@@ -8,7 +8,7 @@ resource "datadog_monitor" "rds_aurora_mysql_replica_lag" {
 
   query = <<EOF
   avg(${var.aurora_replicalag_timeframe}): (
-    avg:aws.rds.aws.rds.aurora_replica_lag${module.filter-tags.query_alert} by {region,name}
+    avg:aws.rds.aurora_replica_lag${module.filter-tags.query_alert} by {region,name}
   ) > ${var.aurora_replicalag_threshold_critical}
 EOF
 
