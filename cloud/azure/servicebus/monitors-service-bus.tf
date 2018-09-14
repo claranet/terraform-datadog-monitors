@@ -50,7 +50,7 @@ resource "datadog_monitor" "service_bus_no_active_connections" {
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
   tags = ["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
@@ -86,7 +86,7 @@ resource "datadog_monitor" "service_bus_user_errors" {
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
   tags = ["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
@@ -122,7 +122,7 @@ resource "datadog_monitor" "service_bus_server_errors" {
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
   tags = ["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]

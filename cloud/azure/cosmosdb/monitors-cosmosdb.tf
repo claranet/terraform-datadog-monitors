@@ -86,7 +86,7 @@ resource "datadog_monitor" "cosmos_db_4xx_requests" {
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:cosmos_db", "team:claranet", "created-by:terraform", "${var.cosmos_db_4xx_request_extra_tags}"]
@@ -129,7 +129,7 @@ resource "datadog_monitor" "cosmos_db_5xx_requests" {
   timeout_h           = 0
   include_tags        = true
   locked              = false
-  require_full_window = true
+  require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:cosmos_db", "team:claranet", "created-by:terraform", "${var.cosmos_db_5xx_request_rate_extra_tags}"]
