@@ -38,13 +38,13 @@ variable "aurora_replicalag_silenced" {
 }
 
 variable "aurora_replicalag_enabled" {
-  description = "Flag to enable RDS CPU usage monitor"
+  description = "Flag to enable RDS Aurora replica lag monitor"
   type        = "string"
   default     = "true"
 }
 
 variable "aurora_replicalag_extra_tags" {
-  description = "Extra tags for RDS CPU usage monitor"
+  description = "Extra tags for RDS Aurora replica lag monitor"
   type        = "list"
   default     = []
 }
