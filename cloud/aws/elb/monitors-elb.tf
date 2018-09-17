@@ -32,12 +32,10 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
   message = "${coalesce(var.elb_4xx_message, var.message)}"
 
   query = <<EOF
-    sum(${var.elb_4xx_timeframe}): (
-      default(
-        avg:aws.elb.httpcode_elb_4xx${module.filter-tags.query_alert} by {region,loadbalancername}.as_count() /
-        (avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_count() + ${var.artificial_requests_count}),
-      0) * 100
-    ) > ${var.elb_4xx_threshold_critical}
+    sum(${var.elb_4xx_timeframe}):
+      default(avg:aws.elb.httpcode_elb_4xx${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) / (
+      default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) + ${var.artificial_requests_count})
+      * 100 > ${var.elb_4xx_threshold_critical}
   EOF
 
   type = "metric alert"
@@ -68,12 +66,10 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
   message = "${coalesce(var.elb_5xx_message, var.message)}"
 
   query = <<EOF
-    sum(${var.elb_5xx_timeframe}): (
-      default(
-        avg:aws.elb.httpcode_elb_5xx${module.filter-tags.query_alert} by {region,loadbalancername} /
-        (avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername} + ${var.artificial_requests_count}),
-      0) * 100
-    ) > ${var.elb_5xx_threshold_critical}
+    sum(${var.elb_5xx_timeframe}):
+      default(avg:aws.elb.httpcode_elb_5xx${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) / (
+      default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) + ${var.artificial_requests_count})
+      * 100 > ${var.elb_5xx_threshold_critical}
   EOF
 
   type = "metric alert"
@@ -104,12 +100,10 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
   message = "${coalesce(var.elb_backend_4xx_message, var.message)}"
 
   query = <<EOF
-    sum(${var.elb_backend_4xx_timeframe}): (
-      default(
-        avg:aws.elb.httpcode_backend_4xx${module.filter-tags.query_alert} by {region,loadbalancername} /
-        (avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername} + ${var.artificial_requests_count}),
-      0) * 100
-    ) > ${var.elb_backend_4xx_threshold_critical}
+    sum(${var.elb_backend_4xx_timeframe}):
+      default(avg:aws.elb.httpcode_backend_4xx${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) / (
+      default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) + ${var.artificial_requests_count})
+      * 100 > ${var.elb_backend_4xx_threshold_critical}
   EOF
 
   type = "metric alert"
@@ -140,12 +134,10 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
   message = "${coalesce(var.elb_backend_5xx_message, var.message)}"
 
   query = <<EOF
-    sum(${var.elb_backend_5xx_timeframe}): (
-      default(
-        avg:aws.elb.httpcode_backend_5xx${module.filter-tags.query_alert} by {region,loadbalancername} /
-        (avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername} + ${var.artificial_requests_count}),
-      0) * 100
-    ) > ${var.elb_backend_5xx_threshold_critical}
+    sum(${var.elb_backend_5xx_timeframe}):
+      default(avg:aws.elb.httpcode_backend_5xx${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) / (
+      default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) + ${var.artificial_requests_count})
+      * 100 > ${var.elb_backend_5xx_threshold_critical}
   EOF
 
   type = "metric alert"
@@ -176,9 +168,9 @@ resource "datadog_monitor" "ELB_backend_latency" {
   message = "${coalesce(var.elb_backend_latency_message, var.message)}"
 
   query = <<EOF
-    ${var.elb_backend_latency_time_aggregator}(${var.elb_backend_latency_timeframe}): (
-        avg:aws.elb.latency${module.filter-tags.query_alert} by {region,loadbalancername}
-    ) > ${var.elb_backend_latency_critical}
+    ${var.elb_backend_latency_time_aggregator}(${var.elb_backend_latency_timeframe}):
+      default(avg:aws.elb.latency${module.filter-tags.query_alert} by {region,loadbalancername}, 0)
+    > ${var.elb_backend_latency_critical}
   EOF
 
   type = "metric alert"
