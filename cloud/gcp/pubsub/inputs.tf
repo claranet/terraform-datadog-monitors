@@ -58,6 +58,12 @@ variable "sending_operations_count_silenced" {
   default     = {}
 }
 
+variable "sending_operations_count_enabled" {
+  description = "Flag to enable GCP Pub/Sub Unavailable Sending Operations Count monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "sending_operations_count_extra_tags" {
   description = "Extra tags for GCP Pub/Sub Sending Operations Count monitor"
   type        = "list"
@@ -101,6 +107,12 @@ variable "unavailable_sending_operations_count_silenced" {
   description = "Groups to mute for GCP Pub/Sub Unavailable Sending Operations Count monitor"
   type        = "map"
   default     = {}
+}
+
+variable "unavailable_sending_operations_count_enabled" {
+  description = "Flag to enable GCP Pub/Sub Unavailable Sending Operations Count monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "unavailable_sending_operations_count_extra_tags" {

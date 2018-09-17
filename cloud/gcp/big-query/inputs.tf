@@ -60,6 +60,12 @@ variable "concurrent_queries_silenced" {
   default     = {}
 }
 
+variable "concurrent_queries_enabled" {
+  description = "Flag to enable GCP Big Query Concurrent Queries monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "concurrent_queries_extra_tags" {
   description = "Extra tags for GCP Big Query Concurrent Queries monitor"
   type        = "list"
@@ -95,10 +101,15 @@ variable "execution_time_threshold_critical" {
 }
 
 variable "execution_time_silenced" {
-  description = "Groups to mute for GCP Big Query Execution Time monitor. Muted by default."
+  description = "Groups to mute for GCP Big Query Execution Time monitor."
   type        = "map"
+  default     = {}
+}
 
-  default = {}
+variable "execution_time_enabled" {
+  description = "Flag to enable GCP Big Query Execution Time monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "execution_time_extra_tags" {
@@ -136,10 +147,15 @@ variable "scanned_bytes_threshold_critical" {
 }
 
 variable "scanned_bytes_silenced" {
-  description = "Groups to mute for GCP Big Query Scanned Bytes monitor. Muted by default."
+  description = "Groups to mute for GCP Big Query Scanned Bytes monitor."
   type        = "map"
+  default     = {}
+}
 
-  default = {}
+variable "scanned_bytes_enabled" {
+  description = "Flag to enable GCP Big Query Scanned Bytes monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "scanned_bytes_extra_tags" {
@@ -177,10 +193,15 @@ variable "scanned_bytes_billed_threshold_critical" {
 }
 
 variable "scanned_bytes_billed_silenced" {
-  description = "Groups to mute for GCP Big Query Scanned Bytes Billed monitor. Muted by default."
+  description = "Groups to mute for GCP Big Query Scanned Bytes Billed monitor."
   type        = "map"
+  default     = {}
+}
 
-  default = {}
+variable "scanned_bytes_billed_enabled" {
+  description = "Flag to enable GCP Big Query Scanned Bytes Billed monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "scanned_bytes_billed_extra_tags" {
@@ -223,6 +244,12 @@ variable "available_slots_silenced" {
   default     = {}
 }
 
+variable "available_slots_enabled" {
+  description = "Flag to enable GCP Big Query Available Slots monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "available_slots_extra_tags" {
   description = "Extra tags for GCP Big Query Available Slots monitor"
   type        = "list"
@@ -258,10 +285,15 @@ variable "stored_bytes_threshold_critical" {
 }
 
 variable "stored_bytes_silenced" {
-  description = "Groups to mute for GCP Big Query Stored Bytes monitor. Muted by default."
+  description = "Groups to mute for GCP Big Query Stored Bytes monitor."
   type        = "map"
+  default     = {}
+}
 
-  default = {}
+variable "stored_bytes_enabled" {
+  description = "Flag to enable GCP Big Query Stored Bytes monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "stored_bytes_extra_tags" {
@@ -299,10 +331,15 @@ variable "table_count_threshold_critical" {
 }
 
 variable "table_count_silenced" {
-  description = "Groups to mute for GCP Big Query Table Count monitor. Muted by default."
+  description = "Groups to mute for GCP Big Query Table Count monitor."
   type        = "map"
+  default     = {}
+}
 
-  default = {}
+variable "table_count_enabled" {
+  description = "Flag to enable GCP Big Query Table Count monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "table_count_extra_tags" {
@@ -340,10 +377,15 @@ variable "uploaded_bytes_threshold_critical" {
 }
 
 variable "uploaded_bytes_silenced" {
-  description = "Groups to mute for GCP Big Query Uploaded Bytes monitor. Muted by default."
+  description = "Groups to mute for GCP Big Query Uploaded Bytes monitor."
   type        = "map"
+  default     = {}
+}
 
-  default = {}
+variable "uploaded_bytes_enabled" {
+  description = "Flag to enable GCP Big Query Uploaded Bytes monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "uploaded_bytes_extra_tags" {
@@ -381,10 +423,15 @@ variable "uploaded_bytes_billed_threshold_critical" {
 }
 
 variable "uploaded_bytes_billed_silenced" {
-  description = "Groups to mute for GCP Big Query Uploaded Bytes Billed monitor. Muted by default."
+  description = "Groups to mute for GCP Big Query Uploaded Bytes Billed monitor."
   type        = "map"
+  default     = {}
+}
 
-  default = {}
+variable "uploaded_bytes_billed_enabled" {
+  description = "Flag to enable GCP Big Query Uploaded Bytes Billed monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "uploaded_bytes_billed_extra_tags" {

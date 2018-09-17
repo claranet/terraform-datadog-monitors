@@ -2,6 +2,7 @@
 # Replication Lag
 #
 resource "datadog_monitor" "replication_lag" {
+  count   = "${var.replication_lag_enabled ? 1 : 0}"
   name    = "[${var.environment}] Cloud SQL MySQL Replication Lag {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = "${coalesce(var.replication_lag_message, var.message)}"
 
