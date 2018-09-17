@@ -35,6 +35,7 @@ Creates DataDog monitors with the following checks:
 | nginx_connect_no_data_timeframe | Nginx status monitor no data timeframe | string | `10` | no |
 | nginx_connect_silenced | Groups to mute for Nginx status monitor | map | `<map>` | no |
 | nginx_connect_threshold_warning | Nginx status monitor (warning threshold) | string | `3` | no |
+| nginx_dropped_enabled | Flag to enable Nginx dropped monitor | string | `true` | no |
 | nginx_dropped_extra_tags | Extra tags for Nginx dropped connections monitor | list | `<list>` | no |
 | nginx_dropped_message | Custom message for Nginx dropped connections monitor | string | `` | no |
 | nginx_dropped_silenced | Groups to mute for Nginx dropped connections monitor | map | `<map>` | no |

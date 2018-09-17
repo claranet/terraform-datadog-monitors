@@ -69,6 +69,12 @@ variable "cluster_status_not_green_silenced" {
   default     = {}
 }
 
+variable "cluster_status_not_green_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "cluster_status_not_green_extra_tags" {
   description = "Extra tags for Cluster Status monitor"
   type        = "list"
@@ -112,6 +118,12 @@ variable "cluster_initializing_shards_silenced" {
   description = "Groups to mute for Cluster Status monitor"
   type        = "map"
   default     = {}
+}
+
+variable "cluster_initializing_shards_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "cluster_initializing_shards_extra_tags" {
@@ -159,6 +171,12 @@ variable "cluster_relocating_shards_silenced" {
   default     = {}
 }
 
+variable "cluster_relocating_shards_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "cluster_relocating_shards_extra_tags" {
   description = "Extra tags for Cluster Status monitor"
   type        = "list"
@@ -202,6 +220,12 @@ variable "cluster_unassigned_shards_silenced" {
   description = "Groups to mute for Cluster Status monitor"
   type        = "map"
   default     = {}
+}
+
+variable "cluster_unassigned_shards_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "cluster_unassigned_shards_extra_tags" {
@@ -249,6 +273,12 @@ variable "node_free_space_silenced" {
   default     = {}
 }
 
+variable "node_free_space_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "node_free_space_extra_tags" {
   description = "Extra tags for Cluster Status monitor"
   type        = "list"
@@ -292,6 +322,12 @@ variable "jvm_heap_memory_usage_silenced" {
   description = "Groups to mute for Cluster Status monitor"
   type        = "map"
   default     = {}
+}
+
+variable "jvm_heap_memory_usage_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "jvm_heap_memory_usage_extra_tags" {
@@ -339,6 +375,12 @@ variable "jvm_memory_young_usage_silenced" {
   default     = {}
 }
 
+variable "jvm_memory_young_usage_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "jvm_memory_young_usage_extra_tags" {
   description = "Extra tags for Cluster Status monitor"
   type        = "list"
@@ -382,6 +424,12 @@ variable "jvm_memory_old_usage_silenced" {
   description = "Groups to mute for Cluster Status monitor"
   type        = "map"
   default     = {}
+}
+
+variable "jvm_memory_old_usage_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "jvm_memory_old_usage_extra_tags" {
@@ -429,6 +477,12 @@ variable "jvm_gc_old_collection_latency_silenced" {
   default     = {}
 }
 
+variable "jvm_gc_old_collection_latency_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "jvm_gc_old_collection_latency_extra_tags" {
   description = "Extra tags for Cluster Status monitor"
   type        = "list"
@@ -472,6 +526,12 @@ variable "jvm_gc_young_collection_latency_silenced" {
   description = "Groups to mute for Cluster Status monitor"
   type        = "map"
   default     = {}
+}
+
+variable "jvm_gc_young_collection_latency_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "jvm_gc_young_collection_latency_extra_tags" {
@@ -519,6 +579,12 @@ variable "indexing_latency_silenced" {
   default     = {}
 }
 
+variable "indexing_latency_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "indexing_latency_extra_tags" {
   description = "Extra tags for Cluster Status monitor"
   type        = "list"
@@ -562,6 +628,12 @@ variable "flush_latency_silenced" {
   description = "Groups to mute for Cluster Status monitor"
   type        = "map"
   default     = {}
+}
+
+variable "flush_latency_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "flush_latency_extra_tags" {
@@ -651,6 +723,12 @@ variable "http_connections_anomaly_silenced" {
   default     = {}
 }
 
+variable "http_connections_anomaly_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "http_connections_anomaly_extra_tags" {
   description = "Extra tags for Cluster Status monitor"
   type        = "list"
@@ -696,6 +774,12 @@ variable "search_query_latency_silenced" {
   default     = {}
 }
 
+variable "search_query_latency_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "search_query_latency_extra_tags" {
   description = "Extra tags for Cluster Status monitor"
   type        = "list"
@@ -739,6 +823,12 @@ variable "fetch_latency_silenced" {
   description = "Groups to mute for Cluster Status monitor"
   type        = "map"
   default     = {}
+}
+
+variable "fetch_latency_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "fetch_latency_extra_tags" {
@@ -792,6 +882,12 @@ variable "search_query_change_silenced" {
   default     = {}
 }
 
+variable "search_query_change_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "search_query_change_extra_tags" {
   description = "Extra tags for Cluster Status monitor"
   type        = "list"
@@ -841,6 +937,12 @@ variable "fetch_change_silenced" {
   description = "Groups to mute for Cluster Status monitor"
   type        = "map"
   default     = {}
+}
+
+variable "fetch_change_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "fetch_change_extra_tags" {
@@ -894,6 +996,12 @@ variable "field_data_evictions_change_silenced" {
   default     = {}
 }
 
+variable "field_data_evictions_change_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "field_data_evictions_change_extra_tags" {
   description = "Extra tags for Cluster Status monitor"
   type        = "list"
@@ -943,6 +1051,12 @@ variable "query_cache_evictions_change_silenced" {
   description = "Groups to mute for Cluster Status monitor"
   type        = "map"
   default     = {}
+}
+
+variable "query_cache_evictions_change_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "query_cache_evictions_change_extra_tags" {
@@ -996,6 +1110,12 @@ variable "request_cache_evictions_change_silenced" {
   default     = {}
 }
 
+variable "request_cache_evictions_change_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "request_cache_evictions_change_extra_tags" {
   description = "Extra tags for Cluster Status monitor"
   type        = "list"
@@ -1047,6 +1167,12 @@ variable "task_time_in_queue_change_silenced" {
   default     = {}
 }
 
+variable "task_time_in_queue_change_enabled" {
+  description = "Flag to enable Cluster Status monitor"
+  type        = "string"
+  default     = "true"
+}
+
 variable "task_time_in_queue_change_extra_tags" {
   description = "Extra tags for Cluster Status monitor"
   type        = "list"
@@ -1060,6 +1186,12 @@ variable "not_responding_silenced" {
   description = "Groups to mute for Elasticsearch does not respond monitor"
   type        = "map"
   default     = {}
+}
+
+variable "not_responding_enabled" {
+  description = "Flag to enable Elasticsearch does not respond monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "not_responding_message" {

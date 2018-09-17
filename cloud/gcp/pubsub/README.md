@@ -28,12 +28,14 @@ Creates DataDog monitors with the following checks:
 | filter_tags | Tags used for filtering | string | `*` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 | new_host_delay | Delay in seconds for the new host evaluation | string | `300` | no |
+| sending_operations_count_enabled | Flag to enable GCP Pub/Sub Unavailable Sending Operations Count monitor | string | `true` | no |
 | sending_operations_count_extra_tags | Extra tags for GCP Pub/Sub Sending Operations Count monitor | list | `<list>` | no |
 | sending_operations_count_message | Custom message for the GCP Pub/Sub Sending Operations Count monitor | string | `` | no |
 | sending_operations_count_silenced | Groups to mute for GCP Pub/Sub Sending Operations Count monitor | map | `<map>` | no |
 | sending_operations_count_threshold_critical | Critical threshold for the number of sending operations. | string | `0` | no |
 | sending_operations_count_time_aggregator | Timeframe for the GCP Pub/Sub Sending Operations Count monitor | string | `sum` | no |
 | sending_operations_count_timeframe | Timeframe for the GCP Pub/Sub Sending Operations Count monitor | string | `last_30m` | no |
+| unavailable_sending_operations_count_enabled | Flag to enable GCP Pub/Sub Unavailable Sending Operations Count monitor | string | `true` | no |
 | unavailable_sending_operations_count_extra_tags | Extra tags for GCP Pub/Sub Unavailable Sending Operations Count monitor | list | `<list>` | no |
 | unavailable_sending_operations_count_message | Custom message for the GCP Pub/Sub Unavailable Sending Operations Count monitor | string | `` | no |
 | unavailable_sending_operations_count_silenced | Groups to mute for GCP Pub/Sub Unavailable Sending Operations Count monitor | map | `<map>` | no |
