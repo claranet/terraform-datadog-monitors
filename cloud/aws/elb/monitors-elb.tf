@@ -34,7 +34,7 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
   query = <<EOF
     sum(${var.elb_4xx_timeframe}):
       default(avg:aws.elb.httpcode_elb_4xx${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) / (
-      default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) + ${var.artificial_requests_count}),
+      default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) + ${var.artificial_requests_count})
       * 100 > ${var.elb_4xx_threshold_critical}
   EOF
 
@@ -68,7 +68,7 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
   query = <<EOF
     sum(${var.elb_5xx_timeframe}):
       default(avg:aws.elb.httpcode_elb_5xx${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) / (
-      default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) + ${var.artificial_requests_count}),
+      default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) + ${var.artificial_requests_count})
       * 100 > ${var.elb_5xx_threshold_critical}
   EOF
 
@@ -102,7 +102,7 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
   query = <<EOF
     sum(${var.elb_backend_4xx_timeframe}):
       default(avg:aws.elb.httpcode_backend_4xx${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) / (
-      default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) + ${var.artificial_requests_count}),
+      default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) + ${var.artificial_requests_count})
       * 100 > ${var.elb_backend_4xx_threshold_critical}
   EOF
 
@@ -136,7 +136,7 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
   query = <<EOF
     sum(${var.elb_backend_5xx_timeframe}):
       default(avg:aws.elb.httpcode_backend_5xx${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) / (
-      default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) + ${var.artificial_requests_count}),
+      default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_count(), 0) + ${var.artificial_requests_count})
       * 100 > ${var.elb_backend_5xx_threshold_critical}
   EOF
 

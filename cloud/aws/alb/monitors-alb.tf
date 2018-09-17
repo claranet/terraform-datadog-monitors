@@ -68,7 +68,7 @@ resource "datadog_monitor" "ALB_httpcode_5xx" {
   query = <<EOF
     sum(${var.httpcode_alb_5xx_timeframe}):
       default(avg:aws.applicationelb.httpcode_elb_5xx${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) / (
-      default(avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) + ${var.artificial_requests_count}),
+      default(avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) + ${var.artificial_requests_count})
       * 100 > ${var.httpcode_alb_5xx_threshold_critical}
   EOF
 
@@ -100,7 +100,7 @@ resource "datadog_monitor" "ALB_httpcode_4xx" {
   query = <<EOF
     sum(${var.httpcode_alb_4xx_timeframe}):
       default(avg:aws.applicationelb.httpcode_elb_4xx${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) / (
-      default(avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) + ${var.artificial_requests_count}),
+      default(avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) + ${var.artificial_requests_count})
       * 100 > ${var.httpcode_alb_4xx_threshold_critical}
   EOF
 
@@ -132,7 +132,7 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
   query = <<EOF
     sum(${var.httpcode_target_5xx_timeframe}):
       default(avg:aws.applicationelb.httpcode_target_5xx${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) / (
-      default(avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) + ${var.artificial_requests_count}),
+      default(avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) + ${var.artificial_requests_count})
       * 100 > ${var.httpcode_target_5xx_threshold_critical}
   EOF
 
@@ -164,7 +164,7 @@ resource "datadog_monitor" "ALB_httpcode_target_4xx" {
   query = <<EOF
     sum(${var.httpcode_target_4xx_timeframe}):
       default(avg:aws.applicationelb.httpcode_target_4xx${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) / (
-      default(avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) + ${var.artificial_requests_count}),
+      default(avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) + ${var.artificial_requests_count})
       * 100 > ${var.httpcode_target_4xx_threshold_critical}
   EOF
 
