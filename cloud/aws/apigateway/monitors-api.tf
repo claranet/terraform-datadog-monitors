@@ -7,7 +7,7 @@ resource "datadog_monitor" "API_Gateway_latency" {
 
   query = <<EOF
     ${var.latency_time_aggregator}(${var.latency_timeframe}):
-      default(avg:aws.apigateway.latency{${var.filter_tags}} by {region,apiname})
+      default(avg:aws.apigateway.latency{${var.filter_tags}} by {region,apiname,stage})
     > ${var.latency_threshold_critical}
   EOF
 
@@ -40,8 +40,8 @@ resource "datadog_monitor" "API_http_5xx_errors_count" {
   query = <<EOF
     sum(${var.http_5xx_requests_timeframe}): (
       default(
-        avg:aws.apigateway.5xxerror{${var.filter_tags}} by {region,apiname}.as_count() /
-        (avg:aws.apigateway.count{${var.filter_tags}} by {region,apiname}.as_count() + ${var.artificial_requests_count}),
+        avg:aws.apigateway.5xxerror{${var.filter_tags}} by {region,apiname,stage}.as_count() /
+        (avg:aws.apigateway.count{${var.filter_tags}} by {region,apiname,stage}.as_count() + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.http_5xx_requests_threshold_critical}
   EOF
@@ -75,8 +75,8 @@ resource "datadog_monitor" "API_http_4xx_errors_count" {
   query = <<EOF
     sum(${var.http_4xx_requests_timeframe}): (
       default(
-        avg:aws.apigateway.4xxerror{${var.filter_tags}} by {region,apiname}.as_count() /
-        (avg:aws.apigateway.count{${var.filter_tags}} by {region,apiname}.as_count() + ${var.artificial_requests_count}),
+        avg:aws.apigateway.4xxerror{${var.filter_tags}} by {region,apiname,stage}.as_count() /
+        (avg:aws.apigateway.count{${var.filter_tags}} by {region,apiname,stage}.as_count() + ${var.artificial_requests_count}),
       0) * 100
     ) > ${var.http_4xx_requests_threshold_critical}
   EOF
