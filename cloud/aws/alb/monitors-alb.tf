@@ -35,9 +35,9 @@ resource "datadog_monitor" "ALB_latency" {
   message = "${coalesce(var.latency_message, var.message)}"
 
   query = <<EOF
-    ${var.latency_time_aggregator}(${var.latency_timeframe}): (
-      avg:aws.applicationelb.target_response_time.average${module.filter-tags.query_alert} by {region,loadbalancer}
-    ) > ${var.latency_threshold_critical}
+    ${var.latency_time_aggregator}(${var.latency_timeframe}):
+      default(avg:aws.applicationelb.target_response_time.average${module.filter-tags.query_alert} by {region,loadbalancer}, 0)
+    > ${var.latency_threshold_critical}
   EOF
 
   evaluation_delay = "${var.evaluation_delay}"
@@ -66,12 +66,10 @@ resource "datadog_monitor" "ALB_httpcode_5xx" {
   message = "${coalesce(var.httpcode_alb_5xx_message, var.message)}"
 
   query = <<EOF
-    sum(${var.httpcode_alb_5xx_timeframe}): (
-      default(
-        avg:aws.applicationelb.httpcode_alb_5xx${module.filter-tags.query_alert} by {region,loadbalancer}.as_count() /
-        (avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
-      0) * 100
-    ) > ${var.httpcode_alb_5xx_threshold_critical}
+    sum(${var.httpcode_alb_5xx_timeframe}):
+      default(avg:aws.applicationelb.httpcode_elb_5xx${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) / (
+      default(avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) + ${var.artificial_requests_count})
+      * 100 > ${var.httpcode_alb_5xx_threshold_critical}
   EOF
 
   evaluation_delay = "${var.evaluation_delay}"
@@ -100,12 +98,10 @@ resource "datadog_monitor" "ALB_httpcode_4xx" {
   message = "${coalesce(var.httpcode_alb_4xx_message, var.message)}"
 
   query = <<EOF
-    sum(${var.httpcode_alb_4xx_timeframe}): (
-      default(
-        avg:aws.applicationelb.httpcode_alb_4xx${module.filter-tags.query_alert} by {region,loadbalancer}.as_count() /
-        (avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
-      0) * 100
-    ) > ${var.httpcode_alb_4xx_threshold_critical}
+    sum(${var.httpcode_alb_4xx_timeframe}):
+      default(avg:aws.applicationelb.httpcode_elb_4xx${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) / (
+      default(avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) + ${var.artificial_requests_count})
+      * 100 > ${var.httpcode_alb_4xx_threshold_critical}
   EOF
 
   evaluation_delay = "${var.evaluation_delay}"
@@ -134,12 +130,10 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
   message = "${coalesce(var.httpcode_target_5xx_message, var.message)}"
 
   query = <<EOF
-    sum(${var.httpcode_target_5xx_timeframe}): (
-      default(
-        avg:aws.applicationelb.httpcode_target_5xx${module.filter-tags.query_alert} by {region,loadbalancer}.as_count() /
-        (avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
-      0) * 100
-    ) > ${var.httpcode_target_5xx_threshold_critical}
+    sum(${var.httpcode_target_5xx_timeframe}):
+      default(avg:aws.applicationelb.httpcode_target_5xx${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) / (
+      default(avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) + ${var.artificial_requests_count})
+      * 100 > ${var.httpcode_target_5xx_threshold_critical}
   EOF
 
   evaluation_delay = "${var.evaluation_delay}"
@@ -168,12 +162,10 @@ resource "datadog_monitor" "ALB_httpcode_target_4xx" {
   message = "${coalesce(var.httpcode_target_4xx_message, var.message)}"
 
   query = <<EOF
-    sum(${var.httpcode_target_4xx_timeframe}): (
-      default(
-        avg:aws.applicationelb.httpcode_target_4xx${module.filter-tags.query_alert} by {region,loadbalancer}.as_count() /
-        (avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_count() + ${var.artificial_requests_count}),
-      0) * 100
-    ) > ${var.httpcode_target_4xx_threshold_critical}
+    sum(${var.httpcode_target_4xx_timeframe}):
+      default(avg:aws.applicationelb.httpcode_target_4xx${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) / (
+      default(avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_count(), 0) + ${var.artificial_requests_count})
+      * 100 > ${var.httpcode_target_4xx_threshold_critical}
   EOF
 
   evaluation_delay = "${var.evaluation_delay}"
