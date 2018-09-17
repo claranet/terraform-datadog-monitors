@@ -6,9 +6,9 @@ resource "datadog_monitor" "API_Gateway_latency" {
   message = "${coalesce(var.latency_message, var.message)}"
 
   query = <<EOF
-    ${var.latency_time_aggregator}(${var.latency_timeframe}): (
-      avg:aws.apigateway.latency{${var.filter_tags}} by {region,apiname}
-    ) > ${var.latency_threshold_critical}
+    ${var.latency_time_aggregator}(${var.latency_timeframe}):
+      default(avg:aws.apigateway.latency{${var.filter_tags}} by {region,apiname})
+    > ${var.latency_threshold_critical}
   EOF
 
   evaluation_delay = "${var.evaluation_delay}"
