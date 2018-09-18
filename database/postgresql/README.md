@@ -31,11 +31,11 @@ Inputs
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | postgresql_connection_threshold_critical | Maximum critical acceptable percent of connections | string | `80` | no |
 | postgresql_connection_threshold_warning | Maximum warning acceptable percent of connections | string | `70` | no |
-| postgresql_connection_silenced | Groups to mute PostgreSQL connection monitor | map | `<map>` | no |
+| postgresql_connection_silenced | Groups to mute for PostgreSQL connection monitor | map | `<map>` | no |
 | postgresql_connection_message | Custom message for PostgreSQL connection monitor | string | `` | no |
 | postgresql_thread_threshold_critical | Maximum critical acceptable number of threads | string | `500` | no |
 | postgresql_thread_threshold_warning | Maximum warning acceptable number of threads | string | `400` | no |
-| postgresql_thread_silenced | Groups to mute PostgreSQL threads monitor | map | `<map>` | no |
+| postgresql_thread_silenced | Groups to mute for PostgreSQL threads monitor | map | `<map>` | no |
 | postgresql_thread_message | Custom message for PostgreSQL thread monitor | string | `` | no |
 | message | Message sent when a monitor is triggered | string | - | yes |
 
