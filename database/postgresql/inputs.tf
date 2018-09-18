@@ -61,6 +61,19 @@ variable "postgresql_connection_message" {
   default     = ""
 }
 
+variable "postgresql_connection_time_aggregator" {
+  description = "Monitor time aggregator for PostgreSQL connection monitor [available values: min, max or avg]"
+  type        = "string"
+  default     = "avg"
+}
+
+variable "postgresql_connection_timeframe" {
+  description = "Monitor timeframe for PostgreSQL connection monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_15m"
+}
+
+
 ############################
 ###   PostgreSQL locks   ###
 ############################
@@ -92,3 +105,17 @@ variable "postgresql_lock_message" {
   type        = "string"
   default     = ""
 }
+
+variable "postgresql_lock_time_aggregator" {
+  description = "Monitor time aggregator for PostgreSQL lock monitor [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "postgresql_lock_timeframe" {
+  description = "Monitor timeframe for PostgreSQL lock monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+
