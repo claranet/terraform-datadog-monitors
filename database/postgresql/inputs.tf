@@ -39,9 +39,15 @@ variable "postgresql_connection_threshold_warning" {
 }
 
 variable "postgresql_connection_silenced" {
-  description = "Groups to mute PostgreSQL connection monitor"
+  description = "Groups to mute for PostgreSQL connection monitor"
   type        = "map"
   default     = {}
+}
+
+variable "postgresql_connection_enabled" {
+  description = "Flag to enable PostgreSQL connection monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "postgresql_connection_message" {
@@ -65,9 +71,15 @@ variable "postgresql_lock_threshold_warning" {
 }
 
 variable "posgresql_lock_silenced" {
-  description = "Groups to mute PostgreSQL lock monitor"
+  description = "Groups to mute for PostgreSQL lock monitor"
   type        = "map"
   default     = {}
+}
+
+variable "postgresql_lock_enabled" {
+  description = "Flag to enable PostgreSQL lock monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "postgresql_lock_message" {
