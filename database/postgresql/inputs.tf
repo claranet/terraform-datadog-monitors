@@ -79,7 +79,6 @@ variable "postgresql_connection_timeframe" {
   default     = "last_15m"
 }
 
-
 ############################
 ###   PostgreSQL locks   ###
 ############################
@@ -129,5 +128,3 @@ variable "postgresql_lock_timeframe" {
   type        = "string"
   default     = "last_5m"
 }
-
-
