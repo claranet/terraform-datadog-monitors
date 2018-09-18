@@ -55,6 +55,12 @@ variable "postgresql_connection_enabled" {
   default     = "true"
 }
 
+variable "postgresql_connection_extra_tags" {
+  description = "Extra tags for PostgreSQL connection connects monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "postgresql_connection_message" {
   description = "Custom message for PostgreSQL connection monitor"
   type        = "string"
@@ -98,6 +104,12 @@ variable "postgresql_lock_enabled" {
   description = "Flag to enable PostgreSQL lock monitor"
   type        = "string"
   default     = "true"
+}
+
+variable "postgresql_lock_extra_tags" {
+  description = "Extra tags for PostgreSQL lock connects monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "postgresql_lock_message" {

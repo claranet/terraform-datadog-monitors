@@ -26,7 +26,7 @@ resource "datadog_monitor" "postgresql_connection_too_high" {
 
   silenced = "${var.postgresql_connection_silenced}"
 
-  tags = ["env:${var.environment}", "resource:postgresql"]
+  tags = ["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform", "${var.postgresql_connection_extra_tags}"]
 }
 
 resource "datadog_monitor" "postgresql_too_many_locks" {
@@ -57,5 +57,5 @@ resource "datadog_monitor" "postgresql_too_many_locks" {
 
   silenced = "${var.posgresql_lock_silenced}"
 
-  tags = ["env:${var.environment}", "resource:postgresql"]
+  tags = ["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform", "${var.postgresql_lock_extra_tags}"]
 }
