@@ -14,7 +14,7 @@ resource "datadog_monitor" "postgresql_connection_too_high" {
 
   query = <<EOF
     avg(last_15m): (
-      avg:postgresql.percent_usage_connections${module.filter-tags.query_alert} by {db_host}
+      avg:postgresql.percent_usage_connections${module.filter-tags.query_alert} by {server}
     ) * 100 > ${var.postgresql_connection_threshold_critical}
   EOF
 
@@ -45,7 +45,7 @@ resource "datadog_monitor" "postgresql_too_many_locks" {
 
   query = <<EOF
     avg(last_5m): (
-      avg:postgresql.locks${module.filter-tags.query_alert} by {db_host}
+      avg:postgresql.locks${module.filter-tags.query_alert} by {server}
     ) > ${var.postgresql_lock_threshold_critical}
   EOF
 
