@@ -17,6 +17,7 @@ module "datadog-monitors-database-postgresql" {
 Creates DataDog monitors with the following checks:
 
 - PostgreSQL Connections
+- PostgreSQL server does not respond
 - PostgreSQL too many locks
 
 ## Inputs
@@ -30,6 +31,12 @@ Creates DataDog monitors with the following checks:
 | message | Message sent when an alert is triggered | string | - | yes |
 | new_host_delay | Delay in seconds for the metric evaluation | string | `300` | no |
 | posgresql_lock_silenced | Groups to mute for PostgreSQL lock monitor | map | `<map>` | no |
+| postgresql_availability_enabled | Flag to enable PostgreSQL availability monitor | string | `true` | no |
+| postgresql_availability_extra_tags | Extra tags for PostgreSQL availability monitor | list | `<list>` | no |
+| postgresql_availability_message | Custom message for PostgreSQL availability monitor | string | `` | no |
+| postgresql_availability_no_data_timeframe | PostgreSQL availability monitor no data timeframe | string | `10` | no |
+| postgresql_availability_silenced | Groups to mute for PostgreSQL availability monitor | map | `<map>` | no |
+| postgresql_availability_threshold_warning | PostgreSQL availability monitor (warning threshold) | string | `3` | no |
 | postgresql_connection_enabled | Flag to enable PostgreSQL connection monitor | string | `true` | no |
 | postgresql_connection_extra_tags | Extra tags for PostgreSQL connection connects monitor | list | `<list>` | no |
 | postgresql_connection_message | Custom message for PostgreSQL connection monitor | string | `` | no |
@@ -50,6 +57,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description |
 |------|-------------|
+| postgresql_availability_id | id for monitor postgresql_availability |
 | postgresql_connection_too_high_id | id for monitor postgresql_connection_too_high |
 | postgresql_too_many_locks_id | id for monitor postgresql_too_many_locks |
 

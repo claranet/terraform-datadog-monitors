@@ -1,3 +1,8 @@
+output "postgresql_availability_id" {
+  description = "id for monitor postgresql_availability"
+  value       = "${datadog_monitor.postgresql_availability.*.id}"
+}
+
 output "postgresql_connection_too_high_id" {
   description = "id for monitor postgresql_connection_too_high"
   value       = "${datadog_monitor.postgresql_connection_too_high.*.id}"
