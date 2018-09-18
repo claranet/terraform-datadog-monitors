@@ -30,6 +30,46 @@ variable "filter_tags_custom" {
 
 # PostgreSQL specific
 ##################################
+###   PostgreSQL availability  ###
+##################################
+
+variable "postgresql_availability_silenced" {
+  description = "Groups to mute for PostgreSQL availability monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "postgresql_availability_enabled" {
+  description = "Flag to enable PostgreSQL availability monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "postgresql_availability_extra_tags" {
+  description = "Extra tags for PostgreSQL availability monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "postgresql_availability_message" {
+  description = "Custom message for PostgreSQL availability monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "postgresql_availability_threshold_warning" {
+  description = "PostgreSQL availability monitor (warning threshold)"
+  type        = "string"
+  default     = 3
+}
+
+variable "postgresql_availability_no_data_timeframe" {
+  description = "PostgreSQL availability monitor no data timeframe"
+  type        = "string"
+  default     = 10
+}
+
+##################################
 ###   PostgreSQL connections   ###
 ##################################
 
