@@ -18,8 +18,8 @@ resource "datadog_monitor" "postgresql_connection_too_high" {
     ) * 100 > ${var.postgresql_connection_threshold_critical}
   EOF
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   thresholds {
     warning  = "${var.postgresql_connection_threshold_warning}"
@@ -49,8 +49,8 @@ resource "datadog_monitor" "postgresql_too_many_locks" {
     ) > ${var.postgresql_lock_threshold_critical}
   EOF
 
-  evaluation_delay = "${var.delay}"
-  new_host_delay   = "${var.delay}"
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
 
   thresholds {
     warning  = "${var.postgresql_lock_threshold_warning}"
