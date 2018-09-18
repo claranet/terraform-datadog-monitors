@@ -26,7 +26,7 @@ resource "datadog_monitor" "mysql_availability" {
 
   silenced = "${var.mysql_availability_silenced}"
 
-  tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_connection_extra_tags}"]
+  tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_availability_extra_tags}"]
 }
 
 resource "datadog_monitor" "mysql_connection" {
