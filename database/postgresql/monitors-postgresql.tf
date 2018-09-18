@@ -5,9 +5,9 @@ resource "datadog_monitor" "postgresql_connection_too_high" {
   type    = "metric alert"
 
   query = <<EOF
-    avg(last_15m): (
+    ${var.postgresql_connection_time_aggregator}(${var.postgresql_connection_timeframe}):
       avg:postgresql.percent_usage_connections${module.filter-tags.query_alert} by {server}
-    ) * 100 > ${var.postgresql_connection_threshold_critical}
+    * 100 > ${var.postgresql_connection_threshold_critical}
   EOF
 
   evaluation_delay = "${var.evaluation_delay}"
@@ -36,9 +36,9 @@ resource "datadog_monitor" "postgresql_too_many_locks" {
   type    = "metric alert"
 
   query = <<EOF
-    avg(last_5m): (
-      avg:postgresql.locks${module.filter-tags.query_alert} by {server}
-    ) > ${var.postgresql_lock_threshold_critical}
+    ${var.postgresql_lock_time_aggregator}(${var.postgresql_lock_timeframe}):
+      default(avg:postgresql.locks${module.filter-tags.query_alert} by {server}, 0)
+    > ${var.postgresql_lock_threshold_critical}
   EOF
 
   evaluation_delay = "${var.evaluation_delay}"
