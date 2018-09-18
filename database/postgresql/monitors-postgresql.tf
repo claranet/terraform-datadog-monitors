@@ -18,7 +18,7 @@ resource "datadog_monitor" "postgresql_connection_too_high" {
     critical = "${var.postgresql_connection_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
   timeout_h           = 0
@@ -49,7 +49,7 @@ resource "datadog_monitor" "postgresql_too_many_locks" {
     critical = "${var.postgresql_lock_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
   timeout_h           = 0
