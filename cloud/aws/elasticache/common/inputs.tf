@@ -17,10 +17,6 @@ variable "filter_tags" {
   description = "Tags used for filtering"
 }
 
-variable "resource" {
-  description = "Type of Elasticache used"
-}
-
 # Elasticache specific
 variable "eviction_silenced" {
   description = "Groups to mute for Elasticache eviction monitor"
