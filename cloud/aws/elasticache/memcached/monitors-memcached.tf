@@ -18,7 +18,7 @@ resource "datadog_monitor" "memcached_get_hits" {
     critical = "${var.get_hits_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false

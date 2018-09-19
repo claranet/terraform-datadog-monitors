@@ -108,7 +108,7 @@ resource "datadog_monitor" "redis_commands" {
     ) <= 0
   EOF
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
