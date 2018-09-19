@@ -84,7 +84,7 @@ resource "datadog_monitor" "redis_cache_hits" {
 
   silenced = "${var.cache_hits_silenced}"
 
-  tags = ["env:${var.environment}", "engine:redis", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "${var.cache_hits_extra_tags}"]
 }
 
 resource "datadog_monitor" "redis_cpu_high" {
@@ -111,7 +111,7 @@ resource "datadog_monitor" "redis_cpu_high" {
 
   silenced = "${var.cpu_high_silenced}"
 
-  tags = ["env:${var.environment}", "engine:redis", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "${var.cpu_high_extra_tags}"]
 }
 
 resource "datadog_monitor" "redis_replication_lag" {
@@ -143,7 +143,7 @@ resource "datadog_monitor" "redis_replication_lag" {
 
   silenced = "${var.replication_lag_silenced}"
 
-  tags = ["env:${var.environment}", "engine:redis", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "${var.replication_lag_extra_tags}"]
 }
 
 resource "datadog_monitor" "redis_commands" {
@@ -171,5 +171,5 @@ resource "datadog_monitor" "redis_commands" {
 
   silenced = "${var.commands_silenced}"
 
-  tags = ["env:${var.environment}", "engine:redis", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "${var.commands_extra_tags}"]
 }

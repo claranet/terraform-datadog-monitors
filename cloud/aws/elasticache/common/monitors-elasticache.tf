@@ -22,7 +22,7 @@ resource "datadog_monitor" "elasticache_eviction" {
 
   silenced = "${var.eviction_silenced}"
 
-  tags = ["env:${var.environment}", "engine:${var.resource}", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.eviction_extra_tags}"]
 }
 
 resource "datadog_monitor" "elasticache_max_connection" {
@@ -49,7 +49,7 @@ resource "datadog_monitor" "elasticache_max_connection" {
 
   silenced = "${var.max_connection_silenced}"
 
-  tags = ["env:${var.environment}", "engine:${var.resource}", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.max_connection_extra_tags}"]
 }
 
 resource "datadog_monitor" "elasticache_no_connection" {
@@ -76,7 +76,7 @@ resource "datadog_monitor" "elasticache_no_connection" {
 
   silenced = "${var.no_connection_silenced}"
 
-  tags = ["env:${var.environment}", "engine:${var.resource}", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.no_connection_extra_tags}"]
 }
 
 resource "datadog_monitor" "elasticache_swap" {
@@ -108,7 +108,7 @@ resource "datadog_monitor" "elasticache_swap" {
 
   silenced = "${var.swap_silenced}"
 
-  tags = ["env:${var.environment}", "engine:${var.resource}", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.swap_extra_tags}"]
 }
 
 # POC - A approfondir
@@ -141,7 +141,7 @@ resource "datadog_monitor" "elasticache_free_memory" {
 
   silenced = "${var.free_memory_silenced}"
 
-  tags = ["env:${var.environment}", "engine:${var.resource}", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.free_memory_extra_tags}"]
 }
 
 resource "datadog_monitor" "elasticache_eviction_growing" {
@@ -173,5 +173,5 @@ resource "datadog_monitor" "elasticache_eviction_growing" {
 
   silenced = "${var.eviction_growing_silenced}"
 
-  tags = ["env:${var.environment}", "engine:${var.resource}", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.eviction_growing_extra_tags}"]
 }
