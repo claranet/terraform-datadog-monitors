@@ -11,14 +11,14 @@ resource "datadog_monitor" "elasticache_eviction" {
   EOF
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   silenced = "${var.eviction_silenced}"
 
@@ -38,14 +38,14 @@ resource "datadog_monitor" "elasticache_max_connection" {
   EOF
 
   notify_no_data      = true
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   silenced = "${var.max_connection_silenced}"
 
@@ -65,14 +65,14 @@ resource "datadog_monitor" "elasticache_no_connection" {
   EOF
 
   notify_no_data      = true
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   silenced = "${var.no_connection_silenced}"
 
@@ -97,14 +97,14 @@ resource "datadog_monitor" "elasticache_swap" {
   }
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   silenced = "${var.swap_silenced}"
 
@@ -130,14 +130,14 @@ resource "datadog_monitor" "elasticache_free_memory" {
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   silenced = "${var.free_memory_silenced}"
 
@@ -162,14 +162,14 @@ resource "datadog_monitor" "elasticache_eviction_growing" {
   }
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   silenced = "${var.eviction_growing_silenced}"
 
