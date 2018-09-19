@@ -54,6 +54,7 @@ module "datadog-monitors-aws-elasticache-common" {
 }
 
 resource "datadog_monitor" "memcached_get_hits" {
+count = "${var.get_hits_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticache memcached get hits {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.get_hits_message, var.message)}"
 
@@ -88,6 +89,7 @@ resource "datadog_monitor" "memcached_get_hits" {
 }
 
 resource "datadog_monitor" "memcached_cpu_high" {
+count = "${var.cpu_high_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticache memcached CPU {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_high_message, var.message)}"
 

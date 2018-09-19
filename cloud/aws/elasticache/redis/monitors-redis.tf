@@ -54,6 +54,7 @@ module "datadog-monitors-aws-elasticache-common" {
 }
 
 resource "datadog_monitor" "redis_cache_hits" {
+count = "${var.cache_hits_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticache redis cache hits {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cache_hits_message, var.message)}"
 
@@ -88,6 +89,7 @@ resource "datadog_monitor" "redis_cache_hits" {
 }
 
 resource "datadog_monitor" "redis_cpu_high" {
+count = "${var.cpu_high_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticache redis CPU {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_high_message, var.message)}"
 
@@ -115,6 +117,7 @@ resource "datadog_monitor" "redis_cpu_high" {
 }
 
 resource "datadog_monitor" "redis_replication_lag" {
+count = "${var.replication_lag_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticache redis replication lag {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = "${coalesce(var.replication_lag_message, var.message)}"
 
@@ -147,6 +150,7 @@ resource "datadog_monitor" "redis_replication_lag" {
 }
 
 resource "datadog_monitor" "redis_commands" {
+count = "${var.commands_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticache redis is receiving no commands"
   message = "${coalesce(var.commands_message, var.message)}"
 
