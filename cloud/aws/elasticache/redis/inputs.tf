@@ -35,6 +35,11 @@ variable "cache_hits_silenced" {
   type        = "map"
   default     = {}
 }
+variable "cache_hits_enabled" {
+  description = "Flag to enable Elasticache redis cache hits monitor"
+  type        = "string"
+  default     = "true"
+}
 
 variable "cache_hits_extra_tags" {
   description = "Extra tags for Elasticache redis cache hits monitor"
@@ -67,6 +72,11 @@ variable "cpu_high_silenced" {
   description = "Groups to mute for Elasticache redis cpu high monitor"
   type        = "map"
   default     = {}
+}
+variable "cpu_high_enabled" {
+  description = "Flag to enable Elasticache redis cpu high monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "cpu_high_extra_tags" {
@@ -107,6 +117,11 @@ variable "replication_lag_silenced" {
   type        = "map"
   default     = {}
 }
+variable "replication_lag_enabled" {
+  description = "Flag to enable Elasticache redis replication lag monitor"
+  type        = "string"
+  default     = "true"
+}
 
 variable "replication_lag_extra_tags" {
   description = "Extra tags for Elasticache redis replication lag monitor"
@@ -146,6 +161,11 @@ variable "commands_silenced" {
   type        = "map"
   default     = {}
 }
+variable "commands_enabled" {
+  description = "Flag to enable Elasticache redis commands monitor"
+  type        = "string"
+  default     = "true"
+}
 
 variable "commands_extra_tags" {
   description = "Extra tags for Elasticache redis commands monitor"
@@ -170,6 +190,11 @@ variable "eviction_silenced" {
   type        = "map"
   default     = {}
 }
+variable "eviction_enabled" {
+  description = "Flag to enable Elasticache eviction monitor"
+  type        = "string"
+  default     = "true"
+}
 
 variable "eviction_message" {
   description = "Custom message for Elasticache eviction monitor"
@@ -192,6 +217,11 @@ variable "max_connection_silenced" {
   description = "Groups to mute for Elasticache max connection monitor"
   type        = "map"
   default     = {}
+}
+variable "max_connection_enabled" {
+  description = "Flag to enable Elasticache max connection monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "max_connection_message" {
@@ -216,6 +246,11 @@ variable "no_connection_silenced" {
   type        = "map"
   default     = {}
 }
+variable "no_connection_enabled" {
+  description = "Flag to enable Elasticache no connection monitor"
+  type        = "string"
+  default     = "true"
+}
 
 variable "no_connection_message" {
   description = "Custom message for Elasticache no connection monitor"
@@ -238,6 +273,11 @@ variable "swap_silenced" {
   description = "Groups to mute for Elasticache swap monitor"
   type        = "map"
   default     = {}
+}
+variable "swap_enabled" {
+  description = "Flag to enable Elasticache swap monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "swap_message" {
@@ -272,6 +312,11 @@ variable "free_memory_silenced" {
   type        = "map"
   default     = {}
 }
+variable "free_memory_enabled" {
+  description = "Flag to enable Elasticache free memory monitor"
+  type        = "string"
+  default     = "true"
+}
 
 variable "free_memory_message" {
   description = "Custom message for Elasticache free memory monitor"
@@ -303,6 +348,11 @@ variable "eviction_growing_silenced" {
   description = "Groups to mute for Elasticache eviction growing monitor"
   type        = "map"
   default     = {}
+}
+variable "eviction_growing_enabled" {
+  description = "Flag to enable Elasticache eviction growing monitor"
+  type        = "string"
+  default     = "true"
 }
 
 variable "eviction_growing_message" {

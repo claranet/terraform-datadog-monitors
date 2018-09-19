@@ -35,6 +35,11 @@ variable "eviction_silenced" {
   type        = "map"
 }
 
+variable "eviction_enabled" {
+  description = "Flag to enable Elasticache eviction monitor"
+  type        = "string"
+  default     = "true"
+}
 variable "eviction_extra_tags" {
   description = "Extra tags for Elasticache eviction monitor"
   type        = "list"
@@ -60,6 +65,11 @@ variable "max_connection_silenced" {
   type        = "map"
 }
 
+variable "max_connection_enabled" {
+  description = "Flag to enable Elasticache max connection monitor"
+  type        = "string"
+  default     = "true"
+}
 variable "max_connection_extra_tags" {
   description = "Extra tags for Elasticache max connection monitor"
   type        = "list"
@@ -85,6 +95,11 @@ variable "no_connection_silenced" {
   type        = "map"
 }
 
+variable "no_connection_enabled" {
+  description = "Flag to enable Elasticache no connection monitor"
+  type        = "string"
+  default     = "true"
+}
 variable "no_connection_extra_tags" {
   description = "Extra tags for Elasticache no connection monitor"
   type        = "list"
@@ -110,6 +125,11 @@ variable "swap_silenced" {
   type        = "map"
 }
 
+variable "swap_enabled" {
+  description = "Flag to enable Elasticache swap monitor"
+  type        = "string"
+  default     = "true"
+}
 variable "swap_extra_tags" {
   description = "Extra tags for Elasticache swap monitor"
   type        = "list"
@@ -143,6 +163,11 @@ variable "free_memory_silenced" {
   type        = "map"
 }
 
+variable "free_memory_enabled" {
+  description = "Flag to enable Elasticache free memory monitor"
+  type        = "string"
+  default     = "true"
+}
 variable "free_memory_extra_tags" {
   description = "Extra tags for Elasticache free memory monitor"
   type        = "list"
@@ -175,6 +200,11 @@ variable "eviction_growing_silenced" {
   type        = "map"
 }
 
+variable "eviction_growing_enabled" {
+  description = "Flag to enable Elasticache eviction growing monitor"
+  type        = "string"
+  default     = "true"
+}
 variable "eviction_growing_extra_tags" {
   description = "Extra tags for Elasticache eviction growing monitor"
   type        = "list"
