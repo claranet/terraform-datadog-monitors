@@ -84,7 +84,7 @@ resource "datadog_monitor" "memcached_get_hits" {
 
   silenced = "${var.get_hits_silenced}"
 
-  tags = ["env:${var.environment}", "engine:memcached", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-memcached", "team:claranet", "created-by:terraform", "${var.get_hits_extra_tags}"]
 }
 
 resource "datadog_monitor" "memcached_cpu_high" {
@@ -116,5 +116,5 @@ resource "datadog_monitor" "memcached_cpu_high" {
 
   silenced = "${var.cpu_high_silenced}"
 
-  tags = ["env:${var.environment}", "engine:memcached", "team:aws", "provider:aws"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-memcached", "team:claranet", "created-by:terraform", "${var.cpu_high_extra_tags}"]
 }

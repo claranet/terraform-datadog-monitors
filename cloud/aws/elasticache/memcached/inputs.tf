@@ -36,6 +36,12 @@ variable "get_hits_silenced" {
   default     = {}
 }
 
+variable "get_hits_extra_tags" {
+  description = "Extra tags for Elasticache memcached get hits monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "get_hits_message" {
   description = "Custom message for Elasticache memcached get hits monitor"
   type        = "string"
@@ -61,6 +67,12 @@ variable "cpu_high_silenced" {
   description = "Groups to mute for Elasticache memcached cpu high monitor"
   type        = "map"
   default     = {}
+}
+
+variable "cpu_high_extra_tags" {
+  description = "Extra tags for Elasticache memcached cpu high monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "cpu_high_message" {

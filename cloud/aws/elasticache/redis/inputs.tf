@@ -36,6 +36,12 @@ variable "cache_hits_silenced" {
   default     = {}
 }
 
+variable "cache_hits_extra_tags" {
+  description = "Extra tags for Elasticache redis cache hits monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "cache_hits_message" {
   description = "Custom message for Elasticache redis cache hits monitor"
   type        = "string"
@@ -61,6 +67,12 @@ variable "cpu_high_silenced" {
   description = "Groups to mute for Elasticache redis cpu high monitor"
   type        = "map"
   default     = {}
+}
+
+variable "cpu_high_extra_tags" {
+  description = "Extra tags for Elasticache redis cpu high monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "cpu_high_message" {
@@ -96,6 +108,12 @@ variable "replication_lag_silenced" {
   default     = {}
 }
 
+variable "replication_lag_extra_tags" {
+  description = "Extra tags for Elasticache redis replication lag monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "replication_lag_message" {
   description = "Custom message for Elasticache redis replication lag monitor"
   type        = "string"
@@ -127,6 +145,12 @@ variable "commands_silenced" {
   description = "Groups to mute for Elasticache redis commands monitor"
   type        = "map"
   default     = {}
+}
+
+variable "commands_extra_tags" {
+  description = "Extra tags for Elasticache redis commands monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "commands_message" {
