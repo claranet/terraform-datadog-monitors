@@ -61,9 +61,9 @@ resource "datadog_monitor" "memcached_get_hits" {
 
   query = <<EOF
     sum(${var.get_hits_timeframe}): (
-      avg:aws.elasticache.get_hits{${data.template_file.filter.rendered}} by {region,cacheclusterid}.as_count() /
-      (avg:aws.elasticache.get_hits{${data.template_file.filter.rendered}} by {region,cacheclusterid}.as_count() +
-        avg:aws.elasticache.get_misses{${data.template_file.filter.rendered}} by {region,cacheclusterid}.as_count())
+      avg:aws.elasticache.get_hits${module.filter-tags.query_alert} by {region,cacheclusterid}.as_count() /
+      (avg:aws.elasticache.get_hits${module.filter-tags.query_alert} by {region,cacheclusterid}.as_count() +
+        avg:aws.elasticache.get_misses${module.filter-tags.query_alert} by {region,cacheclusterid}.as_count())
     ) < ${var.get_hits_threshold_critical}
   EOF
 
@@ -95,7 +95,7 @@ resource "datadog_monitor" "memcached_cpu_high" {
 
   query = <<EOF
     ${var.cpu_high_time_aggregator}(${var.cpu_high_timeframe}): (
-      avg:aws.elasticache.cpuutilization{${data.template_file.filter.rendered}} by {region,cacheclusterid,cachenodeid}
+      avg:aws.elasticache.cpuutilization${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     ) > ${var.cpu_high_threshold_critical}
   EOF
 

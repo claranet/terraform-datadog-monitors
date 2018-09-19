@@ -61,9 +61,9 @@ resource "datadog_monitor" "redis_cache_hits" {
 
   query = <<EOF
     sum(${var.cache_hits_timeframe}): (
-      avg:aws.elasticache.cache_hits{${data.template_file.filter.rendered}} by {region,cacheclusterid}.as_count() /
-      (avg:aws.elasticache.cache_hits{${data.template_file.filter.rendered}} by {region,cacheclusterid}.as_count() +
-        avg:aws.elasticache.cache_misses{${data.template_file.filter.rendered}} by {region,cacheclusterid}.as_count())
+      avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid}.as_count() /
+      (avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid}.as_count() +
+        avg:aws.elasticache.cache_misses${module.filter-tags.query_alert} by {region,cacheclusterid}.as_count())
     ) * 100 < ${var.cache_hits_threshold_critical}
   EOF
 
@@ -95,7 +95,7 @@ resource "datadog_monitor" "redis_cpu_high" {
 
   query = <<EOF
     ${var.cpu_high_time_aggregator}(${var.cpu_high_timeframe}): (
-      avg:aws.elasticache.engine_cpuutilization{${data.template_file.filter.rendered}} by {region,cacheclusterid,cachenodeid}
+      avg:aws.elasticache.engine_cpuutilization${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     ) > ${var.cpu_high_threshold_critical}
   EOF
 
@@ -122,7 +122,7 @@ resource "datadog_monitor" "redis_replication_lag" {
 
   query = <<EOF
     ${var.replication_lag_time_aggregator}(${var.replication_lag_timeframe}): (
-      avg:aws.elasticache.replication_lag{${data.template_file.filter.rendered}} by {region,cacheclusterid,cachenodeid}
+      avg:aws.elasticache.replication_lag${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     ) > ${var.replication_lag_threshold_critical}
   EOF
 
@@ -154,8 +154,8 @@ resource "datadog_monitor" "redis_commands" {
 
   query = <<EOF
     sum(${var.commands_timeframe}): (
-      avg:aws.elasticache.get_type_cmds{${data.template_file.filter.rendered}} by {region,cacheclusterid}.as_count() +
-      avg:aws.elasticache.set_type_cmds{${data.template_file.filter.rendered}} by {region,cacheclusterid}.as_count()
+      avg:aws.elasticache.get_type_cmds${module.filter-tags.query_alert} by {region,cacheclusterid}.as_count() +
+      avg:aws.elasticache.set_type_cmds${module.filter-tags.query_alert} by {region,cacheclusterid}.as_count()
     ) <= 0
   EOF
 
