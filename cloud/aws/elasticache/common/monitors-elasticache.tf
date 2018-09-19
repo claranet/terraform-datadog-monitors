@@ -1,5 +1,5 @@
 resource "datadog_monitor" "elasticache_eviction" {
-  name    = "[${var.environment}] Elasticache ${var.resource} eviction {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}"
+  name    = "[${var.environment}] Elasticache eviction {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}"
   message = "${coalesce(var.eviction_message, var.message)}"
 
   type = "metric alert"
@@ -26,7 +26,7 @@ resource "datadog_monitor" "elasticache_eviction" {
 }
 
 resource "datadog_monitor" "elasticache_max_connection" {
-  name    = "[${var.environment}] Elasticache ${var.resource} max connections reached {{#is_alert}}{{{comparator}}} {{threshold}} {{/is_alert}}"
+  name    = "[${var.environment}] Elasticache max connections reached {{#is_alert}}{{{comparator}}} {{threshold}} {{/is_alert}}"
   message = "${coalesce(var.max_connection_message, var.message)}"
 
   type = "metric alert"
@@ -53,7 +53,7 @@ resource "datadog_monitor" "elasticache_max_connection" {
 }
 
 resource "datadog_monitor" "elasticache_no_connection" {
-  name    = "[${var.environment}] Elasticache ${var.resource} connections {{#is_alert}}{{{comparator}}} {{threshold}} {{/is_alert}}"
+  name    = "[${var.environment}] Elasticache connections {{#is_alert}}{{{comparator}}} {{threshold}} {{/is_alert}}"
   message = "${coalesce(var.no_connection_message, var.message)}"
 
   type = "metric alert"
@@ -80,7 +80,7 @@ resource "datadog_monitor" "elasticache_no_connection" {
 }
 
 resource "datadog_monitor" "elasticache_swap" {
-  name    = "[${var.environment}] Elasticache ${var.resource} swap {{#is_alert}}{{{comparator}}} {{threshold}}MB ({{value}}MB){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}MB ({{value}}MB){{/is_warning}}"
+  name    = "[${var.environment}] Elasticache swap {{#is_alert}}{{{comparator}}} {{threshold}}MB ({{value}}MB){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}MB ({{value}}MB){{/is_warning}}"
   message = "${coalesce(var.swap_message, var.message)}"
 
   type = "metric alert"
@@ -113,7 +113,7 @@ resource "datadog_monitor" "elasticache_swap" {
 
 # POC - A approfondir
 resource "datadog_monitor" "elasticache_free_memory" {
-  name    = "[${var.environment}] Elasticache ${var.resource} free memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Elasticache free memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.free_memory_message, var.message)}"
 
   type = "metric alert"
@@ -145,7 +145,7 @@ resource "datadog_monitor" "elasticache_free_memory" {
 }
 
 resource "datadog_monitor" "elasticache_eviction_growing" {
-  name    = "[${var.environment}] Elasticache ${var.resource} evictions is growing {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  name    = "[${var.environment}] Elasticache evictions is growing {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.eviction_growing_message, var.message)}"
 
   type = "metric alert"
