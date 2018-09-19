@@ -35,6 +35,7 @@ variable "cache_hits_silenced" {
   type        = "map"
   default     = {}
 }
+
 variable "cache_hits_enabled" {
   description = "Flag to enable Elasticache redis cache hits monitor"
   type        = "string"
@@ -73,6 +74,7 @@ variable "cpu_high_silenced" {
   type        = "map"
   default     = {}
 }
+
 variable "cpu_high_enabled" {
   description = "Flag to enable Elasticache redis cpu high monitor"
   type        = "string"
@@ -117,6 +119,7 @@ variable "replication_lag_silenced" {
   type        = "map"
   default     = {}
 }
+
 variable "replication_lag_enabled" {
   description = "Flag to enable Elasticache redis replication lag monitor"
   type        = "string"
@@ -161,6 +164,7 @@ variable "commands_silenced" {
   type        = "map"
   default     = {}
 }
+
 variable "commands_enabled" {
   description = "Flag to enable Elasticache redis commands monitor"
   type        = "string"
