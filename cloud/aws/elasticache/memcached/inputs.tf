@@ -35,6 +35,7 @@ variable "get_hits_silenced" {
   type        = "map"
   default     = {}
 }
+
 variable "get_hits_enabled" {
   description = "Flag to enable Elasticache memcached get hits monitor"
   type        = "string"
@@ -73,6 +74,7 @@ variable "cpu_high_silenced" {
   type        = "map"
   default     = {}
 }
+
 variable "cpu_high_enabled" {
   description = "Flag to enable Elasticache memcached cpu high monitor"
   type        = "string"

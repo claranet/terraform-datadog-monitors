@@ -40,6 +40,7 @@ variable "eviction_enabled" {
   type        = "string"
   default     = "true"
 }
+
 variable "eviction_extra_tags" {
   description = "Extra tags for Elasticache eviction monitor"
   type        = "list"
@@ -70,6 +71,7 @@ variable "max_connection_enabled" {
   type        = "string"
   default     = "true"
 }
+
 variable "max_connection_extra_tags" {
   description = "Extra tags for Elasticache max connection monitor"
   type        = "list"
@@ -100,6 +102,7 @@ variable "no_connection_enabled" {
   type        = "string"
   default     = "true"
 }
+
 variable "no_connection_extra_tags" {
   description = "Extra tags for Elasticache no connection monitor"
   type        = "list"
@@ -130,6 +133,7 @@ variable "swap_enabled" {
   type        = "string"
   default     = "true"
 }
+
 variable "swap_extra_tags" {
   description = "Extra tags for Elasticache swap monitor"
   type        = "list"
@@ -168,6 +172,7 @@ variable "free_memory_enabled" {
   type        = "string"
   default     = "true"
 }
+
 variable "free_memory_extra_tags" {
   description = "Extra tags for Elasticache free memory monitor"
   type        = "list"
@@ -205,6 +210,7 @@ variable "eviction_growing_enabled" {
   type        = "string"
   default     = "true"
 }
+
 variable "eviction_growing_extra_tags" {
   description = "Extra tags for Elasticache eviction growing monitor"
   type        = "list"
