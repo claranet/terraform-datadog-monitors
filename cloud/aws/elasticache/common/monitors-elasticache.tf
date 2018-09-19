@@ -67,7 +67,7 @@ resource "datadog_monitor" "elasticache_no_connection" {
     ) <= 0
   EOF
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -134,7 +134,7 @@ resource "datadog_monitor" "elasticache_free_memory" {
     critical = "${var.free_memory_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
