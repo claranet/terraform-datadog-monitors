@@ -1,11 +1,3 @@
-data "template_file" "filter" {
-  template = "$${filter}"
-
-  vars {
-    filter = "${var.filter_tags_use_defaults == "true" ? format("dd_monitoring:enabled,dd_aws_elasticache_memcached:enabled,env:%s", var.environment) : "${var.filter_tags_custom}"}"
-  }
-}
-
 module "datadog-monitors-aws-elasticache-common" {
   source = "../common"
 
