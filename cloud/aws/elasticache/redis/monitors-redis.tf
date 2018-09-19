@@ -14,7 +14,7 @@ module "datadog-monitors-aws-elasticache-common" {
   filter_tags = "${data.template_file.filter.rendered}"
   resource    = "redis"
 
-  delay = "${var.delay}"
+  delay = "${var.evaluation_delay}"
 
   eviction_message         = "${var.eviction_message}"
   eviction_silenced        = "${var.eviction_silenced}"
@@ -77,14 +77,14 @@ resource "datadog_monitor" "redis_cache_hits" {
   }
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   silenced = "${var.cache_hits_silenced}"
 
@@ -108,14 +108,14 @@ resource "datadog_monitor" "redis_cpu_high" {
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   silenced = "${var.cpu_high_silenced}"
 
@@ -144,14 +144,14 @@ resource "datadog_monitor" "redis_replication_lag" {
   }
 
   notify_no_data      = false
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   silenced = "${var.replication_lag_silenced}"
 
@@ -176,14 +176,14 @@ resource "datadog_monitor" "redis_commands" {
   }
 
   notify_no_data      = true
-  evaluation_delay    = "${var.delay}"
+  evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = "${var.delay}"
+  new_host_delay      = "${var.new_host_delay}"
 
   silenced = "${var.commands_silenced}"
 
