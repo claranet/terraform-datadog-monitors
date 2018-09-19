@@ -67,10 +67,6 @@ resource "datadog_monitor" "redis_cache_hits" {
     ) * 100 < ${var.cache_hits_threshold_critical}
   EOF
 
-  lifecycle {
-    ignore_changes = ["type"]
-  }
-
   thresholds {
     warning  = "${var.cache_hits_threshold_warning}"
     critical = "${var.cache_hits_threshold_critical}"
@@ -103,10 +99,6 @@ resource "datadog_monitor" "redis_cpu_high" {
     ) > ${var.cpu_high_threshold_critical}
   EOF
 
-  lifecycle {
-    ignore_changes = ["type"]
-  }
-
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -133,10 +125,6 @@ resource "datadog_monitor" "redis_replication_lag" {
       avg:aws.elasticache.replication_lag{${data.template_file.filter.rendered}} by {region,cacheclusterid,cachenodeid}
     ) > ${var.replication_lag_threshold_critical}
   EOF
-
-  lifecycle {
-    ignore_changes = ["type"]
-  }
 
   thresholds {
     warning  = "${var.replication_lag_threshold_warning}"
@@ -170,10 +158,6 @@ resource "datadog_monitor" "redis_commands" {
       avg:aws.elasticache.set_type_cmds{${data.template_file.filter.rendered}} by {region,cacheclusterid}.as_count()
     ) <= 0
   EOF
-
-  lifecycle {
-    ignore_changes = ["type"]
-  }
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
