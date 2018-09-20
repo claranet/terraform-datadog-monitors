@@ -176,19 +176,19 @@ variable "swap_time_aggregator" {
 
 variable "swap_timeframe" {
   description = "Monitor timeframe for Elasticache swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type =      = "string"
+  type        = "string"
   default     = "last_5m" 
 }
 
 variable "swap_threshold_warning" {
   description = "Elasticache swap warning threshold in bytes"
-  type =      = "string"
+  type        = "string"
   default     = 0
 }
 
 variable "swap_threshold_critical" {
   description = "Elasticache swap critical threshold in bytes"
-  type =      = "string"
+  type        = "string"
   default     = 50000000
 }
 
