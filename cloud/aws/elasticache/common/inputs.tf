@@ -177,7 +177,7 @@ variable "swap_time_aggregator" {
 variable "swap_timeframe" {
   description = "Monitor timeframe for Elasticache swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
-  default     = "last_5m" 
+  default     = "last_5m"
 }
 
 variable "swap_threshold_warning" {

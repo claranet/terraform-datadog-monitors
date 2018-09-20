@@ -16,7 +16,7 @@ module "datadog-monitors-cloud-aws-elasticache-redis" {
 
 Creates DataDog monitors with the following checks:
 
-- Elasticache redis cache hits
+- Elasticache redis cache hit ratio
 - Elasticache redis CPU
 - Elasticache redis is receiving no commands
 - Elasticache redis replication lag
@@ -29,8 +29,8 @@ Creates DataDog monitors with the following checks:
 | cache_hits_extra_tags | Extra tags for Elasticache redis cache hits monitor | list | `<list>` | no |
 | cache_hits_message | Custom message for Elasticache redis cache hits monitor | string | `` | no |
 | cache_hits_silenced | Groups to mute for Elasticache redis cache hits monitor | map | `<map>` | no |
-| cache_hits_threshold_critical | Elasticache redis cache hits critical threshold in percentage | string | `10` | no |
-| cache_hits_threshold_warning | Elasticache redis cache hits warning threshold in percentage | string | `20` | no |
+| cache_hits_threshold_critical | Elasticache redis cache hits critical threshold in percentage | string | `60` | no |
+| cache_hits_threshold_warning | Elasticache redis cache hits warning threshold in percentage | string | `80` | no |
 | cache_hits_timeframe | Monitor timeframe for Elasticache redis cache hits [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | commands_enabled | Flag to enable Elasticache redis commands monitor | string | `true` | no |
 | commands_extra_tags | Extra tags for Elasticache redis commands monitor | list | `<list>` | no |
@@ -55,10 +55,10 @@ Creates DataDog monitors with the following checks:
 | replication_lag_extra_tags | Extra tags for Elasticache redis replication lag monitor | list | `<list>` | no |
 | replication_lag_message | Custom message for Elasticache redis replication lag monitor | string | `` | no |
 | replication_lag_silenced | Groups to mute for Elasticache redis replication lag monitor | map | `<map>` | no |
-| replication_lag_threshold_critical | Elasticache redis replication lag critical threshold in seconds | string | `1` | no |
-| replication_lag_threshold_warning | Elasticache redis replication lag warning threshold in seconds | string | `0` | no |
+| replication_lag_threshold_critical | Elasticache redis replication lag critical threshold in seconds | string | `180` | no |
+| replication_lag_threshold_warning | Elasticache redis replication lag warning threshold in seconds | string | `90` | no |
 | replication_lag_time_aggregator | Monitor aggregator for Elasticache redis replication lag [available values: min, max or avg] | string | `min` | no |
-| replication_lag_timeframe | Monitor timeframe for Elasticache redis replication lag [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| replication_lag_timeframe | Monitor timeframe for Elasticache redis replication lag [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_10m` | no |
 
 ## Outputs
 
