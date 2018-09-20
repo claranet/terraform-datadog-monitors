@@ -56,16 +56,19 @@ variable "get_hits_message" {
 
 variable "get_hits_timeframe" {
   description = "Monitor timeframe for Elasticache memcached get hits [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
   default     = "last_15m"
 }
 
 variable "get_hits_threshold_warning" {
   description = "Elasticache memcached get hits warning threshold in percentage"
+  type        = "string"
   default     = 20
 }
 
 variable "get_hits_threshold_critical" {
   description = "Elasticache memcached get hits critical threshold in percentage"
+  type        = "string"
   default     = 10
 }
 
@@ -101,15 +104,18 @@ variable "cpu_high_time_aggregator" {
 
 variable "cpu_high_timeframe" {
   description = "Monitor timeframe for Elasticache memcached cpu high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
   default     = "last_15m"
 }
 
 variable "cpu_high_threshold_warning" {
   description = "Elasticache memcached cpu high warning threshold in percentage"
+  type        = "string"
   default     = 75
 }
 
 variable "cpu_high_threshold_critical" {
   description = "Elasticache memcached cpu high critical threshold in percentage"
+  type        = "string"
   default     = 90
 }

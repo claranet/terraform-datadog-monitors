@@ -56,16 +56,19 @@ variable "cache_hits_message" {
 
 variable "cache_hits_timeframe" {
   description = "Monitor timeframe for Elasticache redis cache hits [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
   default     = "last_15m"
 }
 
 variable "cache_hits_threshold_warning" {
   description = "Elasticache redis cache hits warning threshold in percentage"
+  type        = "string"
   default     = 20
 }
 
 variable "cache_hits_threshold_critical" {
   description = "Elasticache redis cache hits critical threshold in percentage"
+  type        = "string"
   default     = 10
 }
 
@@ -101,16 +104,19 @@ variable "cpu_high_time_aggregator" {
 
 variable "cpu_high_timeframe" {
   description = "Monitor timeframe for Elasticache redis cpu high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
   default     = "last_15m"
 }
 
 variable "cpu_high_threshold_warning" {
   description = "Elasticache redis cpu high warning threshold in percentage"
+  type        = "string"
   default     = 75
 }
 
 variable "cpu_high_threshold_critical" {
   description = "Elasticache redis cpu high critical threshold in percentage"
+  type        = "string"
   default     = 90
 }
 
@@ -146,16 +152,19 @@ variable "replication_lag_time_aggregator" {
 
 variable "replication_lag_timeframe" {
   description = "Monitor timeframe for Elasticache redis replication lag [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
   default     = "last_5m"
 }
 
 variable "replication_lag_threshold_warning" {
   description = "Elasticache redis replication lag warning threshold in seconds"
+  type        = "string"
   default     = 0
 }
 
 variable "replication_lag_threshold_critical" {
   description = "Elasticache redis replication lag critical threshold in seconds"
+  type        = "string"
   default     = 1
 }
 
@@ -185,5 +194,6 @@ variable "commands_message" {
 
 variable "commands_timeframe" {
   description = "Monitor timeframe for Elasticache redis commands [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
   default     = "last_5m"
 }
