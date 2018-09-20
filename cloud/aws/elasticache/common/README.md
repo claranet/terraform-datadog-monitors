@@ -71,8 +71,8 @@ Creates DataDog monitors with the following checks:
 | swap_extra_tags | Extra tags for Elasticache swap monitor | list | `<list>` | no |
 | swap_message | Custom message for Elasticache swap monitor | string | - | yes |
 | swap_silenced | Groups to mute for Elasticache swap monitor | map | - | yes |
-| swap_threshold_critical | Elasticache swap critical threshold in percentage | string | - | yes |
-| swap_threshold_warning | Elasticache swap warning threshold in percentage | string | - | yes |
+| swap_threshold_critical | Elasticache swap critical threshold in bytes | string | - | yes |
+| swap_threshold_warning | Elasticache swap warning threshold in bytes | string | - | yes |
 | swap_time_aggregator | Monitor aggregator for Elasticache memcached swap [available values: min, max or avg] | string | - | yes |
 | swap_timeframe | Monitor timeframe for Elasticache swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | - | yes |
 

@@ -155,11 +155,11 @@ variable "swap_timeframe" {
 }
 
 variable "swap_threshold_warning" {
-  description = "Elasticache swap warning threshold in percentage"
+  description = "Elasticache swap warning threshold in bytes"
 }
 
 variable "swap_threshold_critical" {
-  description = "Elasticache swap critical threshold in percentage"
+  description = "Elasticache swap critical threshold in bytes"
 }
 
 variable "free_memory_silenced" {
