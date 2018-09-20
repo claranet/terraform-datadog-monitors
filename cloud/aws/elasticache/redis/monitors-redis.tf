@@ -7,9 +7,9 @@ resource "datadog_monitor" "redis_cache_hits" {
 
   query = <<EOF
     sum(${var.cache_hits_timeframe}): (
-      avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid}.as_count() /
-      (avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid}.as_count() +
-        avg:aws.elasticache.cache_misses${module.filter-tags.query_alert} by {region,cacheclusterid}.as_count())
+      avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count() /
+      (avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count() +
+        avg:aws.elasticache.cache_misses${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count())
     ) * 100 < ${var.cache_hits_threshold_critical}
   EOF
 
@@ -103,8 +103,8 @@ resource "datadog_monitor" "redis_commands" {
 
   query = <<EOF
     sum(${var.commands_timeframe}): (
-      avg:aws.elasticache.get_type_cmds${module.filter-tags.query_alert} by {region,cacheclusterid}.as_count() +
-      avg:aws.elasticache.set_type_cmds${module.filter-tags.query_alert} by {region,cacheclusterid}.as_count()
+      avg:aws.elasticache.get_type_cmds${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count() +
+      avg:aws.elasticache.set_type_cmds${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count()
     ) <= 0
   EOF
 

@@ -7,9 +7,9 @@ resource "datadog_monitor" "memcached_get_hits" {
 
   query = <<EOF
     sum(${var.get_hits_timeframe}): (
-      avg:aws.elasticache.get_hits${module.filter-tags.query_alert} by {region,cacheclusterid}.as_count() /
-      (avg:aws.elasticache.get_hits${module.filter-tags.query_alert} by {region,cacheclusterid}.as_count() +
-        avg:aws.elasticache.get_misses${module.filter-tags.query_alert} by {region,cacheclusterid}.as_count())
+      avg:aws.elasticache.get_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count() /
+      (avg:aws.elasticache.get_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count() +
+        avg:aws.elasticache.get_misses${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count())
     ) < ${var.get_hits_threshold_critical}
   EOF
 

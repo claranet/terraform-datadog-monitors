@@ -7,7 +7,7 @@ resource "datadog_monitor" "elasticache_eviction" {
 
   query = <<EOF
     sum(${var.eviction_timeframe}): (
-      avg:aws.elasticache.evictions${module.filter-tags.query_alert} by {region,cacheclusterid}
+      avg:aws.elasticache.evictions${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     ) > ${var.eviction_threshold_critical}
   EOF
 
@@ -40,7 +40,7 @@ resource "datadog_monitor" "elasticache_max_connection" {
 
   query = <<EOF
     ${var.max_connection_time_aggregator}(${var.max_connection_timeframe}): (
-      avg:aws.elasticache.curr_connections${module.filter-tags.query_alert} by {region,cacheclusterid}
+      avg:aws.elasticache.curr_connections${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     ) >= 65000
   EOF
 
@@ -68,7 +68,7 @@ resource "datadog_monitor" "elasticache_no_connection" {
 
   query = <<EOF
     ${var.no_connection_time_aggregator}(${var.no_connection_timeframe}): (
-      avg:aws.elasticache.curr_connections${module.filter-tags.query_alert} by {region,cacheclusterid}
+      avg:aws.elasticache.curr_connections${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     ) <= 0
   EOF
 
@@ -96,7 +96,7 @@ resource "datadog_monitor" "elasticache_swap" {
 
   query = <<EOF
     ${var.swap_time_aggregator}(${var.swap_timeframe}): (
-      avg:aws.elasticache.swap_usage${module.filter-tags.query_alert} by {region,cacheclusterid}
+      avg:aws.elasticache.swap_usage${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     ) > ${var.swap_threshold_critical}
   EOF
 
@@ -163,7 +163,7 @@ resource "datadog_monitor" "elasticache_eviction_growing" {
 
   query = <<EOF
     pct_change(avg(${var.eviction_growing_timeframe}),${var.eviction_growing_condition_timeframe}):
-      avg:aws.elasticache.evictions${module.filter-tags.query_alert} by {region,cacheclusterid}
+      avg:aws.elasticache.evictions${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     > ${var.eviction_growing_threshold_critical}
   EOF
 
