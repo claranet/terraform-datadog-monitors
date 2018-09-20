@@ -153,19 +153,19 @@ variable "replication_lag_time_aggregator" {
 variable "replication_lag_timeframe" {
   description = "Monitor timeframe for Elasticache redis replication lag [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
-  default     = "last_5m"
+  default     = "last_10m"
 }
 
 variable "replication_lag_threshold_warning" {
   description = "Elasticache redis replication lag warning threshold in seconds"
   type        = "string"
-  default     = 0
+  default     = 90
 }
 
 variable "replication_lag_threshold_critical" {
   description = "Elasticache redis replication lag critical threshold in seconds"
   type        = "string"
-  default     = 1
+  default     = 180
 }
 
 variable "commands_silenced" {
