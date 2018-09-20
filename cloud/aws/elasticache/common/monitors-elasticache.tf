@@ -6,10 +6,15 @@ resource "datadog_monitor" "elasticache_eviction" {
   type = "metric alert"
 
   query = <<EOF
-    ${var.eviction_time_aggregator}(${var.eviction_timeframe}): (
+    sum(${var.eviction_timeframe}): (
       avg:aws.elasticache.evictions${module.filter-tags.query_alert} by {region,cacheclusterid}
-    ) > 0
+    ) > ${var.eviction_threshold_critical}
   EOF
+
+  thresholds {
+    warning  = "${var.eviction_threshold_warning}"
+    critical = "${var.eviction_threshold_critical}"
+  }
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
