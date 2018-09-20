@@ -63,13 +63,13 @@ variable "cache_hits_timeframe" {
 variable "cache_hits_threshold_warning" {
   description = "Elasticache redis cache hits warning threshold in percentage"
   type        = "string"
-  default     = 20
+  default     = 80
 }
 
 variable "cache_hits_threshold_critical" {
   description = "Elasticache redis cache hits critical threshold in percentage"
   type        = "string"
-  default     = 10
+  default     = 60
 }
 
 variable "cpu_high_silenced" {
