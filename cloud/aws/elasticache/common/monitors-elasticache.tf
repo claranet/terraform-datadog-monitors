@@ -120,7 +120,6 @@ resource "datadog_monitor" "elasticache_swap" {
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.swap_extra_tags}"]
 }
 
-# POC - A approfondir
 resource "datadog_monitor" "elasticache_free_memory" {
   count   = "${var.free_memory_enabled ? 1 : 0}"
   name    = "[${var.environment}] Elasticache free memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
