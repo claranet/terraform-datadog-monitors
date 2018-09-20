@@ -1,6 +1,6 @@
 resource "datadog_monitor" "memcached_get_hits" {
   count   = "${var.get_hits_enabled ? 1 : 0}"
-  name    = "[${var.environment}] Elasticache memcached get hits {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Elasticache memcached get hit ratio {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.get_hits_message, var.message)}"
 
   type = "metric alert"
