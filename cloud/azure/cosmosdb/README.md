@@ -25,28 +25,28 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| cosmos_db_4xx_request_extra_tags | Extra tags for Cosmos DB 4xx requests monitor | list | `<list>` | no |
+| cosmos_db_4xx_request_extra_tags | Extra tags for Cosmos DB 4xx requests monitor | list | `[]` | no |
 | cosmos_db_4xx_request_rate_threshold_critical | Critical threshold for Cosmos DB 4xx requests monitor | string | `80` | no |
 | cosmos_db_4xx_request_rate_threshold_warning | Warning threshold for Cosmos DB 4xx requests monitor | string | `50` | no |
 | cosmos_db_4xx_request_time_aggregator | Monitor aggregator for Cosmos DB 4xx requests [available values: min, max or avg] | string | `sum` | no |
 | cosmos_db_4xx_request_timeframe | Monitor timeframe for Cosmos DB 4xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | cosmos_db_4xx_requests_enabled | Flag to enable Cosmos DB 4xx requests monitor | string | `true` | no |
 | cosmos_db_4xx_requests_message | Custom message for Cosmos DB 4xx requests monitor | string | `` | no |
-| cosmos_db_4xx_requests_silenced | Groups to mute for Cosmos DB 4xx requests monitor | map | `<map>` | no |
-| cosmos_db_5xx_request_rate_extra_tags | Extra tags for Cosmos DB 5xx requests monitor | list | `<list>` | no |
+| cosmos_db_4xx_requests_silenced | Groups to mute for Cosmos DB 4xx requests monitor | map | `{}` | no |
+| cosmos_db_5xx_request_rate_extra_tags | Extra tags for Cosmos DB 5xx requests monitor | list | `[]` | no |
 | cosmos_db_5xx_request_rate_threshold_critical | Critical threshold for Cosmos DB 5xx requests monitor | string | `80` | no |
 | cosmos_db_5xx_request_rate_threshold_warning | Warning threshold for Cosmos DB 5xx requests monitor | string | `50` | no |
 | cosmos_db_5xx_request_time_aggregator | Monitor aggregator for Cosmos DB 5xx requests [available values: min, max or avg] | string | `sum` | no |
 | cosmos_db_5xx_request_timeframe | Monitor timeframe for Cosmos DB 5xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | cosmos_db_5xx_requests_enabled | Flag to enable Cosmos DB 5xx requests monitor | string | `true` | no |
 | cosmos_db_5xx_requests_message | Custom message for Cosmos DB 5xx requests monitor | string | `` | no |
-| cosmos_db_5xx_requests_silenced | Groups to mute for Cosmos DB 5xx requests monitor | map | `<map>` | no |
+| cosmos_db_5xx_requests_silenced | Groups to mute for Cosmos DB 5xx requests monitor | map | `{}` | no |
 | cosmos_db_scaling_enabled | Flag to enable Cosmos DB scaling monitor | string | `true` | no |
 | cosmos_db_scaling_error_rate_threshold_critical | Critical threshold for Cosmos DB scaling monitor | string | `10` | no |
 | cosmos_db_scaling_error_rate_threshold_warning | Warning threshold for Cosmos DB scaling monitor | string | `5` | no |
-| cosmos_db_scaling_extra_tags | Extra tags for Cosmos DB scaling monitor | list | `<list>` | no |
+| cosmos_db_scaling_extra_tags | Extra tags for Cosmos DB scaling monitor | list | `[]` | no |
 | cosmos_db_scaling_message | Custom message for Cosmos DB scaling monitor | string | `` | no |
-| cosmos_db_scaling_silenced | Groups to mute for Cosmos DB scaling monitor | map | `<map>` | no |
+| cosmos_db_scaling_silenced | Groups to mute for Cosmos DB scaling monitor | map | `{}` | no |
 | cosmos_db_scaling_time_aggregator | Monitor aggregator for Cosmos DB scaling [available values: min, max or avg] | string | `sum` | no |
 | cosmos_db_scaling_timeframe | Monitor timeframe for Cosmos DB scaling [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | environment | Architecture environment | string | - | yes |
@@ -56,9 +56,9 @@ Creates DataDog monitors with the following checks:
 | message | Message sent when a monitor is triggered | string | - | yes |
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 | status_enabled | Flag to enable Cosmos DB status monitor | string | `true` | no |
-| status_extra_tags | Extra tags for Cosmos DB status monitor | list | `<list>` | no |
+| status_extra_tags | Extra tags for Cosmos DB status monitor | list | `[]` | no |
 | status_message | Custom message for Cosmos DB status monitor | string | `` | no |
-| status_silenced | Groups to mute for Cosmos DB status monitor | map | `<map>` | no |
+| status_silenced | Groups to mute for Cosmos DB status monitor | map | `{}` | no |
 | status_time_aggregator | Monitor aggregator for Cosmos DB status [available values: min, max or avg] | string | `max` | no |
 | status_timeframe | Monitor timeframe for Cosmos DB status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 

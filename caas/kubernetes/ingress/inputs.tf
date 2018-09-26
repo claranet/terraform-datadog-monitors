@@ -60,13 +60,15 @@ variable "ingress_5xx_timeframe" {
 }
 
 variable "ingress_5xx_threshold_critical" {
-  type    = "string"
-  default = "20"
+  type        = "string"
+  default     = "20"
+  description = "5xx critical threshold in percentage"
 }
 
 variable "ingress_5xx_threshold_warning" {
-  type    = "string"
-  default = "10"
+  type        = "string"
+  default     = "10"
+  description = "5xx warning threshold in percentage"
 }
 
 variable "ingress_4xx_silenced" {
@@ -99,13 +101,15 @@ variable "ingress_4xx_timeframe" {
 }
 
 variable "ingress_4xx_threshold_critical" {
-  type    = "string"
-  default = "40"
+  type        = "string"
+  default     = "40"
+  description = "4xx critical threshold in percentage"
 }
 
 variable "ingress_4xx_threshold_warning" {
-  type    = "string"
-  default = "20"
+  type        = "string"
+  default     = "20"
+  description = "4xx warning threshold in percentage"
 }
 
 variable "artificial_requests_count" {
