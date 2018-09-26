@@ -27,9 +27,9 @@ Creates DataDog monitors with the following checks:
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | incoming_records_enabled | Flag to enable Kinesis Firehorse incoming records monitor | string | `true` | no |
-| incoming_records_extra_tags | Extra tags for Kinesis Firehorse incoming records monitor | list | `<list>` | no |
+| incoming_records_extra_tags | Extra tags for Kinesis Firehorse incoming records monitor | list | `[]` | no |
 | incoming_records_message | Custom message for Kinesis Firehorse incoming records monitor | string | `` | no |
-| incoming_records_silenced | Groups to mute for Kinesis Firehorse incoming records monitor | map | `<map>` | no |
+| incoming_records_silenced | Groups to mute for Kinesis Firehorse incoming records monitor | map | `{}` | no |
 | incoming_records_timeframe | Monitor timeframe for incoming records metrics evaluation [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |

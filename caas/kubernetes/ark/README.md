@@ -23,10 +23,10 @@ Creates DataDog monitors with the following checks:
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | ark_schedules_enabled | Flag to enable Ark schedules monitor | string | `true` | no |
-| ark_schedules_extra_tags | Extra tags for Ark schedules monitor | list | `<list>` | no |
+| ark_schedules_extra_tags | Extra tags for Ark schedules monitor | list | `[]` | no |
 | ark_schedules_monitor_message | Custom message for Ark schedules monitor | string | `` | no |
 | ark_schedules_monitor_no_data_timeframe | No data timeframe in minutes | string | `1440` | no |
-| ark_schedules_monitor_silenced | Groups to mute for Ark schedules monitor | map | `<map>` | no |
+| ark_schedules_monitor_silenced | Groups to mute for Ark schedules monitor | map | `{}` | no |
 | ark_schedules_monitor_timeframe | Monitor timeframe for Ark schedules monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_1d` | no |
 | environment | Architecture environment | string | - | yes |
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `15` | no |
