@@ -1,6 +1,6 @@
 resource "datadog_monitor" "ELB_no_healthy_instances" {
   count   = "${var.elb_no_healthy_instance_enabled ? 1 : 0}"
-  name    = "[${var.environment}] ELB {{#is_alert}}no healthy instances{{/is_alert}}{{#is_warning}}{{value}}% of healthy instances{{/is_warning}}"
+  name    = "[${var.environment}] ELB healthy instances {{#is_alert}}at 0{{/is_alert}}{{#is_warning}}{{value}}at {{value}}%{{/is_warning}}"
   message = "${coalesce(var.elb_no_healthy_instance_message, var.message)}"
 
   query = <<EOF
@@ -15,7 +15,7 @@ resource "datadog_monitor" "ELB_no_healthy_instances" {
 
   thresholds {
     critical = 1
-    warning = 100
+    warning  = 100
   }
 
   notify_no_data      = true

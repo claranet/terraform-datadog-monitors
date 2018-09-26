@@ -16,10 +16,10 @@ module "datadog-monitors-cloud-aws-alb" {
 
 Creates DataDog monitors with the following checks:
 
+- ALB healthy instances
 - ALB HTTP code 4xx
 - ALB HTTP code 5xx
 - ALB latency
-- ALB no healthy instances
 - ALB target HTTP code 4xx
 - ALB target HTTP code 5xx
 
