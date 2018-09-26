@@ -366,7 +366,7 @@ variable "failover_unavailable_time_aggregator" {
 variable "failover_unavailable_timeframe" {
   description = "Timeframe for the Failover Unavailable monitor"
   type        = "string"
-  default     = "last_5m"
+  default     = "last_10m"
 }
 
 variable "failover_unavailable_threshold_critical" {
