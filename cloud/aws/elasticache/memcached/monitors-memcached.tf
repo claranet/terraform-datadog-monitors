@@ -1,6 +1,6 @@
 resource "datadog_monitor" "memcached_get_hits" {
   count   = "${var.get_hits_enabled ? 1 : 0}"
-  name    = "[${var.environment}] Elasticache memcached get hit ratio {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Elasticache memcached cache hit ratio {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.get_hits_message, var.message)}"
 
   type = "metric alert"
@@ -10,7 +10,7 @@ resource "datadog_monitor" "memcached_get_hits" {
       avg:aws.elasticache.get_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count() /
       (avg:aws.elasticache.get_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count() +
         avg:aws.elasticache.get_misses${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count())
-    ) < ${var.get_hits_threshold_critical}
+    ) * 100 < ${var.get_hits_threshold_critical}
   EOF
 
   thresholds {
