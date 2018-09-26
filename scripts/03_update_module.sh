@@ -15,8 +15,11 @@ for path in $(find "$(get_scope $1)" -path ./incubator -prune -o -name 'monitors
     if ! [ -f modules.tf ] && grep -q filter_tags_use_defaults inputs.tf; then
         relative=""
         current="${PWD}"
+        # iterate on path until we go back to root
         while [[ "$(basename $current)" != "$root" ]]; do
+            # for each iteration add "../" to generate relative path
             relative="${relative}../"
+            # remove last directory from current path
             current="$(dirname $current)"
         done
         # add the filter tags module
