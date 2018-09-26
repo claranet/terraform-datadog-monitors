@@ -16,6 +16,7 @@ module "datadog-monitors-cloud-azure-mysql" {
 
 Creates DataDog monitors with the following checks:
 
+- Mysql Server compute consumption is high
 - Mysql Server CPU usage is high
 - Mysql Server has no connection
 - Mysql Server IO consumption is high
@@ -26,6 +27,12 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| compute_consumption_message | Custom message for Mysql compute consumption monitor | string | `` | no |
+| compute_consumption_silenced | Groups to mute for Mysql compute consumption monitor | map | `{}` | no |
+| compute_consumption_threshold_critical | Mysql compute consumption in percent (critical threshold) | string | `90` | no |
+| compute_consumption_threshold_warning | Mysql compute consumption in percent (warning threshold) | string | `80` | no |
+| compute_consumption_time_aggregator | Monitor aggregator for Mysql compute consumption [available values: min, max or avg] | string | `min` | no |
+| compute_consumption_timeframe | Monitor timeframe for Mysql compute consumption [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | cpu_usage_message | Custom message for Mysql CPU monitor | string | `` | no |
 | cpu_usage_silenced | Groups to mute for Mysql CPU monitor | map | `{}` | no |
 | cpu_usage_threshold_critical | Mysql CPU usage in percent (critical threshold) | string | `90` | no |
@@ -64,6 +71,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description |
 |------|-------------|
+| mysql_compute_consumption_id | id for monitor mysql_compute_consumption |
 | mysql_cpu_usage_id | id for monitor mysql_cpu_usage |
 | mysql_free_storage_id | id for monitor mysql_free_storage |
 | mysql_io_consumption_id | id for monitor mysql_io_consumption |
