@@ -16,7 +16,7 @@ module "datadog-monitors-system-generic" {
 
 Creates DataDog monitors with the following checks:
 
-- CPU load 5
+- CPU load 5 ratio
 - CPU usage
 - Disk Space forecast
 - Free disk inodes
