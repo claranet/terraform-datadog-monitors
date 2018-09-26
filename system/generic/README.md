@@ -79,7 +79,7 @@ Creates DataDog monitors with the following checks:
 | free_disk_space_timeframe | Monitor timeframe for Free diskspace [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | free_memory_enabled | Flag to enable Free memory monitor | string | `true` | no |
 | free_memory_extra_tags | Extra tags for Free memory monitor | list | `[]` | no |
-| free_memory_message | Custom message for Free memory monitor | string | - | yes |
+| free_memory_message | Mandatory message for Free memory monitor to avoid NBH alerting by default | string | - | yes |
 | free_memory_silenced | Groups to mute for Free memory monitor | map | `{}` | no |
 | free_memory_threshold_critical | Free disk space critical threshold | string | `5` | no |
 | free_memory_threshold_warning | Free disk space warning threshold | string | `10` | no |
