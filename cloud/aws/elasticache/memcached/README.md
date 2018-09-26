@@ -16,8 +16,8 @@ module "datadog-monitors-cloud-aws-elasticache-memcached" {
 
 Creates DataDog monitors with the following checks:
 
+- Elasticache memcached cache hit ratio
 - Elasticache memcached CPU
-- Elasticache memcached get hit ratio
 
 ## Inputs
 
