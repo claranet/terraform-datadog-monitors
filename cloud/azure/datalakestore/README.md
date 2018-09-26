@@ -29,9 +29,9 @@ Creates DataDog monitors with the following checks:
 | message | Message sent when a monitor is triggered | string | - | yes |
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 | status_enabled | Flag to enable Datalake Store status monitor | string | `true` | no |
-| status_extra_tags | Extra tags for Datalake Store status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | list | `<list>` | no |
+| status_extra_tags | Extra tags for Datalake Store status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | list | `[]` | no |
 | status_message | Custom message for Datalake Store status monitor | string | `` | no |
-| status_silenced | Groups to mute for Datalake Store status monitor | map | `<map>` | no |
+| status_silenced | Groups to mute for Datalake Store status monitor | map | `{}` | no |
 | status_time_aggregator | Monitor aggregator for Datalake Store status [available values: min, max or avg] | string | `max` | no |
 | status_timeframe | Monitor timeframe for Datalake Store status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 

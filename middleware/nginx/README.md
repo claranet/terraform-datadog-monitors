@@ -30,15 +30,15 @@ Creates DataDog monitors with the following checks:
 | message | Message sent when an alert is triggered | string | - | yes |
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 | nginx_connect_enabled | Flag to enable Nginx status monitor | string | `true` | no |
-| nginx_connect_extra_tags | Extra tags for Nginx process monitor | list | `<list>` | no |
+| nginx_connect_extra_tags | Extra tags for Nginx process monitor | list | `[]` | no |
 | nginx_connect_message | Custom message for Nginx status monitor | string | `` | no |
 | nginx_connect_no_data_timeframe | Nginx status monitor no data timeframe | string | `10` | no |
-| nginx_connect_silenced | Groups to mute for Nginx status monitor | map | `<map>` | no |
+| nginx_connect_silenced | Groups to mute for Nginx status monitor | map | `{}` | no |
 | nginx_connect_threshold_warning | Nginx status monitor (warning threshold) | string | `3` | no |
 | nginx_dropped_enabled | Flag to enable Nginx dropped monitor | string | `true` | no |
-| nginx_dropped_extra_tags | Extra tags for Nginx dropped connections monitor | list | `<list>` | no |
+| nginx_dropped_extra_tags | Extra tags for Nginx dropped connections monitor | list | `[]` | no |
 | nginx_dropped_message | Custom message for Nginx dropped connections monitor | string | `` | no |
-| nginx_dropped_silenced | Groups to mute for Nginx dropped connections monitor | map | `<map>` | no |
+| nginx_dropped_silenced | Groups to mute for Nginx dropped connections monitor | map | `{}` | no |
 | nginx_dropped_threshold_critical | Nginx dropped connections critical threshold | string | `0` | no |
 | nginx_dropped_time_aggregator | Monitor aggregator for Nginx dropped connections [available values: min, max or avg] | string | `min` | no |
 | nginx_dropped_timeframe | Monitor timeframe for Nginx dropped connections [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |

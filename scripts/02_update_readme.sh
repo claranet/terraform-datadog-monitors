@@ -91,7 +91,7 @@ EOF
     done
     IFS=$SAVEIFS
     # auto generate terraform docs (inputs and outputs)
-    terraform-docs md ./ >> README.md
+    terraform-docs --with-aggregate-type-defaults md ./ >> README.md
     # if README does not exist
     if [[ $EXIST -eq 0 ]]; then
         # Simply add empty documentation section
