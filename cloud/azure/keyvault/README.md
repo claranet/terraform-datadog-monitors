@@ -25,17 +25,17 @@ Creates DataDog monitors with the following checks:
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | api_latency_enabled | Flag to enable Key Vault API latency monitor | string | `true` | no |
-| api_latency_extra_tags | Extra tags for Key Vault API latency monitor | list | `<list>` | no |
+| api_latency_extra_tags | Extra tags for Key Vault API latency monitor | list | `[]` | no |
 | api_latency_message | Custom message for Key Vault API latency monitor | string | `` | no |
-| api_latency_silenced | Groups to mute for Key Vault API latency monitor | map | `<map>` | no |
+| api_latency_silenced | Groups to mute for Key Vault API latency monitor | map | `{}` | no |
 | api_latency_threshold_critical | Critical threshold for Key Vault API latency rate | string | `100` | no |
 | api_latency_threshold_warning | Warning threshold for Key Vault API latency rate | string | `80` | no |
 | api_latency_time_aggregator | Monitor aggregator for Key Vault API latency [available values: min, max or avg] | string | `min` | no |
 | api_latency_timeframe | Monitor timeframe for Key Vault API latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | api_result_enabled | Flag to enable Key Vault API result monitor | string | `true` | no |
-| api_result_extra_tags | Extra tags for Key Vault API result monitor | list | `<list>` | no |
+| api_result_extra_tags | Extra tags for Key Vault API result monitor | list | `[]` | no |
 | api_result_message | Custom message for Key Vault API result monitor | string | `` | no |
-| api_result_silenced | Groups to mute for Key Vault API result monitor | map | `<map>` | no |
+| api_result_silenced | Groups to mute for Key Vault API result monitor | map | `{}` | no |
 | api_result_threshold_critical | Critical threshold for Key Vault API result rate | string | `10` | no |
 | api_result_threshold_warning | Warning threshold for Key Vault API result rate | string | `30` | no |
 | api_result_time_aggregator | Monitor aggregator for Key Vault API result [available values: min, max or avg] | string | `sum` | no |
@@ -47,9 +47,9 @@ Creates DataDog monitors with the following checks:
 | message | Message sent when a monitor is triggered | string | - | yes |
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
 | status_enabled | Flag to enable Key Vault status monitor | string | `true` | no |
-| status_extra_tags | Extra tags for Key Vault status monitor | list | `<list>` | no |
+| status_extra_tags | Extra tags for Key Vault status monitor | list | `[]` | no |
 | status_message | Custom message for Key Vault status monitor | string | `` | no |
-| status_silenced | Groups to mute for Key Vault status monitor | map | `<map>` | no |
+| status_silenced | Groups to mute for Key Vault status monitor | map | `{}` | no |
 | status_time_aggregator | Monitor aggregator for Key Vault status [available values: min, max or avg] | string | `max` | no |
 | status_timeframe | Monitor timeframe for Key Vault status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
