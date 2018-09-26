@@ -129,6 +129,38 @@ resource "datadog_monitor" "mysql_io_consumption" {
   tags = ["env:${var.environment}", "resource:mysql", "team:azure", "provider:azure"]
 }
 
+resource "datadog_monitor" "mysql_compute_consumption" {
+  name    = "[${var.environment}] Mysql Server compute consumption is high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = "${coalesce(var.compute_consumption_message, var.message)}"
+
+  query = <<EOF
+    ${var.compute_consumption_time_aggregator}(${var.compute_consumption_timeframe}): (
+      avg:azure.dbformysql_servers.compute_consumption_percent{${data.template_file.filter.rendered}} by {resource_group,region,name}
+    ) > ${var.compute_consumption_threshold_critical}
+  EOF
+
+  type = "metric alert"
+
+  thresholds {
+    critical = "${var.compute_consumption_threshold_critical}"
+    warning  = "${var.compute_consumption_threshold_warning}"
+  }
+
+  silenced = "${var.compute_consumption_silenced}"
+
+  notify_no_data      = true
+  evaluation_delay    = "${var.delay}"
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
+  new_host_delay      = "${var.delay}"
+
+  tags = ["env:${var.environment}", "resource:mysql", "team:azure", "provider:azure"]
+}
+
 resource "datadog_monitor" "mysql_memory_usage" {
   name    = "[${var.environment}] Mysql Server memory usage is high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.memory_usage_message, var.message)}"
