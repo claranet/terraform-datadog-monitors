@@ -32,13 +32,12 @@ resource "datadog_monitor" "datadog_cpu_too_high" {
 
 resource "datadog_monitor" "datadog_load_too_high" {
   count   = "${var.cpu_load_enabled ? 1 : 0}"
-  name    = "[${var.environment}] CPU load 5 {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] CPU load 5 ratio {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.cpu_load_message, var.message)}"
 
   query = <<EOF
     ${var.cpu_load_time_aggregator}(${var.cpu_load_timeframe}): (
-      avg:system.load.5${module.filter-tags.query_alert} by {region,host} /
-      avg:system.core.count${module.filter-tags.query_alert} by {region,host}
+      avg:system.load.norm.5${module.filter-tags.query_alert} by {region,host}
     ) > ${var.cpu_load_threshold_critical}
   EOF
 
