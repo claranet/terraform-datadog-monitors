@@ -4,6 +4,8 @@ set -xueo pipefail
 source "$(dirname $0)/utils.sh"
 goto_root
 
+root=$(basename ${PWD})
+
 # loop over every monitors set
 for path in $(find "$(get_scope $1)" -path ./incubator -prune -o -name 'monitors-*.tf' -print | sort -fdbi); do
     cd $(dirname $path)
@@ -11,10 +13,19 @@ for path in $(find "$(get_scope $1)" -path ./incubator -prune -o -name 'monitors
     resource="$(basename $(dirname $path))"
     # if modules.tf does not exist AND if this set respect our tagging convention
     if ! [ -f modules.tf ] && grep -q filter_tags_use_defaults inputs.tf; then
+        relative=""
+        current="${PWD}"
+        # iterate on path until we go back to root
+        while [[ "$(basename $current)" != "$root" ]]; do
+            # for each iteration add "../" to generate relative path
+            relative="${relative}../"
+            # remove last directory from current path
+            current="$(dirname $current)"
+        done
         # add the filter tags module
         cat > modules.tf <<EOF
 module "filter-tags" {
-  source = "../../common/filter-tags"
+  source = "${relative}common/filter-tags"
 
   environment              = "\${var.environment}"
   resource                 = "$resource"
