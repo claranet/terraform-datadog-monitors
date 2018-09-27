@@ -65,7 +65,7 @@ Creates DataDog monitors with the following checks:
 | failover_unavailable_silenced | Groups to mute for GCP Cloud SQL Failover Unavailable monitor | map | `{}` | no |
 | failover_unavailable_threshold_critical | Failover Unavailable critical threshold | string | `0` | no |
 | failover_unavailable_time_aggregator | Time aggreggator for the Failover Unavailable monitor | string | `max` | no |
-| failover_unavailable_timeframe | Timeframe for the Failover Unavailable monitor | string | `last_5m` | no |
+| failover_unavailable_timeframe | Timeframe for the Failover Unavailable monitor | string | `last_10m` | no |
 | filter_tags | Tags used for filtering | string | `*` | no |
 | memory_utilization_enabled | Flag to enable GCP Cloud SQL Memory Utilization monitor | string | `true` | no |
 | memory_utilization_extra_tags | Extra tags for GCP Cloud SQL Memory Utilization monitor | list | `[]` | no |
