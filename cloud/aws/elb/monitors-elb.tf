@@ -1,15 +1,22 @@
 resource "datadog_monitor" "ELB_no_healthy_instances" {
   count   = "${var.elb_no_healthy_instance_enabled ? 1 : 0}"
-  name    = "[${var.environment}] ELB no healthy instances"
+  name    = "[${var.environment}] ELB healthy instances {{#is_alert}}at 0{{/is_alert}}{{#is_warning}}{{value}}at {{value}}%{{/is_warning}}"
   message = "${coalesce(var.elb_no_healthy_instance_message, var.message)}"
 
   query = <<EOF
     ${var.elb_no_healthy_instance_time_aggregator}(${var.elb_no_healthy_instance_timeframe}): (
-      sum:aws.elb.healthy_host_count${module.filter-tags.query_alert} by {region,loadbalancername}
-    ) < 1
+      sum:aws.elb.healthy_host_count.maximum${module.filter-tags.query_alert} by {region,loadbalancername} / (
+      sum:aws.elb.healthy_host_count.maximum${module.filter-tags.query_alert} by {region,loadbalancername} +
+      sum:aws.elb.un_healthy_host_count.maximum${module.filter-tags.query_alert} by {region,loadbalancername} )
+    ) * 100 < 1
   EOF
 
   type = "metric alert"
+
+  thresholds {
+    critical = 1
+    warning  = 100
+  }
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
