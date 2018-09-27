@@ -102,6 +102,7 @@ The `//` is very important, it's a terraform specific syntax used to separate gi
 		- [iothubs](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/iothubs/)
 		- [keyvault](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/keyvault/)
 		- [redis](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/redis/)
+		- [serverfarms](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/serverfarms/)
 		- [servicebus](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/servicebus/)
 		- [sql-database](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/sql-database/)
 		- [storage](https://bitbucket.org/morea/terraform.feature.datadog/src/master/cloud/azure/storage/)
