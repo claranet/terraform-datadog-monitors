@@ -316,7 +316,7 @@ variable "free_memory_extra_tags" {
 }
 
 variable "free_memory_message" {
-  description = "Custom message for Free memory monitor"
+  description = "Mandatory message for Free memory monitor to avoid NBH alerting by default"
   type        = "string"
 }
 
