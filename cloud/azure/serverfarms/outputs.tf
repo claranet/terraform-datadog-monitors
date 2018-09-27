@@ -12,4 +12,3 @@ output "memory_percentage_id" {
   description = "id for monitor memory_percentage"
   value       = "${datadog_monitor.memory_percentage.*.id}"
 }
-
