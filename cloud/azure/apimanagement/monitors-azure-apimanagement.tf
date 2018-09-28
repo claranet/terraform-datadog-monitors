@@ -34,10 +34,10 @@ resource "datadog_monitor" "apimgt_failed_requests" {
   message = "${coalesce(var.failed_requests_message, var.message)}"
 
   query = <<EOF
-    sum(${var.failed_requests_timeframe}): (
-      avg:azure.apimanagement_service.failed_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() /
-      avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() * 100
-    ) > ${var.failed_requests_threshold_critical}
+    min(${var.failed_requests_timeframe}): (
+      default(avg:azure.apimanagement_service.failed_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
+      default(avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
+    ) * 100 > ${var.failed_requests_threshold_critical}
   EOF
 
   thresholds {
@@ -67,10 +67,10 @@ resource "datadog_monitor" "apimgt_other_requests" {
   message = "${coalesce(var.other_requests_message, var.message)}"
 
   query = <<EOF
-    sum(${var.other_requests_timeframe}): (
-      avg:azure.apimanagement_service.other_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() /
-      avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() * 100
-    ) > ${var.other_requests_threshold_critical}
+    min(${var.other_requests_timeframe}): (
+      default(avg:azure.apimanagement_service.other_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
+      default(avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
+    ) * 100 > ${var.other_requests_threshold_critical}
   EOF
 
   thresholds {
@@ -100,10 +100,10 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
   message = "${coalesce(var.unauthorized_requests_message, var.message)}"
 
   query = <<EOF
-    sum(${var.unauthorized_requests_timeframe}): (
-      avg:azure.apimanagement_service.unauthorized_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() /
-      avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() * 100
-    ) > ${var.unauthorized_requests_threshold_critical}
+    min(${var.unauthorized_requests_timeframe}): (
+      default(avg:azure.apimanagement_service.unauthorized_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
+      default(avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
+    ) * 100 > ${var.unauthorized_requests_threshold_critical}
   EOF
 
   thresholds {
@@ -133,10 +133,10 @@ resource "datadog_monitor" "apimgt_successful_requests" {
   message = "${coalesce(var.successful_requests_message, var.message)}"
 
   query = <<EOF
-    sum(${var.successful_requests_timeframe}): (
-      avg:azure.apimanagement_service.successful_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() /
-      avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() * 100
-    ) < ${var.successful_requests_threshold_critical}
+    max(${var.successful_requests_timeframe}): (
+      default(avg:azure.apimanagement_service.successful_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1) /
+      default(avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
+    ) * 100 < ${var.successful_requests_threshold_critical}
   EOF
 
   thresholds {

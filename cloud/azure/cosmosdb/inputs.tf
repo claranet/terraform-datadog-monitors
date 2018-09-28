@@ -101,7 +101,7 @@ variable "cosmos_db_4xx_request_extra_tags" {
 variable "cosmos_db_4xx_request_time_aggregator" {
   description = "Monitor aggregator for Cosmos DB 4xx requests [available values: min, max or avg]"
   type        = "string"
-  default     = "sum"
+  default     = "min"
 }
 
 variable "cosmos_db_4xx_request_timeframe" {
@@ -147,7 +147,7 @@ variable "cosmos_db_5xx_request_rate_extra_tags" {
 variable "cosmos_db_5xx_request_time_aggregator" {
   description = "Monitor aggregator for Cosmos DB 5xx requests [available values: min, max or avg]"
   type        = "string"
-  default     = "sum"
+  default     = "min"
 }
 
 variable "cosmos_db_5xx_request_timeframe" {
@@ -193,7 +193,7 @@ variable "cosmos_db_scaling_extra_tags" {
 variable "cosmos_db_scaling_time_aggregator" {
   description = "Monitor aggregator for Cosmos DB scaling [available values: min, max or avg]"
   type        = "string"
-  default     = "sum"
+  default     = "min"
 }
 
 variable "cosmos_db_scaling_timeframe" {

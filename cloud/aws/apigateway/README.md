@@ -34,6 +34,7 @@ Creates DataDog monitors with the following checks:
 | http_4xx_requests_silenced | Groups to mute for API Gateway HTTP 4xx requests monitor | map | `{}` | no |
 | http_4xx_requests_threshold_critical | Maximum critical acceptable percent of 4xx errors | string | `30` | no |
 | http_4xx_requests_threshold_warning | Maximum warning acceptable percent of 4xx errors | string | `15` | no |
+| http_4xx_requests_time_aggregator | Monitor aggregator for API HTTP 4xx requests [available values: min, max or avg] | string | `min` | no |
 | http_4xx_requests_timeframe | Monitor timeframe for API HTTP 4xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | http_5xx_requests_enabled | Flag to enable API Gateway HTTP 5xx requests monitor | string | `true` | no |
 | http_5xx_requests_extra_tags | Extra tags for API Gateway HTTP 5xx requests monitor | list | `[]` | no |
@@ -41,6 +42,7 @@ Creates DataDog monitors with the following checks:
 | http_5xx_requests_silenced | Groups to mute for API Gateway HTTP 5xx requests monitor | map | `{}` | no |
 | http_5xx_requests_threshold_critical | Maximum critical acceptable percent of 5xx errors | string | `20` | no |
 | http_5xx_requests_threshold_warning | Maximum warning acceptable percent of 5xx errors | string | `10` | no |
+| http_5xx_requests_time_aggregator | Monitor aggregator for API HTTP 5xx requests [available values: min, max or avg] | string | `min` | no |
 | http_5xx_requests_timeframe | Monitor timeframe for API HTTP 5xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | latency_enabled | Flag to enable API Gateway latency monitor | string | `true` | no |
 | latency_extra_tags | Extra tags for API Gateway latency monitor | list | `[]` | no |
