@@ -84,7 +84,7 @@ variable "api_result_message" {
 variable "api_result_time_aggregator" {
   description = "Monitor aggregator for Key Vault API result [available values: min, max or avg]"
   type        = "string"
-  default     = "sum"
+  default     = "max"
 }
 
 variable "api_result_timeframe" {

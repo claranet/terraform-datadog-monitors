@@ -38,7 +38,7 @@ Creates DataDog monitors with the following checks:
 | api_result_silenced | Groups to mute for Key Vault API result monitor | map | `{}` | no |
 | api_result_threshold_critical | Critical threshold for Key Vault API result rate | string | `10` | no |
 | api_result_threshold_warning | Warning threshold for Key Vault API result rate | string | `30` | no |
-| api_result_time_aggregator | Monitor aggregator for Key Vault API result [available values: min, max or avg] | string | `sum` | no |
+| api_result_time_aggregator | Monitor aggregator for Key Vault API result [available values: min, max or avg] | string | `max` | no |
 | api_result_timeframe | Monitor timeframe for Key Vault API result [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | environment | Architecture environment | string | - | yes |
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
