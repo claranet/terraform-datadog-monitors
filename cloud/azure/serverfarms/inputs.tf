@@ -105,6 +105,16 @@ variable "cpu_percentage_timeframe" {
   default     = "last_5m"
 }
 
+variable "cpu_percentage_threshold_critical" {
+  description = "CPU percentage (critical threshold)"
+  default     = 80
+}
+
+variable "cpu_percentage_threshold_warning" {
+  description = "CPU percentage (warning threshold)"
+  default     = 60
+}
+
 # Memory percentage
 variable "memory_percentage_enabled" {
   description = "Flag to enable the serverfarms memory_percentage monitor"
@@ -140,4 +150,14 @@ variable "memory_percentage_timeframe" {
   description = "Monitor timeframe for serverfarms memory_percentage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
+}
+
+variable "memory_percentage_threshold_critical" {
+  description = "Memory percentage (critical threshold)"
+  default     = 80
+}
+
+variable "memory_percentage_threshold_warning" {
+  description = "Memory percentage (warning threshold)"
+  default     = 60
 }
