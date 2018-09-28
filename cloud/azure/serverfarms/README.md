@@ -16,9 +16,9 @@ module "datadog-monitors-cloud-azure-serverfarms" {
 
 Creates DataDog monitors with the following checks:
 
-- Serverfarm {{name}} CPU percentage is too high
-- Serverfarm {{name}} CPU percentage is too high
-- Serverfarm {{name}} is down
+- Serverfarm CPU percentage is too high
+- Serverfarm is down
+- Serverfarm memory percentage is too high
 
 ## Inputs
 
