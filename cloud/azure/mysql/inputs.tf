@@ -5,13 +5,18 @@ variable "environment" {
 }
 
 # Global DataDog
-variable "message" {
-  description = "Message sent when a Redis monitor is triggered"
-}
-
-variable "delay" {
+variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 900
+}
+
+variable "new_host_delay" {
+  description = "Delay in seconds before monitor new resource"
+  default     = 300
+}
+
+variable "message" {
+  description = "Message sent when an alert is triggered"
 }
 
 variable "filter_tags_use_defaults" {
@@ -29,6 +34,18 @@ variable "cpu_usage_silenced" {
   description = "Groups to mute for Mysql CPU monitor"
   type        = "map"
   default     = {}
+}
+
+variable "cpu_usage_enabled" {
+  description = "Flag to enable Mysql status monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "cpu_usage_extra_tags" {
+  description = "Extra tags for Mysql status monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "cpu_usage_message" {
@@ -65,6 +82,18 @@ variable "no_connection_silenced" {
   default     = {}
 }
 
+variable "no_connection_enabled" {
+  description = "Flag to enable Mysql status monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "no_connection_extra_tags" {
+  description = "Extra tags for Mysql status monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "no_connection_message" {
   description = "Custom message for Mysql no connection monitor"
   type        = "string"
@@ -87,6 +116,18 @@ variable "free_storage_silenced" {
   description = "Groups to mute for Mysql Free Storage monitor"
   type        = "map"
   default     = {}
+}
+
+variable "free_storage_enabled" {
+  description = "Flag to enable Mysql status monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "free_storage_extra_tags" {
+  description = "Extra tags for Mysql status monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "free_storage_message" {
@@ -123,6 +164,18 @@ variable "io_consumption_silenced" {
   default     = {}
 }
 
+variable "io_consumption_enabled" {
+  description = "Flag to enable Mysql status monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "io_consumption_extra_tags" {
+  description = "Extra tags for Mysql status monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "io_consumption_message" {
   description = "Custom message for Mysql IO consumption monitor"
   type        = "string"
@@ -157,6 +210,18 @@ variable "compute_consumption_silenced" {
   default     = {}
 }
 
+variable "compute_consumption_enabled" {
+  description = "Flag to enable Mysql status monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "compute_consumption_extra_tags" {
+  description = "Extra tags for Mysql status monitor"
+  type        = "list"
+  default     = []
+}
+
 variable "compute_consumption_message" {
   description = "Custom message for Mysql compute consumption monitor"
   type        = "string"
@@ -189,6 +254,18 @@ variable "memory_usage_silenced" {
   description = "Groups to mute for Mysql memory monitor"
   type        = "map"
   default     = {}
+}
+
+variable "memory_usage_enabled" {
+  description = "Flag to enable Mysql status monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "memory_usage_extra_tags" {
+  description = "Extra tags for Mysql status monitor"
+  type        = "list"
+  default     = []
 }
 
 variable "memory_usage_message" {
