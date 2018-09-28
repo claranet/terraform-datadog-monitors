@@ -46,7 +46,7 @@ resource "datadog_monitor" "cpu_percentage" {
 
   silenced = "${var.cpu_percentage_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -79,7 +79,7 @@ resource "datadog_monitor" "memory_percentage" {
 
   silenced = "${var.memory_percentage_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
