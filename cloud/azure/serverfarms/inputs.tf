@@ -78,6 +78,7 @@ variable "cpu_percentage_enabled" {
 variable "cpu_percentage_message" {
   description = "Custom message for serverfarm cpu_percentage monitor"
   type        = "string"
+  default     = ""
 }
 
 variable "cpu_percentage_silenced" {
@@ -114,6 +115,7 @@ variable "memory_percentage_enabled" {
 variable "memory_percentage_message" {
   description = "Custom message for serverfarm memory_percentage monitor"
   type        = "string"
+  default     = ""
 }
 
 variable "memory_percentage_silenced" {
