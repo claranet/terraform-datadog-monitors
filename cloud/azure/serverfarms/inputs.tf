@@ -41,6 +41,7 @@ variable "status_enabled" {
 variable "status_message" {
   description = "Custom message for serverfarm status monitor"
   type        = "string"
+  default     = ""
 }
 
 variable "status_silenced" {
