@@ -34,10 +34,15 @@ resource "datadog_monitor" "cpu_percentage" {
   query = <<EOF
     ${var.cpu_percentage_time_aggregator}(${var.cpu_percentage_timeframe}): (
       avg:azure.web_serverfarms.cpu_percentage${module.filter-tags.query_alert} by {resource_group,region,name}
-    ) != 1
+    ) > ${var.cpu_percentage_threshold_critical}
   EOF
 
   type = "metric alert"
+
+  thresholds {
+    warning  = "${var.cpu_percentage_threshold_warning}"
+    critical = "${var.cpu_percentage_threshold_critical}"
+  }
 
   silenced = "${var.cpu_percentage_silenced}"
 
@@ -62,10 +67,15 @@ resource "datadog_monitor" "memory_percentage" {
   query = <<EOF
     ${var.memory_percentage_time_aggregator}(${var.memory_percentage_timeframe}): (
       avg:azure.web_serverfarms.memory_percentage${module.filter-tags.query_alert} by {resource_group,region,name}
-    ) != 1
+    ) > ${var.memory_percentage_threshold_critical}
   EOF
 
   type = "metric alert"
+
+  thresholds {
+    warning  = "${var.memory_percentage_threshold_warning}"
+    critical = "${var.memory_percentage_threshold_critical}"
+  }
 
   silenced = "${var.memory_percentage_silenced}"
 
