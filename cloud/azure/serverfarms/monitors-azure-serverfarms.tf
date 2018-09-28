@@ -1,6 +1,6 @@
 resource "datadog_monitor" "status" {
   count   = "${var.status_enabled ? 1 : 0}"
-  name    = "[${var.environment}] Serverfarm {{name}} is down"
+  name    = "[${var.environment}] Serverfarm is down"
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
@@ -28,7 +28,7 @@ resource "datadog_monitor" "status" {
 
 resource "datadog_monitor" "cpu_percentage" {
   count   = "${var.cpu_percentage_enabled ? 1 : 0}"
-  name    = "[${var.environment}] Serverfarm {{name}} CPU percentage is too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Serverfarm CPU percentage is too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_percentage_message, var.message)}"
 
   query = <<EOF
@@ -61,7 +61,7 @@ resource "datadog_monitor" "cpu_percentage" {
 
 resource "datadog_monitor" "memory_percentage" {
   count   = "${var.memory_percentage_enabled ? 1 : 0}"
-  name    = "[${var.environment}] Serverfarm {{name}} CPU percentage is too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Serverfarm memory percentage is too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.memory_percentage_message, var.message)}"
 
   query = <<EOF
