@@ -28,10 +28,10 @@ Creates DataDog monitors with the following checks:
 | cpu_percentage_extra_tags | Extra tags for Redis cpu_percentage monitor | list | `[]` | no |
 | cpu_percentage_message | Custom message for serverfarm cpu_percentage monitor | string | `` | no |
 | cpu_percentage_silenced | Groups to mute for serverfarm cpu_percentage monitor | map | `{}` | no |
-| cpu_percentage_threshold_critical | CPU percentage (critical threshold) | string | `80` | no |
-| cpu_percentage_threshold_warning | CPU percentage (warning threshold) | string | `60` | no |
+| cpu_percentage_threshold_critical | CPU percentage (critical threshold) | string | `95` | no |
+| cpu_percentage_threshold_warning | CPU percentage (warning threshold) | string | `90` | no |
 | cpu_percentage_time_aggregator | Monitor aggregator for serverfarms cpu_percentage [available values: min, max or avg] | string | `max` | no |
-| cpu_percentage_timeframe | Monitor timeframe for serverfarms cpu_percentage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| cpu_percentage_timeframe | Monitor timeframe for serverfarms cpu_percentage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_10m` | no |
 | environment | Architecture environment | string | - | yes |
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
@@ -40,8 +40,8 @@ Creates DataDog monitors with the following checks:
 | memory_percentage_extra_tags | Extra tags for Redis memory_percentage monitor | list | `[]` | no |
 | memory_percentage_message | Custom message for serverfarm memory_percentage monitor | string | `` | no |
 | memory_percentage_silenced | Groups to mute for serverfarm memory_percentage monitor | map | `{}` | no |
-| memory_percentage_threshold_critical | Memory percentage (critical threshold) | string | `80` | no |
-| memory_percentage_threshold_warning | Memory percentage (warning threshold) | string | `60` | no |
+| memory_percentage_threshold_critical | Memory percentage (critical threshold) | string | `95` | no |
+| memory_percentage_threshold_warning | Memory percentage (warning threshold) | string | `90` | no |
 | memory_percentage_time_aggregator | Monitor aggregator for serverfarms memory_percentage [available values: min, max or avg] | string | `max` | no |
 | memory_percentage_timeframe | Monitor timeframe for serverfarms memory_percentage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when a Redis monitor is triggered | string | - | yes |
