@@ -34,16 +34,6 @@ variable "filter_tags_custom_excluded" {
   default     = ""
 }
 
-variable "filter_tags_custom_excluded" {
-  description = "Tags excluded for custom filtering when filter_tags_use_defaults is false"
-  default     = ""
-}
-
-variable "filter_tags_custom_excluded" {
-  description = "Tags excluded for custom filtering when filter_tags_use_defaults is false"
-  default     = ""
-}
-
 # Unreachable
 
 variable "unreachable_silenced" {
