@@ -10,5 +10,5 @@ output "service_check" {
 
 output "event_alert" {
   description = "The full filtering pattern for event alert monitor type"
-  value       = "tags:${replace(local.including, "aaa", "aaaa")}${local.excluding == "" ? "" : " excluded_tags:${replace(local.excluding, "aa", "aaaa")}"}"
+  value       = "tags:${local.including}${local.excluding == "" ? "" : " excluded_tags:${local.excluding}"}"
 }
