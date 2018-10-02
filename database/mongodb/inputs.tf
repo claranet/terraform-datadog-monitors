@@ -29,6 +29,11 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
+variable "filter_tags_custom_excluded" {
+  description = "Tags excluded for custom filtering when filter_tags_use_defaults is false"
+  default     = ""
+}
+
 variable "mongodb_desired_servers_count" {
   description = "Number of servers that should be instanciated for this cluster"
   default     = 3
