@@ -46,6 +46,7 @@ Creates DataDog monitors with the following checks:
 | environment | Architecture Environment | string | - | yes |
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| filter_tags_custom_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | free_disk_inodes_enabled | Flag to enable Free disk inodes monitor | string | `true` | no |
 | free_disk_inodes_extra_tags | Extra tags for Free disk inodes monitor | list | `[]` | no |

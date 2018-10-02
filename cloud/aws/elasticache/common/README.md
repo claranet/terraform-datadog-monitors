@@ -45,6 +45,7 @@ Creates DataDog monitors with the following checks:
 | eviction_threshold_warning | Elasticache free memory warning threshold in percentage | string | `0` | no |
 | eviction_timeframe | Monitor timeframe for Elasticache eviction [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| filter_tags_custom_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | free_memory_condition_timeframe | Monitor condition timeframe for Elasticache free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | free_memory_enabled | Flag to enable Elasticache free memory monitor | string | `true` | no |

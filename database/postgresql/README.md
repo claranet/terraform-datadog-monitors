@@ -27,6 +27,7 @@ Creates DataDog monitors with the following checks:
 | environment | Environment | string | - | yes |
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `15` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| filter_tags_custom_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 | new_host_delay | Delay in seconds for the metric evaluation | string | `300` | no |

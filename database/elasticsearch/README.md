@@ -104,6 +104,7 @@ Creates DataDog monitors with the following checks:
 | field_data_evictions_change_timeframe | Timeframe for the Cluster Status monitor | string | `last_15m` | no |
 | field_data_evictions_change_timeshift | Timeframe for the Cluster Status monitor | string | `last_15m` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| filter_tags_custom_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | flush_latency_enabled | Flag to enable Cluster Status monitor | string | `true` | no |
 | flush_latency_extra_tags | Extra tags for Cluster Status monitor | list | `[]` | no |
