@@ -29,6 +29,11 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
+variable "filter_tags_custom_excluded" {
+  description = "Tags excluded for custom filtering when filter_tags_use_defaults is false"
+  default     = ""
+}
+
 # Memcached specific
 variable "get_hits_silenced" {
   description = "Groups to mute for Elasticache memcached get hits monitor"
