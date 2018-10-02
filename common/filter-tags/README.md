@@ -22,14 +22,16 @@ Creates all kinds of filters tags patterns depending of the monitor type and dir
 
 * A filter tags pattern for service check
 * A filter tags pattern for query alert
+* A filter tags pattern for event alert
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | environment | Architecture Environment | string | - | yes |
-| extra_tags | Extra optional tags (i.e. ["tag1:val1", "tag2:val2"]) | list | `<list>` | no |
-| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| extra_tags | Extra optional tags added for default filtering when filter_tags_use_defaults is true (i.e. ["tag1:val1", "tag2:val2"]) | list | `[]` | no |
+| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false (i.e. "tag1:val1,tag2:val2") | string | `*` | no |
+| filter_tags_custom_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false (i.e. "tag1:val1,tag2:val2") | string | `` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | resource | The dedicated tag for the resource | string | - | yes |
 
@@ -37,6 +39,7 @@ Creates all kinds of filters tags patterns depending of the monitor type and dir
 
 | Name | Description |
 |------|-------------|
+| event_alert | The full filtering pattern for event alert monitor type |
 | query_alert | The full filtering pattern including parentheses for service check monitor type |
 | service_check | The full filtering pattern including braces for query alert monitor type |
 
