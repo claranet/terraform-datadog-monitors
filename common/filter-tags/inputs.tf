@@ -14,12 +14,17 @@ variable "filter_tags_use_defaults" {
 }
 
 variable "filter_tags_custom" {
-  description = "Tags used for custom filtering when filter_tags_use_defaults is false"
+  description = "Tags used for custom filtering when filter_tags_use_defaults is false (i.e. \"tag1:val1,tag2:val2\")"
   default     = "*"
 }
 
+variable "filter_tags_custom_excluded" {
+  description = "Tags excluded for custom filtering when filter_tags_use_defaults is false (i.e. \"tag1:val1,tag2:val2\")"
+  default     = ""
+}
+
 variable "extra_tags" {
-  description = "Extra optional tags (i.e. [\"tag1:val1\", \"tag2:val2\"])"
+  description = "Extra optional tags added for default filtering when filter_tags_use_defaults is true (i.e. [\"tag1:val1\", \"tag2:val2\"])"
   type        = "list"
   default     = []
 }
