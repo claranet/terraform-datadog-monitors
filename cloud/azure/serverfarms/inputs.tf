@@ -6,7 +6,7 @@ variable "environment" {
 
 # Global DataDog
 variable "message" {
-  description = "Message sent when a Redis monitor is triggered"
+  description = "Message sent when a serverfarms monitor is triggered"
 }
 
 variable "evaluation_delay" {
@@ -51,7 +51,7 @@ variable "status_silenced" {
 }
 
 variable "status_extra_tags" {
-  description = "Extra tags for Redis status monitor"
+  description = "Extra tags for serverfarms status monitor"
   type        = "list"
   default     = []
 }
@@ -88,7 +88,7 @@ variable "cpu_percentage_silenced" {
 }
 
 variable "cpu_percentage_extra_tags" {
-  description = "Extra tags for Redis cpu_percentage monitor"
+  description = "Extra tags for serverfarms cpu_percentage monitor"
   type        = "list"
   default     = []
 }
@@ -135,7 +135,7 @@ variable "memory_percentage_silenced" {
 }
 
 variable "memory_percentage_extra_tags" {
-  description = "Extra tags for Redis memory_percentage monitor"
+  description = "Extra tags for serverfarms memory_percentage monitor"
   type        = "list"
   default     = []
 }
