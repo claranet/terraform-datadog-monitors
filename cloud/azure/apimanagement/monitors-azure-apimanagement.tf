@@ -34,7 +34,7 @@ resource "datadog_monitor" "apimgt_failed_requests" {
   message = "${coalesce(var.failed_requests_message, var.message)}"
 
   query = <<EOF
-    min(${var.failed_requests_timeframe}): (
+    ${var.failed_requests_time_aggregator}(${var.failed_requests_timeframe}): (
       default(avg:azure.apimanagement_service.failed_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
       default(avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
     ) * 100 > ${var.failed_requests_threshold_critical}
@@ -67,7 +67,7 @@ resource "datadog_monitor" "apimgt_other_requests" {
   message = "${coalesce(var.other_requests_message, var.message)}"
 
   query = <<EOF
-    min(${var.other_requests_timeframe}): (
+    ${var.other_requests_time_aggregator}(${var.other_requests_timeframe}): (
       default(avg:azure.apimanagement_service.other_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
       default(avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
     ) * 100 > ${var.other_requests_threshold_critical}
@@ -100,7 +100,7 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
   message = "${coalesce(var.unauthorized_requests_message, var.message)}"
 
   query = <<EOF
-    min(${var.unauthorized_requests_timeframe}): (
+    ${var.unauthorized_requests_time_aggregator}(${var.unauthorized_requests_timeframe}): (
       default(avg:azure.apimanagement_service.unauthorized_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
       default(avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
     ) * 100 > ${var.unauthorized_requests_threshold_critical}
@@ -133,7 +133,7 @@ resource "datadog_monitor" "apimgt_successful_requests" {
   message = "${coalesce(var.successful_requests_message, var.message)}"
 
   query = <<EOF
-    max(${var.successful_requests_timeframe}): (
+    ${var.successful_requests_time_aggregator}(${var.successful_requests_timeframe}): (
       default(avg:azure.apimanagement_service.successful_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1) /
       default(avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
     ) * 100 < ${var.successful_requests_threshold_critical}

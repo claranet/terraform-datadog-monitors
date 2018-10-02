@@ -113,6 +113,12 @@ variable "server_errors_silenced" {
   default     = {}
 }
 
+variable "server_errors_time_aggregator" {
+  description = "Monitor aggregator for Service Bus server errors [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "server_errors_timeframe" {
   description = "Monitor timeframe for Service Bus server errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -145,6 +151,12 @@ variable "user_errors_silenced" {
   description = "Groups to mute for Service Bus user errors monitor"
   type        = "map"
   default     = {}
+}
+
+variable "user_errors_time_aggregator" {
+  description = "Monitor aggregator for Service Bus user errors [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "user_errors_timeframe" {

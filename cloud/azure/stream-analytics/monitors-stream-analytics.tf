@@ -65,7 +65,7 @@ resource "datadog_monitor" "failed_function_requests" {
   message = "${coalesce(var.failed_function_requests_message, var.message)}"
 
   query = <<EOF
-    min(${var.failed_function_requests_timeframe}): (
+    ${var.failed_function_requests_time_aggregator}(${var.failed_function_requests_timeframe}): (
       default(avg:azure.streamanalytics_streamingjobs.aml_callout_failed_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
       default(avg:azure.streamanalytics_streamingjobs.aml_callout_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
     ) * 100 > ${var.failed_function_requests_threshold_critical}

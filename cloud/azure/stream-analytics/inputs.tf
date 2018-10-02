@@ -136,6 +136,12 @@ variable "failed_function_requests_message" {
   default     = ""
 }
 
+variable "failed_function_requests_time_aggregator" {
+  description = "Monitor aggregator for Stream Analytics failed requests [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "failed_function_requests_timeframe" {
   description = "Monitor timeframe for Stream Analytics failed requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"

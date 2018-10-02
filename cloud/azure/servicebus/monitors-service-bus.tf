@@ -63,7 +63,7 @@ resource "datadog_monitor" "service_bus_user_errors" {
   message = "${coalesce(var.user_errors_message, var.message)}"
 
   query = <<EOF
-      min(${var.user_errors_timeframe}): (
+      ${var.user_errors_time_aggregator}(${var.user_errors_timeframe}): (
         default(avg:azure.servicebus_namespaces.user_errors.preview${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
         default(avg:azure.servicebus_namespaces.incoming_requests_preview${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
       ) * 100 > ${var.user_errors_threshold_critical}
@@ -98,7 +98,7 @@ resource "datadog_monitor" "service_bus_server_errors" {
   message = "${coalesce(var.server_errors_message, var.message)}"
 
   query = <<EOF
-      min(${var.server_errors_timeframe}): (
+      ${var.server_errors_time_aggregator}(${var.server_errors_timeframe}): (
         default(avg:azure.servicebus_namespaces.server_errors.preview${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
         default(avg:azure.servicebus_namespaces.incoming_requests_preview${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
       ) * 100 > ${var.server_errors_threshold_critical}

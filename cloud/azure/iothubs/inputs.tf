@@ -151,6 +151,12 @@ variable "failed_jobs_rate_message" {
   default     = ""
 }
 
+variable "failed_jobs_rate_time_aggregator" {
+  description = "Monitor aggregator for IoT Hub failed jobs [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "failed_jobs_rate_timeframe" {
   description = "Monitor timeframe for IoT Hub failed jobs [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -189,6 +195,12 @@ variable "failed_listjobs_rate_message" {
   description = "Custom message for IoT Hub failed list jobs monitor"
   type        = "string"
   default     = ""
+}
+
+variable "failed_listjobs_rate_time_aggregator" {
+  description = "Monitor aggregator for IoT Hub failed list jobs [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "failed_listjobs_rate_timeframe" {
@@ -231,6 +243,12 @@ variable "failed_queryjobs_rate_message" {
   default     = ""
 }
 
+variable "failed_queryjobs_rate_time_aggregator" {
+  description = "Monitor aggregator for IoT Hub failed query jobs [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "failed_queryjobs_rate_timeframe" {
   description = "Monitor timeframe for IoT Hub failed query jobs [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -269,6 +287,12 @@ variable "failed_c2d_methods_rate_message" {
   description = "Custom message for IoT Hub failed c2d method monitor"
   type        = "string"
   default     = ""
+}
+
+variable "failed_c2d_methods_rate_time_aggregator" {
+  description = "Monitor aggregator for IoT Hub failed c2d method [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "failed_c2d_methods_rate_timeframe" {
@@ -311,6 +335,12 @@ variable "failed_c2d_twin_read_rate_message" {
   default     = ""
 }
 
+variable "failed_c2d_twin_read_rate_time_aggregator" {
+  description = "Monitor aggregator for IoT Hub failed c2d twin read [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "failed_c2d_twin_read_rate_timeframe" {
   description = "Monitor timeframe for IoT Hub failed c2d twin read [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -349,6 +379,12 @@ variable "failed_c2d_twin_update_rate_message" {
   description = "Custom message for IoT Hub failed c2d twin update monitor"
   type        = "string"
   default     = ""
+}
+
+variable "failed_c2d_twin_update_rate_time_aggregator" {
+  description = "Monitor aggregator for IoT Hub failed c2d twin update [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "failed_c2d_twin_update_rate_timeframe" {
@@ -391,6 +427,12 @@ variable "failed_d2c_twin_read_rate_message" {
   default     = ""
 }
 
+variable "failed_d2c_twin_read_rate_time_aggregator" {
+  description = "Monitor aggregator for IoT Hub failed d2c twin read [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "failed_d2c_twin_read_rate_timeframe" {
   description = "Monitor timeframe for IoT Hub failed d2c twin read [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -429,6 +471,12 @@ variable "failed_d2c_twin_update_rate_message" {
   description = "Custom message for IoT Hub failed d2c twin update monitor"
   type        = "string"
   default     = ""
+}
+
+variable "failed_d2c_twin_update_rate_time_aggregator" {
+  description = "Monitor aggregator for IoT Hub failed d2c twin update [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "failed_d2c_twin_update_rate_timeframe" {
@@ -471,6 +519,12 @@ variable "dropped_d2c_telemetry_egress_message" {
   default     = ""
 }
 
+variable "dropped_d2c_telemetry_egress_time_aggregator" {
+  description = "Monitor aggregator for IoT Hub dropped d2c telemetry [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "dropped_d2c_telemetry_egress_timeframe" {
   description = "Monitor timeframe for IoT Hub dropped d2c telemetry [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -511,6 +565,12 @@ variable "orphaned_d2c_telemetry_egress_message" {
   default     = ""
 }
 
+variable "orphaned_d2c_telemetry_egress_time_aggregator" {
+  description = "Monitor aggregator for IoT Hub orphaned d2c telemetry [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "orphaned_d2c_telemetry_egress_timeframe" {
   description = "Monitor timeframe for IoT Hub orphaned d2c telemetry [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -549,6 +609,12 @@ variable "invalid_d2c_telemetry_egress_message" {
   description = "Custom message for IoT Hub invalid d2c telemetry monitor"
   type        = "string"
   default     = ""
+}
+
+variable "invalid_d2c_telemetry_egress_time_aggregator" {
+  description = "Monitor aggregator for IoT Hub invalid d2c telemetry [available values: min, max, sum or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "invalid_d2c_telemetry_egress_timeframe" {
