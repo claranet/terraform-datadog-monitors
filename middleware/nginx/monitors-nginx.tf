@@ -6,7 +6,7 @@ resource "datadog_monitor" "datadog_nginx_process" {
   type = "service check"
 
   query = <<EOF
-    "nginx.can_connect".over${module.filter-tags.service_check}.by("server","port").last(6).count_by_status()
+    "nginx.can_connect"${module.filter-tags.service_check}.by("server","port").last(6).count_by_status()
   EOF
 
   thresholds = {
