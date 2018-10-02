@@ -5,6 +5,7 @@ module "filter-tags" {
   resource                 = "system"
   filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
   filter_tags_custom       = "${var.filter_tags_custom}"
+filter_tags_custom_excluded = "${var.filter_tags_custom_excluded}"
 }
 
 module "filter-tags-disk" {
@@ -14,5 +15,6 @@ module "filter-tags-disk" {
   resource                 = "system"
   filter_tags_use_defaults = "${var.filter_tags_use_defaults}"
   filter_tags_custom       = "${var.filter_tags_custom}"
+filter_tags_custom_excluded = "${var.filter_tags_custom_excluded}"
   extra_tags               = ["dd_disk:enabled"]
 }
