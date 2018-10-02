@@ -40,3 +40,4 @@ Creates a DataDog monitor alert message with the following inputs :
 
 ## Related documentation
 
+Datadog notifications official documentation: [https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning](https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning)
