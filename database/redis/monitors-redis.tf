@@ -9,7 +9,7 @@ resource "datadog_monitor" "not_responding" {
   type = "service check"
 
   query = <<EOF
-    "redis.can_connect".over${module.filter-tags.service_check}.by("redis_host","redis_port").last(6).count_by_status()
+    "redis.can_connect"${module.filter-tags.service_check}.by("redis_host","redis_port").last(6).count_by_status()
   EOF
 
   thresholds {

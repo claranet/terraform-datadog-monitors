@@ -6,7 +6,7 @@ resource "datadog_monitor" "postgresql_availability" {
   type = "service check"
 
   query = <<EOF
-    "postgres.can_connect".over${module.filter-tags.service_check}.by("port","server").last(6).count_by_status()
+    "postgres.can_connect"${module.filter-tags.service_check}.by("port","server").last(6).count_by_status()
   EOF
 
   thresholds = {

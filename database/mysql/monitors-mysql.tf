@@ -6,7 +6,7 @@ resource "datadog_monitor" "mysql_availability" {
   type = "service check"
 
   query = <<EOF
-    "mysql.can_connect".over${module.filter-tags.service_check}.by("port","server").last(6).count_by_status()
+    "mysql.can_connect"${module.filter-tags.service_check}.by("port","server").last(6).count_by_status()
   EOF
 
   thresholds = {

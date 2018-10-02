@@ -6,7 +6,7 @@ resource "datadog_monitor" "datadog_apache_process" {
   type = "service check"
 
   query = <<EOF
-    "apache.can_connect".over${module.filter-tags.service_check}.by("host","port","server").last(1).pct_by_status()
+    "apache.can_connect"${module.filter-tags.service_check}.by("host","port","server").last(1).pct_by_status()
   EOF
 
   thresholds = {
