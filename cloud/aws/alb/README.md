@@ -45,6 +45,7 @@ Creates DataDog monitors with the following checks:
 | httpcode_alb_4xx_silenced | Groups to mute for ALB httpcode 4xx monitor | map | `{}` | no |
 | httpcode_alb_4xx_threshold_critical | loadbalancer 4xx critical threshold in percentage | string | `80` | no |
 | httpcode_alb_4xx_threshold_warning | loadbalancer 4xx warning threshold in percentage | string | `60` | no |
+| httpcode_alb_4xx_time_aggregator | Monitor aggregator for ALB httpcode 4xx [available values: min, max or avg] | string | `min` | no |
 | httpcode_alb_4xx_timeframe | Monitor timeframe for ALB httpcode 4xx [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | httpcode_alb_5xx_enabled | Flag to enable ALB httpcode 5xx monitor | string | `true` | no |
 | httpcode_alb_5xx_extra_tags | Extra tags for ALB httpcode 5xx monitor | list | `[]` | no |
@@ -52,6 +53,7 @@ Creates DataDog monitors with the following checks:
 | httpcode_alb_5xx_silenced | Groups to mute for ALB httpcode 5xx monitor | map | `{}` | no |
 | httpcode_alb_5xx_threshold_critical | loadbalancer 5xx critical threshold in percentage | string | `80` | no |
 | httpcode_alb_5xx_threshold_warning | loadbalancer 5xx warning threshold in percentage | string | `60` | no |
+| httpcode_alb_5xx_time_aggregator | Monitor aggregator for ALB httpcode 5xx [available values: min, max or avg] | string | `min` | no |
 | httpcode_alb_5xx_timeframe | Monitor timeframe for ALB httpcode 5xx [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | httpcode_target_4xx_enabled | Flag to enable ALB target httpcode 4xx monitor | string | `true` | no |
 | httpcode_target_4xx_extra_tags | Extra tags for ALB target httpcode 4xx monitor | list | `[]` | no |
@@ -59,6 +61,7 @@ Creates DataDog monitors with the following checks:
 | httpcode_target_4xx_silenced | Groups to mute for ALB target httpcode 4xx monitor | map | `{}` | no |
 | httpcode_target_4xx_threshold_critical | target 4xx critical threshold in percentage | string | `80` | no |
 | httpcode_target_4xx_threshold_warning | target 4xx warning threshold in percentage | string | `60` | no |
+| httpcode_target_4xx_time_aggregator | Monitor aggregator for ALB target httpcode 4xx [available values: min, max or avg] | string | `min` | no |
 | httpcode_target_4xx_timeframe | Monitor timeframe for ALB target httpcode 4xx [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | httpcode_target_5xx_enabled | Flag to enable ALB target httpcode 5xx monitor | string | `true` | no |
 | httpcode_target_5xx_extra_tags | Extra tags for ALB target httpcode 5xx monitor | list | `[]` | no |
@@ -66,6 +69,7 @@ Creates DataDog monitors with the following checks:
 | httpcode_target_5xx_silenced | Groups to mute for ALB target httpcode 5xx monitor | map | `{}` | no |
 | httpcode_target_5xx_threshold_critical | target 5xx critical threshold in percentage | string | `80` | no |
 | httpcode_target_5xx_threshold_warning | target 5xx warning threshold in percentage | string | `60` | no |
+| httpcode_target_5xx_time_aggregator | Monitor aggregator for ALB target httpcode 5xx [available values: min, max or avg] | string | `min` | no |
 | httpcode_target_5xx_timeframe | Monitor timeframe for ALB target httpcode 5xx [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | latency_enabled | Flag to enable ALB latency monitor | string | `true` | no |
 | latency_extra_tags | Extra tags for ALB latency monitor | list | `[]` | no |

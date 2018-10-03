@@ -42,6 +42,7 @@ Creates DataDog monitors with the following checks:
 | failed_function_requests_silenced | Groups to mute for Stream Analytics failed requests monitor | map | `{}` | no |
 | failed_function_requests_threshold_critical | Failed Function Request rate limit (critical threshold) | string | `10` | no |
 | failed_function_requests_threshold_warning | Failed Function Request rate limit (warning threshold) | string | `0` | no |
+| failed_function_requests_time_aggregator | Monitor aggregator for Stream Analytics failed requests [available values: min, max or avg] | string | `min` | no |
 | failed_function_requests_timeframe | Monitor timeframe for Stream Analytics failed requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_custom_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `` | no |

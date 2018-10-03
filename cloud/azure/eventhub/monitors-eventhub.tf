@@ -32,12 +32,10 @@ resource "datadog_monitor" "eventhub_failed_requests" {
   message = "${coalesce(var.failed_requests_rate_message, var.message)}"
 
   query = <<EOF
-        sum(${var.failed_requests_rate_timeframe}): (
-          default(
-            avg:azure.eventhub_namespaces.failed_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() /
-            avg:azure.eventhub_namespaces.incoming_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count(),
-          0) * 100
-        ) > ${var.failed_requests_rate_thresold_critical}
+    ${var.failed_requests_rate_time_aggregator}(${var.failed_requests_rate_timeframe}): (
+      default(avg:azure.eventhub_namespaces.failed_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
+      default(avg:azure.eventhub_namespaces.incoming_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
+    ) * 100 > ${var.failed_requests_rate_thresold_critical}
   EOF
 
   type = "metric alert"
@@ -68,17 +66,12 @@ resource "datadog_monitor" "eventhub_errors" {
   message = "${coalesce(var.errors_rate_message, var.message)}"
 
   query = <<EOF
-        sum(${var.errors_rate_timeframe}): (
-          default(
-            (
-              avg:azure.eventhub_namespaces.internal_server_errors${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() +
-              avg:azure.eventhub_namespaces.server_busy_errors${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() +
-              avg:azure.eventhub_namespaces.other_errors${module.filter-tags.query_alert} by {resource_group,region,name}.as_count()
-            ) / (
-              avg:eventhub_namespaces.incoming_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count()
-            ),
-          0) * 100
-        ) > ${var.errors_rate_thresold_critical}
+    ${var.errors_rate_time_aggregator}(${var.errors_rate_timeframe}): ( (
+      default(avg:azure.eventhub_namespaces.internal_server_errors${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) +
+      default(avg:azure.eventhub_namespaces.server_busy_errors${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) +
+      default(avg:azure.eventhub_namespaces.other_errors${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) ) /
+      default(avg:azure.eventhub_namespaces.incoming_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
+    ) * 100 > ${var.errors_rate_thresold_critical}
   EOF
 
   type = "metric alert"

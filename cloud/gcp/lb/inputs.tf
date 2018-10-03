@@ -37,7 +37,7 @@ variable "error_rate_4xx_message" {
 variable "error_rate_4xx_time_aggregator" {
   description = "Timeframe for the GCP LB 4XX Errors monitor"
   type        = "string"
-  default     = "sum"
+  default     = "min"
 }
 
 variable "error_rate_4xx_timeframe" {
@@ -94,7 +94,7 @@ variable "error_rate_5xx_message" {
 variable "error_rate_5xx_time_aggregator" {
   description = "Timeframe for the GCP LB 5XX Errors monitor"
   type        = "string"
-  default     = "sum"
+  default     = "min"
 }
 
 variable "error_rate_5xx_timeframe" {

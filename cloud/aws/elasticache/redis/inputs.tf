@@ -59,6 +59,12 @@ variable "cache_hits_message" {
   default     = ""
 }
 
+variable "cache_hits_time_aggregator" {
+  description = "Monitor aggregator for Elasticache redis cache hits [available values: min, max or avg]"
+  type        = "string"
+  default     = "max"
+}
+
 variable "cache_hits_timeframe" {
   description = "Monitor timeframe for Elasticache redis cache hits [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -104,7 +110,7 @@ variable "cpu_high_message" {
 variable "cpu_high_time_aggregator" {
   description = "Monitor aggregator for Elasticache redis cpu high [available values: min, max or avg]"
   type        = "string"
-  default     = "avg"
+  default     = "min"
 }
 
 variable "cpu_high_timeframe" {

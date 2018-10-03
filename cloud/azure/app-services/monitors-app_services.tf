@@ -70,9 +70,9 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
   message = "${coalesce(var.http_5xx_requests_message, var.message)}"
 
   query = <<EOF
-    sum(${var.http_5xx_requests_timeframe}): (
-      avg:azure.app_services.http5xx${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() /
-      avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count()
+    ${var.http_5xx_requests_time_aggregator}(${var.http_5xx_requests_timeframe}): (
+      default(avg:azure.app_services.http5xx${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
+      default(avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
     ) * 100 > ${var.http_5xx_requests_threshold_critical}
   EOF
 
@@ -103,9 +103,9 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
   message = "${coalesce(var.http_4xx_requests_message, var.message)}"
 
   query = <<EOF
-    sum(${var.http_4xx_requests_timeframe}): (
-      avg:azure.app_services.http4xx${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() /
-      avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count()
+    ${var.http_4xx_requests_time_aggregator}(${var.http_4xx_requests_timeframe}): (
+      default(avg:azure.app_services.http4xx${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
+      default(avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
     ) * 100 > ${var.http_4xx_requests_threshold_critical}
   EOF
 
@@ -136,10 +136,10 @@ resource "datadog_monitor" "appservices_http_success_status_rate" {
   message = "${coalesce(var.http_successful_requests_message, var.message)}"
 
   query = <<EOF
-    sum(${var.http_successful_requests_timeframe}): (
-      (avg:azure.app_services.http2xx${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() +
-       avg:azure.app_services.http3xx${module.filter-tags.query_alert} by {resource_group,region,name}.as_count()) /
-      avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count()
+    ${var.http_successful_requests_time_aggregator}(${var.http_successful_requests_timeframe}): ( (
+      default(avg:azure.app_services.http2xx${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) +
+      default(avg:azure.app_services.http3xx${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) ) /
+      default(avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
     ) * 100 < ${var.http_successful_requests_threshold_critical}
   EOF
 

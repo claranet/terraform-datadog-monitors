@@ -34,6 +34,7 @@ Creates DataDog monitors with the following checks:
 | failed_requests_silenced | Groups to mute for API Management failed requests monitor | map | `{}` | no |
 | failed_requests_threshold_critical | Maximum acceptable percent of failed requests | string | `90` | no |
 | failed_requests_threshold_warning | Warning regarding acceptable percent of failed requests | string | `50` | no |
+| failed_requests_time_aggregator | Monitor aggregator for API Management failed requests [available values: min, max or avg] | string | `min` | no |
 | failed_requests_timeframe | Monitor timeframe for API Management failed requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
 | filter_tags_custom_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `` | no |
@@ -46,6 +47,7 @@ Creates DataDog monitors with the following checks:
 | other_requests_silenced | Groups to mute for API Management other requests monitor | map | `{}` | no |
 | other_requests_threshold_critical | Maximum acceptable percent of other requests | string | `90` | no |
 | other_requests_threshold_warning | Warning regarding acceptable percent of other requests | string | `50` | no |
+| other_requests_time_aggregator | Monitor aggregator for API Management other requests [available values: min, max or avg] | string | `min` | no |
 | other_requests_timeframe | Monitor timeframe for API Management other requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | status_enabled | Flag to enable API Management status monitor | string | `true` | no |
 | status_extra_tags | Extra tags for API Management status monitor | list | `[]` | no |
@@ -59,6 +61,7 @@ Creates DataDog monitors with the following checks:
 | successful_requests_silenced | Groups to mute for API Management successful requests monitor | map | `{}` | no |
 | successful_requests_threshold_critical | Minimum acceptable percent of successful requests | string | `10` | no |
 | successful_requests_threshold_warning | Warning regarding acceptable percent of successful requests | string | `30` | no |
+| successful_requests_time_aggregator | Monitor aggregator for API Management successful requests [available values: min, max or avg] | string | `max` | no |
 | successful_requests_timeframe | Monitor timeframe for API Management successful requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | unauthorized_requests_enabled | Flag to enable API Management unauthorized requests monitor | string | `true` | no |
 | unauthorized_requests_extra_tags | Extra tags for API Management unauthorized requests monitor | list | `[]` | no |
@@ -66,6 +69,7 @@ Creates DataDog monitors with the following checks:
 | unauthorized_requests_silenced | Groups to mute for API Management unauthorized requests monitor | map | `{}` | no |
 | unauthorized_requests_threshold_critical | Maximum acceptable percent of unauthorized requests | string | `90` | no |
 | unauthorized_requests_threshold_warning | Warning regarding acceptable percent of unauthorized requests | string | `50` | no |
+| unauthorized_requests_time_aggregator | Monitor aggregator for API Management unauthorized requests [available values: min, max or avg] | string | `min` | no |
 | unauthorized_requests_timeframe | Monitor timeframe for API Management unauthorized requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
 ## Outputs
