@@ -7,7 +7,7 @@ resource "datadog_monitor" "not_responding" {
   message = "${coalesce(var.not_responding_message, var.message)}"
 
   query = <<EOL
-    "elasticsearch.can_connect".over${module.filter-tags.service_check}.by("server","port").last(6).count_by_status()
+    "elasticsearch.can_connect"${module.filter-tags.service_check}.by("server","port").last(6).count_by_status()
 EOL
 
   type = "service check"

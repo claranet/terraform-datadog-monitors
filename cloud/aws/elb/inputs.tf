@@ -29,6 +29,11 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
+variable "filter_tags_custom_excluded" {
+  description = "Tags excluded for custom filtering when filter_tags_use_defaults is false"
+  default     = ""
+}
+
 ## ELB
 variable "elb_no_healthy_instance_silenced" {
   description = "Groups to mute for ELB no healty instance monitor"
