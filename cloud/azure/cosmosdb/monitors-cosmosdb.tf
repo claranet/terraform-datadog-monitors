@@ -61,8 +61,8 @@ resource "datadog_monitor" "cosmos_db_4xx_requests" {
       default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "413")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
       default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "429")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
       default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "449")} by {resource_group,region,name,collectionname}.as_rate(), 0) ) / (
-      default(sum:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 1) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 1) )
+      default(sum:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 0) +
+      default(sum:azure.documentdb_databaseaccounts.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 0) )
     ) * 100 > ${var.cosmos_db_4xx_request_rate_threshold_critical}
   EOF
 
@@ -100,8 +100,8 @@ resource "datadog_monitor" "cosmos_db_5xx_requests" {
       default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "503")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
       default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "500")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
       default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "503")} by {resource_group,region,name,collectionname}.as_rate(), 0) ) / (
-      default(sum:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 1) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 1) )
+      default(sum:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 0) +
+      default(sum:azure.documentdb_databaseaccounts.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 0) )
     ) * 100 > ${var.cosmos_db_5xx_request_rate_threshold_critical}
   EOF
 
@@ -138,8 +138,8 @@ resource "datadog_monitor" "cosmos_db_scaling" {
     ${var.cosmos_db_scaling_time_aggregator}(${var.cosmos_db_scaling_timeframe}): ( (
       default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "429")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
       default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "429")} by {resource_group,region,name,collectionname}.as_rate(), 0) ) / (
-      default(sum:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 1) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 1) )
+      default(sum:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 0) +
+      default(sum:azure.documentdb_databaseaccounts.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 0) )
     ) * 100 > ${var.cosmos_db_scaling_error_rate_threshold_critical}
   EOF
 
