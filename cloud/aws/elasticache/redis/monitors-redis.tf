@@ -6,10 +6,10 @@ resource "datadog_monitor" "redis_cache_hits" {
   type = "metric alert"
 
   query = <<EOF
-    sum(${var.cache_hits_timeframe}): (
-      avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count() /
-      (avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count() +
-        avg:aws.elasticache.cache_misses${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count())
+    ${var.cache_hits_time_aggregator}(${var.cache_hits_timeframe}): (
+      default(avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_rate(), 0) / (
+        default(avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_rate(), 0) +
+        default(avg:aws.elasticache.cache_misses${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_rate(), 0))
     ) * 100 < ${var.cache_hits_threshold_critical}
   EOF
 

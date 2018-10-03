@@ -42,6 +42,7 @@ Creates DataDog monitors with the following checks:
 | server_errors_silenced | Groups to mute for Service Bus server errors monitor | map | `{}` | no |
 | server_errors_threshold_critical | Critical threshold for Service Bus server errors monitor | string | `90` | no |
 | server_errors_threshold_warning | Warning threshold for Service Bus server errors monitor | string | `50` | no |
+| server_errors_time_aggregator | Monitor aggregator for Service Bus server errors [available values: min, max or avg] | string | `min` | no |
 | server_errors_timeframe | Monitor timeframe for Service Bus server errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | status_enabled | Flag to enable Service Bus status monitor | string | `true` | no |
 | status_extra_tags | Extra tags for Service Bus status monitor | list | `[]` | no |
@@ -54,6 +55,7 @@ Creates DataDog monitors with the following checks:
 | user_errors_silenced | Groups to mute for Service Bus user errors monitor | map | `{}` | no |
 | user_errors_threshold_critical | Critical threshold for Service Bus user errors monitor | string | `90` | no |
 | user_errors_threshold_warning | Warning threshold for Service Bus user errors monitor | string | `50` | no |
+| user_errors_time_aggregator | Monitor aggregator for Service Bus user errors [available values: min, max or avg] | string | `min` | no |
 | user_errors_timeframe | Monitor timeframe for Service Bus user errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
 ## Outputs

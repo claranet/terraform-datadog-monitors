@@ -4,12 +4,10 @@ resource "datadog_monitor" "nginx_ingress_too_many_5xx" {
   message = "${coalesce(var.ingress_5xx_message, var.message)}"
 
   query = <<EOF
-    sum(${var.ingress_5xx_timeframe}): (
-      default(
-        avg:nginx_ingress.nginx_upstream_responses_total${module.filter-tags-5xx.query_alert} by {upstream,ingress_class} /
-        (avg:nginx_ingress.nginx_upstream_requests_total${module.filter-tags.query_alert} by {upstream,ingress_class} + ${var.artificial_requests_count}),
-      0) * 100
-    ) > ${var.ingress_5xx_threshold_critical}
+    ${var.ingress_5xx_time_aggregator}(${var.ingress_5xx_timeframe}): (
+      default(avg:nginx_ingress.nginx_upstream_responses_total{module.filter-tags-5xx.query_alert} by {upstream,ingress_class}.as_rate(), 0) / (
+      default(avg:nginx_ingress.nginx_upstream_requests_total${module.filter-tags.query_alert} by {upstream,ingress_class}.as_rate() + ${var.artificial_requests_count}, 1))
+      * 100 > ${var.ingress_5xx_threshold_critical}
   EOF
 
   type = "metric alert"
@@ -40,12 +38,10 @@ resource "datadog_monitor" "nginx_ingress_too_many_4xx" {
   message = "${coalesce(var.ingress_4xx_message, var.message)}"
 
   query = <<EOF
-    sum(${var.ingress_4xx_timeframe}): (
-      default(
-        avg:nginx_ingress.nginx_upstream_responses_total${module.filter-tags-4xx.query_alert} by {upstream,ingress_class} /
-        (avg:nginx_ingress.nginx_upstream_requests_total${module.filter-tags.query_alert} by {upstream,ingress_class} + ${var.artificial_requests_count}),
-      0) * 100
-    ) > ${var.ingress_4xx_threshold_critical}
+    ${var.ingress_4xx_time_aggregator}(${var.ingress_4xx_timeframe}): (
+      default(avg:nginx_ingress.nginx_upstream_responses_total{module.filter-tags-4xx.query_alert} by {upstream,ingress_class}.as_rate(), 0) / (
+      default(avg:nginx_ingress.nginx_upstream_requests_total${module.filter-tags.query_alert} by {upstream,ingress_class}.as_rate() + ${var.artificial_requests_count}, 1))
+      * 100 > ${var.ingress_4xx_threshold_critical}
   EOF
 
   type = "metric alert"

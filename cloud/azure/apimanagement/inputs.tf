@@ -95,6 +95,12 @@ variable "failed_requests_message" {
   default     = ""
 }
 
+variable "failed_requests_time_aggregator" {
+  description = "Monitor aggregator for API Management failed requests [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "failed_requests_timeframe" {
   description = "Monitor timeframe for API Management failed requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -133,6 +139,12 @@ variable "other_requests_message" {
   description = "Custom message for API Management other requests monitor"
   type        = "string"
   default     = ""
+}
+
+variable "other_requests_time_aggregator" {
+  description = "Monitor aggregator for API Management other requests [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "other_requests_timeframe" {
@@ -175,6 +187,12 @@ variable "unauthorized_requests_message" {
   default     = ""
 }
 
+variable "unauthorized_requests_time_aggregator" {
+  description = "Monitor aggregator for API Management unauthorized requests [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "unauthorized_requests_timeframe" {
   description = "Monitor timeframe for API Management unauthorized requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -213,6 +231,12 @@ variable "successful_requests_message" {
   description = "Custom message for API Management successful requests monitor"
   type        = "string"
   default     = ""
+}
+
+variable "successful_requests_time_aggregator" {
+  description = "Monitor aggregator for API Management successful requests [available values: min, max or avg]"
+  type        = "string"
+  default     = "max"
 }
 
 variable "successful_requests_timeframe" {

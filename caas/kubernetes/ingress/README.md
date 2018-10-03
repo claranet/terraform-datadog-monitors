@@ -35,6 +35,7 @@ Creates DataDog monitors with the following checks:
 | ingress_4xx_silenced | Groups to mute for Ingress 4xx errors monitor | map | `{}` | no |
 | ingress_4xx_threshold_critical | 4xx critical threshold in percentage | string | `40` | no |
 | ingress_4xx_threshold_warning | 4xx warning threshold in percentage | string | `20` | no |
+| ingress_4xx_time_aggregator | Monitor aggregator for Ingress 4xx errors [available values: min, max or avg] | string | `min` | no |
 | ingress_4xx_timeframe | Monitor timeframe for Ingress 4xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | ingress_5xx_enabled | Flag to enable Ingress 5xx errors monitor | string | `true` | no |
 | ingress_5xx_extra_tags | Extra tags for Ingress 5xx errors monitor | list | `[]` | no |
@@ -42,6 +43,7 @@ Creates DataDog monitors with the following checks:
 | ingress_5xx_silenced | Groups to mute for Ingress 5xx errors monitor | map | `{}` | no |
 | ingress_5xx_threshold_critical | 5xx critical threshold in percentage | string | `20` | no |
 | ingress_5xx_threshold_warning | 5xx warning threshold in percentage | string | `10` | no |
+| ingress_5xx_time_aggregator | Monitor aggregator for Ingress 5xx errors [available values: min, max or avg] | string | `min` | no |
 | ingress_5xx_timeframe | Monitor timeframe for Ingress 5xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |

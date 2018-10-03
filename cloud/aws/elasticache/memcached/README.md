@@ -42,6 +42,7 @@ Creates DataDog monitors with the following checks:
 | get_hits_silenced | Groups to mute for Elasticache memcached get hits monitor | map | `{}` | no |
 | get_hits_threshold_critical | Elasticache memcached get hits critical threshold in percentage | string | `60` | no |
 | get_hits_threshold_warning | Elasticache memcached get hits warning threshold in percentage | string | `80` | no |
+| get_hits_time_aggregator | Monitor aggregator for Elasticache memcached get hits [available values: min, max or avg] | string | `max` | no |
 | get_hits_timeframe | Monitor timeframe for Elasticache memcached get hits [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |

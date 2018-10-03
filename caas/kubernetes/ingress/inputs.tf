@@ -58,6 +58,12 @@ variable "ingress_5xx_message" {
   default     = ""
 }
 
+variable "ingress_5xx_time_aggregator" {
+  description = "Monitor aggregator for Ingress 5xx errors [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
 variable "ingress_5xx_timeframe" {
   description = "Monitor timeframe for Ingress 5xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
@@ -97,6 +103,12 @@ variable "ingress_4xx_extra_tags" {
 variable "ingress_4xx_message" {
   description = "Message sent when an alert is triggered"
   default     = ""
+}
+
+variable "ingress_4xx_time_aggregator" {
+  description = "Monitor aggregator for Ingress 4xx errors [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
 }
 
 variable "ingress_4xx_timeframe" {
