@@ -59,7 +59,7 @@ variable "status_extra_tags" {
 variable "status_time_aggregator" {
   description = "Monitor aggregator for serverfarms status [available values: min, max or avg]"
   type        = "string"
-  default     = "max"
+  default     = "min"
 }
 
 variable "status_timeframe" {
@@ -96,7 +96,7 @@ variable "cpu_percentage_extra_tags" {
 variable "cpu_percentage_time_aggregator" {
   description = "Monitor aggregator for serverfarms cpu_percentage [available values: min, max or avg]"
   type        = "string"
-  default     = "max"
+  default     = "min"
 }
 
 variable "cpu_percentage_timeframe" {
@@ -143,7 +143,7 @@ variable "memory_percentage_extra_tags" {
 variable "memory_percentage_time_aggregator" {
   description = "Monitor aggregator for serverfarms memory_percentage [available values: min, max or avg]"
   type        = "string"
-  default     = "max"
+  default     = "min"
 }
 
 variable "memory_percentage_timeframe" {

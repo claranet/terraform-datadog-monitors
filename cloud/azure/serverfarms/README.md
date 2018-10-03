@@ -30,7 +30,7 @@ Creates DataDog monitors with the following checks:
 | cpu_percentage_silenced | Groups to mute for serverfarm cpu_percentage monitor | map | `{}` | no |
 | cpu_percentage_threshold_critical | CPU percentage (critical threshold) | string | `95` | no |
 | cpu_percentage_threshold_warning | CPU percentage (warning threshold) | string | `90` | no |
-| cpu_percentage_time_aggregator | Monitor aggregator for serverfarms cpu_percentage [available values: min, max or avg] | string | `max` | no |
+| cpu_percentage_time_aggregator | Monitor aggregator for serverfarms cpu_percentage [available values: min, max or avg] | string | `min` | no |
 | cpu_percentage_timeframe | Monitor timeframe for serverfarms cpu_percentage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_10m` | no |
 | environment | Architecture environment | string | - | yes |
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
@@ -42,7 +42,7 @@ Creates DataDog monitors with the following checks:
 | memory_percentage_silenced | Groups to mute for serverfarm memory_percentage monitor | map | `{}` | no |
 | memory_percentage_threshold_critical | Memory percentage (critical threshold) | string | `95` | no |
 | memory_percentage_threshold_warning | Memory percentage (warning threshold) | string | `90` | no |
-| memory_percentage_time_aggregator | Monitor aggregator for serverfarms memory_percentage [available values: min, max or avg] | string | `max` | no |
+| memory_percentage_time_aggregator | Monitor aggregator for serverfarms memory_percentage [available values: min, max or avg] | string | `min` | no |
 | memory_percentage_timeframe | Monitor timeframe for serverfarms memory_percentage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | message | Message sent when a serverfarms monitor is triggered | string | - | yes |
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
@@ -50,7 +50,7 @@ Creates DataDog monitors with the following checks:
 | status_extra_tags | Extra tags for serverfarms status monitor | list | `[]` | no |
 | status_message | Custom message for serverfarm status monitor | string | `` | no |
 | status_silenced | Groups to mute for serverfarm status monitor | map | `{}` | no |
-| status_time_aggregator | Monitor aggregator for serverfarms status [available values: min, max or avg] | string | `max` | no |
+| status_time_aggregator | Monitor aggregator for serverfarms status [available values: min, max or avg] | string | `min` | no |
 | status_timeframe | Monitor timeframe for serverfarms status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
 ## Outputs
