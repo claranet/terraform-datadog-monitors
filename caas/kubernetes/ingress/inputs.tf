@@ -29,6 +29,11 @@ variable "filter_tags_custom" {
   default     = "*"
 }
 
+variable "filter_tags_custom_excluded" {
+  description = "Tags excluded for custom filtering when filter_tags_use_defaults is false"
+  default     = ""
+}
+
 #Ingress
 variable "ingress_5xx_silenced" {
   description = "Groups to mute for Ingress 5xx errors monitor"

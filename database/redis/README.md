@@ -58,6 +58,7 @@ Creates DataDog monitors with the following checks:
 | expirations_rate_time_aggregator | Monitor aggregator for Redis keys expirations [available values: min, max or avg] | string | `min` | no |
 | expirations_rate_timeframe | Monitor timeframe for Redis keys expirations [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| filter_tags_custom_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | hitrate_enabled | Flag to enable Redis hitrate monitor | string | `true` | no |
 | hitrate_extra_tags | Extra tags for Redis hitrate monitor | list | `[]` | no |

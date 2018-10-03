@@ -6,7 +6,7 @@ resource "datadog_monitor" "php_fpm_connect" {
   type = "service check"
 
   query = <<EOF
-    "php_fpm.can_ping".over${module.filter-tags.service_check}.by("ping_url").last(6).count_by_status()
+    "php_fpm.can_ping"${module.filter-tags.service_check}.by("ping_url").last(6).count_by_status()
   EOF
 
   thresholds = {

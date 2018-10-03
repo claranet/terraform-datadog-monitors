@@ -57,6 +57,7 @@ Creates DataDog monitors with the following checks:
 | environment | Architecture environment | string | - | yes |
 | evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| filter_tags_custom_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | latency_enabled | Flag to enable Storage latency monitor | string | `true` | no |
 | latency_extra_tags | Extra tags for Storage latency monitor | list | `[]` | no |
