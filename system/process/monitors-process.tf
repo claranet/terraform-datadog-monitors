@@ -15,15 +15,13 @@ EOQ
     critical = 2
   }
 
-  notify_no_data      = true
-  evaluation_delay    = 15
-  no_data_timeframe   = "${var.process_check_no_data_timeframe}"
-  new_host_delay      = "${var.new_host_delay}"
-  notify_audit        = false
-  timeout_h           = 0
-  include_tags        = true
-  locked              = false
-  require_full_window = true
+  notify_no_data    = true
+  no_data_timeframe = "${var.process_check_no_data_timeframe}"
+  new_host_delay    = "${var.new_host_delay}"
+  notify_audit      = false
+  timeout_h         = 0
+  include_tags      = true
+  locked            = false
 
   silenced = "${var.process_check_silenced}"
 
