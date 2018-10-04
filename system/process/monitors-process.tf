@@ -1,9 +1,9 @@
 resource "datadog_monitor" "datadog_process_check" {
   count   = "${var.process_check_enabled ? 1 : 0}"
-  name    = "[${var.environment}] {{dd_process_name.name}} process is down"
+  name    = "[${var.environment}] Process is down"
   message = "${coalesce(var.process_check_message, var.message)}"
 
-  query = "max(last_5m):min:system.processes.number${module.filter-tags.query_alert} by {host,dd_process_name} < 1"
+  query = "max(${var.process_check_timeframe}):min:system.processes.number${module.filter-tags.query_alert} by {host,dd_process_name} < 1"
 
   type = "metric alert"
 
