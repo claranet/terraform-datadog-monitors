@@ -3,7 +3,9 @@ resource "datadog_monitor" "datadog_process_check" {
   name    = "[${var.environment}] Process is down"
   message = "${coalesce(var.process_check_message, var.message)}"
 
-  query = "\"process.up\"${module.filter-tags.service_check}.last(3).count_by_status()"
+  query = <<EOQ
+    "process.up"${module.filter-tags.service_check}.by("host","dd_process_name").last(3).count_by_status()"
+EOQ
 
   type = "service check"
 
