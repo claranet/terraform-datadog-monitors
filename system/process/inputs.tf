@@ -65,9 +65,3 @@ variable "process_check_no_data_timeframe" {
   type        = "string"
   default     = 20
 }
-
-variable "process_check_timeframe" {
-  description = "Timeframe for process check monitor"
-  type        = "string"
-  default     = "last_5m"
-}

@@ -16,7 +16,7 @@ module "datadog-monitors-system-process" {
 
 Creates DataDog monitors with the following checks:
 
-- {{dd_process_name.name}} process is down
+- Process is down
 
 ## Inputs
 

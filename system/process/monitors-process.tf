@@ -3,12 +3,14 @@ resource "datadog_monitor" "datadog_process_check" {
   name    = "[${var.environment}] Process is down"
   message = "${coalesce(var.process_check_message, var.message)}"
 
-  query = "max(${var.process_check_timeframe}):min:system.processes.number${module.filter-tags.query_alert} by {host,dd_process_name} < 1"
+  query = "\"process.up\"${module.filter-tags.service_check}.last(3).count_by_status()"
 
-  type = "metric alert"
+  type = "service check"
 
   thresholds {
-    critical = 1
+    ok       = 1
+    warning  = 1
+    critical = 2
   }
 
   notify_no_data      = true
