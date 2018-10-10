@@ -109,7 +109,9 @@ Creates DataDog monitors with the following checks:
 | failed_queryjobs_rate_threshold_warning | QueryJobs Failed rate limit (warning threshold) | string | `50` | no |
 | failed_queryjobs_rate_time_aggregator | Monitor aggregator for IoT Hub failed query jobs [available values: min, max, sum or avg] | string | `min` | no |
 | failed_queryjobs_rate_timeframe | Monitor timeframe for IoT Hub failed query jobs [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| filter_tags | Tags used for filtering | string | `*` | no |
+| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
+| filter_tags_custom_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `` | no |
+| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | invalid_d2c_telemetry_egress_enabled | Flag to enable IoT Hub invalid d2c telemetry monitor | string | `true` | no |
 | invalid_d2c_telemetry_egress_extra_tags | Extra tags for IoT Hub invalid d2c telemetry monitor | list | `[]` | no |
 | invalid_d2c_telemetry_egress_message | Custom message for IoT Hub invalid d2c telemetry monitor | string | `` | no |
