@@ -64,8 +64,8 @@ resource "datadog_monitor" "service_bus_user_errors" {
 
   query = <<EOF
       ${var.user_errors_time_aggregator}(${var.user_errors_timeframe}): (
-        default(avg:azure.servicebus_namespaces.user_errors.preview${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
-        default(avg:azure.servicebus_namespaces.incoming_requests_preview${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
+        default(avg:azure.servicebus_namespaces.user_errors.preview${module.filter-tags.query_alert} by {resource_group,region,name}, 0) /
+        default(avg:azure.servicebus_namespaces.incoming_requests_preview${module.filter-tags.query_alert} by {resource_group,region,name}, 1)
       ) * 100 > ${var.user_errors_threshold_critical}
   EOF
 
@@ -99,8 +99,8 @@ resource "datadog_monitor" "service_bus_server_errors" {
 
   query = <<EOF
       ${var.server_errors_time_aggregator}(${var.server_errors_timeframe}): (
-        default(avg:azure.servicebus_namespaces.server_errors.preview${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
-        default(avg:azure.servicebus_namespaces.incoming_requests_preview${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
+        default(avg:azure.servicebus_namespaces.server_errors.preview${module.filter-tags.query_alert} by {resource_group,region,name}, 0) /
+        default(avg:azure.servicebus_namespaces.incoming_requests_preview${module.filter-tags.query_alert} by {resource_group,region,name}, 1)
       ) * 100 > ${var.server_errors_threshold_critical}
   EOF
 
