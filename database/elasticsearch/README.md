@@ -4,7 +4,7 @@
 
 ```
 module "datadog-monitors-database-elasticsearch" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//database/elasticsearch?ref={revision}"
+  source = "git::ssh://git@git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors.git//database/elasticsearch?ref={revision}"
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
