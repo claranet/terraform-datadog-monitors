@@ -1,6 +1,7 @@
-# DataDog Monitors #
+# DataDog Monitors [![pipeline status](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/badges/master/pipeline.svg)](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/commits/master) #
 
 This repository is used to store all our monitors templates ready to use for generic purpose.
+
 
 ### How to contribute ? ###
 
