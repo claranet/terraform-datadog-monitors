@@ -4,7 +4,7 @@
 
 ```
 module "datadog-monitors-caas-kubernetes-ingress" {
-  source = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//caas/kubernetes/ingress?ref={revision}"
+  source = "git::ssh://git@git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors.git//caas/kubernetes/ingress?ref={revision}"
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
