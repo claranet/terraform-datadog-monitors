@@ -14,3 +14,7 @@ test_auto_update:
     - ./scripts/auto_update.sh
     - git status
     - git diff --exit-code
+  tags:
+    - default
+    - cloudnative
+
