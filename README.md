@@ -131,4 +131,5 @@ The `//` is very important, it's a terraform specific syntax used to separate gi
 	- [php-fpm](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/middleware/php-fpm/)
 - [system](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/system/)
 	- [generic](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/system/generic/)
+	- [process](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/system/process/)
 	- [unreachable](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/system/unreachable/)
