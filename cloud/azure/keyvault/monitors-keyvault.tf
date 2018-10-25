@@ -34,10 +34,11 @@ resource "datadog_monitor" "keyvault_api_result" {
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
-      ${var.api_result_time_aggregator}(${var.api_result_timeframe}): (
-        default(avg:azure.keyvault_vaults.service_api_result${format(module.filter-tags-statuscode.query_alert, "200")} by {name,resource_group,region}.as_rate(), 1) /
-        default(avg:azure.keyvault_vaults.service_api_result${module.filter-tags.query_alert} by {name,resource_group,region}.as_rate(), 1)
-      ) * 100 < ${var.api_result_threshold_critical}
+      ${var.api_result_time_aggregator}(${var.api_result_timeframe}):
+      default( (
+        default(avg:azure.keyvault_vaults.service_api_result${format(module.filter-tags-statuscode.query_alert, "200")} by {name,resource_group,region}.as_rate(), 0) /
+        default(avg:azure.keyvault_vaults.service_api_result${module.filter-tags.query_alert} by {name,resource_group,region}.as_rate(), 0)
+      ) * 100, 100) < ${var.api_result_threshold_critical}
   EOF
 
   thresholds {
