@@ -139,7 +139,7 @@ resource "datadog_monitor" "appservices_http_success_status_rate" {
     ${var.http_successful_requests_time_aggregator}(${var.http_successful_requests_timeframe}):
     default( (
       (default(avg:azure.app_services.http2xx${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) +
-      default(avg:azure.app_services.http3xx${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) ) /
+       default(avg:azure.app_services.http3xx${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) ) /
       default(avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0)
     ) * 100, 100) < ${var.http_successful_requests_threshold_critical}
   EOF
