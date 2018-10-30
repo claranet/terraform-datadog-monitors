@@ -134,10 +134,11 @@ resource "datadog_monitor" "apimgt_successful_requests" {
 
   query = <<EOF
     ${var.successful_requests_time_aggregator}(${var.successful_requests_timeframe}):
-    default( (
-      default(avg:azure.apimanagement_service.successful_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
-      default(avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0)
-    ) * 100, 100) < ${var.successful_requests_threshold_critical}
+    default(
+      avg:azure.apimanagement_service.successful_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate() /
+      avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate()
+      * 100
+    , 100) < ${var.successful_requests_threshold_critical}
   EOF
 
   thresholds {
