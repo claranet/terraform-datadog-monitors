@@ -16,7 +16,6 @@ module "datadog-monitors-cloud-azure-mysql" {
 
 Creates DataDog monitors with the following checks:
 
-- Mysql Server compute consumption
 - Mysql Server CPU usage
 - Mysql Server has no connection
 - Mysql Server IO consumption
@@ -84,7 +83,6 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description |
 |------|-------------|
-| mysql_compute_consumption_id | id for monitor mysql_compute_consumption |
 | mysql_cpu_usage_id | id for monitor mysql_cpu_usage |
 | mysql_free_storage_id | id for monitor mysql_free_storage |
 | mysql_io_consumption_id | id for monitor mysql_io_consumption |
