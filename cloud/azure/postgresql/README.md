@@ -16,7 +16,6 @@ module "datadog-monitors-cloud-azure-postgresql" {
 
 Creates DataDog monitors with the following checks:
 
-- Postgresql Server compute consumption
 - Postgresql Server CPU usage
 - Postgresql Server has no connection
 - Postgresql Server IO consumption
@@ -84,7 +83,6 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description |
 |------|-------------|
-| postgresql_compute_consumption_id | id for monitor postgresql_compute_consumption |
 | postgresql_cpu_usage_id | id for monitor postgresql_cpu_usage |
 | postgresql_free_storage_id | id for monitor postgresql_free_storage |
 | postgresql_io_consumption_id | id for monitor postgresql_io_consumption |
