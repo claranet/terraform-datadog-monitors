@@ -26,14 +26,6 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| compute_consumption_enabled | Flag to enable PostgreSQL status monitor | string | `true` | no |
-| compute_consumption_extra_tags | Extra tags for PostgreSQL status monitor | list | `[]` | no |
-| compute_consumption_message | Custom message for PostgreSQL compute consumption monitor | string | `` | no |
-| compute_consumption_silenced | Groups to mute for PostgreSQL compute consumption monitor | map | `{}` | no |
-| compute_consumption_threshold_critical | PostgreSQL compute consumption in percent (critical threshold) | string | `90` | no |
-| compute_consumption_threshold_warning | PostgreSQL compute consumption in percent (warning threshold) | string | `80` | no |
-| compute_consumption_time_aggregator | Monitor aggregator for PostgreSQL compute consumption [available values: min, max or avg] | string | `min` | no |
-| compute_consumption_timeframe | Monitor timeframe for PostgreSQL compute consumption [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
 | cpu_usage_enabled | Flag to enable PostgreSQL status monitor | string | `true` | no |
 | cpu_usage_extra_tags | Extra tags for PostgreSQL status monitor | list | `[]` | no |
 | cpu_usage_message | Custom message for PostgreSQL CPU monitor | string | `` | no |

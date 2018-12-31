@@ -204,52 +204,6 @@ variable "io_consumption_threshold_critical" {
   default     = "90"
 }
 
-variable "compute_consumption_silenced" {
-  description = "Groups to mute for Mysql compute consumption monitor"
-  type        = "map"
-  default     = {}
-}
-
-variable "compute_consumption_enabled" {
-  description = "Flag to enable Mysql status monitor"
-  type        = "string"
-  default     = "true"
-}
-
-variable "compute_consumption_extra_tags" {
-  description = "Extra tags for Mysql status monitor"
-  type        = "list"
-  default     = []
-}
-
-variable "compute_consumption_message" {
-  description = "Custom message for Mysql compute consumption monitor"
-  type        = "string"
-  default     = ""
-}
-
-variable "compute_consumption_time_aggregator" {
-  description = "Monitor aggregator for Mysql compute consumption [available values: min, max or avg]"
-  type        = "string"
-  default     = "min"
-}
-
-variable "compute_consumption_timeframe" {
-  description = "Monitor timeframe for Mysql compute consumption [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
-  default     = "last_15m"
-}
-
-variable "compute_consumption_threshold_warning" {
-  description = "Mysql compute consumption in percent (warning threshold)"
-  default     = "80"
-}
-
-variable "compute_consumption_threshold_critical" {
-  description = "Mysql compute consumption in percent (critical threshold)"
-  default     = "90"
-}
-
 variable "memory_usage_silenced" {
   description = "Groups to mute for Mysql memory monitor"
   type        = "map"
