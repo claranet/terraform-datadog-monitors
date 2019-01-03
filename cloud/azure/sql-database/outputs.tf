@@ -1,3 +1,8 @@
+output "status_id" {
+  description = "id for monitor status"
+  value       = "${datadog_monitor.status.*.id}"
+}
+
 output "sql-database_cpu_90_15min_id" {
   description = "id for monitor sql-database_cpu_90_15min"
   value       = "${datadog_monitor.sql-database_cpu_90_15min.*.id}"

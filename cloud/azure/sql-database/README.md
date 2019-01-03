@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 - SQL Database CPU too high
 - SQL Database Deadlocks too high
 - SQL Database DTU Consumption too high
+- SQL Database is down
 - SQL Database low free space
 
 ## Inputs
@@ -62,6 +63,12 @@ Creates DataDog monitors with the following checks:
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
 | message | Message sent when an alert is triggered | string | - | yes |
 | new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
+| status_enabled | Flag to enable Redis status monitor | string | `true` | no |
+| status_extra_tags | Extra tags for Redis status monitor | list | `[]` | no |
+| status_message | Custom message for Redis status monitor | string | `` | no |
+| status_silenced | Groups to mute for Redis status monitor | map | `{}` | no |
+| status_time_aggregator | Monitor aggregator for Redis status [available values: min, max or avg] | string | `max` | no |
+| status_timeframe | Monitor timeframe for Redis status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
 
 ## Outputs
 
@@ -71,6 +78,7 @@ Creates DataDog monitors with the following checks:
 | sql-database_deadlocks_count_id | id for monitor sql-database_deadlocks_count |
 | sql-database_dtu_consumption_high_id | id for monitor sql-database_dtu_consumption_high |
 | sql-database_free_space_low_id | id for monitor sql-database_free_space_low |
+| status_id | id for monitor status |
 
 ## Related documentation
 
