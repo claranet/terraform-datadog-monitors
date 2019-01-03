@@ -22,8 +22,3 @@ output "postgresql_memory_usage_id" {
   description = "id for monitor postgresql_memory_usage"
   value       = "${datadog_monitor.postgresql_memory_usage.*.id}"
 }
-
-output "postgresql_compute_consumption_id" {
-  description = "id for monitor postgresql_compute_consumption"
-  value       = "${datadog_monitor.postgresql_compute_consumption.*.id}"
-}
