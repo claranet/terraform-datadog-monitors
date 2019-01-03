@@ -204,52 +204,6 @@ variable "io_consumption_threshold_critical" {
   default     = "90"
 }
 
-variable "compute_consumption_silenced" {
-  description = "Groups to mute for PostgreSQL compute consumption monitor"
-  type        = "map"
-  default     = {}
-}
-
-variable "compute_consumption_enabled" {
-  description = "Flag to enable PostgreSQL status monitor"
-  type        = "string"
-  default     = "true"
-}
-
-variable "compute_consumption_extra_tags" {
-  description = "Extra tags for PostgreSQL status monitor"
-  type        = "list"
-  default     = []
-}
-
-variable "compute_consumption_message" {
-  description = "Custom message for PostgreSQL compute consumption monitor"
-  type        = "string"
-  default     = ""
-}
-
-variable "compute_consumption_time_aggregator" {
-  description = "Monitor aggregator for PostgreSQL compute consumption [available values: min, max or avg]"
-  type        = "string"
-  default     = "min"
-}
-
-variable "compute_consumption_timeframe" {
-  description = "Monitor timeframe for PostgreSQL compute consumption [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
-  default     = "last_15m"
-}
-
-variable "compute_consumption_threshold_warning" {
-  description = "PostgreSQL compute consumption in percent (warning threshold)"
-  default     = "80"
-}
-
-variable "compute_consumption_threshold_critical" {
-  description = "PostgreSQL compute consumption in percent (critical threshold)"
-  default     = "90"
-}
-
 variable "memory_usage_silenced" {
   description = "Groups to mute for PostgreSQL memory monitor"
   type        = "map"

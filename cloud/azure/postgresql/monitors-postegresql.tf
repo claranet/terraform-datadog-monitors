@@ -157,36 +157,3 @@ resource "datadog_monitor" "postgresql_memory_usage" {
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform", "${var.memory_usage_extra_tags}"]
 }
-
-resource "datadog_monitor" "postgresql_compute_consumption" {
-  count   = "${var.compute_consumption_enabled ? 1 : 0}"
-  name    = "[${var.environment}] Postgresql Server compute consumption {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = "${coalesce(var.compute_consumption_message, var.message)}"
-
-  query = <<EOF
-    ${var.compute_consumption_time_aggregator}(${var.compute_consumption_timeframe}): (
-      avg:azure.dbforpostgresql_servers.compute_consumption_percent${module.filter-tags.query_alert} by {resource_group,region,name}
-    ) > ${var.compute_consumption_threshold_critical}
-  EOF
-
-  type = "metric alert"
-
-  thresholds {
-    critical = "${var.compute_consumption_threshold_critical}"
-    warning  = "${var.compute_consumption_threshold_warning}"
-  }
-
-  silenced = "${var.compute_consumption_silenced}"
-
-  notify_no_data      = false
-  evaluation_delay    = "${var.evaluation_delay}"
-  renotify_interval   = 0
-  notify_audit        = false
-  timeout_h           = 0
-  include_tags        = true
-  locked              = false
-  require_full_window = false
-  new_host_delay      = "${var.new_host_delay}"
-
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform", "${var.compute_consumption_extra_tags}"]
-}
