@@ -1,10 +1,10 @@
-# CAAS KUBERNETES INGRESS DataDog monitors
+# CAAS KUBERNETES INGRESS VTS DataDog monitors
 
 ## How to use this module
 
 ```
-module "datadog-monitors-caas-kubernetes-ingress" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors.git//caas/kubernetes/ingress?ref={revision}"
+module "datadog-monitors-caas-kubernetes-ingress-vts" {
+  source = "git::ssh://git@git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors.git//caas/kubernetes/ingress/vts?ref={revision}"
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
