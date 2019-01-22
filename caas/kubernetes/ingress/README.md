@@ -63,6 +63,7 @@ https://github.com/kubernetes/ingress-nginx/pull/423/commits/1d38e3a38425f08de2f
 
 Nginx Ingress Controller setup
 ------------------------------
+This configuration and monitors only works for ingress controller >= 0.10 and <= 0.15.
 Enable the following flags in the Nginx Ingress Controller chart
 controller.stats.enabled=true,controller.metrics.enabled=true
 and the following Datadog agent configuration for each ingress controller:
@@ -87,5 +88,5 @@ datadog:
               - dd_monitoring:enabled
               - dd_ingress:enabled
               - dd_ingress_class:nginx
-              - env:prod
+              - env:ENV
 ```
