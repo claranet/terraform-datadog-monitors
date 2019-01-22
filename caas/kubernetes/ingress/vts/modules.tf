@@ -1,5 +1,5 @@
 module "filter-tags" {
-  source = "../../../common/filter-tags"
+  source = "../../../../common/filter-tags"
 
   environment                 = "${var.environment}"
   resource                    = "ingress"
@@ -10,7 +10,7 @@ module "filter-tags" {
 }
 
 module "filter-tags-5xx" {
-  source = "../../../common/filter-tags"
+  source = "../../../../common/filter-tags"
 
   environment                 = "${var.environment}"
   resource                    = "ingress"
@@ -21,7 +21,7 @@ module "filter-tags-5xx" {
 }
 
 module "filter-tags-4xx" {
-  source = "../../../common/filter-tags"
+  source = "../../../../common/filter-tags"
 
   environment                 = "${var.environment}"
   resource                    = "ingress"
