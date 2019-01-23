@@ -1,10 +1,10 @@
-# CAAS KUBERNETES INGRESS DataDog monitors
+# CAAS KUBERNETES INGRESS VTS DataDog monitors
 
 ## How to use this module
 
 ```
-module "datadog-monitors-caas-kubernetes-ingress" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors.git//caas/kubernetes/ingress?ref={revision}"
+module "datadog-monitors-caas-kubernetes-ingress-vts" {
+  source = "git::ssh://git@git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors.git//caas/kubernetes/ingress/vts?ref={revision}"
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
@@ -63,6 +63,9 @@ https://github.com/kubernetes/ingress-nginx/pull/423/commits/1d38e3a38425f08de2f
 
 Nginx Ingress Controller setup
 ------------------------------
+This configuration and monitors only work for ingress controller version :
+- >= 0.10 because ingress is beta before that and metrics naming convention not stable
+- <= 0.15 because ingress does not use VTS metrics since 0.16
 Enable the following flags in the Nginx Ingress Controller chart
 controller.stats.enabled=true,controller.metrics.enabled=true
 and the following Datadog agent configuration for each ingress controller:
@@ -87,5 +90,5 @@ datadog:
               - dd_monitoring:enabled
               - dd_ingress:enabled
               - dd_ingress_class:nginx
-              - env:prod
+              - env:ENV
 ```
