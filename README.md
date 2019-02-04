@@ -98,6 +98,7 @@ The `//` is very important, it's a terraform specific syntax used to separate gi
 	- [azure](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/azure/)
 		- [apimanagement](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/azure/apimanagement/)
 		- [app-services](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/azure/app-services/)
+		- [azure-search](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/azure/azure-search/)
 		- [cosmosdb](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/azure/cosmosdb/)
 		- [datalakestore](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/azure/datalakestore/)
 		- [eventhub](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/azure/eventhub/)
