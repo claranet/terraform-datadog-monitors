@@ -22,72 +22,71 @@ Creates DataDog monitors with the following checks:
 - Elasticache free memory
 - Elasticache max connections reached
 - Elasticache swap
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| environment | Infrastructure Environment | string | - | yes |
-| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
-| eviction_enabled | Flag to enable Elasticache eviction monitor | string | `true` | no |
-| eviction_extra_tags | Extra tags for Elasticache eviction monitor | list | `[]` | no |
-| eviction_growing_condition_timeframe | Monitor condition timeframe for Elasticache eviction growing [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| eviction_growing_enabled | Flag to enable Elasticache eviction growing monitor | string | `true` | no |
-| eviction_growing_extra_tags | Extra tags for Elasticache eviction growing monitor | list | `[]` | no |
-| eviction_growing_message | Custom message for Elasticache eviction growing monitor | string | `` | no |
-| eviction_growing_silenced | Groups to mute for Elasticache eviction growing monitor | map | `{}` | no |
-| eviction_growing_threshold_critical | Elasticache eviction growing critical threshold in percentage | string | `30` | no |
-| eviction_growing_threshold_warning | Elasticache eviction growing warning threshold in percentage | string | `10` | no |
-| eviction_growing_timeframe | Monitor timeframe for Elasticache eviction growing [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| eviction_message | Custom message for Elasticache eviction monitor | string | `` | no |
-| eviction_silenced | Groups to mute for Elasticache eviction monitor | map | `{}` | no |
-| eviction_threshold_critical | Elasticache free memory critical threshold in percentage | string | `30` | no |
-| eviction_threshold_warning | Elasticache free memory warning threshold in percentage | string | `0` | no |
-| eviction_timeframe | Monitor timeframe for Elasticache eviction [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
-| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
-| filter_tags_custom_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `` | no |
-| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
-| free_memory_condition_timeframe | Monitor condition timeframe for Elasticache free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
-| free_memory_enabled | Flag to enable Elasticache free memory monitor | string | `true` | no |
-| free_memory_extra_tags | Extra tags for Elasticache free memory monitor | list | `[]` | no |
-| free_memory_message | Custom message for Elasticache free memory monitor | string | `` | no |
-| free_memory_silenced | Groups to mute for Elasticache free memory monitor | map | `{}` | no |
-| free_memory_threshold_critical | Elasticache free memory critical threshold in percentage | string | `-70` | no |
-| free_memory_threshold_warning | Elasticache free memory warning threshold in percentage | string | `-50` | no |
-| free_memory_timeframe | Monitor timeframe for Elasticache free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
-| max_connection_enabled | Flag to enable Elasticache max connection monitor | string | `true` | no |
-| max_connection_extra_tags | Extra tags for Elasticache max connection monitor | list | `[]` | no |
-| max_connection_message | Custom message for Elasticache max connection monitor | string | `` | no |
-| max_connection_silenced | Groups to mute for Elasticache max connection monitor | map | `{}` | no |
-| max_connection_time_aggregator | Monitor aggregator for Elasticache max connection [available values: min, max or avg] | string | `max` | no |
-| max_connection_timeframe | Monitor timeframe for Elasticache max connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| message | Message sent when an alert is triggered | string | - | yes |
-| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
-| no_connection_enabled | Flag to enable Elasticache no connection monitor | string | `true` | no |
-| no_connection_extra_tags | Extra tags for Elasticache no connection monitor | list | `[]` | no |
-| no_connection_message | Custom message for Elasticache no connection monitor | string | `` | no |
-| no_connection_silenced | Groups to mute for Elasticache no connection monitor | map | `{}` | no |
-| no_connection_time_aggregator | Monitor aggregator for Elasticache no connection [available values: min, max or avg] | string | `min` | no |
-| no_connection_timeframe | Monitor timeframe for Elasticache no connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| swap_enabled | Flag to enable Elasticache swap monitor | string | `true` | no |
-| swap_extra_tags | Extra tags for Elasticache swap monitor | list | `[]` | no |
-| swap_message | Custom message for Elasticache swap monitor | string | `` | no |
-| swap_silenced | Groups to mute for Elasticache swap monitor | map | `{}` | no |
-| swap_threshold_critical | Elasticache swap critical threshold in bytes | string | `50000000` | no |
-| swap_threshold_warning | Elasticache swap warning threshold in bytes | string | `0` | no |
-| swap_time_aggregator | Monitor aggregator for Elasticache memcached swap [available values: min, max or avg] | string | `min` | no |
-| swap_timeframe | Monitor timeframe for Elasticache swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| environment | Infrastructure Environment | string | n/a | yes |
+| evaluation\_delay | Delay in seconds for the metric evaluation | string | `"900"` | no |
+| eviction\_enabled | Flag to enable Elasticache eviction monitor | string | `"true"` | no |
+| eviction\_extra\_tags | Extra tags for Elasticache eviction monitor | list | `[]` | no |
+| eviction\_growing\_condition\_timeframe | Monitor condition timeframe for Elasticache eviction growing [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| eviction\_growing\_enabled | Flag to enable Elasticache eviction growing monitor | string | `"true"` | no |
+| eviction\_growing\_extra\_tags | Extra tags for Elasticache eviction growing monitor | list | `[]` | no |
+| eviction\_growing\_message | Custom message for Elasticache eviction growing monitor | string | `""` | no |
+| eviction\_growing\_silenced | Groups to mute for Elasticache eviction growing monitor | map | `{}` | no |
+| eviction\_growing\_threshold\_critical | Elasticache eviction growing critical threshold in percentage | string | `"30"` | no |
+| eviction\_growing\_threshold\_warning | Elasticache eviction growing warning threshold in percentage | string | `"10"` | no |
+| eviction\_growing\_timeframe | Monitor timeframe for Elasticache eviction growing [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| eviction\_message | Custom message for Elasticache eviction monitor | string | `""` | no |
+| eviction\_silenced | Groups to mute for Elasticache eviction monitor | map | `{}` | no |
+| eviction\_threshold\_critical | Elasticache free memory critical threshold in percentage | string | `"30"` | no |
+| eviction\_threshold\_warning | Elasticache free memory warning threshold in percentage | string | `"0"` | no |
+| eviction\_timeframe | Monitor timeframe for Elasticache eviction [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
+| filter\_tags\_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `"*"` | no |
+| filter\_tags\_custom\_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `""` | no |
+| filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
+| free\_memory\_condition\_timeframe | Monitor condition timeframe for Elasticache free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
+| free\_memory\_enabled | Flag to enable Elasticache free memory monitor | string | `"true"` | no |
+| free\_memory\_extra\_tags | Extra tags for Elasticache free memory monitor | list | `[]` | no |
+| free\_memory\_message | Custom message for Elasticache free memory monitor | string | `""` | no |
+| free\_memory\_silenced | Groups to mute for Elasticache free memory monitor | map | `{}` | no |
+| free\_memory\_threshold\_critical | Elasticache free memory critical threshold in percentage | string | `"-70"` | no |
+| free\_memory\_threshold\_warning | Elasticache free memory warning threshold in percentage | string | `"-50"` | no |
+| free\_memory\_timeframe | Monitor timeframe for Elasticache free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
+| max\_connection\_enabled | Flag to enable Elasticache max connection monitor | string | `"true"` | no |
+| max\_connection\_extra\_tags | Extra tags for Elasticache max connection monitor | list | `[]` | no |
+| max\_connection\_message | Custom message for Elasticache max connection monitor | string | `""` | no |
+| max\_connection\_silenced | Groups to mute for Elasticache max connection monitor | map | `{}` | no |
+| max\_connection\_time\_aggregator | Monitor aggregator for Elasticache max connection [available values: min, max or avg] | string | `"max"` | no |
+| max\_connection\_timeframe | Monitor timeframe for Elasticache max connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| message | Message sent when an alert is triggered | string | n/a | yes |
+| new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| no\_connection\_enabled | Flag to enable Elasticache no connection monitor | string | `"true"` | no |
+| no\_connection\_extra\_tags | Extra tags for Elasticache no connection monitor | list | `[]` | no |
+| no\_connection\_message | Custom message for Elasticache no connection monitor | string | `""` | no |
+| no\_connection\_silenced | Groups to mute for Elasticache no connection monitor | map | `{}` | no |
+| no\_connection\_time\_aggregator | Monitor aggregator for Elasticache no connection [available values: min, max or avg] | string | `"min"` | no |
+| no\_connection\_timeframe | Monitor timeframe for Elasticache no connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| swap\_enabled | Flag to enable Elasticache swap monitor | string | `"true"` | no |
+| swap\_extra\_tags | Extra tags for Elasticache swap monitor | list | `[]` | no |
+| swap\_message | Custom message for Elasticache swap monitor | string | `""` | no |
+| swap\_silenced | Groups to mute for Elasticache swap monitor | map | `{}` | no |
+| swap\_threshold\_critical | Elasticache swap critical threshold in bytes | string | `"50000000"` | no |
+| swap\_threshold\_warning | Elasticache swap warning threshold in bytes | string | `"0"` | no |
+| swap\_time\_aggregator | Monitor aggregator for Elasticache memcached swap [available values: min, max or avg] | string | `"min"` | no |
+| swap\_timeframe | Monitor timeframe for Elasticache swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| elasticache_eviction_growing_id | id for monitor elasticache_eviction_growing |
-| elasticache_eviction_id | id for monitor elasticache_eviction |
-| elasticache_free_memory_id | id for monitor elasticache_free_memory |
-| elasticache_max_connection_id | id for monitor elasticache_max_connection |
-| elasticache_no_connection_id | id for monitor elasticache_no_connection |
-| elasticache_swap_id | id for monitor elasticache_swap |
+| elasticache\_eviction\_growing\_id | id for monitor elasticache_eviction_growing |
+| elasticache\_eviction\_id | id for monitor elasticache_eviction |
+| elasticache\_free\_memory\_id | id for monitor elasticache_free_memory |
+| elasticache\_max\_connection\_id | id for monitor elasticache_max_connection |
+| elasticache\_no\_connection\_id | id for monitor elasticache_no_connection |
+| elasticache\_swap\_id | id for monitor elasticache_swap |
 
 Related documentation
 ---------------------

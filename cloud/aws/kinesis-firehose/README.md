@@ -17,29 +17,28 @@ module "datadog-monitors-cloud-aws-kinesis-firehose" {
 Creates DataDog monitors with the following checks:
 
 - Kinesis Firehose No incoming records
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| environment | Environment | string | - | yes |
-| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
-| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
-| filter_tags_custom_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `` | no |
-| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
-| incoming_records_enabled | Flag to enable Kinesis Firehorse incoming records monitor | string | `true` | no |
-| incoming_records_extra_tags | Extra tags for Kinesis Firehorse incoming records monitor | list | `[]` | no |
-| incoming_records_message | Custom message for Kinesis Firehorse incoming records monitor | string | `` | no |
-| incoming_records_silenced | Groups to mute for Kinesis Firehorse incoming records monitor | map | `{}` | no |
-| incoming_records_timeframe | Monitor timeframe for incoming records metrics evaluation [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
-| message | Message sent when an alert is triggered | string | - | yes |
-| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
+| environment | Environment | string | n/a | yes |
+| evaluation\_delay | Delay in seconds for the metric evaluation | string | `"900"` | no |
+| filter\_tags\_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `"*"` | no |
+| filter\_tags\_custom\_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `""` | no |
+| filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
+| incoming\_records\_enabled | Flag to enable Kinesis Firehorse incoming records monitor | string | `"true"` | no |
+| incoming\_records\_extra\_tags | Extra tags for Kinesis Firehorse incoming records monitor | list | `[]` | no |
+| incoming\_records\_message | Custom message for Kinesis Firehorse incoming records monitor | string | `""` | no |
+| incoming\_records\_silenced | Groups to mute for Kinesis Firehorse incoming records monitor | map | `{}` | no |
+| incoming\_records\_timeframe | Monitor timeframe for incoming records metrics evaluation [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
+| message | Message sent when an alert is triggered | string | n/a | yes |
+| new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| firehose_incoming_records_id | id for monitor firehose_incoming_records |
+| firehose\_incoming\_records\_id | id for monitor firehose_incoming_records |
 
 ## Related documentation
 
