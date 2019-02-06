@@ -17,29 +17,28 @@ module "datadog-monitors-system-unreachable" {
 Creates DataDog monitors with the following checks:
 
 - Host unreachable
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| environment | Architecture Environment | string | - | yes |
-| evaluation_delay | Delay in seconds for the metric evaluation | string | `15` | no |
-| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
-| filter_tags_custom_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `` | no |
-| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
-| message | Message sent when an alert is triggered | string | - | yes |
-| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
-| unreachable_enabled | Flag to enable Host unreachable monitor | string | `true` | no |
-| unreachable_extra_tags | Extra tags for Host unreachable monitor | list | `[]` | no |
-| unreachable_message | Custom message for Host unreachable monitor | string | `` | no |
-| unreachable_no_data_timeframe | Timeframe for Host unreachable monitor to alert on no data | string | `20` | no |
-| unreachable_silenced | Groups to mute for Host unreachable monitor | map | `{}` | no |
+| environment | Architecture Environment | string | n/a | yes |
+| evaluation\_delay | Delay in seconds for the metric evaluation | string | `"15"` | no |
+| filter\_tags\_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `"*"` | no |
+| filter\_tags\_custom\_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `""` | no |
+| filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
+| message | Message sent when an alert is triggered | string | n/a | yes |
+| new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| unreachable\_enabled | Flag to enable Host unreachable monitor | string | `"true"` | no |
+| unreachable\_extra\_tags | Extra tags for Host unreachable monitor | list | `[]` | no |
+| unreachable\_message | Custom message for Host unreachable monitor | string | `""` | no |
+| unreachable\_no\_data\_timeframe | Timeframe for Host unreachable monitor to alert on no data | string | `"20"` | no |
+| unreachable\_silenced | Groups to mute for Host unreachable monitor | map | `{}` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| host_unreachable_id | id for monitor host_unreachable |
+| host\_unreachable\_id | id for monitor host_unreachable |
 
 ## Related documentation
 

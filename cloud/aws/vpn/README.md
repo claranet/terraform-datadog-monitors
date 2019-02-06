@@ -17,28 +17,27 @@ module "datadog-monitors-cloud-aws-vpn" {
 Creates DataDog monitors with the following checks:
 
 - VPN tunnel down
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| environment | Architecture Environment | string | - | yes |
-| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
-| filter_tags | Tags used for metrics filtering | string | `*` | no |
-| message | Message sent when an alert is triggered | string | - | yes |
-| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
-| vpn_status_enabled | Flag to enable VPN status monitor | string | `true` | no |
-| vpn_status_extra_tags | Extra tags for VPN status monitor | list | `[]` | no |
-| vpn_status_message | Custom message for VPN status monitor | string | `` | no |
-| vpn_status_silenced | Groups to mute for VPN status monitor | map | `{}` | no |
-| vpn_status_time_aggregator | Monitor aggregator for VPN status [available values: min, max or avg] | string | `max` | no |
-| vpn_status_timeframe | Monitor timeframe for VPN status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| environment | Architecture Environment | string | n/a | yes |
+| evaluation\_delay | Delay in seconds for the metric evaluation | string | `"900"` | no |
+| filter\_tags | Tags used for metrics filtering | string | `"*"` | no |
+| message | Message sent when an alert is triggered | string | n/a | yes |
+| new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| vpn\_status\_enabled | Flag to enable VPN status monitor | string | `"true"` | no |
+| vpn\_status\_extra\_tags | Extra tags for VPN status monitor | list | `[]` | no |
+| vpn\_status\_message | Custom message for VPN status monitor | string | `""` | no |
+| vpn\_status\_silenced | Groups to mute for VPN status monitor | map | `{}` | no |
+| vpn\_status\_time\_aggregator | Monitor aggregator for VPN status [available values: min, max or avg] | string | `"max"` | no |
+| vpn\_status\_timeframe | Monitor timeframe for VPN status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| VPN_status_id | id for monitor VPN_status |
+| VPN\_status\_id | id for monitor VPN_status |
 
 ## Related documentation
 

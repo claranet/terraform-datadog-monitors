@@ -21,66 +21,65 @@ Creates DataDog monitors with the following checks:
 - Stream Analytics too many conversion errors
 - Stream Analytics too many failed requests
 - Stream Analytics too many runtime errors
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| conversion_errors_enabled | Flag to enable Stream Analytics conversion errors monitor | string | `true` | no |
-| conversion_errors_extra_tags | Extra tags for Stream Analytics conversion errors monitor | list | `[]` | no |
-| conversion_errors_message | Custom message for Stream Analytics conversion errors monitor | string | `` | no |
-| conversion_errors_silenced | Groups to mute for Stream Analytics conversion errors monitor | map | `{}` | no |
-| conversion_errors_threshold_critical | Conversion errors limit (critical threshold) | string | `10` | no |
-| conversion_errors_threshold_warning | Conversion errors limit (warning threshold) | string | `0` | no |
-| conversion_errors_time_aggregator | Monitor aggregator for Stream Analytics conversion errors [available values: min, max or avg] | string | `min` | no |
-| conversion_errors_timeframe | Monitor timeframe for Stream Analytics conversion errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| environment | Architecture environment | string | - | yes |
-| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
-| failed_function_requests_enabled | Flag to enable Stream Analytics failed requests monitor | string | `true` | no |
-| failed_function_requests_extra_tags | Extra tags for Stream Analytics failed requests monitor | list | `[]` | no |
-| failed_function_requests_message | Custom message for Stream Analytics failed requests monitor | string | `` | no |
-| failed_function_requests_silenced | Groups to mute for Stream Analytics failed requests monitor | map | `{}` | no |
-| failed_function_requests_threshold_critical | Failed Function Request rate limit (critical threshold) | string | `10` | no |
-| failed_function_requests_threshold_warning | Failed Function Request rate limit (warning threshold) | string | `0` | no |
-| failed_function_requests_time_aggregator | Monitor aggregator for Stream Analytics failed requests [available values: min, max or avg] | string | `min` | no |
-| failed_function_requests_timeframe | Monitor timeframe for Stream Analytics failed requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
-| filter_tags_custom_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `` | no |
-| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
-| message | Message sent when a Redis monitor is triggered | string | - | yes |
-| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
-| runtime_errors_enabled | Flag to enable Stream Analytics runtime errors monitor | string | `true` | no |
-| runtime_errors_extra_tags | Extra tags for Stream Analytics runtime errors monitor | list | `[]` | no |
-| runtime_errors_message | Custom message for Stream Analytics runtime errors monitor | string | `` | no |
-| runtime_errors_silenced | Groups to mute for Stream Analytics runtime errors monitor | map | `{}` | no |
-| runtime_errors_threshold_critical | Runtime errors limit (critical threshold) | string | `10` | no |
-| runtime_errors_threshold_warning | Runtime errors limit (warning threshold) | string | `0` | no |
-| runtime_errors_time_aggregator | Monitor aggregator for Stream Analytics runtime errors [available values: min, max or avg] | string | `min` | no |
-| runtime_errors_timeframe | Monitor timeframe for Stream Analytics runtime errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| status_enabled | Flag to enable Stream Analytics status monitor | string | `true` | no |
-| status_extra_tags | Extra tags for Stream Analytics status monitor | list | `[]` | no |
-| status_message | Custom message for Stream Analytics status monitor | string | `` | no |
-| status_silenced | Groups to mute for Stream Analytics status monitor | map | `{}` | no |
-| status_time_aggregator | Monitor aggregator for Stream Analytics status [available values: min, max or avg] | string | `max` | no |
-| status_timeframe | Monitor timeframe for Stream Analytics status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
-| su_utilization_enabled | Flag to enable Stream Analytics utilization monitor | string | `true` | no |
-| su_utilization_extra_tags | Extra tags for Stream Analytics utilization monitor | list | `[]` | no |
-| su_utilization_message | Custom message for Stream Analytics utilization monitor | string | `` | no |
-| su_utilization_silenced | Groups to mute for Stream Analytics utilization monitor | map | `{}` | no |
-| su_utilization_threshold_critical | Streaming Unit utilization rate limit (critical threshold) | string | `80` | no |
-| su_utilization_threshold_warning | Streaming Unit utilization rate limit (warning threshold) | string | `60` | no |
-| su_utilization_time_aggregator | Monitor aggregator for Stream Analytics utilization [available values: min, max or avg] | string | `min` | no |
-| su_utilization_timeframe | Monitor timeframe for Stream Analytics utilization [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_5m` | no |
+| conversion\_errors\_enabled | Flag to enable Stream Analytics conversion errors monitor | string | `"true"` | no |
+| conversion\_errors\_extra\_tags | Extra tags for Stream Analytics conversion errors monitor | list | `[]` | no |
+| conversion\_errors\_message | Custom message for Stream Analytics conversion errors monitor | string | `""` | no |
+| conversion\_errors\_silenced | Groups to mute for Stream Analytics conversion errors monitor | map | `{}` | no |
+| conversion\_errors\_threshold\_critical | Conversion errors limit (critical threshold) | string | `"10"` | no |
+| conversion\_errors\_threshold\_warning | Conversion errors limit (warning threshold) | string | `"0"` | no |
+| conversion\_errors\_time\_aggregator | Monitor aggregator for Stream Analytics conversion errors [available values: min, max or avg] | string | `"min"` | no |
+| conversion\_errors\_timeframe | Monitor timeframe for Stream Analytics conversion errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| environment | Architecture environment | string | n/a | yes |
+| evaluation\_delay | Delay in seconds for the metric evaluation | string | `"900"` | no |
+| failed\_function\_requests\_enabled | Flag to enable Stream Analytics failed requests monitor | string | `"true"` | no |
+| failed\_function\_requests\_extra\_tags | Extra tags for Stream Analytics failed requests monitor | list | `[]` | no |
+| failed\_function\_requests\_message | Custom message for Stream Analytics failed requests monitor | string | `""` | no |
+| failed\_function\_requests\_silenced | Groups to mute for Stream Analytics failed requests monitor | map | `{}` | no |
+| failed\_function\_requests\_threshold\_critical | Failed Function Request rate limit (critical threshold) | string | `"10"` | no |
+| failed\_function\_requests\_threshold\_warning | Failed Function Request rate limit (warning threshold) | string | `"0"` | no |
+| failed\_function\_requests\_time\_aggregator | Monitor aggregator for Stream Analytics failed requests [available values: min, max or avg] | string | `"min"` | no |
+| failed\_function\_requests\_timeframe | Monitor timeframe for Stream Analytics failed requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| filter\_tags\_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `"*"` | no |
+| filter\_tags\_custom\_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `""` | no |
+| filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
+| message | Message sent when a Redis monitor is triggered | string | n/a | yes |
+| new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| runtime\_errors\_enabled | Flag to enable Stream Analytics runtime errors monitor | string | `"true"` | no |
+| runtime\_errors\_extra\_tags | Extra tags for Stream Analytics runtime errors monitor | list | `[]` | no |
+| runtime\_errors\_message | Custom message for Stream Analytics runtime errors monitor | string | `""` | no |
+| runtime\_errors\_silenced | Groups to mute for Stream Analytics runtime errors monitor | map | `{}` | no |
+| runtime\_errors\_threshold\_critical | Runtime errors limit (critical threshold) | string | `"10"` | no |
+| runtime\_errors\_threshold\_warning | Runtime errors limit (warning threshold) | string | `"0"` | no |
+| runtime\_errors\_time\_aggregator | Monitor aggregator for Stream Analytics runtime errors [available values: min, max or avg] | string | `"min"` | no |
+| runtime\_errors\_timeframe | Monitor timeframe for Stream Analytics runtime errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| status\_enabled | Flag to enable Stream Analytics status monitor | string | `"true"` | no |
+| status\_extra\_tags | Extra tags for Stream Analytics status monitor | list | `[]` | no |
+| status\_message | Custom message for Stream Analytics status monitor | string | `""` | no |
+| status\_silenced | Groups to mute for Stream Analytics status monitor | map | `{}` | no |
+| status\_time\_aggregator | Monitor aggregator for Stream Analytics status [available values: min, max or avg] | string | `"max"` | no |
+| status\_timeframe | Monitor timeframe for Stream Analytics status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| su\_utilization\_enabled | Flag to enable Stream Analytics utilization monitor | string | `"true"` | no |
+| su\_utilization\_extra\_tags | Extra tags for Stream Analytics utilization monitor | list | `[]` | no |
+| su\_utilization\_message | Custom message for Stream Analytics utilization monitor | string | `""` | no |
+| su\_utilization\_silenced | Groups to mute for Stream Analytics utilization monitor | map | `{}` | no |
+| su\_utilization\_threshold\_critical | Streaming Unit utilization rate limit (critical threshold) | string | `"80"` | no |
+| su\_utilization\_threshold\_warning | Streaming Unit utilization rate limit (warning threshold) | string | `"60"` | no |
+| su\_utilization\_time\_aggregator | Monitor aggregator for Stream Analytics utilization [available values: min, max or avg] | string | `"min"` | no |
+| su\_utilization\_timeframe | Monitor timeframe for Stream Analytics utilization [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| conversion_errors_id | id for monitor conversion_errors |
-| failed_function_requests_id | id for monitor failed_function_requests |
-| runtime_errors_id | id for monitor runtime_errors |
-| status_id | id for monitor status |
-| su_utilization_id | id for monitor su_utilization |
+| conversion\_errors\_id | id for monitor conversion_errors |
+| failed\_function\_requests\_id | id for monitor failed_function_requests |
+| runtime\_errors\_id | id for monitor runtime_errors |
+| status\_id | id for monitor status |
+| su\_utilization\_id | id for monitor su_utilization |
 
 ## Related documentation
 
