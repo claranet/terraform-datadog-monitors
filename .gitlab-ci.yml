@@ -9,7 +9,7 @@ test_auto_update:
     - apk update
     - apk upgrade
     - apk add --no-cache bash git grep coreutils curl
-    - curl -Lo /usr/local/bin/terraform-docs "https://github.com/$(curl -s https://github.com/segmentio/terraform-docs/releases | grep terraform-docs-v0.4.0-linux-amd | head -n 1 | cut -d '"' -f 2)"
+    - curl -Lo /usr/local/bin/terraform-docs "https://github.com/$(curl -s https://github.com/segmentio/terraform-docs/releases | grep terraform-docs-v0.6.0-linux-amd | head -n 1 | cut -d '"' -f 2)"
     - chmod +x /usr/local/bin/terraform-docs
     - ./scripts/auto_update.sh ./
     - git status

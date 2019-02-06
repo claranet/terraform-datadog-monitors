@@ -17,30 +17,29 @@ module "datadog-monitors-caas-kubernetes-ark" {
 Creates DataDog monitors with the following checks:
 
 - Ark backup failed
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| ark_schedules_enabled | Flag to enable Ark schedules monitor | string | `true` | no |
-| ark_schedules_extra_tags | Extra tags for Ark schedules monitor | list | `[]` | no |
-| ark_schedules_monitor_message | Custom message for Ark schedules monitor | string | `` | no |
-| ark_schedules_monitor_no_data_timeframe | No data timeframe in minutes | string | `1440` | no |
-| ark_schedules_monitor_silenced | Groups to mute for Ark schedules monitor | map | `{}` | no |
-| ark_schedules_monitor_timeframe | Monitor timeframe for Ark schedules monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_1d` | no |
-| environment | Architecture environment | string | - | yes |
-| evaluation_delay | Delay in seconds for the metric evaluation | string | `15` | no |
-| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
-| filter_tags_custom_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `` | no |
-| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
-| message | Message sent when a monitor is triggered | string | - | yes |
-| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
+| ark\_schedules\_enabled | Flag to enable Ark schedules monitor | string | `"true"` | no |
+| ark\_schedules\_extra\_tags | Extra tags for Ark schedules monitor | list | `[]` | no |
+| ark\_schedules\_monitor\_message | Custom message for Ark schedules monitor | string | `""` | no |
+| ark\_schedules\_monitor\_no\_data\_timeframe | No data timeframe in minutes | string | `"1440"` | no |
+| ark\_schedules\_monitor\_silenced | Groups to mute for Ark schedules monitor | map | `{}` | no |
+| ark\_schedules\_monitor\_timeframe | Monitor timeframe for Ark schedules monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1d"` | no |
+| environment | Architecture environment | string | n/a | yes |
+| evaluation\_delay | Delay in seconds for the metric evaluation | string | `"15"` | no |
+| filter\_tags\_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `"*"` | no |
+| filter\_tags\_custom\_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `""` | no |
+| filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
+| message | Message sent when a monitor is triggered | string | n/a | yes |
+| new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| ark_schedules_monitor_id | id for monitor ark_schedules_monitor |
+| ark\_schedules\_monitor\_id | id for monitor ark_schedules_monitor |
 
 Related documentation
 ---------------------

@@ -19,48 +19,47 @@ Creates DataDog monitors with the following checks:
 - ElasticSearch cluster CPU high
 - ElasticSearch cluster free storage space
 - ElasticSearch cluster status is not green
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| cpu_enabled | Flag to enable ES cluster cpu monitor | string | `true` | no |
-| cpu_extra_tags | Extra tags for ES cluster cpu monitor | list | `[]` | no |
-| cpu_message | Custom message for ES cluster cpu monitor | string | `` | no |
-| cpu_silenced | Groups to mute for ES cluster cpu monitor | map | `{}` | no |
-| cpu_threshold_critical | CPU usage in percent (critical threshold) | string | `90` | no |
-| cpu_threshold_warning | CPU usage in percent (warning threshold) | string | `80` | no |
-| cpu_time_aggregator | Monitor aggregator for ES cluster cpu [available values: min, max or avg] | string | `min` | no |
-| cpu_timeframe | Monitor timeframe for ES cluster cpu [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
-| diskspace_enabled | Flag to enable ES cluster diskspace monitor | string | `true` | no |
-| diskspace_extra_tags | Extra tags for ES cluster diskspace monitor | list | `[]` | no |
-| diskspace_message | Custom message for ES cluster diskspace monitor | string | `` | no |
-| diskspace_silenced | Groups to mute for ES cluster diskspace monitor | map | `{}` | no |
-| diskspace_threshold_critical | Disk free space in percent (critical threshold) | string | `10` | no |
-| diskspace_threshold_warning | Disk free space in percent (warning threshold) | string | `20` | no |
-| diskspace_time_aggregator | Monitor aggregator for ES cluster diskspace [available values: min, max or avg] | string | `max` | no |
-| diskspace_timeframe | Monitor timeframe for ES cluster diskspace [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_15m` | no |
-| environment | Architecture Environment | string | - | yes |
-| es_cluster_status_enabled | Flag to enable ES cluster status monitor | string | `true` | no |
-| es_cluster_status_extra_tags | Extra tags for ES cluster status monitor | list | `[]` | no |
-| es_cluster_status_message | Custom message for ES cluster status monitor | string | `` | no |
-| es_cluster_status_silenced | Groups to mute for ES cluster status monitor | map | `{}` | no |
-| es_cluster_status_timeframe | Monitor timeframe for ES cluster status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `last_30m` | no |
-| es_cluster_volume_size | ElasticSearch Domain volume size (in GB) | string | - | yes |
-| evaluation_delay | Delay in seconds for the metric evaluation | string | `900` | no |
-| filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `*` | no |
-| filter_tags_custom_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `` | no |
-| filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
-| message | Message sent when an alert is triggered | string | - | yes |
-| new_host_delay | Delay in seconds before monitor new resource | string | `300` | no |
+| cpu\_enabled | Flag to enable ES cluster cpu monitor | string | `"true"` | no |
+| cpu\_extra\_tags | Extra tags for ES cluster cpu monitor | list | `[]` | no |
+| cpu\_message | Custom message for ES cluster cpu monitor | string | `""` | no |
+| cpu\_silenced | Groups to mute for ES cluster cpu monitor | map | `{}` | no |
+| cpu\_threshold\_critical | CPU usage in percent (critical threshold) | string | `"90"` | no |
+| cpu\_threshold\_warning | CPU usage in percent (warning threshold) | string | `"80"` | no |
+| cpu\_time\_aggregator | Monitor aggregator for ES cluster cpu [available values: min, max or avg] | string | `"min"` | no |
+| cpu\_timeframe | Monitor timeframe for ES cluster cpu [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
+| diskspace\_enabled | Flag to enable ES cluster diskspace monitor | string | `"true"` | no |
+| diskspace\_extra\_tags | Extra tags for ES cluster diskspace monitor | list | `[]` | no |
+| diskspace\_message | Custom message for ES cluster diskspace monitor | string | `""` | no |
+| diskspace\_silenced | Groups to mute for ES cluster diskspace monitor | map | `{}` | no |
+| diskspace\_threshold\_critical | Disk free space in percent (critical threshold) | string | `"10"` | no |
+| diskspace\_threshold\_warning | Disk free space in percent (warning threshold) | string | `"20"` | no |
+| diskspace\_time\_aggregator | Monitor aggregator for ES cluster diskspace [available values: min, max or avg] | string | `"max"` | no |
+| diskspace\_timeframe | Monitor timeframe for ES cluster diskspace [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
+| environment | Architecture Environment | string | n/a | yes |
+| es\_cluster\_status\_enabled | Flag to enable ES cluster status monitor | string | `"true"` | no |
+| es\_cluster\_status\_extra\_tags | Extra tags for ES cluster status monitor | list | `[]` | no |
+| es\_cluster\_status\_message | Custom message for ES cluster status monitor | string | `""` | no |
+| es\_cluster\_status\_silenced | Groups to mute for ES cluster status monitor | map | `{}` | no |
+| es\_cluster\_status\_timeframe | Monitor timeframe for ES cluster status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_30m"` | no |
+| es\_cluster\_volume\_size | ElasticSearch Domain volume size (in GB) | string | n/a | yes |
+| evaluation\_delay | Delay in seconds for the metric evaluation | string | `"900"` | no |
+| filter\_tags\_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `"*"` | no |
+| filter\_tags\_custom\_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `""` | no |
+| filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
+| message | Message sent when an alert is triggered | string | n/a | yes |
+| new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| es_cluster_status_id | id for monitor es_cluster_status |
-| es_cpu_90_15min_id | id for monitor es_cpu_90_15min |
-| es_free_space_low_id | id for monitor es_free_space_low |
+| es\_cluster\_status\_id | id for monitor es_cluster_status |
+| es\_cpu\_90\_15min\_id | id for monitor es_cpu_90_15min |
+| es\_free\_space\_low\_id | id for monitor es_free_space_low |
 
 ## Related documentation
 
