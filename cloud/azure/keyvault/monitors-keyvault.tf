@@ -72,7 +72,7 @@ resource "datadog_monitor" "keyvault_api_latency" {
 
   query = <<EOF
       ${var.api_latency_time_aggregator}(${var.api_latency_timeframe}):
-        avg:azure.keyvault_vaults.service_api_latency${module.filter-tags.query_alert} by {name,resource_group,region}
+        avg:azure.keyvault_vaults.service_api_latency${module.filter-tags-activity.query_alert} by {name,resource_group,region}
         > ${var.api_latency_threshold_critical}
   EOF
 
