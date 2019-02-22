@@ -77,6 +77,7 @@ The `//` is very important, it's a terraform specific syntax used to separate gi
 	- [kubernetes](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/)
 		- [ark](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/ark/)
 		- [ingress](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/ingress/)
+			- [last](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/ingress/last/)
 			- [vts](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/ingress/vts/)
 - [cloud](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/)
 	- [aws](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/aws/)

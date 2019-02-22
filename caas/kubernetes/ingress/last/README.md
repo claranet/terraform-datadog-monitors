@@ -1,10 +1,10 @@
-# CAAS KUBERNETES INGRESS VTS DataDog monitors
+# CAAS KUBERNETES INGRESS LAST DataDog monitors
 
 ## How to use this module
 
 ```
-module "datadog-monitors-caas-kubernetes-ingress-vts" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors.git//caas/kubernetes/ingress/vts?ref={revision}"
+module "datadog-monitors-caas-kubernetes-ingress-last" {
+  source = "git::ssh://git@git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors.git//caas/kubernetes/ingress/last?ref={revision}"
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
@@ -16,9 +16,8 @@ module "datadog-monitors-caas-kubernetes-ingress-vts" {
 
 Creates DataDog monitors with the following checks:
 
-- Nginx Ingress VTS 4xx errors
-- Nginx Ingress VTS 5xx errors
-
+- Nginx Ingress 4xx errors
+- Nginx Ingress 5xx errors
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -55,16 +54,15 @@ Creates DataDog monitors with the following checks:
 | nginx\_ingress\_too\_many\_4xx\_id | id for monitor nginx_ingress_too_many_4xx |
 | nginx\_ingress\_too\_many\_5xx\_id | id for monitor nginx_ingress_too_many_5xx |
 
-## Related documentation
+Related documentation
+---------------------
 
 DataDog blog: https://www.datadoghq.com/blog/monitor-prometheus-metrics
-https://github.com/kubernetes/ingress-nginx/pull/423/commits/1d38e3a38425f08de2f75fcae13896a3fec4d144
+https://github.com/kubernetes/ingress-nginx/issues/2924
 
-## Nginx Ingress Controller setup
-
-This configuration and monitors only work for ingress controller version :
-- \>= 0.10 because ingress is beta before that and metrics naming convention not stable
-- <= 0.15 because ingress does not use VTS metrics since 0.16
+Nginx Ingress Controller setup
+------------------------------
+This configuration and monitors only work for ingress controller version >= 0.16
 Enable the following flags in the Nginx Ingress Controller chart
 controller.stats.enabled=true,controller.metrics.enabled=true
 and the following Datadog agent configuration for each ingress controller:
@@ -72,8 +70,6 @@ and the following Datadog agent configuration for each ingress controller:
 datadog:
   confd:
     prometheus.yaml: |-
-      #nginx_upstream_responses_total{ingress_class,namespace,server,status_code:{1xx,2xx,3xx,4xx,5xx},upstream}
-      #nginx_upstream_requests_total{ingress_class,namespace,server,upstream}
       init_config:
       instances:
         # The prometheus endpoint to query from
@@ -82,8 +78,7 @@ datadog:
           namespace: nginx-ingress
           # Filter on the following metrics only
           metrics:
-            - "nginx_upstream_requests_total"
-            - "nginx_upstream_responses_total"
+            - "nginx_ingress.nginx_ingress_controller_requests"
           # Adapt the tags to the current convention and verify that the monitor will match
           tags:
               - dd_monitoring:enabled

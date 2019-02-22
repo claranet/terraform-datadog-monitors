@@ -1,6 +1,6 @@
 resource "datadog_monitor" "nginx_ingress_too_many_5xx" {
   count   = "${var.ingress_5xx_enabled ? 1 : 0}"
-  name    = "[${var.environment}] Nginx Ingress 5xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Nginx Ingress VTS 5xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.ingress_5xx_message, var.message)}"
 
   query = <<EOF
@@ -29,12 +29,12 @@ resource "datadog_monitor" "nginx_ingress_too_many_5xx" {
 
   silenced = "${var.ingress_5xx_silenced}"
 
-  tags = ["env:${var.environment}", "type:caas", "provider:prometheus", "resource:nginx-ingress-controller", "team:claranet", "created-by:terraform", "${var.ingress_5xx_extra_tags}"]
+  tags = ["env:${var.environment}", "type:caas", "provider:prometheus", "resource:nginx-ingress-controller-vts", "team:claranet", "created-by:terraform", "${var.ingress_5xx_extra_tags}"]
 }
 
 resource "datadog_monitor" "nginx_ingress_too_many_4xx" {
   count   = "${var.ingress_4xx_enabled ? 1 : 0}"
-  name    = "[${var.environment}] Nginx Ingress 4xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Nginx Ingress VTS 4xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.ingress_4xx_message, var.message)}"
 
   query = <<EOF
@@ -63,5 +63,5 @@ resource "datadog_monitor" "nginx_ingress_too_many_4xx" {
 
   silenced = "${var.ingress_4xx_silenced}"
 
-  tags = ["env:${var.environment}", "type:caas", "provider:prometheus", "resource:nginx-ingress-controller", "team:claranet", "created-by:terraform", "${var.ingress_4xx_extra_tags}"]
+  tags = ["env:${var.environment}", "type:caas", "provider:prometheus", "resource:nginx-ingress-controller-vts", "team:claranet", "created-by:terraform", "${var.ingress_4xx_extra_tags}"]
 }
