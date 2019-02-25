@@ -237,7 +237,7 @@ resource "datadog_monitor" "nginx_ingress_too_many_4xx" {
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-496.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-497.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-498.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-499.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
+      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-499.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) ) /
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags.query_alert} by {ingress,namespace,controller_class}.as_rate()
       , 1) * 100 , 0 ) > ${var.ingress_4xx_threshold_critical}
   EOF
