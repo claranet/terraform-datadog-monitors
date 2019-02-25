@@ -31,20 +31,20 @@ resource "datadog_monitor" "mysql_cpu_usage" {
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:mysql", "team:claranet", "created-by:terraform", "${var.cpu_usage_extra_tags}"]
 }
 
-resource "datadog_monitor" "mysql_no_connection" {
-  count   = "${var.no_connection_enabled ? 1 : 0}"
-  name    = "[${var.environment}] Mysql Server has no connection"
-  message = "${coalesce(var.no_connection_message, var.message)}"
+resource "datadog_monitor" "mysql_total_connection" {
+  count   = "${var.total_connection_enabled ? 1 : 0}"
+  name    = "[${var.environment}] Mysql Server total connection reach 80 percent of the total limit"
+  message = "${coalesce(var.total_connection_message, var.message)}"
 
   query = <<EOF
-    ${var.no_connection_time_aggregator}(${var.no_connection_timeframe}): (
+    ${var.total_connection_time_aggregator}(${var.total_connection_timeframe}): (
       avg:azure.dbformysql_servers.active_connections${module.filter-tags.query_alert} by {resource_group,region,name}
-    ) < 1
+    ) > (${var.total_connection_limit} * 0.8)
   EOF
 
   type = "metric alert"
 
-  silenced = "${var.no_connection_silenced}"
+  silenced = "${var.total_connection_silenced}"
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -56,7 +56,7 @@ resource "datadog_monitor" "mysql_no_connection" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:mysql", "team:claranet", "created-by:terraform", "${var.no_connection_extra_tags}"]
+  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:mysql", "team:claranet", "created-by:terraform", "${var.total_connection_extra_tags}"]
 }
 
 resource "datadog_monitor" "mysql_free_storage" {
