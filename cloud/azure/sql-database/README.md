@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - SQL Database DTU Consumption too high
 - SQL Database is down
 - SQL Database low free space
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

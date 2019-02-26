@@ -17,6 +17,7 @@ module "datadog-monitors-middleware-apache" {
 Creates DataDog monitors with the following checks:
 
 - Apache vhost status does not respond
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

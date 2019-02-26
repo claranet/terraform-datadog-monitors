@@ -17,6 +17,7 @@ module "datadog-monitors-cloud-aws-vpn" {
 Creates DataDog monitors with the following checks:
 
 - VPN tunnel down
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

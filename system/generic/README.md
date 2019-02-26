@@ -8,6 +8,8 @@ module "datadog-monitors-system-generic" {
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
+
+  free_memory_message = "${module.datadog-message-alerting.alerting-message-bh-only}"
 }
 
 ```
@@ -22,6 +24,7 @@ Creates DataDog monitors with the following checks:
 - Free disk inodes
 - Free disk space
 - Free memory
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

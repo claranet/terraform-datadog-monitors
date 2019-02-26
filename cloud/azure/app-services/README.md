@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - App Services HTTP successful responses too low
 - App Services memory usage
 - App Services response time too high
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

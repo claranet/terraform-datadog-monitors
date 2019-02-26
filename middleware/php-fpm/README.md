@@ -18,6 +18,7 @@ Creates DataDog monitors with the following checks:
 
 - Php-fpm busy worker
 - Php-fpm ping url does not respond
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

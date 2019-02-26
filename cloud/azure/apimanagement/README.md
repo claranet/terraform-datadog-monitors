@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - API Management too many failed requests
 - API Management too many other requests
 - API Management too many unauthorized requests
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

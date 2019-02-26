@@ -17,6 +17,7 @@ module "datadog-monitors-caas-kubernetes-ark" {
 Creates DataDog monitors with the following checks:
 
 - Ark backup failed
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -41,14 +42,13 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | ark\_schedules\_monitor\_id | id for monitor ark_schedules_monitor |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog blog: https://www.datadoghq.com/blog/monitor-prometheus-metrics
 Heptio Ark minimum release: https://github.com/heptio/ark/releases/tag/v0.9.0
 
-Ark annotations for Datadog
----------------------------
+## Ark annotations for Datadog
+
 ```
 apiVersion: apps/v1beta1
 kind: Deployment

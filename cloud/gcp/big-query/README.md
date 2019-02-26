@@ -25,6 +25,7 @@ Creates DataDog monitors with the following checks:
 - GCP Big Query Table Count
 - GCP Big Query Uploaded Bytes Billed
 - GCP Big Query Uploaded Bytes
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

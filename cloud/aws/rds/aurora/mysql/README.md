@@ -17,6 +17,7 @@ module "datadog-monitors-cloud-aws-rds-aurora-mysql" {
 Creates DataDog monitors with the following checks:
 
 - RDS Aurora Mysql replica lag
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
