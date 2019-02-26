@@ -1,0 +1,222 @@
+variable "environment" {
+  description = "Architecture environment"
+  type        = "string"
+}
+
+variable "filter_tags_use_defaults" {
+  description = "Use default filter tags convention"
+  default     = "true"
+}
+
+variable "filter_tags_custom" {
+  description = "Tags used for custom filtering when filter_tags_use_defaults is false"
+  default     = "*"
+}
+
+variable "filter_tags_custom_excluded" {
+  description = "Tags excluded for custom filtering when filter_tags_use_defaults is false"
+  default     = ""
+}
+
+variable "message" {
+  description = "Message sent when a monitor is triggered"
+}
+
+variable "evaluation_delay" {
+  description = "Delay in seconds for the metric evaluation"
+  default     = 900
+}
+
+variable "new_host_delay" {
+  description = "Delay in seconds before monitor new resource"
+  default     = 300
+}
+
+variable "functions_max_scale_count" {
+  description = "Maximum number of Function instances"
+}
+
+# Azure Function App specific variables
+variable "http_5xx_errors_rate_silenced" {
+  description = "Groups to mute for Functions Http 5xx errors rate monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "http_5xx_errors_rate_enabled" {
+  description = "Flag to enable Functions Http 5xx errors rate monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "http_5xx_errors_rate_extra_tags" {
+  description = "Extra tags for Functions Http 5xx errors rate monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "http_5xx_errors_rate_message" {
+  description = "Custom message for Functions Http 5xx errors rate monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "http_5xx_errors_rate_time_aggregator" {
+  description = "Monitor aggregator for Functions Http 5xx errors rate [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "http_5xx_errors_rate_timeframe" {
+  description = "Monitor timeframe for Functions Http 5xx errors rate [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "http_5xx_errors_rate_threshold_critical" {
+  default     = 20
+  description = "Alerting threshold for Functions Http 5xx errors rate"
+}
+
+variable "http_5xx_errors_rate_threshold_warning" {
+  default     = 10
+  description = "Warning threshold for Functions Http 5xx errors rate"
+}
+
+variable "high_connections_count_silenced" {
+  description = "Groups to mute for Functions high connections count monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "high_connections_count_enabled" {
+  description = "Flag to enable Functions high connections count monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "high_connections_count_extra_tags" {
+  description = "Extra tags for Functions high connections count monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "high_connections_count_message" {
+  description = "Custom message for Functions high connections count monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "high_connections_count_time_aggregator" {
+  description = "Monitor aggregator for Functions high connections count [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "high_connections_count_timeframe" {
+  description = "Monitor timeframe for Functions high connections count [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "high_connections_count_threshold_critical" {
+  default     = 290
+  description = "Alerting threshold for Functions high connections count"
+}
+
+variable "high_connections_count_threshold_warning" {
+  default     = 250
+  description = "Warning threshold for Functions high connections count"
+}
+
+variable "high_threads_count_silenced" {
+  description = "Groups to mute for Functions high threads count monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "high_threads_count_enabled" {
+  description = "Flag to enable Functions high threads count monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "high_threads_count_extra_tags" {
+  description = "Extra tags for Functions high threads count monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "high_threads_count_message" {
+  description = "Custom message for Functions high threads count monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "high_threads_count_time_aggregator" {
+  description = "Monitor aggregator for Functions high threads count [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "high_threads_count_timeframe" {
+  description = "Monitor timeframe for Functions high threads count [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "high_threads_count_threshold_critical" {
+  default     = 510
+  description = "Alerting threshold for Functions high threads count"
+}
+
+variable "high_threads_count_threshold_warning" {
+  default     = 490
+  description = "Warning threshold for Functions high threads count"
+}
+
+variable "memory_usage_silenced" {
+  description = "Groups to mute for Functions memory usage monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "memory_usage_enabled" {
+  description = "Flag to enable Functions memory usage monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "memory_usage_extra_tags" {
+  description = "Extra tags for Functions memory usage monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "memory_usage_message" {
+  description = "Custom message for Functions memory usage monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "memory_usage_time_aggregator" {
+  description = "Monitor aggregator for Functions memory usage [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "memory_usage_timeframe" {
+  description = "Monitor timeframe for Functions memory usage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "memory_usage_threshold_critical" {
+  default     = 125829120                                                # 120Mb
+  description = "Alerting threshold for Functions memory usage in bytes"
+}
+
+variable "memory_usage_threshold_warning" {
+  default     = 104857600                                               # 100Mb 
+  description = "Warning threshold for Functions memory usage in bytes"
+}
