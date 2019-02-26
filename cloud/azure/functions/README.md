@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - Function App HTTP 5xx errors too high
 - Function App memory usage too high
 - Function App threads count too high
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
