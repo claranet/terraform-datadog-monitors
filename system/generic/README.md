@@ -8,6 +8,8 @@ module "datadog-monitors-system-generic" {
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
+
+  free_memory_message = "${module.datadog-message-alerting.alerting-message-bh-only}"
 }
 
 ```
