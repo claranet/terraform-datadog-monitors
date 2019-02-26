@@ -63,7 +63,7 @@ https://github.com/kubernetes/ingress-nginx/pull/423/commits/1d38e3a38425f08de2f
 ## Nginx Ingress Controller setup
 
 This configuration and monitors only work for ingress controller version :
-- >= 0.10 because ingress is beta before that and metrics naming convention not stable
+- \>= 0.10 because ingress is beta before that and metrics naming convention not stable
 - <= 0.15 because ingress does not use VTS metrics since 0.16
 Enable the following flags in the Nginx Ingress Controller chart
 controller.stats.enabled=true,controller.metrics.enabled=true
