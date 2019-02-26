@@ -18,6 +18,7 @@ Creates DataDog monitors with the following checks:
 
 - Nginx Ingress 4xx errors
 - Nginx Ingress 5xx errors
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -54,16 +55,15 @@ Creates DataDog monitors with the following checks:
 | nginx\_ingress\_too\_many\_4xx\_id | id for monitor nginx_ingress_too_many_4xx |
 | nginx\_ingress\_too\_many\_5xx\_id | id for monitor nginx_ingress_too_many_5xx |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog blog: https://www.datadoghq.com/blog/monitor-prometheus-metrics
 https://github.com/kubernetes/ingress-nginx/pull/423/commits/1d38e3a38425f08de2f75fcae13896a3fec4d144
 
-Nginx Ingress Controller setup
-------------------------------
+## Nginx Ingress Controller setup
+
 This configuration and monitors only work for ingress controller version :
-- >= 0.10 because ingress is beta before that and metrics naming convention not stable
+- \>= 0.10 because ingress is beta before that and metrics naming convention not stable
 - <= 0.15 because ingress does not use VTS metrics since 0.16
 Enable the following flags in the Nginx Ingress Controller chart
 controller.stats.enabled=true,controller.metrics.enabled=true

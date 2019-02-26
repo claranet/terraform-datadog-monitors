@@ -8,6 +8,8 @@ module "datadog-monitors-cloud-aws-elasticsearch" {
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
+
+  es_cluster_volume_size = 42
 }
 
 ```
@@ -19,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - ElasticSearch cluster CPU high
 - ElasticSearch cluster free storage space
 - ElasticSearch cluster status is not green
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

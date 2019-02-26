@@ -25,6 +25,7 @@ Creates DataDog monitors with the following checks:
 - Azure Storage too many server_other errors
 - Azure Storage too many throttling errors
 - Azure Storage too many timeout errors
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

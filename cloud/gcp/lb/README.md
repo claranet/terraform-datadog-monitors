@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - GCP LB bucket backend latency
 - GCP LB Requests count increased abruptly
 - GCP LB service backend latency
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

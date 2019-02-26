@@ -20,6 +20,7 @@ Creates DataDog monitors with the following checks:
 - MongoDB replication lag
 - MongoDB secondary missing
 - MongoDB too much servers or wrong monitoring config
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

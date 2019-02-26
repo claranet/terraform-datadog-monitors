@@ -18,6 +18,7 @@ Creates DataDog monitors with the following checks:
 
 - Nginx dropped connections
 - Nginx vhost status does not respond
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
