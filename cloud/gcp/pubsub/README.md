@@ -18,6 +18,7 @@ Creates DataDog monitors with the following checks:
 
 - GCP pubsub sending messages operations
 - GCP pubsub sending messages with result unavailable
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

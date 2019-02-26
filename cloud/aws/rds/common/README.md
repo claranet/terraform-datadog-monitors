@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 - RDS instance CPU high
 - RDS instance free space
 - RDS replica lag
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

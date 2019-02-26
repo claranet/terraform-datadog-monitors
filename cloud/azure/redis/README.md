@@ -20,6 +20,7 @@ Creates DataDog monitors with the following checks:
 - Redis processor time too high
 - Redis server load too high
 - Redis too many evictedkeys
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

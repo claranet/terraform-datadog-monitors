@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - Elasticache free memory
 - Elasticache max connections reached
 - Elasticache swap
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

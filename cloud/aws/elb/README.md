@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - ELB backend 5xx errors too high
 - ELB healthy instances
 - ELB latency too high
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

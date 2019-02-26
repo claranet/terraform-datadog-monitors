@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 - Key Vault API latency is high
 - Key Vault API result rate is low
 - Key Vault is down
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Mysql Server IO consumption
 - Mysql Server memory usage
 - Mysql Server storage
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

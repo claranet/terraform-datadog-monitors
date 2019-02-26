@@ -24,6 +24,7 @@ Creates DataDog monitors with the following checks:
 - Mysql server does not respond
 - Mysql Slow queries
 - Mysql threads changed abnormally
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

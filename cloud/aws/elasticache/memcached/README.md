@@ -18,6 +18,7 @@ Creates DataDog monitors with the following checks:
 
 - Elasticache memcached cache hit ratio
 - Elasticache memcached CPU
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

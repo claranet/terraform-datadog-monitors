@@ -38,6 +38,7 @@ Creates DataDog monitors with the following checks:
 - Elasticsearch JVM memory Old usage
 - Elasticsearch JVM memory Young usage
 - Elasticsearch number of current open HTTP connections anomaly detected
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

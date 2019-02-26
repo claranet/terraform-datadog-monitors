@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 - PostgreSQL Connections
 - PostgreSQL server does not respond
 - PostgreSQL too many locks
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

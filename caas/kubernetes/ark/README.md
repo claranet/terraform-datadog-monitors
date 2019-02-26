@@ -17,6 +17,7 @@ module "datadog-monitors-caas-kubernetes-ark" {
 Creates DataDog monitors with the following checks:
 
 - Ark backup failed
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

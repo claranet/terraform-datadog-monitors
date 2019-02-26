@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - Free disk inodes
 - Free disk space
 - Free memory
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
