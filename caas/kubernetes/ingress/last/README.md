@@ -18,6 +18,7 @@ Creates DataDog monitors with the following checks:
 
 - Nginx Ingress 4xx errors
 - Nginx Ingress 5xx errors
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
