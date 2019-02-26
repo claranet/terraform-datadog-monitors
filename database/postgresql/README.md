@@ -62,7 +62,6 @@ Creates DataDog monitors with the following checks:
 | postgresql\_connection\_too\_high\_id | id for monitor postgresql_connection_too_high |
 | postgresql\_too\_many\_locks\_id | id for monitor postgresql_too_many_locks |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/postgres/](https://docs.datadoghq.com/integrations/postgres/)

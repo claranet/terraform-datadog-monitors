@@ -62,8 +62,7 @@ Creates DataDog monitors with the following checks:
 | keyvault\_api\_result\_id | id for monitor keyvault_api_result |
 | keyvault\_status\_id | id for monitor keyvault_status |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation : [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)  
 You must search `keyvault`, there is no integration for now.
