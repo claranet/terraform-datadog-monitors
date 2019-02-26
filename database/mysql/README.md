@@ -127,3 +127,8 @@ Creates DataDog monitors with the following checks:
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/mysql/](https://docs.datadoghq.com/integrations/mysql/)
+
+## Notes
+
+It could be not possible to modify `innodb_buffer_pool_size` or `innodb_buffer_pool_instances` mysql parameters (i.e. cloudsql).
+In this case, InnoDB Pool monitors could be less useful for optimization even if they could inform when an instance should be upsized.
