@@ -38,7 +38,7 @@ resource "datadog_monitor" "mysql_total_connection" {
 
   query = <<EOF
     ${var.total_connection_time_aggregator}(${var.total_connection_timeframe}): (
-      avg:azure.dbformysql_servers.active_connections${module.filter-tags.query_alert} by {resource_group,region,name}) / ${var.total_connection_limit}
+      avg:azure.dbformysql_servers.active_connections${module.filter-tags.query_alert} by {resource_group,region,name} / ${var.total_connection_limit}
     ) * 100 > 80
   EOF
 
