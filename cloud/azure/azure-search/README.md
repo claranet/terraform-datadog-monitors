@@ -18,6 +18,7 @@ Creates DataDog monitors with the following checks:
 
 - Azure Search latency too high
 - Azure Search throttled queries rate is too high
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
