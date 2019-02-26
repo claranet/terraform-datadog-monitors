@@ -89,8 +89,7 @@ Creates DataDog monitors with the following checks:
 | elasticache\_no\_connection\_id | id for monitor elasticache_no_connection |
 | elasticache\_swap\_id | id for monitor elasticache_swap |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_elasticache/](https://docs.datadoghq.com/integrations/amazon_elasticache/)
 

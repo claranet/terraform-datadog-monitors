@@ -72,8 +72,7 @@ Creates DataDog monitors with the following checks:
 | cosmos\_db\_scaling\_id | id for monitor cosmos_db_scaling |
 | cosmos\_db\_status\_id | id for monitor cosmos_db_status |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation : [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)  
 You must search `cosmosdb`, there is no integration for now.

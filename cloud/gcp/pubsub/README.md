@@ -51,8 +51,7 @@ Creates DataDog monitors with the following checks:
 | sending\_operations\_count\_id | id for monitor sending_operations_count |
 | unavailable\_sending\_operations\_count\_id | id for monitor unavailable_sending_operations_count |
 
-Related documentation
-------------
+## Related documentation
 
 * [GCP Pub/Sub Metrics](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-pubsub)
 * [Datadog GCP Pub/Sub integration](https://docs.datadoghq.com/integrations/google_cloud_pubsub/)

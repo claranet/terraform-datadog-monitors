@@ -81,8 +81,7 @@ Creates DataDog monitors with the following checks:
 | postgresql\_memory\_usage\_id | id for monitor postgresql_memory_usage |
 | postgresql\_no\_connection\_id | id for monitor postgresql_no_connection |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)
 You have to search `mysql`

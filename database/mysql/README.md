@@ -124,7 +124,6 @@ Creates DataDog monitors with the following checks:
 | mysql\_slow\_id | id for monitor mysql_slow |
 | mysql\_threads\_anomaly\_id | id for monitor mysql_threads_anomaly |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/mysql/](https://docs.datadoghq.com/integrations/mysql/)

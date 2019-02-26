@@ -42,8 +42,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | datalakestore\_status\_id | id for monitor datalakestore_status |
 
-Related documentation
----------------------
+## Related documentation
 
 DataDog documentation : [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)  
 You must search `datalake`, there is no integration for now.
