@@ -8,6 +8,8 @@ module "datadog-monitors-cloud-aws-elasticsearch" {
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
+
+  es_cluster_volume_size = 42
 }
 
 ```
