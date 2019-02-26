@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - ALB latency
 - ALB target HTTP code 4xx
 - ALB target HTTP code 5xx
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

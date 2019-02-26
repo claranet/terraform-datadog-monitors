@@ -20,6 +20,7 @@ Creates DataDog monitors with the following checks:
 - Service Bus is down
 - Service Bus server errors rate is high
 - Service Bus user errors rate is high
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

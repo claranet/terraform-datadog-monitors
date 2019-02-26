@@ -17,6 +17,7 @@ module "datadog-monitors-system-unreachable" {
 Creates DataDog monitors with the following checks:
 
 - Host unreachable
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

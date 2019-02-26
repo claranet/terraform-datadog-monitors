@@ -20,6 +20,7 @@ Creates DataDog monitors with the following checks:
 - Cosmos DB 5xx requests rate is high
 - Cosmos DB is down
 - Cosmos DB max scaling reached for collection
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

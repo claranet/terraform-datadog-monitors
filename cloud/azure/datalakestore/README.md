@@ -17,6 +17,7 @@ module "datadog-monitors-cloud-azure-datalakestore" {
 Creates DataDog monitors with the following checks:
 
 - Datalake Store is down
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

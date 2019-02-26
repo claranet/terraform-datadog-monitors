@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 - ElasticSearch cluster CPU high
 - ElasticSearch cluster free storage space
 - ElasticSearch cluster status is not green
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

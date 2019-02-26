@@ -20,6 +20,7 @@ Creates DataDog monitors with the following checks:
 - Elasticache redis CPU
 - Elasticache redis is receiving no commands
 - Elasticache redis replication lag
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

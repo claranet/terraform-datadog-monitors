@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Postgresql Server IO consumption
 - Postgresql Server memory usage
 - Postgresql Server storage
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

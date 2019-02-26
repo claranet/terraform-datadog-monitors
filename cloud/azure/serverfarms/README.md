@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 - Serverfarm CPU percentage is too high
 - Serverfarm is down
 - Serverfarm memory percentage is too high
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

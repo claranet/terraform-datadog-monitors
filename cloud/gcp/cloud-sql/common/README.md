@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - Cloud SQL Failover Unavailable
 - Cloud SQL Memory Utilization forecast
 - Cloud SQL Memory Utilization
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

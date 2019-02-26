@@ -30,6 +30,7 @@ Creates DataDog monitors with the following checks:
 - IOT Hub Too many list_jobs failure
 - IOT Hub Too many query_jobs failed
 - IOT Hub Total devices is wrong
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

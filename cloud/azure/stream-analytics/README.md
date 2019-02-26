@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Stream Analytics too many conversion errors
 - Stream Analytics too many failed requests
 - Stream Analytics too many runtime errors
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

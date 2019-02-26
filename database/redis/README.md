@@ -26,6 +26,7 @@ Creates DataDog monitors with the following checks:
 - Redis memory fragmented
 - Redis memory used
 - Redis rejected connections
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

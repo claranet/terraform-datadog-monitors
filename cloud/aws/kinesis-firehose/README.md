@@ -17,6 +17,7 @@ module "datadog-monitors-cloud-aws-kinesis-firehose" {
 Creates DataDog monitors with the following checks:
 
 - Kinesis Firehose No incoming records
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

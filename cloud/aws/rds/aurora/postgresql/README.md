@@ -17,6 +17,7 @@ module "datadog-monitors-cloud-aws-rds-aurora-postgresql" {
 Creates DataDog monitors with the following checks:
 
 - RDS Aurora PostgreSQL replica lag
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
