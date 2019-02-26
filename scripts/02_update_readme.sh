@@ -90,6 +90,7 @@ EOF
         echo "- ${name/could reach/forecast}" >> README.md
     done
     IFS=$SAVEIFS
+    echo >> README.md
     # auto generate terraform docs (inputs and outputs)
     terraform-docs --with-aggregate-type-defaults md table ./ >> README.md
     # if README does not exist
