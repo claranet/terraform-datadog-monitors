@@ -17,14 +17,6 @@ resource "datadog_monitor" "nginx_ingress_too_many_5xx" {
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-509.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-510.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-511.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-512.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-513.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-514.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-515.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-516.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-517.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-518.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-519.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-520.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-521.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-522.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
@@ -33,76 +25,7 @@ resource "datadog_monitor" "nginx_ingress_too_many_5xx" {
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-525.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-526.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-527.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-528.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-529.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-530.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-531.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-532.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-533.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-534.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-535.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-536.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-537.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-538.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-539.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-540.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-541.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-542.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-543.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-544.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-545.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-546.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-547.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-548.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-549.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-550.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-551.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-552.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-553.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-554.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-555.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-556.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-557.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-558.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-559.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-560.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-561.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-562.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-563.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-564.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-565.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-566.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-567.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-568.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-569.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-570.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-571.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-572.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-573.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-574.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-575.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-576.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-577.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-578.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-579.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-580.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-581.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-582.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-583.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-584.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-585.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-586.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-587.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-588.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-589.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-590.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-591.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-592.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-593.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-594.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-595.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-596.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-597.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-598.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-599.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) ) /
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags.query_alert} by {ingress,namespace,controller_class}.as_rate()
@@ -170,68 +93,11 @@ resource "datadog_monitor" "nginx_ingress_too_many_4xx" {
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-429.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-430.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-431.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-432.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-433.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-434.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-435.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-436.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-437.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-438.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-439.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-440.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-441.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-442.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-443.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-444.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-445.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-446.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-447.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-448.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-449.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-450.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-451.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-452.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-453.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-454.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-455.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-456.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-457.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-458.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-459.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-460.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-461.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-462.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-463.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-464.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-465.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-466.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-467.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-468.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-469.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-470.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-471.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-472.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-473.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-474.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-475.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-476.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-477.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-478.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-479.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-480.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-481.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-482.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-483.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-484.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-485.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-486.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-487.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-488.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-489.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-490.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-491.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-492.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
-      default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-493.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-494.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-495.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
       default(sum:nginx_ingress.nginx_ingress_controller_requests${module.filter-tags-496.query_alert} by {ingress,namespace,controller_class}.as_rate(), 0) +
