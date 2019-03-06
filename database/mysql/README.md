@@ -61,16 +61,16 @@ Creates DataDog monitors with the following checks:
 | mysql\_pool\_efficiency\_extra\_tags | Extra tags for MySQL innodb buffer pool efficiency monitor | list | `[]` | no |
 | mysql\_pool\_efficiency\_message | Custom message for MySQL innodb buffer pool efficiency monitor | string | `""` | no |
 | mysql\_pool\_efficiency\_silenced | Groups to mute for MySQL innodb buffer pool efficiency monitor | map | `{}` | no |
-| mysql\_pool\_efficiency\_threshold\_critical | Maximum critical acceptable percent of innodb buffer pool efficiency | string | `"20"` | no |
-| mysql\_pool\_efficiency\_threshold\_warning | Maximum warning acceptable percent of innodb buffer pool efficiency | string | `"1"` | no |
-| mysql\_pool\_efficiency\_time\_aggregator | Monitor time aggregator for MySQL innodb buffer pool efficiency monitor [available values: min, max or avg] | string | `"sum"` | no |
-| mysql\_pool\_efficiency\_timeframe | Monitor timeframe for MySQL innodb buffer pool efficiency monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1h"` | no |
+| mysql\_pool\_efficiency\_threshold\_critical | Maximum critical acceptable percent of innodb buffer pool efficiency | string | `"30"` | no |
+| mysql\_pool\_efficiency\_threshold\_warning | Maximum warning acceptable percent of innodb buffer pool efficiency | string | `"20"` | no |
+| mysql\_pool\_efficiency\_time\_aggregator | Monitor time aggregator for MySQL innodb buffer pool efficiency monitor [available values: min, max or avg] | string | `"min"` | no |
+| mysql\_pool\_efficiency\_timeframe | Monitor timeframe for MySQL innodb buffer pool efficiency monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_4h"` | no |
 | mysql\_pool\_utilization\_enabled | Flag to enable MySQL innodb buffer pool utilization monitor | string | `"true"` | no |
 | mysql\_pool\_utilization\_extra\_tags | Extra tags for MySQL innodb buffer pool utilization monitor | list | `[]` | no |
 | mysql\_pool\_utilization\_message | Custom message for MySQL innodb buffer pool utilization monitor | string | `""` | no |
 | mysql\_pool\_utilization\_silenced | Groups to mute for MySQL innodb buffer pool utilization monitor | map | `{}` | no |
-| mysql\_pool\_utilization\_threshold\_critical | Maximum critical acceptable percent of innodb buffer pool utilization | string | `"90"` | no |
-| mysql\_pool\_utilization\_threshold\_warning | Maximum warning acceptable percent of innodb buffer pool utilization | string | `"75"` | no |
+| mysql\_pool\_utilization\_threshold\_critical | Maximum critical acceptable percent of innodb buffer pool utilization | string | `"95"` | no |
+| mysql\_pool\_utilization\_threshold\_warning | Maximum warning acceptable percent of innodb buffer pool utilization | string | `"80"` | no |
 | mysql\_pool\_utilization\_time\_aggregator | Monitor time aggregator for MySQL innodb buffer pool utilization monitor [available values: min, max or avg] | string | `"min"` | no |
 | mysql\_pool\_utilization\_timeframe | Monitor timeframe for MySQL innodb buffer pool utilization monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_4h"` | no |
 | mysql\_queries\_alert\_window | Alert window. | string | `"last_15m"` | no |
@@ -127,3 +127,8 @@ Creates DataDog monitors with the following checks:
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/mysql/](https://docs.datadoghq.com/integrations/mysql/)
+
+## Notes
+
+It could be not possible to modify `innodb_buffer_pool_size` or `innodb_buffer_pool_instances` mysql parameters (i.e. cloudsql).
+In this case, InnoDB Pool monitors could be less useful for optimization even if they could inform when an instance should be upsized.

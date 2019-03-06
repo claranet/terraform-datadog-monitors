@@ -253,25 +253,25 @@ variable "mysql_pool_efficiency_message" {
 }
 
 variable "mysql_pool_efficiency_threshold_critical" {
-  default     = 20
+  default     = 30
   description = "Maximum critical acceptable percent of innodb buffer pool efficiency"
 }
 
 variable "mysql_pool_efficiency_threshold_warning" {
-  default     = 1
+  default     = 20
   description = "Maximum warning acceptable percent of innodb buffer pool efficiency"
 }
 
 variable "mysql_pool_efficiency_time_aggregator" {
   description = "Monitor time aggregator for MySQL innodb buffer pool efficiency monitor [available values: min, max or avg]"
   type        = "string"
-  default     = "sum"
+  default     = "min"
 }
 
 variable "mysql_pool_efficiency_timeframe" {
   description = "Monitor timeframe for MySQL innodb buffer pool efficiency monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
-  default     = "last_1h"
+  default     = "last_4h"
 }
 
 #################################
@@ -303,12 +303,12 @@ variable "mysql_pool_utilization_message" {
 }
 
 variable "mysql_pool_utilization_threshold_critical" {
-  default     = 90
+  default     = 95
   description = "Maximum critical acceptable percent of innodb buffer pool utilization"
 }
 
 variable "mysql_pool_utilization_threshold_warning" {
-  default     = 75
+  default     = 80
   description = "Maximum warning acceptable percent of innodb buffer pool utilization"
 }
 
