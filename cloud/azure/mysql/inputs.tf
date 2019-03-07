@@ -115,7 +115,16 @@ variable "total_connection_timeframe" {
 variable "total_connection_limit" {
   description = "Limit for Mysql total connection [See details : https://docs.microsoft.com/en-us/azure/mysql/concepts-limits]"
   type        = "string"
-  default     = ""
+}
+
+variable "total_connection_threshold_warning" {
+  description = "Mysql total connection threshold in percent (warning threshold)"
+  default     = "70"
+}
+
+variable "total_connection_threshold_critical" {
+  description = "Mysql total connection threshold in percent (critical threshold)"
+  default     = "80"
 }
 
 variable "free_storage_silenced" {

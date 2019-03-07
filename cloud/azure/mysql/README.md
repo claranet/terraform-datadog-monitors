@@ -22,7 +22,7 @@ Creates DataDog monitors with the following checks:
 - Mysql Server IO consumption
 - Mysql Server memory usage
 - Mysql Server storage
-- Mysql Server total connection reach 80 percent of the total limit
+- Mysql Server total connection reach
 
 ## Inputs
 
@@ -68,9 +68,11 @@ Creates DataDog monitors with the following checks:
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | total\_connection\_enabled | Flag to enable Mysql status monitor | string | `"true"` | no |
 | total\_connection\_extra\_tags | Extra tags for Mysql status monitor | list | `[]` | no |
-| total\_connection\_limit | Limit for Mysql total connection [See details : https://docs.microsoft.com/en-us/azure/mysql/concepts-limits] | string | `""` | no |
+| total\_connection\_limit | Limit for Mysql total connection [See details : https://docs.microsoft.com/en-us/azure/mysql/concepts-limits] | string | n/a | yes |
 | total\_connection\_message | Custom message for Mysql total connection monitor | string | `""` | no |
 | total\_connection\_silenced | Groups to mute for Mysql total connection monitor | map | `{}` | no |
+| total\_connection\_threshold\_critical | Mysql total connection threshold in percent (critical threshold) | string | `"80"` | no |
+| total\_connection\_threshold\_warning | Mysql total connection threshold in percent (warning threshold) | string | `"70"` | no |
 | total\_connection\_time\_aggregator | Monitor aggregator for Mysql total connection [available values: min, max or avg] | string | `"min"` | no |
 | total\_connection\_timeframe | Monitor timeframe for Mysql total connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 
