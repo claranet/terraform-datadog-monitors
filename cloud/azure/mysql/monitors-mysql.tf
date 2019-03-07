@@ -33,16 +33,21 @@ resource "datadog_monitor" "mysql_cpu_usage" {
 
 resource "datadog_monitor" "mysql_total_connection" {
   count   = "${var.total_connection_enabled ? 1 : 0}"
-  name    = "[${var.environment}] Mysql Server total connection reach 80 percent of the total limit"
+  name    = "[${var.environment}] Mysql Server total connection reach {{#is_alert}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}} {{warn_threshold}}% ({{value}}%){{/is_warning}} of the total limit"
   message = "${coalesce(var.total_connection_message, var.message)}"
 
   query = <<EOF
     ${var.total_connection_time_aggregator}(${var.total_connection_timeframe}): (
       avg:azure.dbformysql_servers.active_connections${module.filter-tags.query_alert} by {resource_group,region,name} / ${var.total_connection_limit}
-    ) * 100 > 80
+    ) * 100 > "${var.total_connection_threshold_critical}"
   EOF
 
   type = "metric alert"
+
+  thresholds {
+    critical = "${var.total_connection_threshold_critical}"
+    warning  = "${var.total_connection_threshold_warning}"
+  }
 
   silenced = "${var.total_connection_silenced}"
 
