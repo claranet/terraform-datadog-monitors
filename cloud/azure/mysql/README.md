@@ -8,6 +8,8 @@ module "datadog-monitors-cloud-azure-mysql" {
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
+  
+  total_connection_limit = "${var.total_connection_limit}"
 }
 
 ```
@@ -17,10 +19,10 @@ module "datadog-monitors-cloud-azure-mysql" {
 Creates DataDog monitors with the following checks:
 
 - Mysql Server CPU usage
-- Mysql Server has no connection
 - Mysql Server IO consumption
 - Mysql Server memory usage
 - Mysql Server storage
+- Mysql Server total connection reach
 
 ## Inputs
 
@@ -64,12 +66,15 @@ Creates DataDog monitors with the following checks:
 | memory\_usage\_timeframe | Monitor timeframe for Mysql memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
 | message | Message sent when an alert is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
-| no\_connection\_enabled | Flag to enable Mysql status monitor | string | `"true"` | no |
-| no\_connection\_extra\_tags | Extra tags for Mysql status monitor | list | `[]` | no |
-| no\_connection\_message | Custom message for Mysql no connection monitor | string | `""` | no |
-| no\_connection\_silenced | Groups to mute for Mysql no connection monitor | map | `{}` | no |
-| no\_connection\_time\_aggregator | Monitor aggregator for Mysql no connection [available values: min, max or avg] | string | `"min"` | no |
-| no\_connection\_timeframe | Monitor timeframe for Mysql no connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| total\_connection\_enabled | Flag to enable Mysql status monitor | string | `"true"` | no |
+| total\_connection\_extra\_tags | Extra tags for Mysql status monitor | list | `[]` | no |
+| total\_connection\_limit | Limit for Mysql total connection [See details : https://docs.microsoft.com/en-us/azure/mysql/concepts-limits] | string | n/a | yes |
+| total\_connection\_message | Custom message for Mysql total connection monitor | string | `""` | no |
+| total\_connection\_silenced | Groups to mute for Mysql total connection monitor | map | `{}` | no |
+| total\_connection\_threshold\_critical | Mysql total connection threshold in percent (critical threshold) | string | `"80"` | no |
+| total\_connection\_threshold\_warning | Mysql total connection threshold in percent (warning threshold) | string | `"70"` | no |
+| total\_connection\_time\_aggregator | Monitor aggregator for Mysql total connection [available values: min, max or avg] | string | `"min"` | no |
+| total\_connection\_timeframe | Monitor timeframe for Mysql total connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 
 ## Outputs
 
@@ -79,7 +84,7 @@ Creates DataDog monitors with the following checks:
 | mysql\_free\_storage\_id | id for monitor mysql_free_storage |
 | mysql\_io\_consumption\_id | id for monitor mysql_io_consumption |
 | mysql\_memory\_usage\_id | id for monitor mysql_memory_usage |
-| mysql\_no\_connection\_id | id for monitor mysql_no_connection |
+| mysql\_total\_connection\_id | id for monitor mysql_total_connection |
 
 ## Related documentation
 
