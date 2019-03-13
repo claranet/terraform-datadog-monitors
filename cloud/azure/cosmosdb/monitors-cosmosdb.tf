@@ -5,9 +5,8 @@ resource "datadog_monitor" "cosmos_db_status" {
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
-      ${var.status_time_aggregator}(${var.status_timeframe}):(
-        avg:azure.cosmosdb.status${module.filter-tags.query_alert} by {resource_group,region,name} +
-        avg:azure.documentdb_databaseaccounts.status${module.filter-tags.query_alert} by {resource_group,region,name})
+      ${var.status_time_aggregator}(${var.status_timeframe}):
+        avg:azure.cosmosdb.status${module.filter-tags.query_alert} by {resource_group,region,name}
       < 1
   EOF
 
@@ -40,7 +39,7 @@ resource "datadog_monitor" "cosmos_db_4xx_requests" {
 
   # List of available status codes : https://docs.microsoft.com/en-us/rest/api/cosmos-db/http-status-codes-for-cosmosdb
   query = <<EOF
-    ${var.cosmos_db_4xx_request_time_aggregator}(${var.cosmos_db_4xx_request_timeframe}): ( (
+    ${var.cosmos_db_4xx_request_time_aggregator}(${var.cosmos_db_4xx_request_timeframe}): default( (
       default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "400")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
       default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "401")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
       default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "403")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
@@ -50,20 +49,9 @@ resource "datadog_monitor" "cosmos_db_4xx_requests" {
       default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "412")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
       default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "413")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
       default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "429")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "449")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "400")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "401")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "403")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "404")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "408")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "409")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "412")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "413")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "429")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "449")} by {resource_group,region,name,collectionname}.as_rate(), 0) ) / (
-      default(sum:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 0) )
-    ) * 100 > ${var.cosmos_db_4xx_request_rate_threshold_critical}
+      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "449")} by {resource_group,region,name,collectionname}.as_rate(), 0) ) /
+      default(sum:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0)
+    , 0) * 100 > ${var.cosmos_db_4xx_request_rate_threshold_critical}
   EOF
 
   type = "metric alert"
@@ -95,14 +83,11 @@ resource "datadog_monitor" "cosmos_db_5xx_requests" {
   message = "${coalesce(var.cosmos_db_5xx_requests_message, var.message)}"
 
   query = <<EOF
-    ${var.cosmos_db_5xx_request_time_aggregator}(${var.cosmos_db_5xx_request_timeframe}): ( (
-      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "500")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "503")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "500")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "503")} by {resource_group,region,name,collectionname}.as_rate(), 0) ) / (
-      default(sum:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 0) )
-    ) * 100 > ${var.cosmos_db_5xx_request_rate_threshold_critical}
+    ${var.cosmos_db_5xx_request_time_aggregator}(${var.cosmos_db_5xx_request_timeframe}): default( (
+      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "500")} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0) +
+      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "503")} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0)) /
+      default(sum:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 0)
+    , 0) * 100 > ${var.cosmos_db_5xx_request_rate_threshold_critical}
   EOF
 
   type = "metric alert"
@@ -135,12 +120,10 @@ resource "datadog_monitor" "cosmos_db_scaling" {
 
   # List of available status codes : https://docs.microsoft.com/en-us/rest/api/cosmos-db/http-status-codes-for-cosmosdb
   query = <<EOF
-    ${var.cosmos_db_scaling_time_aggregator}(${var.cosmos_db_scaling_timeframe}): ( (
-      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "429")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${format(module.filter-tags-statuscode.query_alert, "429")} by {resource_group,region,name,collectionname}.as_rate(), 0) ) / (
-      default(sum:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 0) +
-      default(sum:azure.documentdb_databaseaccounts.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 0) )
-    ) * 100 > ${var.cosmos_db_scaling_error_rate_threshold_critical}
+    ${var.cosmos_db_scaling_time_aggregator}(${var.cosmos_db_scaling_timeframe}): default(
+      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "429")} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0) /
+      default(sum:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0)
+    , 0) * 100 > ${var.cosmos_db_scaling_error_rate_threshold_critical}
   EOF
 
   type = "metric alert"
