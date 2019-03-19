@@ -6,7 +6,7 @@ resource "datadog_monitor" "loadbalancer_status" {
 
   query = <<EOF
       ${var.status_time_aggregator}(${var.status_timeframe}): (
-        avg:azure.load-balancer.status${module.filter-tags.query_alert} by {resource_group,region,name}
+        avg:azure.network_loadbalancers.status${module.filter-tags.query_alert} by {resource_group,region,name}
       ) < 1
   EOF
 
