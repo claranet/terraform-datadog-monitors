@@ -63,7 +63,7 @@ resource "datadog_monitor" "function_high_connections_count" {
 
 resource "datadog_monitor" "function_high_threads_count" {
   count   = "${var.high_threads_count_enabled ? 1 : 0}"
-  name    = "[${var.environment}] Function App threads count too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Function App threads count too high {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.high_threads_count_message, var.message)}"
 
