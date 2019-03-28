@@ -116,6 +116,8 @@ The `//` is very important, it's a terraform specific syntax used to separate gi
 		- [cloud-sql](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/gcp/cloud-sql/)
 			- [common](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/gcp/cloud-sql/common/)
 			- [mysql](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/gcp/cloud-sql/mysql/)
+		- [gce](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/gcp/gce/)
+			- [instance](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/gcp/gce/instance/)
 		- [lb](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/gcp/lb/)
 		- [pubsub](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/gcp/pubsub/)
 - [common](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/common/)
