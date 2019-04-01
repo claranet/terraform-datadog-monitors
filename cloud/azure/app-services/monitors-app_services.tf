@@ -7,7 +7,7 @@ resource "datadog_monitor" "appservices_response_time" {
 
   query = <<EOF
     ${var.response_time_time_aggregator}(${var.response_time_timeframe}): (
-      avg:azure.app_services.average_response_time${module.filter-tags.query_alert} by {resource_group,region,name}
+      default(avg:azure.app_services.average_response_time${module.filter-tags.query_alert} by {resource_group,region,name}, 0)
     ) > ${var.response_time_threshold_critical}
   EOF
 
