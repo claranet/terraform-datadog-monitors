@@ -17,8 +17,8 @@ module "datadog-monitors-cloud-azure-virtual-machine" {
 Creates DataDog monitors with the following checks:
 
 - Virtual Machine CPU usage
-- Virtual Machine credit CPU too low
-- Virtual Machine is down
+- Virtual Machine credit CPU
+- Virtual Machine is unreachable
 
 ## Inputs
 
@@ -28,8 +28,8 @@ Creates DataDog monitors with the following checks:
 | cpu\_remaining\_rate\_extra\_tags | Extra tags for Virtual Machine CPU remaining monitor | list | `[]` | no |
 | cpu\_remaining\_rate\_message | Custom message for Virtual Machine CPU remaining monitor | string | `""` | no |
 | cpu\_remaining\_rate\_silenced | Groups to mute for Virtual Machine CPU remaining monitor | map | `{}` | no |
-| cpu\_remaining\_rate\_threshold\_critical | Jobs Failed rate limit (critical threshold) | string | `"15"` | no |
-| cpu\_remaining\_rate\_threshold\_warning | Jobs Failed rate limit (warning threshold) | string | `"30"` | no |
+| cpu\_remaining\_rate\_threshold\_critical | Virtual Machine CPU rate limit (critical threshold) | string | `"15"` | no |
+| cpu\_remaining\_rate\_threshold\_warning | Virtual Machine CPU rate limit (warning threshold) | string | `"30"` | no |
 | cpu\_remaining\_rate\_time\_aggregator | Monitor aggregator for Virtual Machine CPU remaining [available values: min, max, sum or avg] | string | `"min"` | no |
 | cpu\_remaining\_rate\_timeframe | Monitor timeframe for Virtual Machine CPU remaining [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | cpu\_usage\_enabled | Flag to enable Virtual Machine status monitor | string | `"true"` | no |

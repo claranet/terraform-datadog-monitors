@@ -154,11 +154,11 @@ variable "cpu_remaining_rate_timeframe" {
 }
 
 variable "cpu_remaining_rate_threshold_warning" {
-  description = "Jobs Failed rate limit (warning threshold)"
+  description = "Virtual Machine CPU rate limit (warning threshold)"
   default     = 30
 }
 
 variable "cpu_remaining_rate_threshold_critical" {
-  description = "Jobs Failed rate limit (critical threshold)"
+  description = "Virtual Machine CPU rate limit (critical threshold)"
   default     = 15
 }
