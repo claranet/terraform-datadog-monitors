@@ -32,10 +32,6 @@ variable "new_host_delay" {
   default     = 300
 }
 
-variable "functions_max_scale_count" {
-  description = "Maximum number of Function instances"
-}
-
 # Azure Function App specific variables
 variable "http_5xx_errors_rate_silenced" {
   description = "Groups to mute for Functions Http 5xx errors rate monitor"
@@ -120,12 +116,12 @@ variable "high_connections_count_timeframe" {
 }
 
 variable "high_connections_count_threshold_critical" {
-  default     = 290
+  default     = 590
   description = "Alerting threshold for Functions high connections count"
 }
 
 variable "high_connections_count_threshold_warning" {
-  default     = 250
+  default     = 550
   description = "Warning threshold for Functions high connections count"
 }
 
