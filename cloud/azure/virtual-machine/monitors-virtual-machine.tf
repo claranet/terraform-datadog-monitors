@@ -1,7 +1,7 @@
 resource "datadog_monitor" "virtualmachine_status" {
   count = "${var.status_enabled ? 1 : 0}"
 
-  name    = "[${var.environment}] Virtual Machine is down"
+  name    = "[${var.environment}] Virtual Machine is unreachable"
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOF
@@ -62,7 +62,7 @@ resource "datadog_monitor" "virtualmachine_cpu_usage" {
 
 resource "datadog_monitor" "virtualmachine_credit_cpu_remaining_too_low" {
   count   = "${var.cpu_remaining_rate_enabled ? 1 : 0}"
-  name    = "[${var.environment}] Virtual Machine credit CPU too low {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "[${var.environment}] Virtual Machine credit CPU {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_remaining_rate_message, var.message)}"
 
   query = <<EOF
@@ -83,7 +83,7 @@ resource "datadog_monitor" "virtualmachine_credit_cpu_remaining_too_low" {
 
   silenced = "${var.cpu_remaining_rate_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
