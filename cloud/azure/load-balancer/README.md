@@ -16,7 +16,7 @@ module "datadog-monitors-cloud-azure-load-balancer" {
 
 Creates DataDog monitors with the following checks:
 
-- Load Balancer is down
+- Load Balancer is unreachable
 
 ## Inputs
 
