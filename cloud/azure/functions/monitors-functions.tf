@@ -38,7 +38,7 @@ resource "datadog_monitor" "function_high_connections_count" {
 
   query = <<EOF
     ${var.high_connections_count_time_aggregator}(${var.high_connections_count_timeframe}):
-      default(azure.functions.connections${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) / ${var.functions_max_scale_count}
+      default(azure.functions.connections${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 0)
     > ${var.high_connections_count_threshold_critical}
   EOF
 
@@ -69,7 +69,7 @@ resource "datadog_monitor" "function_high_threads_count" {
 
   query = <<EOF
     ${var.high_threads_count_time_aggregator}(${var.high_threads_count_timeframe}):
-      default(azure.functions.thread_count${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) / ${var.functions_max_scale_count}
+      default(azure.functions.thread_count${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 0)
     > ${var.high_threads_count_threshold_critical}
   EOF
 
@@ -100,7 +100,7 @@ resource "datadog_monitor" "function_memory_usage" {
 
   query = <<EOF
     ${var.memory_usage_time_aggregator}(${var.memory_usage_timeframe}): (
-      avg:azure.functions.average_memory_working_set${module.filter-tags.query_alert} by {resource_group,region,name}
+      avg:azure.functions.average_memory_working_set${module.filter-tags.query_alert} by {resource_group,region,name,instance}
     ) > ${var.memory_usage_threshold_critical}
   EOF
 
