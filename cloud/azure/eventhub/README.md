@@ -4,7 +4,7 @@
 
 ```
 module "datadog-monitors-cloud-azure-eventhub" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors.git//cloud/azure/eventhub?ref={revision}"
+  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//cloud/azure/eventhub?ref={revision}"
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
