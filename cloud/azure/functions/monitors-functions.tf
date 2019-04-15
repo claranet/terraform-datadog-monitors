@@ -91,34 +91,3 @@ resource "datadog_monitor" "function_high_threads_count" {
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure_functions", "team:claranet", "created-by:terraform", "${var.high_threads_count_extra_tags}"]
 }
-
-resource "datadog_monitor" "function_memory_usage" {
-  count   = "${var.memory_usage_enabled ? 1 : 0}"
-  name    = "[${var.environment}] Function App memory usage too high {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
-  type    = "metric alert"
-  message = "${coalesce(var.memory_usage_message, var.message)}"
-
-  query = <<EOF
-    ${var.memory_usage_time_aggregator}(${var.memory_usage_timeframe}): (
-      avg:azure.functions.average_memory_working_set${module.filter-tags.query_alert} by {resource_group,region,name,instance}
-    ) > ${var.memory_usage_threshold_critical}
-  EOF
-
-  evaluation_delay = "${var.evaluation_delay}"
-  new_host_delay   = "${var.new_host_delay}"
-
-  thresholds {
-    warning  = "${var.memory_usage_threshold_warning}"
-    critical = "${var.memory_usage_threshold_critical}"
-  }
-
-  silenced = "${var.memory_usage_silenced}"
-
-  notify_no_data      = false
-  renotify_interval   = 0
-  require_full_window = false
-  timeout_h           = 0
-  include_tags        = true
-
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure_functions", "team:claranet", "created-by:terraform", "${var.memory_usage_extra_tags}"]
-}

@@ -20,7 +20,6 @@ Creates DataDog monitors with the following checks:
 
 - Function App connections count too high
 - Function App HTTP 5xx errors too high
-- Function App memory usage too high
 - Function App threads count too high
 
 ## Inputs
@@ -56,14 +55,6 @@ Creates DataDog monitors with the following checks:
 | http\_5xx\_errors\_rate\_threshold\_warning | Warning threshold for Functions Http 5xx errors rate | string | `"10"` | no |
 | http\_5xx\_errors\_rate\_time\_aggregator | Monitor aggregator for Functions Http 5xx errors rate [available values: min, max or avg] | string | `"min"` | no |
 | http\_5xx\_errors\_rate\_timeframe | Monitor timeframe for Functions Http 5xx errors rate [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
-| memory\_usage\_enabled | Flag to enable Functions memory usage monitor | string | `"true"` | no |
-| memory\_usage\_extra\_tags | Extra tags for Functions memory usage monitor | list | `[]` | no |
-| memory\_usage\_message | Custom message for Functions memory usage monitor | string | `""` | no |
-| memory\_usage\_silenced | Groups to mute for Functions memory usage monitor | map | `{}` | no |
-| memory\_usage\_threshold\_critical | Alerting threshold for Functions memory usage in bytes | string | `"125829120"` | no |
-| memory\_usage\_threshold\_warning | Warning threshold for Functions memory usage in bytes | string | `"104857600"` | no |
-| memory\_usage\_time\_aggregator | Monitor aggregator for Functions memory usage [available values: min, max or avg] | string | `"min"` | no |
-| memory\_usage\_timeframe | Monitor timeframe for Functions memory usage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | message | Message sent when a monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 
@@ -74,7 +65,6 @@ Creates DataDog monitors with the following checks:
 | function\_high\_connections\_count\_id | id for monitor function_high_connections_count |
 | function\_high\_threads\_count\_id | id for monitor function_high_threads_count |
 | function\_http\_5xx\_errors\_rate\_id | id for monitor function_http_5xx_errors_rate |
-| function\_memory\_usage\_id | id for monitor function_memory_usage |
 
 ## Related documentation
 
