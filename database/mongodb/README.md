@@ -4,7 +4,7 @@
 
 ```
 module "datadog-monitors-database-mongodb" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors.git//database/mongodb?ref={revision}"
+  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//database/mongodb?ref={revision}"
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"

@@ -19,7 +19,7 @@ for path in $(find -mindepth 1 \( -path './incubator' -o -path './scripts' -o -p
         echo -en "\t" >> README.md
     done
     # add link to list of monitors sets
-    echo -en "- [$(basename ${path})](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/" >> README.md
+    echo -en "- [$(basename ${path})](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/" >> README.md
     # add path to link
     for directory in "${directories[@]}"; do
         echo -en "${directory}/" >> README.md
@@ -56,7 +56,7 @@ for path in $(find "$(get_scope $1)" -path ./incubator -prune -o -name 'monitors
 
 \`\`\`
 module "datadog-monitors-${module_dash}" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors.git//${module_slash}?ref={revision}"
+  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//${module_slash}?ref={revision}"
 
   environment = "\${var.environment}"
   message     = "\${module.datadog-message-alerting.alerting-message}"
