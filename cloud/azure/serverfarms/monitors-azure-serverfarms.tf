@@ -33,7 +33,7 @@ resource "datadog_monitor" "cpu_percentage" {
 
   query = <<EOF
     ${var.cpu_percentage_time_aggregator}(${var.cpu_percentage_timeframe}): (
-      avg:azure.web_serverfarms.cpu_percentage${module.filter-tags.query_alert} by {resource_group,region,name}
+      avg:azure.web_serverfarms.cpu_percentage${module.filter-tags.query_alert} by {resource_group,region,name,instance}
     ) > ${var.cpu_percentage_threshold_critical}
   EOF
 
@@ -66,7 +66,7 @@ resource "datadog_monitor" "memory_percentage" {
 
   query = <<EOF
     ${var.memory_percentage_time_aggregator}(${var.memory_percentage_timeframe}): (
-      avg:azure.web_serverfarms.memory_percentage${module.filter-tags.query_alert} by {resource_group,region,name}
+      avg:azure.web_serverfarms.memory_percentage${module.filter-tags.query_alert} by {resource_group,region,name,instance}
     ) > ${var.memory_percentage_threshold_critical}
   EOF
 
