@@ -103,6 +103,7 @@ The `//` is very important, it's a terraform specific syntax used to separate gi
 		- [datalakestore](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/azure/datalakestore/)
 		- [eventgrid](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/azure/eventgrid/)
 		- [eventhub](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/azure/eventhub/)
+		- [functions](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/azure/functions/)
 		- [iothubs](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/azure/iothubs/)
 		- [keyvault](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/azure/keyvault/)
 		- [load-balancer](https://git.fr.clara.net/claranet/cloudnative/projects/datadog/terraform/monitors/tree/master/cloud/azure/load-balancer/)
