@@ -10,7 +10,7 @@ sed -i '/### Monitors summary ###/q' README.md
 # add a newline after listing section
 echo >> README.md
 # loop over all ready monitors sets on the repo
-for path in $(find -mindepth 1 \( -path './incubator' -o -path './scripts' -o -path './testing'  -o -path '*/\.*' \) -prune -o -type d -print | sort -fdbi); do
+for path in $(find "$(get_scope $1)" -mindepth 1 \( -path './incubator' -o -path './scripts' -o -path './testing'  -o -path '*/\.*' \) -prune -o -type d -print | sort -fdbi); do
     # split path in directories
     directories=($(list_dirs $path))
     # loop over directories in path
