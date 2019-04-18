@@ -3,11 +3,6 @@ output "mysql_cpu_usage_id" {
   value       = "${datadog_monitor.mysql_cpu_usage.*.id}"
 }
 
-output "mysql_total_connection_id" {
-  description = "id for monitor mysql_total_connection"
-  value       = "${datadog_monitor.mysql_total_connection.*.id}"
-}
-
 output "mysql_free_storage_id" {
   description = "id for monitor mysql_free_storage"
   value       = "${datadog_monitor.mysql_free_storage.*.id}"
