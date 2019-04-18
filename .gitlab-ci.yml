@@ -15,5 +15,6 @@ test_auto_update:
     - git status
     - git diff --exit-code
   tags:
-    - docker-runner
+    - product-teams
     - kubernetes
+    - gke
