@@ -7,9 +7,11 @@ This repository is used to store all our monitors templates ready to use for gen
 
 First, you may refresh your knowledge and look at the [terminology](https://confluence.fr.clara.net/display/DAT/Getting+started).
 
-To contribute you will need to [report an issue](https://confluence.fr.clara.net/display/DAT/Project+and+Workflow).
+To contribute you will need to [report an issue](https://confluence.fr.clara.net/display/DAT/Project+and+Workflow) and create a branch with its Jira ID.
 
 If you would like to resolve an issue or implement new monitors you must follow our [best practices](https://confluence.fr.clara.net/display/DAT/Templates+monitors).
+
+After any change you should run `./scripts/auto_update.sh ./` command to make sure all is up to date else the CI pipeline will fail on the branch.
 
 ### Important notes ###
 
@@ -34,12 +36,11 @@ provider "datadog" {
 
 Both of the `datadog_api_key` and `datadog_app_key` are unique to the client.
 
-### Module Declaration example ###
+### Module declaration example ###
 
- A quick example of using a set of monitors for a given terraform module:
+A quick example of using a set of monitors for a given terraform module:
 
 ```
-
 variable "oncall_24x7" {
   default = "@pagerduty-Public_Cloud_FR_-_Yoda_-_Unibail_HNO"
 }
@@ -68,8 +69,8 @@ module "datadog-monitors-my-monitors-set" {
 }
 ```
 
-`my/monitors/set` represents the path to a monitors set sub directory listed above.  
 The `//` is very important, it's a terraform specific syntax used to separate git url and folder path.
+`my/monitors/set` represents the path to a monitors set sub directory listed below.
 
 ### Monitors summary ###
 
