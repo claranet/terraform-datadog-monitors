@@ -130,6 +130,7 @@ Creates DataDog monitors with the following checks:
 | orphaned\_d2c\_telemetry\_egress\_silenced | Groups to mute for IoT Hub orphaned d2c telemetry monitor | map | `{}` | no |
 | orphaned\_d2c\_telemetry\_egress\_time\_aggregator | Monitor aggregator for IoT Hub orphaned d2c telemetry [available values: min, max, sum or avg] | string | `"min"` | no |
 | orphaned\_d2c\_telemetry\_egress\_timeframe | Monitor timeframe for IoT Hub orphaned d2c telemetry [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | status\_enabled | Flag to enable IoT Hub status monitor | string | `"true"` | no |
 | status\_extra\_tags | Extra tags for IoT Hub status monitor | list | `[]` | no |
 | status\_message | Custom message for IoT Hub status monitor | string | `""` | no |

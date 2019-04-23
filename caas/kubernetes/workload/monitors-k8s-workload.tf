@@ -1,6 +1,6 @@
 resource "datadog_monitor" "job" {
   count   = "${var.job_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Kubernetes job failed"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes job failed"
   message = "${coalesce(var.job_message, var.message)}"
 
   type = "service check"
@@ -30,7 +30,7 @@ resource "datadog_monitor" "job" {
 
 resource "datadog_monitor" "cronjob" {
   count   = "${var.cronjob_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Kubernetes cronjob scheduling failed"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes cronjob scheduling failed"
   message = "${coalesce(var.cronjob_message, var.message)}"
 
   type = "service check"
@@ -60,7 +60,7 @@ resource "datadog_monitor" "cronjob" {
 
 resource "datadog_monitor" "replica_available" {
   count   = "${var.replica_available_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Kubernetes Available replicas {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Available replicas {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.replica_available_message, var.message)}"
 
@@ -92,7 +92,7 @@ resource "datadog_monitor" "replica_available" {
 
 resource "datadog_monitor" "replica_ready" {
   count   = "${var.replica_ready_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Kubernetes Ready replicas {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Ready replicas {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.replica_ready_message, var.message)}"
 
@@ -124,7 +124,7 @@ resource "datadog_monitor" "replica_ready" {
 
 resource "datadog_monitor" "replica_current" {
   count   = "${var.replica_current_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Kubernetes Current replicas {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Current replicas {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.replica_current_message, var.message)}"
 

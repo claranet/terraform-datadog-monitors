@@ -1,6 +1,6 @@
 resource "datadog_monitor" "status" {
   count   = "${var.status_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Redis {{name}} is down"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Redis {{name}} is down"
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOQ
@@ -28,7 +28,7 @@ resource "datadog_monitor" "status" {
 
 resource "datadog_monitor" "evictedkeys" {
   count   = "${var.evictedkeys_limit_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Redis too many evictedkeys {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Redis too many evictedkeys {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.evictedkeys_limit_message, var.message)}"
 
   query = <<EOQ
@@ -61,7 +61,7 @@ resource "datadog_monitor" "evictedkeys" {
 
 resource "datadog_monitor" "percent_processor_time" {
   count   = "${var.percent_processor_time_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Redis processor time too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Redis processor time too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.percent_processor_time_message, var.message)}"
 
   query = <<EOQ
@@ -94,7 +94,7 @@ resource "datadog_monitor" "percent_processor_time" {
 
 resource "datadog_monitor" "server_load" {
   count   = "${var.server_load_rate_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Redis server load too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Redis server load too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.server_load_rate_message, var.message)}"
 
   query = <<EOQ

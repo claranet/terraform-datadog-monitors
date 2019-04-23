@@ -1,7 +1,7 @@
 resource "datadog_monitor" "virtualmachine_status" {
   count = "${var.status_enabled == "true" ? 1 : 0}"
 
-  name    = "[${var.environment}] Virtual Machine is unreachable"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Virtual Machine is unreachable"
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOQ
@@ -29,7 +29,7 @@ resource "datadog_monitor" "virtualmachine_status" {
 
 resource "datadog_monitor" "virtualmachine_cpu_usage" {
   count   = "${var.cpu_usage_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Virtual Machine CPU usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Virtual Machine CPU usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_usage_message, var.message)}"
 
   query = <<EOQ
@@ -62,7 +62,7 @@ resource "datadog_monitor" "virtualmachine_cpu_usage" {
 
 resource "datadog_monitor" "virtualmachine_credit_cpu_remaining_too_low" {
   count   = "${var.cpu_remaining_rate_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Virtual Machine credit CPU {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Virtual Machine credit CPU {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_remaining_rate_message, var.message)}"
 
   query = <<EOQ

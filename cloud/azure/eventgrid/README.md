@@ -45,6 +45,7 @@ Creates DataDog monitors with the following checks:
 | no\_successful\_message\_rate\_silenced | Groups to mute for²id no successful message monitor | map | `{}` | no |
 | no\_successful\_message\_rate\_time\_aggregator | Monitor aggregator for Event Grid no successful message [available values: min, max or avg] | string | `"min"` | no |
 | no\_successful\_message\_rate\_timeframe | Monitor timeframe for Event Grid no successful message [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | unmatched\_events\_rate\_enabled | Flag to enable Event Grid unmatched events monitor | string | `"true"` | no |
 | unmatched\_events\_rate\_extra\_tags | Extra tags for Event Grid unmatched events monitor | list | `[]` | no |
 | unmatched\_events\_rate\_message | Custom message for Event Grid unmatched events monitor | string | `""` | no |

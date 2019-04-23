@@ -1,6 +1,6 @@
 resource "datadog_monitor" "pod_phase_status" {
   count   = "${var.pod_phase_status_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Kubernetes Pod phase status failed"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Pod phase status failed"
   type    = "metric alert"
   message = "${coalesce(var.pod_phase_status_message, var.message)}"
 
@@ -30,7 +30,7 @@ resource "datadog_monitor" "pod_phase_status" {
 
 resource "datadog_monitor" "error" {
   count   = "${var.error_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Kubernetes Pod errors {{#is_alert}}{{{comparator}}} {{threshold}} times ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} times ({{value}}){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Pod errors {{#is_alert}}{{{comparator}}} {{threshold}} times ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} times ({{value}}){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.error_message, var.message)}"
 
@@ -62,7 +62,7 @@ resource "datadog_monitor" "error" {
 
 resource "datadog_monitor" "crashloopbackoff" {
   count   = "${var.crashloopbackoff_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Kubernetes Pod CrashLoopBackOff"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Pod CrashLoopBackOff"
   type    = "metric alert"
   message = "${coalesce(var.crashloopbackoff_message, var.message)}"
 
