@@ -1,29 +1,29 @@
-output "datadog_cpu_too_high_id" {
-  description = "id for monitor datadog_cpu_too_high"
-  value       = "${datadog_monitor.datadog_cpu_too_high.*.id}"
+output "cpu_id" {
+  description = "id for monitor cpu"
+  value       = "${datadog_monitor.cpu.*.id}"
 }
 
-output "datadog_load_too_high_id" {
-  description = "id for monitor datadog_load_too_high"
-  value       = "${datadog_monitor.datadog_load_too_high.*.id}"
+output "load_id" {
+  description = "id for monitor load"
+  value       = "${datadog_monitor.load.*.id}"
 }
 
-output "datadog_free_disk_space_too_low_id" {
-  description = "id for monitor datadog_free_disk_space_too_low"
-  value       = "${datadog_monitor.datadog_free_disk_space_too_low.*.id}"
+output "disk_space_id" {
+  description = "id for monitor disk_space"
+  value       = "${datadog_monitor.disk_space.*.id}"
 }
 
-output "datadog_free_disk_space_forecast_id" {
-  description = "id for monitor datadog_free_disk_space_forecast"
-  value       = "${datadog_monitor.datadog_free_disk_space_forecast.*.id}"
+output "disk_space_forecast_id" {
+  description = "id for monitor disk_space_forecast"
+  value       = "${datadog_monitor.disk_space_forecast.*.id}"
 }
 
-output "datadog_free_disk_space_inodes_too_low_id" {
-  description = "id for monitor datadog_free_disk_space_inodes_too_low"
-  value       = "${datadog_monitor.datadog_free_disk_space_inodes_too_low.*.id}"
+output "disk_inodes_id" {
+  description = "id for monitor disk_inodes"
+  value       = "${datadog_monitor.disk_inodes.*.id}"
 }
 
-output "datadog_free_memory_id" {
-  description = "id for monitor datadog_free_memory"
-  value       = "${datadog_monitor.datadog_free_memory.*.id}"
+output "memory_id" {
+  description = "id for monitor memory"
+  value       = "${datadog_monitor.memory.*.id}"
 }
