@@ -36,7 +36,11 @@ resource "datadog_monitor" "datadog_nginx_dropped_connections" {
 
   type = "metric alert"
 
-  query = "${var.nginx_dropped_time_aggregator}(${var.nginx_dropped_timeframe}):avg:nginx.net.conn_dropped_per_s${module.filter-tags.query_alert} by {host} > ${var.nginx_dropped_threshold_critical}"
+  query = <<EOQ
+    ${var.nginx_dropped_time_aggregator}(${var.nginx_dropped_timeframe}):
+      avg:nginx.net.conn_dropped_per_s${module.filter-tags.query_alert} by {host}
+    > ${var.nginx_dropped_threshold_critical}
+  EOQ
 
   thresholds {
     critical = "${var.nginx_dropped_threshold_critical}"
