@@ -47,6 +47,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
 | message | Message sent when a Redis monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | status\_enabled | Flag to enable Virtual Machine status monitor | string | `"true"` | no |
 | status\_extra\_tags | Extra tags for Virtual Machine status monitor | list | `[]` | no |
 | status\_message | Custom message for Virtual Machine status monitor | string | `""` | no |

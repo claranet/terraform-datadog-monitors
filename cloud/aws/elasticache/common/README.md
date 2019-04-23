@@ -69,6 +69,7 @@ Creates DataDog monitors with the following checks:
 | no\_connection\_silenced | Groups to mute for Elasticache no connection monitor | map | `{}` | no |
 | no\_connection\_time\_aggregator | Monitor aggregator for Elasticache no connection [available values: min, max or avg] | string | `"min"` | no |
 | no\_connection\_timeframe | Monitor timeframe for Elasticache no connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | swap\_enabled | Flag to enable Elasticache swap monitor | string | `"true"` | no |
 | swap\_extra\_tags | Extra tags for Elasticache swap monitor | list | `[]` | no |
 | swap\_message | Custom message for Elasticache swap monitor | string | `""` | no |

@@ -1,6 +1,6 @@
 resource "datadog_monitor" "availability" {
   count   = "${var.availability_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Azure Storage is down"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage is down"
   message = "${coalesce(var.availability_message, var.message)}"
 
   query = <<EOQ
@@ -32,7 +32,7 @@ resource "datadog_monitor" "availability" {
 
 resource "datadog_monitor" "successful_requests" {
   count   = "${var.successful_requests_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Azure Storage too few successful requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too few successful requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.successful_requests_message, var.message)}"
 
   query = <<EOQ
@@ -64,7 +64,7 @@ resource "datadog_monitor" "successful_requests" {
 
 resource "datadog_monitor" "latency" {
   count   = "${var.latency_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Azure Storage too high end to end latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too high end to end latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = "${coalesce(var.latency_message, var.message)}"
 
   query = <<EOQ
@@ -96,7 +96,7 @@ resource "datadog_monitor" "latency" {
 
 resource "datadog_monitor" "timeout_error_requests" {
   count   = "${var.timeout_error_requests_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Azure Storage too many timeout errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too many timeout errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.timeout_error_requests_message, var.message)}"
 
   query = <<EOQ
@@ -128,7 +128,7 @@ resource "datadog_monitor" "timeout_error_requests" {
 
 resource "datadog_monitor" "network_error_requests" {
   count   = "${var.network_error_requests_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Azure Storage too many network errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too many network errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.network_error_requests_message, var.message)}"
 
   query = <<EOQ
@@ -160,7 +160,7 @@ resource "datadog_monitor" "network_error_requests" {
 
 resource "datadog_monitor" "throttling_error_requests" {
   count   = "${var.throttling_error_requests_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Azure Storage too many throttling errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too many throttling errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.throttling_error_requests_message, var.message)}"
 
   query = <<EOQ
@@ -192,7 +192,7 @@ resource "datadog_monitor" "throttling_error_requests" {
 
 resource "datadog_monitor" "server_other_error_requests" {
   count   = "${var.server_other_error_requests_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Azure Storage too many server_other errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too many server_other errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.server_other_error_requests_message, var.message)}"
 
   query = <<EOQ
@@ -224,7 +224,7 @@ resource "datadog_monitor" "server_other_error_requests" {
 
 resource "datadog_monitor" "client_other_error_requests" {
   count   = "${var.client_other_error_requests_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Azure Storage too many client_other errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too many client_other errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.client_other_error_requests_message, var.message)}"
 
   query = <<EOQ
@@ -256,7 +256,7 @@ resource "datadog_monitor" "client_other_error_requests" {
 
 resource "datadog_monitor" "authorization_error_requests" {
   count   = "${var.authorization_error_requests_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Azure Storage too many authorization errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too many authorization errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.authorization_error_requests_message, var.message)}"
 
   query = <<EOQ

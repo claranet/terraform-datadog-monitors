@@ -65,6 +65,7 @@ Creates DataDog monitors with the following checks:
 | memory\_usage\_timeframe | Monitor timeframe for App Services memory usage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | message | Message sent when a monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | response\_time\_enabled | Flag to enable App Services response time monitor | string | `"true"` | no |
 | response\_time\_extra\_tags | Extra tags for App Services response time monitor | list | `[]` | no |
 | response\_time\_message | Custom message for App Services response time monitor | string | `""` | no |

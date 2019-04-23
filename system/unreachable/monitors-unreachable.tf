@@ -1,6 +1,6 @@
 resource "datadog_monitor" "host_unreachable" {
   count   = "${var.unreachable_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Host unreachable"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Host unreachable"
   message = "${coalesce(var.unreachable_message, var.message)}"
 
   query = <<EOQ

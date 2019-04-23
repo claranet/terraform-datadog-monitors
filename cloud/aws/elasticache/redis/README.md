@@ -53,6 +53,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
 | message | Message sent when an alert is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | replication\_lag\_enabled | Flag to enable Elasticache redis replication lag monitor | string | `"true"` | no |
 | replication\_lag\_extra\_tags | Extra tags for Elasticache redis replication lag monitor | list | `[]` | no |
 | replication\_lag\_message | Custom message for Elasticache redis replication lag monitor | string | `""` | no |

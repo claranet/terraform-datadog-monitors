@@ -46,6 +46,7 @@ Creates DataDog monitors with the following checks:
 | memory\_percentage\_timeframe | Monitor timeframe for serverfarms memory_percentage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | message | Message sent when a serverfarms monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | status\_enabled | Flag to enable the serverfarms status monitor | string | `"true"` | no |
 | status\_extra\_tags | Extra tags for serverfarms status monitor | list | `[]` | no |
 | status\_message | Custom message for serverfarm status monitor | string | `""` | no |

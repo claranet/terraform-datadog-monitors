@@ -1,6 +1,6 @@
 resource "datadog_monitor" "eventgrid_no_successful_message" {
   count   = "${var.no_successful_message_rate_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Event Grid no successful message {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Event Grid no successful message {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.no_successful_message_rate_message, var.message)}"
 
   # Query is a bit weird, but we only want to check the no-data
@@ -28,7 +28,7 @@ resource "datadog_monitor" "eventgrid_no_successful_message" {
 
 resource "datadog_monitor" "eventgrid_failed_messages" {
   count   = "${var.failed_messages_rate_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Event Grid too many failed messages {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Event Grid too many failed messages {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.failed_messages_rate_message, var.message)}"
 
   query = <<EOQ
@@ -65,7 +65,7 @@ resource "datadog_monitor" "eventgrid_failed_messages" {
 
 resource "datadog_monitor" "eventgrid_unmatched_events" {
   count   = "${var.unmatched_events_rate_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Event Grid too many unmatched events {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Event Grid too many unmatched events {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.unmatched_events_rate_message, var.message)}"
 
   query = <<EOQ

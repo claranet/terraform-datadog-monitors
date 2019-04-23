@@ -1,6 +1,6 @@
 resource "datadog_monitor" "eventhub_status" {
   count   = "${var.status_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Event Hub is down"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Event Hub is down"
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOQ
@@ -28,7 +28,7 @@ resource "datadog_monitor" "eventhub_status" {
 
 resource "datadog_monitor" "eventhub_failed_requests" {
   count   = "${var.failed_requests_rate_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Event Hub too many failed requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Event Hub too many failed requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.failed_requests_rate_message, var.message)}"
 
   query = <<EOQ
@@ -62,7 +62,7 @@ resource "datadog_monitor" "eventhub_failed_requests" {
 
 resource "datadog_monitor" "eventhub_errors" {
   count   = "${var.errors_rate_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Event Hub too many errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Event Hub too many errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.errors_rate_message, var.message)}"
 
   query = <<EOQ

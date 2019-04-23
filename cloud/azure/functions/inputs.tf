@@ -32,6 +32,11 @@ variable "new_host_delay" {
   default     = 300
 }
 
+variable "prefix_slug" {
+  description = "Prefix string to prepend between brackets on every monitors names"
+  default     = ""
+}
+
 # Azure Function App specific variables
 variable "http_5xx_errors_rate_silenced" {
   description = "Groups to mute for Functions Http 5xx errors rate monitor"

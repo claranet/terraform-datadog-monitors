@@ -34,6 +34,11 @@ variable "new_host_delay" {
   default     = 300
 }
 
+variable "prefix_slug" {
+  description = "Prefix string to prepend between brackets on every monitors names"
+  default     = ""
+}
+
 # Datadog monitors variables
 
 variable "alb_no_healthy_instances_silenced" {
