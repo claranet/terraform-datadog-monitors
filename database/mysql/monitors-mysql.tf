@@ -206,7 +206,7 @@ resource "datadog_monitor" "mysql_threads_anomaly" {
         alert_window='${var.mysql_threads_alert_window}',
         interval=${var.mysql_threads_interval},
         count_default_zero='${var.mysql_threads_count_default_zero}'
-        ${var.mysql_threads_seasonality == "agile" ? format(",seasonality='%s'", var.mysql_queries_seasonality): ""}
+        ${var.mysql_threads_seasonality == "agile" ? format(",seasonality='%s'", var.mysql_threads_seasonality): ""}
       )
     >= ${var.mysql_threads_threshold_critical}
   EOF
@@ -230,32 +230,32 @@ resource "datadog_monitor" "mysql_threads_anomaly" {
   tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_threads_extra_tags}"]
 }
 
-resource "datadog_monitor" "mysql_queries_anomaly" {
-  count   = "${var.mysql_queries_enabled ? 1 : 0}"
+resource "datadog_monitor" "mysql_questions_anomaly" {
+  count   = "${var.mysql_questions_enabled ? 1 : 0}"
   name    = "[${var.environment}] Mysql queries changed abnormally"
-  message = "${coalesce(var.mysql_queries_message, var.message)}"
+  message = "${coalesce(var.mysql_questions_message, var.message)}"
   type    = "metric alert"
 
   query = <<EOF
-    ${var.mysql_queries_time_aggregator}(${var.mysql_queries_timeframe}):
+    ${var.mysql_questions_time_aggregator}(${var.mysql_questions_timeframe}):
       anomalies(
-        avg:mysql.performance.queries${module.filter-tags.query_alert} by {server},
-        '${var.mysql_queries_detection_algorithm}',
-        ${var.mysql_queries_deviations},
-        direction='${var.mysql_queries_direction}',
-        alert_window='${var.mysql_queries_alert_window}',
-        interval=${var.mysql_queries_interval},
-        count_default_zero='${var.mysql_queries_count_default_zero}'
-        ${var.mysql_queries_detection_algorithm == "agile" ? format(",seasonality='%s'", var.mysql_queries_seasonality): ""}
+        avg:mysql.performance.questions${module.filter-tags.query_alert} by {server},
+        '${var.mysql_questions_detection_algorithm}',
+        ${var.mysql_questions_deviations},
+        direction='${var.mysql_questions_direction}',
+        alert_window='${var.mysql_questions_alert_window}',
+        interval=${var.mysql_questions_interval},
+        count_default_zero='${var.mysql_questions_count_default_zero}'
+        ${var.mysql_questions_detection_algorithm == "agile" ? format(",seasonality='%s'", var.mysql_questions_seasonality): ""}
       )
-    >= ${var.mysql_queries_threshold_critical}
+    >= ${var.mysql_questions_threshold_critical}
   EOF
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
   thresholds {
-    critical          = "${var.mysql_queries_threshold_critical}"
+    critical          = "${var.mysql_questions_threshold_critical}"
     critical_recovery = 0
   }
 
@@ -265,7 +265,7 @@ resource "datadog_monitor" "mysql_queries_anomaly" {
   timeout_h           = 0
   include_tags        = true
 
-  silenced = "${var.mysql_queries_silenced}"
+  silenced = "${var.mysql_questions_silenced}"
 
-  tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_queries_extra_tags}"]
+  tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_questions_extra_tags}"]
 }

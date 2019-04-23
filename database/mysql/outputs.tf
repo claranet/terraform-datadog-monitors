@@ -33,7 +33,7 @@ output "mysql_threads_anomaly_id" {
   value       = "${datadog_monitor.mysql_threads_anomaly.*.id}"
 }
 
-output "mysql_queries_anomaly_id" {
-  description = "id for monitor mysql_queries_anomaly"
-  value       = "${datadog_monitor.mysql_queries_anomaly.*.id}"
+output "mysql_questions_anomaly_id" {
+  description = "id for monitor mysql_questions_anomaly"
+  value       = "${datadog_monitor.mysql_questions_anomaly.*.id}"
 }
