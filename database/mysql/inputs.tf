@@ -271,7 +271,7 @@ variable "mysql_pool_efficiency_time_aggregator" {
 variable "mysql_pool_efficiency_timeframe" {
   description = "Monitor timeframe for MySQL innodb buffer pool efficiency monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
-  default     = "last_4h"
+  default     = "last_1h"
 }
 
 #################################
@@ -321,7 +321,7 @@ variable "mysql_pool_utilization_time_aggregator" {
 variable "mysql_pool_utilization_timeframe" {
   description = "Monitor timeframe for MySQL innodb buffer pool utilization monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
-  default     = "last_4h"
+  default     = "last_1h"
 }
 
 #################################
