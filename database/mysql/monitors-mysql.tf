@@ -1,5 +1,5 @@
 resource "datadog_monitor" "mysql_availability" {
-  count   = "${var.mysql_availability_enabled ? 1 : 0}"
+  count   = "${var.mysql_availability_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Mysql server does not respond"
   message = "${coalesce(var.mysql_availability_message, var.message)}"
 
@@ -30,7 +30,7 @@ resource "datadog_monitor" "mysql_availability" {
 }
 
 resource "datadog_monitor" "mysql_connection" {
-  count   = "${var.mysql_connection_enabled ? 1 : 0}"
+  count   = "${var.mysql_connection_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Mysql Connections limit {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mysql_connection_message, var.message)}"
   type    = "metric alert"
@@ -62,7 +62,7 @@ resource "datadog_monitor" "mysql_connection" {
 }
 
 resource "datadog_monitor" "mysql_aborted" {
-  count   = "${var.mysql_aborted_enabled ? 1 : 0}"
+  count   = "${var.mysql_aborted_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Mysql Aborted connects {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mysql_aborted_message, var.message)}"
   type    = "metric alert"
@@ -94,7 +94,7 @@ resource "datadog_monitor" "mysql_aborted" {
 }
 
 resource "datadog_monitor" "mysql_slow" {
-  count   = "${var.mysql_slow_enabled ? 1 : 0}"
+  count   = "${var.mysql_slow_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Mysql Slow queries {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mysql_slow_message, var.message)}"
   type    = "metric alert"
@@ -126,7 +126,7 @@ resource "datadog_monitor" "mysql_slow" {
 }
 
 resource "datadog_monitor" "mysql_pool_efficiency" {
-  count   = "${var.mysql_pool_efficiency_enabled ? 1 : 0}"
+  count   = "${var.mysql_pool_efficiency_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Mysql Innodb buffer pool efficiency {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.mysql_pool_efficiency_message, var.message)}"
   type    = "metric alert"
@@ -158,7 +158,7 @@ resource "datadog_monitor" "mysql_pool_efficiency" {
 }
 
 resource "datadog_monitor" "mysql_pool_utilization" {
-  count   = "${var.mysql_pool_utilization_enabled ? 1 : 0}"
+  count   = "${var.mysql_pool_utilization_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Mysql Innodb buffer pool utilization {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.mysql_pool_utilization_message, var.message)}"
   type    = "metric alert"
@@ -191,7 +191,7 @@ resource "datadog_monitor" "mysql_pool_utilization" {
 }
 
 resource "datadog_monitor" "mysql_threads_anomaly" {
-  count   = "${var.mysql_threads_enabled ? 1 : 0}"
+  count   = "${var.mysql_threads_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Mysql threads changed abnormally"
   message = "${coalesce(var.mysql_threads_message, var.message)}"
   type    = "metric alert"
@@ -231,7 +231,7 @@ resource "datadog_monitor" "mysql_threads_anomaly" {
 }
 
 resource "datadog_monitor" "mysql_questions_anomaly" {
-  count   = "${var.mysql_questions_enabled ? 1 : 0}"
+  count   = "${var.mysql_questions_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Mysql queries changed abnormally"
   message = "${coalesce(var.mysql_questions_message, var.message)}"
   type    = "metric alert"

@@ -1,5 +1,5 @@
 resource "datadog_monitor" "ark_schedules_monitor" {
-  count   = "${var.ark_schedules_enabled ? 1 : 0}"
+  count   = "${var.ark_schedules_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Ark backup failed"
   type    = "metric alert"
   message = "${coalesce(var.ark_schedules_monitor_message, var.message)}"

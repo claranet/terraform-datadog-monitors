@@ -2,7 +2,7 @@
 # CPU Utilization
 #
 resource "datadog_monitor" "cpu_utilization" {
-  count   = "${var.cpu_utilization_enabled ? 1 : 0}"
+  count   = "${var.cpu_utilization_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Compute Engine instance CPU Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_utilization_message, var.message)}"
 
@@ -39,7 +39,7 @@ EOF
 # Disk Throttled Bps
 #
 resource "datadog_monitor" "disk_throttled_bps" {
-  count   = "${var.disk_throttled_bps_enabled ? 1 : 0}"
+  count   = "${var.disk_throttled_bps_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Compute Engine instance Disk Throttled Bps {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.disk_throttled_bps_message, var.message)}"
 
@@ -82,7 +82,7 @@ EOF
 # Disk Throttled OPS
 #
 resource "datadog_monitor" "disk_throttled_ops" {
-  count   = "${var.disk_throttled_ops_enabled ? 1 : 0}"
+  count   = "${var.disk_throttled_ops_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Compute Engine instance Disk Throttled OPS {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.disk_throttled_ops_message, var.message)}"
 
