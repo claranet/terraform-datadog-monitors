@@ -13,7 +13,7 @@ resource "datadog_monitor" "cpu_utilization" {
     avg:gcp.cloudsql.database.cpu.utilization{${var.filter_tags}}
     by {database_id} * 100
   > ${var.cpu_utilization_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.cpu_utilization_threshold_warning}"
@@ -51,7 +51,7 @@ resource "datadog_monitor" "disk_utilization" {
     avg:gcp.cloudsql.database.disk.utilization{${var.filter_tags}}
     by {database_id} * 100
     > ${var.disk_utilization_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.disk_utilization_threshold_warning}"
@@ -95,7 +95,7 @@ resource "datadog_monitor" "disk_utilization_forecast" {
       ${var.disk_utilization_forecast_algorithm == "seasonal" ? format("seasonality='%s'", var.disk_utilization_forecast_seasonal_seasonality): ""}
     )
   >= ${var.disk_utilization_forecast_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     critical          = "${var.disk_utilization_forecast_threshold_critical}"
@@ -133,7 +133,7 @@ resource "datadog_monitor" "memory_utilization" {
     avg:gcp.cloudsql.database.memory.utilization{${var.filter_tags}}
     by {database_id} * 100
   > ${var.memory_utilization_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.memory_utilization_threshold_warning}"
@@ -177,7 +177,7 @@ resource "datadog_monitor" "memory_utilization_forecast" {
       ${var.memory_utilization_forecast_algorithm == "seasonal" ? format("seasonality='%s'", var.memory_utilization_forecast_seasonal_seasonality): ""}
       )
     >= ${var.memory_utilization_forecast_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     critical          = "${var.memory_utilization_forecast_threshold_critical}"
@@ -215,7 +215,7 @@ resource "datadog_monitor" "failover_unavailable" {
     avg:gcp.cloudsql.database.available_for_failover{${var.filter_tags}}
     by {database_id}
   <= ${var.failover_unavailable_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     critical = "${var.failover_unavailable_threshold_critical}"

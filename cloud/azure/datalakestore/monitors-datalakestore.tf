@@ -8,7 +8,7 @@ resource "datadog_monitor" "datalakestore_status" {
       ${var.status_time_aggregator}(${var.status_timeframe}): (
         avg:azure.datalakestore_accounts.status${module.filter-tags.query_alert} by {resource_group,region,name}
       ) < 1
-EOQ
+  EOQ
 
   type = "metric alert"
 

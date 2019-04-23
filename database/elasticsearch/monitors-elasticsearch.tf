@@ -8,7 +8,7 @@ resource "datadog_monitor" "not_responding" {
 
   query = <<EOQ
     "elasticsearch.can_connect"${module.filter-tags.service_check}.by("server","port").last(6).count_by_status()
-EOQ
+  EOQ
 
   type = "service check"
 
@@ -55,7 +55,7 @@ resource "datadog_monitor" "cluster_status_not_green" {
   ${var.cluster_status_not_green_time_aggregator}(${var.cluster_status_not_green_timeframe}):
     min:elasticsearch.cluster_status${module.filter-tags.query_alert} by {cluster_name}
   <= ${var.cluster_status_not_green_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     # ok = 2
@@ -98,7 +98,7 @@ resource "datadog_monitor" "cluster_initializing_shards" {
   ${var.cluster_initializing_shards_time_aggregator}(${var.cluster_initializing_shards_timeframe}):
     avg:elasticsearch.initializing_shards${module.filter-tags.query_alert} by {cluster_name}
   > ${var.cluster_initializing_shards_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.cluster_initializing_shards_threshold_warning}"
@@ -140,7 +140,7 @@ resource "datadog_monitor" "cluster_relocating_shards" {
   ${var.cluster_relocating_shards_time_aggregator}(${var.cluster_relocating_shards_timeframe}):
     avg:elasticsearch.relocating_shards${module.filter-tags.query_alert} by {cluster_name}
   > ${var.cluster_relocating_shards_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.cluster_relocating_shards_threshold_warning}"
@@ -182,7 +182,7 @@ resource "datadog_monitor" "cluster_unassigned_shards" {
   ${var.cluster_unassigned_shards_time_aggregator}(${var.cluster_unassigned_shards_timeframe}):
     avg:elasticsearch.unassigned_shards${module.filter-tags.query_alert} by {cluster_name}
   > ${var.cluster_unassigned_shards_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.cluster_unassigned_shards_threshold_warning}"
@@ -227,7 +227,7 @@ resource "datadog_monitor" "node_free_space" {
     min:elasticsearch.fs.total.total_in_bytes${module.filter-tags.query_alert} by {node_name}
     ) * 100
   < ${var.node_free_space_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.node_free_space_threshold_warning}"
@@ -269,7 +269,7 @@ resource "datadog_monitor" "jvm_heap_memory_usage" {
   ${var.jvm_heap_memory_usage_time_aggregator}(${var.jvm_heap_memory_usage_timeframe}):
     avg:jvm.mem.heap_in_use${module.filter-tags.query_alert} by {node_name}
   > ${var.jvm_heap_memory_usage_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.jvm_heap_memory_usage_threshold_warning}"
@@ -311,7 +311,7 @@ resource "datadog_monitor" "jvm_memory_young_usage" {
   ${var.jvm_memory_young_usage_time_aggregator}(${var.jvm_memory_young_usage_timeframe}):
     avg:jvm.mem.pools.young.used${module.filter-tags.query_alert} by {node_name} / avg:jvm.mem.pools.young.max${module.filter-tags.query_alert} by {node_name} * 100
   > ${var.jvm_memory_young_usage_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.jvm_memory_young_usage_threshold_warning}"
@@ -353,7 +353,7 @@ resource "datadog_monitor" "jvm_memory_old_usage" {
   ${var.jvm_memory_old_usage_time_aggregator}(${var.jvm_memory_old_usage_timeframe}):
     avg:jvm.mem.pools.old.used${module.filter-tags.query_alert} by {node_name} / avg:jvm.mem.pools.old.max${module.filter-tags.query_alert} by {node_name} * 100
   > ${var.jvm_memory_old_usage_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.jvm_memory_old_usage_threshold_warning}"
@@ -395,7 +395,7 @@ resource "datadog_monitor" "jvm_gc_old_collection_latency" {
   ${var.jvm_gc_old_collection_latency_time_aggregator}(${var.jvm_gc_old_collection_latency_timeframe}):
     avg:jvm.gc.collectors.old.collection_time${module.filter-tags.query_alert} by {node_name} / avg:jvm.gc.collectors.old.count${module.filter-tags.query_alert} by {node_name} * 1000
   > ${var.jvm_gc_old_collection_latency_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.jvm_gc_old_collection_latency_threshold_warning}"
@@ -437,7 +437,7 @@ resource "datadog_monitor" "jvm_gc_young_collection_latency" {
   ${var.jvm_gc_young_collection_latency_time_aggregator}(${var.jvm_gc_young_collection_latency_timeframe}):
     avg:jvm.gc.collectors.young.collection_time${module.filter-tags.query_alert} by {node_name} / avg:jvm.gc.collectors.young.count${module.filter-tags.query_alert} by {node_name} * 1000
   > ${var.jvm_gc_young_collection_latency_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.jvm_gc_young_collection_latency_threshold_warning}"
@@ -480,7 +480,7 @@ resource "datadog_monitor" "indexing_latency" {
   ${var.indexing_latency_time_aggregator}(${var.indexing_latency_timeframe}):
     avg:elasticsearch.indexing.index.time${module.filter-tags.query_alert} by {node_name}/ avg:elasticsearch.indexing.index.total${module.filter-tags.query_alert} by {node_name} * 1000
    > ${var.indexing_latency_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.indexing_latency_threshold_warning}"
@@ -523,7 +523,7 @@ resource "datadog_monitor" "flush_latency" {
   ${var.flush_latency_time_aggregator}(${var.flush_latency_timeframe}):
     avg:elasticsearch.flush.total.time${module.filter-tags.query_alert} by {node_name} / avg:elasticsearch.flush.total${module.filter-tags.query_alert} by {node_name} * 1000
   > ${var.flush_latency_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.flush_latency_threshold_warning}"
@@ -573,7 +573,7 @@ resource "datadog_monitor" "http_connections_anomaly" {
               seasonality='${var.http_connections_anomaly_seasonality}'
               )
   >= ${var.http_connections_anomaly_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.http_connections_anomaly_threshold_warning}"
@@ -616,7 +616,7 @@ resource "datadog_monitor" "search_query_latency" {
   ${var.search_query_latency_time_aggregator}(${var.search_query_latency_timeframe}):
     avg:elasticsearch.search.query.time${module.filter-tags.query_alert} by {node_name} / avg:elasticsearch.search.query.total${module.filter-tags.query_alert} by {node_name} * 1000
   > ${var.search_query_latency_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.search_query_latency_threshold_warning}"
@@ -659,7 +659,7 @@ resource "datadog_monitor" "fetch_latency" {
   ${var.fetch_latency_time_aggregator}(${var.fetch_latency_timeframe}):
     avg:elasticsearch.search.fetch.time${module.filter-tags.query_alert} by {node_name} / avg:elasticsearch.search.fetch.total${module.filter-tags.query_alert} by {node_name} * 1000
   > ${var.fetch_latency_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.fetch_latency_threshold_warning}"
@@ -701,7 +701,7 @@ resource "datadog_monitor" "search_query_change" {
   pct_change(${var.search_query_change_time_aggregator}(${var.search_query_change_timeframe}),${var.search_query_change_timeshift}):
     avg:elasticsearch.search.query.current${module.filter-tags.query_alert} by {cluster_name}
   >= ${var.search_query_change_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.search_query_change_threshold_warning}"
@@ -743,7 +743,7 @@ resource "datadog_monitor" "fetch_change" {
   pct_change(${var.fetch_change_time_aggregator}(${var.fetch_change_timeframe}),${var.fetch_change_timeshift}):
     avg:elasticsearch.search.fetch.current${module.filter-tags.query_alert} by {cluster_name}
   >= ${var.fetch_change_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.fetch_change_threshold_warning}"
@@ -786,7 +786,7 @@ resource "datadog_monitor" "field_data_evictions_change" {
   change(${var.field_data_evictions_change_time_aggregator}(${var.field_data_evictions_change_timeframe}),${var.field_data_evictions_change_timeshift}):
     avg:elasticsearch.fielddata.evictions${module.filter-tags.query_alert} by {node_name}
   > ${var.field_data_evictions_change_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.field_data_evictions_change_threshold_warning}"
@@ -829,7 +829,7 @@ resource "datadog_monitor" "query_cache_evictions_change" {
   change(${var.query_cache_evictions_change_time_aggregator}(${var.query_cache_evictions_change_timeframe}),${var.query_cache_evictions_change_timeshift}):
     avg:elasticsearch.indices.query_cache.evictions${module.filter-tags.query_alert} by {node_name}
   > ${var.query_cache_evictions_change_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.query_cache_evictions_change_threshold_warning}"
@@ -872,7 +872,7 @@ resource "datadog_monitor" "request_cache_evictions_change" {
   change(${var.request_cache_evictions_change_time_aggregator}(${var.request_cache_evictions_change_timeframe}),${var.request_cache_evictions_change_timeshift}):
     avg:elasticsearch.indices.request_cache.evictions${module.filter-tags.query_alert} by {node_name}
   > ${var.request_cache_evictions_change_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.request_cache_evictions_change_threshold_warning}"
@@ -914,7 +914,7 @@ resource "datadog_monitor" "task_time_in_queue_change" {
   change(${var.task_time_in_queue_change_time_aggregator}(${var.task_time_in_queue_change_timeframe}),${var.task_time_in_queue_change_timeshift}):
     avg:elasticsearch.pending_tasks_time_in_queue${module.filter-tags.query_alert} by {cluster_name}
   > ${var.task_time_in_queue_change_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.task_time_in_queue_change_threshold_warning}"

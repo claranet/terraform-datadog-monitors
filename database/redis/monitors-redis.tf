@@ -42,7 +42,7 @@ resource "datadog_monitor" "evicted_keys" {
     change(${var.evictedkeys_change_time_aggregator}(${var.evictedkeys_change_timeframe}),${var.evictedkeys_change_timeframe}): (
       avg:redis.keys.evicted${module.filter-tags.query_alert} by {redis_host,redis_port}
      ) > ${var.evictedkeys_change_threshold_critical}
-EOQ
+  EOQ
 
   type = "metric alert"
 
@@ -75,7 +75,7 @@ resource "datadog_monitor" "expirations" {
     ${var.expirations_rate_time_aggregator}(${var.expirations_rate_timeframe}): (
       avg:redis.expires.percent${module.filter-tags.query_alert} by {redis_host,redis_port}
      ) > ${var.expirations_rate_threshold_critical}
-EOQ
+  EOQ
 
   type = "metric alert"
 
@@ -109,7 +109,7 @@ resource "datadog_monitor" "blocked_clients" {
       sum:redis.clients.blocked${module.filter-tags.query_alert} by {redis_host,redis_port}
       / sum:redis.net.clients${module.filter-tags.query_alert} by {redis_host,redis_port}
      ) * 100 > ${var.blocked_clients_threshold_critical}
-EOQ
+  EOQ
 
   type = "metric alert"
 
@@ -142,7 +142,7 @@ resource "datadog_monitor" "keyspace_full" {
     ${var.keyspace_time_aggregator}(${var.keyspace_timeframe}): (
       abs(diff(avg:redis.keys${module.filter-tags.query_alert} by {redis_host,redis_port}))
      ) == ${var.keyspace_threshold_critical}
-EOQ
+  EOQ
 
   type = "metric alert"
 
@@ -176,7 +176,7 @@ resource "datadog_monitor" "memory_used" {
       avg:redis.mem.used${module.filter-tags.query_alert} by {redis_host,redis_port}
       / max:redis.mem.maxmemory${module.filter-tags.query_alert} by {redis_host,redis_port}
      ) * 100 > ${var.mem_used_threshold_critical}
-EOQ
+  EOQ
 
   type = "metric alert"
 
@@ -209,7 +209,7 @@ resource "datadog_monitor" "memory_frag" {
     ${var.mem_frag_time_aggregator}(${var.mem_frag_timeframe}):
       avg:redis.mem.fragmentation_ratio${module.filter-tags.query_alert} by {redis_host,redis_port}
      * 100 > ${var.mem_frag_threshold_critical}
-EOQ
+  EOQ
 
   type = "metric alert"
 
@@ -242,7 +242,7 @@ resource "datadog_monitor" "rejected_connections" {
     change(${var.rejected_con_time_aggregator}(${var.rejected_con_timeframe}),${var.rejected_con_timeframe}): (
       avg:redis.net.rejected${module.filter-tags.query_alert} by {redis_host,redis_port}
      ) > ${var.rejected_con_threshold_critical}
-EOQ
+  EOQ
 
   type = "metric alert"
 
@@ -275,7 +275,7 @@ resource "datadog_monitor" "latency" {
     change(${var.latency_time_aggregator}(${var.latency_timeframe}),${var.latency_timeframe}): (
       avg:redis.info.latency_ms${module.filter-tags.query_alert} by {redis_host,redis_port}
      ) > ${var.latency_threshold_critical}
-EOQ
+  EOQ
 
   type = "metric alert"
 
@@ -310,7 +310,7 @@ resource "datadog_monitor" "hitrate" {
       / (sum:redis.stats.keyspace_hits${module.filter-tags.query_alert} by {redis_host,redis_port}
         + sum:redis.stats.keyspace_misses${module.filter-tags.query_alert} by {redis_host,redis_port})
      ) * 100 < ${var.hitrate_threshold_critical}
-EOQ
+  EOQ
 
   type = "metric alert"
 

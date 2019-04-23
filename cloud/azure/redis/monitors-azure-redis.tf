@@ -35,7 +35,7 @@ resource "datadog_monitor" "evictedkeys" {
     ${var.evictedkeys_limit_time_aggregator}(${var.evictedkeys_limit_timeframe}): (
       avg:azure.cache_redis.evictedkeys${module.filter-tags.query_alert} by {resource_group,region,name}
      ) > ${var.evictedkeys_limit_threshold_critical}
-EOQ
+  EOQ
 
   type = "metric alert"
 
@@ -68,7 +68,7 @@ resource "datadog_monitor" "percent_processor_time" {
     ${var.percent_processor_time_time_aggregator}(${var.percent_processor_time_timeframe}): (
       avg:azure.cache_redis.percent_processor_time${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.percent_processor_time_threshold_critical}
-EOQ
+  EOQ
 
   type = "metric alert"
 
@@ -101,7 +101,7 @@ resource "datadog_monitor" "server_load" {
     ${var.server_load_rate_time_aggregator}(${var.server_load_rate_timeframe}): (
       avg:azure.cache_redis.server_load${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.server_load_rate_threshold_critical}
-EOQ
+  EOQ
 
   type = "metric alert"
 
