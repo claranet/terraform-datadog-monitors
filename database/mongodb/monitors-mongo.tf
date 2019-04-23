@@ -3,10 +3,10 @@ resource "datadog_monitor" "mongodb_primary" {
   name    = "[${var.environment}] MongoDB primary state"
   message = "${coalesce(var.mongodb_primary_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
       ${var.mongodb_primary_aggregator}(${var.mongodb_primary_timeframe}):
       min:mongodb.replset.state${module.filter-tags.query_alert} by {replset_name} >= 2
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -29,12 +29,12 @@ resource "datadog_monitor" "mongodb_secondary" {
   name    = "[${var.environment}] MongoDB secondary missing"
   message = "${coalesce(var.mongodb_secondary_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
       ${var.mongodb_secondary_aggregator}(${var.mongodb_secondary_timeframe}):
       ${var.mongodb_desired_servers_count} -
       sum:mongodb.replset.health${module.filter-tags.query_alert} by {replset_name}
       > 1
-  EOF
+  EOQ
 
   thresholds {
     critical = 1
@@ -62,11 +62,11 @@ resource "datadog_monitor" "mongodb_server_count" {
   name    = "[${var.environment}] MongoDB too much servers or wrong monitoring config"
   message = "${coalesce(var.mongodb_server_count_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
       ${var.mongodb_server_count_aggregator}(${var.mongodb_server_count_timeframe}):
       sum:mongodb.replset.health${module.filter-tags.query_alert} by {replset_name}
       > 99
-  EOF
+  EOQ
 
   thresholds {
     critical = 99
@@ -94,10 +94,10 @@ resource "datadog_monitor" "mongodb_replication" {
   name    = "[${var.environment}] MongoDB replication lag"
   message = "${coalesce(var.mongodb_replication_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
       ${var.mongodb_replication_aggregator}(${var.mongodb_replication_timeframe}):
       avg:mongodb.replset.replicationlag${module.filter-tags-secondary.query_alert} by {server} > ${var.mongodb_lag_critical}
-  EOF
+  EOQ
 
   thresholds {
     critical = "${var.mongodb_lag_critical}"

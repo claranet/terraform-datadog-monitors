@@ -8,10 +8,10 @@ resource "datadog_monitor" "concurrent_queries" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   avg(${var.concurrent_queries_timeframe}):default(avg:gcp.bigquery.query.count{${var.filter_tags}}, 0)
   > ${var.concurrent_queries_threshold_critical}
-EOF
+  EOQ
 
   thresholds {
     warning  = "${var.concurrent_queries_threshold_warning}"
@@ -44,10 +44,10 @@ resource "datadog_monitor" "execution_time" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   avg(${var.execution_time_timeframe}):default(avg:gcp.bigquery.query.execution_times.avg{${var.filter_tags}}, 0)
   > ${var.execution_time_threshold_critical}
-EOF
+  EOQ
 
   thresholds {
     warning  = "${var.execution_time_threshold_warning}"
@@ -80,10 +80,10 @@ resource "datadog_monitor" "scanned_bytes" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   avg(${var.scanned_bytes_timeframe}):default(avg:gcp.bigquery.query.scanned_bytes{${var.filter_tags}}, 0)
   > ${var.scanned_bytes_threshold_critical}
-EOF
+  EOQ
 
   thresholds {
     warning  = "${var.scanned_bytes_threshold_warning}"
@@ -116,10 +116,10 @@ resource "datadog_monitor" "scanned_bytes_billed" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   avg(${var.scanned_bytes_billed_timeframe}):default(avg:gcp.bigquery.query.scanned_bytes_billed{${var.filter_tags}}, 0)
   > ${var.scanned_bytes_billed_threshold_critical}
-EOF
+  EOQ
 
   thresholds {
     warning  = "${var.scanned_bytes_billed_threshold_warning}"
@@ -152,10 +152,10 @@ resource "datadog_monitor" "available_slots" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   avg(${var.available_slots_timeframe}):avg:gcp.bigquery.slots.total_available{${var.filter_tags}}
   < ${var.available_slots_threshold_critical}
-EOF
+  EOQ
 
   thresholds {
     warning  = "${var.available_slots_threshold_warning}"
@@ -188,10 +188,10 @@ resource "datadog_monitor" "stored_bytes" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   avg(${var.stored_bytes_timeframe}):default(avg:gcp.bigquery.storage.stored_bytes{${var.filter_tags}} by {dataset_id,table}, 0)
   > ${var.stored_bytes_threshold_critical}
-EOF
+  EOQ
 
   thresholds {
     warning  = "${var.stored_bytes_threshold_warning}"
@@ -224,10 +224,10 @@ resource "datadog_monitor" "table_count" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   avg(${var.table_count_timeframe}):avg:gcp.bigquery.storage.table_count{${var.filter_tags}} by {dataset_id}
   > ${var.table_count_threshold_critical}
-EOF
+  EOQ
 
   thresholds {
     warning  = "${var.table_count_threshold_warning}"
@@ -260,10 +260,10 @@ resource "datadog_monitor" "uploaded_bytes" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   avg(${var.uploaded_bytes_timeframe}):default(avg:gcp.bigquery.storage.uploaded_bytes{${var.filter_tags}} by {dataset_id,table}, 0)
   > ${var.uploaded_bytes_threshold_critical}
-EOF
+  EOQ
 
   thresholds {
     warning  = "${var.uploaded_bytes_threshold_warning}"
@@ -296,10 +296,10 @@ resource "datadog_monitor" "uploaded_bytes_billed" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   avg(${var.uploaded_bytes_billed_timeframe}):default(avg:gcp.bigquery.storage.uploaded_bytes_billed{${var.filter_tags}} by {dataset_id,table}, 0)
   > ${var.uploaded_bytes_billed_threshold_critical}
-EOF
+  EOQ
 
   thresholds {
     warning  = "${var.uploaded_bytes_billed_threshold_warning}"

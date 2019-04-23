@@ -5,9 +5,9 @@ resource "datadog_monitor" "postgresql_availability" {
 
   type = "service check"
 
-  query = <<EOF
+  query = <<EOQ
     "postgres.can_connect"${module.filter-tags.service_check}.by("port","server").last(6).count_by_status()
-  EOF
+  EOQ
 
   thresholds = {
     warning  = "${var.postgresql_availability_threshold_warning}"
@@ -35,11 +35,11 @@ resource "datadog_monitor" "postgresql_connection_too_high" {
   message = "${coalesce(var.postgresql_connection_message, var.message)}"
   type    = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.postgresql_connection_time_aggregator}(${var.postgresql_connection_timeframe}):
       avg:postgresql.percent_usage_connections${module.filter-tags.query_alert} by {server}
     * 100 > ${var.postgresql_connection_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
@@ -66,11 +66,11 @@ resource "datadog_monitor" "postgresql_too_many_locks" {
   message = "${coalesce(var.postgresql_lock_message, var.message)}"
   type    = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.postgresql_lock_time_aggregator}(${var.postgresql_lock_timeframe}):
       default(avg:postgresql.locks${module.filter-tags.query_alert} by {server}, 0)
     > ${var.postgresql_lock_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"

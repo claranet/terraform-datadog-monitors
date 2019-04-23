@@ -3,12 +3,12 @@ resource "datadog_monitor" "nginx_ingress_too_many_5xx" {
   name    = "[${var.environment}] Nginx Ingress 5xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.ingress_5xx_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.ingress_5xx_time_aggregator}(${var.ingress_5xx_timeframe}): default(
       sum:nginx_ingress.nginx_upstream_responses_total${module.filter-tags-5xx.query_alert} by {upstream,ingress_class}.as_rate() /
       (sum:nginx_ingress.nginx_upstream_requests_total${module.filter-tags.query_alert} by {upstream,ingress_class}.as_rate() + ${var.artificial_requests_count})
       * 100, 0) > ${var.ingress_5xx_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -37,12 +37,12 @@ resource "datadog_monitor" "nginx_ingress_too_many_4xx" {
   name    = "[${var.environment}] Nginx Ingress 4xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.ingress_4xx_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.ingress_4xx_time_aggregator}(${var.ingress_4xx_timeframe}): default(
     sum:nginx_ingress.nginx_upstream_responses_total${module.filter-tags-4xx.query_alert} by {upstream,ingress_class}.as_rate() /
     (sum:nginx_ingress.nginx_upstream_requests_total${module.filter-tags.query_alert} by {upstream,ingress_class}.as_rate() + ${var.artificial_requests_count})
     * 100, 0) > ${var.ingress_4xx_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 

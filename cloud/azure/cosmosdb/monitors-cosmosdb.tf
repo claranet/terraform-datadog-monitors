@@ -4,11 +4,11 @@ resource "datadog_monitor" "cosmos_db_status" {
   name    = "[${var.environment}] Cosmos DB is down"
   message = "${coalesce(var.status_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
       ${var.status_time_aggregator}(${var.status_timeframe}):
         avg:azure.cosmosdb.status${module.filter-tags.query_alert} by {resource_group,region,name}
       < 1
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -38,7 +38,7 @@ resource "datadog_monitor" "cosmos_db_4xx_requests" {
   message = "${coalesce(var.cosmos_db_4xx_requests_message, var.message)}"
 
   # List of available status codes : https://docs.microsoft.com/en-us/rest/api/cosmos-db/http-status-codes-for-cosmosdb
-  query = <<EOF
+  query = <<EOQ
     ${var.cosmos_db_4xx_request_time_aggregator}(${var.cosmos_db_4xx_request_timeframe}): default( (
       default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "400")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
       default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "401")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
@@ -52,7 +52,7 @@ resource "datadog_monitor" "cosmos_db_4xx_requests" {
       default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "449")} by {resource_group,region,name,collectionname}.as_rate(), 0) ) /
       default(sum:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0)
     , 0) * 100 > ${var.cosmos_db_4xx_request_rate_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -82,13 +82,13 @@ resource "datadog_monitor" "cosmos_db_5xx_requests" {
   name    = "[${var.environment}] Cosmos DB 5xx requests rate is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cosmos_db_5xx_requests_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.cosmos_db_5xx_request_time_aggregator}(${var.cosmos_db_5xx_request_timeframe}): default( (
       default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "500")} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0) +
       default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "503")} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0)) /
       default(sum:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,collectionname}.as_rate(), 0)
     , 0) * 100 > ${var.cosmos_db_5xx_request_rate_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -119,12 +119,12 @@ resource "datadog_monitor" "cosmos_db_scaling" {
   message = "${coalesce(var.cosmos_db_scaling_message, var.message)}"
 
   # List of available status codes : https://docs.microsoft.com/en-us/rest/api/cosmos-db/http-status-codes-for-cosmosdb
-  query = <<EOF
+  query = <<EOQ
     ${var.cosmos_db_scaling_time_aggregator}(${var.cosmos_db_scaling_timeframe}): default(
       default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "429")} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0) /
       default(sum:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0)
     , 0) * 100 > ${var.cosmos_db_scaling_error_rate_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 
