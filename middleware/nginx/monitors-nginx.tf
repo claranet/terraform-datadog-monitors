@@ -1,5 +1,5 @@
 resource "datadog_monitor" "datadog_nginx_process" {
-  count   = "${var.nginx_connect_enabled ? 1 : 0}"
+  count   = "${var.nginx_connect_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Nginx vhost status does not respond"
   message = "${coalesce(var.nginx_connect_message, var.message)}"
 
@@ -30,7 +30,7 @@ resource "datadog_monitor" "datadog_nginx_process" {
 }
 
 resource "datadog_monitor" "datadog_nginx_dropped_connections" {
-  count   = "${var.nginx_dropped_enabled ? 1 : 0}"
+  count   = "${var.nginx_dropped_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Nginx dropped connections {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.nginx_dropped_message, var.message)}"
 

@@ -1,5 +1,5 @@
 resource "datadog_monitor" "postgresql_availability" {
-  count   = "${var.postgresql_availability_enabled ? 1 : 0}"
+  count   = "${var.postgresql_availability_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] PostgreSQL server does not respond"
   message = "${coalesce(var.postgresql_availability_message, var.message)}"
 
@@ -30,7 +30,7 @@ resource "datadog_monitor" "postgresql_availability" {
 }
 
 resource "datadog_monitor" "postgresql_connection_too_high" {
-  count   = "${var.postgresql_connection_enabled ? 1 : 0}"
+  count   = "${var.postgresql_connection_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] PostgreSQL Connections {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.postgresql_connection_message, var.message)}"
   type    = "metric alert"
@@ -61,7 +61,7 @@ resource "datadog_monitor" "postgresql_connection_too_high" {
 }
 
 resource "datadog_monitor" "postgresql_too_many_locks" {
-  count   = "${var.postgresql_lock_enabled ? 1 : 0}"
+  count   = "${var.postgresql_lock_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] PostgreSQL too many locks {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.postgresql_lock_message, var.message)}"
   type    = "metric alert"

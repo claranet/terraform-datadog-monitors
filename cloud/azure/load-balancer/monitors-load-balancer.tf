@@ -1,5 +1,5 @@
 resource "datadog_monitor" "loadbalancer_status" {
-  count = "${var.status_enabled ? 1 : 0}"
+  count = "${var.status_enabled == "true" ? 1 : 0}"
 
   name    = "[${var.environment}] Load Balancer is unreachable"
   message = "${coalesce(var.status_message, var.message)}"
