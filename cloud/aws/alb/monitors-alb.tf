@@ -1,6 +1,6 @@
 resource "datadog_monitor" "ALB_no_healthy_instances" {
   count   = "${var.alb_no_healthy_instances_enabled ? 1 : 0}"
-  name    = "[${var.environment}] ALB healthy instances {{#is_alert}}at 0{{/is_alert}}{{#is_warning}}{{value}}at {{value}}%{{/is_warning}}"
+  name    = "[${var.environment}] ALB healthy instances {{#is_alert}}is at 0{{/is_alert}}{{#is_warning}}is at {{value}}%{{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.alb_no_healthy_instances_message, var.message)}"
 
