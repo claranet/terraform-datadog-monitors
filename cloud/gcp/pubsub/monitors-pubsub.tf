@@ -12,7 +12,7 @@ resource "datadog_monitor" "sending_operations_count" {
   ${var.sending_operations_count_time_aggregator}(${var.sending_operations_count_timeframe}):
     default(avg:gcp.pubsub.topic.send_message_operation_count{${var.filter_tags}} by {topic_id}.as_count(), 0)
     <= ${var.sending_operations_count_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     critical = "${var.sending_operations_count_threshold_critical}"
@@ -48,7 +48,7 @@ resource "datadog_monitor" "unavailable_sending_operations_count" {
   ${var.unavailable_sending_operations_count_time_aggregator}(${var.unavailable_sending_operations_count_timeframe}):
     default(avg:gcp.pubsub.topic.send_message_operation_count{${var.filter_tags},response_code:unavailable} by {topic_id}.as_count(), 0) 
     >= ${var.unavailable_sending_operations_count_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.unavailable_sending_operations_count_threshold_warning}"

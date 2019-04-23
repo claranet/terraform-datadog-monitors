@@ -13,7 +13,7 @@ resource "datadog_monitor" "replication_lag" {
     avg:gcp.cloudsql.database.mysql.replication.seconds_behind_master{${var.filter_tags}}
     by {database_id}
   > ${var.replication_lag_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     critical = "${var.replication_lag_threshold_critical}"

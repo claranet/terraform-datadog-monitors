@@ -13,7 +13,7 @@ resource "datadog_monitor" "error_rate_4xx" {
     default(sum:gcp.loadbalancing.https.request_count{${var.filter_tags},response_code_class:400} by {forwarding_rule_name}.as_rate(), 0) / (
     default(sum:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {forwarding_rule_name}.as_rate() + ${var.error_rate_4xx_artificial_request}, 1))
   * 100 > ${var.error_rate_4xx_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.error_rate_4xx_threshold_warning}"
@@ -51,7 +51,7 @@ resource "datadog_monitor" "error_rate_5xx" {
     default(sum:gcp.loadbalancing.https.request_count{${var.filter_tags},response_code_class:500} by {forwarding_rule_name}.as_rate(), 0) / (
     default(sum:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {forwarding_rule_name}.as_rate() + ${var.error_rate_5xx_artificial_request}, 1))
   * 100 > ${var.error_rate_5xx_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.error_rate_5xx_threshold_warning}"
@@ -88,7 +88,7 @@ resource "datadog_monitor" "backend_latency_service" {
   ${var.backend_latency_service_time_aggregator}(${var.backend_latency_service_timeframe}):
     default(min:gcp.loadbalancing.https.backend_latencies.avg{${var.filter_tags},backend_target_type:backend_service} by {backend_target_name,forwarding_rule_name}, 0)
   > ${var.backend_latency_service_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.backend_latency_service_threshold_warning}"
@@ -125,7 +125,7 @@ resource "datadog_monitor" "backend_latency_bucket" {
   ${var.backend_latency_bucket_time_aggregator}(${var.backend_latency_bucket_timeframe}):
     default(min:gcp.loadbalancing.https.backend_latencies.avg{${var.filter_tags},backend_target_type:backend_bucket} by {backend_target_name,forwarding_rule_name}, 0)
   > ${var.backend_latency_bucket_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.backend_latency_bucket_threshold_warning}"
@@ -162,7 +162,7 @@ resource "datadog_monitor" "request_count" {
   pct_change(${var.request_count_time_aggregator}(${var.request_count_timeframe}),${var.request_count_timeshift}):
   default(sum:gcp.loadbalancing.https.request_count{${var.filter_tags}} by {forwarding_rule_name}.as_count(), 0)
   > ${var.request_count_threshold_critical}
-EOQ
+  EOQ
 
   thresholds {
     warning  = "${var.request_count_threshold_warning}"
