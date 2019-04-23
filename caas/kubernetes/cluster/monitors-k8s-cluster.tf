@@ -6,7 +6,7 @@ resource "datadog_monitor" "apiserver" {
   type = "service check"
 
   query = <<EOQ
-    "kube_apiserver_controlplane.up"${module.filter-tags.service_check}.by("apiserver_name").last(6).count_by_status()
+    "kube_apiserver_controlplane.up"${module.filter-tags.service_check}.last(6).count_by_status()
   EOQ
 
   thresholds = {
