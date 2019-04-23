@@ -80,6 +80,7 @@ The `//` is very important, it's a terraform specific syntax used to separate gi
 		- [cluster](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/cluster/)
 		- [ingress](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/ingress/)
 			- [vts](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/ingress/vts/)
+		- [node](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/node/)
 		- [pod](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/pod/)
 		- [workload](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/workload/)
 - [cloud](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/)
