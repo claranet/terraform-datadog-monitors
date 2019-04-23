@@ -73,20 +73,20 @@ Creates DataDog monitors with the following checks:
 | mysql\_pool\_utilization\_threshold\_warning | Maximum warning acceptable percent of innodb buffer pool utilization | string | `"80"` | no |
 | mysql\_pool\_utilization\_time\_aggregator | Monitor time aggregator for MySQL innodb buffer pool utilization monitor [available values: min, max or avg] | string | `"min"` | no |
 | mysql\_pool\_utilization\_timeframe | Monitor timeframe for MySQL innodb buffer pool utilization monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1h"` | no |
-| mysql\_queries\_alert\_window | Alert window. | string | `"last_15m"` | no |
-| mysql\_queries\_count\_default\_zero | Count default zero. | string | `"true"` | no |
-| mysql\_queries\_detection\_algorithm | Anomaly Detection Algorithm used | string | `"agile"` | no |
-| mysql\_queries\_deviations | Deviations to detect the anomaly | string | `"5"` | no |
-| mysql\_queries\_direction | Direction of the anomaly. It can be both, below or above. | string | `"both"` | no |
-| mysql\_queries\_enabled | Flag to enable mysql queries monitor | string | `"true"` | no |
-| mysql\_queries\_extra\_tags | Extra tags for MySQL queries monitor | list | `[]` | no |
-| mysql\_queries\_interval | Interval. | string | `"60"` | no |
-| mysql\_queries\_message | Custom message for MySQL queries monitor | string | `""` | no |
-| mysql\_queries\_seasonality | Seasonality of the algorithm | string | `"daily"` | no |
-| mysql\_queries\_silenced | Groups to mute for mysql queries monitor | map | `{}` | no |
-| mysql\_queries\_threshold\_critical | Maximum critical acceptable number of queries | string | `"1"` | no |
-| mysql\_queries\_time\_aggregator | Monitor time aggregator for MySQL queries monitor [available values: min, max or avg] | string | `"avg"` | no |
-| mysql\_queries\_timeframe | Monitor timeframe for MySQL queries monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_4h"` | no |
+| mysql\_questions\_alert\_window | Alert window. | string | `"last_15m"` | no |
+| mysql\_questions\_count\_default\_zero | Count default zero. | string | `"true"` | no |
+| mysql\_questions\_detection\_algorithm | Anomaly Detection Algorithm used | string | `"agile"` | no |
+| mysql\_questions\_deviations | Deviations to detect the anomaly | string | `"5"` | no |
+| mysql\_questions\_direction | Direction of the anomaly. It can be both, below or above. | string | `"both"` | no |
+| mysql\_questions\_enabled | Flag to enable mysql queries monitor | string | `"true"` | no |
+| mysql\_questions\_extra\_tags | Extra tags for MySQL queries monitor | list | `[]` | no |
+| mysql\_questions\_interval | Interval. | string | `"60"` | no |
+| mysql\_questions\_message | Custom message for MySQL queries monitor | string | `""` | no |
+| mysql\_questions\_seasonality | Seasonality of the algorithm | string | `"daily"` | no |
+| mysql\_questions\_silenced | Groups to mute for mysql queries monitor | map | `{}` | no |
+| mysql\_questions\_threshold\_critical | Maximum critical acceptable number of queries | string | `"1"` | no |
+| mysql\_questions\_time\_aggregator | Monitor time aggregator for MySQL queries monitor [available values: min, max or avg] | string | `"avg"` | no |
+| mysql\_questions\_timeframe | Monitor timeframe for MySQL queries monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_4h"` | no |
 | mysql\_slow\_enabled | Flag to enable MySQL slow queries monitor | string | `"true"` | no |
 | mysql\_slow\_extra\_tags | Extra tags for MySQL slow queries monitor | list | `[]` | no |
 | mysql\_slow\_message | Custom message for MySQL slow queries monitor | string | `""` | no |
@@ -120,7 +120,7 @@ Creates DataDog monitors with the following checks:
 | mysql\_connection\_id | id for monitor mysql_connection |
 | mysql\_pool\_efficiency\_id | id for monitor mysql_pool_efficiency |
 | mysql\_pool\_utilization\_id | id for monitor mysql_pool_utilization |
-| mysql\_queries\_anomaly\_id | id for monitor mysql_queries_anomaly |
+| mysql\_questions\_anomaly\_id | id for monitor mysql_questions_anomaly |
 | mysql\_slow\_id | id for monitor mysql_slow |
 | mysql\_threads\_anomaly\_id | id for monitor mysql_threads_anomaly |
 
