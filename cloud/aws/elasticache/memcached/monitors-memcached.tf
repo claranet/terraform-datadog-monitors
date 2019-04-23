@@ -5,13 +5,13 @@ resource "datadog_monitor" "memcached_get_hits" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.get_hits_time_aggregator}(${var.get_hits_timeframe}): (
       default(avg:aws.elasticache.get_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_rate(), 0) / (
         default(avg:aws.elasticache.get_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_rate(), 0) +
         default(avg:aws.elasticache.get_misses${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_rate(), 0))
     ) * 100 < ${var.get_hits_threshold_critical}
-  EOF
+  EOQ
 
   thresholds {
     warning  = "${var.get_hits_threshold_warning}"
@@ -40,11 +40,11 @@ resource "datadog_monitor" "memcached_cpu_high" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.cpu_high_time_aggregator}(${var.cpu_high_timeframe}): (
       avg:aws.elasticache.cpuutilization${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     ) > ${var.cpu_high_threshold_critical}
-  EOF
+  EOQ
 
   thresholds {
     warning  = "${var.cpu_high_threshold_warning}"

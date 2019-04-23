@@ -5,9 +5,9 @@ resource "datadog_monitor" "datadog_nginx_process" {
 
   type = "service check"
 
-  query = <<EOF
+  query = <<EOQ
     "nginx.can_connect"${module.filter-tags.service_check}.by("server","port").last(6).count_by_status()
-  EOF
+  EOQ
 
   thresholds = {
     warning  = "${var.nginx_connect_threshold_warning}"

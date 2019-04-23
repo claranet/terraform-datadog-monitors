@@ -4,11 +4,11 @@ resource "datadog_monitor" "keyvault_status" {
   name    = "[${var.environment}] Key Vault is down"
   message = "${coalesce(var.status_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
       ${var.status_time_aggregator}(${var.status_timeframe}): (
         avg:azure.keyvault_vaults.status${module.filter-tags.query_alert} by {resource_group,region,name}
       ) < 1
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -33,14 +33,14 @@ resource "datadog_monitor" "keyvault_api_result" {
   name    = "[${var.environment}] Key Vault API result rate is low {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.status_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
       ${var.api_result_time_aggregator}(${var.api_result_timeframe}):
       default(
         avg:azure.keyvault_vaults.service_api_result${format(module.filter-tags-statuscode.query_alert, "200")} by {name,resource_group,region}.as_rate() /
         avg:azure.keyvault_vaults.service_api_result${module.filter-tags.query_alert} by {name,resource_group,region}.as_rate()
         * 100
       , 100) < ${var.api_result_threshold_critical}
-  EOF
+  EOQ
 
   thresholds {
     critical = "${var.api_result_threshold_critical}"
@@ -70,11 +70,11 @@ resource "datadog_monitor" "keyvault_api_latency" {
   name    = "[${var.environment}] Key Vault API latency is high {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = "${coalesce(var.status_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
       ${var.api_latency_time_aggregator}(${var.api_latency_timeframe}):
         avg:azure.keyvault_vaults.service_api_latency${module.filter-tags-activity.query_alert} by {name,resource_group,region}
         > ${var.api_latency_threshold_critical}
-  EOF
+  EOQ
 
   thresholds {
     critical = "${var.api_latency_threshold_critical}"

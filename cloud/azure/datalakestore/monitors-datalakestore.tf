@@ -4,11 +4,11 @@ resource "datadog_monitor" "datalakestore_status" {
   name    = "[${var.environment}] Datalake Store is down"
   message = "${coalesce(var.status_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
       ${var.status_time_aggregator}(${var.status_timeframe}): (
         avg:azure.datalakestore_accounts.status${module.filter-tags.query_alert} by {resource_group,region,name}
       ) < 1
-EOF
+EOQ
 
   type = "metric alert"
 

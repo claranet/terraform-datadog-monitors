@@ -5,11 +5,11 @@ resource "datadog_monitor" "appservices_response_time" {
   type    = "metric alert"
   message = "${coalesce(var.response_time_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.response_time_time_aggregator}(${var.response_time_timeframe}): (
       default(avg:azure.app_services.average_response_time${module.filter-tags.query_alert} by {resource_group,region,name,instance}, 0)
     ) > ${var.response_time_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
@@ -37,11 +37,11 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
   type    = "metric alert"
   message = "${coalesce(var.memory_usage_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.memory_usage_time_aggregator}(${var.memory_usage_timeframe}): (
       avg:azure.app_services.memory_working_set${module.filter-tags.query_alert} by {resource_group,region,name,instance}
     ) > ${var.memory_usage_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
@@ -69,12 +69,12 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
   type    = "metric alert"
   message = "${coalesce(var.http_5xx_requests_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.http_5xx_requests_time_aggregator}(${var.http_5xx_requests_timeframe}): (
       default(avg:azure.app_services.http5xx${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 0) /
       default(avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 1)
     ) * 100 > ${var.http_5xx_requests_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
@@ -102,12 +102,12 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
   type    = "metric alert"
   message = "${coalesce(var.http_4xx_requests_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.http_4xx_requests_time_aggregator}(${var.http_4xx_requests_timeframe}): (
       default(avg:azure.app_services.http4xx${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 0) /
       default(avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 1)
     ) * 100 > ${var.http_4xx_requests_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
@@ -135,14 +135,14 @@ resource "datadog_monitor" "appservices_http_success_status_rate" {
   type    = "metric alert"
   message = "${coalesce(var.http_successful_requests_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.http_successful_requests_time_aggregator}(${var.http_successful_requests_timeframe}):
     default( (
       (default(avg:azure.app_services.http2xx${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 0) +
        default(avg:azure.app_services.http3xx${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 0) ) /
       default(avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 0)
     ) * 100, 100) < ${var.http_successful_requests_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"

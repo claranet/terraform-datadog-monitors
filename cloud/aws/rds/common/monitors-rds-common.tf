@@ -6,11 +6,11 @@ resource "datadog_monitor" "rds_cpu_90_15min" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.cpu_time_aggregator}(${var.cpu_timeframe}): (
       avg:aws.rds.cpuutilization${module.filter-tags.query_alert} by {region,name}
     ) > ${var.cpu_threshold_critical}
-EOF
+EOQ
 
   thresholds {
     warning  = "${var.cpu_threshold_warning}"
@@ -39,12 +39,12 @@ resource "datadog_monitor" "rds_free_space_low" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   ${var.diskspace_time_aggregator}(${var.diskspace_timeframe}): (
     avg:aws.rds.free_storage_space${module.filter-tags.query_alert} by {region,name} /
     avg:aws.rds.total_storage_space${module.filter-tags.query_alert} by {region,name} * 100
   ) < ${var.diskspace_threshold_critical}
-EOF
+EOQ
 
   thresholds {
     warning  = "${var.diskspace_threshold_warning}"
@@ -73,11 +73,11 @@ resource "datadog_monitor" "rds_replica_lag" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   avg(${var.replicalag_timeframe}): (
     avg:aws.rds.replica_lag${module.filter-tags.query_alert} by {region,name}
   ) > ${var.replicalag_threshold_critical}
-EOF
+EOQ
 
   thresholds {
     warning  = "${var.replicalag_threshold_warning}"

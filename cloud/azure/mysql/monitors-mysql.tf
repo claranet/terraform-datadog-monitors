@@ -3,11 +3,11 @@ resource "datadog_monitor" "mysql_cpu_usage" {
   name    = "[${var.environment}] Mysql Server CPU usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_usage_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.cpu_usage_time_aggregator}(${var.cpu_usage_timeframe}): (
       avg:azure.dbformysql_servers.cpu_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.cpu_usage_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -36,11 +36,11 @@ resource "datadog_monitor" "mysql_free_storage" {
   name    = "[${var.environment}] Mysql Server storage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.free_storage_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.free_storage_time_aggregator}(${var.free_storage_timeframe}): (
       100 - avg:azure.dbformysql_servers.storage_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) < ${var.free_storage_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -69,11 +69,11 @@ resource "datadog_monitor" "mysql_io_consumption" {
   name    = "[${var.environment}] Mysql Server IO consumption {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.io_consumption_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.io_consumption_time_aggregator}(${var.io_consumption_timeframe}): (
       avg:azure.dbformysql_servers.io_consumption_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.io_consumption_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -102,11 +102,11 @@ resource "datadog_monitor" "mysql_memory_usage" {
   name    = "[${var.environment}] Mysql Server memory usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.memory_usage_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.memory_usage_time_aggregator}(${var.memory_usage_timeframe}): (
       avg:azure.dbformysql_servers.memory_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.memory_usage_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 

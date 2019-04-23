@@ -8,12 +8,12 @@ resource "datadog_monitor" "replication_lag" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   ${var.replication_lag_time_aggregator}(${var.replication_lag_timeframe}):
     avg:gcp.cloudsql.database.mysql.replication.seconds_behind_master{${var.filter_tags}}
     by {database_id}
   > ${var.replication_lag_threshold_critical}
-EOF
+EOQ
 
   thresholds {
     critical = "${var.replication_lag_threshold_critical}"

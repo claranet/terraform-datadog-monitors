@@ -5,9 +5,9 @@ resource "datadog_monitor" "php_fpm_connect" {
 
   type = "service check"
 
-  query = <<EOF
+  query = <<EOQ
     "php_fpm.can_ping"${module.filter-tags.service_check}.by("ping_url").last(6).count_by_status()
-  EOF
+  EOQ
 
   thresholds = {
     warning  = "${var.php_fpm_connect_threshold_warning}"
@@ -36,13 +36,13 @@ resource "datadog_monitor" "php_fpm_connect_idle" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.php_fpm_busy_time_aggregator}(${var.php_fpm_busy_timeframe}): (
       avg:php_fpm.processes.active${module.filter-tags.query_alert} by {host, pool} /
       ( avg:php_fpm.processes.idle${module.filter-tags.query_alert} by {host, pool} +
        avg:php_fpm.processes.active${module.filter-tags.query_alert} by {host, pool} )
     ) * 100 > ${var.php_fpm_busy_threshold_critical}
-  EOF
+  EOQ
 
   thresholds {
     warning  = "${var.php_fpm_busy_threshold_warning}"

@@ -6,11 +6,11 @@ resource "datadog_monitor" "rds_aurora_postgresql_replica_lag" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   avg(${var.aurora_replicalag_timeframe}): (
     avg:aws.rds.rdsto_aurora_postgre_sqlreplica_lag${module.filter-tags.query_alert} by {region,name}
   ) > ${var.aurora_replicalag_threshold_critical}
-EOF
+EOQ
 
   thresholds {
     warning  = "${var.aurora_replicalag_threshold_warning}"
