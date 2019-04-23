@@ -4,11 +4,11 @@ resource "datadog_monitor" "virtualmachine_status" {
   name    = "[${var.environment}] Virtual Machine is unreachable"
   message = "${coalesce(var.status_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
       ${var.status_time_aggregator}(${var.status_timeframe}): (
         avg:azure.vm.status${module.filter-tags.query_alert} by {resource_group,region,name}
       ) < 1
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -32,11 +32,11 @@ resource "datadog_monitor" "virtualmachine_cpu_usage" {
   name    = "[${var.environment}] Virtual Machine CPU usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_usage_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.cpu_usage_time_aggregator}(${var.cpu_usage_timeframe}): (
       avg:azure.vm.percentage_cpu${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.cpu_usage_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -65,14 +65,14 @@ resource "datadog_monitor" "virtualmachine_credit_cpu_remaining_too_low" {
   name    = "[${var.environment}] Virtual Machine credit CPU {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_remaining_rate_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.cpu_remaining_rate_time_aggregator}(${var.cpu_remaining_rate_timeframe}):
     default(
       default(avg:azure.vm.cpu_credits_remaining${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 100) / (
       default(avg:azure.vm.cpu_credits_remaining${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 100) +
       default(avg:azure.vm.cpu_credits_consumed${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) )
       * 100 , 100) < ${var.cpu_remaining_rate_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 

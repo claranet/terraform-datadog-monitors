@@ -5,11 +5,11 @@ resource "datadog_monitor" "azure_search_latency" {
   type    = "metric alert"
   message = "${coalesce(var.latency_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.latency_time_aggregator}(${var.latency_timeframe}): (
       avg:azure.search_searchservices.search_latency${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.latency_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
@@ -37,11 +37,11 @@ resource "datadog_monitor" "azure_search_throttled_queries_rate" {
   type    = "metric alert"
   message = "${coalesce(var.throttled_queries_rate_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.throttled_queries_rate_time_aggregator}(${var.throttled_queries_rate_timeframe}): (
       avg:azure.search_searchservices.throttled_search_queries_percentage${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.throttled_queries_rate_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"

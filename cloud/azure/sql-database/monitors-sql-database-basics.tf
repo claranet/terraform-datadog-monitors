@@ -3,11 +3,11 @@ resource "datadog_monitor" "status" {
   name    = "[${var.environment}] SQL Database is down"
   message = "${coalesce(var.status_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.status_time_aggregator}(${var.status_timeframe}): (
       avg:azure.sql_servers_databases.status${module.filter-tags.query_alert} by {resource_group,region,server_name,name}
     ) != 1
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -31,11 +31,11 @@ resource "datadog_monitor" "sql-database_cpu_90_15min" {
   name    = "[${var.environment}] SQL Database CPU too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.cpu_time_aggregator}(${var.cpu_timeframe}): (
       avg:azure.sql_servers_databases.cpu_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.cpu_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -65,11 +65,11 @@ resource "datadog_monitor" "sql-database_free_space_low" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.diskspace_time_aggregator}(${var.diskspace_timeframe}): (
       avg:azure.sql_servers_databases.storage_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.diskspace_threshold_critical}
-  EOF
+  EOQ
 
   thresholds {
     warning  = "${var.diskspace_threshold_warning}"
@@ -98,11 +98,11 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.dtu_time_aggregator}(${var.dtu_timeframe}): (
       azure.sql_servers_databases.dtu_consumption_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.dtu_threshold_critical}
-  EOF
+  EOQ
 
   thresholds {
     warning  = "${var.dtu_threshold_warning}"
@@ -131,11 +131,11 @@ resource "datadog_monitor" "sql-database_deadlocks_count" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     sum(${var.deadlock_timeframe}): (
       avg:azure.sql_servers_databases.deadlock${module.filter-tags.query_alert} by {resource_group,region,name}.as_count()
     ) > ${var.deadlock_threshold_critical}
-  EOF
+  EOQ
 
   thresholds {
     critical = "${var.deadlock_threshold_critical}"

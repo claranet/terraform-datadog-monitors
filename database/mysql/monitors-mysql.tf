@@ -5,9 +5,9 @@ resource "datadog_monitor" "mysql_availability" {
 
   type = "service check"
 
-  query = <<EOF
+  query = <<EOQ
     "mysql.can_connect"${module.filter-tags.service_check}.by("port","server").last(6).count_by_status()
-  EOF
+  EOQ
 
   thresholds = {
     warning  = "${var.mysql_availability_threshold_warning}"
@@ -35,12 +35,12 @@ resource "datadog_monitor" "mysql_connection" {
   message = "${coalesce(var.mysql_connection_message, var.message)}"
   type    = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.mysql_connection_time_aggregator}(${var.mysql_connection_timeframe}): (
       avg:mysql.net.connections${module.filter-tags.query_alert} by {server} /
       avg:mysql.net.max_connections_available${module.filter-tags.query_alert} by {server}
     ) * 100 > ${var.mysql_connection_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
@@ -67,12 +67,12 @@ resource "datadog_monitor" "mysql_aborted" {
   message = "${coalesce(var.mysql_aborted_message, var.message)}"
   type    = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.mysql_aborted_time_aggregator}(${var.mysql_aborted_timeframe}): (
       avg:mysql.net.aborted_connects${module.filter-tags.query_alert} by {server} /
       avg:mysql.performance.threads_connected${module.filter-tags.query_alert} by {server}
     ) * 100 > ${var.mysql_aborted_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
@@ -99,12 +99,12 @@ resource "datadog_monitor" "mysql_slow" {
   message = "${coalesce(var.mysql_slow_message, var.message)}"
   type    = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.mysql_slow_time_aggregator}(${var.mysql_slow_timeframe}): (
       avg:mysql.performance.slow_queries${module.filter-tags.query_alert} by {server} /
       avg:mysql.performance.queries${module.filter-tags.query_alert} by {server}
     ) * 100 > ${var.mysql_slow_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
@@ -131,12 +131,12 @@ resource "datadog_monitor" "mysql_pool_efficiency" {
   message = "${coalesce(var.mysql_pool_efficiency_message, var.message)}"
   type    = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.mysql_pool_efficiency_time_aggregator}(${var.mysql_pool_efficiency_timeframe}): (
       avg:mysql.innodb.buffer_pool_reads${module.filter-tags.query_alert} by {server} /
       avg:mysql.innodb.buffer_pool_read_requests${module.filter-tags.query_alert} by {server}
     ) * 100 > ${var.mysql_pool_efficiency_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
@@ -163,13 +163,13 @@ resource "datadog_monitor" "mysql_pool_utilization" {
   message = "${coalesce(var.mysql_pool_utilization_message, var.message)}"
   type    = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.mysql_pool_utilization_time_aggregator}(${var.mysql_pool_utilization_timeframe}):
       ( avg:mysql.innodb.buffer_pool_total${module.filter-tags.query_alert} by {server} -
       avg:mysql.innodb.buffer_pool_free${module.filter-tags.query_alert} by {server} ) /
       avg:mysql.innodb.buffer_pool_total${module.filter-tags.query_alert} by {server}
     * 100 > ${var.mysql_pool_utilization_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
@@ -196,7 +196,7 @@ resource "datadog_monitor" "mysql_threads_anomaly" {
   message = "${coalesce(var.mysql_threads_message, var.message)}"
   type    = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.mysql_threads_time_aggregator}(${var.mysql_threads_timeframe}):
       anomalies(
         avg:mysql.performance.threads_running${module.filter-tags.query_alert} by {server},
@@ -209,7 +209,7 @@ resource "datadog_monitor" "mysql_threads_anomaly" {
         ${var.mysql_threads_seasonality == "agile" ? format(",seasonality='%s'", var.mysql_threads_seasonality): ""}
       )
     >= ${var.mysql_threads_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
@@ -236,7 +236,7 @@ resource "datadog_monitor" "mysql_questions_anomaly" {
   message = "${coalesce(var.mysql_questions_message, var.message)}"
   type    = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.mysql_questions_time_aggregator}(${var.mysql_questions_timeframe}):
       anomalies(
         avg:mysql.performance.questions${module.filter-tags.query_alert} by {server},
@@ -249,7 +249,7 @@ resource "datadog_monitor" "mysql_questions_anomaly" {
         ${var.mysql_questions_detection_algorithm == "agile" ? format(",seasonality='%s'", var.mysql_questions_seasonality): ""}
       )
     >= ${var.mysql_questions_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"

@@ -8,11 +8,11 @@ resource "datadog_monitor" "cpu_utilization" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   ${var.cpu_utilization_time_aggregator}(${var.cpu_utilization_timeframe}):
     avg:gcp.gce.instance.cpu.utilization{${var.filter_tags}} by {instance_name} * 100
   > ${var.cpu_utilization_threshold_critical}
-EOF
+EOQ
 
   thresholds {
     warning  = "${var.cpu_utilization_threshold_warning}"
@@ -45,7 +45,7 @@ resource "datadog_monitor" "disk_throttled_bps" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   ${var.disk_throttled_bps_time_aggregator}(${var.disk_throttled_bps_timeframe}):
     (
       sum:gcp.gce.instance.disk.throttled_read_bytes_count{${var.filter_tags}} by {instance_name, device_name} +
@@ -55,7 +55,7 @@ resource "datadog_monitor" "disk_throttled_bps" {
       sum:gcp.gce.instance.disk.write_bytes_count{${var.filter_tags}} by {instance_name, device_name}
     ) * 100
     > ${var.disk_throttled_bps_threshold_critical}
-EOF
+EOQ
 
   thresholds {
     warning  = "${var.disk_throttled_bps_threshold_warning}"
@@ -88,7 +88,7 @@ resource "datadog_monitor" "disk_throttled_ops" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   ${var.disk_throttled_ops_time_aggregator}(${var.disk_throttled_ops_timeframe}):
     (
       sum:gcp.gce.instance.disk.throttled_read_ops_count{${var.filter_tags}} by {instance_name, device_name} +
@@ -98,7 +98,7 @@ resource "datadog_monitor" "disk_throttled_ops" {
       sum:gcp.gce.instance.disk.write_ops_count{${var.filter_tags}} by {instance_name, device_name}
     ) * 100
     > ${var.disk_throttled_ops_threshold_critical}
-EOF
+EOQ
 
   thresholds {
     warning  = "${var.disk_throttled_ops_threshold_warning}"

@@ -10,12 +10,12 @@ resource "datadog_monitor" "es_cluster_status" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   max(${var.es_cluster_status_timeframe}): (
     avg:aws.es.cluster_statusred${module.filter-tags.query_alert} by {region,name} * 2 +
     (avg:aws.es.cluster_statusyellow${module.filter-tags.query_alert} by {region,name} + 0.1)
   ) >= 2
-EOF
+EOQ
 
   thresholds {
     warning  = 1
@@ -45,12 +45,12 @@ resource "datadog_monitor" "es_free_space_low" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   ${var.diskspace_time_aggregator}(${var.diskspace_timeframe}): (
     avg:aws.es.free_storage_space${module.filter-tags.query_alert} by {region,name} /
     (${var.es_cluster_volume_size}*1000) * 100
   ) < ${var.diskspace_threshold_critical}
-EOF
+EOQ
 
   thresholds {
     warning  = "${var.diskspace_threshold_warning}"
@@ -80,11 +80,11 @@ resource "datadog_monitor" "es_cpu_90_15min" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   ${var.cpu_time_aggregator}(${var.cpu_timeframe}): (
     avg:aws.es.cpuutilization${module.filter-tags.query_alert} by {region,name}
   ) > ${var.cpu_threshold_critical}
-EOF
+EOQ
 
   thresholds {
     warning  = "${var.cpu_threshold_warning}"

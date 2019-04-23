@@ -3,11 +3,11 @@ resource "datadog_monitor" "status" {
   name    = "[${var.environment}] Serverfarm is down"
   message = "${coalesce(var.status_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.status_time_aggregator}(${var.status_timeframe}): (
       avg:azure.web_serverfarms.status${module.filter-tags.query_alert} by {resource_group,region,name}
     ) != 1
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -31,11 +31,11 @@ resource "datadog_monitor" "cpu_percentage" {
   name    = "[${var.environment}] Serverfarm CPU percentage is too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_percentage_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.cpu_percentage_time_aggregator}(${var.cpu_percentage_timeframe}): (
       avg:azure.web_serverfarms.cpu_percentage${module.filter-tags.query_alert} by {resource_group,region,name,instance}
     ) > ${var.cpu_percentage_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -64,11 +64,11 @@ resource "datadog_monitor" "memory_percentage" {
   name    = "[${var.environment}] Serverfarm memory percentage is too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.memory_percentage_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.memory_percentage_time_aggregator}(${var.memory_percentage_timeframe}): (
       avg:azure.web_serverfarms.memory_percentage${module.filter-tags.query_alert} by {resource_group,region,name,instance}
     ) > ${var.memory_percentage_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 

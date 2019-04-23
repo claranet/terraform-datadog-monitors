@@ -5,9 +5,9 @@ resource "datadog_monitor" "datadog_apache_process" {
 
   type = "service check"
 
-  query = <<EOF
+  query = <<EOQ
     "apache.can_connect"${module.filter-tags.service_check}.by("port","server").last(6).count_by_status()
-  EOF
+  EOQ
 
   thresholds = {
     warning  = "${var.apache_connect_threshold_warning}"

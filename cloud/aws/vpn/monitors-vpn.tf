@@ -3,11 +3,11 @@ resource "datadog_monitor" "VPN_status" {
   name    = "[${var.environment}] VPN tunnel down"
   message = "${coalesce(var.vpn_status_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
         ${var.vpn_status_time_aggregator}(${var.vpn_status_timeframe}): (
           min:aws.vpn.tunnel_state{${var.filter_tags}} by {region,tunnelipaddress}
         ) < 1
-  EOF
+  EOQ
 
   type = "metric alert"
 

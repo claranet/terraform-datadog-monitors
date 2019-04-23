@@ -3,11 +3,11 @@ resource "datadog_monitor" "eventhub_status" {
   name    = "[${var.environment}] Event Hub is down"
   message = "${coalesce(var.status_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.status_time_aggregator}(${var.status_timeframe}): (
        avg:azure.eventhub_namespaces.status${module.filter-tags.query_alert} by {resource_group,region,name}
     ) != 1
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -31,12 +31,12 @@ resource "datadog_monitor" "eventhub_failed_requests" {
   name    = "[${var.environment}] Event Hub too many failed requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.failed_requests_rate_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.failed_requests_rate_time_aggregator}(${var.failed_requests_rate_timeframe}): (
       default(avg:azure.eventhub_namespaces.failed_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
       default(avg:azure.eventhub_namespaces.incoming_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
     ) * 100 > ${var.failed_requests_rate_thresold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -65,14 +65,14 @@ resource "datadog_monitor" "eventhub_errors" {
   name    = "[${var.environment}] Event Hub too many errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.errors_rate_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.errors_rate_time_aggregator}(${var.errors_rate_timeframe}): ( (
       default(avg:azure.eventhub_namespaces.internal_server_errors${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) +
       default(avg:azure.eventhub_namespaces.server_busy_errors${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) +
       default(avg:azure.eventhub_namespaces.other_errors${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) ) /
       default(avg:azure.eventhub_namespaces.incoming_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
     ) * 100 > ${var.errors_rate_thresold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 

@@ -5,11 +5,11 @@ resource "datadog_monitor" "API_Gateway_latency" {
   type    = "metric alert"
   message = "${coalesce(var.latency_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.latency_time_aggregator}(${var.latency_timeframe}):
       default(avg:aws.apigateway.latency{${var.filter_tags}} by {region,apiname,stage}, 0)
     > ${var.latency_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
@@ -37,12 +37,12 @@ resource "datadog_monitor" "API_http_5xx_errors_count" {
   type    = "metric alert"
   message = "${coalesce(var.http_5xx_requests_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.http_5xx_requests_time_aggregator}(${var.http_5xx_requests_timeframe}):
       default(avg:aws.apigateway.5xxerror{${var.filter_tags}} by {region,apiname,stage}.as_rate(), 0) / (
       default(avg:aws.apigateway.count{${var.filter_tags}} by {region,apiname,stage}.as_rate() + ${var.artificial_requests_count}, 1))
       * 100 > ${var.http_5xx_requests_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
@@ -70,12 +70,12 @@ resource "datadog_monitor" "API_http_4xx_errors_count" {
   type    = "metric alert"
   message = "${coalesce(var.http_4xx_requests_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.http_4xx_requests_time_aggregator}(${var.http_4xx_requests_timeframe}):
       default(avg:aws.apigateway.4xxerror{${var.filter_tags}} by {region,apiname,stage}.as_rate(), 0) / (
       default(avg:aws.apigateway.count{${var.filter_tags}} by {region,apiname,stage}.as_rate() + ${var.artificial_requests_count}, 1))
       * 100 > ${var.http_4xx_requests_threshold_critical}
-  EOF
+  EOQ
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
