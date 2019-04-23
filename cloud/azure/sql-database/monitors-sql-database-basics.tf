@@ -1,5 +1,5 @@
 resource "datadog_monitor" "status" {
-  count   = "${var.status_enabled ? 1 : 0}"
+  count   = "${var.status_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] SQL Database is down"
   message = "${coalesce(var.status_message, var.message)}"
 
@@ -27,7 +27,7 @@ resource "datadog_monitor" "status" {
 }
 
 resource "datadog_monitor" "sql-database_cpu_90_15min" {
-  count   = "${var.cpu_enabled ? 1 : 0}"
+  count   = "${var.cpu_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] SQL Database CPU too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_message, var.message)}"
 
@@ -59,7 +59,7 @@ resource "datadog_monitor" "sql-database_cpu_90_15min" {
 }
 
 resource "datadog_monitor" "sql-database_free_space_low" {
-  count   = "${var.diskspace_enabled ? 1 : 0}"
+  count   = "${var.diskspace_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] SQL Database low free space {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.diskspace_message, var.message)}"
 
@@ -92,7 +92,7 @@ resource "datadog_monitor" "sql-database_free_space_low" {
 }
 
 resource "datadog_monitor" "sql-database_dtu_consumption_high" {
-  count   = "${var.dtu_enabled ? 1 : 0}"
+  count   = "${var.dtu_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] SQL Database DTU Consumption too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.dtu_message, var.message)}"
 
@@ -125,7 +125,7 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
 }
 
 resource "datadog_monitor" "sql-database_deadlocks_count" {
-  count   = "${var.deadlock_enabled ? 1 : 0}"
+  count   = "${var.deadlock_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] SQL Database Deadlocks too high {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.deadlock_message, var.message)}"
 

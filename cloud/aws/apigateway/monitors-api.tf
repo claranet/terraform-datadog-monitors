@@ -1,6 +1,6 @@
 # Monitoring Api Gateway latency
 resource "datadog_monitor" "API_Gateway_latency" {
-  count   = "${var.latency_enabled ? 1 : 0}"
+  count   = "${var.latency_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] API Gateway latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.latency_message, var.message)}"
@@ -32,7 +32,7 @@ resource "datadog_monitor" "API_Gateway_latency" {
 
 # Monitoring API Gateway 5xx errors percent
 resource "datadog_monitor" "API_http_5xx_errors_count" {
-  count   = "${var.http_5xx_requests_enabled ? 1 : 0}"
+  count   = "${var.http_5xx_requests_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] API Gateway HTTP 5xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.http_5xx_requests_message, var.message)}"
@@ -65,7 +65,7 @@ resource "datadog_monitor" "API_http_5xx_errors_count" {
 
 # Monitoring API Gateway 4xx errors percent
 resource "datadog_monitor" "API_http_4xx_errors_count" {
-  count   = "${var.http_4xx_requests_enabled ? 1 : 0}"
+  count   = "${var.http_4xx_requests_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] API Gateway HTTP 4xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.http_4xx_requests_message, var.message)}"

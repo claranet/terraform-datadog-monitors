@@ -2,7 +2,7 @@
 # CPU Utilization
 #
 resource "datadog_monitor" "cpu_utilization" {
-  count   = "${var.cpu_utilization_enabled ? 1 : 0}"
+  count   = "${var.cpu_utilization_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Cloud SQL CPU Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_utilization_message, var.message)}"
 
@@ -40,7 +40,7 @@ EOF
 # Disk Utilization
 #
 resource "datadog_monitor" "disk_utilization" {
-  count   = "${var.disk_utilization_enabled ? 1 : 0}"
+  count   = "${var.disk_utilization_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Cloud SQL Disk Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.disk_utilization_message, var.message)}"
 
@@ -78,7 +78,7 @@ EOF
 # Disk Utilization Forecast
 #
 resource "datadog_monitor" "disk_utilization_forecast" {
-  count   = "${var.disk_utilization_forecast_enabled ? 1 : 0}"
+  count   = "${var.disk_utilization_forecast_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Cloud SQL Disk Utilization could reach {{#is_alert}}{{threshold}}%{{/is_alert}} in a near future"
   message = "${coalesce(var.disk_utilization_forecast_message, var.message)}"
 
@@ -122,7 +122,7 @@ EOF
 # Memory Utilization
 #
 resource "datadog_monitor" "memory_utilization" {
-  count   = "${var.memory_utilization_enabled ? 1 : 0}"
+  count   = "${var.memory_utilization_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Cloud SQL Memory Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.memory_utilization_message, var.message)}"
 
@@ -160,7 +160,7 @@ EOF
 # Memory Utilization Forecast
 #
 resource "datadog_monitor" "memory_utilization_forecast" {
-  count   = "${var.memory_utilization_forecast_enabled ? 1 : 0}"
+  count   = "${var.memory_utilization_forecast_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Cloud SQL Memory Utilization could reach {{#is_alert}}{{threshold}}%{{/is_alert}} in a near future"
   message = "${coalesce(var.memory_utilization_forecast_message, var.message)}"
 
@@ -204,7 +204,7 @@ EOF
 # Failover Unavailable
 #
 resource "datadog_monitor" "failover_unavailable" {
-  count   = "${var.failover_unavailable_enabled ? 1 : 0}"
+  count   = "${var.failover_unavailable_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Cloud SQL Failover Unavailable"
   message = "${coalesce(var.failover_unavailable_message, var.message)}"
 
