@@ -4,9 +4,9 @@ resource "datadog_monitor" "ark_schedules_monitor" {
   type    = "metric alert"
   message = "${coalesce(var.ark_schedules_monitor_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     sum(${var.ark_schedules_monitor_timeframe}):min:ark.ark_backup_failure_total${module.filter-tags.query_alert} by {schedule}.as_count() > 1
-  EOF
+  EOQ
 
   thresholds {
     critical = 1

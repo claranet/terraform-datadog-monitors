@@ -4,10 +4,10 @@ resource "datadog_monitor" "eventgrid_no_successful_message" {
   message = "${coalesce(var.no_successful_message_rate_message, var.message)}"
 
   # Query is a bit weird, but we only want to check the no-data
-  query = <<EOF
+  query = <<EOQ
     ${var.no_successful_message_rate_time_aggregator}(${var.no_successful_message_rate_timeframe}):
       avg:azure.eventgrid_topics.publish_success_count${module.filter-tags.query_alert} by {resource_group,region,name} < 0
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -31,7 +31,7 @@ resource "datadog_monitor" "eventgrid_failed_messages" {
   name    = "[${var.environment}] Event Grid too many failed messages {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.failed_messages_rate_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.failed_messages_rate_time_aggregator}(${var.failed_messages_rate_timeframe}): (default(
       avg:azure.eventgrid_topics.publish_fail_count${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate() /
       (avg:azure.eventgrid_topics.publish_success_count${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate() +
@@ -39,7 +39,7 @@ resource "datadog_monitor" "eventgrid_failed_messages" {
        avg:azure.eventgrid_topics.unmatched_event_count${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate()
       ) * 100, 0)
     ) > ${var.failed_messages_rate_thresold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -68,7 +68,7 @@ resource "datadog_monitor" "eventgrid_unmatched_events" {
   name    = "[${var.environment}] Event Grid too many unmatched events {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.unmatched_events_rate_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.unmatched_events_rate_time_aggregator}(${var.unmatched_events_rate_timeframe}): (default(
       avg:azure.eventgrid_topics.unmatched_event_count${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate() /
       (avg:azure.eventgrid_topics.publish_success_count${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate() +
@@ -76,7 +76,7 @@ resource "datadog_monitor" "eventgrid_unmatched_events" {
        avg:azure.eventgrid_topics.unmatched_event_count${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate()
       ) * 100, 0)
     ) > ${var.unmatched_events_rate_thresold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 

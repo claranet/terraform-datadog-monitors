@@ -4,11 +4,11 @@ resource "datadog_monitor" "loadbalancer_status" {
   name    = "[${var.environment}] Load Balancer is unreachable"
   message = "${coalesce(var.status_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
       ${var.status_time_aggregator}(${var.status_timeframe}): (
         avg:azure.network_loadbalancers.status${module.filter-tags.query_alert} by {resource_group,region,name}
       ) < 1
-  EOF
+  EOQ
 
   type = "metric alert"
 

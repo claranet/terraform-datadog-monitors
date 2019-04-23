@@ -5,11 +5,11 @@ resource "datadog_monitor" "elasticache_eviction" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     sum(${var.eviction_timeframe}): (
       avg:aws.elasticache.evictions${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     ) > ${var.eviction_threshold_critical}
-  EOF
+  EOQ
 
   thresholds {
     warning  = "${var.eviction_threshold_warning}"
@@ -38,11 +38,11 @@ resource "datadog_monitor" "elasticache_max_connection" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.max_connection_time_aggregator}(${var.max_connection_timeframe}): (
       avg:aws.elasticache.curr_connections${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     ) >= 65000
-  EOF
+  EOQ
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -66,11 +66,11 @@ resource "datadog_monitor" "elasticache_no_connection" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.no_connection_time_aggregator}(${var.no_connection_timeframe}): (
       avg:aws.elasticache.curr_connections${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     ) <= 0
-  EOF
+  EOQ
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -94,11 +94,11 @@ resource "datadog_monitor" "elasticache_swap" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.swap_time_aggregator}(${var.swap_timeframe}): (
       avg:aws.elasticache.swap_usage${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     ) > ${var.swap_threshold_critical}
-  EOF
+  EOQ
 
   thresholds {
     warning  = "${var.swap_threshold_warning}"
@@ -127,11 +127,11 @@ resource "datadog_monitor" "elasticache_free_memory" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     pct_change(avg(${var.free_memory_timeframe}),${var.free_memory_condition_timeframe}):
       avg:aws.elasticache.freeable_memory${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     < ${var.free_memory_threshold_critical}
-  EOF
+  EOQ
 
   thresholds {
     warning  = "${var.free_memory_threshold_warning}"
@@ -160,11 +160,11 @@ resource "datadog_monitor" "elasticache_eviction_growing" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     pct_change(avg(${var.eviction_growing_timeframe}),${var.eviction_growing_condition_timeframe}):
       avg:aws.elasticache.evictions${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     > ${var.eviction_growing_threshold_critical}
-  EOF
+  EOQ
 
   thresholds {
     warning  = "${var.eviction_growing_threshold_warning}"

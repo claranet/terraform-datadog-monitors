@@ -8,12 +8,12 @@ resource "datadog_monitor" "cpu_utilization" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   ${var.cpu_utilization_time_aggregator}(${var.cpu_utilization_timeframe}):
     avg:gcp.cloudsql.database.cpu.utilization{${var.filter_tags}}
     by {database_id} * 100
   > ${var.cpu_utilization_threshold_critical}
-EOF
+  EOQ
 
   thresholds {
     warning  = "${var.cpu_utilization_threshold_warning}"
@@ -46,12 +46,12 @@ resource "datadog_monitor" "disk_utilization" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   ${var.disk_utilization_time_aggregator}(${var.disk_utilization_timeframe}):
     avg:gcp.cloudsql.database.disk.utilization{${var.filter_tags}}
     by {database_id} * 100
     > ${var.disk_utilization_threshold_critical}
-EOF
+  EOQ
 
   thresholds {
     warning  = "${var.disk_utilization_threshold_warning}"
@@ -84,7 +84,7 @@ resource "datadog_monitor" "disk_utilization_forecast" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   ${var.disk_utilization_forecast_time_aggregator}(${var.disk_utilization_forecast_timeframe}):
     forecast(
       avg:gcp.cloudsql.database.disk.utilization{${var.filter_tags}} by {database_id} * 100,
@@ -95,7 +95,7 @@ resource "datadog_monitor" "disk_utilization_forecast" {
       ${var.disk_utilization_forecast_algorithm == "seasonal" ? format("seasonality='%s'", var.disk_utilization_forecast_seasonal_seasonality): ""}
     )
   >= ${var.disk_utilization_forecast_threshold_critical}
-EOF
+  EOQ
 
   thresholds {
     critical          = "${var.disk_utilization_forecast_threshold_critical}"
@@ -128,12 +128,12 @@ resource "datadog_monitor" "memory_utilization" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   ${var.memory_utilization_time_aggregator}(${var.memory_utilization_timeframe}):
     avg:gcp.cloudsql.database.memory.utilization{${var.filter_tags}}
     by {database_id} * 100
   > ${var.memory_utilization_threshold_critical}
-EOF
+  EOQ
 
   thresholds {
     warning  = "${var.memory_utilization_threshold_warning}"
@@ -166,7 +166,7 @@ resource "datadog_monitor" "memory_utilization_forecast" {
 
   type = "query alert"
 
-  query = <<EOF
+  query = <<EOQ
   ${var.memory_utilization_forecast_time_aggregator}(${var.memory_utilization_forecast_timeframe}):
     forecast(
       avg:gcp.cloudsql.database.memory.utilization{${var.filter_tags}} by {database_id} * 100,
@@ -177,7 +177,7 @@ resource "datadog_monitor" "memory_utilization_forecast" {
       ${var.memory_utilization_forecast_algorithm == "seasonal" ? format("seasonality='%s'", var.memory_utilization_forecast_seasonal_seasonality): ""}
       )
     >= ${var.memory_utilization_forecast_threshold_critical}
-EOF
+  EOQ
 
   thresholds {
     critical          = "${var.memory_utilization_forecast_threshold_critical}"
@@ -210,12 +210,12 @@ resource "datadog_monitor" "failover_unavailable" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
   ${var.failover_unavailable_time_aggregator}(${var.failover_unavailable_timeframe}):
     avg:gcp.cloudsql.database.available_for_failover{${var.filter_tags}}
     by {database_id}
   <= ${var.failover_unavailable_threshold_critical}
-EOF
+  EOQ
 
   thresholds {
     critical = "${var.failover_unavailable_threshold_critical}"

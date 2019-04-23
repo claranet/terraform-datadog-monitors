@@ -3,11 +3,11 @@ resource "datadog_monitor" "cpu" {
   name    = "[${var.environment}] CPU usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.cpu_time_aggregator}(${var.cpu_timeframe}): (
       100 - avg:system.cpu.idle${module.filter-tags.query_alert} by {host}
     ) > ${var.cpu_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -35,11 +35,11 @@ resource "datadog_monitor" "load" {
   name    = "[${var.environment}] CPU load 5 ratio {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.load_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.load_time_aggregator}(${var.load_timeframe}): (
       avg:system.load.norm.5${module.filter-tags.query_alert} by {host}
     ) > ${var.load_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -67,11 +67,11 @@ resource "datadog_monitor" "disk_space" {
   name    = "[${var.environment}] Disk space usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.disk_space_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.disk_space_time_aggregator}(${var.disk_space_timeframe}):
       avg:system.disk.in_use${module.filter-tags-disk.query_alert} by {host,device}
     * 100 > ${var.disk_space_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -99,7 +99,7 @@ resource "datadog_monitor" "disk_space_forecast" {
   name    = "[${var.environment}] Disk Space usage could reach {{#is_alert}}{{threshold}}%{{/is_alert}} in a near future"
   message = "${coalesce(var.disk_space_forecast_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.disk_space_forecast_time_aggregator}(${var.disk_space_forecast_timeframe}):
       forecast(avg:system.disk.in_use${module.filter-tags-disk.query_alert} by {host,device} * 100,
               '${var.disk_space_forecast_algorithm}',
@@ -109,7 +109,7 @@ resource "datadog_monitor" "disk_space_forecast" {
                ${var.disk_space_forecast_algorithm == "seasonal" ? format("seasonality='%s'", var.disk_space_forecast_seasonal_seasonality): ""}
               )
     >= ${var.disk_space_forecast_threshold_critical}
-  EOF
+  EOQ
 
   type = "query alert"
 
@@ -139,11 +139,11 @@ resource "datadog_monitor" "disk_inodes" {
   name    = "[${var.environment}] Disk inodes usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.disk_inodes_message, var.message)}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.disk_inodes_time_aggregator}(${var.disk_inodes_timeframe}):
       avg:system.fs.inodes.in_use${module.filter-tags-disk.query_alert} by {host,device}
     * 100 > ${var.disk_inodes_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 
@@ -171,12 +171,12 @@ resource "datadog_monitor" "memory" {
   name    = "[${var.environment}] Usable Memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${var.memory_message}"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.memory_time_aggregator}(${var.memory_timeframe}):
       avg:system.mem.usable${module.filter-tags.query_alert} by {host} /
       avg:system.mem.total${module.filter-tags.query_alert} by {host} * 100
     < ${var.memory_threshold_critical}
-  EOF
+  EOQ
 
   type = "metric alert"
 

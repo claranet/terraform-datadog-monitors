@@ -5,13 +5,13 @@ resource "datadog_monitor" "redis_cache_hits" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.cache_hits_time_aggregator}(${var.cache_hits_timeframe}): default(
       avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_rate() / (
         avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_rate() +
         avg:aws.elasticache.cache_misses${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_rate())
     * 100, 100) < ${var.cache_hits_threshold_critical}
-  EOF
+  EOQ
 
   thresholds {
     warning  = "${var.cache_hits_threshold_warning}"
@@ -40,11 +40,11 @@ resource "datadog_monitor" "redis_cpu_high" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.cpu_high_time_aggregator}(${var.cpu_high_timeframe}): (
       avg:aws.elasticache.engine_cpuutilization${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     ) > ${var.cpu_high_threshold_critical}
-  EOF
+  EOQ
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -68,11 +68,11 @@ resource "datadog_monitor" "redis_replication_lag" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     ${var.replication_lag_time_aggregator}(${var.replication_lag_timeframe}): (
       avg:aws.elasticache.replication_lag${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     ) > ${var.replication_lag_threshold_critical}
-  EOF
+  EOQ
 
   thresholds {
     warning  = "${var.replication_lag_threshold_warning}"
@@ -101,12 +101,12 @@ resource "datadog_monitor" "redis_commands" {
 
   type = "metric alert"
 
-  query = <<EOF
+  query = <<EOQ
     sum(${var.commands_timeframe}): (
       avg:aws.elasticache.get_type_cmds${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count() +
       avg:aws.elasticache.set_type_cmds${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count()
     ) <= 0
-  EOF
+  EOQ
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
