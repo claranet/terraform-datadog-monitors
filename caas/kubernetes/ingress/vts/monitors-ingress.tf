@@ -1,5 +1,5 @@
 resource "datadog_monitor" "nginx_ingress_too_many_5xx" {
-  count   = "${var.ingress_5xx_enabled ? 1 : 0}"
+  count   = "${var.ingress_5xx_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Nginx Ingress 5xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.ingress_5xx_message, var.message)}"
 
@@ -33,7 +33,7 @@ resource "datadog_monitor" "nginx_ingress_too_many_5xx" {
 }
 
 resource "datadog_monitor" "nginx_ingress_too_many_4xx" {
-  count   = "${var.ingress_4xx_enabled ? 1 : 0}"
+  count   = "${var.ingress_4xx_enabled == "true" ? 1 : 0}"
   name    = "[${var.environment}] Nginx Ingress 4xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.ingress_4xx_message, var.message)}"
 
