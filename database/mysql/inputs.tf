@@ -415,84 +415,84 @@ variable "mysql_threads_timeframe" {
 ###   MySQL queries           ###
 #################################
 
-variable "mysql_queries_silenced" {
+variable "mysql_questions_silenced" {
   description = "Groups to mute for mysql queries monitor"
   type        = "map"
   default     = {}
 }
 
-variable "mysql_queries_enabled" {
+variable "mysql_questions_enabled" {
   description = "Flag to enable mysql queries monitor"
   type        = "string"
   default     = "true"
 }
 
-variable "mysql_queries_extra_tags" {
+variable "mysql_questions_extra_tags" {
   description = "Extra tags for MySQL queries monitor"
   type        = "list"
   default     = []
 }
 
-variable "mysql_queries_message" {
+variable "mysql_questions_message" {
   description = "Custom message for MySQL queries monitor"
   type        = "string"
   default     = ""
 }
 
-variable "mysql_queries_threshold_critical" {
+variable "mysql_questions_threshold_critical" {
   default     = 1
   description = "Maximum critical acceptable number of queries"
 }
 
-variable "mysql_queries_detection_algorithm" {
+variable "mysql_questions_detection_algorithm" {
   description = "Anomaly Detection Algorithm used"
   type        = "string"
   default     = "agile"
 }
 
-variable "mysql_queries_deviations" {
+variable "mysql_questions_deviations" {
   description = "Deviations to detect the anomaly"
   type        = "string"
   default     = 5
 }
 
-variable "mysql_queries_direction" {
+variable "mysql_questions_direction" {
   description = "Direction of the anomaly. It can be both, below or above."
   type        = "string"
   default     = "both"
 }
 
-variable "mysql_queries_alert_window" {
+variable "mysql_questions_alert_window" {
   description = "Alert window."
   type        = "string"
   default     = "last_15m"
 }
 
-variable "mysql_queries_interval" {
+variable "mysql_questions_interval" {
   description = "Interval."
   type        = "string"
   default     = 60
 }
 
-variable "mysql_queries_count_default_zero" {
+variable "mysql_questions_count_default_zero" {
   description = "Count default zero."
   type        = "string"
   default     = "true"
 }
 
-variable "mysql_queries_seasonality" {
+variable "mysql_questions_seasonality" {
   description = "Seasonality of the algorithm"
   type        = "string"
   default     = "daily"
 }
 
-variable "mysql_queries_time_aggregator" {
+variable "mysql_questions_time_aggregator" {
   description = "Monitor time aggregator for MySQL queries monitor [available values: min, max or avg]"
   type        = "string"
   default     = "avg"
 }
 
-variable "mysql_queries_timeframe" {
+variable "mysql_questions_timeframe" {
   description = "Monitor timeframe for MySQL queries monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_4h"
