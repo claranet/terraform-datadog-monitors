@@ -29,6 +29,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
 | message | Message sent when a monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | status\_enabled | Flag to enable Load Balancer status monitor | string | `"true"` | no |
 | status\_extra\_tags | Extra tags for Load Balancer status monitor | list | `[]` | no |
 | status\_message | Custom message for Load Balancer status monitor | string | `""` | no |

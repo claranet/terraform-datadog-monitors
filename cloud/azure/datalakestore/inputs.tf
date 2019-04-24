@@ -32,6 +32,11 @@ variable "new_host_delay" {
   default     = 300
 }
 
+variable "prefix_slug" {
+  description = "Prefix string to prepend between brackets on every monitors names"
+  default     = ""
+}
+
 # Azure Datalake Store specific variables
 variable "status_enabled" {
   description = "Flag to enable Datalake Store status monitor"

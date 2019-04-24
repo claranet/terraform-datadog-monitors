@@ -28,6 +28,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags | Tags used for filtering | string | `"*"` | no |
 | message | Message sent when a monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds for the new host evaluation | string | `"300"` | no |
+| prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | sending\_operations\_count\_enabled | Flag to enable GCP Pub/Sub Unavailable Sending Operations Count monitor | string | `"true"` | no |
 | sending\_operations\_count\_extra\_tags | Extra tags for GCP Pub/Sub Sending Operations Count monitor | list | `[]` | no |
 | sending\_operations\_count\_message | Custom message for the GCP Pub/Sub Sending Operations Count monitor | string | `""` | no |

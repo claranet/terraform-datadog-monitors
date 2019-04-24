@@ -193,6 +193,7 @@ Creates DataDog monitors with the following checks:
 | not\_responding\_no\_data\_timeframe | Elasticsearch not responding monitor no data timeframe | string | `"10"` | no |
 | not\_responding\_silenced | Groups to mute for Elasticsearch does not respond monitor | map | `{}` | no |
 | not\_responding\_threshold\_warning | Elasticsearch not responding limit (warning threshold) | string | `"3"` | no |
+| prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | query\_cache\_evictions\_change\_enabled | Flag to enable Cluster Status monitor | string | `"true"` | no |
 | query\_cache\_evictions\_change\_extra\_tags | Extra tags for Cluster Status monitor | list | `[]` | no |
 | query\_cache\_evictions\_change\_message | Custom message for the Cluster Status monitor | string | `""` | no |

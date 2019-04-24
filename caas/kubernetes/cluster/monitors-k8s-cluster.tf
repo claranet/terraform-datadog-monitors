@@ -1,6 +1,6 @@
 resource "datadog_monitor" "apiserver" {
   count   = "${var.apiserver_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Kubernetes API server does not respond"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes API server does not respond"
   message = "${coalesce(var.apiserver_message, var.message)}"
 
   type = "service check"

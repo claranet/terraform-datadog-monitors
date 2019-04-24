@@ -43,6 +43,7 @@ Creates DataDog monitors with the following checks:
 | job\_threshold\_warning | Job monitor (warning threshold) | string | `"3"` | no |
 | message | Message sent when a monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | replica\_available\_enabled | Flag to enable Available replica monitor | string | `"true"` | no |
 | replica\_available\_extra\_tags | Extra tags for Available replicamonitor | list | `[]` | no |
 | replica\_available\_message | Custom message for Available replica monitor | string | `""` | no |

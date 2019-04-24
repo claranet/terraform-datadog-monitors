@@ -1,7 +1,7 @@
 resource "datadog_monitor" "cosmos_db_status" {
   count = "${var.status_enabled == "true" ? 1 : 0}"
 
-  name    = "[${var.environment}] Cosmos DB is down"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cosmos DB is down"
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOQ
@@ -34,7 +34,7 @@ resource "datadog_monitor" "cosmos_db_status" {
 resource "datadog_monitor" "cosmos_db_4xx_requests" {
   count = "${var.cosmos_db_4xx_requests_enabled == "true" ? 1 : 0}"
 
-  name    = "[${var.environment}] Cosmos DB 4xx requests rate is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cosmos DB 4xx requests rate is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cosmos_db_4xx_requests_message, var.message)}"
 
   # List of available status codes : https://docs.microsoft.com/en-us/rest/api/cosmos-db/http-status-codes-for-cosmosdb
@@ -79,7 +79,7 @@ resource "datadog_monitor" "cosmos_db_4xx_requests" {
 resource "datadog_monitor" "cosmos_db_5xx_requests" {
   count = "${var.cosmos_db_5xx_requests_enabled == "true" ? 1 : 0}"
 
-  name    = "[${var.environment}] Cosmos DB 5xx requests rate is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cosmos DB 5xx requests rate is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cosmos_db_5xx_requests_message, var.message)}"
 
   query = <<EOQ
@@ -115,7 +115,7 @@ resource "datadog_monitor" "cosmos_db_5xx_requests" {
 resource "datadog_monitor" "cosmos_db_scaling" {
   count = "${var.cosmos_db_scaling_enabled == "true" ? 1 : 0}"
 
-  name    = "[${var.environment}] Cosmos DB max scaling reached for collection {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cosmos DB max scaling reached for collection {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cosmos_db_scaling_message, var.message)}"
 
   # List of available status codes : https://docs.microsoft.com/en-us/rest/api/cosmos-db/http-status-codes-for-cosmosdb

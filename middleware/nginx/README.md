@@ -43,6 +43,7 @@ Creates DataDog monitors with the following checks:
 | nginx\_dropped\_threshold\_critical | Nginx dropped connections critical threshold | string | `"0"` | no |
 | nginx\_dropped\_time\_aggregator | Monitor aggregator for Nginx dropped connections [available values: min, max or avg] | string | `"min"` | no |
 | nginx\_dropped\_timeframe | Monitor timeframe for Nginx dropped connections [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 
 ## Outputs
 

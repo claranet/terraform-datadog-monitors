@@ -3,7 +3,7 @@
 #
 resource "datadog_monitor" "sending_operations_count" {
   count   = "${var.sending_operations_count_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] GCP pubsub sending messages operations {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP pubsub sending messages operations {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.sending_operations_count_message, var.message)}"
 
   type = "query alert"
@@ -39,7 +39,7 @@ resource "datadog_monitor" "sending_operations_count" {
 #
 resource "datadog_monitor" "unavailable_sending_operations_count" {
   count   = "${var.unavailable_sending_operations_count_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] GCP pubsub sending messages with result unavailable {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP pubsub sending messages with result unavailable {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.unavailable_sending_operations_count_message, var.message)}"
 
   type = "query alert"

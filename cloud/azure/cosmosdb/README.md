@@ -56,6 +56,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
 | message | Message sent when a monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | status\_enabled | Flag to enable Cosmos DB status monitor | string | `"true"` | no |
 | status\_extra\_tags | Extra tags for Cosmos DB status monitor | list | `[]` | no |
 | status\_message | Custom message for Cosmos DB status monitor | string | `""` | no |

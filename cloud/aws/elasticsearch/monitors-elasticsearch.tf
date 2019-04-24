@@ -5,7 +5,7 @@
     Workaround : in the query, we add "0.1" to the result and we use the comparator ">=". No alert was triggered without that. */
 resource "datadog_monitor" "es_cluster_status" {
   count   = "${var.es_cluster_status_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] ElasticSearch cluster status is not green"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ElasticSearch cluster status is not green"
   message = "${coalesce(var.es_cluster_status_message, var.message)}"
 
   type = "metric alert"
@@ -40,7 +40,7 @@ resource "datadog_monitor" "es_cluster_status" {
 ### Elasticsearch cluster free storage space monitor ###
 resource "datadog_monitor" "es_free_space_low" {
   count   = "${var.diskspace_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] ElasticSearch cluster free storage space {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ElasticSearch cluster free storage space {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.diskspace_message, var.message)}"
 
   type = "metric alert"
@@ -75,7 +75,7 @@ resource "datadog_monitor" "es_free_space_low" {
 ### Elasticsearch cluster CPU monitor ###
 resource "datadog_monitor" "es_cpu_90_15min" {
   count   = "${var.cpu_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] ElasticSearch cluster CPU high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ElasticSearch cluster CPU high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_message, var.message)}"
 
   type = "metric alert"

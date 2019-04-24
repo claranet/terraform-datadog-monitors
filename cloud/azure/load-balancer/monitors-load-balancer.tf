@@ -1,7 +1,7 @@
 resource "datadog_monitor" "loadbalancer_status" {
   count = "${var.status_enabled == "true" ? 1 : 0}"
 
-  name    = "[${var.environment}] Load Balancer is unreachable"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Load Balancer is unreachable"
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOQ
