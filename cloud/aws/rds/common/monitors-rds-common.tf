@@ -1,7 +1,7 @@
 ### RDS instance CPU monitor ###
 resource "datadog_monitor" "rds_cpu_90_15min" {
   count   = "${var.cpu_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] RDS instance CPU high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] RDS instance CPU high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_message, var.message)}"
 
   type = "metric alert"
@@ -34,7 +34,7 @@ resource "datadog_monitor" "rds_cpu_90_15min" {
 ### RDS instance free space monitor ###
 resource "datadog_monitor" "rds_free_space_low" {
   count   = "${var.diskspace_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] RDS instance free space {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] RDS instance free space {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.diskspace_message, var.message)}"
 
   type = "metric alert"
@@ -68,7 +68,7 @@ resource "datadog_monitor" "rds_free_space_low" {
 ### RDS Replica Lag monitor ###
 resource "datadog_monitor" "rds_replica_lag" {
   count   = "${var.replicalag_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] RDS replica lag {{#is_alert}}{{{comparator}}} {{threshold}} ms ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ms ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] RDS replica lag {{#is_alert}}{{{comparator}}} {{threshold}} ms ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ms ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.replicalag_message, var.message)}"
 
   type = "metric alert"

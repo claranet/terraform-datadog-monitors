@@ -1,6 +1,6 @@
 resource "datadog_monitor" "function_http_5xx_errors_rate" {
   count   = "${var.http_5xx_errors_rate_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Function App HTTP 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Function App HTTP 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.http_5xx_errors_rate_message, var.message)}"
 
@@ -32,7 +32,7 @@ resource "datadog_monitor" "function_http_5xx_errors_rate" {
 
 resource "datadog_monitor" "function_high_connections_count" {
   count   = "${var.high_connections_count_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Function App connections count too high {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Function App connections count too high {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.high_connections_count_message, var.message)}"
 
@@ -63,7 +63,7 @@ resource "datadog_monitor" "function_high_connections_count" {
 
 resource "datadog_monitor" "function_high_threads_count" {
   count   = "${var.high_threads_count_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Function App threads count too high {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Function App threads count too high {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   type    = "metric alert"
   message = "${coalesce(var.high_threads_count_message, var.message)}"
 

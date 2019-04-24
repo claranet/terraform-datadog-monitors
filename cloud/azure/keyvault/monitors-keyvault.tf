@@ -1,7 +1,7 @@
 resource "datadog_monitor" "keyvault_status" {
   count = "${var.status_enabled == "true" ? 1 : 0}"
 
-  name    = "[${var.environment}] Key Vault is down"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Key Vault is down"
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOQ
@@ -30,7 +30,7 @@ resource "datadog_monitor" "keyvault_status" {
 resource "datadog_monitor" "keyvault_api_result" {
   count = "${var.api_result_enabled == "true" ? 1 : 0}"
 
-  name    = "[${var.environment}] Key Vault API result rate is low {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Key Vault API result rate is low {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOQ
@@ -67,7 +67,7 @@ resource "datadog_monitor" "keyvault_api_result" {
 resource "datadog_monitor" "keyvault_api_latency" {
   count = "${var.api_latency_enabled == "true" ? 1 : 0}"
 
-  name    = "[${var.environment}] Key Vault API latency is high {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Key Vault API latency is high {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = "${coalesce(var.status_message, var.message)}"
 
   query = <<EOQ

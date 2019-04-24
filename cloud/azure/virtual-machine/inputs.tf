@@ -19,6 +19,11 @@ variable "new_host_delay" {
   default     = 300
 }
 
+variable "prefix_slug" {
+  description = "Prefix string to prepend between brackets on every monitors names"
+  default     = ""
+}
+
 variable "filter_tags_use_defaults" {
   description = "Use default filter tags convention"
   default     = "true"

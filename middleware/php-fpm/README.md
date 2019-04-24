@@ -44,6 +44,7 @@ Creates DataDog monitors with the following checks:
 | php\_fpm\_connect\_no\_data\_timeframe | PHP FPM status monitor no data timeframe | string | `"10"` | no |
 | php\_fpm\_connect\_silenced | Groups to mute for PHP FPM status monitor | map | `{}` | no |
 | php\_fpm\_connect\_threshold\_warning | PHP FPM status monitor (warning threshold) | string | `"3"` | no |
+| prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 
 ## Outputs
 

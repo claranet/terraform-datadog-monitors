@@ -1,6 +1,6 @@
 resource "datadog_monitor" "VPN_status" {
   count   = "${var.vpn_status_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] VPN tunnel down"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] VPN tunnel down"
   message = "${coalesce(var.vpn_status_message, var.message)}"
 
   query = <<EOQ

@@ -1,6 +1,6 @@
 resource "datadog_monitor" "ELB_no_healthy_instances" {
   count   = "${var.elb_no_healthy_instance_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] ELB healthy instances {{#is_alert}}is at 0{{/is_alert}}{{#is_warning}}is at {{value}}%{{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB healthy instances {{#is_alert}}is at 0{{/is_alert}}{{#is_warning}}is at {{value}}%{{/is_warning}}"
   message = "${coalesce(var.elb_no_healthy_instance_message, var.message)}"
 
   query = <<EOQ
@@ -35,7 +35,7 @@ resource "datadog_monitor" "ELB_no_healthy_instances" {
 
 resource "datadog_monitor" "ELB_too_much_4xx" {
   count   = "${var.elb_4xx_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] ELB 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.elb_4xx_message, var.message)}"
 
   query = <<EOQ
@@ -69,7 +69,7 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
 
 resource "datadog_monitor" "ELB_too_much_5xx" {
   count   = "${var.elb_5xx_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] ELB 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.elb_5xx_message, var.message)}"
 
   query = <<EOQ
@@ -103,7 +103,7 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
 
 resource "datadog_monitor" "ELB_too_much_4xx_backend" {
   count   = "${var.elb_backend_4xx_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] ELB backend 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB backend 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.elb_backend_4xx_message, var.message)}"
 
   query = <<EOQ
@@ -137,7 +137,7 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
 
 resource "datadog_monitor" "ELB_too_much_5xx_backend" {
   count   = "${var.elb_backend_5xx_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] ELB backend 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB backend 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.elb_backend_5xx_message, var.message)}"
 
   query = <<EOQ
@@ -171,7 +171,7 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
 
 resource "datadog_monitor" "ELB_backend_latency" {
   count   = "${var.elb_backend_latency_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] ELB latency too high {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB latency too high {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = "${coalesce(var.elb_backend_latency_message, var.message)}"
 
   query = <<EOQ

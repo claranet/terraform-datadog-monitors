@@ -77,6 +77,7 @@ Creates DataDog monitors with the following checks:
 | network\_error\_requests\_time\_aggregator | Monitor aggregator for Storage network errors [available values: min, max or avg] | string | `"min"` | no |
 | network\_error\_requests\_timeframe | Monitor timeframe for Storage network errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | server\_other\_error\_requests\_enabled | Flag to enable Storage server other errors monitor | string | `"true"` | no |
 | server\_other\_error\_requests\_extra\_tags | Extra tags for Storage server other errors monitor | list | `[]` | no |
 | server\_other\_error\_requests\_message | Custom message for Storage server other errors monitor | string | `""` | no |

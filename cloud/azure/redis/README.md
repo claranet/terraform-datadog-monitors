@@ -48,6 +48,7 @@ Creates DataDog monitors with the following checks:
 | percent\_processor\_time\_threshold\_warning | Processor time percent (warning threshold) | string | `"60"` | no |
 | percent\_processor\_time\_time\_aggregator | Monitor aggregator for Redis processor [available values: min, max or avg] | string | `"min"` | no |
 | percent\_processor\_time\_timeframe | Monitor timeframe for Redis processor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | server\_load\_rate\_enabled | Flag to enable Redis server load monitor | string | `"true"` | no |
 | server\_load\_rate\_extra\_tags | Extra tags for Redis server load monitor | list | `[]` | no |
 | server\_load\_rate\_message | Custom message for Redis server load monitor | string | `""` | no |

@@ -1,6 +1,6 @@
 resource "datadog_monitor" "memcached_get_hits" {
   count   = "${var.get_hits_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Elasticache memcached cache hit ratio {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache memcached cache hit ratio {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.get_hits_message, var.message)}"
 
   type = "metric alert"
@@ -35,7 +35,7 @@ resource "datadog_monitor" "memcached_get_hits" {
 
 resource "datadog_monitor" "memcached_cpu_high" {
   count   = "${var.cpu_high_enabled == "true" ? 1 : 0}"
-  name    = "[${var.environment}] Elasticache memcached CPU {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache memcached CPU {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_high_message, var.message)}"
 
   type = "metric alert"
