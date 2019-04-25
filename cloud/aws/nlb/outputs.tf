@@ -3,7 +3,7 @@ output "NLB_no_healthy_instances_id" {
   value       = "${datadog_monitor.NLB_no_healthy_instances.*.id}"
 }
 
-output "NLB_too_much_reset" {
+output "NLB_too_much_reset_id" {
   description = "id for monitor NLB_too_much_reset"
   value       = "${datadog_monitor.NLB_too_much_reset.*.id}"
 }
