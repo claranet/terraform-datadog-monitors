@@ -51,7 +51,7 @@ Creates DataDog monitors with the following checks:
 | Name | Description |
 |------|-------------|
 | NLB\_no\_healthy\_instances\_id | id for monitor NLB_no_healthy_instances |
-| NLB\_too\_much\_reset | id for monitor NLB_too_much_reset |
+| NLB\_too\_much\_reset\_id | id for monitor NLB_too_much_reset |
 
 ## Related documentation
 
