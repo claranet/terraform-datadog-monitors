@@ -29,7 +29,8 @@ Creates all kinds of filters tags patterns depending of the monitor type and dir
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | environment | Architecture Environment | string | - | yes |
-| extra_tags | Extra optional tags added for default filtering when filter_tags_use_defaults is true (i.e. ["tag1:val1", "tag2:val2"]) | list | `[]` | no |
+| extra_tags | Extra optional tags added to include filtering in any case (i.e. [\"tag1:val1\", \"tag2:val2\"]) | list | `[]` | no |
+| extra_tags_excluded | Extra optional tags added to exclude filtering in any case (i.e. [\"tag1:val1\", \"tag2:val2\"]) | list | `[]` | no |
 | filter_tags_custom | Tags used for custom filtering when filter_tags_use_defaults is false (i.e. "tag1:val1,tag2:val2") | string | `*` | no |
 | filter_tags_custom_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false (i.e. "tag1:val1,tag2:val2") | string | `` | no |
 | filter_tags_use_defaults | Use default filter tags convention | string | `true` | no |
@@ -46,4 +47,5 @@ Creates all kinds of filters tags patterns depending of the monitor type and dir
 ## Related documentation
 
 Datadog API type of monitor: [https://docs.datadoghq.com/api/?lang=python#create-a-monitor](https://docs.datadoghq.com/api/?lang=python#create-a-monitor)
+Terraform guide: [https://www.terraform.io/docs/configuration-0-11/interpolation.html](https://www.terraform.io/docs/configuration-0-11/interpolation.html)
 
