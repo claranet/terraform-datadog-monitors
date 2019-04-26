@@ -24,7 +24,13 @@ variable "filter_tags_custom_excluded" {
 }
 
 variable "extra_tags" {
-  description = "Extra optional tags added for default filtering when filter_tags_use_defaults is true (i.e. [\"tag1:val1\", \"tag2:val2\"])"
+  description = "Extra optional tags added to include filtering in any case (i.e. [\"tag1:val1\", \"tag2:val2\"])"
+  type        = "list"
+  default     = []
+}
+
+variable "extra_tags_excluded" {
+  description = "Extra optional tags added to exclude filtering in any case (i.e. [\"tag1:val1\", \"tag2:val2\"])"
   type        = "list"
   default     = []
 }
