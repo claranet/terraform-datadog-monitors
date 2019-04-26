@@ -220,7 +220,7 @@ resource "datadog_monitor" "node_unschedulable" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
