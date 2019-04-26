@@ -35,7 +35,7 @@ resource "datadog_monitor" "NLB_no_healthy_instances" {
 
 resource "datadog_monitor" "NLB_too_much_reset" {
   count   = "${var.nlb_reset_enabled == "true" ? 1 : 0}"
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] NLB too much reset connection {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.nlb_reset_message, var.message)}"
 
   query = <<EOQ

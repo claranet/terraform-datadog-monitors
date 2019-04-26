@@ -16,8 +16,8 @@ module "datadog-monitors-cloud-aws-nlb" {
 
 Creates DataDog monitors with the following checks:
 
-- ELB 4xx errors too high
 - NLB healthy instances
+- NLB too much reset connection
 
 ## Inputs
 
