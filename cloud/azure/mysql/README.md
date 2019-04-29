@@ -8,8 +8,6 @@ module "datadog-monitors-cloud-azure-mysql" {
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
-  
-  total_connection_limit = "${var.total_connection_limit}"
 }
 
 ```
