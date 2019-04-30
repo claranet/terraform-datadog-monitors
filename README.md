@@ -118,6 +118,7 @@ The `//` is very important, it's a terraform specific syntax used to separate gi
 		- [serverfarms](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/serverfarms/)
 		- [servicebus](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/servicebus/)
 		- [sql-database](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/sql-database/)
+		- [sql-elasticpool](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/sql-elasticpool/)
 		- [storage](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/storage/)
 		- [stream-analytics](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/stream-analytics/)
 		- [virtual-machine](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/virtual-machine/)
