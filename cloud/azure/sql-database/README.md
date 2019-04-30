@@ -75,7 +75,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description |
 |------|-------------|
-| sql-database\_cpu\_90\_15min\_id | id for monitor sql-database_cpu_90_15min |
+| sql-database\_cpu\_id | id for monitor sql-database_cpu |
 | sql-database\_deadlocks\_count\_id | id for monitor sql-database_deadlocks_count |
 | sql-database\_dtu\_consumption\_high\_id | id for monitor sql-database_dtu_consumption_high |
 | sql-database\_free\_space\_low\_id | id for monitor sql-database_free_space_low |
@@ -85,5 +85,5 @@ Creates DataDog monitors with the following checks:
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_sql_database/](https://docs.datadoghq.com/integrations/azure_sql_database/)
 
-Azure SQL Database metrics documentation: [https://docs.microsoft.com/en-us/azure/sql-database/saas-dbpertenant-log-analytics](https://docs.microsoft.com/en-us/azure/sql-database/saas-dbpertenant-log-analytics)
+Azure SQL Database metrics documentation: [https://docs.microsoft.com/en-us/azure/azure-monitor/platform/metrics-supported#microsoftsqlserversdatabases](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/metrics-supported#microsoftsqlserversdatabases)
 
