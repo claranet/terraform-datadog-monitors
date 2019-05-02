@@ -8,8 +8,6 @@ module "datadog-monitors-cloud-azure-functions" {
 
   environment = "${var.environment}"
   message     = "${module.datadog-message-alerting.alerting-message}"
-  
-  functions_max_scale_count = 2
 }
 
 ```
