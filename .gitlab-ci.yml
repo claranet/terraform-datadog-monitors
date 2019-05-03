@@ -2,8 +2,10 @@ image: hashicorp/terraform:full
 
 stages:
   - test
+  - build
+  - deploy
 
-test_auto_update:
+auto_update:
   stage: test
   script:
     - apk update
@@ -14,6 +16,36 @@ test_auto_update:
     - ./scripts/auto_update.sh ./
     - git status
     - git diff --exit-code
+  tags:
+    - product-teams
+    - kubernetes
+    - gke
+
+deploy_terraform:
+  stage: deploy
+  script:
+    - apk update
+    - apk upgrade
+    - apk add --no-cache curl
+    - "curl -X POST -F token=${TEMPLATES_GITLAB_TOKEN} -F ref=MON-182_minimal_v1 -F 'variables[SCENARIO]=test' https://git.fr.clara.net/api/v4/projects/513/trigger/pipeline"
+  only:
+    - master
+  tags:
+    - product-teams
+    - kubernetes
+    - gke
+
+build_template:
+  stage: build
+  script:
+    - apk update
+    - apk upgrade
+    - apk add --no-cache curl
+    - "curl -X POST -F token=${TEMPLATES_GITLAB_TOKEN} -F ref=MON-182_minimal_v1 -F 'variables[SCENARIO]=build' https://git.fr.clara.net/api/v4/projects/513/trigger/pipeline"
+  only:
+    - tags
+  except:
+    - branches
   tags:
     - product-teams
     - kubernetes
