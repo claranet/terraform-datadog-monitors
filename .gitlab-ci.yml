@@ -28,7 +28,7 @@ auto_update:
 deploy_terraform:
   stage: deploy
   script:
-    - "curl -X POST -F token=${TEMPLATES_GITLAB_TOKEN} -F ref=MON-182_minimal_v1 -F \"variables[SCENARIO]=test\" https://git.fr.clara.net/api/v4/projects/513/trigger/pipeline"
+    - "curl -X POST -F token=${TEMPLATES_GITLAB_TOKEN} -F ref=${TEMPLATES_GITLAB_BRANCH:-master} -F \"variables[SCENARIO]=test\" ${CI_API_V4_URL}/projects/${TEMPLATES_GITLAB_ID}/trigger/pipeline"
   only:
     - master
   tags:
@@ -39,7 +39,7 @@ deploy_terraform:
 build_template:
   stage: build
   script:
-    - "curl -X POST -F token=${TEMPLATES_GITLAB_TOKEN} -F ref=MON-182_minimal_v1 -F \"variables[SCENARIO]=build\" -F \"variables[TAG]=$CI_COMMIT_TAG\" https://git.fr.clara.net/api/v4/projects/513/trigger/pipeline"
+    - "curl -X POST -F token=${TEMPLATES_GITLAB_TOKEN} -F ref=${TEMPLATES_GITLAB_BRANCH:-master} -F \"variables[SCENARIO]=build\" -F \"variables[TAG]=$CI_COMMIT_TAG\" ${CI_API_V4_URL}/projects/${TEMPLATES_GITLAB_ID}/trigger/pipeline"
   only:
     - tags
   except:
