@@ -1,16 +1,20 @@
-image: hashicorp/terraform:full
+image: alpine:latest
 
 stages:
   - test
   - build
   - deploy
 
+before_script:
+  - apk update
+  - apk upgrade
+  - apk add --no-cache curl
+
 auto_update:
+  image: hashicorp/terraform:full
   stage: test
   script:
-    - apk update
-    - apk upgrade
-    - apk add --no-cache bash git grep coreutils curl
+    - apk add --no-cache bash git grep coreutils
     - curl -Lo /usr/local/bin/terraform-docs "https://github.com/$(curl -s https://github.com/segmentio/terraform-docs/releases | grep terraform-docs-v0.6.0-linux-amd | head -n 1 | cut -d '"' -f 2)"
     - chmod +x /usr/local/bin/terraform-docs
     - ./scripts/auto_update.sh ./
@@ -24,9 +28,6 @@ auto_update:
 deploy_terraform:
   stage: deploy
   script:
-    - apk update
-    - apk upgrade
-    - apk add --no-cache curl
     - "curl -X POST -F token=${TEMPLATES_GITLAB_TOKEN} -F ref=MON-182_minimal_v1 -F \"variables[SCENARIO]=test\" https://git.fr.clara.net/api/v4/projects/513/trigger/pipeline"
   only:
     - master
@@ -38,9 +39,6 @@ deploy_terraform:
 build_template:
   stage: build
   script:
-    - apk update
-    - apk upgrade
-    - apk add --no-cache curl
     - "curl -X POST -F token=${TEMPLATES_GITLAB_TOKEN} -F ref=MON-182_minimal_v1 -F \"variables[SCENARIO]=build\" -F \"variables[TAG]=$CI_COMMIT_TAG\" https://git.fr.clara.net/api/v4/projects/513/trigger/pipeline"
   only:
     - tags
