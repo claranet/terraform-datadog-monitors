@@ -231,3 +231,69 @@ resource "datadog_monitor" "node_unschedulable" {
   silenced = "${var.node_unschedulable_silenced}"
   tags     = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform", "${var.node_unschedulable_extra_tags}"]
 }
+
+resource "datadog_monitor" "volume_space" {
+  count   = "${var.volume_space_enabled == "true" ? 1 : 0}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node volume space usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  type    = "metric alert"
+  message = "${coalesce(var.volume_space_message, var.message)}"
+
+  query = <<EOQ
+    ${var.volume_space_time_aggregator}(${var.volume_space_timeframe}):
+      avg:kubernetes.kubelet.volume.stats.used_bytes${module.filter-tags.query_alert} by {kubernetescluster,name,persistentvolumeclaim} /
+      avg:kubernetes.kubelet.volume.stats.capacity_bytes${module.filter-tags.query_alert} by {kubernetescluster,name,persistentvolumeclaim}
+    * 100 > ${var.volume_space_threshold_critical}
+  EOQ
+
+  thresholds {
+    critical = "${var.volume_space_threshold_critical}"
+    warning  = "${var.volume_space_threshold_warning}"
+  }
+
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
+
+  notify_no_data      = true
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+
+  silenced = "${var.volume_space_silenced}"
+  tags     = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform", "${var.volume_space_extra_tags}"]
+}
+
+resource "datadog_monitor" "volume_inodes" {
+  count   = "${var.volume_inodes_enabled == "true" ? 1 : 0}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node volume inodes usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  type    = "metric alert"
+  message = "${coalesce(var.volume_inodes_message, var.message)}"
+
+  query = <<EOQ
+    ${var.volume_space_time_aggregator}(${var.volume_space_timeframe}):
+      avg:kubernetes.kubelet.volume.stats.inodes_used${module.filter-tags.query_alert} by {kubernetescluster,name,persistentvolumeclaim} /
+      avg:kubernetes.kubelet.volume.stats.inodes${module.filter-tags.query_alert} by {kubernetescluster,name,persistentvolumeclaim}
+    * 100 > ${var.volume_space_threshold_critical}
+  EOQ
+
+  thresholds {
+    critical = "${var.volume_inodes_threshold_critical}"
+    warning  = "${var.volume_inodes_threshold_warning}"
+  }
+
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
+
+  notify_no_data      = true
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+
+  silenced = "${var.volume_inodes_silenced}"
+  tags     = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform", "${var.volume_inodes_extra_tags}"]
+}
