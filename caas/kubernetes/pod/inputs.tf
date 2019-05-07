@@ -113,57 +113,11 @@ variable "error_timeframe" {
 }
 
 variable "error_threshold_critical" {
-  default     = 1
+  default     = 0.5
   description = "error critical threshold"
 }
 
 variable "error_threshold_warning" {
-  default     = 0.5
+  default     = 0
   description = "error warning threshold"
-}
-
-variable "crashloopbackoff_silenced" {
-  description = "Groups to mute for Pod crashloopbackoff monitor"
-  type        = "map"
-  default     = {}
-}
-
-variable "crashloopbackoff_enabled" {
-  description = "Flag to enable Pod crashloopbackoff monitor"
-  type        = "string"
-  default     = "true"
-}
-
-variable "crashloopbackoff_extra_tags" {
-  description = "Extra tags for Pod crashloopbackoff monitor"
-  type        = "list"
-  default     = []
-}
-
-variable "crashloopbackoff_message" {
-  description = "Custom message for Pod crashloopbackoff monitor"
-  type        = "string"
-  default     = ""
-}
-
-variable "crashloopbackoff_time_aggregator" {
-  description = "Monitor aggregator for Pod crashloopbackoff [available values: min, max or avg]"
-  type        = "string"
-  default     = "sum"
-}
-
-variable "crashloopbackoff_timeframe" {
-  description = "Monitor timeframe for Pod crashloopbackoff [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
-  default     = "last_10m"
-}
-
-variable "crashloopbackoff_threshold_critical" {
-  default     = 5
-  description = "crashloopbackoff critical threshold"
-}
-
-variable "crashloopbackoff_threshold_warning" {
-  default     = 4
-  description = "crashloopbackoff warning threshold"
 }
