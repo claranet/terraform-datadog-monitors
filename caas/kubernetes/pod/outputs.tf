@@ -7,8 +7,3 @@ output "error_id" {
   description = "id for monitor error"
   value       = "${datadog_monitor.error.*.id}"
 }
-
-output "crashloopbackoff_id" {
-  description = "id for monitor crashloopbackoff"
-  value       = "${datadog_monitor.crashloopbackoff.*.id}"
-}
