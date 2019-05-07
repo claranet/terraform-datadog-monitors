@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 - App Services HTTP 4xx errors too high
 - App Services HTTP 5xx errors too high
 - App Services HTTP successful responses too low
+- App Services is down
 - App Services memory usage
 - App Services response time too high
 
@@ -74,6 +75,12 @@ Creates DataDog monitors with the following checks:
 | response\_time\_threshold\_warning | Warning threshold for response time in seconds | string | `"5"` | no |
 | response\_time\_time\_aggregator | Monitor aggregator for App Services response time [available values: min, max or avg] | string | `"min"` | no |
 | response\_time\_timeframe | Monitor timeframe for App Services response time [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| status\_enabled | Flag to enable App Services status monitor | string | `"true"` | no |
+| status\_extra\_tags | Extra tags for App Services status monitor | list | `[]` | no |
+| status\_message | Custom message for App Services status monitor | string | `""` | no |
+| status\_silenced | Groups to mute for App Services status monitor | map | `{}` | no |
+| status\_time\_aggregator | Monitor aggregator for App Services status [available values: min, max or avg] | string | `"max"` | no |
+| status\_timeframe | Monitor timeframe for App Services status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 
 ## Outputs
 
@@ -84,6 +91,7 @@ Creates DataDog monitors with the following checks:
 | appservices\_http\_success\_status\_rate\_id | id for monitor appservices_http_success_status_rate |
 | appservices\_memory\_usage\_count\_id | id for monitor appservices_memory_usage_count |
 | appservices\_response\_time\_id | id for monitor appservices_response_time |
+| appservices\_status\_id | id for monitor appservices_status |
 
 ## Related documentation
 
