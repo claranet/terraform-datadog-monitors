@@ -267,3 +267,39 @@ variable "http_successful_requests_threshold_warning" {
   default     = 30
   description = "Warning regarding acceptable percent of 2xx & 3xx requests"
 }
+
+variable "status_enabled" {
+  description = "Flag to enable App Services status monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "status_message" {
+  description = "Custom message for App Services status monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "status_silenced" {
+  description = "Groups to mute for App Services status monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "status_extra_tags" {
+  description = "Extra tags for App Services status monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "status_time_aggregator" {
+  description = "Monitor aggregator for App Services status [available values: min, max or avg]"
+  type        = "string"
+  default     = "max"
+}
+
+variable "status_timeframe" {
+  description = "Monitor timeframe for App Services status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
