@@ -19,8 +19,8 @@ Creates DataDog monitors with the following checks:
 - SQL Database CPU too high
 - SQL Database Deadlocks too high
 - SQL Database DTU Consumption too high
+- SQL Database high disk usage
 - SQL Database is down
-- SQL Database low free space
 
 ## Inputs
 

@@ -18,7 +18,7 @@ Creates DataDog monitors with the following checks:
 
 - SQL Elastic Pool CPU too high
 - SQL Elastic Pool DTU Consumption too high
-- SQL Elastic Pool low free space
+- SQL Elastic Pool high disk usage
 
 ## Inputs
 
