@@ -24,6 +24,8 @@ Creates DataDog monitors with the following checks:
 - Kubernetes Node not ready
 - Kubernetes Node Out of disk
 - Kubernetes Node unschedulable
+- Kubernetes Node volume inodes usage
+- Kubernetes Node volume space usage
 
 ## Inputs
 
@@ -80,6 +82,22 @@ Creates DataDog monitors with the following checks:
 | unregister\_net\_device\_threshold\_critical | Unregister net device critical threshold | string | `"3"` | no |
 | unregister\_net\_device\_time\_aggregator | Monitor aggregator for Unregister net device [available values: min, max or avg] | string | `"min"` | no |
 | unregister\_net\_device\_timeframe | Monitor timeframe for Unregister net device [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"15m"` | no |
+| volume\_inodes\_enabled | Flag to enable Volume inodes monitor | string | `"true"` | no |
+| volume\_inodes\_extra\_tags | Extra tags for Volume inodes monitor | list | `[]` | no |
+| volume\_inodes\_message | Custom message for Volume inodes monitor | string | `""` | no |
+| volume\_inodes\_silenced | Groups to mute for Volume inodes monitor | map | `{}` | no |
+| volume\_inodes\_threshold\_critical | Volume inodes critical threshold | string | `"95"` | no |
+| volume\_inodes\_threshold\_warning | Volume inodes warning threshold | string | `"90"` | no |
+| volume\_inodes\_time\_aggregator | Monitor aggregator for Volume inodes [available values: min, max or avg] | string | `"min"` | no |
+| volume\_inodes\_timeframe | Monitor timeframe for Volume inodes [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| volume\_space\_enabled | Flag to enable Volume space monitor | string | `"true"` | no |
+| volume\_space\_extra\_tags | Extra tags for Volume space monitor | list | `[]` | no |
+| volume\_space\_message | Custom message for Volume space monitor | string | `""` | no |
+| volume\_space\_silenced | Groups to mute for Volume space monitor | map | `{}` | no |
+| volume\_space\_threshold\_critical | Volume space critical threshold | string | `"95"` | no |
+| volume\_space\_threshold\_warning | Volume space warning threshold | string | `"90"` | no |
+| volume\_space\_time\_aggregator | Monitor aggregator for Volume space [available values: min, max or avg] | string | `"min"` | no |
+| volume\_space\_timeframe | Monitor timeframe for Volume space [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 
 ## Outputs
 
@@ -93,6 +111,8 @@ Creates DataDog monitors with the following checks:
 | node\_unschedulable\_id | id for monitor node_unschedulable |
 | ready\_id | id for monitor ready |
 | unregister\_net\_device\_id | id for monitor unregister_net_device |
+| volume\_inodes\_id | id for monitor volume_inodes |
+| volume\_space\_id | id for monitor volume_space |
 
 ## Related documentation
 

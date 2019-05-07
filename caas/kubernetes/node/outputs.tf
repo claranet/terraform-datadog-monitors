@@ -37,3 +37,13 @@ output "node_unschedulable_id" {
   description = "id for monitor node_unschedulable"
   value       = "${datadog_monitor.node_unschedulable.*.id}"
 }
+
+output "volume_space_id" {
+  description = "id for monitor volume_space"
+  value       = "${datadog_monitor.volume_space.*.id}"
+}
+
+output "volume_inodes_id" {
+  description = "id for monitor volume_inodes"
+  value       = "${datadog_monitor.volume_inodes.*.id}"
+}

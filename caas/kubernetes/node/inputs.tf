@@ -296,3 +296,95 @@ variable "node_unschedulable_timeframe" {
   type        = "string"
   default     = "last_1h"
 }
+
+variable "volume_space_silenced" {
+  description = "Groups to mute for Volume space monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "volume_space_enabled" {
+  description = "Flag to enable Volume space monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "volume_space_extra_tags" {
+  description = "Extra tags for Volume space monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "volume_space_message" {
+  description = "Custom message for Volume space monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "volume_space_time_aggregator" {
+  description = "Monitor aggregator for Volume space [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "volume_space_timeframe" {
+  description = "Monitor timeframe for Volume space [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "volume_space_threshold_critical" {
+  default     = 95
+  description = "Volume space critical threshold"
+}
+
+variable "volume_space_threshold_warning" {
+  default     = 90
+  description = "Volume space warning threshold"
+}
+
+variable "volume_inodes_silenced" {
+  description = "Groups to mute for Volume inodes monitor"
+  type        = "map"
+  default     = {}
+}
+
+variable "volume_inodes_enabled" {
+  description = "Flag to enable Volume inodes monitor"
+  type        = "string"
+  default     = "true"
+}
+
+variable "volume_inodes_extra_tags" {
+  description = "Extra tags for Volume inodes monitor"
+  type        = "list"
+  default     = []
+}
+
+variable "volume_inodes_message" {
+  description = "Custom message for Volume inodes monitor"
+  type        = "string"
+  default     = ""
+}
+
+variable "volume_inodes_time_aggregator" {
+  description = "Monitor aggregator for Volume inodes [available values: min, max or avg]"
+  type        = "string"
+  default     = "min"
+}
+
+variable "volume_inodes_timeframe" {
+  description = "Monitor timeframe for Volume inodes [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = "string"
+  default     = "last_5m"
+}
+
+variable "volume_inodes_threshold_critical" {
+  default     = 95
+  description = "Volume inodes critical threshold"
+}
+
+variable "volume_inodes_threshold_warning" {
+  default     = 90
+  description = "Volume inodes warning threshold"
+}
