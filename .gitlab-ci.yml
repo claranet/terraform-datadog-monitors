@@ -1,19 +1,49 @@
-image: hashicorp/terraform:full
+image: alpine:latest
 
 stages:
   - test
+  - build
+  - deploy
 
-test_auto_update:
+before_script:
+  - apk update
+  - apk upgrade
+  - apk add --no-cache curl
+
+auto_update:
+  image: hashicorp/terraform:full
   stage: test
   script:
-    - apk update
-    - apk upgrade
-    - apk add --no-cache bash git grep coreutils curl
+    - apk add --no-cache bash git grep coreutils
     - curl -Lo /usr/local/bin/terraform-docs "https://github.com/$(curl -s https://github.com/segmentio/terraform-docs/releases | grep terraform-docs-v0.6.0-linux-amd | head -n 1 | cut -d '"' -f 2)"
     - chmod +x /usr/local/bin/terraform-docs
     - ./scripts/auto_update.sh ./
     - git status
     - git diff --exit-code
+  tags:
+    - product-teams
+    - kubernetes
+    - gke
+
+deploy_terraform:
+  stage: deploy
+  script:
+    - "curl -X POST -F token=${TEMPLATES_GITLAB_TOKEN} -F ref=${TEMPLATES_GITLAB_BRANCH:-master} -F \"variables[SCENARIO]=test\" ${CI_API_V4_URL}/projects/${TEMPLATES_GITLAB_ID}/trigger/pipeline"
+  only:
+    - master
+  tags:
+    - product-teams
+    - kubernetes
+    - gke
+
+build_template:
+  stage: build
+  script:
+    - "curl -X POST -F token=${TEMPLATES_GITLAB_TOKEN} -F ref=${TEMPLATES_GITLAB_BRANCH:-master} -F \"variables[SCENARIO]=build\" -F \"variables[TAG]=$CI_COMMIT_TAG\" ${CI_API_V4_URL}/projects/${TEMPLATES_GITLAB_ID}/trigger/pipeline"
+  only:
+    - tags
+  except:
+    - branches
   tags:
     - product-teams
     - kubernetes
