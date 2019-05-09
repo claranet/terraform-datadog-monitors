@@ -16,29 +16,20 @@ module "datadog-monitors-caas-kubernetes-pod" {
 
 Creates DataDog monitors with the following checks:
 
-- Kubernetes Pod CrashLoopBackOff
-- Kubernetes Pod errors
 - Kubernetes Pod phase status failed
+- Kubernetes Pod waiting errors
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| crashloopbackoff\_enabled | Flag to enable Pod crashloopbackoff monitor | string | `"true"` | no |
-| crashloopbackoff\_extra\_tags | Extra tags for Pod crashloopbackoff monitor | list | `[]` | no |
-| crashloopbackoff\_message | Custom message for Pod crashloopbackoff monitor | string | `""` | no |
-| crashloopbackoff\_silenced | Groups to mute for Pod crashloopbackoff monitor | map | `{}` | no |
-| crashloopbackoff\_threshold\_critical | crashloopbackoff critical threshold | string | `"5"` | no |
-| crashloopbackoff\_threshold\_warning | crashloopbackoff warning threshold | string | `"4"` | no |
-| crashloopbackoff\_time\_aggregator | Monitor aggregator for Pod crashloopbackoff [available values: min, max or avg] | string | `"sum"` | no |
-| crashloopbackoff\_timeframe | Monitor timeframe for Pod crashloopbackoff [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_10m"` | no |
 | environment | Architecture environment | string | n/a | yes |
 | error\_enabled | Flag to enable Pod errors monitor | string | `"true"` | no |
 | error\_extra\_tags | Extra tags for Pod errors monitor | list | `[]` | no |
 | error\_message | Custom message for Pod errors monitor | string | `""` | no |
 | error\_silenced | Groups to mute for Pod errors monitor | map | `{}` | no |
-| error\_threshold\_critical | error critical threshold | string | `"1"` | no |
-| error\_threshold\_warning | error warning threshold | string | `"0.5"` | no |
+| error\_threshold\_critical | error critical threshold | string | `"0.5"` | no |
+| error\_threshold\_warning | error warning threshold | string | `"0"` | no |
 | error\_time\_aggregator | Monitor aggregator for Pod errors [available values: min, max or avg] | string | `"sum"` | no |
 | error\_timeframe | Monitor timeframe for Pod errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
 | evaluation\_delay | Delay in seconds for the metric evaluation | string | `"15"` | no |
@@ -59,7 +50,6 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description |
 |------|-------------|
-| crashloopbackoff\_id | id for monitor crashloopbackoff |
 | error\_id | id for monitor error |
 | pod\_phase\_status\_id | id for monitor pod_phase_status |
 
