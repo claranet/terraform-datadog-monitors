@@ -26,14 +26,14 @@ resource "datadog_monitor" "status" {
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform", "${var.status_extra_tags}"]
 }
 
-resource "datadog_monitor" "sql-database_cpu_90_15min" {
+resource "datadog_monitor" "sql-database_cpu" {
   count   = "${var.cpu_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] SQL Database CPU too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_message, var.message)}"
 
   query = <<EOQ
     ${var.cpu_time_aggregator}(${var.cpu_timeframe}): (
-      avg:azure.sql_servers_databases.cpu_percent${module.filter-tags.query_alert} by {resource_group,region,name}
+      avg:azure.sql_servers_databases.cpu_percent${module.filter-tags.query_alert} by {resource_group,region,server_name,name}
     ) > ${var.cpu_threshold_critical}
   EOQ
 
@@ -41,11 +41,12 @@ resource "datadog_monitor" "sql-database_cpu_90_15min" {
 
   thresholds {
     critical = "${var.cpu_threshold_critical}"
+    warning  = "${var.cpu_threshold_warning}"
   }
 
   silenced = "${var.cpu_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -60,14 +61,14 @@ resource "datadog_monitor" "sql-database_cpu_90_15min" {
 
 resource "datadog_monitor" "sql-database_free_space_low" {
   count   = "${var.diskspace_enabled == "true" ? 1 : 0}"
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] SQL Database low free space {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] SQL Database high disk usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.diskspace_message, var.message)}"
 
   type = "metric alert"
 
   query = <<EOQ
     ${var.diskspace_time_aggregator}(${var.diskspace_timeframe}): (
-      avg:azure.sql_servers_databases.storage_percent${module.filter-tags.query_alert} by {resource_group,region,name}
+      avg:azure.sql_servers_databases.storage_percent${module.filter-tags.query_alert} by {resource_group,region,server_name,name}
     ) > ${var.diskspace_threshold_critical}
   EOQ
 
@@ -78,7 +79,7 @@ resource "datadog_monitor" "sql-database_free_space_low" {
 
   silenced = "${var.diskspace_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -100,7 +101,7 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
 
   query = <<EOQ
     ${var.dtu_time_aggregator}(${var.dtu_timeframe}): (
-      azure.sql_servers_databases.dtu_consumption_percent${module.filter-tags.query_alert} by {resource_group,region,name}
+      avg:azure.sql_servers_databases.dtu_consumption_percent${module.filter-tags.query_alert} by {resource_group,region,server_name,name}
     ) > ${var.dtu_threshold_critical}
   EOQ
 
@@ -111,7 +112,7 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
 
   silenced = "${var.dtu_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -133,7 +134,7 @@ resource "datadog_monitor" "sql-database_deadlocks_count" {
 
   query = <<EOQ
     sum(${var.deadlock_timeframe}): (
-      avg:azure.sql_servers_databases.deadlock${module.filter-tags.query_alert} by {resource_group,region,name}.as_count()
+      avg:azure.sql_servers_databases.deadlock${module.filter-tags.query_alert} by {resource_group,region,server_name,name}.as_count()
     ) > ${var.deadlock_threshold_critical}
   EOQ
 
