@@ -103,7 +103,7 @@ variable "error_message" {
 variable "error_time_aggregator" {
   description = "Monitor aggregator for Pod errors [available values: min, max or avg]"
   type        = "string"
-  default     = "sum"
+  default     = "min"
 }
 
 variable "error_timeframe" {
