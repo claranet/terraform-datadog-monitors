@@ -21,7 +21,7 @@ resource "datadog_monitor" "appservices_response_time" {
 
   silenced = "${var.response_time_silenced}"
 
-  notify_no_data      = true  # Will notify when no data is received
+  notify_no_data      = false # Will NOT notify when no data is received
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 0
@@ -53,7 +53,7 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
 
   silenced = "${var.memory_usage_silenced}"
 
-  notify_no_data      = true  # Will notify when no data is received
+  notify_no_data      = false # Will NOT notify when no data is received
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 0
@@ -161,4 +161,31 @@ resource "datadog_monitor" "appservices_http_success_status_rate" {
   include_tags        = true
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform", "${var.http_successful_requests_extra_tags}"]
+}
+
+# Monitoring App Services status
+resource "datadog_monitor" "appservices_status" {
+  count   = "${var.status_enabled == "true" ? 1 : 0}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services is down"
+  type    = "metric alert"
+  message = "${coalesce(var.status_message, var.message)}"
+
+  query = <<EOQ
+      ${var.status_time_aggregator}(${var.status_timeframe}):avg:azure.app_services.status${module.filter-tags.query_alert} by {resource_group,region,name} < 1
+  EOQ
+
+  evaluation_delay = "${var.evaluation_delay}"
+  new_host_delay   = "${var.new_host_delay}"
+
+  thresholds {
+    critical = 1
+  }
+
+  silenced            = "${var.status_silenced}"
+  notify_no_data      = true                                                                                                                                                     # Will notify when no data is received
+  renotify_interval   = 0
+  require_full_window = false
+  timeout_h           = 0
+  include_tags        = true
+  tags                = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform", "${var.status_extra_tags}"]
 }
