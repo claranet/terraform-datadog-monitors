@@ -30,7 +30,7 @@ Creates DataDog monitors with the following checks:
 | error\_silenced | Groups to mute for Pod errors monitor | map | `{}` | no |
 | error\_threshold\_critical | error critical threshold | string | `"0.5"` | no |
 | error\_threshold\_warning | error warning threshold | string | `"0"` | no |
-| error\_time\_aggregator | Monitor aggregator for Pod errors [available values: min, max or avg] | string | `"min"` | no |
+| error\_time\_aggregator | Monitor aggregator for Pod errors [available values: min, max or avg] | string | `"sum"` | no |
 | error\_timeframe | Monitor timeframe for Pod errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
 | evaluation\_delay | Delay in seconds for the metric evaluation | string | `"15"` | no |
 | filter\_tags\_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `"*"` | no |
