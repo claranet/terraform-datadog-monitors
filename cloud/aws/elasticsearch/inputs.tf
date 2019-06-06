@@ -1,7 +1,7 @@
 # Global Terraform
 variable "environment" {
   description = "Architecture Environment"
-  type        = "string"
+  type        = string
 }
 
 # Global DataDog
@@ -43,25 +43,25 @@ variable "filter_tags_custom_excluded" {
 
 variable "es_cluster_status_enabled" {
   description = "Flag to enable ES cluster status monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "es_cluster_status_extra_tags" {
   description = "Extra tags for ES cluster status monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "es_cluster_status_message" {
   description = "Custom message for ES cluster status monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "es_cluster_status_timeframe" {
   description = "Monitor timeframe for ES cluster status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_30m"
 }
 
@@ -71,31 +71,31 @@ variable "es_cluster_volume_size" {
 
 variable "diskspace_enabled" {
   description = "Flag to enable ES cluster diskspace monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "diskspace_extra_tags" {
   description = "Extra tags for ES cluster diskspace monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "diskspace_message" {
   description = "Custom message for ES cluster diskspace monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "diskspace_time_aggregator" {
   description = "Monitor aggregator for ES cluster diskspace [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "max"
 }
 
 variable "diskspace_timeframe" {
   description = "Monitor timeframe for ES cluster diskspace [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_15m"
 }
 
@@ -111,31 +111,31 @@ variable "diskspace_threshold_critical" {
 
 variable "cpu_enabled" {
   description = "Flag to enable ES cluster cpu monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "cpu_extra_tags" {
   description = "Extra tags for ES cluster cpu monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "cpu_message" {
   description = "Custom message for ES cluster cpu monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "cpu_time_aggregator" {
   description = "Monitor aggregator for ES cluster cpu [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "cpu_timeframe" {
   description = "Monitor timeframe for ES cluster cpu [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_15m"
 }
 
@@ -148,3 +148,4 @@ variable "cpu_threshold_critical" {
   description = "CPU usage in percent (critical threshold)"
   default     = "90"
 }
+

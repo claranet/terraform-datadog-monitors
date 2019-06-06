@@ -1,6 +1,6 @@
 variable "environment" {
   description = "Architecture environment"
-  type        = "string"
+  type        = string
 }
 
 variable "filter_tags_use_defaults" {
@@ -40,19 +40,19 @@ variable "prefix_slug" {
 # Azure Key Vault specific variables
 variable "status_enabled" {
   description = "Flag to enable Key Vault status monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "status_message" {
   description = "Custom message for Key Vault status monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "status_time_aggregator" {
   description = "Monitor aggregator for Key Vault status [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "max"
 }
 
@@ -63,25 +63,25 @@ variable "status_timeframe" {
 
 variable "status_extra_tags" {
   description = "Extra tags for Key Vault status monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "api_result_enabled" {
   description = "Flag to enable Key Vault API result monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "api_result_message" {
   description = "Custom message for Key Vault API result monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "api_result_time_aggregator" {
   description = "Monitor aggregator for Key Vault API result [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "max"
 }
 
@@ -102,25 +102,25 @@ variable "api_result_threshold_warning" {
 
 variable "api_result_extra_tags" {
   description = "Extra tags for Key Vault API result monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "api_latency_enabled" {
   description = "Flag to enable Key Vault API latency monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "api_latency_message" {
   description = "Custom message for Key Vault API latency monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "api_latency_time_aggregator" {
   description = "Monitor aggregator for Key Vault API latency [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
@@ -141,6 +141,7 @@ variable "api_latency_threshold_warning" {
 
 variable "api_latency_extra_tags" {
   description = "Extra tags for Key Vault API latency monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
+

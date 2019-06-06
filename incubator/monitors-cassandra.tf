@@ -36,4 +36,3 @@ renotify_interval   = 0
 no_data_timeframe   = 20
 
 }*/
-

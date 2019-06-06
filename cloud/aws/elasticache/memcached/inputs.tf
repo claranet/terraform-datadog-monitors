@@ -1,7 +1,7 @@
 # Global Terraform
 variable "environment" {
   description = "Infrastructure Environment"
-  type        = "string"
+  type        = string
 }
 
 # Global DataDog
@@ -43,84 +43,85 @@ variable "filter_tags_custom_excluded" {
 
 variable "get_hits_enabled" {
   description = "Flag to enable Elasticache memcached get hits monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "get_hits_extra_tags" {
   description = "Extra tags for Elasticache memcached get hits monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "get_hits_message" {
   description = "Custom message for Elasticache memcached get hits monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "get_hits_time_aggregator" {
   description = "Monitor aggregator for Elasticache memcached get hits [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "max"
 }
 
 variable "get_hits_timeframe" {
   description = "Monitor timeframe for Elasticache memcached get hits [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_15m"
 }
 
 variable "get_hits_threshold_warning" {
   description = "Elasticache memcached get hits warning threshold in percentage"
-  type        = "string"
+  type        = string
   default     = 80
 }
 
 variable "get_hits_threshold_critical" {
   description = "Elasticache memcached get hits critical threshold in percentage"
-  type        = "string"
+  type        = string
   default     = 60
 }
 
 variable "cpu_high_enabled" {
   description = "Flag to enable Elasticache memcached cpu high monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "cpu_high_extra_tags" {
   description = "Extra tags for Elasticache memcached cpu high monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "cpu_high_message" {
   description = "Custom message for Elasticache memcached cpu high monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "cpu_high_time_aggregator" {
   description = "Monitor aggregator for Elasticache memcached cpu high [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "cpu_high_timeframe" {
   description = "Monitor timeframe for Elasticache memcached cpu high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_15m"
 }
 
 variable "cpu_high_threshold_warning" {
   description = "Elasticache memcached cpu high warning threshold in percentage"
-  type        = "string"
+  type        = string
   default     = 75
 }
 
 variable "cpu_high_threshold_critical" {
   description = "Elasticache memcached cpu high critical threshold in percentage"
-  type        = "string"
+  type        = string
   default     = 90
 }
+

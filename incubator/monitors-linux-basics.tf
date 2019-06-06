@@ -1,7 +1,7 @@
 resource "datadog_monitor" "cpu_80_15min" {
   name    = "CPU High > 80% for 15 min"
   message = "{{#is_alert}}\n${var.hno_escalation_group}\n{{/is_alert}}\n{{#is_recovery}}\n${var.hno_escalation_group}\n{{/is_recovery}}"
-  count   = "${var.linux-basics == "enabled" ? 1 : 0}"
+  count   = var.linux-basics == "enabled" ? 1 : 0
 
   query = "min(last_15m):avg:system.cpu.system{dd_monitoring:enabled,!dd_custom_cpu:enabled} by {host} + avg:system.cpu.user{dd_monitoring:enabled,!dd_custom_cpu:enabled} by {host} > 80"
   type  = "query alert"
@@ -25,7 +25,7 @@ resource "datadog_monitor" "cpu_95_5min" {
 
   query = "min(last_5m):avg:system.cpu.system{dd_monitoring:enabled,!dd_custom_cpu:enabled} by {host} + avg:system.cpu.user{dd_monitoring:enabled,!dd_custom_cpu:enabled} by {host} > 95"
   type  = "query alert"
-  count = "${var.linux-basics == "enabled" ? 1 : 0}"
+  count = var.linux-basics == "enabled" ? 1 : 0
 
   notify_no_data      = false
   renotify_interval   = 60
@@ -46,7 +46,7 @@ resource "datadog_monitor" "datadog_free_disk_space_5" {
 
   query = "sum(last_5m):avg:system.disk.free{*} by {host,device} / avg:system.disk.total{*} by {host,device} * 100 < 5"
   type  = "query alert"
-  count = "${var.linux-basics == "enabled" ? 1 : 0}"
+  count = var.linux-basics == "enabled" ? 1 : 0
 
   notify_no_data      = false
   renotify_interval   = 60
@@ -67,7 +67,7 @@ resource "datadog_monitor" "datadog_free_disk_space_10" {
 
   query = "sum(last_5m):avg:system.disk.free{*} by {host,device} / avg:system.disk.total{*} by {host,device} * 100 < 10"
   type  = "query alert"
-  count = "${var.linux-basics == "enabled" ? 1 : 0}"
+  count = var.linux-basics == "enabled" ? 1 : 0
 
   notify_no_data      = false
   renotify_interval   = 60
@@ -88,7 +88,7 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_5" {
 
   query = "sum(last_5m):avg:system.fs.inodes.free{*} by {host,device} / avg:system.fs.inodes.total{*} by {host,device} * 100 < 5"
   type  = "query alert"
-  count = "${var.linux-basics == "enabled" ? 1 : 0}"
+  count = var.linux-basics == "enabled" ? 1 : 0
 
   notify_no_data      = false
   renotify_interval   = 60
@@ -109,7 +109,7 @@ resource "datadog_monitor" "datadog_free_disk_space_inodes_10" {
 
   query = "max(last_5m):avg:system.fs.inodes.free{*} by {host,device} / avg:system.fs.inodes.total{*} by {host,device} * 100 < 10"
   type  = "query alert"
-  count = "${var.linux-basics == "enabled" ? 1 : 0}"
+  count = var.linux-basics == "enabled" ? 1 : 0
 
   notify_no_data      = false
   renotify_interval   = 60
@@ -130,7 +130,7 @@ resource "datadog_monitor" "datadog_cpu_load" {
 
   query = "min(last_5m):avg:system.load.5{*} by {instance-id} / avg:gcp.gce.instance.cpu.reserved_cores{*} by {instance-id} > 2"
   type  = "query alert"
-  count = "${var.linux-basics == "enabled" ? 1 : 0}"
+  count = var.linux-basics == "enabled" ? 1 : 0
 
   notify_no_data      = false
   renotify_interval   = 60
@@ -170,7 +170,7 @@ resource "datadog_monitor" "datadog_host_unreachable" {
 
   query = "\"datadog.agent.up\".over(\"*\").last(1).count_by_status()"
   type  = "service check"
-  count = "${var.linux-basics == "enabled" ? 1 : 0}"
+  count = var.linux-basics == "enabled" ? 1 : 0
 
   notify_no_data      = false
   renotify_interval   = 60
@@ -184,3 +184,4 @@ resource "datadog_monitor" "datadog_host_unreachable" {
   renotify_interval   = 0
   no_data_timeframe   = 20
 }
+

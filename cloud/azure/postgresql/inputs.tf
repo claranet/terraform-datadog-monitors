@@ -1,7 +1,7 @@
 # Global Terraform
 variable "environment" {
   description = "Architecture environment"
-  type        = "string"
+  type        = string
 }
 
 # Global DataDog
@@ -38,31 +38,31 @@ variable "filter_tags_custom" {
 
 variable "cpu_usage_enabled" {
   description = "Flag to enable PostgreSQL status monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "cpu_usage_extra_tags" {
   description = "Extra tags for PostgreSQL status monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "cpu_usage_message" {
   description = "Custom message for PostgreSQL CPU monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "cpu_usage_time_aggregator" {
   description = "Monitor aggregator for PostgreSQL CPU [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "cpu_usage_timeframe" {
   description = "Monitor timeframe for PostgreSQL CPU [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_15m"
 }
 
@@ -78,61 +78,61 @@ variable "cpu_usage_threshold_critical" {
 
 variable "no_connection_enabled" {
   description = "Flag to enable PostgreSQL status monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "no_connection_extra_tags" {
   description = "Extra tags for PostgreSQL status monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "no_connection_message" {
   description = "Custom message for PostgreSQL no connection monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "no_connection_time_aggregator" {
   description = "Monitor aggregator for PostgreSQL no connection [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "no_connection_timeframe" {
   description = "Monitor timeframe for PostgreSQL no connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
 variable "free_storage_enabled" {
   description = "Flag to enable PostgreSQL status monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "free_storage_extra_tags" {
   description = "Extra tags for PostgreSQL status monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "free_storage_message" {
   description = "Custom message for PostgreSQL Free Storage monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "free_storage_time_aggregator" {
   description = "Monitor aggregator for PostgreSQL Free Storage [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "free_storage_timeframe" {
   description = "Monitor timeframe for PostgreSQL Free Storage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_15m"
 }
 
@@ -148,31 +148,31 @@ variable "free_storage_threshold_critical" {
 
 variable "io_consumption_enabled" {
   description = "Flag to enable PostgreSQL status monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "io_consumption_extra_tags" {
   description = "Extra tags for PostgreSQL status monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "io_consumption_message" {
   description = "Custom message for PostgreSQL IO consumption monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "io_consumption_time_aggregator" {
   description = "Monitor aggregator for PostgreSQL IO consumption [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "io_consumption_timeframe" {
   description = "Monitor timeframe for PostgreSQL IO consumption [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_15m"
 }
 
@@ -188,31 +188,31 @@ variable "io_consumption_threshold_critical" {
 
 variable "memory_usage_enabled" {
   description = "Flag to enable PostgreSQL status monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "memory_usage_extra_tags" {
   description = "Extra tags for PostgreSQL status monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "memory_usage_message" {
   description = "Custom message for PostgreSQL memory monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "memory_usage_time_aggregator" {
   description = "Monitor aggregator for PostgreSQL memory [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "memory_usage_timeframe" {
   description = "Monitor timeframe for PostgreSQL memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_15m"
 }
 
@@ -225,3 +225,4 @@ variable "memory_usage_threshold_critical" {
   description = "PostgreSQL memory usage in percent (critical threshold)"
   default     = "90"
 }
+

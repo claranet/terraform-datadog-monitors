@@ -5,7 +5,7 @@ resource "datadog_monitor" "kubernetes_redis_cpu_95_5min" {
   message = "{{#is_alert}}\n${var.alert_HNO} \n{{/is_alert}} \n{{#is_recovery}}\n${var.alert_HNO}\n{{/is_recovery}}"
   query   = "avg(last_5m):avg:gcp.container.cpu.utilization{container_name:redis} by {cluster-name} * 100 > 95"
 
-  thresholds {
+  thresholds = {
     #    warning  = 80
     critical = 95
   }
@@ -33,7 +33,7 @@ resource "datadog_monitor" "kubernetes_redis_cpu_80_15min" {
   query = "min(last_15m):avg:gcp.container.cpu.utilization{container_name:redis} by {cluster-name} * 100 > 80"
   type  = "query alert"
 
-  thresholds {
+  thresholds = {
     #    warning  = 75
     critical = 80
   }
@@ -74,4 +74,3 @@ resource "datadog_monitor" "kubernetes_redis_cpu_80_15min" {
 #   renotify_interval   = 0
 #   no_data_timeframe   = 20
 # }
-

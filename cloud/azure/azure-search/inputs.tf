@@ -1,6 +1,6 @@
 variable "environment" {
   description = "Architecture environment"
-  type        = "string"
+  type        = string
 }
 
 variable "filter_tags_use_defaults" {
@@ -41,31 +41,31 @@ variable "prefix_slug" {
 
 variable "latency_enabled" {
   description = "Flag to enable Azure Search latency monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "latency_extra_tags" {
   description = "Extra tags for Azure Search latency monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "latency_message" {
   description = "Custom message for Azure Search latency monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "latency_time_aggregator" {
   description = "Monitor aggregator for Azure Search latency [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "latency_timeframe" {
   description = "Monitor timeframe for Azure Search latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -81,31 +81,31 @@ variable "latency_threshold_warning" {
 
 variable "throttled_queries_rate_enabled" {
   description = "Flag to enable Azure Search throttled queries rate monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "throttled_queries_rate_extra_tags" {
   description = "Extra tags for Azure Search throttled queries rate monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "throttled_queries_rate_message" {
   description = "Custom message for Azure Search throttled queries rate monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "throttled_queries_rate_time_aggregator" {
   description = "Monitor aggregator for Azure Search throttled queries rate [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "throttled_queries_rate_timeframe" {
   description = "Monitor timeframe for Azure Search throttled queries rate [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -118,3 +118,4 @@ variable "throttled_queries_rate_threshold_warning" {
   default     = 25
   description = "Warning threshold for Azure Search throttled queries rate"
 }
+

@@ -3,7 +3,7 @@
 #
 variable "environment" {
   description = "Architecture environment"
-  type        = "string"
+  type        = string
 }
 
 variable "filter_tags" {
@@ -36,43 +36,43 @@ variable "prefix_slug" {
 
 variable "cpu_utilization_message" {
   description = "Custom message for the CPU Utilization monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "cpu_utilization_time_aggregator" {
   description = "Time aggregator for the CPU Utilization monitor"
-  type        = "string"
+  type        = string
   default     = "avg"
 }
 
 variable "cpu_utilization_timeframe" {
   description = "Timeframe for the CPU Utilization monitor"
-  type        = "string"
+  type        = string
   default     = "last_15m"
 }
 
 variable "cpu_utilization_threshold_warning" {
   description = "CPU Utilization in percentage (warning threshold)"
-  type        = "string"
+  type        = string
   default     = 80
 }
 
 variable "cpu_utilization_threshold_critical" {
   description = "CPU Utilization in percentage (critical threshold)"
-  type        = "string"
+  type        = string
   default     = 90
 }
 
 variable "cpu_utilization_enabled" {
   description = "Flag to enable GCP Cloud SQL CPU Utilization monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "cpu_utilization_extra_tags" {
   description = "Extra tags for GCP Cloud SQL CPU Utilization monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -82,43 +82,43 @@ variable "cpu_utilization_extra_tags" {
 
 variable "disk_utilization_message" {
   description = "Custom message for the Disk Utilization monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "disk_utilization_time_aggregator" {
   description = "Time aggregator for the Disk Utilization monitor"
-  type        = "string"
+  type        = string
   default     = "avg"
 }
 
 variable "disk_utilization_timeframe" {
   description = "Timeframe for the Disk Utilization monitor"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
 variable "disk_utilization_threshold_warning" {
   description = "Disk Utilization in percentage (warning threshold)"
-  type        = "string"
+  type        = string
   default     = 80
 }
 
 variable "disk_utilization_threshold_critical" {
   description = "Disk Utilization in percentage (critical threshold)"
-  type        = "string"
+  type        = string
   default     = 90
 }
 
 variable "disk_utilization_enabled" {
   description = "Flag to enable GCP Cloud SQL Disk Utilization monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "disk_utilization_extra_tags" {
   description = "Extra tags for GCP Cloud SQL CPU Utilization monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -128,79 +128,79 @@ variable "disk_utilization_extra_tags" {
 
 variable "disk_utilization_forecast_message" {
   description = "Custom message for the Disk Utilization Forecast monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "disk_utilization_forecast_time_aggregator" {
   description = "Time aggregator for the Disk Utilization Forecast monitor"
-  type        = "string"
+  type        = string
   default     = "max"
 }
 
 variable "disk_utilization_forecast_timeframe" {
   description = "Timeframe for the Disk Utilization Forecast monitor"
-  type        = "string"
+  type        = string
   default     = "next_1w"
 }
 
 variable "disk_utilization_forecast_algorithm" {
   description = "Algorithm for the Disk Utilization Forecast monitor"
-  type        = "string"
+  type        = string
   default     = "linear"
 }
 
 variable "disk_utilization_forecast_deviations" {
   description = "Deviations for the Disk Utilization Forecast monitor"
-  type        = "string"
+  type        = string
   default     = 1
 }
 
 variable "disk_utilization_forecast_interval" {
   description = "Interval for the Disk Utilization Forecast monitor"
-  type        = "string"
+  type        = string
   default     = "60m"
 }
 
 variable "disk_utilization_forecast_linear_history" {
   description = "History for the Disk Utilization Forecast monitor"
-  type        = "string"
+  type        = string
   default     = "3d"
 }
 
 variable "disk_utilization_forecast_linear_model" {
   description = "Model for the Disk Utilization Forecast monitor"
-  type        = "string"
+  type        = string
   default     = "default"
 }
 
 variable "disk_utilization_forecast_seasonal_seasonality" {
   description = "Seasonality for the Disk Utilization Forecast monitor"
-  type        = "string"
+  type        = string
   default     = "weekly"
 }
 
 variable "disk_utilization_forecast_threshold_critical" {
   description = "Disk Utilization Forecast in percentage (critical threshold)"
-  type        = "string"
+  type        = string
   default     = 80
 }
 
 variable "disk_utilization_forecast_threshold_critical_recovery" {
   description = "Disk Utilization Forecast in percentage (recovery threshold)"
-  type        = "string"
+  type        = string
   default     = 72
 }
 
 variable "disk_utilization_forecast_enabled" {
   description = "Flag to enable GCP Cloud SQL Disk Utilization Forecast monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "disk_utilization_forecast_extra_tags" {
   description = "Extra tags for GCP Cloud SQL Disk Utilization Forecast monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -235,13 +235,13 @@ variable "memory_utilization_threshold_critical" {
 
 variable "memory_utilization_enabled" {
   description = "Flag to enable GCP Cloud SQL Memory Utilization monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "memory_utilization_extra_tags" {
   description = "Extra tags for GCP Cloud SQL Memory Utilization monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -266,37 +266,37 @@ variable "memory_utilization_forecast_timeframe" {
 
 variable "memory_utilization_forecast_algorithm" {
   description = "Algorithm for the Memory Utilization Forecast monitor"
-  type        = "string"
+  type        = string
   default     = "linear"
 }
 
 variable "memory_utilization_forecast_deviations" {
   description = "Deviations for the Memory Utilization Forecast monitor"
-  type        = "string"
+  type        = string
   default     = 1
 }
 
 variable "memory_utilization_forecast_interval" {
   description = "Interval for the Memory Utilization Forecast monitor"
-  type        = "string"
+  type        = string
   default     = "30m"
 }
 
 variable "memory_utilization_forecast_linear_history" {
   description = "History for the Memory Utilization Forecast monitor"
-  type        = "string"
+  type        = string
   default     = "12h"
 }
 
 variable "memory_utilization_forecast_linear_model" {
   description = "Model for the Memory Utilization Forecast monitor"
-  type        = "string"
+  type        = string
   default     = "default"
 }
 
 variable "memory_utilization_forecast_seasonal_seasonality" {
   description = "Seasonality for the Memory Utilization Forecast monitor"
-  type        = "string"
+  type        = string
   default     = "weekly"
 }
 
@@ -312,13 +312,13 @@ variable "memory_utilization_forecast_threshold_critical_recovery" {
 
 variable "memory_utilization_forecast_enabled" {
   description = "Flag to enable GCP Cloud SQL Memory Utilization Forecast monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "memory_utilization_forecast_extra_tags" {
   description = "Extra tags for GCP Cloud SQL Memory Utilization Forecast monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -328,36 +328,37 @@ variable "memory_utilization_forecast_extra_tags" {
 
 variable "failover_unavailable_message" {
   description = "Custom message for the Failover Unavailable monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "failover_unavailable_time_aggregator" {
   description = "Time aggreggator for the Failover Unavailable monitor"
-  type        = "string"
+  type        = string
   default     = "max"
 }
 
 variable "failover_unavailable_timeframe" {
   description = "Timeframe for the Failover Unavailable monitor"
-  type        = "string"
+  type        = string
   default     = "last_10m"
 }
 
 variable "failover_unavailable_threshold_critical" {
   description = "Failover Unavailable critical threshold"
-  type        = "string"
+  type        = string
   default     = 0
 }
 
 variable "failover_unavailable_enabled" {
   description = "Flag to enable GCP Cloud SQL Failover Unavailable monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "failover_unavailable_extra_tags" {
   description = "Extra tags for GCP Cloud SQL Failover Unavailable monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
+
