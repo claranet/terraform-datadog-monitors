@@ -1,7 +1,7 @@
 # Global Terraform
 variable "environment" {
   description = "Architecture Environment"
-  type        = "string"
+  type        = string
 }
 
 # Global DataDog
@@ -43,13 +43,13 @@ variable "filter_tags_custom_excluded" {
 
 variable "ingress_5xx_enabled" {
   description = "Flag to enable Ingress 5xx errors monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "ingress_5xx_extra_tags" {
   description = "Extra tags for Ingress 5xx errors monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -60,37 +60,37 @@ variable "ingress_5xx_message" {
 
 variable "ingress_5xx_time_aggregator" {
   description = "Monitor aggregator for Ingress 5xx errors [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "ingress_5xx_timeframe" {
   description = "Monitor timeframe for Ingress 5xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
 variable "ingress_5xx_threshold_critical" {
-  type        = "string"
+  type        = string
   default     = "20"
   description = "5xx critical threshold in percentage"
 }
 
 variable "ingress_5xx_threshold_warning" {
-  type        = "string"
+  type        = string
   default     = "10"
   description = "5xx warning threshold in percentage"
 }
 
 variable "ingress_4xx_enabled" {
   description = "Flag to enable Ingress 4xx errors monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "ingress_4xx_extra_tags" {
   description = "Extra tags for Ingress 4xx errors monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -101,24 +101,24 @@ variable "ingress_4xx_message" {
 
 variable "ingress_4xx_time_aggregator" {
   description = "Monitor aggregator for Ingress 4xx errors [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "ingress_4xx_timeframe" {
   description = "Monitor timeframe for Ingress 4xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
 variable "ingress_4xx_threshold_critical" {
-  type        = "string"
+  type        = string
   default     = "40"
   description = "4xx critical threshold in percentage"
 }
 
 variable "ingress_4xx_threshold_warning" {
-  type        = "string"
+  type        = string
   default     = "20"
   description = "4xx warning threshold in percentage"
 }
@@ -127,3 +127,4 @@ variable "artificial_requests_count" {
   default     = 5
   description = "Number of false requests used to mitigate false positive in case of low trafic"
 }
+

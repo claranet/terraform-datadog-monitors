@@ -22,7 +22,7 @@ resource "datadog_monitor" "cloud_sql_disk_space" {
   message = "{{#is_alert}}\n${var.alert_HNO} \n{{/is_alert}} \n{{#is_recovery}}\n${var.alert_HNO}\n{{/is_recovery}}\n{{#is_warning}}\n${var.warning_HO} \n{{/is_warning}} \n{{#is_warning_recovery}}\n${var.warning_HO}\n{{/is_warning_recovery}}"
   query   = "avg(last_5m):avg:gcp.cloudsql.database.disk.bytes_used{project_id:${var.project_id}} by {database_id} / avg:gcp.cloudsql.database.disk.quota{project_id:${var.project_id}} by {database_id} * 100  >= 90"
 
-  thresholds {
+  thresholds = {
     warning  = 70
     critical = 90
   }
@@ -97,3 +97,4 @@ resource "datadog_monitor" "cloud_sql_replication" {
   renotify_interval   = 0
   no_data_timeframe   = 20
 }
+

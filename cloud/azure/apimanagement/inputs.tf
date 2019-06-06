@@ -1,7 +1,7 @@
 # Global Terraform
 variable "environment" {
   description = "Architecture environment"
-  type        = "string"
+  type        = string
 }
 
 # Global DataDog
@@ -43,61 +43,61 @@ variable "filter_tags_custom_excluded" {
 
 variable "status_enabled" {
   description = "Flag to enable API Management status monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "status_extra_tags" {
   description = "Extra tags for API Management status monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "status_message" {
   description = "Custom message for API Management status monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "status_time_aggregator" {
   description = "Monitor aggregator for API Management status [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "max"
 }
 
 variable "status_timeframe" {
   description = "Monitor timeframe for API Management status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
 variable "failed_requests_enabled" {
   description = "Flag to enable API Management failed requests monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "failed_requests_extra_tags" {
   description = "Extra tags for API Management failed requests monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "failed_requests_message" {
   description = "Custom message for API Management failed requests monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "failed_requests_time_aggregator" {
   description = "Monitor aggregator for API Management failed requests [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "failed_requests_timeframe" {
   description = "Monitor timeframe for API Management failed requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -113,31 +113,31 @@ variable "failed_requests_threshold_warning" {
 
 variable "other_requests_enabled" {
   description = "Flag to enable API Management other requests monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "other_requests_extra_tags" {
   description = "Extra tags for API Management other requests monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "other_requests_message" {
   description = "Custom message for API Management other requests monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "other_requests_time_aggregator" {
   description = "Monitor aggregator for API Management other requests [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "other_requests_timeframe" {
   description = "Monitor timeframe for API Management other requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -153,31 +153,31 @@ variable "other_requests_threshold_warning" {
 
 variable "unauthorized_requests_enabled" {
   description = "Flag to enable API Management unauthorized requests monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "unauthorized_requests_extra_tags" {
   description = "Extra tags for API Management unauthorized requests monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "unauthorized_requests_message" {
   description = "Custom message for API Management unauthorized requests monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "unauthorized_requests_time_aggregator" {
   description = "Monitor aggregator for API Management unauthorized requests [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "unauthorized_requests_timeframe" {
   description = "Monitor timeframe for API Management unauthorized requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -193,31 +193,31 @@ variable "unauthorized_requests_threshold_warning" {
 
 variable "successful_requests_enabled" {
   description = "Flag to enable API Management successful requests monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "successful_requests_extra_tags" {
   description = "Extra tags for API Management successful requests monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "successful_requests_message" {
   description = "Custom message for API Management successful requests monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "successful_requests_time_aggregator" {
   description = "Monitor aggregator for API Management successful requests [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "max"
 }
 
 variable "successful_requests_timeframe" {
   description = "Monitor timeframe for API Management successful requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -230,3 +230,4 @@ variable "successful_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of successful requests"
   default     = 30
 }
+

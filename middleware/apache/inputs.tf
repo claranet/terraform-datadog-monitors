@@ -1,7 +1,7 @@
 # Global Terraform
 variable "environment" {
   description = "Architecture Environment"
-  type        = "string"
+  type        = string
 }
 
 # Global DataDog
@@ -43,24 +43,25 @@ variable "filter_tags_custom_excluded" {
 
 variable "apache_connect_enabled" {
   description = "Flag to enable Apache status monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "apache_connect_extra_tags" {
   description = "Extra tags for Apache process monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "apache_connect_message" {
   description = "Custom message for Apache status monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "apache_connect_threshold_warning" {
   description = "Apache status monitor (warning threshold)"
-  type        = "string"
+  type        = string
   default     = 3
 }
+

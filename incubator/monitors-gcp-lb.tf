@@ -61,7 +61,7 @@ resource "datadog_monitor" "datadog_gcp_lb_latency" {
   query   = "avg(last_5m):avg:gcp.loadbalancing.http.total_latencies.avg{*} > 5000"
   type    = "query alert"
 
-  thresholds {
+  thresholds = {
     warning  = 3000
     critical = 5000
   }
@@ -78,3 +78,4 @@ resource "datadog_monitor" "datadog_gcp_lb_latency" {
   renotify_interval   = 0
   no_data_timeframe   = 20
 }
+

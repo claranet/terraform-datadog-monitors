@@ -1,6 +1,6 @@
 variable "environment" {
   description = "Architecture environment"
-  type        = "string"
+  type        = string
 }
 
 variable "filter_tags_use_defaults" {
@@ -40,19 +40,19 @@ variable "prefix_slug" {
 # Azure Datalake Store specific variables
 variable "status_enabled" {
   description = "Flag to enable Datalake Store status monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "status_message" {
   description = "Custom message for Datalake Store status monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "status_time_aggregator" {
   description = "Monitor aggregator for Datalake Store status [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "max"
 }
 
@@ -63,6 +63,7 @@ variable "status_timeframe" {
 
 variable "status_extra_tags" {
   description = "Extra tags for Datalake Store status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
+

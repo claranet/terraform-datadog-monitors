@@ -4,7 +4,7 @@ resource "datadog_monitor" "gcp_vpn" {
 
   query = "avg(last_5m):avg:gcp.vpn.tunnel_established{*} <= 0"
 
-  thresholds {
+  thresholds = {
     critical = 0
   }
 
@@ -21,3 +21,4 @@ resource "datadog_monitor" "gcp_vpn" {
   renotify_interval   = 0
   no_data_timeframe   = 20
 }
+

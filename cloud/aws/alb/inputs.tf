@@ -2,7 +2,7 @@
 
 variable "environment" {
   description = "Architecture environment"
-  type        = "string"
+  type        = string
 }
 
 variable "filter_tags_use_defaults" {
@@ -43,61 +43,61 @@ variable "prefix_slug" {
 
 variable "alb_no_healthy_instances_enabled" {
   description = "Flag to enable ALB no healthy instances monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "alb_no_healthy_instances_extra_tags" {
   description = "Extra tags for ALB no healthy instances monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "alb_no_healthy_instances_message" {
   description = "Custom message for ALB no healthy instances monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "alb_no_healthy_instances_time_aggregator" {
   description = "Monitor aggregator for ALB no healthy instances [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "alb_no_healthy_instances_timeframe" {
   description = "Monitor timeframe for ALB no healthy instances [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
 variable "latency_enabled" {
   description = "Flag to enable ALB latency monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "latency_extra_tags" {
   description = "Extra tags for ALB latency monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "latency_message" {
   description = "Custom message for ALB latency monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "latency_time_aggregator" {
   description = "Monitor aggregator for ALB latency [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "latency_timeframe" {
   description = "Monitor timeframe for ALB latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -113,31 +113,31 @@ variable "latency_threshold_warning" {
 
 variable "httpcode_alb_4xx_enabled" {
   description = "Flag to enable ALB httpcode 4xx monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "httpcode_alb_4xx_extra_tags" {
   description = "Extra tags for ALB httpcode 4xx monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "httpcode_alb_4xx_message" {
   description = "Custom message for ALB httpcode 4xx monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "httpcode_alb_4xx_time_aggregator" {
   description = "Monitor aggregator for ALB httpcode 4xx [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "httpcode_alb_4xx_timeframe" {
   description = "Monitor timeframe for ALB httpcode 4xx [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -153,31 +153,31 @@ variable "httpcode_alb_4xx_threshold_warning" {
 
 variable "httpcode_target_4xx_enabled" {
   description = "Flag to enable ALB target httpcode 4xx monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "httpcode_target_4xx_extra_tags" {
   description = "Extra tags for ALB target httpcode 4xx monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "httpcode_target_4xx_message" {
   description = "Custom message for ALB target httpcode 4xx monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "httpcode_target_4xx_time_aggregator" {
   description = "Monitor aggregator for ALB target httpcode 4xx [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "httpcode_target_4xx_timeframe" {
   description = "Monitor timeframe for ALB target httpcode 4xx [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -193,31 +193,31 @@ variable "httpcode_target_4xx_threshold_warning" {
 
 variable "httpcode_alb_5xx_enabled" {
   description = "Flag to enable ALB httpcode 5xx monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "httpcode_alb_5xx_extra_tags" {
   description = "Extra tags for ALB httpcode 5xx monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "httpcode_alb_5xx_message" {
   description = "Custom message for ALB httpcode 5xx monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "httpcode_alb_5xx_time_aggregator" {
   description = "Monitor aggregator for ALB httpcode 5xx [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "httpcode_alb_5xx_timeframe" {
   description = "Monitor timeframe for ALB httpcode 5xx [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -233,31 +233,31 @@ variable "httpcode_alb_5xx_threshold_warning" {
 
 variable "httpcode_target_5xx_enabled" {
   description = "Flag to enable ALB target httpcode 5xx monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "httpcode_target_5xx_extra_tags" {
   description = "Extra tags for ALB target httpcode 5xx monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "httpcode_target_5xx_message" {
   description = "Custom message for ALB target httpcode 5xx monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "httpcode_target_5xx_time_aggregator" {
   description = "Monitor aggregator for ALB target httpcode 5xx [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "httpcode_target_5xx_timeframe" {
   description = "Monitor timeframe for ALB target httpcode 5xx [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -275,3 +275,4 @@ variable "artificial_requests_count" {
   default     = 5
   description = "Number of false requests used to mitigate false positive in case of low trafic"
 }
+

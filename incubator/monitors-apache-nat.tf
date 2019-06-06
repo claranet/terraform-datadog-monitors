@@ -5,7 +5,7 @@ resource "datadog_monitor" "apache_worker_nat" {
   query = "avg(last_10m):avg:apache.performance.busy_workers{*} by {host} / ( avg:apache.performance.idle_workers{*} by {host} + avg:apache.performance.busy_workers{*} by {host} ) > 0.99"
   type  = "query alert"
 
-  thresholds {
+  thresholds = {
     warning  = 0.95
     critical = 0.99
   }
@@ -42,3 +42,4 @@ resource "datadog_monitor" "apache_process_nat" {
   renotify_interval   = 0
   no_data_timeframe   = 20
 }
+

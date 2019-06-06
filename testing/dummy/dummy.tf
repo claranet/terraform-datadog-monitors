@@ -1,1 +1,3 @@
-resource "null_resource" "test-migration" {}
+resource "null_resource" "test-migration" {
+}
+

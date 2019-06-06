@@ -42,25 +42,25 @@ variable "prefix_slug" {
 
 variable "ark_schedules_monitor_message" {
   description = "Custom message for Ark schedules monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "ark_schedules_monitor_timeframe" {
   description = "Monitor timeframe for Ark schedules monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_1d"
 }
 
 variable "ark_schedules_enabled" {
   description = "Flag to enable Ark schedules monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "ark_schedules_extra_tags" {
   description = "Extra tags for Ark schedules monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -68,3 +68,4 @@ variable "ark_schedules_monitor_no_data_timeframe" {
   description = "No data timeframe in minutes"
   default     = 1440
 }
+

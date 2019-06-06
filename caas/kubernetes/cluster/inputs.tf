@@ -42,24 +42,25 @@ variable "prefix_slug" {
 
 variable "apiserver_enabled" {
   description = "Flag to enable API server monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "apiserver_extra_tags" {
   description = "Extra tags for API server monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "apiserver_message" {
   description = "Custom message for API server monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "apiserver_threshold_warning" {
   description = "API server monitor (warning threshold)"
-  type        = "string"
+  type        = string
   default     = 3
 }
+
