@@ -14,10 +14,9 @@ module "filter-tags-statuscode" {
   environment                 = "${var.environment}"
   resource                    = "azure_keyvault"
   filter_tags_use_defaults    = "${var.filter_tags_use_defaults}"
-  filter_tags_custom          = "${var.filter_tags_custom},statuscode:%s"
+  filter_tags_custom          = "${var.filter_tags_custom}"
   filter_tags_custom_excluded = "${var.filter_tags_custom_excluded}"
-
-  extra_tags = ["statuscode:%s"]
+  extra_tags                  = ["statuscode:%s"]
 }
 
 module "filter-tags-activity" {
@@ -26,6 +25,7 @@ module "filter-tags-activity" {
   environment                 = "${var.environment}"
   resource                    = "azure_keyvault"
   filter_tags_use_defaults    = "${var.filter_tags_use_defaults}"
-  filter_tags_custom          = "${var.filter_tags_custom},!activityname:secretlist"
+  filter_tags_custom          = "${var.filter_tags_custom}"
   filter_tags_custom_excluded = "${var.filter_tags_custom_excluded}"
+  extra_tags_excluded         = ["activityname:secretlist"]
 }
