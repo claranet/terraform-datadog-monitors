@@ -18,15 +18,15 @@ EOQ
     critical = var.failed_jobs_rate_threshold_critical
   }
 
-  notify_no_data = false
   evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
+  notify_no_data = false
   renotify_interval = 0
   notify_audit = false
   timeout_h = 1
   include_tags = true
   locked = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform", var.failed_jobs_rate_extra_tags]
 }
@@ -51,15 +51,15 @@ warning  = var.failed_listjobs_rate_threshold_warning
 critical = var.failed_listjobs_rate_threshold_critical
 }
 
-notify_no_data      = false
 evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
+notify_no_data      = false
 renotify_interval   = 0
 notify_audit        = false
 timeout_h           = 1
 include_tags        = true
 locked              = false
 require_full_window = false
-new_host_delay      = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform", var.failed_listjobs_rate_extra_tags]
 }
@@ -68,7 +68,7 @@ resource "datadog_monitor" "too_many_query_jobs_failed" {
 count   = var.failed_queryjobs_rate_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] IOT Hub Too many query_jobs failed {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.failed_queryjobs_rate_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
     ${var.failed_queryjobs_rate_time_aggregator}(${var.failed_queryjobs_rate_timeframe}):
@@ -84,15 +84,15 @@ warning = var.failed_queryjobs_rate_threshold_warning
 critical = var.failed_queryjobs_rate_threshold_critical
 }
 
-notify_no_data = false
 evaluation_delay = var.evaluation_delay
+new_host_delay = var.new_host_delay
+notify_no_data = false
 renotify_interval = 0
 notify_audit = false
 timeout_h = 1
 include_tags = true
 locked = false
 require_full_window = false
-new_host_delay = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform", var.failed_queryjobs_rate_extra_tags]
 }
@@ -101,7 +101,7 @@ resource "datadog_monitor" "status" {
 count = var.status_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] IOT Hub is down"
 message = coalesce(var.status_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
     ${var.status_time_aggregator}(${var.status_timeframe}): (
@@ -109,15 +109,15 @@ query = <<EOQ
     ) < 1
 EOQ
 
-  notify_no_data      = true
   evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = true
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform", var.status_extra_tags]
 }
@@ -134,15 +134,15 @@ resource "datadog_monitor" "total_devices" {
     ) == 0
 EOQ
 
-  notify_no_data = false
+  new_host_delay = var.new_host_delay
   evaluation_delay = var.evaluation_delay
+  notify_no_data = false
   renotify_interval = 0
   notify_audit = false
   timeout_h = 0
   include_tags = true
   locked = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform", var.total_devices_extra_tags]
 }
@@ -167,15 +167,15 @@ warning  = var.failed_c2d_methods_rate_threshold_warning
 critical = var.failed_c2d_methods_rate_threshold_critical
 }
 
-notify_no_data      = false
 evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
+notify_no_data      = false
 renotify_interval   = 0
 notify_audit        = false
 timeout_h           = 1
 include_tags        = true
 locked              = false
 require_full_window = false
-new_host_delay      = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform", var.failed_c2d_methods_rate_extra_tags]
 }
@@ -184,7 +184,7 @@ resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
 count   = var.failed_c2d_twin_read_rate_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] IOT Hub Too many c2d twin read failure {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.failed_c2d_twin_read_rate_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
     ${var.failed_c2d_twin_read_rate_time_aggregator}(${var.failed_c2d_twin_read_rate_timeframe}):
@@ -200,15 +200,15 @@ warning = var.failed_c2d_twin_read_rate_threshold_warning
 critical = var.failed_c2d_twin_read_rate_threshold_critical
 }
 
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_no_data = false
-evaluation_delay = var.evaluation_delay
 renotify_interval = 0
 notify_audit = false
 timeout_h = 1
 include_tags = true
 locked = false
 require_full_window = false
-new_host_delay = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform", var.failed_c2d_twin_read_rate_extra_tags]
 }
@@ -217,7 +217,7 @@ resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
 count = var.failed_c2d_twin_update_rate_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] IOT Hub Too many c2d twin update failure {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.failed_c2d_twin_update_rate_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
     ${var.failed_c2d_twin_update_rate_time_aggregator}(${var.failed_c2d_twin_update_rate_timeframe}):
@@ -233,15 +233,15 @@ EOQ
     critical = var.failed_c2d_twin_update_rate_threshold_critical
   }
 
-  notify_no_data      = false
   evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform", var.failed_c2d_twin_update_rate_extra_tags]
 }
@@ -266,15 +266,15 @@ EOQ
     critical = var.failed_d2c_twin_read_rate_threshold_critical
   }
 
-  notify_no_data = false
   evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
+  notify_no_data = false
   renotify_interval = 0
   notify_audit = false
   timeout_h = 1
   include_tags = true
   locked = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform", var.failed_d2c_twin_read_rate_extra_tags]
 }
@@ -299,15 +299,15 @@ warning  = var.failed_d2c_twin_update_rate_threshold_warning
 critical = var.failed_d2c_twin_update_rate_threshold_critical
 }
 
-notify_no_data      = false
 evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
+notify_no_data      = false
 renotify_interval   = 0
 notify_audit        = false
 timeout_h           = 1
 include_tags        = true
 locked              = false
 require_full_window = false
-new_host_delay      = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform", var.failed_d2c_twin_update_rate_extra_tags]
 }
@@ -316,7 +316,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
 count   = var.dropped_d2c_telemetry_egress_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] IOT Hub Too many d2c telemetry egress dropped {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
 message = coalesce(var.dropped_d2c_telemetry_egress_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
     ${var.dropped_d2c_telemetry_egress_time_aggregator}(${var.dropped_d2c_telemetry_egress_timeframe}):
@@ -334,15 +334,15 @@ warning = var.dropped_d2c_telemetry_egress_rate_threshold_warning
 critical = var.dropped_d2c_telemetry_egress_rate_threshold_critical
 }
 
-notify_no_data = false
 evaluation_delay = var.evaluation_delay
+new_host_delay = var.new_host_delay
+notify_no_data = false
 renotify_interval = 0
 notify_audit = false
 timeout_h = 1
 include_tags = true
 locked = false
 require_full_window = false
-new_host_delay = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform", var.dropped_d2c_telemetry_egress_extra_tags]
 }
@@ -351,7 +351,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
 count = var.orphaned_d2c_telemetry_egress_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] IOT Hub Too many d2c telemetry egress orphaned {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
 message = coalesce(var.orphaned_d2c_telemetry_egress_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
     ${var.orphaned_d2c_telemetry_egress_time_aggregator}(${var.orphaned_d2c_telemetry_egress_timeframe}):
@@ -369,15 +369,15 @@ EOQ
     critical = var.orphaned_d2c_telemetry_egress_rate_threshold_critical
   }
 
-  notify_no_data      = false
   evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform", var.orphaned_d2c_telemetry_egress_extra_tags]
 }
@@ -404,15 +404,15 @@ EOQ
     critical = var.invalid_d2c_telemetry_egress_rate_threshold_critical
   }
 
-  notify_no_data = false
   evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
+  notify_no_data = false
   renotify_interval = 0
   notify_audit = false
   timeout_h = 1
   include_tags = true
   locked = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform", var.invalid_d2c_telemetry_egress_extra_tags]
 }
@@ -431,15 +431,15 @@ resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
     , 0) > 0
 EOQ
 
-notify_no_data      = false
 evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
+notify_no_data      = false
 renotify_interval   = 0
 notify_audit        = false
 timeout_h           = 1
 include_tags        = true
 locked              = false
 require_full_window = false
-new_host_delay      = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform", var.too_many_d2c_telemetry_ingress_nosent_extra_tags]
 }

@@ -2,7 +2,6 @@ resource "datadog_monitor" "job" {
   count   = var.job_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes job failed"
   message = coalesce(var.job_message, var.message)
-
   type = "service check"
 
   query = <<EOQ
@@ -30,7 +29,6 @@ resource "datadog_monitor" "cronjob" {
   count = var.cronjob_enabled == "true" ? 1 : 0
   name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes cronjob scheduling failed"
   message = coalesce(var.cronjob_message, var.message)
-
   type = "service check"
 
   query = <<EOQ
@@ -57,8 +55,8 @@ tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:
 resource "datadog_monitor" "replica_available" {
 count   = var.replica_available_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Available replicas {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "query alert"
 message = coalesce(var.replica_available_message, var.message)
+type    = "query alert"
 
 query = <<EOQ
     ${var.replica_available_time_aggregator}(${var.replica_available_timeframe}):
@@ -73,7 +71,6 @@ critical = var.replica_available_threshold_critical
 
 evaluation_delay = var.evaluation_delay
 new_host_delay = var.new_host_delay
-
 notify_no_data = false
 renotify_interval = 0
 notify_audit = false
@@ -88,8 +85,8 @@ tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:
 resource "datadog_monitor" "replica_ready" {
 count = var.replica_ready_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Ready replicas {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "query alert"
 message = coalesce(var.replica_ready_message, var.message)
+type    = "query alert"
 
 query = <<EOQ
     ${var.replica_available_time_aggregator}(${var.replica_available_timeframe}):
@@ -104,7 +101,6 @@ EOQ
 
   evaluation_delay = var.evaluation_delay
   new_host_delay   = var.new_host_delay
-
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
@@ -119,8 +115,8 @@ EOQ
 resource "datadog_monitor" "replica_current" {
   count   = var.replica_current_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Current replicas {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "query alert"
   message = coalesce(var.replica_current_message, var.message)
+  type    = "query alert"
 
   query = <<EOQ
     ${var.replica_available_time_aggregator}(${var.replica_available_timeframe}):
@@ -135,7 +131,6 @@ EOQ
 
   evaluation_delay = var.evaluation_delay
   new_host_delay = var.new_host_delay
-
   notify_no_data = false
   renotify_interval = 0
   notify_audit = false

@@ -8,7 +8,6 @@ resource "datadog_monitor" "mongodb_primary" {
       ${var.mongodb_primary_aggregator}(${var.mongodb_primary_timeframe}):
       min:mongodb.replset.state${module.filter-tags.query_alert} by {replset_name} >= 2
 EOQ
-
   evaluation_delay = var.evaluation_delay
   new_host_delay = var.new_host_delay
   notify_no_data = true
@@ -61,7 +60,6 @@ query = <<EOQ
       ${var.mongodb_server_count_aggregator}(${var.mongodb_server_count_timeframe}):
       sum:mongodb.replset.health${module.filter-tags.query_alert} by {replset_name}
       > 99
-  
 EOQ
 
 thresholds = {

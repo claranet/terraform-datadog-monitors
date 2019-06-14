@@ -10,15 +10,15 @@ resource "datadog_monitor" "status" {
     ) < 1
 EOQ
 
-  notify_no_data = true
   evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
+  notify_no_data = true
   renotify_interval = 0
   notify_audit = false
   timeout_h = 0
   include_tags = true
   locked = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform", var.status_extra_tags]
 }
@@ -35,15 +35,15 @@ resource "datadog_monitor" "su_utilization" {
     ) > ${var.su_utilization_threshold_critical}
 EOQ
 
-notify_no_data      = false
 evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
+notify_no_data      = false
 renotify_interval   = 0
 notify_audit        = false
 timeout_h           = 0
 include_tags        = true
 locked              = false
 require_full_window = false
-new_host_delay      = var.new_host_delay
 
 thresholds = {
 warning  = var.su_utilization_threshold_warning
@@ -57,7 +57,7 @@ resource "datadog_monitor" "failed_function_requests" {
 count   = var.failed_function_requests_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Stream Analytics too many failed requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.failed_function_requests_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
     ${var.failed_function_requests_time_aggregator}(${var.failed_function_requests_timeframe}): (
@@ -69,17 +69,16 @@ EOQ
 thresholds = {
 warning = var.failed_function_requests_threshold_warning
 critical = var.failed_function_requests_threshold_critical
-}
 
-notify_no_data = false
 evaluation_delay = var.evaluation_delay
+new_host_delay = var.new_host_delay
+notify_no_data = false
 renotify_interval = 60
 notify_audit = false
 timeout_h = 1
 include_tags = true
 locked = false
 require_full_window = false
-new_host_delay = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform", var.failed_function_requests_extra_tags]
 }
@@ -88,7 +87,7 @@ resource "datadog_monitor" "conversion_errors" {
 count = var.conversion_errors_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Stream Analytics too many conversion errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.conversion_errors_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
     ${var.conversion_errors_time_aggregator}(${var.conversion_errors_timeframe}): (
@@ -101,15 +100,15 @@ EOQ
     critical = var.conversion_errors_threshold_critical
   }
 
-  notify_no_data      = false
   evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform", var.conversion_errors_extra_tags]
 }
@@ -131,15 +130,15 @@ EOQ
     critical = var.runtime_errors_threshold_critical
   }
 
-  notify_no_data = false
   evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
+  notify_no_data = false
   renotify_interval = 0
   notify_audit = false
   timeout_h = 1
   include_tags = true
   locked = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform", var.runtime_errors_extra_tags]
 }

@@ -18,6 +18,8 @@ EOQ
     warning = var.replication_lag_threshold_warning
   }
 
+  evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
   notify_audit = false
   locked = false
   timeout_h = 0
@@ -25,9 +27,6 @@ EOQ
   require_full_window = false
   notify_no_data = true
   renotify_interval = 0
-
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "engine:mysql", var.replication_lag_extra_tags]
 }

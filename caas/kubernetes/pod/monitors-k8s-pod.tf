@@ -1,8 +1,8 @@
 resource "datadog_monitor" "pod_phase_status" {
   count   = var.pod_phase_status_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Pod phase status failed"
-  type    = "metric alert"
   message = coalesce(var.pod_phase_status_message, var.message)
+  type    = "metric alert"
 
   query = <<EOQ
     ${var.pod_phase_status_time_aggregator}(${var.pod_phase_status_timeframe}):
@@ -30,8 +30,8 @@ EOQ
 resource "datadog_monitor" "error" {
   count = var.error_enabled == "true" ? 1 : 0
   name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Pod waiting errors"
-  type    = "query alert"
   message = coalesce(var.error_message, var.message)
+  type    = "query alert"
 
   query = <<EOQ
     ${var.error_time_aggregator}(${var.error_timeframe}):
@@ -46,7 +46,6 @@ warning  = var.error_threshold_warning
 
 evaluation_delay = var.evaluation_delay
 new_host_delay   = var.new_host_delay
-
 notify_no_data      = false
 renotify_interval   = 0
 notify_audit        = false

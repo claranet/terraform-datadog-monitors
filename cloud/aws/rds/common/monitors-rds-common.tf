@@ -16,14 +16,14 @@ EOQ
     critical = var.cpu_threshold_critical
   }
 
-  notify_no_data = false
   evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
+  notify_no_data = false
   notify_audit = false
   timeout_h = 0
   include_tags = true
   locked = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform", var.cpu_extra_tags]
 }
@@ -47,14 +47,14 @@ warning  = var.diskspace_threshold_warning
 critical = var.diskspace_threshold_critical
 }
 
-notify_no_data      = true
 evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
+notify_no_data      = true
 notify_audit        = false
 timeout_h           = 0
 include_tags        = true
 locked              = false
 require_full_window = false
-new_host_delay      = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform", var.diskspace_extra_tags]
 }
@@ -64,7 +64,7 @@ resource "datadog_monitor" "rds_replica_lag" {
 count   = var.replicalag_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] RDS replica lag {{#is_alert}}{{{comparator}}} {{threshold}} ms ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ms ({{value}}%){{/is_warning}}"
 message = coalesce(var.replicalag_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
   avg(${var.replicalag_timeframe}): (
@@ -77,14 +77,14 @@ warning = var.replicalag_threshold_warning
 critical = var.replicalag_threshold_critical
 }
 
-notify_no_data = false
 evaluation_delay = var.evaluation_delay
+new_host_delay = var.new_host_delay
+notify_no_data = false
 notify_audit = false
 timeout_h = 0
 include_tags = true
 locked = false
 require_full_window = false
-new_host_delay = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform", var.replicalag_extra_tags]
 }

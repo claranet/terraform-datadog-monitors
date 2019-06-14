@@ -10,15 +10,15 @@ resource "datadog_monitor" "servicebus_status" {
       ) != 1
 EOQ
 
-  notify_no_data = true
   evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
+  notify_no_data = true
   renotify_interval = 0
   notify_audit = false
   timeout_h = 0
   include_tags = true
   locked = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform", var.status_extra_tags]
 }
@@ -35,15 +35,15 @@ resource "datadog_monitor" "service_bus_no_active_connections" {
       ) < 1
 EOQ
 
-notify_no_data      = false
 evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
+notify_no_data      = false
 renotify_interval   = 0
 notify_audit        = false
 timeout_h           = 0
 include_tags        = true
 locked              = false
 require_full_window = false
-new_host_delay      = var.new_host_delay
 
 tags = ["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
 }
@@ -52,7 +52,7 @@ resource "datadog_monitor" "service_bus_user_errors" {
 count = var.user_errors_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Service Bus user errors rate is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.user_errors_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
       ${var.user_errors_time_aggregator}(${var.user_errors_timeframe}): (
@@ -66,15 +66,15 @@ critical = var.user_errors_threshold_critical
 warning = var.user_errors_threshold_warning
 }
 
-notify_no_data = false
 evaluation_delay = var.evaluation_delay
+new_host_delay = var.new_host_delay
+notify_no_data = false
 renotify_interval = 0
 notify_audit = false
 timeout_h = 0
 include_tags = true
 locked = false
 require_full_window = false
-new_host_delay = var.new_host_delay
 
 tags = ["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
 }
@@ -83,7 +83,7 @@ resource "datadog_monitor" "service_bus_server_errors" {
 count = var.server_errors_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Service Bus server errors rate is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.server_errors_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
       ${var.server_errors_time_aggregator}(${var.server_errors_timeframe}): (
@@ -97,15 +97,15 @@ EOQ
     warning  = var.server_errors_threshold_warning
   }
 
-  notify_no_data      = false
   evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = var.new_host_delay
 
   tags = ["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
 }

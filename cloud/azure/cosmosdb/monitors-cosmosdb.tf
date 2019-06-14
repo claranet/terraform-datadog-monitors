@@ -14,15 +14,15 @@ EOQ
     critical = 1
   }
 
-  notify_no_data = true
   evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
+  notify_no_data = true
   renotify_interval = 0
   notify_audit = false
   timeout_h = 0
   include_tags = true
   locked = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:cosmos_db", "team:claranet", "created-by:terraform", var.status_extra_tags]
 }
@@ -55,15 +55,15 @@ critical = var.cosmos_db_4xx_request_rate_threshold_critical
 warning  = var.cosmos_db_4xx_request_rate_threshold_warning
 }
 
-notify_no_data      = false
 evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
+notify_no_data      = false
 renotify_interval   = 0
 notify_audit        = false
 timeout_h           = 0
 include_tags        = true
 locked              = false
 require_full_window = false
-new_host_delay      = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:cosmos_db", "team:claranet", "created-by:terraform", var.cosmos_db_4xx_request_extra_tags]
 }
@@ -72,7 +72,7 @@ resource "datadog_monitor" "cosmos_db_5xx_requests" {
 count = var.cosmos_db_5xx_requests_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cosmos DB 5xx requests rate is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.cosmos_db_5xx_requests_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
     ${var.cosmos_db_5xx_request_time_aggregator}(${var.cosmos_db_5xx_request_timeframe}): default( (
@@ -87,15 +87,15 @@ critical = var.cosmos_db_5xx_request_rate_threshold_critical
 warning = var.cosmos_db_5xx_request_rate_threshold_warning
 }
 
-notify_no_data = false
 evaluation_delay = var.evaluation_delay
+new_host_delay = var.new_host_delay
+notify_no_data = false
 renotify_interval = 0
 notify_audit = false
 timeout_h = 0
 include_tags = true
 locked = false
 require_full_window = false
-new_host_delay = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:cosmos_db", "team:claranet", "created-by:terraform", var.cosmos_db_5xx_request_rate_extra_tags]
 }
@@ -104,7 +104,7 @@ resource "datadog_monitor" "cosmos_db_scaling" {
 count = var.cosmos_db_scaling_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cosmos DB max scaling reached for collection {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.cosmos_db_scaling_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 # List of available status codes : https://docs.microsoft.com/en-us/rest/api/cosmos-db/http-status-codes-for-cosmosdb
 query = <<EOQ
@@ -119,15 +119,15 @@ EOQ
     warning  = var.cosmos_db_scaling_error_rate_threshold_warning
   }
 
-  notify_no_data      = false
   evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:cosmos_db", "team:claranet", "created-by:terraform", var.cosmos_db_scaling_extra_tags]
 }

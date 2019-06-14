@@ -16,14 +16,14 @@ EOQ
     critical = var.aurora_replicalag_threshold_critical
   }
 
-  notify_no_data = true
   evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
+  notify_no_data = true
   notify_audit = false
   timeout_h = 0
   include_tags = true
   locked = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds-aurora-mysql", "team:claranet", "created-by:terraform", var.aurora_replicalag_extra_tags]
 }
