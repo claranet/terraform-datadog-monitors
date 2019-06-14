@@ -60,7 +60,7 @@ resource "datadog_monitor" "ALB_httpcode_5xx" {
 count   = var.httpcode_alb_5xx_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB HTTP code 5xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.httpcode_alb_5xx_message, var.message)
-  type    = "query alert"
+type    = "query alert"
 
 query = <<EOQ
     ${var.httpcode_alb_5xx_time_aggregator}(${var.httpcode_alb_5xx_timeframe}):
@@ -89,7 +89,7 @@ resource "datadog_monitor" "ALB_httpcode_4xx" {
 count = var.httpcode_alb_4xx_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB HTTP code 4xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.httpcode_alb_4xx_message, var.message)
-  type    = "query alert"
+type    = "query alert"
 
 query = <<EOQ
     ${var.httpcode_alb_4xx_time_aggregator}(${var.httpcode_alb_4xx_timeframe}):

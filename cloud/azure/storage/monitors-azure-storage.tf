@@ -15,15 +15,14 @@ EOQ
     warning = var.availability_threshold_warning
   }
 
-  type = "metric alert"
+  new_host_delay = var.new_host_delay
+  evaluation_delay = var.evaluation_delay
   notify_no_data = false
   notify_audit = false
   timeout_h = 0
   include_tags = true
   locked = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
   renotify_interval = 0
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.availability_extra_tags]
@@ -46,14 +45,14 @@ critical = var.successful_requests_threshold_critical
 warning  = var.successful_requests_threshold_warning
 }
 
+new_host_delay      = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
 notify_no_data      = false
 notify_audit        = false
 timeout_h           = 0
 include_tags        = true
 locked              = false
 require_full_window = false
-new_host_delay      = var.new_host_delay
-evaluation_delay    = var.evaluation_delay
 renotify_interval   = 0
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.successful_requests_extra_tags]
@@ -63,7 +62,7 @@ resource "datadog_monitor" "latency" {
 count   = var.latency_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too high end to end latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
 message = coalesce(var.latency_message, var.message)
-  type                = "query alert"
+type                = "query alert"
 
 query = <<EOQ
     ${var.latency_time_aggregator}(${var.latency_timeframe}): (default(
@@ -76,14 +75,14 @@ critical = var.latency_threshold_critical
 warning = var.latency_threshold_warning
 }
 
+new_host_delay = var.new_host_delay
+evaluation_delay = var.evaluation_delay
 notify_no_data = false
 notify_audit = false
 timeout_h = 0
 include_tags = true
 locked = false
 require_full_window = false
-new_host_delay = var.new_host_delay
-evaluation_delay = var.evaluation_delay
 renotify_interval = 0
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.latency_extra_tags]
@@ -93,7 +92,7 @@ resource "datadog_monitor" "timeout_error_requests" {
 count = var.timeout_error_requests_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too many timeout errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.timeout_error_requests_message, var.message)
-  type                = "query alert"
+type                = "query alert"
 
 query = <<EOQ
     ${var.timeout_error_requests_time_aggregator}(${var.timeout_error_requests_timeframe}): (default(
@@ -106,14 +105,14 @@ EOQ
     warning  = var.timeout_error_requests_threshold_warning
   }
 
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = var.new_host_delay
-  evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.timeout_error_requests_extra_tags]
@@ -136,14 +135,14 @@ EOQ
     warning = var.network_error_requests_threshold_warning
   }
 
+  new_host_delay = var.new_host_delay
+  evaluation_delay = var.evaluation_delay
   notify_no_data = false
   notify_audit = false
   timeout_h = 0
   include_tags = true
   locked = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
   renotify_interval = 0
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.network_error_requests_extra_tags]
@@ -166,14 +165,14 @@ critical = var.throttling_error_requests_threshold_critical
 warning  = var.throttling_error_requests_threshold_warning
 }
 
+new_host_delay      = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
 notify_no_data      = false
 notify_audit        = false
 timeout_h           = 0
 include_tags        = true
 locked              = false
 require_full_window = false
-new_host_delay      = var.new_host_delay
-evaluation_delay    = var.evaluation_delay
 renotify_interval   = 0
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.throttling_error_requests_extra_tags]
@@ -183,7 +182,7 @@ resource "datadog_monitor" "server_other_error_requests" {
 count   = var.server_other_error_requests_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too many server_other errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.server_other_error_requests_message, var.message)
-  type                = "query alert"
+type                = "query alert"
 
 query = <<EOQ
     ${var.server_other_error_requests_time_aggregator}(${var.server_other_error_requests_timeframe}): (default(
@@ -196,14 +195,14 @@ critical = var.server_other_error_requests_threshold_critical
 warning = var.server_other_error_requests_threshold_warning
 }
 
+new_host_delay = var.new_host_delay
+evaluation_delay = var.evaluation_delay
 notify_no_data = false
 notify_audit = false
 timeout_h = 0
 include_tags = true
 locked = false
 require_full_window = false
-new_host_delay = var.new_host_delay
-evaluation_delay = var.evaluation_delay
 renotify_interval = 0
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.server_other_error_requests_extra_tags]
@@ -213,7 +212,7 @@ resource "datadog_monitor" "client_other_error_requests" {
 count = var.client_other_error_requests_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too many client_other errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.client_other_error_requests_message, var.message)
-  type                = "query alert"
+type                = "query alert"
 
 query = <<EOQ
     ${var.client_other_error_requests_time_aggregator}(${var.client_other_error_requests_timeframe}): (default(
@@ -226,14 +225,14 @@ EOQ
     warning  = var.client_other_error_requests_threshold_warning
   }
 
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = false
-  new_host_delay      = var.new_host_delay
-  evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.client_other_error_requests_extra_tags]
@@ -256,14 +255,14 @@ EOQ
     warning = var.authorization_error_requests_threshold_warning
   }
 
+  new_host_delay = var.new_host_delay
+  evaluation_delay = var.evaluation_delay
   notify_no_data = false
   notify_audit = false
   timeout_h = 0
   include_tags = true
   locked = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
   renotify_interval = 0
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.authorization_error_requests_extra_tags]

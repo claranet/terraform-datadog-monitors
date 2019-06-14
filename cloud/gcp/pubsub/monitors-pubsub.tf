@@ -17,6 +17,8 @@ EOQ
     critical = var.sending_operations_count_threshold_critical
   }
 
+  evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
   notify_audit = false
   locked = false
   timeout_h = 0
@@ -24,9 +26,6 @@ EOQ
   require_full_window = false
   notify_no_data = true
   renotify_interval = 0
-
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "team:claranet", "created-by:terraform", var.sending_operations_count_extra_tags]
 }
@@ -51,6 +50,8 @@ warning  = var.unavailable_sending_operations_count_threshold_warning
 critical = var.unavailable_sending_operations_count_threshold_critical
 }
 
+evaluation_delay = var.evaluation_delay
+new_host_delay   = var.new_host_delay
 notify_audit        = false
 locked              = false
 timeout_h           = 0
@@ -58,9 +59,6 @@ include_tags        = true
 require_full_window = false
 notify_no_data      = false
 renotify_interval   = 0
-
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "team:claranet", "created-by:terraform", var.unavailable_sending_operations_count_extra_tags]
 }

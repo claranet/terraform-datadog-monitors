@@ -19,6 +19,8 @@ EOQ
     critical = var.error_rate_4xx_threshold_critical
   }
 
+  evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
   notify_audit = false
   locked = false
   timeout_h = 0
@@ -26,9 +28,6 @@ EOQ
   require_full_window = false
   notify_no_data = false
   renotify_interval = 0
-
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", var.error_rate_4xx_extra_tags]
 }
@@ -54,6 +53,8 @@ warning  = var.error_rate_5xx_threshold_warning
 critical = var.error_rate_5xx_threshold_critical
 }
 
+evaluation_delay = var.evaluation_delay
+new_host_delay   = var.new_host_delay
 notify_audit        = false
 locked              = false
 timeout_h           = 0
@@ -61,9 +62,6 @@ include_tags        = true
 require_full_window = false
 notify_no_data      = false
 renotify_interval   = 0
-
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", var.error_rate_5xx_extra_tags]
 }
@@ -75,7 +73,7 @@ resource "datadog_monitor" "backend_latency_service" {
 count   = var.backend_latency_service_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP LB service backend latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
 message = coalesce(var.backend_latency_service_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
   ${var.backend_latency_service_time_aggregator}(${var.backend_latency_service_timeframe}):
@@ -88,6 +86,8 @@ warning = var.backend_latency_service_threshold_warning
 critical = var.backend_latency_service_threshold_critical
 }
 
+evaluation_delay = var.evaluation_delay
+new_host_delay = var.new_host_delay
 notify_audit = false
 locked = false
 timeout_h = 0
@@ -95,9 +95,6 @@ include_tags = true
 require_full_window = false
 notify_no_data = false
 renotify_interval = 0
-
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", var.backend_latency_service_extra_tags]
 }
@@ -109,7 +106,7 @@ resource "datadog_monitor" "backend_latency_bucket" {
 count = var.backend_latency_bucket_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP LB bucket backend latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
 message = coalesce(var.backend_latency_bucket_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
   ${var.backend_latency_bucket_time_aggregator}(${var.backend_latency_bucket_timeframe}):
@@ -122,6 +119,8 @@ EOQ
     critical = var.backend_latency_bucket_threshold_critical
   }
 
+  evaluation_delay = var.evaluation_delay
+  new_host_delay   = var.new_host_delay
   notify_audit        = false
   locked              = false
   timeout_h           = 0
@@ -129,9 +128,6 @@ EOQ
   require_full_window = false
   notify_no_data      = false
   renotify_interval   = 0
-
-  evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", var.backend_latency_bucket_extra_tags]
 }
@@ -156,6 +152,8 @@ EOQ
     critical = var.request_count_threshold_critical
   }
 
+  evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
   notify_audit = false
   locked = false
   timeout_h = 0
@@ -163,9 +161,6 @@ EOQ
   require_full_window = false
   notify_no_data = false
   renotify_interval = 0
-
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", var.request_count_extra_tags]
 }

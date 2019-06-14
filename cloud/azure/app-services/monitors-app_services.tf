@@ -31,8 +31,8 @@ EOQ
 resource "datadog_monitor" "appservices_memory_usage_count" {
   count = var.memory_usage_enabled == "true" ? 1 : 0
   name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services memory usage {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
-  type    = "query alert"
   message = coalesce(var.memory_usage_message, var.message)
+  type    = "query alert"
 
   query = <<EOQ
     ${var.memory_usage_time_aggregator}(${var.memory_usage_timeframe}): (
@@ -61,7 +61,7 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
 count   = var.http_5xx_requests_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services HTTP 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.http_5xx_requests_message, var.message)
-  type    = "query alert"
+type    = "query alert"
 
 query = <<EOQ
     ${var.http_5xx_requests_time_aggregator}(${var.http_5xx_requests_timeframe}): (
@@ -90,8 +90,8 @@ tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-
 resource "datadog_monitor" "appservices_http_4xx_errors_count" {
 count = var.http_4xx_requests_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services HTTP 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "query alert"
 message = coalesce(var.http_4xx_requests_message, var.message)
+type    = "query alert"
 
 query = <<EOQ
     ${var.http_4xx_requests_time_aggregator}(${var.http_4xx_requests_timeframe}): (

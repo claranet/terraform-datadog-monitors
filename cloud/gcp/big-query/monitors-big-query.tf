@@ -18,6 +18,8 @@ EOQ
     critical = var.concurrent_queries_threshold_critical
   }
 
+  evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
   include_tags = true
   notify_no_data = false
   require_full_window = false
@@ -25,9 +27,6 @@ EOQ
   notify_audit = false
   timeout_h = 0
   locked = false
-
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", var.concurrent_queries_extra_tags]
 }
@@ -52,6 +51,8 @@ warning  = var.execution_time_threshold_warning
 critical = var.execution_time_threshold_critical
 }
 
+evaluation_delay = var.evaluation_delay
+new_host_delay   = var.new_host_delay
 include_tags        = true
 notify_no_data      = false
 require_full_window = false
@@ -59,9 +60,6 @@ renotify_interval   = 0
 notify_audit        = false
 timeout_h           = 0
 locked              = false
-
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", var.execution_time_extra_tags]
 }
@@ -73,7 +71,7 @@ resource "datadog_monitor" "scanned_bytes" {
 count   = var.scanned_bytes_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP Big Query Scanned Bytes {{#is_alert}}{{{comparator}}} {{threshold}}B/mn ({{value}}B/mn){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}B/mn ({{value}}B/mn){{/is_warning}}"
 message = coalesce(var.scanned_bytes_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
   avg(${var.scanned_bytes_timeframe}):
@@ -86,6 +84,8 @@ warning = var.scanned_bytes_threshold_warning
 critical = var.scanned_bytes_threshold_critical
 }
 
+evaluation_delay = var.evaluation_delay
+new_host_delay = var.new_host_delay
 include_tags = true
 notify_no_data = false
 require_full_window = false
@@ -93,9 +93,6 @@ renotify_interval = 0
 notify_audit = false
 timeout_h = 0
 locked = false
-
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", var.scanned_bytes_extra_tags]
 }
@@ -107,7 +104,7 @@ resource "datadog_monitor" "scanned_bytes_billed" {
 count = var.scanned_bytes_billed_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP Big Query Scanned Bytes Billed {{#is_alert}}{{{comparator}}} {{threshold}}B/mn ({{value}}B/mn){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}B/mn ({{value}}B/mn){{/is_warning}}"
 message = coalesce(var.scanned_bytes_billed_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
   avg(${var.scanned_bytes_billed_timeframe}):
@@ -120,6 +117,8 @@ EOQ
     critical = var.scanned_bytes_billed_threshold_critical
   }
 
+  evaluation_delay = var.evaluation_delay
+  new_host_delay   = var.new_host_delay
   include_tags        = true
   notify_no_data      = false
   require_full_window = false
@@ -127,9 +126,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 0
   locked              = false
-
-  evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", var.scanned_bytes_billed_extra_tags]
 }
@@ -154,6 +150,8 @@ EOQ
     critical = var.available_slots_threshold_critical
   }
 
+  evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
   include_tags = true
   notify_no_data = false
   require_full_window = false
@@ -161,9 +159,6 @@ EOQ
   notify_audit = false
   timeout_h = 0
   locked = false
-
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", var.available_slots_extra_tags]
 }
@@ -183,12 +178,13 @@ resource "datadog_monitor" "stored_bytes" {
     > ${var.stored_bytes_threshold_critical}
 EOQ
 
-
 thresholds = {
 warning  = var.stored_bytes_threshold_warning
 critical = var.stored_bytes_threshold_critical
 }
 
+evaluation_delay = var.evaluation_delay
+new_host_delay   = var.new_host_delay
 include_tags        = true
 notify_no_data      = false
 require_full_window = false
@@ -196,9 +192,6 @@ renotify_interval   = 0
 notify_audit        = false
 timeout_h           = 0
 locked              = false
-
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", var.stored_bytes_extra_tags]
 }
@@ -223,6 +216,8 @@ warning = var.table_count_threshold_warning
 critical = var.table_count_threshold_critical
 }
 
+evaluation_delay = var.evaluation_delay
+new_host_delay = var.new_host_delay
 include_tags = true
 notify_no_data = false
 require_full_window = false
@@ -230,9 +225,6 @@ renotify_interval = 0
 notify_audit = false
 timeout_h = 0
 locked = false
-
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", var.table_count_extra_tags]
 }
@@ -244,7 +236,7 @@ resource "datadog_monitor" "uploaded_bytes" {
 count = var.uploaded_bytes_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP Big Query Uploaded Bytes {{#is_alert}}{{{comparator}}} {{threshold}}B/mn ({{value}}B/mn){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}B/mn ({{value}}B/mn){{/is_warning}}"
 message = coalesce(var.uploaded_bytes_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
   avg(${var.uploaded_bytes_timeframe}):
@@ -257,6 +249,8 @@ EOQ
     critical = var.uploaded_bytes_threshold_critical
   }
 
+  evaluation_delay = var.evaluation_delay
+  new_host_delay   = var.new_host_delay
   include_tags        = true
   notify_no_data      = false
   require_full_window = false
@@ -264,9 +258,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 0
   locked              = false
-
-  evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", var.uploaded_bytes_extra_tags]
 }
@@ -291,6 +282,8 @@ EOQ
     critical = var.uploaded_bytes_billed_threshold_critical
   }
 
+  evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
   include_tags = true
   notify_no_data = false
   require_full_window = false
@@ -298,9 +291,6 @@ EOQ
   notify_audit = false
   timeout_h = 0
   locked = false
-
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", var.uploaded_bytes_billed_extra_tags]
 }

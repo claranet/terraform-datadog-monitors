@@ -10,15 +10,15 @@ resource "datadog_monitor" "virtualmachine_status" {
       ) < 1
 EOQ
 
-  notify_no_data = true
   evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
+  notify_no_data = true
   renotify_interval = 0
   notify_audit = false
   timeout_h = 0
   include_tags = true
   locked = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:virtualmachine", "team:claranet", "created-by:terraform", var.status_extra_tags]
 }
@@ -40,15 +40,15 @@ critical = var.cpu_usage_threshold_critical
 warning  = var.cpu_usage_threshold_warning
 }
 
-notify_no_data      = false
 evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
+notify_no_data      = false
 renotify_interval   = 0
 notify_audit        = false
 timeout_h           = 0
 include_tags        = true
 locked              = false
 require_full_window = false
-new_host_delay      = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:virtualmachine", "team:claranet", "created-by:terraform", var.cpu_usage_extra_tags]
 }
@@ -57,7 +57,7 @@ resource "datadog_monitor" "virtualmachine_credit_cpu_remaining_too_low" {
 count   = var.cpu_remaining_rate_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Virtual Machine credit CPU {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.cpu_remaining_rate_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
     ${var.cpu_remaining_rate_time_aggregator}(${var.cpu_remaining_rate_timeframe}):
@@ -73,15 +73,15 @@ warning = var.cpu_remaining_rate_threshold_warning
 critical = var.cpu_remaining_rate_threshold_critical
 }
 
-notify_no_data = false
 evaluation_delay = var.evaluation_delay
+new_host_delay = var.new_host_delay
+notify_no_data = false
 renotify_interval = 0
 notify_audit = false
 timeout_h = 1
 include_tags = true
 locked = false
 require_full_window = false
-new_host_delay = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:virtualmachine", "team:claranet", "created-by:terraform", var.cpu_remaining_rate_extra_tags]
 }

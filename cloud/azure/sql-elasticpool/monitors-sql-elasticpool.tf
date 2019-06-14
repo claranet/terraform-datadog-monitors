@@ -15,15 +15,15 @@ EOQ
     warning = var.cpu_threshold_warning
   }
 
-  notify_no_data = true
   evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
+  notify_no_data = true
   renotify_interval = 0
   notify_audit = false
   timeout_h = 0
   include_tags = true
   locked = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-elasticpool", "team:claranet", "created-by:terraform", var.cpu_extra_tags]
 }
@@ -45,15 +45,15 @@ warning  = var.diskspace_threshold_warning
 critical = var.diskspace_threshold_critical
 }
 
-notify_no_data      = false
 evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
+notify_no_data      = false
 renotify_interval   = 0
 notify_audit        = false
 timeout_h           = 0
 include_tags        = true
 locked              = false
 require_full_window = false
-new_host_delay      = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-elasticpool", "team:claranet", "created-by:terraform", var.diskspace_extra_tags]
 }
@@ -62,7 +62,7 @@ resource "datadog_monitor" "sql_elasticpool_dtu_consumption_high" {
 count   = var.dtu_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] SQL Elastic Pool DTU Consumption too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.dtu_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
     ${var.dtu_time_aggregator}(${var.dtu_timeframe}): (
@@ -75,15 +75,15 @@ warning = var.dtu_threshold_warning
 critical = var.dtu_threshold_critical
 }
 
-notify_no_data = false
 evaluation_delay = var.evaluation_delay
+new_host_delay = var.new_host_delay
+notify_no_data = false
 renotify_interval = 0
 notify_audit = false
 timeout_h = 0
 include_tags = true
 locked = false
 require_full_window = false
-new_host_delay = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-elasticpool", "team:claranet", "created-by:terraform", var.dtu_extra_tags]
 }

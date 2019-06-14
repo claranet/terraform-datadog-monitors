@@ -15,15 +15,15 @@ EOQ
     critical = 0
   }
 
-  notify_no_data = true
   evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
+  notify_no_data = true
   renotify_interval = 0
   notify_audit = false
   timeout_h = 0
   include_tags = true
   locked = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:kinesis-firehose", "team:claranet", "created-by:terraform", var.incoming_records_extra_tags]
 }

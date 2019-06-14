@@ -2,7 +2,6 @@ resource "datadog_monitor" "memcached_get_hits" {
   count   = var.get_hits_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache memcached cache hit ratio {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.get_hits_message, var.message)
-
   type = "query alert"
 
   query = <<EOQ
@@ -18,15 +17,15 @@ EOQ
     critical = var.get_hits_threshold_critical
   }
 
-  notify_no_data = false
   evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
+  notify_no_data = false
   renotify_interval = 0
   notify_audit = false
   timeout_h = 0
   include_tags = true
   locked = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-memcached", "team:claranet", "created-by:terraform", "engine:memcached", var.get_hits_extra_tags]
 }
@@ -35,7 +34,6 @@ resource "datadog_monitor" "memcached_cpu_high" {
   count = var.cpu_high_enabled == "true" ? 1 : 0
   name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache memcached CPU {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.cpu_high_message, var.message)
-
   type = "query alert"
 
   query = <<EOQ
@@ -49,15 +47,15 @@ warning  = var.cpu_high_threshold_warning
 critical = var.cpu_high_threshold_critical
 }
 
-notify_no_data      = true
 evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
+notify_no_data      = true
 renotify_interval   = 0
 notify_audit        = false
 timeout_h           = 0
 include_tags        = true
 locked              = false
 require_full_window = false
-new_host_delay      = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-memcached", "team:claranet", "created-by:terraform", "engine:memcached", var.cpu_high_extra_tags]
 }

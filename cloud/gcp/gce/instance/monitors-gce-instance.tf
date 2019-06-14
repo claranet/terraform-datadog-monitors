@@ -18,6 +18,8 @@ EOQ
     critical = var.cpu_utilization_threshold_critical
   }
 
+  evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
   notify_audit = false
   locked = false
   timeout_h = 0
@@ -25,9 +27,6 @@ EOQ
   require_full_window = false
   notify_no_data = true
   renotify_interval = 0
-
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform", var.cpu_utilization_extra_tags]
 }
@@ -58,6 +57,8 @@ warning  = var.disk_throttled_bps_threshold_warning
 critical = var.disk_throttled_bps_threshold_critical
 }
 
+evaluation_delay = var.evaluation_delay
+new_host_delay   = var.new_host_delay
 notify_audit        = false
 locked              = false
 timeout_h           = 0
@@ -65,9 +66,6 @@ include_tags        = true
 require_full_window = false
 notify_no_data      = var.disk_throttled_bps_notify_no_data
 renotify_interval   = 0
-
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform", var.disk_throttled_bps_extra_tags]
 }
@@ -79,7 +77,7 @@ resource "datadog_monitor" "disk_throttled_ops" {
 count   = var.disk_throttled_ops_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Compute Engine instance Disk Throttled OPS {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.disk_throttled_ops_message, var.message)
-  type = "query alert"
+type = "query alert"
 
 query = <<EOQ
   ${var.disk_throttled_ops_time_aggregator}(${var.disk_throttled_ops_timeframe}):
@@ -98,16 +96,15 @@ warning = var.disk_throttled_ops_threshold_warning
 critical = var.disk_throttled_ops_threshold_critical
 }
 
+evaluation_delay = var.evaluation_delay
+new_host_delay = var.new_host_delay
+notify_no_data = var.disk_throttled_ops_notify_no_data
 notify_audit = false
 locked = false
 timeout_h = 0
 include_tags = true
 require_full_window = false
-notify_no_data = var.disk_throttled_ops_notify_no_data
 renotify_interval = 0
-
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform", var.disk_throttled_ops_extra_tags]
 }

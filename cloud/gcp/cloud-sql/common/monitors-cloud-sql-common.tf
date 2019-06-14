@@ -18,6 +18,8 @@ EOQ
     critical = var.cpu_utilization_threshold_critical
   }
 
+  evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
   notify_audit = false
   locked = false
   timeout_h = 0
@@ -25,9 +27,6 @@ EOQ
   require_full_window = false
   notify_no_data      = false
   renotify_interval   = 0
-
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", var.cpu_utilization_extra_tags]
 }
@@ -52,6 +51,8 @@ warning  = var.disk_utilization_threshold_warning
 critical = var.disk_utilization_threshold_critical
 }
 
+evaluation_delay = var.evaluation_delay
+new_host_delay   = var.new_host_delay
 notify_audit        = false
 locked              = false
 timeout_h           = 0
@@ -59,9 +60,6 @@ include_tags        = true
 require_full_window = false
 notify_no_data      = true
 renotify_interval   = 0
-
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", var.disk_utilization_extra_tags]
 }
@@ -100,6 +98,8 @@ EOQ
     critical_recovery = var.disk_utilization_forecast_threshold_critical_recovery
   }
 
+  evaluation_delay = var.evaluation_delay
+  new_host_delay   = var.new_host_delay
   notify_audit        = false
   locked              = false
   timeout_h           = 0
@@ -107,9 +107,6 @@ EOQ
   require_full_window = false
   notify_no_data      = false
   renotify_interval   = 0
-
-  evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", var.disk_utilization_forecast_extra_tags]
 }
@@ -134,6 +131,8 @@ EOQ
     critical = var.memory_utilization_threshold_critical
   }
 
+  evaluation_delay = var.evaluation_delay
+  new_host_delay = var.new_host_delay
   notify_audit = false
   locked = false
   timeout_h = 0
@@ -141,9 +140,6 @@ EOQ
   require_full_window = false
   notify_no_data      = false
   renotify_interval   = 0
-
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", var.memory_utilization_extra_tags]
 }
@@ -182,6 +178,8 @@ EOQ
       critical_recovery = var.memory_utilization_forecast_threshold_critical_recovery
     }
 
+    evaluation_delay = var.evaluation_delay
+    new_host_delay   = var.new_host_delay
     notify_audit        = false
     locked              = false
     timeout_h           = 0
@@ -189,9 +187,6 @@ EOQ
     require_full_window = false
     notify_no_data      = false
     renotify_interval   = 0
-
-    evaluation_delay = var.evaluation_delay
-    new_host_delay   = var.new_host_delay
 
     tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", var.memory_utilization_forecast_extra_tags]
 }
@@ -203,7 +198,6 @@ resource "datadog_monitor" "failover_unavailable" {
 count   = var.failover_unavailable_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL Failover Unavailable"
 message = coalesce(var.failover_unavailable_message, var.message)
-
 type = "metric alert"
 
 query = <<EOQ
@@ -217,6 +211,8 @@ thresholds = {
   critical = var.failover_unavailable_threshold_critical
 }
 
+evaluation_delay = var.evaluation_delay
+new_host_delay = var.new_host_delay
 notify_audit = false
 locked = false
 timeout_h = 0
@@ -224,9 +220,6 @@ include_tags = true
 require_full_window = false
 notify_no_data = false
 renotify_interval = 0
-
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
 
 tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", var.failover_unavailable_extra_tags]
 }
