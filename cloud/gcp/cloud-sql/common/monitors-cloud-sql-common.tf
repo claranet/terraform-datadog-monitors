@@ -25,7 +25,7 @@ resource "datadog_monitor" "cpu_utilization" {
   timeout_h           = 0
   include_tags        = true
   require_full_window = false
-  notify_no_data      = true
+  notify_no_data      = false
   renotify_interval   = 0
 
   evaluation_delay = "${var.evaluation_delay}"
@@ -145,7 +145,7 @@ resource "datadog_monitor" "memory_utilization" {
   timeout_h           = 0
   include_tags        = true
   require_full_window = false
-  notify_no_data      = true
+  notify_no_data      = false
   renotify_interval   = 0
 
   evaluation_delay = "${var.evaluation_delay}"
@@ -226,7 +226,7 @@ resource "datadog_monitor" "failover_unavailable" {
   timeout_h           = 0
   include_tags        = true
   require_full_window = false
-  notify_no_data      = true
+  notify_no_data      = false
   renotify_interval   = 0
 
   evaluation_delay = "${var.evaluation_delay}"
