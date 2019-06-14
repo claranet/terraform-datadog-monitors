@@ -22,7 +22,7 @@ resource "datadog_monitor" "es_cluster_status" {
     critical = 2
   }
 
-  notify_no_data      = false
+  notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
