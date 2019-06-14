@@ -7,7 +7,7 @@ Here is a simple example but it is advisable to see how are created other existi
 
 ```
 module "filter-tags" {
-  source = "../../common/filter-tags"
+  source                   = "../../common/filter-tags"
 
   environment              = "${var.environment}"
   resource                 = "my_resource"
