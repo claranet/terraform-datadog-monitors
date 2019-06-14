@@ -22,7 +22,7 @@ resource "datadog_monitor" "es_cluster_status" {
     critical = 2
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -57,7 +57,7 @@ resource "datadog_monitor" "es_free_space_low" {
     critical = "${var.diskspace_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -91,7 +91,7 @@ resource "datadog_monitor" "es_cpu_90_15min" {
     critical = "${var.cpu_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
