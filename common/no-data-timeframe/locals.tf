@@ -5,6 +5,7 @@ locals {
     h = 120
     d = 2880
   }
+
   # no data timeframe value calculation in minutes
   no_data_timeframe = "${replace(var.timeframe, "/last_(\\d+)\\w/", "$1") * lookup(local.map_unit, replace(var.timeframe, "/last_\\d+(\\w)/", "$1"))}"
 }
