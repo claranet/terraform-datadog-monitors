@@ -32,19 +32,19 @@ Creates DataDog monitors with the following checks:
 - Azure Queue Storage too many network errors
 - Azure Queue Storage too many server_other errors
 - Azure Queue Storage too many timeout errors
-- Azure Storage Blob Service too few successful requests
-- Azure Storage Blob Service too high end to end latency
+- Azure Storage Blob service too few successful requests
+- Azure Storage Blob service too high end to end latency
 - Azure Storage Blob services is down
-- Azure Storage File Service too few successful requests
-- Azure Storage File Service too high end to end latency
-- Azure Storage File Services is down
+- Azure Storage File service too few successful requests
+- Azure Storage File service too high end to end latency
+- Azure Storage File services is down
 - Azure Storage is down
 - Azure Storage Queue service is down
-- Azure Storage Queue Service too few successful requests
-- Azure Storage Queue Service too high end to end latency
+- Azure Storage Queue service too few successful requests
+- Azure Storage Queue service too high end to end latency
 - Azure Storage Table service is down
-- Azure Storage Table Service too few successful requests
-- Azure Storage Table Service too high end to end latency
+- Azure Storage Table service too few successful requests
+- Azure Storage Table service too high end to end latency
 - Azure Storage too many throttling errors
 - Azure Storage too many throttling errors
 - Azure Storage too many throttling errors

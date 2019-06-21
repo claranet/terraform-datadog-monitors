@@ -60,7 +60,7 @@ resource "datadog_monitor" "blobservices_availability" {
 
 resource "datadog_monitor" "fileservices_availability" {
   count   = "${var.availability_enabled == "true" ? 1 : 0}"
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage File Services is down"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage File services is down"
   message = "${coalesce(var.availability_message, var.message)}"
 
   query = <<EOQ
@@ -156,7 +156,7 @@ resource "datadog_monitor" "table_availability" {
 
 resource "datadog_monitor" "blobservices_requests_error" {
   count   = "${var.successful_requests_enabled == "true" ? 1 : 0}"
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Blob Service too few successful requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Blob service too few successful requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.successful_requests_message, var.message)}"
 
   query = <<EOQ
@@ -189,7 +189,7 @@ resource "datadog_monitor" "blobservices_requests_error" {
 
 resource "datadog_monitor" "fileservices_requests_error" {
   count   = "${var.successful_requests_enabled == "true" ? 1 : 0}"
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage File Service too few successful requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage File service too few successful requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.successful_requests_message, var.message)}"
 
   query = <<EOQ
@@ -222,7 +222,7 @@ resource "datadog_monitor" "fileservices_requests_error" {
 
 resource "datadog_monitor" "queueservices_requests_error" {
   count   = "${var.successful_requests_enabled == "true" ? 1 : 0}"
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Queue Service too few successful requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Queue service too few successful requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.successful_requests_message, var.message)}"
 
   query = <<EOQ
@@ -255,7 +255,7 @@ resource "datadog_monitor" "queueservices_requests_error" {
 
 resource "datadog_monitor" "tableservices_requests_error" {
   count   = "${var.successful_requests_enabled == "true" ? 1 : 0}"
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Table Service too few successful requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Table service too few successful requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.successful_requests_message, var.message)}"
 
   query = <<EOQ
@@ -288,7 +288,7 @@ resource "datadog_monitor" "tableservices_requests_error" {
 
 resource "datadog_monitor" "blobservices_latency" {
   count   = "${var.latency_enabled == "true" ? 1 : 0}"
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Blob Service too high end to end latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Blob service too high end to end latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = "${coalesce(var.latency_message, var.message)}"
 
   query = <<EOQ
@@ -320,7 +320,7 @@ resource "datadog_monitor" "blobservices_latency" {
 
 resource "datadog_monitor" "fileservices_latency" {
   count   = "${var.latency_enabled == "true" ? 1 : 0}"
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage File Service too high end to end latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage File service too high end to end latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = "${coalesce(var.latency_message, var.message)}"
 
   query = <<EOQ
@@ -356,7 +356,7 @@ resource "datadog_monitor" "fileservices_latency" {
 
 resource "datadog_monitor" "queueservices_latency" {
   count   = "${var.latency_enabled == "true" ? 1 : 0}"
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Queue Service too high end to end latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Queue service too high end to end latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = "${coalesce(var.latency_message, var.message)}"
 
   query = <<EOQ
@@ -392,7 +392,7 @@ resource "datadog_monitor" "queueservices_latency" {
 
 resource "datadog_monitor" "tableservices_latency" {
   count   = "${var.latency_enabled == "true" ? 1 : 0}"
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Table Service too high end to end latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Table service too high end to end latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = "${coalesce(var.latency_message, var.message)}"
 
   query = <<EOQ
