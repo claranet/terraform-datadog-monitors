@@ -1,6 +1,9 @@
 #!/bin/bash
 set -xueo pipefail
 
+# MON-478 fix sort order behavior on case 
+export LC_COLLATE=C
+
 source "$(dirname $0)/utils.sh"
 
 cd $(dirname $0)
