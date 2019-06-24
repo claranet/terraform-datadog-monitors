@@ -17,7 +17,7 @@ resource "datadog_monitor" "rds_cpu_90_15min" {
     critical = "${var.cpu_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   notify_audit        = false
   timeout_h           = 0
@@ -84,7 +84,7 @@ resource "datadog_monitor" "rds_replica_lag" {
     critical = "${var.replicalag_threshold_critical}"
   }
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   notify_audit        = false
   timeout_h           = 0
