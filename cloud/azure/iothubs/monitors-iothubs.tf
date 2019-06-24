@@ -21,7 +21,7 @@ resource "datadog_monitor" "too_many_jobs_failed" {
 
   silenced = "${var.failed_jobs_rate_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -57,7 +57,7 @@ resource "datadog_monitor" "too_many_list_jobs_failed" {
 
   silenced = "${var.failed_listjobs_rate_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -93,7 +93,7 @@ resource "datadog_monitor" "too_many_query_jobs_failed" {
 
   silenced = "${var.failed_queryjobs_rate_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -149,7 +149,7 @@ resource "datadog_monitor" "total_devices" {
 
   silenced = "${var.total_devices_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -185,7 +185,7 @@ resource "datadog_monitor" "too_many_c2d_methods_failed" {
 
   silenced = "${var.failed_c2d_methods_rate_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -221,7 +221,7 @@ resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
 
   silenced = "${var.failed_c2d_twin_read_rate_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -257,7 +257,7 @@ resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
 
   silenced = "${var.failed_c2d_twin_update_rate_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -293,7 +293,7 @@ resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
 
   silenced = "${var.failed_d2c_twin_read_rate_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -329,7 +329,7 @@ resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
 
   silenced = "${var.failed_d2c_twin_update_rate_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -367,7 +367,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
 
   silenced = "${var.dropped_d2c_telemetry_egress_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -405,7 +405,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
 
   silenced = "${var.orphaned_d2c_telemetry_egress_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -443,7 +443,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
 
   silenced = "${var.invalid_d2c_telemetry_egress_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false
@@ -473,7 +473,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
 
   silenced = "${var.too_many_d2c_telemetry_ingress_nosent_silenced}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
   notify_audit        = false

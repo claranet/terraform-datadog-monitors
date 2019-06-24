@@ -253,7 +253,7 @@ resource "datadog_monitor" "volume_space" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
@@ -286,7 +286,7 @@ resource "datadog_monitor" "volume_inodes" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  notify_no_data      = true
+  notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
