@@ -272,10 +272,10 @@ resource "datadog_monitor" "volume_inodes" {
   message = "${coalesce(var.volume_inodes_message, var.message)}"
 
   query = <<EOQ
-    ${var.volume_space_time_aggregator}(${var.volume_space_timeframe}):
+    ${var.volume_inodes_time_aggregator}(${var.volume_inodes_timeframe}):
       avg:kubernetes.kubelet.volume.stats.inodes_used${module.filter-tags.query_alert} by {kubernetescluster,name,persistentvolumeclaim} /
       avg:kubernetes.kubelet.volume.stats.inodes${module.filter-tags.query_alert} by {kubernetescluster,name,persistentvolumeclaim}
-    * 100 > ${var.volume_space_threshold_critical}
+    * 100 > ${var.volume_inodes_threshold_critical}
   EOQ
 
   thresholds {
