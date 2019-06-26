@@ -31,7 +31,7 @@ resource "datadog_monitor" "postgresql_connection_too_high" {
   count   = "${var.postgresql_connection_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] PostgreSQL Connections {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.postgresql_connection_message, var.message)}"
-  type    = "metric alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.postgresql_connection_time_aggregator}(${var.postgresql_connection_timeframe}):
@@ -60,7 +60,7 @@ resource "datadog_monitor" "postgresql_too_many_locks" {
   count   = "${var.postgresql_lock_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] PostgreSQL too many locks {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.postgresql_lock_message, var.message)}"
-  type    = "metric alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.postgresql_lock_time_aggregator}(${var.postgresql_lock_timeframe}):

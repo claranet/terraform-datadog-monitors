@@ -221,7 +221,7 @@ resource "datadog_monitor" "node_unschedulable" {
 resource "datadog_monitor" "volume_space" {
   count   = "${var.volume_space_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node volume space usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.volume_space_message, var.message)}"
 
   query = <<EOQ
@@ -253,7 +253,7 @@ resource "datadog_monitor" "volume_space" {
 resource "datadog_monitor" "volume_inodes" {
   count   = "${var.volume_inodes_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node volume inodes usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.volume_inodes_message, var.message)}"
 
   query = <<EOQ

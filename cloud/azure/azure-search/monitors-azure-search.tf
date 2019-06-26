@@ -2,7 +2,7 @@
 resource "datadog_monitor" "azure_search_latency" {
   count   = "${var.latency_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Search latency too high {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.latency_message, var.message)}"
 
   query = <<EOQ
@@ -32,7 +32,7 @@ resource "datadog_monitor" "azure_search_latency" {
 resource "datadog_monitor" "azure_search_throttled_queries_rate" {
   count   = "${var.throttled_queries_rate_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Search throttled queries rate is too high {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.throttled_queries_rate_message, var.message)}"
 
   query = <<EOQ

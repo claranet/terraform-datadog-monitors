@@ -6,7 +6,7 @@ resource "datadog_monitor" "cpu_utilization" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL CPU Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_utilization_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   ${var.cpu_utilization_time_aggregator}(${var.cpu_utilization_timeframe}):
@@ -42,7 +42,7 @@ resource "datadog_monitor" "disk_utilization" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL Disk Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.disk_utilization_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   ${var.disk_utilization_time_aggregator}(${var.disk_utilization_timeframe}):
@@ -78,7 +78,7 @@ resource "datadog_monitor" "disk_utilization_forecast" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL Disk Utilization could reach {{#is_alert}}{{threshold}}%{{/is_alert}} in a near future"
   message = "${coalesce(var.disk_utilization_forecast_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   ${var.disk_utilization_forecast_time_aggregator}(${var.disk_utilization_forecast_timeframe}):
@@ -120,7 +120,7 @@ resource "datadog_monitor" "memory_utilization" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL Memory Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.memory_utilization_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   ${var.memory_utilization_time_aggregator}(${var.memory_utilization_timeframe}):

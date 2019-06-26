@@ -9,7 +9,7 @@ resource "datadog_monitor" "mysql_cpu_usage" {
     ) > ${var.cpu_usage_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.cpu_usage_threshold_critical}"
@@ -40,7 +40,7 @@ resource "datadog_monitor" "mysql_free_storage" {
     ) < ${var.free_storage_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.free_storage_threshold_critical}"
@@ -71,7 +71,7 @@ resource "datadog_monitor" "mysql_io_consumption" {
     ) > ${var.io_consumption_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.io_consumption_threshold_critical}"
@@ -102,7 +102,7 @@ resource "datadog_monitor" "mysql_memory_usage" {
     ) > ${var.memory_usage_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.memory_usage_threshold_critical}"

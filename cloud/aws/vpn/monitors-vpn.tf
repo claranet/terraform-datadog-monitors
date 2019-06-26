@@ -9,7 +9,7 @@ resource "datadog_monitor" "VPN_status" {
         ) < 1
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = true
   renotify_interval   = 0

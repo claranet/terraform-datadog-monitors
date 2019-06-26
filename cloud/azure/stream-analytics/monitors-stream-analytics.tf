@@ -9,7 +9,7 @@ resource "datadog_monitor" "status" {
     ) < 1
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -35,7 +35,7 @@ resource "datadog_monitor" "su_utilization" {
     ) > ${var.su_utilization_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -67,7 +67,7 @@ resource "datadog_monitor" "failed_function_requests" {
     ) * 100 > ${var.failed_function_requests_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -98,7 +98,7 @@ resource "datadog_monitor" "conversion_errors" {
     ) > ${var.conversion_errors_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -129,7 +129,7 @@ resource "datadog_monitor" "runtime_errors" {
     ) > ${var.runtime_errors_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"

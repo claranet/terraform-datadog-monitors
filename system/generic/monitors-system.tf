@@ -9,7 +9,7 @@ resource "datadog_monitor" "cpu" {
     ) > ${var.cpu_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.cpu_threshold_warning}"
@@ -39,7 +39,7 @@ resource "datadog_monitor" "load" {
     ) > ${var.load_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.load_threshold_warning}"
@@ -69,7 +69,7 @@ resource "datadog_monitor" "disk_space" {
     * 100 > ${var.disk_space_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.disk_space_threshold_warning}"
@@ -137,7 +137,7 @@ resource "datadog_monitor" "disk_inodes" {
     * 100 > ${var.disk_inodes_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.disk_inodes_threshold_warning}"
@@ -168,7 +168,7 @@ resource "datadog_monitor" "memory" {
     < ${var.memory_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.memory_threshold_warning}"

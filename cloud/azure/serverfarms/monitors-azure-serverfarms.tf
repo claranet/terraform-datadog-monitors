@@ -9,7 +9,7 @@ resource "datadog_monitor" "status" {
     ) != 1
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -35,7 +35,7 @@ resource "datadog_monitor" "cpu_percentage" {
     ) > ${var.cpu_percentage_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.cpu_percentage_threshold_warning}"
@@ -66,7 +66,7 @@ resource "datadog_monitor" "memory_percentage" {
     ) > ${var.memory_percentage_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.memory_percentage_threshold_warning}"

@@ -43,7 +43,7 @@ resource "datadog_monitor" "apimgt_failed_requests" {
     warning  = "${var.failed_requests_threshold_warning}"
   }
 
-  type                = "metric alert"
+  type                = "query alert"
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 1
@@ -74,7 +74,7 @@ resource "datadog_monitor" "apimgt_other_requests" {
     warning  = "${var.other_requests_threshold_warning}"
   }
 
-  type                = "metric alert"
+  type                = "query alert"
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 1
@@ -105,7 +105,7 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
     warning  = "${var.unauthorized_requests_threshold_warning}"
   }
 
-  type                = "metric alert"
+  type                = "query alert"
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 1
@@ -138,7 +138,7 @@ resource "datadog_monitor" "apimgt_successful_requests" {
     warning  = "${var.successful_requests_threshold_warning}"
   }
 
-  type                = "metric alert"
+  type                = "query alert"
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 1

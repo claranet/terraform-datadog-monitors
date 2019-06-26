@@ -4,7 +4,7 @@ resource "datadog_monitor" "firehose_incoming_records" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kinesis Firehose No incoming records"
   message = "${coalesce(var.incoming_records_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
     sum(${var.incoming_records_timeframe}): (

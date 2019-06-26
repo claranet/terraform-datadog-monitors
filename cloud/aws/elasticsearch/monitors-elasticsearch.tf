@@ -8,7 +8,7 @@ resource "datadog_monitor" "es_cluster_status" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ElasticSearch cluster status is not green"
   message = "${coalesce(var.es_cluster_status_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   max(${var.es_cluster_status_timeframe}): (
@@ -41,7 +41,7 @@ resource "datadog_monitor" "es_free_space_low" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ElasticSearch cluster free storage space {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.diskspace_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   ${var.diskspace_time_aggregator}(${var.diskspace_timeframe}): (
@@ -74,7 +74,7 @@ resource "datadog_monitor" "es_cpu_90_15min" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ElasticSearch cluster CPU high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   ${var.cpu_time_aggregator}(${var.cpu_timeframe}): (

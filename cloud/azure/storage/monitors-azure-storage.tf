@@ -14,7 +14,7 @@ resource "datadog_monitor" "availability" {
     warning  = "${var.availability_threshold_warning}"
   }
 
-  type                = "metric alert"
+  type                = "query alert"
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
@@ -44,7 +44,7 @@ resource "datadog_monitor" "successful_requests" {
     warning  = "${var.successful_requests_threshold_warning}"
   }
 
-  type                = "metric alert"
+  type                = "query alert"
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
@@ -74,7 +74,7 @@ resource "datadog_monitor" "latency" {
     warning  = "${var.latency_threshold_warning}"
   }
 
-  type                = "metric alert"
+  type                = "query alert"
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
@@ -104,7 +104,7 @@ resource "datadog_monitor" "timeout_error_requests" {
     warning  = "${var.timeout_error_requests_threshold_warning}"
   }
 
-  type                = "metric alert"
+  type                = "query alert"
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
@@ -134,7 +134,7 @@ resource "datadog_monitor" "network_error_requests" {
     warning  = "${var.network_error_requests_threshold_warning}"
   }
 
-  type                = "metric alert"
+  type                = "query alert"
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
@@ -164,7 +164,7 @@ resource "datadog_monitor" "throttling_error_requests" {
     warning  = "${var.throttling_error_requests_threshold_warning}"
   }
 
-  type                = "metric alert"
+  type                = "query alert"
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
@@ -194,7 +194,7 @@ resource "datadog_monitor" "server_other_error_requests" {
     warning  = "${var.server_other_error_requests_threshold_warning}"
   }
 
-  type                = "metric alert"
+  type                = "query alert"
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
@@ -224,7 +224,7 @@ resource "datadog_monitor" "client_other_error_requests" {
     warning  = "${var.client_other_error_requests_threshold_warning}"
   }
 
-  type                = "metric alert"
+  type                = "query alert"
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0
@@ -254,7 +254,7 @@ resource "datadog_monitor" "authorization_error_requests" {
     warning  = "${var.authorization_error_requests_threshold_warning}"
   }
 
-  type                = "metric alert"
+  type                = "query alert"
   notify_no_data      = false
   notify_audit        = false
   timeout_h           = 0

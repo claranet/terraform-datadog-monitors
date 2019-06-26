@@ -42,7 +42,7 @@ resource "datadog_monitor" "evicted_keys" {
      ) > ${var.evictedkeys_change_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.evictedkeys_change_threshold_warning}"
@@ -73,7 +73,7 @@ resource "datadog_monitor" "expirations" {
      ) > ${var.expirations_rate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.expirations_rate_threshold_warning}"
@@ -105,7 +105,7 @@ resource "datadog_monitor" "blocked_clients" {
      ) * 100 > ${var.blocked_clients_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.blocked_clients_threshold_warning}"
@@ -136,7 +136,7 @@ resource "datadog_monitor" "keyspace_full" {
      ) == ${var.keyspace_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.keyspace_threshold_warning}"
@@ -168,7 +168,7 @@ resource "datadog_monitor" "memory_used" {
      ) * 100 > ${var.mem_used_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.mem_used_threshold_warning}"
@@ -199,7 +199,7 @@ resource "datadog_monitor" "memory_frag" {
      * 100 > ${var.mem_frag_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.mem_frag_threshold_warning}"
@@ -230,7 +230,7 @@ resource "datadog_monitor" "rejected_connections" {
      ) > ${var.rejected_con_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.rejected_con_threshold_warning}"
@@ -261,7 +261,7 @@ resource "datadog_monitor" "latency" {
      ) > ${var.latency_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.latency_threshold_warning}"
@@ -294,7 +294,7 @@ resource "datadog_monitor" "hitrate" {
      ) * 100 < ${var.hitrate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.hitrate_threshold_warning}"

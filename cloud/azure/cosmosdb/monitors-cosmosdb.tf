@@ -52,7 +52,7 @@ resource "datadog_monitor" "cosmos_db_4xx_requests" {
     , 0) * 100 > ${var.cosmos_db_4xx_request_rate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.cosmos_db_4xx_request_rate_threshold_critical}"
@@ -86,7 +86,7 @@ resource "datadog_monitor" "cosmos_db_5xx_requests" {
     , 0) * 100 > ${var.cosmos_db_5xx_request_rate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.cosmos_db_5xx_request_rate_threshold_critical}"
@@ -120,7 +120,7 @@ resource "datadog_monitor" "cosmos_db_scaling" {
     , 0) * 100 > ${var.cosmos_db_scaling_error_rate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.cosmos_db_scaling_error_rate_threshold_critical}"

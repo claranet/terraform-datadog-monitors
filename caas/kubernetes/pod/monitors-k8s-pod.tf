@@ -30,7 +30,7 @@ resource "datadog_monitor" "pod_phase_status" {
 resource "datadog_monitor" "error" {
   count   = "${var.error_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Pod waiting errors"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.error_message, var.message)}"
 
   query = <<EOQ

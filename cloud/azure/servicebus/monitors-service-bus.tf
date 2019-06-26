@@ -10,7 +10,7 @@ resource "datadog_monitor" "servicebus_status" {
       ) != 1
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -37,7 +37,7 @@ resource "datadog_monitor" "service_bus_no_active_connections" {
       ) < 1
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -65,7 +65,7 @@ resource "datadog_monitor" "service_bus_user_errors" {
       ) * 100 > ${var.user_errors_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.user_errors_threshold_critical}"
@@ -98,7 +98,7 @@ resource "datadog_monitor" "service_bus_server_errors" {
       ) * 100 > ${var.server_errors_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.server_errors_threshold_critical}"

@@ -9,7 +9,7 @@ resource "datadog_monitor" "eventhub_status" {
     ) != 1
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -36,7 +36,7 @@ resource "datadog_monitor" "eventhub_failed_requests" {
     ) * 100 > ${var.failed_requests_rate_thresold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.failed_requests_rate_thresold_critical}"
@@ -70,7 +70,7 @@ resource "datadog_monitor" "eventhub_errors" {
     ) * 100 > ${var.errors_rate_thresold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.errors_rate_thresold_critical}"
