@@ -39,7 +39,7 @@ resource "datadog_monitor" "mongodb_secondary" {
     warning  = 0
   }
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = false
   renotify_interval   = 0

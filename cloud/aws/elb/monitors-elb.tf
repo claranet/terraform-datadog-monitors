@@ -11,7 +11,7 @@ resource "datadog_monitor" "ELB_no_healthy_instances" {
     ) * 100 < 1
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = 1
@@ -43,7 +43,7 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
       * 100 > ${var.elb_4xx_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.elb_4xx_threshold_warning}"
@@ -75,7 +75,7 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
       * 100 > ${var.elb_5xx_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.elb_5xx_threshold_warning}"
@@ -107,7 +107,7 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
       * 100 > ${var.elb_backend_4xx_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.elb_backend_4xx_threshold_warning}"
@@ -139,7 +139,7 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
       * 100 > ${var.elb_backend_5xx_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.elb_backend_5xx_threshold_warning}"
@@ -170,7 +170,7 @@ resource "datadog_monitor" "ELB_backend_latency" {
     > ${var.elb_backend_latency_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.elb_backend_latency_warning}"

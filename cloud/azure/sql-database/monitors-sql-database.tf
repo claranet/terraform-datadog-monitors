@@ -9,7 +9,7 @@ resource "datadog_monitor" "status" {
     ) != 1
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -35,7 +35,7 @@ resource "datadog_monitor" "sql-database_cpu" {
     ) > ${var.cpu_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.cpu_threshold_critical}"
@@ -60,7 +60,7 @@ resource "datadog_monitor" "sql-database_free_space_low" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] SQL Database high disk usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.diskspace_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.diskspace_time_aggregator}(${var.diskspace_timeframe}): (
@@ -91,7 +91,7 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] SQL Database DTU Consumption too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.dtu_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.dtu_time_aggregator}(${var.dtu_timeframe}): (
@@ -122,7 +122,7 @@ resource "datadog_monitor" "sql-database_deadlocks_count" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] SQL Database Deadlocks too high {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.deadlock_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
     sum(${var.deadlock_timeframe}): (

@@ -4,7 +4,7 @@ resource "datadog_monitor" "rds_aurora_mysql_replica_lag" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] RDS Aurora Mysql replica lag {{#is_alert}}{{{comparator}}} {{threshold}} ms ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ms ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.aurora_replicalag_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   avg(${var.aurora_replicalag_timeframe}): (

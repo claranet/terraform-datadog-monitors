@@ -10,7 +10,7 @@ resource "datadog_monitor" "nginx_ingress_too_many_5xx" {
       * 100, 0) > ${var.ingress_5xx_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.ingress_5xx_threshold_warning}"
@@ -42,7 +42,7 @@ resource "datadog_monitor" "nginx_ingress_too_many_4xx" {
     * 100, 0) > ${var.ingress_4xx_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.ingress_4xx_threshold_warning}"

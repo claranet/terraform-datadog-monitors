@@ -6,7 +6,7 @@ resource "datadog_monitor" "concurrent_queries" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP Big Query Concurrent Queries {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.concurrent_queries_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   avg(${var.concurrent_queries_timeframe}):default(avg:gcp.bigquery.query.count{${var.filter_tags}}, 0)
@@ -40,7 +40,7 @@ resource "datadog_monitor" "execution_time" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP Big Query Execution Time {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = "${coalesce(var.execution_time_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   avg(${var.execution_time_timeframe}):default(avg:gcp.bigquery.query.execution_times.avg{${var.filter_tags}}, 0)
@@ -74,7 +74,7 @@ resource "datadog_monitor" "scanned_bytes" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP Big Query Scanned Bytes {{#is_alert}}{{{comparator}}} {{threshold}}B/mn ({{value}}B/mn){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}B/mn ({{value}}B/mn){{/is_warning}}"
   message = "${coalesce(var.scanned_bytes_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   avg(${var.scanned_bytes_timeframe}):default(avg:gcp.bigquery.query.scanned_bytes{${var.filter_tags}}, 0)
@@ -108,7 +108,7 @@ resource "datadog_monitor" "scanned_bytes_billed" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP Big Query Scanned Bytes Billed {{#is_alert}}{{{comparator}}} {{threshold}}B/mn ({{value}}B/mn){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}B/mn ({{value}}B/mn){{/is_warning}}"
   message = "${coalesce(var.scanned_bytes_billed_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   avg(${var.scanned_bytes_billed_timeframe}):default(avg:gcp.bigquery.query.scanned_bytes_billed{${var.filter_tags}}, 0)
@@ -176,7 +176,7 @@ resource "datadog_monitor" "stored_bytes" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP Big Query Stored Bytes {{#is_alert}}{{{comparator}}} {{threshold}}B ({{value}}B){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}B ({{value}}B){{/is_warning}}"
   message = "${coalesce(var.stored_bytes_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   avg(${var.stored_bytes_timeframe}):default(avg:gcp.bigquery.storage.stored_bytes{${var.filter_tags}} by {dataset_id,table}, 0)
@@ -244,7 +244,7 @@ resource "datadog_monitor" "uploaded_bytes" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP Big Query Uploaded Bytes {{#is_alert}}{{{comparator}}} {{threshold}}B/mn ({{value}}B/mn){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}B/mn ({{value}}B/mn){{/is_warning}}"
   message = "${coalesce(var.uploaded_bytes_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   avg(${var.uploaded_bytes_timeframe}):default(avg:gcp.bigquery.storage.uploaded_bytes{${var.filter_tags}} by {dataset_id,table}, 0)
@@ -278,7 +278,7 @@ resource "datadog_monitor" "uploaded_bytes_billed" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP Big Query Uploaded Bytes Billed {{#is_alert}}{{{comparator}}} {{threshold}}B/mn ({{value}}B/mn){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}B/mn ({{value}}B/mn){{/is_warning}}"
   message = "${coalesce(var.uploaded_bytes_billed_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   avg(${var.uploaded_bytes_billed_timeframe}):default(avg:gcp.bigquery.storage.uploaded_bytes_billed{${var.filter_tags}} by {dataset_id,table}, 0)

@@ -1,7 +1,7 @@
 resource "datadog_monitor" "ark_schedules_monitor" {
   count   = "${var.ark_schedules_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Ark backup failed"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.ark_schedules_monitor_message, var.message)}"
 
   query = <<EOQ

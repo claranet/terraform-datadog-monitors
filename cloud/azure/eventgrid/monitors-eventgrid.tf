@@ -39,7 +39,7 @@ resource "datadog_monitor" "eventgrid_failed_messages" {
     ) > ${var.failed_messages_rate_thresold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.failed_messages_rate_thresold_critical}"
@@ -74,7 +74,7 @@ resource "datadog_monitor" "eventgrid_unmatched_events" {
     ) > ${var.unmatched_events_rate_thresold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.unmatched_events_rate_thresold_critical}"

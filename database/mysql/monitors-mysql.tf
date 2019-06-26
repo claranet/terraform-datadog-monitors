@@ -31,7 +31,7 @@ resource "datadog_monitor" "mysql_connection" {
   count   = "${var.mysql_connection_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql Connections limit {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mysql_connection_message, var.message)}"
-  type    = "metric alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.mysql_connection_time_aggregator}(${var.mysql_connection_timeframe}): (
@@ -61,7 +61,7 @@ resource "datadog_monitor" "mysql_aborted" {
   count   = "${var.mysql_aborted_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql Aborted connects {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mysql_aborted_message, var.message)}"
-  type    = "metric alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.mysql_aborted_time_aggregator}(${var.mysql_aborted_timeframe}): (
@@ -91,7 +91,7 @@ resource "datadog_monitor" "mysql_slow" {
   count   = "${var.mysql_slow_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql Slow queries {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mysql_slow_message, var.message)}"
-  type    = "metric alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.mysql_slow_time_aggregator}(${var.mysql_slow_timeframe}): (
@@ -121,7 +121,7 @@ resource "datadog_monitor" "mysql_pool_efficiency" {
   count   = "${var.mysql_pool_efficiency_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql Innodb buffer pool efficiency {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.mysql_pool_efficiency_message, var.message)}"
-  type    = "metric alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.mysql_pool_efficiency_time_aggregator}(${var.mysql_pool_efficiency_timeframe}): (
@@ -151,7 +151,7 @@ resource "datadog_monitor" "mysql_pool_utilization" {
   count   = "${var.mysql_pool_utilization_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql Innodb buffer pool utilization {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.mysql_pool_utilization_message, var.message)}"
-  type    = "metric alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.mysql_pool_utilization_time_aggregator}(${var.mysql_pool_utilization_timeframe}):

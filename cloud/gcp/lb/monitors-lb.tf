@@ -6,7 +6,7 @@ resource "datadog_monitor" "error_rate_4xx" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP LB 4xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.error_rate_4xx_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   ${var.error_rate_4xx_time_aggregator}(${var.error_rate_4xx_timeframe}):
@@ -42,7 +42,7 @@ resource "datadog_monitor" "error_rate_5xx" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP LB 5xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.error_rate_5xx_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   ${var.error_rate_5xx_time_aggregator}(${var.error_rate_5xx_timeframe}):
@@ -78,7 +78,7 @@ resource "datadog_monitor" "backend_latency_service" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP LB service backend latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = "${coalesce(var.backend_latency_service_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   ${var.backend_latency_service_time_aggregator}(${var.backend_latency_service_timeframe}):
@@ -113,7 +113,7 @@ resource "datadog_monitor" "backend_latency_bucket" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP LB bucket backend latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = "${coalesce(var.backend_latency_bucket_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   ${var.backend_latency_bucket_time_aggregator}(${var.backend_latency_bucket_timeframe}):

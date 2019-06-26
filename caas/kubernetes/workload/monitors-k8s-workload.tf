@@ -57,7 +57,7 @@ resource "datadog_monitor" "cronjob" {
 resource "datadog_monitor" "replica_available" {
   count   = "${var.replica_available_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Available replicas {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.replica_available_message, var.message)}"
 
   query = <<EOQ
@@ -88,7 +88,7 @@ resource "datadog_monitor" "replica_available" {
 resource "datadog_monitor" "replica_ready" {
   count   = "${var.replica_ready_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Ready replicas {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.replica_ready_message, var.message)}"
 
   query = <<EOQ
@@ -119,7 +119,7 @@ resource "datadog_monitor" "replica_ready" {
 resource "datadog_monitor" "replica_current" {
   count   = "${var.replica_current_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Current replicas {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.replica_current_message, var.message)}"
 
   query = <<EOQ

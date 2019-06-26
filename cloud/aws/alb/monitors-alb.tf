@@ -1,7 +1,7 @@
 resource "datadog_monitor" "ALB_no_healthy_instances" {
   count   = "${var.alb_no_healthy_instances_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB healthy instances {{#is_alert}}is at 0{{/is_alert}}{{#is_warning}}is at {{value}}%{{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.alb_no_healthy_instances_message, var.message)}"
 
   query = <<EOQ
@@ -32,7 +32,7 @@ resource "datadog_monitor" "ALB_no_healthy_instances" {
 resource "datadog_monitor" "ALB_latency" {
   count   = "${var.latency_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB latency {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.latency_message, var.message)}"
 
   query = <<EOQ
@@ -61,7 +61,7 @@ resource "datadog_monitor" "ALB_latency" {
 resource "datadog_monitor" "ALB_httpcode_5xx" {
   count   = "${var.httpcode_alb_5xx_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB HTTP code 5xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.httpcode_alb_5xx_message, var.message)}"
 
   query = <<EOQ
@@ -91,7 +91,7 @@ resource "datadog_monitor" "ALB_httpcode_5xx" {
 resource "datadog_monitor" "ALB_httpcode_4xx" {
   count   = "${var.httpcode_alb_4xx_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB HTTP code 4xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.httpcode_alb_4xx_message, var.message)}"
 
   query = <<EOQ
@@ -121,7 +121,7 @@ resource "datadog_monitor" "ALB_httpcode_4xx" {
 resource "datadog_monitor" "ALB_httpcode_target_5xx" {
   count   = "${var.httpcode_target_5xx_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB target HTTP code 5xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.httpcode_target_5xx_message, var.message)}"
 
   query = <<EOQ
@@ -151,7 +151,7 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
 resource "datadog_monitor" "ALB_httpcode_target_4xx" {
   count   = "${var.httpcode_target_4xx_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB target HTTP code 4xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.httpcode_target_4xx_message, var.message)}"
 
   query = <<EOQ
