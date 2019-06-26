@@ -28,7 +28,6 @@ Creates DataDog monitors with the following checks:
 | cpu\_usage\_enabled | Flag to enable Mysql status monitor | string | `"true"` | no |
 | cpu\_usage\_extra\_tags | Extra tags for Mysql status monitor | list | `[]` | no |
 | cpu\_usage\_message | Custom message for Mysql CPU monitor | string | `""` | no |
-| cpu\_usage\_silenced | Groups to mute for Mysql CPU monitor | map | `{}` | no |
 | cpu\_usage\_threshold\_critical | Mysql CPU usage in percent (critical threshold) | string | `"90"` | no |
 | cpu\_usage\_threshold\_warning | Mysql CPU usage in percent (warning threshold) | string | `"80"` | no |
 | cpu\_usage\_time\_aggregator | Monitor aggregator for Mysql CPU [available values: min, max or avg] | string | `"min"` | no |
@@ -40,7 +39,6 @@ Creates DataDog monitors with the following checks:
 | free\_storage\_enabled | Flag to enable Mysql status monitor | string | `"true"` | no |
 | free\_storage\_extra\_tags | Extra tags for Mysql status monitor | list | `[]` | no |
 | free\_storage\_message | Custom message for Mysql Free Storage monitor | string | `""` | no |
-| free\_storage\_silenced | Groups to mute for Mysql Free Storage monitor | map | `{}` | no |
 | free\_storage\_threshold\_critical | Mysql Free Storage remaining in percent (critical threshold) | string | `"10"` | no |
 | free\_storage\_threshold\_warning | Mysql Free Storage remaining in percent (warning threshold) | string | `"20"` | no |
 | free\_storage\_time\_aggregator | Monitor aggregator for Mysql Free Storage [available values: min, max or avg] | string | `"min"` | no |
@@ -48,7 +46,6 @@ Creates DataDog monitors with the following checks:
 | io\_consumption\_enabled | Flag to enable Mysql status monitor | string | `"true"` | no |
 | io\_consumption\_extra\_tags | Extra tags for Mysql status monitor | list | `[]` | no |
 | io\_consumption\_message | Custom message for Mysql IO consumption monitor | string | `""` | no |
-| io\_consumption\_silenced | Groups to mute for Mysql IO consumption monitor | map | `{}` | no |
 | io\_consumption\_threshold\_critical | Mysql IO consumption in percent (critical threshold) | string | `"90"` | no |
 | io\_consumption\_threshold\_warning | Mysql IO consumption in percent (warning threshold) | string | `"80"` | no |
 | io\_consumption\_time\_aggregator | Monitor aggregator for Mysql IO consumption [available values: min, max or avg] | string | `"min"` | no |
@@ -56,7 +53,6 @@ Creates DataDog monitors with the following checks:
 | memory\_usage\_enabled | Flag to enable Mysql status monitor | string | `"true"` | no |
 | memory\_usage\_extra\_tags | Extra tags for Mysql status monitor | list | `[]` | no |
 | memory\_usage\_message | Custom message for Mysql memory monitor | string | `""` | no |
-| memory\_usage\_silenced | Groups to mute for Mysql memory monitor | map | `{}` | no |
 | memory\_usage\_threshold\_critical | Mysql memory usage in percent (critical threshold) | string | `"90"` | no |
 | memory\_usage\_threshold\_warning | Mysql memory usage in percent (warning threshold) | string | `"80"` | no |
 | memory\_usage\_time\_aggregator | Monitor aggregator for Mysql memory [available values: min, max or avg] | string | `"min"` | no |

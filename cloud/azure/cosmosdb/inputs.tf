@@ -44,12 +44,6 @@ variable "status_enabled" {
   default     = "true"
 }
 
-variable "status_silenced" {
-  description = "Groups to mute for Cosmos DB status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "status_extra_tags" {
   description = "Extra tags for Cosmos DB status monitor"
   type        = "list"
@@ -84,12 +78,6 @@ variable "cosmos_db_4xx_requests_enabled" {
   description = "Flag to enable Cosmos DB 4xx requests monitor"
   type        = "string"
   default     = "true"
-}
-
-variable "cosmos_db_4xx_requests_silenced" {
-  description = "Groups to mute for Cosmos DB 4xx requests monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "cosmos_db_4xx_request_rate_threshold_critical" {
@@ -132,12 +120,6 @@ variable "cosmos_db_5xx_requests_enabled" {
   default     = "true"
 }
 
-variable "cosmos_db_5xx_requests_silenced" {
-  description = "Groups to mute for Cosmos DB 5xx requests monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "cosmos_db_5xx_request_rate_threshold_critical" {
   description = "Critical threshold for Cosmos DB 5xx requests monitor"
   default     = 80
@@ -176,12 +158,6 @@ variable "cosmos_db_scaling_enabled" {
   description = "Flag to enable Cosmos DB scaling monitor"
   type        = "string"
   default     = "true"
-}
-
-variable "cosmos_db_scaling_silenced" {
-  description = "Groups to mute for Cosmos DB scaling monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "cosmos_db_scaling_error_rate_threshold_critical" {

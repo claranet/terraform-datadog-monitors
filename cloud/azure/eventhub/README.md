@@ -28,7 +28,6 @@ Creates DataDog monitors with the following checks:
 | errors\_rate\_enabled | Flag to enable Event Hub errors monitor | string | `"true"` | no |
 | errors\_rate\_extra\_tags | Extra tags for Event Hub errors monitor | list | `[]` | no |
 | errors\_rate\_message | Custom message for Event Hub errors monitor | string | `""` | no |
-| errors\_rate\_silenced | Groups to mute for Event Hub errors monitor | map | `{}` | no |
 | errors\_rate\_thresold\_critical | Errors ratio (percentage) to trigger the critical alert | string | `"90"` | no |
 | errors\_rate\_thresold\_warning | Errors ratio (percentage) to trigger a warning alert | string | `"50"` | no |
 | errors\_rate\_time\_aggregator | Monitor aggregator for Event Hub errors [available values: min, max or avg] | string | `"min"` | no |
@@ -37,7 +36,6 @@ Creates DataDog monitors with the following checks:
 | failed\_requests\_rate\_enabled | Flag to enable Event Hub failed requests monitor | string | `"true"` | no |
 | failed\_requests\_rate\_extra\_tags | Extra tags for Event Hub failed requests monitor | list | `[]` | no |
 | failed\_requests\_rate\_message | Custom message for Event Hub failed requests monitor | string | `""` | no |
-| failed\_requests\_rate\_silenced | Groups to mute for Event Hub failed requests monitor | map | `{}` | no |
 | failed\_requests\_rate\_thresold\_critical | Failed requests ratio (percentage) to trigger the critical alert | string | `"90"` | no |
 | failed\_requests\_rate\_thresold\_warning | Failed requests ratio (percentage) to trigger a warning alert | string | `"50"` | no |
 | failed\_requests\_rate\_time\_aggregator | Monitor aggregator for Event Hub failed requests [available values: min, max or avg] | string | `"min"` | no |
@@ -51,7 +49,6 @@ Creates DataDog monitors with the following checks:
 | status\_enabled | Flag to enable Event Hub status monitor | string | `"true"` | no |
 | status\_extra\_tags | Extra tags for Event Hub status monitor | list | `[]` | no |
 | status\_message | Custom message for Event Hub status monitor | string | `""` | no |
-| status\_silenced | Groups to mute for Event Hub status monitor | map | `{}` | no |
 | status\_time\_aggregator | Monitor aggregator for Event Hub status [available values: min, max or avg] | string | `"max"` | no |
 | status\_timeframe | Monitor timeframe for Event Hub status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 

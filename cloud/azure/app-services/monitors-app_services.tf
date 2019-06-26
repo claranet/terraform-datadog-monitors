@@ -19,8 +19,6 @@ resource "datadog_monitor" "appservices_response_time" {
     critical = "${var.response_time_threshold_critical}"
   }
 
-  silenced = "${var.response_time_silenced}"
-
   notify_no_data      = false # Will NOT notify when no data is received
   renotify_interval   = 0
   require_full_window = false
@@ -50,8 +48,6 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
     warning  = "${var.memory_usage_threshold_warning}"
     critical = "${var.memory_usage_threshold_critical}"
   }
-
-  silenced = "${var.memory_usage_silenced}"
 
   notify_no_data      = false # Will NOT notify when no data is received
   renotify_interval   = 0
@@ -84,8 +80,6 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
     critical = "${var.http_5xx_requests_threshold_critical}"
   }
 
-  silenced = "${var.http_5xx_requests_silenced}"
-
   notify_no_data      = false # Will NOT notify when no data is received
   renotify_interval   = 0
   require_full_window = false
@@ -116,8 +110,6 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
     warning  = "${var.http_4xx_requests_threshold_warning}"
     critical = "${var.http_4xx_requests_threshold_critical}"
   }
-
-  silenced = "${var.http_4xx_requests_silenced}"
 
   notify_no_data      = false # Will NOT notify when no data is received
   renotify_interval   = 0
@@ -152,8 +144,6 @@ resource "datadog_monitor" "appservices_http_success_status_rate" {
     critical = "${var.http_successful_requests_threshold_critical}"
   }
 
-  silenced = "${var.http_successful_requests_silenced}"
-
   notify_no_data      = false # Will notify when no data is received
   renotify_interval   = 0
   require_full_window = false
@@ -181,7 +171,6 @@ resource "datadog_monitor" "appservices_status" {
     critical = 1
   }
 
-  silenced            = "${var.status_silenced}"
   notify_no_data      = true                                                                                                                                                     # Will notify when no data is received
   renotify_interval   = 0
   require_full_window = false

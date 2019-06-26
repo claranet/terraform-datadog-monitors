@@ -23,8 +23,6 @@ resource "datadog_monitor" "disk_pressure" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.disk_pressure_silenced}"
-
   tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform", "${var.disk_pressure_extra_tags}"]
 }
 
@@ -52,8 +50,6 @@ resource "datadog_monitor" "disk_out" {
   include_tags        = true
   locked              = false
   require_full_window = true
-
-  silenced = "${var.disk_out_silenced}"
 
   tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform", "${var.disk_out_extra_tags}"]
 }
@@ -83,8 +79,6 @@ resource "datadog_monitor" "memory_pressure" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.memory_pressure_silenced}"
-
   tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform", "${var.memory_pressure_extra_tags}"]
 }
 
@@ -112,8 +106,6 @@ resource "datadog_monitor" "ready" {
   include_tags        = true
   locked              = false
   require_full_window = true
-
-  silenced = "${var.ready_silenced}"
 
   tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform", "${var.ready_extra_tags}"]
 }
@@ -143,8 +135,6 @@ resource "datadog_monitor" "kubelet_ping" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.kubelet_ping_silenced}"
-
   tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform", "${var.kubelet_ping_extra_tags}"]
 }
 
@@ -173,8 +163,6 @@ resource "datadog_monitor" "kubelet_syncloop" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.kubelet_syncloop_silenced}"
-
   tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform", "${var.kubelet_syncloop_extra_tags}"]
 }
 
@@ -197,8 +185,7 @@ resource "datadog_monitor" "unregister_net_device" {
   include_tags      = true
   locked            = false
 
-  silenced = "${var.unregister_net_device_silenced}"
-  tags     = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform", "${var.unregister_net_device_extra_tags}"]
+  tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform", "${var.unregister_net_device_extra_tags}"]
 }
 
 resource "datadog_monitor" "node_unschedulable" {
@@ -228,8 +215,7 @@ resource "datadog_monitor" "node_unschedulable" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.node_unschedulable_silenced}"
-  tags     = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform", "${var.node_unschedulable_extra_tags}"]
+  tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform", "${var.node_unschedulable_extra_tags}"]
 }
 
 resource "datadog_monitor" "volume_space" {
@@ -261,8 +247,7 @@ resource "datadog_monitor" "volume_space" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.volume_space_silenced}"
-  tags     = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform", "${var.volume_space_extra_tags}"]
+  tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform", "${var.volume_space_extra_tags}"]
 }
 
 resource "datadog_monitor" "volume_inodes" {
@@ -294,6 +279,5 @@ resource "datadog_monitor" "volume_inodes" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.volume_inodes_silenced}"
-  tags     = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform", "${var.volume_inodes_extra_tags}"]
+  tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform", "${var.volume_inodes_extra_tags}"]
 }

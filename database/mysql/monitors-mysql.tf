@@ -24,8 +24,6 @@ resource "datadog_monitor" "mysql_availability" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.mysql_availability_silenced}"
-
   tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_availability_extra_tags}"]
 }
 
@@ -55,8 +53,6 @@ resource "datadog_monitor" "mysql_connection" {
   require_full_window = true
   timeout_h           = 0
   include_tags        = true
-
-  silenced = "${var.mysql_connection_silenced}"
 
   tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_connection_extra_tags}"]
 }
@@ -88,8 +84,6 @@ resource "datadog_monitor" "mysql_aborted" {
   timeout_h           = 0
   include_tags        = true
 
-  silenced = "${var.mysql_aborted_silenced}"
-
   tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_aborted_extra_tags}"]
 }
 
@@ -119,8 +113,6 @@ resource "datadog_monitor" "mysql_slow" {
   require_full_window = true
   timeout_h           = 0
   include_tags        = true
-
-  silenced = "${var.mysql_slow_silenced}"
 
   tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_slow_extra_tags}"]
 }
@@ -152,8 +144,6 @@ resource "datadog_monitor" "mysql_pool_efficiency" {
   timeout_h           = 0
   include_tags        = true
 
-  silenced = "${var.mysql_pool_efficiency_silenced}"
-
   tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_pool_efficiency_extra_tags}"]
 }
 
@@ -184,8 +174,6 @@ resource "datadog_monitor" "mysql_pool_utilization" {
   require_full_window = true
   timeout_h           = 0
   include_tags        = true
-
-  silenced = "${var.mysql_pool_utilization_silenced}"
 
   tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_pool_utilization_extra_tags}"]
 }
@@ -225,8 +213,6 @@ resource "datadog_monitor" "mysql_threads_anomaly" {
   timeout_h           = 0
   include_tags        = true
 
-  silenced = "${var.mysql_threads_silenced}"
-
   tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_threads_extra_tags}"]
 }
 
@@ -264,8 +250,6 @@ resource "datadog_monitor" "mysql_questions_anomaly" {
   require_full_window = true
   timeout_h           = 0
   include_tags        = true
-
-  silenced = "${var.mysql_questions_silenced}"
 
   tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_questions_extra_tags}"]
 }

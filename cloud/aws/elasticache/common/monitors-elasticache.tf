@@ -26,8 +26,6 @@ resource "datadog_monitor" "elasticache_eviction" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.eviction_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.eviction_extra_tags}"]
 }
 
@@ -54,8 +52,6 @@ resource "datadog_monitor" "elasticache_max_connection" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.max_connection_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.max_connection_extra_tags}"]
 }
 
@@ -81,8 +77,6 @@ resource "datadog_monitor" "elasticache_no_connection" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
-
-  silenced = "${var.no_connection_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.no_connection_extra_tags}"]
 }
@@ -115,8 +109,6 @@ resource "datadog_monitor" "elasticache_swap" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.swap_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.swap_extra_tags}"]
 }
 
@@ -148,8 +140,6 @@ resource "datadog_monitor" "elasticache_free_memory" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.free_memory_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.free_memory_extra_tags}"]
 }
 
@@ -180,8 +170,6 @@ resource "datadog_monitor" "elasticache_eviction_growing" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
-
-  silenced = "${var.eviction_growing_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.eviction_growing_extra_tags}"]
 }

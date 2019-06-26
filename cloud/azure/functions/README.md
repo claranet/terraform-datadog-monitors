@@ -32,7 +32,6 @@ Creates DataDog monitors with the following checks:
 | high\_connections\_count\_enabled | Flag to enable Functions high connections count monitor | string | `"true"` | no |
 | high\_connections\_count\_extra\_tags | Extra tags for Functions high connections count monitor | list | `[]` | no |
 | high\_connections\_count\_message | Custom message for Functions high connections count monitor | string | `""` | no |
-| high\_connections\_count\_silenced | Groups to mute for Functions high connections count monitor | map | `{}` | no |
 | high\_connections\_count\_threshold\_critical | Alerting threshold for Functions high connections count | string | `"590"` | no |
 | high\_connections\_count\_threshold\_warning | Warning threshold for Functions high connections count | string | `"550"` | no |
 | high\_connections\_count\_time\_aggregator | Monitor aggregator for Functions high connections count [available values: min, max or avg] | string | `"min"` | no |
@@ -40,7 +39,6 @@ Creates DataDog monitors with the following checks:
 | high\_threads\_count\_enabled | Flag to enable Functions high threads count monitor | string | `"true"` | no |
 | high\_threads\_count\_extra\_tags | Extra tags for Functions high threads count monitor | list | `[]` | no |
 | high\_threads\_count\_message | Custom message for Functions high threads count monitor | string | `""` | no |
-| high\_threads\_count\_silenced | Groups to mute for Functions high threads count monitor | map | `{}` | no |
 | high\_threads\_count\_threshold\_critical | Alerting threshold for Functions high threads count | string | `"510"` | no |
 | high\_threads\_count\_threshold\_warning | Warning threshold for Functions high threads count | string | `"490"` | no |
 | high\_threads\_count\_time\_aggregator | Monitor aggregator for Functions high threads count [available values: min, max or avg] | string | `"min"` | no |
@@ -48,7 +46,6 @@ Creates DataDog monitors with the following checks:
 | http\_5xx\_errors\_rate\_enabled | Flag to enable Functions Http 5xx errors rate monitor | string | `"true"` | no |
 | http\_5xx\_errors\_rate\_extra\_tags | Extra tags for Functions Http 5xx errors rate monitor | list | `[]` | no |
 | http\_5xx\_errors\_rate\_message | Custom message for Functions Http 5xx errors rate monitor | string | `""` | no |
-| http\_5xx\_errors\_rate\_silenced | Groups to mute for Functions Http 5xx errors rate monitor | map | `{}` | no |
 | http\_5xx\_errors\_rate\_threshold\_critical | Alerting threshold for Functions Http 5xx errors rate | string | `"20"` | no |
 | http\_5xx\_errors\_rate\_threshold\_warning | Warning threshold for Functions Http 5xx errors rate | string | `"10"` | no |
 | http\_5xx\_errors\_rate\_time\_aggregator | Monitor aggregator for Functions Http 5xx errors rate [available values: min, max or avg] | string | `"min"` | no |

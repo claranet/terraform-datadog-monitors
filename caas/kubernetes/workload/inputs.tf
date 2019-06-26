@@ -40,12 +40,6 @@ variable "prefix_slug" {
 
 # Datadog monitors variables
 
-variable "job_silenced" {
-  description = "Groups to mute for Job monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "job_enabled" {
   description = "Flag to enable Job monitor"
   type        = "string"
@@ -70,12 +64,6 @@ variable "job_threshold_warning" {
   default     = 3
 }
 
-variable "cronjob_silenced" {
-  description = "Groups to mute for Cronjob monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "cronjob_enabled" {
   description = "Flag to enable Cronjob monitor"
   type        = "string"
@@ -98,12 +86,6 @@ variable "cronjob_threshold_warning" {
   description = "Cronjob monitor (warning threshold)"
   type        = "string"
   default     = 3
-}
-
-variable "replica_available_silenced" {
-  description = "Groups to mute for Available replica monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "replica_available_enabled" {
@@ -141,12 +123,6 @@ variable "replica_available_threshold_critical" {
   description = "Available replica critical threshold"
 }
 
-variable "replica_ready_silenced" {
-  description = "Groups to mute for Ready replica monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "replica_ready_enabled" {
   description = "Flag to enable Ready replica monitor"
   type        = "string"
@@ -180,12 +156,6 @@ variable "replica_ready_timeframe" {
 variable "replica_ready_threshold_critical" {
   default     = 1
   description = "Ready replica critical threshold"
-}
-
-variable "replica_current_silenced" {
-  description = "Groups to mute for Current replica monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "replica_current_enabled" {

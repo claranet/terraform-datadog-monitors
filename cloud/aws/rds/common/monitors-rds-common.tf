@@ -26,8 +26,6 @@ resource "datadog_monitor" "rds_cpu_90_15min" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.cpu_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform", "${var.cpu_extra_tags}"]
 }
 
@@ -60,8 +58,6 @@ resource "datadog_monitor" "rds_free_space_low" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.diskspace_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform", "${var.diskspace_extra_tags}"]
 }
 
@@ -92,8 +88,6 @@ resource "datadog_monitor" "rds_replica_lag" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
-
-  silenced = "${var.replicalag_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform", "${var.replicalag_extra_tags}"]
 }

@@ -40,11 +40,6 @@ variable "filter_tags_custom_excluded" {
 }
 
 # Memcached specific
-variable "get_hits_silenced" {
-  description = "Groups to mute for Elasticache memcached get hits monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "get_hits_enabled" {
   description = "Flag to enable Elasticache memcached get hits monitor"
@@ -86,12 +81,6 @@ variable "get_hits_threshold_critical" {
   description = "Elasticache memcached get hits critical threshold in percentage"
   type        = "string"
   default     = 60
-}
-
-variable "cpu_high_silenced" {
-  description = "Groups to mute for Elasticache memcached cpu high monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "cpu_high_enabled" {

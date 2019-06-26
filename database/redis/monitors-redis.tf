@@ -17,8 +17,6 @@ resource "datadog_monitor" "not_responding" {
     critical = 5
   }
 
-  silenced = "${var.not_responding_silenced}"
-
   notify_no_data      = true
   no_data_timeframe   = "${var.not_responding_no_data_timeframe}"
   notify_audit        = false
@@ -51,8 +49,6 @@ resource "datadog_monitor" "evicted_keys" {
     critical = "${var.evictedkeys_change_threshold_critical}"
   }
 
-  silenced = "${var.evictedkeys_change_silenced}"
-
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -83,8 +79,6 @@ resource "datadog_monitor" "expirations" {
     warning  = "${var.expirations_rate_threshold_warning}"
     critical = "${var.expirations_rate_threshold_critical}"
   }
-
-  silenced = "${var.expirations_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -118,8 +112,6 @@ resource "datadog_monitor" "blocked_clients" {
     critical = "${var.blocked_clients_threshold_critical}"
   }
 
-  silenced = "${var.blocked_clients_silenced}"
-
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -150,8 +142,6 @@ resource "datadog_monitor" "keyspace_full" {
     warning  = "${var.keyspace_threshold_warning}"
     critical = "${var.keyspace_threshold_critical}"
   }
-
-  silenced = "${var.keyspace_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -185,8 +175,6 @@ resource "datadog_monitor" "memory_used" {
     critical = "${var.mem_used_threshold_critical}"
   }
 
-  silenced = "${var.mem_used_silenced}"
-
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -217,8 +205,6 @@ resource "datadog_monitor" "memory_frag" {
     warning  = "${var.mem_frag_threshold_warning}"
     critical = "${var.mem_frag_threshold_critical}"
   }
-
-  silenced = "${var.mem_frag_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -251,8 +237,6 @@ resource "datadog_monitor" "rejected_connections" {
     critical = "${var.rejected_con_threshold_critical}"
   }
 
-  silenced = "${var.rejected_con_silenced}"
-
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -283,8 +267,6 @@ resource "datadog_monitor" "latency" {
     warning  = "${var.latency_threshold_warning}"
     critical = "${var.latency_threshold_critical}"
   }
-
-  silenced = "${var.latency_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -318,8 +300,6 @@ resource "datadog_monitor" "hitrate" {
     warning  = "${var.hitrate_threshold_warning}"
     critical = "${var.hitrate_threshold_critical}"
   }
-
-  silenced = "${var.hitrate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"

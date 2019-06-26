@@ -43,12 +43,6 @@ variable "filter_tags_custom_excluded" {
 ###   PostgreSQL availability  ###
 ##################################
 
-variable "postgresql_availability_silenced" {
-  description = "Groups to mute for PostgreSQL availability monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "postgresql_availability_enabled" {
   description = "Flag to enable PostgreSQL availability monitor"
   type        = "string"
@@ -93,12 +87,6 @@ variable "postgresql_connection_threshold_warning" {
   description = "Maximum warning acceptable percent of connections"
 }
 
-variable "postgresql_connection_silenced" {
-  description = "Groups to mute for PostgreSQL connection monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "postgresql_connection_enabled" {
   description = "Flag to enable PostgreSQL connection monitor"
   type        = "string"
@@ -141,12 +129,6 @@ variable "postgresql_lock_threshold_critical" {
 variable "postgresql_lock_threshold_warning" {
   default     = 70
   description = "Maximum warning acceptable number of locks"
-}
-
-variable "posgresql_lock_silenced" {
-  description = "Groups to mute for PostgreSQL lock monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "postgresql_lock_enabled" {

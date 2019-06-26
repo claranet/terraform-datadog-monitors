@@ -12,8 +12,6 @@ resource "datadog_monitor" "keyvault_status" {
 
   type = "metric alert"
 
-  silenced = "${var.status_silenced}"
-
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -49,8 +47,6 @@ resource "datadog_monitor" "keyvault_api_result" {
 
   type = "metric alert"
 
-  silenced = "${var.api_result_silenced}"
-
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -82,8 +78,6 @@ resource "datadog_monitor" "keyvault_api_latency" {
   }
 
   type = "metric alert"
-
-  silenced = "${var.api_latency_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"

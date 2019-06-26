@@ -27,7 +27,6 @@ Creates DataDog monitors with the following checks:
 | cpu\_utilization\_enabled | Flag to enable CPU Utilization monitor | string | `"true"` | no |
 | cpu\_utilization\_extra\_tags | Extra tags for CPU Utilization monitor | list | `[]` | no |
 | cpu\_utilization\_message | Custom message for the CPU Utilization monitor | string | `""` | no |
-| cpu\_utilization\_silenced | Groups to mute for CPU Utilization monitor | map | `{}` | no |
 | cpu\_utilization\_threshold\_critical | CPU Utilization in percentage (critical threshold) | string | `"90"` | no |
 | cpu\_utilization\_threshold\_warning | CPU Utilization in percentage (warning threshold) | string | `"80"` | no |
 | cpu\_utilization\_time\_aggregator | Time aggregator for the CPU Utilization monitor | string | `"avg"` | no |
@@ -36,7 +35,6 @@ Creates DataDog monitors with the following checks:
 | disk\_throttled\_bps\_extra\_tags | Extra tags for Disk Throttled Bps monitor | list | `[]` | no |
 | disk\_throttled\_bps\_message | Custom message for the Disk Throttled Bps monitor | string | `""` | no |
 | disk\_throttled\_bps\_notify\_no\_data | Flag to enable notification for no data on Disk Throttled Bps monitor | string | `"false"` | no |
-| disk\_throttled\_bps\_silenced | Groups to mute for Disk Throttled Bps monitor | map | `{}` | no |
 | disk\_throttled\_bps\_threshold\_critical | Disk Throttled Bps in percentage (critical threshold) | string | `"50"` | no |
 | disk\_throttled\_bps\_threshold\_warning | Disk Throttled Bps in percentage (warning threshold) | string | `"30"` | no |
 | disk\_throttled\_bps\_time\_aggregator | Time aggregator for the Disk Throttled Bps monitor | string | `"min"` | no |
@@ -45,7 +43,6 @@ Creates DataDog monitors with the following checks:
 | disk\_throttled\_ops\_extra\_tags | Extra tags for Disk Throttled OPS monitor | list | `[]` | no |
 | disk\_throttled\_ops\_message | Custom message for the Disk Throttled OPS monitor | string | `""` | no |
 | disk\_throttled\_ops\_notify\_no\_data | Flag to enable notification for no data on Disk Throttled OPS monitor | string | `"false"` | no |
-| disk\_throttled\_ops\_silenced | Groups to mute for Disk Throttled OPS monitor | map | `{}` | no |
 | disk\_throttled\_ops\_threshold\_critical | Disk Throttled OPS in percentage (critical threshold) | string | `"50"` | no |
 | disk\_throttled\_ops\_threshold\_warning | Disk Throttled OPS in percentage (warning threshold) | string | `"30"` | no |
 | disk\_throttled\_ops\_time\_aggregator | Time aggregator for the Disk Throttled OPS monitor | string | `"min"` | no |

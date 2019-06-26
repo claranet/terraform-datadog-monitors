@@ -64,12 +64,6 @@ variable "cpu_utilization_threshold_critical" {
   default     = 90
 }
 
-variable "cpu_utilization_silenced" {
-  description = "Groups to mute for CPU Utilization monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "cpu_utilization_enabled" {
   description = "Flag to enable CPU Utilization monitor"
   type        = "string"
@@ -114,12 +108,6 @@ variable "disk_throttled_bps_threshold_critical" {
   description = "Disk Throttled Bps in percentage (critical threshold)"
   type        = "string"
   default     = 50
-}
-
-variable "disk_throttled_bps_silenced" {
-  description = "Groups to mute for Disk Throttled Bps monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "disk_throttled_bps_enabled" {
@@ -172,12 +160,6 @@ variable "disk_throttled_ops_threshold_critical" {
   description = "Disk Throttled OPS in percentage (critical threshold)"
   type        = "string"
   default     = 50
-}
-
-variable "disk_throttled_ops_silenced" {
-  description = "Groups to mute for Disk Throttled OPS monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "disk_throttled_ops_enabled" {

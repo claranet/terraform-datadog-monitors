@@ -29,12 +29,6 @@ variable "filter_tags" {
   default     = "*"
 }
 
-variable "vpn_status_silenced" {
-  description = "Groups to mute for VPN status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "vpn_status_enabled" {
   description = "Flag to enable VPN status monitor"
   type        = "string"

@@ -13,8 +13,6 @@ resource "datadog_monitor" "apimgt_status" {
     critical = 1
   }
 
-  silenced = "${var.status_silenced}"
-
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -44,8 +42,6 @@ resource "datadog_monitor" "apimgt_failed_requests" {
     critical = "${var.failed_requests_threshold_critical}"
     warning  = "${var.failed_requests_threshold_warning}"
   }
-
-  silenced = "${var.failed_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -78,8 +74,6 @@ resource "datadog_monitor" "apimgt_other_requests" {
     warning  = "${var.other_requests_threshold_warning}"
   }
 
-  silenced = "${var.other_requests_silenced}"
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -110,8 +104,6 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
     critical = "${var.unauthorized_requests_threshold_critical}"
     warning  = "${var.unauthorized_requests_threshold_warning}"
   }
-
-  silenced = "${var.unauthorized_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -145,8 +137,6 @@ resource "datadog_monitor" "apimgt_successful_requests" {
     critical = "${var.successful_requests_threshold_critical}"
     warning  = "${var.successful_requests_threshold_warning}"
   }
-
-  silenced = "${var.successful_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false

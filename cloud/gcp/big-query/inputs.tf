@@ -59,12 +59,6 @@ variable "concurrent_queries_threshold_critical" {
   default     = 45
 }
 
-variable "concurrent_queries_silenced" {
-  description = "Groups to mute for GCP Big Query Concurrent Queries monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "concurrent_queries_enabled" {
   description = "Flag to enable GCP Big Query Concurrent Queries monitor"
   type        = "string"
@@ -103,12 +97,6 @@ variable "execution_time_threshold_critical" {
   description = "Average Execution Time in seconds (critical threshold)"
   type        = "string"
   default     = 150
-}
-
-variable "execution_time_silenced" {
-  description = "Groups to mute for GCP Big Query Execution Time monitor."
-  type        = "map"
-  default     = {}
 }
 
 variable "execution_time_enabled" {
@@ -151,12 +139,6 @@ variable "scanned_bytes_threshold_critical" {
   default     = 1
 }
 
-variable "scanned_bytes_silenced" {
-  description = "Groups to mute for GCP Big Query Scanned Bytes monitor."
-  type        = "map"
-  default     = {}
-}
-
 variable "scanned_bytes_enabled" {
   description = "Flag to enable GCP Big Query Scanned Bytes monitor"
   type        = "string"
@@ -195,12 +177,6 @@ variable "scanned_bytes_billed_threshold_critical" {
   description = "Scanned Bytes Billed (critical threshold)"
   type        = "string"
   default     = 1
-}
-
-variable "scanned_bytes_billed_silenced" {
-  description = "Groups to mute for GCP Big Query Scanned Bytes Billed monitor."
-  type        = "map"
-  default     = {}
 }
 
 variable "scanned_bytes_billed_enabled" {
@@ -243,12 +219,6 @@ variable "available_slots_threshold_critical" {
   default     = 200
 }
 
-variable "available_slots_silenced" {
-  description = "Groups to mute for GCP Big Query Available Slots monitor."
-  type        = "map"
-  default     = {}
-}
-
 variable "available_slots_enabled" {
   description = "Flag to enable GCP Big Query Available Slots monitor"
   type        = "string"
@@ -287,12 +257,6 @@ variable "stored_bytes_threshold_critical" {
   description = "Stored Bytes in fraction (critical threshold)"
   type        = "string"
   default     = 1
-}
-
-variable "stored_bytes_silenced" {
-  description = "Groups to mute for GCP Big Query Stored Bytes monitor."
-  type        = "map"
-  default     = {}
 }
 
 variable "stored_bytes_enabled" {
@@ -335,12 +299,6 @@ variable "table_count_threshold_critical" {
   default     = 1
 }
 
-variable "table_count_silenced" {
-  description = "Groups to mute for GCP Big Query Table Count monitor."
-  type        = "map"
-  default     = {}
-}
-
 variable "table_count_enabled" {
   description = "Flag to enable GCP Big Query Table Count monitor"
   type        = "string"
@@ -381,12 +339,6 @@ variable "uploaded_bytes_threshold_critical" {
   default     = 1
 }
 
-variable "uploaded_bytes_silenced" {
-  description = "Groups to mute for GCP Big Query Uploaded Bytes monitor."
-  type        = "map"
-  default     = {}
-}
-
 variable "uploaded_bytes_enabled" {
   description = "Flag to enable GCP Big Query Uploaded Bytes monitor"
   type        = "string"
@@ -425,12 +377,6 @@ variable "uploaded_bytes_billed_threshold_critical" {
   description = "Uploaded Bytes Billed (critical threshold)"
   type        = "string"
   default     = 1
-}
-
-variable "uploaded_bytes_billed_silenced" {
-  description = "Groups to mute for GCP Big Query Uploaded Bytes Billed monitor."
-  type        = "map"
-  default     = {}
 }
 
 variable "uploaded_bytes_billed_enabled" {

@@ -32,7 +32,6 @@ Creates DataDog monitors with the following checks:
 | cpu\_enabled | Flag to enable CPU high monitor | string | `"true"` | no |
 | cpu\_extra\_tags | Extra tags for CPU high monitor | list | `[]` | no |
 | cpu\_message | Custom message for CPU high monitor | string | `""` | no |
-| cpu\_silenced | Groups to mute for CPU high monitor | map | `{}` | no |
 | cpu\_threshold\_critical | CPU high critical threshold | string | `"90"` | no |
 | cpu\_threshold\_warning | CPU high warning threshold | string | `"85"` | no |
 | cpu\_time\_aggregator | Monitor aggregator for CPU high [available values: min, max or avg] | string | `"min"` | no |
@@ -40,7 +39,6 @@ Creates DataDog monitors with the following checks:
 | disk\_inodes\_enabled | Flag to enable Free disk inodes monitor | string | `"true"` | no |
 | disk\_inodes\_extra\_tags | Extra tags for Free disk inodes monitor | list | `[]` | no |
 | disk\_inodes\_message | Custom message for Free disk inodes monitor | string | `""` | no |
-| disk\_inodes\_silenced | Groups to mute for Free disk inodes monitor | map | `{}` | no |
 | disk\_inodes\_threshold\_critical | Free disk space critical threshold | string | `"95"` | no |
 | disk\_inodes\_threshold\_warning | Free disk space warning threshold | string | `"90"` | no |
 | disk\_inodes\_time\_aggregator | Monitor aggregator for Free disk inodes [available values: min, max or avg] | string | `"min"` | no |
@@ -56,13 +54,11 @@ Creates DataDog monitors with the following checks:
 | disk\_space\_forecast\_linear\_model | Model for the Free diskspace Forecast monitor [available values: `default`, `simple` or `reactive`] | string | `"default"` | no |
 | disk\_space\_forecast\_message | Custom message for Free diskspace forecast monitor | string | `""` | no |
 | disk\_space\_forecast\_seasonal\_seasonality | Seasonality for the Free diskspace Forecast monitor | string | `"weekly"` | no |
-| disk\_space\_forecast\_silenced | Groups to mute for Free diskspace forecast monitor | map | `{}` | no |
 | disk\_space\_forecast\_threshold\_critical | Free disk space forecast critical threshold | string | `"80"` | no |
 | disk\_space\_forecast\_threshold\_critical\_recovery | Free disk space forecast recovery threshold | string | `"72"` | no |
 | disk\_space\_forecast\_time\_aggregator | Monitor aggregator for Free diskspace forecast [available values: min, max or avg] | string | `"max"` | no |
 | disk\_space\_forecast\_timeframe | Monitor timeframe for Free diskspace forecast [available values: `next_12h`, `next_#d` (1, 2, or 3), `next_#w` (1 or 2) or `next_#mo` (1, 2 or 3)] | string | `"next_1w"` | no |
 | disk\_space\_message | Custom message for Free diskspace monitor | string | `""` | no |
-| disk\_space\_silenced | Groups to mute for Free diskspace monitor | map | `{}` | no |
 | disk\_space\_threshold\_critical | Free disk space critical threshold | string | `"90"` | no |
 | disk\_space\_threshold\_warning | Free disk space warning threshold | string | `"80"` | no |
 | disk\_space\_time\_aggregator | Monitor aggregator for Free diskspace [available values: min, max or avg] | string | `"max"` | no |
@@ -75,7 +71,6 @@ Creates DataDog monitors with the following checks:
 | load\_enabled | Flag to enable CPU load ratio monitor | string | `"true"` | no |
 | load\_extra\_tags | Extra tags for CPU load ratio monitor | list | `[]` | no |
 | load\_message | Custom message for CPU load ratio monitor | string | `""` | no |
-| load\_silenced | Groups to mute for CPU load ratio monitor | map | `{}` | no |
 | load\_threshold\_critical | CPU load ratio critical threshold | string | `"2.5"` | no |
 | load\_threshold\_warning | CPU load ratio warning threshold | string | `"2"` | no |
 | load\_time\_aggregator | Monitor aggregator for CPU load ratio [available values: min, max or avg] | string | `"min"` | no |
@@ -83,7 +78,6 @@ Creates DataDog monitors with the following checks:
 | memory\_enabled | Flag to enable Free memory monitor | string | `"true"` | no |
 | memory\_extra\_tags | Extra tags for Free memory monitor | list | `[]` | no |
 | memory\_message | Mandatory message for Free memory monitor to avoid NBH alerting by default | string | n/a | yes |
-| memory\_silenced | Groups to mute for Free memory monitor | map | `{}` | no |
 | memory\_threshold\_critical | Free disk space critical threshold | string | `"5"` | no |
 | memory\_threshold\_warning | Free disk space warning threshold | string | `"10"` | no |
 | memory\_time\_aggregator | Monitor aggregator for Free memory [available values: min, max or avg] | string | `"max"` | no |

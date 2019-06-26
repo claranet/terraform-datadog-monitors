@@ -30,7 +30,6 @@ Creates DataDog monitors with the following checks:
 | incoming\_records\_enabled | Flag to enable Kinesis Firehorse incoming records monitor | string | `"true"` | no |
 | incoming\_records\_extra\_tags | Extra tags for Kinesis Firehorse incoming records monitor | list | `[]` | no |
 | incoming\_records\_message | Custom message for Kinesis Firehorse incoming records monitor | string | `""` | no |
-| incoming\_records\_silenced | Groups to mute for Kinesis Firehorse incoming records monitor | map | `{}` | no |
 | incoming\_records\_timeframe | Monitor timeframe for incoming records metrics evaluation [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
 | message | Message sent when an alert is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |

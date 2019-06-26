@@ -19,8 +19,6 @@ resource "datadog_monitor" "function_http_5xx_errors_rate" {
     critical = "${var.http_5xx_errors_rate_threshold_critical}"
   }
 
-  silenced = "${var.http_5xx_errors_rate_silenced}"
-
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
@@ -50,8 +48,6 @@ resource "datadog_monitor" "function_high_connections_count" {
     critical = "${var.high_connections_count_threshold_critical}"
   }
 
-  silenced = "${var.high_connections_count_silenced}"
-
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
@@ -80,8 +76,6 @@ resource "datadog_monitor" "function_high_threads_count" {
     warning  = "${var.high_threads_count_threshold_warning}"
     critical = "${var.high_threads_count_threshold_critical}"
   }
-
-  silenced = "${var.high_threads_count_silenced}"
 
   notify_no_data      = false
   renotify_interval   = 0

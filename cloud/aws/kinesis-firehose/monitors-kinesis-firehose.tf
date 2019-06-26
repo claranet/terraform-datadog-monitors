@@ -26,7 +26,5 @@ resource "datadog_monitor" "firehose_incoming_records" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.incoming_records_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:kinesis-firehose", "team:claranet", "created-by:terraform", "${var.incoming_records_extra_tags}"]
 }

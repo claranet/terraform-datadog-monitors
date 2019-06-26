@@ -25,8 +25,6 @@ resource "datadog_monitor" "API_Gateway_latency" {
   timeout_h           = 0
   include_tags        = true
 
-  silenced = "${var.latency_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform", "${var.latency_extra_tags}"]
 }
 
@@ -58,8 +56,6 @@ resource "datadog_monitor" "API_http_5xx_errors_count" {
   timeout_h           = 1
   include_tags        = true
 
-  silenced = "${var.http_5xx_requests_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform", "${var.http_5xx_requests_extra_tags}"]
 }
 
@@ -90,8 +86,6 @@ resource "datadog_monitor" "API_http_4xx_errors_count" {
   require_full_window = false
   timeout_h           = 1
   include_tags        = true
-
-  silenced = "${var.http_4xx_requests_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform", "${var.http_4xx_requests_extra_tags}"]
 }

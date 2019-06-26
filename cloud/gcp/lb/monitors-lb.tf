@@ -31,8 +31,6 @@ resource "datadog_monitor" "error_rate_4xx" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.error_rate_4xx_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", "${var.error_rate_4xx_extra_tags}"]
 }
 
@@ -69,8 +67,6 @@ resource "datadog_monitor" "error_rate_5xx" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.error_rate_5xx_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", "${var.error_rate_5xx_extra_tags}"]
 }
 
@@ -105,8 +101,6 @@ resource "datadog_monitor" "backend_latency_service" {
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
-
-  silenced = "${var.backend_latency_service_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", "${var.backend_latency_service_extra_tags}"]
 }
@@ -143,8 +137,6 @@ resource "datadog_monitor" "backend_latency_bucket" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.backend_latency_bucket_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", "${var.backend_latency_bucket_extra_tags}"]
 }
 
@@ -179,8 +171,6 @@ resource "datadog_monitor" "request_count" {
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
-
-  silenced = "${var.request_count_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform", "${var.request_count_extra_tags}"]
 }

@@ -33,7 +33,6 @@ Creates DataDog monitors with the following checks:
 | status\_enabled | Flag to enable Load Balancer status monitor | string | `"true"` | no |
 | status\_extra\_tags | Extra tags for Load Balancer status monitor | list | `[]` | no |
 | status\_message | Custom message for Load Balancer status monitor | string | `""` | no |
-| status\_silenced | Groups to mute for Load Balancer status monitor | map | `{}` | no |
 | status\_time\_aggregator | Monitor aggregator for Load Balancer status [available values: min, max or avg] | string | `"max"` | no |
 | status\_timeframe | Monitor timeframe for Load Balancer status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 

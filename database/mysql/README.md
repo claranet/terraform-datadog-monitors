@@ -38,7 +38,6 @@ Creates DataDog monitors with the following checks:
 | mysql\_aborted\_enabled | Flag to enable MySQL aborted connects monitor | string | `"true"` | no |
 | mysql\_aborted\_extra\_tags | Extra tags for MySQL aborted connects monitor | list | `[]` | no |
 | mysql\_aborted\_message | Custom message for MySQL aborted connects monitor | string | `""` | no |
-| mysql\_aborted\_silenced | Groups to mute for MySQL aborted connects monitor | map | `{}` | no |
 | mysql\_aborted\_threshold\_critical | Maximum critical acceptable percent of aborted connects | string | `"10"` | no |
 | mysql\_aborted\_threshold\_warning | Maximum warning acceptable percent of aborted connects | string | `"5"` | no |
 | mysql\_aborted\_time\_aggregator | Monitor time aggregator for MySQL aborted connects monitor [available values: min, max or avg] | string | `"avg"` | no |
@@ -47,12 +46,10 @@ Creates DataDog monitors with the following checks:
 | mysql\_availability\_extra\_tags | Extra tags for Mysql availability monitor | list | `[]` | no |
 | mysql\_availability\_message | Custom message for Mysql availability monitor | string | `""` | no |
 | mysql\_availability\_no\_data\_timeframe | Mysql availability monitor no data timeframe | string | `"10"` | no |
-| mysql\_availability\_silenced | Groups to mute for Mysql availability monitor | map | `{}` | no |
 | mysql\_availability\_threshold\_warning | Mysql availability monitor (warning threshold) | string | `"3"` | no |
 | mysql\_connection\_enabled | Flag to enable MySQL connection monitor | string | `"true"` | no |
 | mysql\_connection\_extra\_tags | Extra tags for MySQL connection monitor | list | `[]` | no |
 | mysql\_connection\_message | Custom message for MySQL connection monitor | string | `""` | no |
-| mysql\_connection\_silenced | Groups to mute for MySQL connection monitor | map | `{}` | no |
 | mysql\_connection\_threshold\_critical | Maximum critical acceptable percent of connections | string | `"80"` | no |
 | mysql\_connection\_threshold\_warning | Maximum warning acceptable percent of connections | string | `"70"` | no |
 | mysql\_connection\_time\_aggregator | Monitor time aggregator for MySQL connection monitor [available values: min, max or avg] | string | `"avg"` | no |
@@ -60,7 +57,6 @@ Creates DataDog monitors with the following checks:
 | mysql\_pool\_efficiency\_enabled | Flag to enable MySQL innodb buffer pool efficiency monitor | string | `"true"` | no |
 | mysql\_pool\_efficiency\_extra\_tags | Extra tags for MySQL innodb buffer pool efficiency monitor | list | `[]` | no |
 | mysql\_pool\_efficiency\_message | Custom message for MySQL innodb buffer pool efficiency monitor | string | `""` | no |
-| mysql\_pool\_efficiency\_silenced | Groups to mute for MySQL innodb buffer pool efficiency monitor | map | `{}` | no |
 | mysql\_pool\_efficiency\_threshold\_critical | Maximum critical acceptable percent of innodb buffer pool efficiency | string | `"30"` | no |
 | mysql\_pool\_efficiency\_threshold\_warning | Maximum warning acceptable percent of innodb buffer pool efficiency | string | `"20"` | no |
 | mysql\_pool\_efficiency\_time\_aggregator | Monitor time aggregator for MySQL innodb buffer pool efficiency monitor [available values: min, max or avg] | string | `"min"` | no |
@@ -68,7 +64,6 @@ Creates DataDog monitors with the following checks:
 | mysql\_pool\_utilization\_enabled | Flag to enable MySQL innodb buffer pool utilization monitor | string | `"true"` | no |
 | mysql\_pool\_utilization\_extra\_tags | Extra tags for MySQL innodb buffer pool utilization monitor | list | `[]` | no |
 | mysql\_pool\_utilization\_message | Custom message for MySQL innodb buffer pool utilization monitor | string | `""` | no |
-| mysql\_pool\_utilization\_silenced | Groups to mute for MySQL innodb buffer pool utilization monitor | map | `{}` | no |
 | mysql\_pool\_utilization\_threshold\_critical | Maximum critical acceptable percent of innodb buffer pool utilization | string | `"95"` | no |
 | mysql\_pool\_utilization\_threshold\_warning | Maximum warning acceptable percent of innodb buffer pool utilization | string | `"80"` | no |
 | mysql\_pool\_utilization\_time\_aggregator | Monitor time aggregator for MySQL innodb buffer pool utilization monitor [available values: min, max or avg] | string | `"min"` | no |
@@ -83,14 +78,12 @@ Creates DataDog monitors with the following checks:
 | mysql\_questions\_interval | Interval. | string | `"60"` | no |
 | mysql\_questions\_message | Custom message for MySQL queries monitor | string | `""` | no |
 | mysql\_questions\_seasonality | Seasonality of the algorithm | string | `"daily"` | no |
-| mysql\_questions\_silenced | Groups to mute for mysql queries monitor | map | `{}` | no |
 | mysql\_questions\_threshold\_critical | Maximum critical acceptable number of queries | string | `"1"` | no |
 | mysql\_questions\_time\_aggregator | Monitor time aggregator for MySQL queries monitor [available values: min, max or avg] | string | `"avg"` | no |
 | mysql\_questions\_timeframe | Monitor timeframe for MySQL queries monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_4h"` | no |
 | mysql\_slow\_enabled | Flag to enable MySQL slow queries monitor | string | `"true"` | no |
 | mysql\_slow\_extra\_tags | Extra tags for MySQL slow queries monitor | list | `[]` | no |
 | mysql\_slow\_message | Custom message for MySQL slow queries monitor | string | `""` | no |
-| mysql\_slow\_silenced | Groups to mute for MySQL slow queries monitor | map | `{}` | no |
 | mysql\_slow\_threshold\_critical | Maximum critical acceptable percent of slow queries | string | `"20"` | no |
 | mysql\_slow\_threshold\_warning | Maximum warning acceptable percent of slow queries | string | `"5"` | no |
 | mysql\_slow\_time\_aggregator | Monitor time aggregator for MySQL slow queries monitor [available values: min, max or avg] | string | `"avg"` | no |
@@ -105,7 +98,6 @@ Creates DataDog monitors with the following checks:
 | mysql\_threads\_interval | Interval. | string | `"60"` | no |
 | mysql\_threads\_message | Custom message for MySQL threads monitor | string | `""` | no |
 | mysql\_threads\_seasonality | Seasonality of the algorithm | string | `"daily"` | no |
-| mysql\_threads\_silenced | Groups to mute for mysql threads monitor | map | `{}` | no |
 | mysql\_threads\_threshold\_critical | Maximum critical acceptable number of threads | string | `"1"` | no |
 | mysql\_threads\_time\_aggregator | Monitor time aggregator for MySQL threads monitor [available values: min, max or avg] | string | `"avg"` | no |
 | mysql\_threads\_timeframe | Monitor timeframe for MySQL threads monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_4h"` | no |

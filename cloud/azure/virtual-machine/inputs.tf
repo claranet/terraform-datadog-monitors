@@ -40,11 +40,6 @@ variable "filter_tags_custom_excluded" {
 }
 
 # Azure Virtual Machine specific variables
-variable "status_silenced" {
-  description = "Groups to mute for Virtual Machine status monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "status_enabled" {
   description = "Flag to enable Virtual Machine status monitor"
@@ -74,12 +69,6 @@ variable "status_timeframe" {
   description = "Monitor timeframe for Virtual Machine status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
-}
-
-variable "cpu_usage_silenced" {
-  description = "Groups to mute for Virtual Machine CPU monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "cpu_usage_enabled" {
@@ -120,12 +109,6 @@ variable "cpu_usage_threshold_warning" {
 variable "cpu_usage_threshold_critical" {
   description = "Virtual Machine CPU usage in percent (critical threshold)"
   default     = "90"
-}
-
-variable "cpu_remaining_rate_silenced" {
-  description = "Groups to mute for Virtual Machine CPU remaining monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "cpu_remaining_rate_enabled" {

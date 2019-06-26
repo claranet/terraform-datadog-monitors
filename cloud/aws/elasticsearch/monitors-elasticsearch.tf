@@ -32,8 +32,6 @@ resource "datadog_monitor" "es_cluster_status" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.es_cluster_status_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticsearch", "team:claranet", "created-by:terraform", "${var.es_cluster_status_extra_tags}"]
 }
 
@@ -67,8 +65,6 @@ resource "datadog_monitor" "es_free_space_low" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.diskspace_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticsearch", "team:claranet", "created-by:terraform", "${var.diskspace_extra_tags}"]
 }
 
@@ -100,8 +96,6 @@ resource "datadog_monitor" "es_cpu_90_15min" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
-
-  silenced = "${var.cpu_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticsearch", "team:claranet", "created-by:terraform", "${var.cpu_extra_tags}"]
 }
