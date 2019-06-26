@@ -40,11 +40,6 @@ variable "filter_tags_custom_excluded" {
 }
 
 ## ELB
-variable "elb_no_healthy_instance_silenced" {
-  description = "Groups to mute for ELB no healty instance monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "elb_no_healthy_instance_enabled" {
   description = "Flag to enable ELB no healty instance monitor"
@@ -74,12 +69,6 @@ variable "elb_no_healthy_instance_timeframe" {
   description = "Monitor timeframe for ELB no healty instance [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
-}
-
-variable "elb_4xx_silenced" {
-  description = "Groups to mute for ELB 4xx errors monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "elb_4xx_enabled" {
@@ -116,12 +105,6 @@ variable "elb_4xx_threshold_critical" {
   default     = 10
 }
 
-variable "elb_5xx_silenced" {
-  description = "Groups to mute for ELB 5xx errors monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "elb_5xx_enabled" {
   description = "Flag to enable ELB 5xx errors monitor"
   type        = "string"
@@ -154,12 +137,6 @@ variable "elb_5xx_threshold_warning" {
 variable "elb_5xx_threshold_critical" {
   description = "loadbalancer 5xx critical threshold in percentage"
   default     = 10
-}
-
-variable "elb_backend_4xx_silenced" {
-  description = "Groups to mute for ELB backend 4xx errors monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "elb_backend_4xx_enabled" {
@@ -196,12 +173,6 @@ variable "elb_backend_4xx_threshold_critical" {
   default     = 10
 }
 
-variable "elb_backend_5xx_silenced" {
-  description = "Groups to mute for ELB backend 5xx errors monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "elb_backend_5xx_enabled" {
   description = "Flag to enable ELB backend 5xx errors monitor"
   type        = "string"
@@ -234,12 +205,6 @@ variable "elb_backend_5xx_threshold_warning" {
 variable "elb_backend_5xx_threshold_critical" {
   description = "loadbalancer backend 5xx critical threshold in percentage"
   default     = 10
-}
-
-variable "elb_backend_latency_silenced" {
-  description = "Groups to mute for ELB backend latency monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "elb_backend_latency_enabled" {

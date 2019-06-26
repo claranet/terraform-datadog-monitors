@@ -31,8 +31,6 @@ resource "datadog_monitor" "cpu_utilization" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.cpu_utilization_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.cpu_utilization_extra_tags}"]
 }
 
@@ -68,8 +66,6 @@ resource "datadog_monitor" "disk_utilization" {
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
-
-  silenced = "${var.disk_utilization_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.disk_utilization_extra_tags}"]
 }
@@ -113,8 +109,6 @@ resource "datadog_monitor" "disk_utilization_forecast" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.disk_utilization_forecast_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.disk_utilization_forecast_extra_tags}"]
 }
 
@@ -150,8 +144,6 @@ resource "datadog_monitor" "memory_utilization" {
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
-
-  silenced = "${var.memory_utilization_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.memory_utilization_extra_tags}"]
 }
@@ -195,8 +187,6 @@ resource "datadog_monitor" "memory_utilization_forecast" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.memory_utilization_forecast_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.memory_utilization_forecast_extra_tags}"]
 }
 
@@ -231,8 +221,6 @@ resource "datadog_monitor" "failover_unavailable" {
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
-
-  silenced = "${var.failover_unavailable_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.failover_unavailable_extra_tags}"]
 }

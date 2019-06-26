@@ -28,8 +28,6 @@ resource "datadog_monitor" "memcached_get_hits" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.get_hits_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-memcached", "team:claranet", "created-by:terraform", "engine:memcached", "${var.get_hits_extra_tags}"]
 }
 
@@ -60,8 +58,6 @@ resource "datadog_monitor" "memcached_cpu_high" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
-
-  silenced = "${var.cpu_high_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-memcached", "team:claranet", "created-by:terraform", "engine:memcached", "${var.cpu_high_extra_tags}"]
 }

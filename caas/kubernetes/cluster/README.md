@@ -25,7 +25,6 @@ Creates DataDog monitors with the following checks:
 | apiserver\_enabled | Flag to enable API server monitor | string | `"true"` | no |
 | apiserver\_extra\_tags | Extra tags for API server monitor | list | `[]` | no |
 | apiserver\_message | Custom message for API server monitor | string | `""` | no |
-| apiserver\_silenced | Groups to mute for API server monitor | map | `{}` | no |
 | apiserver\_threshold\_warning | API server monitor (warning threshold) | string | `"3"` | no |
 | environment | Architecture environment | string | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | string | `"15"` | no |

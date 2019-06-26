@@ -41,12 +41,6 @@ variable "filter_tags_custom_excluded" {
 
 # Redis specific variables
 
-variable "evictedkeys_change_silenced" {
-  description = "Groups to mute for Redis evicted keys monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "evictedkeys_change_enabled" {
   description = "Flag to enable Redis evicted keys monitor"
   type        = "string"
@@ -85,12 +79,6 @@ variable "evictedkeys_change_threshold_warning" {
 variable "evictedkeys_change_threshold_critical" {
   description = "Evicted keys change (critical threshold)"
   default     = 100
-}
-
-variable "expirations_rate_silenced" {
-  description = "Groups to mute for Redis keys expirations monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "expirations_rate_enabled" {
@@ -133,12 +121,6 @@ variable "expirations_rate_threshold_warning" {
   default     = 60
 }
 
-variable "blocked_clients_silenced" {
-  description = "Groups to mute for Redis Blocked clients monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "blocked_clients_enabled" {
   description = "Flag to enable Redis Blocked clients monitor"
   type        = "string"
@@ -177,15 +159,6 @@ variable "blocked_clients_threshold_critical" {
 variable "blocked_clients_threshold_warning" {
   description = "Blocked clients rate (warning threshold)"
   default     = 10
-}
-
-variable "keyspace_silenced" {
-  description = "Groups to mute for Redis keyspace monitor"
-  type        = "map"
-
-  default = {
-    "*" = 0 # Mute all for now by default
-  }
 }
 
 variable "keyspace_enabled" {
@@ -228,12 +201,6 @@ variable "keyspace_threshold_warning" {
   default     = 1
 }
 
-variable "mem_used_silenced" {
-  description = "Groups to mute for Redis RAM memory used monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "mem_used_enabled" {
   description = "Flag to enable Redis RAM memory used monitor"
   type        = "string"
@@ -272,12 +239,6 @@ variable "mem_used_threshold_critical" {
 variable "mem_used_threshold_warning" {
   description = "RAM memory used limit (warning threshold)"
   default     = 85
-}
-
-variable "mem_frag_silenced" {
-  description = "Groups to mute for Redis memory RAM fragmentation monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "mem_frag_enabled" {
@@ -320,12 +281,6 @@ variable "mem_frag_threshold_warning" {
   default     = 130
 }
 
-variable "rejected_con_silenced" {
-  description = "Groups to mute for Redis rejected connections errors monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "rejected_con_enabled" {
   description = "Flag to enable Redis rejected connections errors monitor"
   type        = "string"
@@ -366,12 +321,6 @@ variable "rejected_con_threshold_warning" {
   default     = 10
 }
 
-variable "latency_silenced" {
-  description = "Groups to mute for Redis latency monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "latency_enabled" {
   description = "Flag to enable Redis latency monitor"
   type        = "string"
@@ -410,12 +359,6 @@ variable "latency_threshold_critical" {
 variable "latency_threshold_warning" {
   description = "latency limit (warning threshold)"
   default     = 50
-}
-
-variable "hitrate_silenced" {
-  description = "Groups to mute for Redis hitrate monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "hitrate_enabled" {
@@ -461,11 +404,6 @@ variable "hitrate_threshold_warning" {
 #
 # Connection Down
 #
-variable "not_responding_silenced" {
-  description = "Groups to mute for Redis does not respond monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "not_responding_enabled" {
   description = "Flag to enable Redis does not respond monitor"

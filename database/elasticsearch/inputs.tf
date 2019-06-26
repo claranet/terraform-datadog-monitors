@@ -73,12 +73,6 @@ variable "cluster_status_not_green_threshold_critical" {
   default     = 0
 }
 
-variable "cluster_status_not_green_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "cluster_status_not_green_enabled" {
   description = "Flag to enable Cluster Status monitor"
   type        = "string"
@@ -122,12 +116,6 @@ variable "cluster_initializing_shards_threshold_critical" {
   description = "Cluster Status  critical threshold"
   type        = "string"
   default     = 2
-}
-
-variable "cluster_initializing_shards_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "cluster_initializing_shards_enabled" {
@@ -175,12 +163,6 @@ variable "cluster_relocating_shards_threshold_critical" {
   default     = 2
 }
 
-variable "cluster_relocating_shards_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "cluster_relocating_shards_enabled" {
   description = "Flag to enable Cluster Status monitor"
   type        = "string"
@@ -224,12 +206,6 @@ variable "cluster_unassigned_shards_threshold_critical" {
   description = "Cluster Status  critical threshold"
   type        = "string"
   default     = 2
-}
-
-variable "cluster_unassigned_shards_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "cluster_unassigned_shards_enabled" {
@@ -277,12 +253,6 @@ variable "node_free_space_threshold_critical" {
   default     = 10
 }
 
-variable "node_free_space_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "node_free_space_enabled" {
   description = "Flag to enable Cluster Status monitor"
   type        = "string"
@@ -326,12 +296,6 @@ variable "jvm_heap_memory_usage_threshold_critical" {
   description = "Cluster Status  critical threshold"
   type        = "string"
   default     = 90
-}
-
-variable "jvm_heap_memory_usage_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "jvm_heap_memory_usage_enabled" {
@@ -379,12 +343,6 @@ variable "jvm_memory_young_usage_threshold_critical" {
   default     = 90
 }
 
-variable "jvm_memory_young_usage_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "jvm_memory_young_usage_enabled" {
   description = "Flag to enable Cluster Status monitor"
   type        = "string"
@@ -428,12 +386,6 @@ variable "jvm_memory_old_usage_threshold_critical" {
   description = "Cluster Status  critical threshold"
   type        = "string"
   default     = 90
-}
-
-variable "jvm_memory_old_usage_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "jvm_memory_old_usage_enabled" {
@@ -481,12 +433,6 @@ variable "jvm_gc_old_collection_latency_threshold_critical" {
   default     = 200
 }
 
-variable "jvm_gc_old_collection_latency_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "jvm_gc_old_collection_latency_enabled" {
   description = "Flag to enable Cluster Status monitor"
   type        = "string"
@@ -530,12 +476,6 @@ variable "jvm_gc_young_collection_latency_threshold_critical" {
   description = "Cluster Status  critical threshold"
   type        = "string"
   default     = 25
-}
-
-variable "jvm_gc_young_collection_latency_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "jvm_gc_young_collection_latency_enabled" {
@@ -583,12 +523,6 @@ variable "indexing_latency_threshold_critical" {
   default     = 15
 }
 
-variable "indexing_latency_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "indexing_latency_enabled" {
   description = "Flag to enable Cluster Status monitor"
   type        = "string"
@@ -632,12 +566,6 @@ variable "flush_latency_threshold_critical" {
   description = "Cluster Status  critical threshold"
   type        = "string"
   default     = 100
-}
-
-variable "flush_latency_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "flush_latency_enabled" {
@@ -727,12 +655,6 @@ variable "http_connections_anomaly_threshold_critical" {
   default     = 1
 }
 
-variable "http_connections_anomaly_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "http_connections_anomaly_enabled" {
   description = "Flag to enable Cluster Status monitor"
   type        = "string"
@@ -778,12 +700,6 @@ variable "search_query_latency_threshold_critical" {
   default     = 1
 }
 
-variable "search_query_latency_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "search_query_latency_enabled" {
   description = "Flag to enable Cluster Status monitor"
   type        = "string"
@@ -827,12 +743,6 @@ variable "fetch_latency_threshold_critical" {
   description = "Cluster Status  critical threshold"
   type        = "string"
   default     = 4
-}
-
-variable "fetch_latency_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "fetch_latency_enabled" {
@@ -886,12 +796,6 @@ variable "search_query_change_threshold_critical" {
   default     = 100
 }
 
-variable "search_query_change_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "search_query_change_enabled" {
   description = "Flag to enable Cluster Status monitor"
   type        = "string"
@@ -941,12 +845,6 @@ variable "fetch_change_threshold_critical" {
   description = "Cluster Status  critical threshold"
   type        = "string"
   default     = 100
-}
-
-variable "fetch_change_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "fetch_change_enabled" {
@@ -1000,12 +898,6 @@ variable "field_data_evictions_change_threshold_critical" {
   default     = 120
 }
 
-variable "field_data_evictions_change_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "field_data_evictions_change_enabled" {
   description = "Flag to enable Cluster Status monitor"
   type        = "string"
@@ -1055,12 +947,6 @@ variable "query_cache_evictions_change_threshold_critical" {
   description = "Cluster Status  critical threshold"
   type        = "string"
   default     = 120
-}
-
-variable "query_cache_evictions_change_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "query_cache_evictions_change_enabled" {
@@ -1114,12 +1000,6 @@ variable "request_cache_evictions_change_threshold_critical" {
   default     = 120
 }
 
-variable "request_cache_evictions_change_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "request_cache_evictions_change_enabled" {
   description = "Flag to enable Cluster Status monitor"
   type        = "string"
@@ -1171,12 +1051,6 @@ variable "task_time_in_queue_change_threshold_critical" {
   default     = 200
 }
 
-variable "task_time_in_queue_change_silenced" {
-  description = "Groups to mute for Cluster Status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "task_time_in_queue_change_enabled" {
   description = "Flag to enable Cluster Status monitor"
   type        = "string"
@@ -1192,11 +1066,6 @@ variable "task_time_in_queue_change_extra_tags" {
 #
 # Service Check
 #
-variable "not_responding_silenced" {
-  description = "Groups to mute for Elasticsearch does not respond monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "not_responding_enabled" {
   description = "Flag to enable Elasticsearch does not respond monitor"

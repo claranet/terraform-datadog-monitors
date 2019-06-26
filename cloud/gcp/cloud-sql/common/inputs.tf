@@ -64,12 +64,6 @@ variable "cpu_utilization_threshold_critical" {
   default     = 90
 }
 
-variable "cpu_utilization_silenced" {
-  description = "Groups to mute for GCP Cloud SQL CPU Utilization monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "cpu_utilization_enabled" {
   description = "Flag to enable GCP Cloud SQL CPU Utilization monitor"
   type        = "string"
@@ -114,12 +108,6 @@ variable "disk_utilization_threshold_critical" {
   description = "Disk Utilization in percentage (critical threshold)"
   type        = "string"
   default     = 90
-}
-
-variable "disk_utilization_silenced" {
-  description = "Groups to mute for GCP Cloud SQL Disk Utilization monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "disk_utilization_enabled" {
@@ -204,12 +192,6 @@ variable "disk_utilization_forecast_threshold_critical_recovery" {
   default     = 72
 }
 
-variable "disk_utilization_forecast_silenced" {
-  description = "Groups to mute for GCP Cloud SQL Disk Utilization Forecast monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "disk_utilization_forecast_enabled" {
   description = "Flag to enable GCP Cloud SQL Disk Utilization Forecast monitor"
   type        = "string"
@@ -249,12 +231,6 @@ variable "memory_utilization_threshold_warning" {
 variable "memory_utilization_threshold_critical" {
   description = "Memory Utilization in percentage (critical threshold)"
   default     = 90
-}
-
-variable "memory_utilization_silenced" {
-  description = "Groups to mute for GCP Cloud SQL Memory Utilization monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "memory_utilization_enabled" {
@@ -334,12 +310,6 @@ variable "memory_utilization_forecast_threshold_critical_recovery" {
   default     = 81
 }
 
-variable "memory_utilization_forecast_silenced" {
-  description = "Groups to mute for GCP Cloud SQL Memory Utilization Forecast monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "memory_utilization_forecast_enabled" {
   description = "Flag to enable GCP Cloud SQL Memory Utilization Forecast monitor"
   type        = "string"
@@ -378,12 +348,6 @@ variable "failover_unavailable_threshold_critical" {
   description = "Failover Unavailable critical threshold"
   type        = "string"
   default     = 0
-}
-
-variable "failover_unavailable_silenced" {
-  description = "Groups to mute for GCP Cloud SQL Failover Unavailable monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "failover_unavailable_enabled" {

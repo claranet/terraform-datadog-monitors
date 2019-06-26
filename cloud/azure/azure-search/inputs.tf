@@ -38,11 +38,6 @@ variable "prefix_slug" {
 }
 
 # Azure Search specific variables
-variable "latency_silenced" {
-  description = "Groups to mute for Azure Search latency monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "latency_enabled" {
   description = "Flag to enable Azure Search latency monitor"
@@ -82,12 +77,6 @@ variable "latency_threshold_critical" {
 variable "latency_threshold_warning" {
   default     = 2
   description = "Warning threshold for Azure Search latency in seconds"
-}
-
-variable "throttled_queries_rate_silenced" {
-  description = "Groups to mute for Azure Search throttled queries rate monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "throttled_queries_rate_enabled" {

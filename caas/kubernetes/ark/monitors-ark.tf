@@ -25,6 +25,5 @@ resource "datadog_monitor" "ark_schedules_monitor" {
   locked              = false
   require_full_window = false
 
-  silenced = "${var.ark_schedules_monitor_silenced}"
-  tags     = ["env:${var.environment}", "type:caas", "provider:prometheus", "resource:ark", "team:claranet", "created-by:terraform", "${var.ark_schedules_extra_tags}"]
+  tags = ["env:${var.environment}", "type:caas", "provider:prometheus", "resource:ark", "team:claranet", "created-by:terraform", "${var.ark_schedules_extra_tags}"]
 }

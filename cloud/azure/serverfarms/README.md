@@ -27,7 +27,6 @@ Creates DataDog monitors with the following checks:
 | cpu\_percentage\_enabled | Flag to enable the serverfarms cpu_percentage monitor | string | `"true"` | no |
 | cpu\_percentage\_extra\_tags | Extra tags for serverfarms cpu_percentage monitor | list | `[]` | no |
 | cpu\_percentage\_message | Custom message for serverfarm cpu_percentage monitor | string | `""` | no |
-| cpu\_percentage\_silenced | Groups to mute for serverfarm cpu_percentage monitor | map | `{}` | no |
 | cpu\_percentage\_threshold\_critical | CPU percentage (critical threshold) | string | `"95"` | no |
 | cpu\_percentage\_threshold\_warning | CPU percentage (warning threshold) | string | `"90"` | no |
 | cpu\_percentage\_time\_aggregator | Monitor aggregator for serverfarms cpu_percentage [available values: min, max or avg] | string | `"min"` | no |
@@ -39,7 +38,6 @@ Creates DataDog monitors with the following checks:
 | memory\_percentage\_enabled | Flag to enable the serverfarms memory_percentage monitor | string | `"true"` | no |
 | memory\_percentage\_extra\_tags | Extra tags for serverfarms memory_percentage monitor | list | `[]` | no |
 | memory\_percentage\_message | Custom message for serverfarm memory_percentage monitor | string | `""` | no |
-| memory\_percentage\_silenced | Groups to mute for serverfarm memory_percentage monitor | map | `{}` | no |
 | memory\_percentage\_threshold\_critical | Memory percentage (critical threshold) | string | `"95"` | no |
 | memory\_percentage\_threshold\_warning | Memory percentage (warning threshold) | string | `"90"` | no |
 | memory\_percentage\_time\_aggregator | Monitor aggregator for serverfarms memory_percentage [available values: min, max or avg] | string | `"min"` | no |
@@ -50,7 +48,6 @@ Creates DataDog monitors with the following checks:
 | status\_enabled | Flag to enable the serverfarms status monitor | string | `"true"` | no |
 | status\_extra\_tags | Extra tags for serverfarms status monitor | list | `[]` | no |
 | status\_message | Custom message for serverfarm status monitor | string | `""` | no |
-| status\_silenced | Groups to mute for serverfarm status monitor | map | `{}` | no |
 | status\_time\_aggregator | Monitor aggregator for serverfarms status [available values: min, max or avg] | string | `"min"` | no |
 | status\_timeframe | Monitor timeframe for serverfarms status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 

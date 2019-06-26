@@ -41,12 +41,6 @@ variable "filter_tags_custom_excluded" {
 
 # AWS RDS Aurora instance specific
 
-variable "aurora_replicalag_silenced" {
-  description = "Groups to mute for RDS Aurora replica lag monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "aurora_replicalag_enabled" {
   description = "Flag to enable RDS Aurora replica lag monitor"
   type        = "string"

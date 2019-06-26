@@ -12,8 +12,6 @@ resource "datadog_monitor" "datalakestore_status" {
 
   type = "metric alert"
 
-  silenced = "${var.status_silenced}"
-
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0

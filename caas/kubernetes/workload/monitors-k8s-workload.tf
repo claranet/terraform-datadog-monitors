@@ -23,8 +23,6 @@ resource "datadog_monitor" "job" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.job_silenced}"
-
   tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform", "${var.job_extra_tags}"]
 }
 
@@ -52,8 +50,6 @@ resource "datadog_monitor" "cronjob" {
   include_tags        = true
   locked              = false
   require_full_window = true
-
-  silenced = "${var.cronjob_silenced}"
 
   tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform", "${var.cronjob_extra_tags}"]
 }
@@ -86,8 +82,7 @@ resource "datadog_monitor" "replica_available" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.replica_available_silenced}"
-  tags     = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform", "${var.replica_available_extra_tags}"]
+  tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform", "${var.replica_available_extra_tags}"]
 }
 
 resource "datadog_monitor" "replica_ready" {
@@ -118,8 +113,7 @@ resource "datadog_monitor" "replica_ready" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.replica_ready_silenced}"
-  tags     = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform", "${var.replica_ready_extra_tags}"]
+  tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform", "${var.replica_ready_extra_tags}"]
 }
 
 resource "datadog_monitor" "replica_current" {
@@ -150,6 +144,5 @@ resource "datadog_monitor" "replica_current" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.replica_current_silenced}"
-  tags     = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform", "${var.replica_current_extra_tags}"]
+  tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform", "${var.replica_current_extra_tags}"]
 }

@@ -29,7 +29,6 @@ Creates DataDog monitors with the following checks:
 | cpu\_usage\_enabled | Flag to enable PostgreSQL status monitor | string | `"true"` | no |
 | cpu\_usage\_extra\_tags | Extra tags for PostgreSQL status monitor | list | `[]` | no |
 | cpu\_usage\_message | Custom message for PostgreSQL CPU monitor | string | `""` | no |
-| cpu\_usage\_silenced | Groups to mute for PostgreSQL CPU monitor | map | `{}` | no |
 | cpu\_usage\_threshold\_critical | PostgreSQL CPU usage in percent (critical threshold) | string | `"90"` | no |
 | cpu\_usage\_threshold\_warning | PostgreSQL CPU usage in percent (warning threshold) | string | `"80"` | no |
 | cpu\_usage\_time\_aggregator | Monitor aggregator for PostgreSQL CPU [available values: min, max or avg] | string | `"min"` | no |
@@ -41,7 +40,6 @@ Creates DataDog monitors with the following checks:
 | free\_storage\_enabled | Flag to enable PostgreSQL status monitor | string | `"true"` | no |
 | free\_storage\_extra\_tags | Extra tags for PostgreSQL status monitor | list | `[]` | no |
 | free\_storage\_message | Custom message for PostgreSQL Free Storage monitor | string | `""` | no |
-| free\_storage\_silenced | Groups to mute for PostgreSQL Free Storage monitor | map | `{}` | no |
 | free\_storage\_threshold\_critical | PostgreSQL Free Storage remaining in percent (critical threshold) | string | `"10"` | no |
 | free\_storage\_threshold\_warning | PostgreSQL Free Storage remaining in percent (warning threshold) | string | `"20"` | no |
 | free\_storage\_time\_aggregator | Monitor aggregator for PostgreSQL Free Storage [available values: min, max or avg] | string | `"min"` | no |
@@ -49,7 +47,6 @@ Creates DataDog monitors with the following checks:
 | io\_consumption\_enabled | Flag to enable PostgreSQL status monitor | string | `"true"` | no |
 | io\_consumption\_extra\_tags | Extra tags for PostgreSQL status monitor | list | `[]` | no |
 | io\_consumption\_message | Custom message for PostgreSQL IO consumption monitor | string | `""` | no |
-| io\_consumption\_silenced | Groups to mute for PostgreSQL IO consumption monitor | map | `{}` | no |
 | io\_consumption\_threshold\_critical | PostgreSQL IO consumption in percent (critical threshold) | string | `"90"` | no |
 | io\_consumption\_threshold\_warning | PostgreSQL IO consumption in percent (warning threshold) | string | `"80"` | no |
 | io\_consumption\_time\_aggregator | Monitor aggregator for PostgreSQL IO consumption [available values: min, max or avg] | string | `"min"` | no |
@@ -57,7 +54,6 @@ Creates DataDog monitors with the following checks:
 | memory\_usage\_enabled | Flag to enable PostgreSQL status monitor | string | `"true"` | no |
 | memory\_usage\_extra\_tags | Extra tags for PostgreSQL status monitor | list | `[]` | no |
 | memory\_usage\_message | Custom message for PostgreSQL memory monitor | string | `""` | no |
-| memory\_usage\_silenced | Groups to mute for PostgreSQL memory monitor | map | `{}` | no |
 | memory\_usage\_threshold\_critical | PostgreSQL memory usage in percent (critical threshold) | string | `"90"` | no |
 | memory\_usage\_threshold\_warning | PostgreSQL memory usage in percent (warning threshold) | string | `"80"` | no |
 | memory\_usage\_time\_aggregator | Monitor aggregator for PostgreSQL memory [available values: min, max or avg] | string | `"min"` | no |
@@ -67,7 +63,6 @@ Creates DataDog monitors with the following checks:
 | no\_connection\_enabled | Flag to enable PostgreSQL status monitor | string | `"true"` | no |
 | no\_connection\_extra\_tags | Extra tags for PostgreSQL status monitor | list | `[]` | no |
 | no\_connection\_message | Custom message for PostgreSQL no connection monitor | string | `""` | no |
-| no\_connection\_silenced | Groups to mute for PostgreSQL no connection monitor | map | `{}` | no |
 | no\_connection\_time\_aggregator | Monitor aggregator for PostgreSQL no connection [available values: min, max or avg] | string | `"min"` | no |
 | no\_connection\_timeframe | Monitor timeframe for PostgreSQL no connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |

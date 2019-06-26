@@ -40,12 +40,6 @@ variable "prefix_slug" {
 
 # Datadog monitors variables
 
-variable "apiserver_silenced" {
-  description = "Groups to mute for API server monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "apiserver_enabled" {
   description = "Flag to enable API server monitor"
   type        = "string"

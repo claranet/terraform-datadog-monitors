@@ -40,12 +40,6 @@ variable "prefix_slug" {
 
 # Datadog monitors variables
 
-variable "disk_pressure_silenced" {
-  description = "Groups to mute for Disk pressure monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "disk_pressure_enabled" {
   description = "Flag to enable Disk pressure monitor"
   type        = "string"
@@ -68,12 +62,6 @@ variable "disk_pressure_threshold_warning" {
   description = "Disk pressure monitor (warning threshold)"
   type        = "string"
   default     = 3
-}
-
-variable "disk_out_silenced" {
-  description = "Groups to mute for Out of disk monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "disk_out_enabled" {
@@ -100,12 +88,6 @@ variable "disk_out_threshold_warning" {
   default     = 3
 }
 
-variable "memory_pressure_silenced" {
-  description = "Groups to mute for Memory pressure monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "memory_pressure_enabled" {
   description = "Flag to enable Memory pressure monitor"
   type        = "string"
@@ -128,12 +110,6 @@ variable "memory_pressure_threshold_warning" {
   description = "Memory pressure monitor (warning threshold)"
   type        = "string"
   default     = 3
-}
-
-variable "ready_silenced" {
-  description = "Groups to mute for Node ready monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "ready_enabled" {
@@ -160,12 +136,6 @@ variable "ready_threshold_warning" {
   default     = 3
 }
 
-variable "kubelet_ping_silenced" {
-  description = "Groups to mute for Kubelet ping monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "kubelet_ping_enabled" {
   description = "Flag to enable Kubelet ping monitor"
   type        = "string"
@@ -190,12 +160,6 @@ variable "kubelet_ping_threshold_warning" {
   default     = 3
 }
 
-variable "kubelet_syncloop_silenced" {
-  description = "Groups to mute for Kubelet sync loop monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "kubelet_syncloop_enabled" {
   description = "Flag to enable Kubelet sync loop monitor"
   type        = "string"
@@ -218,12 +182,6 @@ variable "kubelet_syncloop_threshold_warning" {
   description = "Kubelet sync loop monitor (warning threshold)"
   type        = "string"
   default     = 3
-}
-
-variable "unregister_net_device_silenced" {
-  description = "Groups to mute for Unregister net device monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "unregister_net_device_enabled" {
@@ -261,12 +219,6 @@ variable "unregister_net_device_threshold_critical" {
   description = "Unregister net device critical threshold"
 }
 
-variable "node_unschedulable_silenced" {
-  description = "Groups to mute for node unschedulable monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "node_unschedulable_enabled" {
   description = "Flag to enable node unschedulable monitor"
   type        = "string"
@@ -295,12 +247,6 @@ variable "node_unschedulable_timeframe" {
   description = "Monitor timeframe for node unschedulable [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_1h"
-}
-
-variable "volume_space_silenced" {
-  description = "Groups to mute for Volume space monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "volume_space_enabled" {
@@ -341,12 +287,6 @@ variable "volume_space_threshold_critical" {
 variable "volume_space_threshold_warning" {
   default     = 90
   description = "Volume space warning threshold"
-}
-
-variable "volume_inodes_silenced" {
-  description = "Groups to mute for Volume inodes monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "volume_inodes_enabled" {

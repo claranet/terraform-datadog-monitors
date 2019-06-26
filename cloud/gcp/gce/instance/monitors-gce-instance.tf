@@ -30,8 +30,6 @@ resource "datadog_monitor" "cpu_utilization" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.cpu_utilization_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform", "${var.cpu_utilization_extra_tags}"]
 }
 
@@ -73,8 +71,6 @@ resource "datadog_monitor" "disk_throttled_bps" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.disk_throttled_bps_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform", "${var.disk_throttled_bps_extra_tags}"]
 }
 
@@ -115,8 +111,6 @@ resource "datadog_monitor" "disk_throttled_ops" {
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
-
-  silenced = "${var.disk_throttled_ops_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform", "${var.disk_throttled_ops_extra_tags}"]
 }

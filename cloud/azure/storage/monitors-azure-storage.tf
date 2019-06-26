@@ -14,8 +14,6 @@ resource "datadog_monitor" "availability" {
     warning  = "${var.availability_threshold_warning}"
   }
 
-  silenced = "${var.availability_silenced}"
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -45,8 +43,6 @@ resource "datadog_monitor" "successful_requests" {
     critical = "${var.successful_requests_threshold_critical}"
     warning  = "${var.successful_requests_threshold_warning}"
   }
-
-  silenced = "${var.successful_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -78,8 +74,6 @@ resource "datadog_monitor" "latency" {
     warning  = "${var.latency_threshold_warning}"
   }
 
-  silenced = "${var.latency_silenced}"
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -109,8 +103,6 @@ resource "datadog_monitor" "timeout_error_requests" {
     critical = "${var.timeout_error_requests_threshold_critical}"
     warning  = "${var.timeout_error_requests_threshold_warning}"
   }
-
-  silenced = "${var.timeout_error_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -142,8 +134,6 @@ resource "datadog_monitor" "network_error_requests" {
     warning  = "${var.network_error_requests_threshold_warning}"
   }
 
-  silenced = "${var.network_error_requests_silenced}"
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -173,8 +163,6 @@ resource "datadog_monitor" "throttling_error_requests" {
     critical = "${var.throttling_error_requests_threshold_critical}"
     warning  = "${var.throttling_error_requests_threshold_warning}"
   }
-
-  silenced = "${var.throttling_error_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false
@@ -206,8 +194,6 @@ resource "datadog_monitor" "server_other_error_requests" {
     warning  = "${var.server_other_error_requests_threshold_warning}"
   }
 
-  silenced = "${var.server_other_error_requests_silenced}"
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -238,8 +224,6 @@ resource "datadog_monitor" "client_other_error_requests" {
     warning  = "${var.client_other_error_requests_threshold_warning}"
   }
 
-  silenced = "${var.client_other_error_requests_silenced}"
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -269,8 +253,6 @@ resource "datadog_monitor" "authorization_error_requests" {
     critical = "${var.authorization_error_requests_threshold_critical}"
     warning  = "${var.authorization_error_requests_threshold_warning}"
   }
-
-  silenced = "${var.authorization_error_requests_silenced}"
 
   type                = "metric alert"
   notify_no_data      = false

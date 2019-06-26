@@ -44,12 +44,6 @@ variable "status_enabled" {
   default     = "true"
 }
 
-variable "status_silenced" {
-  description = "Groups to mute for Load Balancer status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "status_message" {
   description = "Custom message for Load Balancer status monitor"
   type        = "string"

@@ -29,8 +29,6 @@ resource "datadog_monitor" "concurrent_queries" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.concurrent_queries_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.concurrent_queries_extra_tags}"]
 }
 
@@ -64,8 +62,6 @@ resource "datadog_monitor" "execution_time" {
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
-
-  silenced = "${var.execution_time_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.execution_time_extra_tags}"]
 }
@@ -101,8 +97,6 @@ resource "datadog_monitor" "scanned_bytes" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.scanned_bytes_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.scanned_bytes_extra_tags}"]
 }
 
@@ -136,8 +130,6 @@ resource "datadog_monitor" "scanned_bytes_billed" {
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
-
-  silenced = "${var.scanned_bytes_billed_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.scanned_bytes_billed_extra_tags}"]
 }
@@ -173,8 +165,6 @@ resource "datadog_monitor" "available_slots" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.available_slots_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.available_slots_extra_tags}"]
 }
 
@@ -208,8 +198,6 @@ resource "datadog_monitor" "stored_bytes" {
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
-
-  silenced = "${var.stored_bytes_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.stored_bytes_extra_tags}"]
 }
@@ -245,8 +233,6 @@ resource "datadog_monitor" "table_count" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.table_count_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.table_count_extra_tags}"]
 }
 
@@ -281,8 +267,6 @@ resource "datadog_monitor" "uploaded_bytes" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.uploaded_bytes_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.uploaded_bytes_extra_tags}"]
 }
 
@@ -316,8 +300,6 @@ resource "datadog_monitor" "uploaded_bytes_billed" {
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
-
-  silenced = "${var.uploaded_bytes_billed_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform", "${var.uploaded_bytes_billed_extra_tags}"]
 }

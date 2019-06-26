@@ -24,8 +24,6 @@ resource "datadog_monitor" "php_fpm_connect" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.php_fpm_connect_silenced}"
-
   tags = ["env:${var.environment}", "type:middleware", "provider:php-fpm", "resource:php-fpm", "team:claranet", "created-by:terraform", "${var.php_fpm_connect_extra_tags}"]
 }
 
@@ -57,8 +55,6 @@ resource "datadog_monitor" "php_fpm_connect_idle" {
   include_tags        = true
   locked              = false
   require_full_window = true
-
-  silenced = "${var.php_fpm_busy_silenced}"
 
   tags = ["env:${var.environment}", "type:middleware", "provider:php-fpm", "resource:php-fpm", "team:claranet", "created-by:terraform", "${var.php_fpm_busy_extra_tags}"]
 }

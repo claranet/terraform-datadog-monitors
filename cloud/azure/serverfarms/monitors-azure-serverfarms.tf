@@ -11,8 +11,6 @@ resource "datadog_monitor" "status" {
 
   type = "metric alert"
 
-  silenced = "${var.status_silenced}"
-
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -44,8 +42,6 @@ resource "datadog_monitor" "cpu_percentage" {
     critical = "${var.cpu_percentage_threshold_critical}"
   }
 
-  silenced = "${var.cpu_percentage_silenced}"
-
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -76,8 +72,6 @@ resource "datadog_monitor" "memory_percentage" {
     warning  = "${var.memory_percentage_threshold_warning}"
     critical = "${var.memory_percentage_threshold_critical}"
   }
-
-  silenced = "${var.memory_percentage_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"

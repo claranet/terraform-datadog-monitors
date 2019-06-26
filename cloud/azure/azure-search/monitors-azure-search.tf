@@ -19,8 +19,6 @@ resource "datadog_monitor" "azure_search_latency" {
     critical = "${var.latency_threshold_critical}"
   }
 
-  silenced = "${var.latency_silenced}"
-
   notify_no_data      = true  # Will not notify when no data is received
   renotify_interval   = 0
   require_full_window = false
@@ -50,8 +48,6 @@ resource "datadog_monitor" "azure_search_throttled_queries_rate" {
     warning  = "${var.throttled_queries_rate_threshold_warning}"
     critical = "${var.throttled_queries_rate_threshold_critical}"
   }
-
-  silenced = "${var.throttled_queries_rate_silenced}"
 
   notify_no_data      = false # Will notify when no data is received
   renotify_interval   = 0

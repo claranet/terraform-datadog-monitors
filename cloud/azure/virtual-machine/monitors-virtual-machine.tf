@@ -12,8 +12,6 @@ resource "datadog_monitor" "virtualmachine_status" {
 
   type = "metric alert"
 
-  silenced = "${var.status_silenced}"
-
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -44,8 +42,6 @@ resource "datadog_monitor" "virtualmachine_cpu_usage" {
     critical = "${var.cpu_usage_threshold_critical}"
     warning  = "${var.cpu_usage_threshold_warning}"
   }
-
-  silenced = "${var.cpu_usage_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -80,8 +76,6 @@ resource "datadog_monitor" "virtualmachine_credit_cpu_remaining_too_low" {
     warning  = "${var.cpu_remaining_rate_threshold_warning}"
     critical = "${var.cpu_remaining_rate_threshold_critical}"
   }
-
-  silenced = "${var.cpu_remaining_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"

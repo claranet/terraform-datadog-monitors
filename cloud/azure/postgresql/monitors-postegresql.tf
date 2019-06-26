@@ -16,8 +16,6 @@ resource "datadog_monitor" "postgresql_cpu_usage" {
     warning  = "${var.cpu_usage_threshold_warning}"
   }
 
-  silenced = "${var.cpu_usage_silenced}"
-
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -43,8 +41,6 @@ resource "datadog_monitor" "postgresql_no_connection" {
   EOQ
 
   type = "metric alert"
-
-  silenced = "${var.no_connection_silenced}"
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -77,8 +73,6 @@ resource "datadog_monitor" "postgresql_free_storage" {
     warning  = "${var.free_storage_threshold_warning}"
   }
 
-  silenced = "${var.free_storage_silenced}"
-
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -110,8 +104,6 @@ resource "datadog_monitor" "postgresql_io_consumption" {
     warning  = "${var.io_consumption_threshold_warning}"
   }
 
-  silenced = "${var.io_consumption_silenced}"
-
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -142,8 +134,6 @@ resource "datadog_monitor" "postgresql_memory_usage" {
     critical = "${var.memory_usage_threshold_critical}"
     warning  = "${var.memory_usage_threshold_warning}"
   }
-
-  silenced = "${var.memory_usage_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"

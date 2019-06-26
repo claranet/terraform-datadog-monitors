@@ -40,12 +40,6 @@ variable "prefix_slug" {
 
 # Datadog monitors variables
 
-variable "pod_phase_status_silenced" {
-  description = "Groups to mute for Pod phase status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "pod_phase_status_enabled" {
   description = "Flag to enable Pod phase status monitor"
   type        = "string"
@@ -74,12 +68,6 @@ variable "pod_phase_status_timeframe" {
   description = "Monitor timeframe for Pod phase status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
-}
-
-variable "error_silenced" {
-  description = "Groups to mute for Pod errors monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "error_enabled" {

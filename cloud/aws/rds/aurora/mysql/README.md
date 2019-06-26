@@ -25,7 +25,6 @@ Creates DataDog monitors with the following checks:
 | aurora\_replicalag\_enabled | Flag to enable RDS Aurora replica lag monitor | string | `"true"` | no |
 | aurora\_replicalag\_extra\_tags | Extra tags for RDS Aurora replica lag monitor | list | `[]` | no |
 | aurora\_replicalag\_message | Custom message for RDS Aurora replica lag monitor | string | `""` | no |
-| aurora\_replicalag\_silenced | Groups to mute for RDS Aurora replica lag monitor | map | `{}` | no |
 | aurora\_replicalag\_threshold\_critical | Aurora replica lag in milliseconds (critical threshold) | string | `"200"` | no |
 | aurora\_replicalag\_threshold\_warning | Aurora replica lag in milliseconds (warning threshold) | string | `"100"` | no |
 | aurora\_replicalag\_timeframe | Monitor timeframe for RDS Aurora replica lag monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |

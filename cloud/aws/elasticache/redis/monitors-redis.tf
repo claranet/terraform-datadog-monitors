@@ -28,8 +28,6 @@ resource "datadog_monitor" "redis_cache_hits" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.cache_hits_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis", "${var.cache_hits_extra_tags}"]
 }
 
@@ -55,8 +53,6 @@ resource "datadog_monitor" "redis_cpu_high" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
-
-  silenced = "${var.cpu_high_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis", "${var.cpu_high_extra_tags}"]
 }
@@ -89,8 +85,6 @@ resource "datadog_monitor" "redis_replication_lag" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.replication_lag_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis", "${var.replication_lag_extra_tags}"]
 }
 
@@ -117,8 +111,6 @@ resource "datadog_monitor" "redis_commands" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
-
-  silenced = "${var.commands_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis", "${var.commands_extra_tags}"]
 }

@@ -46,12 +46,6 @@ variable "status_enabled" {
   default     = "true"
 }
 
-variable "status_silenced" {
-  description = "Groups to mute for Service Bus status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "status_extra_tags" {
   description = "Extra tags for Service Bus status monitor"
   type        = "list"
@@ -79,12 +73,6 @@ variable "no_active_connections_enabled" {
   description = "Flag to enable Service Bus status monitor"
   type        = "string"
   default     = "true"
-}
-
-variable "no_active_connections_silenced" {
-  description = "Groups to mute for Service Bus status monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "no_active_connections_message" {
@@ -115,12 +103,6 @@ variable "server_errors_enabled" {
   description = "Flag to enable Service Bus server errors monitor"
   type        = "string"
   default     = "true"
-}
-
-variable "server_errors_silenced" {
-  description = "Groups to mute for Service Bus server errors monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "server_errors_time_aggregator" {
@@ -155,12 +137,6 @@ variable "user_errors_enabled" {
   description = "Flag to enable Service Bus user errors monitor"
   type        = "string"
   default     = "true"
-}
-
-variable "user_errors_silenced" {
-  description = "Groups to mute for Service Bus user errors monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "user_errors_time_aggregator" {

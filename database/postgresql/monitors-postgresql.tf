@@ -24,8 +24,6 @@ resource "datadog_monitor" "postgresql_availability" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.postgresql_availability_silenced}"
-
   tags = ["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform", "${var.postgresql_availability_extra_tags}"]
 }
 
@@ -55,8 +53,6 @@ resource "datadog_monitor" "postgresql_connection_too_high" {
   timeout_h           = 0
   include_tags        = true
 
-  silenced = "${var.postgresql_connection_silenced}"
-
   tags = ["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform", "${var.postgresql_connection_extra_tags}"]
 }
 
@@ -85,8 +81,6 @@ resource "datadog_monitor" "postgresql_too_many_locks" {
   require_full_window = true
   timeout_h           = 0
   include_tags        = true
-
-  silenced = "${var.posgresql_lock_silenced}"
 
   tags = ["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform", "${var.postgresql_lock_extra_tags}"]
 }

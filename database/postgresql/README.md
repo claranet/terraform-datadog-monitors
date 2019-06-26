@@ -31,17 +31,14 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
 | message | Message sent when an alert is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds for the metric evaluation | string | `"300"` | no |
-| posgresql\_lock\_silenced | Groups to mute for PostgreSQL lock monitor | map | `{}` | no |
 | postgresql\_availability\_enabled | Flag to enable PostgreSQL availability monitor | string | `"true"` | no |
 | postgresql\_availability\_extra\_tags | Extra tags for PostgreSQL availability monitor | list | `[]` | no |
 | postgresql\_availability\_message | Custom message for PostgreSQL availability monitor | string | `""` | no |
 | postgresql\_availability\_no\_data\_timeframe | PostgreSQL availability monitor no data timeframe | string | `"10"` | no |
-| postgresql\_availability\_silenced | Groups to mute for PostgreSQL availability monitor | map | `{}` | no |
 | postgresql\_availability\_threshold\_warning | PostgreSQL availability monitor (warning threshold) | string | `"3"` | no |
 | postgresql\_connection\_enabled | Flag to enable PostgreSQL connection monitor | string | `"true"` | no |
 | postgresql\_connection\_extra\_tags | Extra tags for PostgreSQL connection connects monitor | list | `[]` | no |
 | postgresql\_connection\_message | Custom message for PostgreSQL connection monitor | string | `""` | no |
-| postgresql\_connection\_silenced | Groups to mute for PostgreSQL connection monitor | map | `{}` | no |
 | postgresql\_connection\_threshold\_critical | Maximum critical acceptable percent of connections | string | `"80"` | no |
 | postgresql\_connection\_threshold\_warning | Maximum warning acceptable percent of connections | string | `"70"` | no |
 | postgresql\_connection\_time\_aggregator | Monitor time aggregator for PostgreSQL connection monitor [available values: min, max or avg] | string | `"avg"` | no |

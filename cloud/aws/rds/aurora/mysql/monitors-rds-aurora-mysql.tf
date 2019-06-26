@@ -26,7 +26,5 @@ resource "datadog_monitor" "rds_aurora_mysql_replica_lag" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.aurora_replicalag_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds-aurora-mysql", "team:claranet", "created-by:terraform", "${var.aurora_replicalag_extra_tags}"]
 }

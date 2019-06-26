@@ -40,11 +40,6 @@ variable "filter_tags_custom_excluded" {
 }
 
 # Azure Event Hub specific variables
-variable "status_silenced" {
-  description = "Groups to mute for Event Hub status monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "status_enabled" {
   description = "Flag to enable Event Hub status monitor"
@@ -74,12 +69,6 @@ variable "status_timeframe" {
   description = "Monitor timeframe for Event Hub status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
-}
-
-variable "failed_requests_rate_silenced" {
-  description = "Groups to mute for Event Hub failed requests monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "failed_requests_rate_enabled" {
@@ -120,12 +109,6 @@ variable "failed_requests_rate_thresold_critical" {
 variable "failed_requests_rate_thresold_warning" {
   description = "Failed requests ratio (percentage) to trigger a warning alert"
   default     = 50
-}
-
-variable "errors_rate_silenced" {
-  description = "Groups to mute for Event Hub errors monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "errors_rate_enabled" {

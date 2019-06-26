@@ -11,8 +11,6 @@ resource "datadog_monitor" "eventgrid_no_successful_message" {
 
   type = "metric alert"
 
-  silenced = "${var.no_successful_message_rate_silenced}"
-
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -48,8 +46,6 @@ resource "datadog_monitor" "eventgrid_failed_messages" {
     warning  = "${var.failed_messages_rate_thresold_warning}"
   }
 
-  silenced = "${var.failed_messages_rate_silenced}"
-
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -84,8 +80,6 @@ resource "datadog_monitor" "eventgrid_unmatched_events" {
     critical = "${var.unmatched_events_rate_thresold_critical}"
     warning  = "${var.unmatched_events_rate_thresold_warning}"
   }
-
-  silenced = "${var.unmatched_events_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"

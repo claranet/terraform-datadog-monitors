@@ -49,12 +49,6 @@ variable "status_message" {
   default     = ""
 }
 
-variable "status_silenced" {
-  type        = "map"
-  description = "Groups to mute for serverfarm status monitor"
-  default     = {}
-}
-
 variable "status_extra_tags" {
   description = "Extra tags for serverfarms status monitor"
   type        = "list"
@@ -84,12 +78,6 @@ variable "cpu_percentage_message" {
   description = "Custom message for serverfarm cpu_percentage monitor"
   type        = "string"
   default     = ""
-}
-
-variable "cpu_percentage_silenced" {
-  type        = "map"
-  description = "Groups to mute for serverfarm cpu_percentage monitor"
-  default     = {}
 }
 
 variable "cpu_percentage_extra_tags" {
@@ -131,12 +119,6 @@ variable "memory_percentage_message" {
   description = "Custom message for serverfarm memory_percentage monitor"
   type        = "string"
   default     = ""
-}
-
-variable "memory_percentage_silenced" {
-  type        = "map"
-  description = "Groups to mute for serverfarm memory_percentage monitor"
-  default     = {}
 }
 
 variable "memory_percentage_extra_tags" {

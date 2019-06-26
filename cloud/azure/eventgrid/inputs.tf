@@ -40,11 +40,6 @@ variable "filter_tags_custom_excluded" {
 }
 
 # Azure Event Grid specific variables
-variable "no_successful_message_rate_silenced" {
-  description = "Groups to mute for²id no successful message monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "no_successful_message_rate_enabled" {
   description = "Flag to enable Event Grid no successful message monitor"
@@ -74,12 +69,6 @@ variable "no_successful_message_rate_timeframe" {
   description = "Monitor timeframe for Event Grid no successful message [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
-}
-
-variable "failed_messages_rate_silenced" {
-  description = "Groups to mute for Event Grid failed messages monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "failed_messages_rate_enabled" {
@@ -120,12 +109,6 @@ variable "failed_messages_rate_thresold_critical" {
 variable "failed_messages_rate_thresold_warning" {
   description = "Failed messages ratio (percentage) to trigger a warning alert"
   default     = 50
-}
-
-variable "unmatched_events_rate_silenced" {
-  description = "Groups to mute for Event Grid unmatched events monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "unmatched_events_rate_enabled" {

@@ -40,7 +40,6 @@ Creates DataDog monitors with the following checks:
 | dropped\_d2c\_telemetry\_egress\_message | Custom message for IoT Hub dropped d2c telemetry monitor | string | `""` | no |
 | dropped\_d2c\_telemetry\_egress\_rate\_threshold\_critical | D2C Telemetry Dropped limit (critical threshold) | string | `"90"` | no |
 | dropped\_d2c\_telemetry\_egress\_rate\_threshold\_warning | D2C Telemetry Dropped limit (warning threshold) | string | `"50"` | no |
-| dropped\_d2c\_telemetry\_egress\_silenced | Groups to mute for IoT Hub dropped d2c telemetry monitor | map | `{}` | no |
 | dropped\_d2c\_telemetry\_egress\_time\_aggregator | Monitor aggregator for IoT Hub dropped d2c telemetry [available values: min, max, sum or avg] | string | `"min"` | no |
 | dropped\_d2c\_telemetry\_egress\_timeframe | Monitor timeframe for IoT Hub dropped d2c telemetry [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | environment | Architecture Environment | string | n/a | yes |
@@ -48,7 +47,6 @@ Creates DataDog monitors with the following checks:
 | failed\_c2d\_methods\_rate\_enabled | Flag to enable IoT Hub failed c2d methods monitor | string | `"true"` | no |
 | failed\_c2d\_methods\_rate\_extra\_tags | Extra tags for IoT Hub failed c2d methods monitor | list | `[]` | no |
 | failed\_c2d\_methods\_rate\_message | Custom message for IoT Hub failed c2d method monitor | string | `""` | no |
-| failed\_c2d\_methods\_rate\_silenced | Groups to mute for IoT Hub failed c2d methods monitor | map | `{}` | no |
 | failed\_c2d\_methods\_rate\_threshold\_critical | C2D Methods Failed rate limit (critical threshold) | string | `"90"` | no |
 | failed\_c2d\_methods\_rate\_threshold\_warning | C2D Methods Failed rate limit (warning threshold) | string | `"50"` | no |
 | failed\_c2d\_methods\_rate\_time\_aggregator | Monitor aggregator for IoT Hub failed c2d method [available values: min, max, sum or avg] | string | `"min"` | no |
@@ -56,7 +54,6 @@ Creates DataDog monitors with the following checks:
 | failed\_c2d\_twin\_read\_rate\_enabled | Flag to enable IoT Hub failed c2d twin read monitor | string | `"true"` | no |
 | failed\_c2d\_twin\_read\_rate\_extra\_tags | Extra tags for IoT Hub failed c2d twin read monitor | list | `[]` | no |
 | failed\_c2d\_twin\_read\_rate\_message | Custom message for IoT Hub failed c2d twin read monitor | string | `""` | no |
-| failed\_c2d\_twin\_read\_rate\_silenced | Groups to mute for IoT Hub failed c2d twin read monitor | map | `{}` | no |
 | failed\_c2d\_twin\_read\_rate\_threshold\_critical | C2D Twin Read Failed rate limit (critical threshold) | string | `"90"` | no |
 | failed\_c2d\_twin\_read\_rate\_threshold\_warning | C2D Twin Read Failed rate limit (warning threshold) | string | `"50"` | no |
 | failed\_c2d\_twin\_read\_rate\_time\_aggregator | Monitor aggregator for IoT Hub failed c2d twin read [available values: min, max, sum or avg] | string | `"min"` | no |
@@ -64,7 +61,6 @@ Creates DataDog monitors with the following checks:
 | failed\_c2d\_twin\_update\_rate\_enabled | Flag to enable IoT Hub failed c2d twin update monitor | string | `"true"` | no |
 | failed\_c2d\_twin\_update\_rate\_extra\_tags | Extra tags for IoT Hub failed c2d twin update monitor | list | `[]` | no |
 | failed\_c2d\_twin\_update\_rate\_message | Custom message for IoT Hub failed c2d twin update monitor | string | `""` | no |
-| failed\_c2d\_twin\_update\_rate\_silenced | Groups to mute for IoT Hub failed c2d twin update monitor | map | `{}` | no |
 | failed\_c2d\_twin\_update\_rate\_threshold\_critical | C2D Twin Update Failed rate limit (critical threshold) | string | `"90"` | no |
 | failed\_c2d\_twin\_update\_rate\_threshold\_warning | C2D Twin Update Failed rate limit (warning threshold) | string | `"50"` | no |
 | failed\_c2d\_twin\_update\_rate\_time\_aggregator | Monitor aggregator for IoT Hub failed c2d twin update [available values: min, max, sum or avg] | string | `"min"` | no |
@@ -72,7 +68,6 @@ Creates DataDog monitors with the following checks:
 | failed\_d2c\_twin\_read\_rate\_enabled | Flag to enable IoT Hub failed d2c twin read monitor | string | `"true"` | no |
 | failed\_d2c\_twin\_read\_rate\_extra\_tags | Extra tags for IoT Hub failed d2c twin read monitor | list | `[]` | no |
 | failed\_d2c\_twin\_read\_rate\_message | Custom message for IoT Hub failed d2c twin read monitor | string | `""` | no |
-| failed\_d2c\_twin\_read\_rate\_silenced | Groups to mute for IoT Hub failed d2c twin read monitor | map | `{}` | no |
 | failed\_d2c\_twin\_read\_rate\_threshold\_critical | D2C Twin Read Failed rate limit (critical threshold) | string | `"90"` | no |
 | failed\_d2c\_twin\_read\_rate\_threshold\_warning | D2C Twin Read Failed rate limit (warning threshold) | string | `"50"` | no |
 | failed\_d2c\_twin\_read\_rate\_time\_aggregator | Monitor aggregator for IoT Hub failed d2c twin read [available values: min, max, sum or avg] | string | `"min"` | no |
@@ -80,7 +75,6 @@ Creates DataDog monitors with the following checks:
 | failed\_d2c\_twin\_update\_rate\_enabled | Flag to enable IoT Hub failed d2c twin update monitor | string | `"true"` | no |
 | failed\_d2c\_twin\_update\_rate\_extra\_tags | Extra tags for IoT Hub failed d2c twin update monitor | list | `[]` | no |
 | failed\_d2c\_twin\_update\_rate\_message | Custom message for IoT Hub failed d2c twin update monitor | string | `""` | no |
-| failed\_d2c\_twin\_update\_rate\_silenced | Groups to mute for IoT Hub failed d2c twin update monitor | map | `{}` | no |
 | failed\_d2c\_twin\_update\_rate\_threshold\_critical | D2C Twin Update Failed rate limit (critical threshold) | string | `"90"` | no |
 | failed\_d2c\_twin\_update\_rate\_threshold\_warning | D2C Twin Update Failed rate limit (warning threshold) | string | `"50"` | no |
 | failed\_d2c\_twin\_update\_rate\_time\_aggregator | Monitor aggregator for IoT Hub failed d2c twin update [available values: min, max, sum or avg] | string | `"min"` | no |
@@ -88,7 +82,6 @@ Creates DataDog monitors with the following checks:
 | failed\_jobs\_rate\_enabled | Flag to enable IoT Hub failed jobs monitor | string | `"true"` | no |
 | failed\_jobs\_rate\_extra\_tags | Extra tags for IoT Hub failed jobs monitor | list | `[]` | no |
 | failed\_jobs\_rate\_message | Custom message for IoT Hub failed jobs monitor | string | `""` | no |
-| failed\_jobs\_rate\_silenced | Groups to mute for IoT Hub failed jobs monitor | map | `{}` | no |
 | failed\_jobs\_rate\_threshold\_critical | Jobs Failed rate limit (critical threshold) | string | `"90"` | no |
 | failed\_jobs\_rate\_threshold\_warning | Jobs Failed rate limit (warning threshold) | string | `"50"` | no |
 | failed\_jobs\_rate\_time\_aggregator | Monitor aggregator for IoT Hub failed jobs [available values: min, max, sum or avg] | string | `"min"` | no |
@@ -96,7 +89,6 @@ Creates DataDog monitors with the following checks:
 | failed\_listjobs\_rate\_enabled | Flag to enable IoT Hub failed list jobs monitor | string | `"true"` | no |
 | failed\_listjobs\_rate\_extra\_tags | Extra tags for IoT Hub failed list jobs monitor | list | `[]` | no |
 | failed\_listjobs\_rate\_message | Custom message for IoT Hub failed list jobs monitor | string | `""` | no |
-| failed\_listjobs\_rate\_silenced | Groups to mute for IoT Hub failed list jobs monitor | map | `{}` | no |
 | failed\_listjobs\_rate\_threshold\_critical | ListJobs Failed rate limit (critical threshold) | string | `"90"` | no |
 | failed\_listjobs\_rate\_threshold\_warning | ListJobs Failed rate limit (warning threshold) | string | `"50"` | no |
 | failed\_listjobs\_rate\_time\_aggregator | Monitor aggregator for IoT Hub failed list jobs [available values: min, max, sum or avg] | string | `"min"` | no |
@@ -104,7 +96,6 @@ Creates DataDog monitors with the following checks:
 | failed\_queryjobs\_rate\_enabled | Flag to enable IoT Hub failed query jobs monitor | string | `"true"` | no |
 | failed\_queryjobs\_rate\_extra\_tags | Extra tags for IoT Hub failed query jobs monitor | list | `[]` | no |
 | failed\_queryjobs\_rate\_message | Custom message for IoT Hub failed query jobs monitor | string | `""` | no |
-| failed\_queryjobs\_rate\_silenced | Groups to mute for IoT Hub failed query jobs monitor | map | `{}` | no |
 | failed\_queryjobs\_rate\_threshold\_critical | QueryJobs Failed rate limit (critical threshold) | string | `"90"` | no |
 | failed\_queryjobs\_rate\_threshold\_warning | QueryJobs Failed rate limit (warning threshold) | string | `"50"` | no |
 | failed\_queryjobs\_rate\_time\_aggregator | Monitor aggregator for IoT Hub failed query jobs [available values: min, max, sum or avg] | string | `"min"` | no |
@@ -117,7 +108,6 @@ Creates DataDog monitors with the following checks:
 | invalid\_d2c\_telemetry\_egress\_message | Custom message for IoT Hub invalid d2c telemetry monitor | string | `""` | no |
 | invalid\_d2c\_telemetry\_egress\_rate\_threshold\_critical | D2C Telemetry Invalid limit (critical threshold) | string | `"90"` | no |
 | invalid\_d2c\_telemetry\_egress\_rate\_threshold\_warning | D2C Telemetry Invalid limit (warning threshold) | string | `"50"` | no |
-| invalid\_d2c\_telemetry\_egress\_silenced | Groups to mute for IoT Hub invalid d2c telemetry monitor | map | `{}` | no |
 | invalid\_d2c\_telemetry\_egress\_time\_aggregator | Monitor aggregator for IoT Hub invalid d2c telemetry [available values: min, max, sum or avg] | string | `"min"` | no |
 | invalid\_d2c\_telemetry\_egress\_timeframe | Monitor timeframe for IoT Hub invalid d2c telemetry [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | message | Message sent when an alert is triggered | string | n/a | yes |
@@ -127,25 +117,21 @@ Creates DataDog monitors with the following checks:
 | orphaned\_d2c\_telemetry\_egress\_message | Custom message for IoT Hub orphaned d2c telemetry monitor | string | `""` | no |
 | orphaned\_d2c\_telemetry\_egress\_rate\_threshold\_critical | D2C Telemetry Orphaned limit (critical threshold) | string | `"90"` | no |
 | orphaned\_d2c\_telemetry\_egress\_rate\_threshold\_warning | D2C Telemetry Orphaned limit (warning threshold) | string | `"50"` | no |
-| orphaned\_d2c\_telemetry\_egress\_silenced | Groups to mute for IoT Hub orphaned d2c telemetry monitor | map | `{}` | no |
 | orphaned\_d2c\_telemetry\_egress\_time\_aggregator | Monitor aggregator for IoT Hub orphaned d2c telemetry [available values: min, max, sum or avg] | string | `"min"` | no |
 | orphaned\_d2c\_telemetry\_egress\_timeframe | Monitor timeframe for IoT Hub orphaned d2c telemetry [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | status\_enabled | Flag to enable IoT Hub status monitor | string | `"true"` | no |
 | status\_extra\_tags | Extra tags for IoT Hub status monitor | list | `[]` | no |
 | status\_message | Custom message for IoT Hub status monitor | string | `""` | no |
-| status\_silenced | Groups to mute for IoT Hub status monitor | map | `{}` | no |
 | status\_time\_aggregator | Monitor aggregator for IoT Hub status [available values: min, max, sum or avg] | string | `"max"` | no |
 | status\_timeframe | Monitor timeframe for IoT Hub status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | too\_many\_d2c\_telemetry\_ingress\_nosent\_enabled | Flag to enable IoT Hub unsent d2c telemetry monitor | string | `"true"` | no |
 | too\_many\_d2c\_telemetry\_ingress\_nosent\_extra\_tags | Extra tags for IoT Hub unsent d2c telemetry monitor | list | `[]` | no |
 | too\_many\_d2c\_telemetry\_ingress\_nosent\_message | Custom message for IoT Hub unsent d2c telemetry monitor | string | `""` | no |
-| too\_many\_d2c\_telemetry\_ingress\_nosent\_silenced | Groups to mute for IoT Hub unsent d2c telemetry monitor | map | `{}` | no |
 | too\_many\_d2c\_telemetry\_ingress\_nosent\_timeframe | Monitor timeframe for IoT Hub unsent d2c telemetry [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | total\_devices\_enabled | Flag to enable IoT Hub total devices monitor | string | `"true"` | no |
 | total\_devices\_extra\_tags | Extra tags for IoT Hub total devices monitor | list | `[]` | no |
 | total\_devices\_message | Custom message for IoT Hub total devices monitor | string | `""` | no |
-| total\_devices\_silenced | Groups to mute for IoT Hub total devices monitor | map | `{}` | no |
 | total\_devices\_time\_aggregator | Monitor aggregator for IoT Hub total devices [available values: min, max, sum or avg] | string | `"min"` | no |
 | total\_devices\_timeframe | Monitor timeframe for IoT Hub total devices [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 

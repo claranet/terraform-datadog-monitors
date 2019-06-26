@@ -26,8 +26,6 @@ resource "datadog_monitor" "ALB_no_healthy_instances" {
   timeout_h           = 0
   include_tags        = true
 
-  silenced = "${var.alb_no_healthy_instances_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform", "${var.alb_no_healthy_instances_extra_tags}"]
 }
 
@@ -56,8 +54,6 @@ resource "datadog_monitor" "ALB_latency" {
   require_full_window = false
   timeout_h           = 0
   include_tags        = true
-
-  silenced = "${var.latency_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform", "${var.latency_extra_tags}"]
 }
@@ -89,8 +85,6 @@ resource "datadog_monitor" "ALB_httpcode_5xx" {
   timeout_h           = 0
   include_tags        = true
 
-  silenced = "${var.httpcode_alb_5xx_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform", "${var.httpcode_alb_5xx_extra_tags}"]
 }
 
@@ -120,8 +114,6 @@ resource "datadog_monitor" "ALB_httpcode_4xx" {
   require_full_window = false
   timeout_h           = 0
   include_tags        = true
-
-  silenced = "${var.httpcode_alb_4xx_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform", "${var.httpcode_alb_4xx_extra_tags}"]
 }
@@ -153,8 +145,6 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
   timeout_h           = 0
   include_tags        = true
 
-  silenced = "${var.httpcode_target_5xx_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform", "${var.httpcode_target_5xx_extra_tags}"]
 }
 
@@ -184,8 +174,6 @@ resource "datadog_monitor" "ALB_httpcode_target_4xx" {
   require_full_window = false
   timeout_h           = 0
   include_tags        = true
-
-  silenced = "${var.httpcode_target_4xx_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform", "${var.httpcode_target_4xx_extra_tags}"]
 }

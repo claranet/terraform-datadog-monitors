@@ -40,11 +40,6 @@ variable "filter_tags_custom_excluded" {
 }
 
 # Azure Stream Analytics specific variables
-variable "status_silenced" {
-  description = "Groups to mute for Stream Analytics status monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "status_enabled" {
   description = "Flag to enable Stream Analytics status monitor"
@@ -74,12 +69,6 @@ variable "status_timeframe" {
   description = "Monitor timeframe for Stream Analytics status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
-}
-
-variable "su_utilization_silenced" {
-  description = "Groups to mute for Stream Analytics utilization monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "su_utilization_enabled" {
@@ -122,12 +111,6 @@ variable "su_utilization_threshold_critical" {
   default     = 80
 }
 
-variable "failed_function_requests_silenced" {
-  description = "Groups to mute for Stream Analytics failed requests monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "failed_function_requests_enabled" {
   description = "Flag to enable Stream Analytics failed requests monitor"
   type        = "string"
@@ -168,12 +151,6 @@ variable "failed_function_requests_threshold_critical" {
   default     = 10
 }
 
-variable "conversion_errors_silenced" {
-  description = "Groups to mute for Stream Analytics conversion errors monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "conversion_errors_enabled" {
   description = "Flag to enable Stream Analytics conversion errors monitor"
   type        = "string"
@@ -212,12 +189,6 @@ variable "conversion_errors_threshold_warning" {
 variable "conversion_errors_threshold_critical" {
   description = "Conversion errors limit (critical threshold)"
   default     = 10
-}
-
-variable "runtime_errors_silenced" {
-  description = "Groups to mute for Stream Analytics runtime errors monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "runtime_errors_enabled" {

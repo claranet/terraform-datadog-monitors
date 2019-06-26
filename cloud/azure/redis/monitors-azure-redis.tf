@@ -11,8 +11,6 @@ resource "datadog_monitor" "status" {
 
   type = "metric alert"
 
-  silenced = "${var.status_silenced}"
-
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -43,8 +41,6 @@ resource "datadog_monitor" "evictedkeys" {
     warning  = "${var.evictedkeys_limit_threshold_warning}"
     critical = "${var.evictedkeys_limit_threshold_critical}"
   }
-
-  silenced = "${var.evictedkeys_limit_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -77,8 +73,6 @@ resource "datadog_monitor" "percent_processor_time" {
     critical = "${var.percent_processor_time_threshold_critical}"
   }
 
-  silenced = "${var.percent_processor_time_silenced}"
-
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
   renotify_interval   = 0
@@ -109,8 +103,6 @@ resource "datadog_monitor" "server_load" {
     warning  = "${var.server_load_rate_threshold_warning}"
     critical = "${var.server_load_rate_threshold_critical}"
   }
-
-  silenced = "${var.server_load_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"

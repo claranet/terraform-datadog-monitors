@@ -35,11 +35,6 @@ variable "filter_tags_custom" {
 }
 
 # Azure Databases for MySQL Servers specific variables
-variable "cpu_usage_silenced" {
-  description = "Groups to mute for Mysql CPU monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "cpu_usage_enabled" {
   description = "Flag to enable Mysql status monitor"
@@ -79,12 +74,6 @@ variable "cpu_usage_threshold_warning" {
 variable "cpu_usage_threshold_critical" {
   description = "Mysql CPU usage in percent (critical threshold)"
   default     = "90"
-}
-
-variable "free_storage_silenced" {
-  description = "Groups to mute for Mysql Free Storage monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "free_storage_enabled" {
@@ -127,12 +116,6 @@ variable "free_storage_threshold_critical" {
   default     = "10"
 }
 
-variable "io_consumption_silenced" {
-  description = "Groups to mute for Mysql IO consumption monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "io_consumption_enabled" {
   description = "Flag to enable Mysql status monitor"
   type        = "string"
@@ -171,12 +154,6 @@ variable "io_consumption_threshold_warning" {
 variable "io_consumption_threshold_critical" {
   description = "Mysql IO consumption in percent (critical threshold)"
   default     = "90"
-}
-
-variable "memory_usage_silenced" {
-  description = "Groups to mute for Mysql memory monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "memory_usage_enabled" {

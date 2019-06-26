@@ -30,7 +30,6 @@ Creates DataDog monitors with the following checks:
 | cpu\_utilization\_enabled | Flag to enable GCP Cloud SQL CPU Utilization monitor | string | `"true"` | no |
 | cpu\_utilization\_extra\_tags | Extra tags for GCP Cloud SQL CPU Utilization monitor | list | `[]` | no |
 | cpu\_utilization\_message | Custom message for the CPU Utilization monitor | string | `""` | no |
-| cpu\_utilization\_silenced | Groups to mute for GCP Cloud SQL CPU Utilization monitor | map | `{}` | no |
 | cpu\_utilization\_threshold\_critical | CPU Utilization in percentage (critical threshold) | string | `"90"` | no |
 | cpu\_utilization\_threshold\_warning | CPU Utilization in percentage (warning threshold) | string | `"80"` | no |
 | cpu\_utilization\_time\_aggregator | Time aggregator for the CPU Utilization monitor | string | `"avg"` | no |
@@ -46,13 +45,11 @@ Creates DataDog monitors with the following checks:
 | disk\_utilization\_forecast\_linear\_model | Model for the Disk Utilization Forecast monitor | string | `"default"` | no |
 | disk\_utilization\_forecast\_message | Custom message for the Disk Utilization Forecast monitor | string | `""` | no |
 | disk\_utilization\_forecast\_seasonal\_seasonality | Seasonality for the Disk Utilization Forecast monitor | string | `"weekly"` | no |
-| disk\_utilization\_forecast\_silenced | Groups to mute for GCP Cloud SQL Disk Utilization Forecast monitor | map | `{}` | no |
 | disk\_utilization\_forecast\_threshold\_critical | Disk Utilization Forecast in percentage (critical threshold) | string | `"80"` | no |
 | disk\_utilization\_forecast\_threshold\_critical\_recovery | Disk Utilization Forecast in percentage (recovery threshold) | string | `"72"` | no |
 | disk\_utilization\_forecast\_time\_aggregator | Time aggregator for the Disk Utilization Forecast monitor | string | `"max"` | no |
 | disk\_utilization\_forecast\_timeframe | Timeframe for the Disk Utilization Forecast monitor | string | `"next_1w"` | no |
 | disk\_utilization\_message | Custom message for the Disk Utilization monitor | string | `""` | no |
-| disk\_utilization\_silenced | Groups to mute for GCP Cloud SQL Disk Utilization monitor | map | `{}` | no |
 | disk\_utilization\_threshold\_critical | Disk Utilization in percentage (critical threshold) | string | `"90"` | no |
 | disk\_utilization\_threshold\_warning | Disk Utilization in percentage (warning threshold) | string | `"80"` | no |
 | disk\_utilization\_time\_aggregator | Time aggregator for the Disk Utilization monitor | string | `"avg"` | no |
@@ -62,7 +59,6 @@ Creates DataDog monitors with the following checks:
 | failover\_unavailable\_enabled | Flag to enable GCP Cloud SQL Failover Unavailable monitor | string | `"true"` | no |
 | failover\_unavailable\_extra\_tags | Extra tags for GCP Cloud SQL Failover Unavailable monitor | list | `[]` | no |
 | failover\_unavailable\_message | Custom message for the Failover Unavailable monitor | string | `""` | no |
-| failover\_unavailable\_silenced | Groups to mute for GCP Cloud SQL Failover Unavailable monitor | map | `{}` | no |
 | failover\_unavailable\_threshold\_critical | Failover Unavailable critical threshold | string | `"0"` | no |
 | failover\_unavailable\_time\_aggregator | Time aggreggator for the Failover Unavailable monitor | string | `"max"` | no |
 | failover\_unavailable\_timeframe | Timeframe for the Failover Unavailable monitor | string | `"last_10m"` | no |
@@ -78,13 +74,11 @@ Creates DataDog monitors with the following checks:
 | memory\_utilization\_forecast\_linear\_model | Model for the Memory Utilization Forecast monitor | string | `"default"` | no |
 | memory\_utilization\_forecast\_message | Custom message for the Memory Utilization Forecast monitor | string | `""` | no |
 | memory\_utilization\_forecast\_seasonal\_seasonality | Seasonality for the Memory Utilization Forecast monitor | string | `"weekly"` | no |
-| memory\_utilization\_forecast\_silenced | Groups to mute for GCP Cloud SQL Memory Utilization Forecast monitor | map | `{}` | no |
 | memory\_utilization\_forecast\_threshold\_critical | Memory Utilization Forecast in percentage (warning threshold) | string | `"90"` | no |
 | memory\_utilization\_forecast\_threshold\_critical\_recovery | Memory Utilization Forecast in percentage (recovery threshold) | string | `"81"` | no |
 | memory\_utilization\_forecast\_time\_aggregator | Time aggregator for the Memory Utilization Forecast monitor | string | `"max"` | no |
 | memory\_utilization\_forecast\_timeframe | Timeframe for the Memory Utilization Forecast monitor | string | `"next_3d"` | no |
 | memory\_utilization\_message | Custom message for the Memory Utilization monitor | string | `""` | no |
-| memory\_utilization\_silenced | Groups to mute for GCP Cloud SQL Memory Utilization monitor | map | `{}` | no |
 | memory\_utilization\_threshold\_critical | Memory Utilization in percentage (critical threshold) | string | `"90"` | no |
 | memory\_utilization\_threshold\_warning | Memory Utilization in percentage (warning threshold) | string | `"80"` | no |
 | memory\_utilization\_time\_aggregator | Time aggregator for the Memory Utilization monitor | string | `"avg"` | no |
