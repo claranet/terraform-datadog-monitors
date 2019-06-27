@@ -6,8 +6,7 @@ goto_root
 
 for path in $(find "$(get_scope $1)" -name 'inputs.tf' -print); do
     dir=$(dirname ${path})
-    cd $dir
-    cat <<EOF > tmp.tf
+    cat <<EOF > ${dir}/tmp.tf
 provider "datadog" {
   version = "2.0.2"
 
@@ -25,10 +24,9 @@ variable "datadog_app_key" {
   default = "yyy"
 }
 EOF
-    terraform init
-    terraform validate
-    rm -f tmp.tf
-    cd -
+    terraform init ${dir}
+    terraform validate ${dir}
+    rm -f ${dir}/tmp.tf
 done
 
 terraform fmt -recursive
