@@ -5,7 +5,7 @@ resource "datadog_monitor" "not_responding" {
   count   = var.not_responding_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ElasticSearch does not respond"
   message = coalesce(var.not_responding_message, var.message)
-  type = "service check"
+  type    = "service check"
 
   query = <<EOQ
     "elasticsearch.can_connect"${module.filter-tags.service_check}.by("server","port").last(6).count_by_status()
@@ -50,8 +50,8 @@ warning  = var.cluster_status_not_green_threshold_warning  # Yellow
 critical = var.cluster_status_not_green_threshold_critical # Red
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_audit        = false
 locked              = false
 include_tags        = true
@@ -68,7 +68,7 @@ resource "datadog_monitor" "cluster_initializing_shards" {
 count   = var.cluster_initializing_shards_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ElasticSearch Cluster is initializing shards"
 message = coalesce(var.cluster_initializing_shards_message, var.message)
-type = "metric alert"
+type    = "metric alert"
 
 query = <<EOQ
   ${var.cluster_initializing_shards_time_aggregator}(${var.cluster_initializing_shards_timeframe}):
@@ -112,8 +112,8 @@ EOQ
     critical = var.cluster_relocating_shards_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_audit        = false
   locked              = false
   include_tags        = true
@@ -130,7 +130,7 @@ resource "datadog_monitor" "cluster_unassigned_shards" {
   count   = var.cluster_unassigned_shards_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ElasticSearch Cluster has unassigned shards"
   message = coalesce(var.cluster_unassigned_shards_message, var.message)
-  type = "metric alert"
+  type    = "metric alert"
 
   query = <<EOQ
   ${var.cluster_unassigned_shards_time_aggregator}(${var.cluster_unassigned_shards_timeframe}):
@@ -179,8 +179,8 @@ warning  = var.node_free_space_threshold_warning
 critical = var.node_free_space_threshold_critical
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_audit        = false
 locked              = false
 include_tags        = true
@@ -197,7 +197,7 @@ resource "datadog_monitor" "jvm_heap_memory_usage" {
 count   = var.jvm_heap_memory_usage_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch JVM HEAP memory usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.jvm_heap_memory_usage_message, var.message)
-type = "query alert"
+type    = "query alert"
 
 query = <<EOQ
   ${var.jvm_heap_memory_usage_time_aggregator}(${var.jvm_heap_memory_usage_timeframe}):
@@ -241,8 +241,8 @@ EOQ
     critical = var.jvm_memory_young_usage_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_audit        = false
   locked              = false
   include_tags        = true
@@ -259,7 +259,7 @@ resource "datadog_monitor" "jvm_memory_old_usage" {
   count   = var.jvm_memory_old_usage_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch JVM memory Old usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.jvm_memory_old_usage_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
   ${var.jvm_memory_old_usage_time_aggregator}(${var.jvm_memory_old_usage_timeframe}):
@@ -303,8 +303,8 @@ warning  = var.jvm_gc_old_collection_latency_threshold_warning
 critical = var.jvm_gc_old_collection_latency_threshold_critical
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_audit        = false
 locked              = false
 include_tags        = true
@@ -321,7 +321,7 @@ resource "datadog_monitor" "jvm_gc_young_collection_latency" {
 count   = var.jvm_gc_young_collection_latency_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch average Young-generation garbage collections latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
 message = coalesce(var.jvm_gc_young_collection_latency_message, var.message)
-type = "query alert"
+type    = "query alert"
 
 query = <<EOQ
   ${var.jvm_gc_young_collection_latency_time_aggregator}(${var.jvm_gc_young_collection_latency_timeframe}):
@@ -366,8 +366,8 @@ EOQ
     critical = var.indexing_latency_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_audit        = false
   locked              = false
   include_tags        = true
@@ -384,7 +384,7 @@ resource "datadog_monitor" "flush_latency" {
   count   = var.flush_latency_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch average index flushing to disk latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = coalesce(var.flush_latency_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
   query = <<EOQ
@@ -437,8 +437,8 @@ warning  = var.http_connections_anomaly_threshold_warning
 critical = var.http_connections_anomaly_threshold_critical
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_audit        = false
 locked              = false
 include_tags        = true
@@ -455,7 +455,7 @@ resource "datadog_monitor" "search_query_latency" {
 count   = var.search_query_latency_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch average search query latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
 message = coalesce(var.search_query_latency_message, var.message)
-type = "query alert"
+type    = "query alert"
 
 // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
 query = <<EOQ
@@ -501,15 +501,15 @@ EOQ
     critical = var.fetch_latency_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_audit        = false
   locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
 
-tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.fetch_latency_extra_tags)
+  tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.fetch_latency_extra_tags)
 }
 
 #
@@ -519,7 +519,7 @@ resource "datadog_monitor" "search_query_change" {
   count   = var.search_query_change_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch change alert on the number of currently active queries"
   message = coalesce(var.search_query_change_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
   pct_change(${var.search_query_change_time_aggregator}(${var.search_query_change_timeframe}),${var.search_query_change_timeshift}):
@@ -540,7 +540,7 @@ EOQ
   require_full_window = true
   notify_no_data = false
 
- tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.search_query_change_extra_tags)
+  tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.search_query_change_extra_tags)
 }
 
 #
@@ -563,8 +563,8 @@ warning  = var.fetch_change_threshold_warning
 critical = var.fetch_change_threshold_critical
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_audit        = false
 locked              = false
 include_tags        = true
@@ -581,7 +581,7 @@ resource "datadog_monitor" "field_data_evictions_change" {
 count   = var.field_data_evictions_change_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch change alert on the total number of evictions from the fielddata cache"
 message = coalesce(var.field_data_evictions_change_message, var.message)
-type = "query alert"
+type    = "query alert"
 
 // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
 query = <<EOQ
@@ -627,8 +627,8 @@ EOQ
     critical = var.query_cache_evictions_change_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_audit        = false
   locked              = false
   include_tags        = true
@@ -645,7 +645,7 @@ resource "datadog_monitor" "request_cache_evictions_change" {
   count   = var.request_cache_evictions_change_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch change alert on the number of request cache evictions"
   message = coalesce(var.request_cache_evictions_change_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
   query = <<EOQ
@@ -690,8 +690,8 @@ warning  = var.task_time_in_queue_change_threshold_warning
 critical = var.task_time_in_queue_change_threshold_critical
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_audit        = false
 locked              = false
 include_tags        = true

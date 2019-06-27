@@ -16,9 +16,8 @@ module "datadog-monitors-database-postgresql" {
 
 Creates DataDog monitors with the following checks:
 
-- PostgreSQL Connections
 - PostgreSQL server does not respond
-- PostgreSQL too many locks
+- PostgreSQL Connections
 
 ## Inputs
 
@@ -32,19 +31,19 @@ Creates DataDog monitors with the following checks:
 | message | Message sent when an alert is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds for the metric evaluation | string | `"300"` | no |
 | postgresql\_availability\_enabled | Flag to enable PostgreSQL availability monitor | string | `"true"` | no |
-| postgresql\_availability\_extra\_tags | Extra tags for PostgreSQL availability monitor | list | `[]` | no |
+| postgresql\_availability\_extra\_tags | Extra tags for PostgreSQL availability monitor | list(string) | `[]` | no |
 | postgresql\_availability\_message | Custom message for PostgreSQL availability monitor | string | `""` | no |
 | postgresql\_availability\_no\_data\_timeframe | PostgreSQL availability monitor no data timeframe | string | `"10"` | no |
 | postgresql\_availability\_threshold\_warning | PostgreSQL availability monitor (warning threshold) | string | `"3"` | no |
 | postgresql\_connection\_enabled | Flag to enable PostgreSQL connection monitor | string | `"true"` | no |
-| postgresql\_connection\_extra\_tags | Extra tags for PostgreSQL connection connects monitor | list | `[]` | no |
+| postgresql\_connection\_extra\_tags | Extra tags for PostgreSQL connection connects monitor | list(string) | `[]` | no |
 | postgresql\_connection\_message | Custom message for PostgreSQL connection monitor | string | `""` | no |
 | postgresql\_connection\_threshold\_critical | Maximum critical acceptable percent of connections | string | `"80"` | no |
 | postgresql\_connection\_threshold\_warning | Maximum warning acceptable percent of connections | string | `"70"` | no |
 | postgresql\_connection\_time\_aggregator | Monitor time aggregator for PostgreSQL connection monitor [available values: min, max or avg] | string | `"avg"` | no |
 | postgresql\_connection\_timeframe | Monitor timeframe for PostgreSQL connection monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
 | postgresql\_lock\_enabled | Flag to enable PostgreSQL lock monitor | string | `"true"` | no |
-| postgresql\_lock\_extra\_tags | Extra tags for PostgreSQL lock connects monitor | list | `[]` | no |
+| postgresql\_lock\_extra\_tags | Extra tags for PostgreSQL lock connects monitor | list(string) | `[]` | no |
 | postgresql\_lock\_message | Custom message for PostgreSQL lock monitor | string | `""` | no |
 | postgresql\_lock\_threshold\_critical | Maximum critical acceptable number of locks | string | `"99"` | no |
 | postgresql\_lock\_threshold\_warning | Maximum warning acceptable number of locks | string | `"70"` | no |

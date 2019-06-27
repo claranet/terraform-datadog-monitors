@@ -32,7 +32,7 @@ resource "datadog_monitor" "API_http_5xx_errors_count" {
   count = var.http_5xx_requests_enabled == "true" ? 1 : 0
   name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] API Gateway HTTP 5xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.http_5xx_requests_message, var.message)
-  type    = "query alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.http_5xx_requests_time_aggregator}(${var.http_5xx_requests_timeframe}):
@@ -46,8 +46,8 @@ warning  = var.http_5xx_requests_threshold_warning
 critical = var.http_5xx_requests_threshold_critical
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_no_data      = false
 renotify_interval   = 0
 require_full_window = false

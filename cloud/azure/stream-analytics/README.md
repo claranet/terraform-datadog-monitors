@@ -17,17 +17,15 @@ module "datadog-monitors-cloud-azure-stream-analytics" {
 Creates DataDog monitors with the following checks:
 
 - Stream Analytics is down
-- Stream Analytics streaming units utilization too high
-- Stream Analytics too many conversion errors
-- Stream Analytics too many failed requests
 - Stream Analytics too many runtime errors
+- Stream Analytics streaming units utilization too high
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | conversion\_errors\_enabled | Flag to enable Stream Analytics conversion errors monitor | string | `"true"` | no |
-| conversion\_errors\_extra\_tags | Extra tags for Stream Analytics conversion errors monitor | list | `[]` | no |
+| conversion\_errors\_extra\_tags | Extra tags for Stream Analytics conversion errors monitor | list(string) | `[]` | no |
 | conversion\_errors\_message | Custom message for Stream Analytics conversion errors monitor | string | `""` | no |
 | conversion\_errors\_threshold\_critical | Conversion errors limit (critical threshold) | string | `"10"` | no |
 | conversion\_errors\_threshold\_warning | Conversion errors limit (warning threshold) | string | `"0"` | no |
@@ -36,7 +34,7 @@ Creates DataDog monitors with the following checks:
 | environment | Architecture environment | string | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | string | `"900"` | no |
 | failed\_function\_requests\_enabled | Flag to enable Stream Analytics failed requests monitor | string | `"true"` | no |
-| failed\_function\_requests\_extra\_tags | Extra tags for Stream Analytics failed requests monitor | list | `[]` | no |
+| failed\_function\_requests\_extra\_tags | Extra tags for Stream Analytics failed requests monitor | list(string) | `[]` | no |
 | failed\_function\_requests\_message | Custom message for Stream Analytics failed requests monitor | string | `""` | no |
 | failed\_function\_requests\_threshold\_critical | Failed Function Request rate limit (critical threshold) | string | `"10"` | no |
 | failed\_function\_requests\_threshold\_warning | Failed Function Request rate limit (warning threshold) | string | `"0"` | no |
@@ -49,19 +47,19 @@ Creates DataDog monitors with the following checks:
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | runtime\_errors\_enabled | Flag to enable Stream Analytics runtime errors monitor | string | `"true"` | no |
-| runtime\_errors\_extra\_tags | Extra tags for Stream Analytics runtime errors monitor | list | `[]` | no |
+| runtime\_errors\_extra\_tags | Extra tags for Stream Analytics runtime errors monitor | list(string) | `[]` | no |
 | runtime\_errors\_message | Custom message for Stream Analytics runtime errors monitor | string | `""` | no |
 | runtime\_errors\_threshold\_critical | Runtime errors limit (critical threshold) | string | `"10"` | no |
 | runtime\_errors\_threshold\_warning | Runtime errors limit (warning threshold) | string | `"0"` | no |
 | runtime\_errors\_time\_aggregator | Monitor aggregator for Stream Analytics runtime errors [available values: min, max or avg] | string | `"min"` | no |
 | runtime\_errors\_timeframe | Monitor timeframe for Stream Analytics runtime errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | status\_enabled | Flag to enable Stream Analytics status monitor | string | `"true"` | no |
-| status\_extra\_tags | Extra tags for Stream Analytics status monitor | list | `[]` | no |
+| status\_extra\_tags | Extra tags for Stream Analytics status monitor | list(string) | `[]` | no |
 | status\_message | Custom message for Stream Analytics status monitor | string | `""` | no |
 | status\_time\_aggregator | Monitor aggregator for Stream Analytics status [available values: min, max or avg] | string | `"max"` | no |
 | status\_timeframe | Monitor timeframe for Stream Analytics status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | su\_utilization\_enabled | Flag to enable Stream Analytics utilization monitor | string | `"true"` | no |
-| su\_utilization\_extra\_tags | Extra tags for Stream Analytics utilization monitor | list | `[]` | no |
+| su\_utilization\_extra\_tags | Extra tags for Stream Analytics utilization monitor | list(string) | `[]` | no |
 | su\_utilization\_message | Custom message for Stream Analytics utilization monitor | string | `""` | no |
 | su\_utilization\_threshold\_critical | Streaming Unit utilization rate limit (critical threshold) | string | `"80"` | no |
 | su\_utilization\_threshold\_warning | Streaming Unit utilization rate limit (warning threshold) | string | `"60"` | no |

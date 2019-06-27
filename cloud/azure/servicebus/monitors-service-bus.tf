@@ -1,8 +1,8 @@
 resource "datadog_monitor" "servicebus_status" {
-  count = var.status_enabled == "true" ? 1 : 0
+  count   = var.status_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Service Bus is down"
   message = coalesce(var.status_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
       ${var.status_time_aggregator}(${var.status_timeframe}): (
@@ -49,10 +49,10 @@ tags = concat(["env:${var.environment}", "resource:servicebus", "team:azure", "p
 }
 
 resource "datadog_monitor" "service_bus_user_errors" {
-count = var.user_errors_enabled == "true" ? 1 : 0
+count   = var.user_errors_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Service Bus user errors rate is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.user_errors_message, var.message)
-type = "query alert"
+type    = "query alert"
 
 query = <<EOQ
       ${var.user_errors_time_aggregator}(${var.user_errors_timeframe}): (

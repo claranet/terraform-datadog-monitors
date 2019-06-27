@@ -1,8 +1,8 @@
 resource "datadog_monitor" "virtualmachine_status" {
-  count = var.status_enabled == "true" ? 1 : 0
+  count   = var.status_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Virtual Machine is unreachable"
   message = coalesce(var.status_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
       ${var.status_time_aggregator}(${var.status_timeframe}): (
@@ -57,7 +57,7 @@ resource "datadog_monitor" "virtualmachine_credit_cpu_remaining_too_low" {
 count   = var.cpu_remaining_rate_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Virtual Machine credit CPU {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.cpu_remaining_rate_message, var.message)
-type = "query alert"
+type    = "query alert"
 
 query = <<EOQ
     ${var.cpu_remaining_rate_time_aggregator}(${var.cpu_remaining_rate_timeframe}):

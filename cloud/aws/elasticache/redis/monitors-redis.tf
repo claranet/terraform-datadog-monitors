@@ -2,7 +2,7 @@ resource "datadog_monitor" "redis_cache_hits" {
   count   = var.cache_hits_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache redis cache hit ratio {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.cache_hits_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.cache_hits_time_aggregator}(${var.cache_hits_timeframe}): default(
@@ -59,7 +59,7 @@ resource "datadog_monitor" "redis_replication_lag" {
 count   = var.replication_lag_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache redis replication lag {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
 message = coalesce(var.replication_lag_message, var.message)
-type = "query alert"
+type    = "query alert"
 
 query = <<EOQ
     ${var.replication_lag_time_aggregator}(${var.replication_lag_timeframe}): (

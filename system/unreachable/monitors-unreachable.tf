@@ -2,7 +2,7 @@ resource "datadog_monitor" "host_unreachable" {
   count   = var.unreachable_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Host unreachable"
   message = coalesce(var.unreachable_message, var.message)
-  type = "service check"
+  type    = "service check"
 
   query = <<EOQ
     "datadog.agent.up"${module.filter-tags.service_check}.last(6).count_by_status()

@@ -2,7 +2,7 @@ resource "datadog_monitor" "status" {
   count   = var.status_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] SQL Database is down"
   message = coalesce(var.status_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.status_time_aggregator}(${var.status_timeframe}): (
@@ -57,7 +57,7 @@ resource "datadog_monitor" "sql-database_free_space_low" {
 count   = var.diskspace_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] SQL Database high disk usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.diskspace_message, var.message)
-type = "query alert"
+type    = "query alert"
 
 query = <<EOQ
     ${var.diskspace_time_aggregator}(${var.diskspace_timeframe}): (
@@ -117,7 +117,7 @@ resource "datadog_monitor" "sql-database_deadlocks_count" {
   count   = var.deadlock_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] SQL Database Deadlocks too high {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.deadlock_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     sum(${var.deadlock_timeframe}): (

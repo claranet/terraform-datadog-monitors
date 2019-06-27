@@ -29,7 +29,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_custom\_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `""` | no |
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
 | latency\_enabled | Flag to enable Azure Search latency monitor | string | `"true"` | no |
-| latency\_extra\_tags | Extra tags for Azure Search latency monitor | list | `[]` | no |
+| latency\_extra\_tags | Extra tags for Azure Search latency monitor | list(string) | `[]` | no |
 | latency\_message | Custom message for Azure Search latency monitor | string | `""` | no |
 | latency\_threshold\_critical | Alerting threshold for Azure Search latency in seconds | string | `"4"` | no |
 | latency\_threshold\_warning | Warning threshold for Azure Search latency in seconds | string | `"2"` | no |
@@ -39,7 +39,7 @@ Creates DataDog monitors with the following checks:
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | throttled\_queries\_rate\_enabled | Flag to enable Azure Search throttled queries rate monitor | string | `"true"` | no |
-| throttled\_queries\_rate\_extra\_tags | Extra tags for Azure Search throttled queries rate monitor | list | `[]` | no |
+| throttled\_queries\_rate\_extra\_tags | Extra tags for Azure Search throttled queries rate monitor | list(string) | `[]` | no |
 | throttled\_queries\_rate\_message | Custom message for Azure Search throttled queries rate monitor | string | `""` | no |
 | throttled\_queries\_rate\_threshold\_critical | Alerting threshold for Azure Search throttled queries rate | string | `"50"` | no |
 | throttled\_queries\_rate\_threshold\_warning | Warning threshold for Azure Search throttled queries rate | string | `"25"` | no |

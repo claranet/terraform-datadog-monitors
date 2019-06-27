@@ -29,7 +29,7 @@ Creates DataDog monitors with the following checks:
 | new\_host\_delay | Delay in seconds for the new host evaluation | string | `"300"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | replication\_lag\_enabled | Flag to enable GCP Cloud SQL Replication Lag monitor | string | `"true"` | no |
-| replication\_lag\_extra\_tags | Extra tags for GCP Cloud SQL SQL Replication monitor | list | `[]` | no |
+| replication\_lag\_extra\_tags | Extra tags for GCP Cloud SQL SQL Replication monitor | list(string) | `[]` | no |
 | replication\_lag\_message | Custom message for the Replication Lag monitor | string | `""` | no |
 | replication\_lag\_threshold\_critical | Seconds behind the master (critical threshold) | string | `"180"` | no |
 | replication\_lag\_threshold\_warning | Seconds behind the master (warning threshold) | string | `"90"` | no |

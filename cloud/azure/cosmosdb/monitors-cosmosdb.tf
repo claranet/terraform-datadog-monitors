@@ -1,8 +1,8 @@
 resource "datadog_monitor" "cosmos_db_status" {
-  count = var.status_enabled == "true" ? 1 : 0
+  count   = var.status_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cosmos DB is down"
   message = coalesce(var.status_message, var.message)
-  type = "metric alert"
+  type    = "metric alert"
 
   query = <<EOQ
       ${var.status_time_aggregator}(${var.status_timeframe}):
@@ -69,10 +69,10 @@ tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resour
 }
 
 resource "datadog_monitor" "cosmos_db_5xx_requests" {
-count = var.cosmos_db_5xx_requests_enabled == "true" ? 1 : 0
+count   = var.cosmos_db_5xx_requests_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cosmos DB 5xx requests rate is high {{#is_alert}}{{comparator}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{comparator}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.cosmos_db_5xx_requests_message, var.message)
-type = "query alert"
+type    = "query alert"
 
 query = <<EOQ
     ${var.cosmos_db_5xx_request_time_aggregator}(${var.cosmos_db_5xx_request_timeframe}): default( (

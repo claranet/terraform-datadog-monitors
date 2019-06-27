@@ -1,8 +1,8 @@
 resource "datadog_monitor" "datalakestore_status" {
-  count = var.status_enabled == "true" ? 1 : 0
+  count   = var.status_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Datalake Store is down"
   message = coalesce(var.status_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
       ${var.status_time_aggregator}(${var.status_timeframe}): (

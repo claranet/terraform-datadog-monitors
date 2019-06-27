@@ -31,7 +31,7 @@ Creates DataDog monitors with the following checks:
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | unreachable\_enabled | Flag to enable Host unreachable monitor | string | `"true"` | no |
-| unreachable\_extra\_tags | Extra tags for Host unreachable monitor | list | `[]` | no |
+| unreachable\_extra\_tags | Extra tags for Host unreachable monitor | list(string) | `[]` | no |
 | unreachable\_message | Custom message for Host unreachable monitor | string | `""` | no |
 | unreachable\_no\_data\_timeframe | Timeframe for Host unreachable monitor to alert on no data | string | `"20"` | no |
 

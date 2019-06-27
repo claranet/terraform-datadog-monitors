@@ -2,7 +2,7 @@ resource "datadog_monitor" "cpu" {
   count   = var.cpu_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] CPU usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.cpu_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.cpu_time_aggregator}(${var.cpu_timeframe}): (
@@ -60,7 +60,7 @@ resource "datadog_monitor" "disk_space" {
 count   = var.disk_space_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Disk space usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.disk_space_message, var.message)
-type = "query alert"
+type    = "query alert"
 
 query = <<EOQ
     ${var.disk_space_time_aggregator}(${var.disk_space_timeframe}):
@@ -115,8 +115,8 @@ EOQ
     critical          = var.disk_space_forecast_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_audit        = false
   locked              = false
   timeout_h           = 0
@@ -132,7 +132,7 @@ resource "datadog_monitor" "disk_inodes" {
   count   = var.disk_inodes_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Disk inodes usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.disk_inodes_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.disk_inodes_time_aggregator}(${var.disk_inodes_timeframe}):

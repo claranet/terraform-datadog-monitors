@@ -29,7 +29,7 @@ Creates DataDog monitors with the following checks:
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | vpn\_status\_enabled | Flag to enable VPN status monitor | string | `"true"` | no |
-| vpn\_status\_extra\_tags | Extra tags for VPN status monitor | list | `[]` | no |
+| vpn\_status\_extra\_tags | Extra tags for VPN status monitor | list(string) | `[]` | no |
 | vpn\_status\_message | Custom message for VPN status monitor | string | `""` | no |
 | vpn\_status\_time\_aggregator | Monitor aggregator for VPN status [available values: min, max or avg] | string | `"max"` | no |
 | vpn\_status\_timeframe | Monitor timeframe for VPN status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |

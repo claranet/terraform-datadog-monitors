@@ -17,9 +17,7 @@ module "datadog-monitors-database-mongodb" {
 Creates DataDog monitors with the following checks:
 
 - MongoDB primary state
-- MongoDB replication lag
 - MongoDB secondary missing
-- MongoDB too much servers or wrong monitoring config
 
 ## Inputs
 
@@ -36,17 +34,17 @@ Creates DataDog monitors with the following checks:
 | mongodb\_lag\_warning | Warn replication lag in s | string | `"2"` | no |
 | mongodb\_primary\_aggregator | Monitor aggregator for MongoDB primary state [available values: min, max] | string | `"max"` | no |
 | mongodb\_primary\_enabled | Flag to enable MongoDB primary state monitor | string | `"true"` | no |
-| mongodb\_primary\_extra\_tags | Extra tags for MongoDB primary state monitor | list | `[]` | no |
+| mongodb\_primary\_extra\_tags | Extra tags for MongoDB primary state monitor | list(string) | `[]` | no |
 | mongodb\_primary\_message | Custom message for MongoDB primary monitor | string | `""` | no |
 | mongodb\_primary\_timeframe | Monitor timeframe for MongoDB wrong state for primary node [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1m"` | no |
 | mongodb\_replication\_aggregator | Monitor aggregator for MongoDB replication lag [available values: min, max, sum or avg] | string | `"avg"` | no |
 | mongodb\_replication\_enabled | Flag to enable MongoDB replication lag monitor | string | `"true"` | no |
-| mongodb\_replication\_extra\_tags | Extra tags for MongoDB replication lag monitor | list | `[]` | no |
+| mongodb\_replication\_extra\_tags | Extra tags for MongoDB replication lag monitor | list(string) | `[]` | no |
 | mongodb\_replication\_message | Custom message for MongoDB replication monitor | string | `""` | no |
 | mongodb\_replication\_timeframe | Monitor timeframe for MongoDB replication lag  [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1m"` | no |
 | mongodb\_secondary\_aggregator | Monitor aggregator for MongoDB secondary state [available values: min, max] | string | `"max"` | no |
 | mongodb\_secondary\_enabled | Flag to enable MongoDB secondary state monitor | string | `"true"` | no |
-| mongodb\_secondary\_extra\_tags | Extra tags for MongoDB secondary state monitor | list | `[]` | no |
+| mongodb\_secondary\_extra\_tags | Extra tags for MongoDB secondary state monitor | list(string) | `[]` | no |
 | mongodb\_secondary\_message | Custom message for MongoDB secondary monitor | string | `""` | no |
 | mongodb\_secondary\_timeframe | Monitor timeframe for MongoDB wrong state for secondaries nodes [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | mongodb\_server\_count\_aggregator | Monitor aggregator for MongoDB server count [available values: min, max] | string | `"min"` | no |

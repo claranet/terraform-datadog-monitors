@@ -1,8 +1,8 @@
 resource "datadog_monitor" "keyvault_status" {
-  count = var.status_enabled == "true" ? 1 : 0
+  count   = var.status_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Key Vault is down"
   message = coalesce(var.status_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
       ${var.status_time_aggregator}(${var.status_timeframe}): (
@@ -57,10 +57,10 @@ tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resour
 }
 
 resource "datadog_monitor" "keyvault_api_latency" {
-count = var.api_latency_enabled == "true" ? 1 : 0
+count   = var.api_latency_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Key Vault API latency is high {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
 message = coalesce(var.status_message, var.message)
-type = "metric alert"
+type    = "metric alert"
 
 query = <<EOQ
       ${var.api_latency_time_aggregator}(${var.api_latency_timeframe}):
@@ -73,8 +73,8 @@ critical = var.api_latency_threshold_critical
 warning = var.api_latency_threshold_warning
 }
 
-evaluation_delay    = var.evaluation_delay
-new_host_delay      = var.new_host_delay
+evaluation_delay = var.evaluation_delay
+new_host_delay = var.new_host_delay
 notify_no_data = false
 renotify_interval = 0
 notify_audit = false

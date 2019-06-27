@@ -30,13 +30,13 @@ Creates DataDog monitors with the following checks:
 | new\_host\_delay | Delay in seconds for the new host evaluation | string | `"300"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | sending\_operations\_count\_enabled | Flag to enable GCP Pub/Sub Unavailable Sending Operations Count monitor | string | `"true"` | no |
-| sending\_operations\_count\_extra\_tags | Extra tags for GCP Pub/Sub Sending Operations Count monitor | list | `[]` | no |
+| sending\_operations\_count\_extra\_tags | Extra tags for GCP Pub/Sub Sending Operations Count monitor | list(string) | `[]` | no |
 | sending\_operations\_count\_message | Custom message for the GCP Pub/Sub Sending Operations Count monitor | string | `""` | no |
 | sending\_operations\_count\_threshold\_critical | Critical threshold for the number of sending operations. | string | `"0"` | no |
 | sending\_operations\_count\_time\_aggregator | Timeframe for the GCP Pub/Sub Sending Operations Count monitor | string | `"sum"` | no |
 | sending\_operations\_count\_timeframe | Timeframe for the GCP Pub/Sub Sending Operations Count monitor | string | `"last_30m"` | no |
 | unavailable\_sending\_operations\_count\_enabled | Flag to enable GCP Pub/Sub Unavailable Sending Operations Count monitor | string | `"true"` | no |
-| unavailable\_sending\_operations\_count\_extra\_tags | Extra tags for GCP Pub/Sub Unavailable Sending Operations Count monitor | list | `[]` | no |
+| unavailable\_sending\_operations\_count\_extra\_tags | Extra tags for GCP Pub/Sub Unavailable Sending Operations Count monitor | list(string) | `[]` | no |
 | unavailable\_sending\_operations\_count\_message | Custom message for the GCP Pub/Sub Unavailable Sending Operations Count monitor | string | `""` | no |
 | unavailable\_sending\_operations\_count\_threshold\_critical | Critical threshold for the number of unavailable sending operations | string | `"4"` | no |
 | unavailable\_sending\_operations\_count\_threshold\_warning | Warning threshold for the number of unavailable sending operations | string | `"2"` | no |

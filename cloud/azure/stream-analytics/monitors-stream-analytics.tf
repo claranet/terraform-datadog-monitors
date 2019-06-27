@@ -2,7 +2,7 @@ resource "datadog_monitor" "status" {
   count   = var.status_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Stream Analytics is down"
   message = coalesce(var.status_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.status_time_aggregator}(${var.status_timeframe}): (
@@ -57,7 +57,7 @@ resource "datadog_monitor" "failed_function_requests" {
 count   = var.failed_function_requests_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Stream Analytics too many failed requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.failed_function_requests_message, var.message)
-type = "query alert"
+type    = "query alert"
 
 query = <<EOQ
     ${var.failed_function_requests_time_aggregator}(${var.failed_function_requests_timeframe}): (
@@ -69,6 +69,7 @@ EOQ
 thresholds = {
 warning = var.failed_function_requests_threshold_warning
 critical = var.failed_function_requests_threshold_critical
+}
 
 evaluation_delay = var.evaluation_delay
 new_host_delay = var.new_host_delay
@@ -117,7 +118,7 @@ resource "datadog_monitor" "runtime_errors" {
   count   = var.runtime_errors_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Stream Analytics too many runtime errors {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.runtime_errors_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.runtime_errors_time_aggregator}(${var.runtime_errors_timeframe}): (
