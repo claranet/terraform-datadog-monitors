@@ -25,6 +25,6 @@ EOQ
   locked = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds-aurora-postgresql", "team:claranet", "created-by:terraform", var.aurora_replicalag_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds-aurora-postgresql", "team:claranet", "created-by:terraform"], var.aurora_replicalag_extra_tags)
 }
 

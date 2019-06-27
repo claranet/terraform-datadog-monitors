@@ -24,7 +24,7 @@ EOQ
   locked = false
   require_full_window = true
 
-  tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-pod", "team:claranet", "created-by:terraform", var.pod_phase_status_extra_tags]
+  tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-pod", "team:claranet", "created-by:terraform"], var.pod_phase_status_extra_tags)
 }
 
 resource "datadog_monitor" "error" {
@@ -54,6 +54,6 @@ include_tags        = true
 locked              = false
 require_full_window = true
 
-tags     = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-pod", "team:claranet", "created-by:terraform", var.error_extra_tags]
+tags     = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-pod", "team:claranet", "created-by:terraform"], var.error_extra_tags)
 }
 

@@ -27,7 +27,7 @@ EOQ
   locked = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis", var.cache_hits_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis"], var.cache_hits_extra_tags)
 }
 
 resource "datadog_monitor" "redis_cpu_high" {
@@ -52,7 +52,7 @@ include_tags        = true
 locked              = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis", var.cpu_high_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis"], var.cpu_high_extra_tags)
 }
 
 resource "datadog_monitor" "redis_replication_lag" {
@@ -82,7 +82,7 @@ include_tags = true
 locked = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis", var.replication_lag_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis"], var.replication_lag_extra_tags)
 }
 
 resource "datadog_monitor" "redis_commands" {
@@ -109,6 +109,6 @@ EOQ
   locked              = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis", var.commands_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis"], var.commands_extra_tags)
 }
 

@@ -28,7 +28,7 @@ EOQ
   notify_no_data = true
   renotify_interval = 0
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform", var.cpu_utilization_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform"], var.cpu_utilization_extra_tags)
 }
 
 #
@@ -67,7 +67,7 @@ require_full_window = false
 notify_no_data      = var.disk_throttled_bps_notify_no_data
 renotify_interval   = 0
 
-tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform", var.disk_throttled_bps_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform"], var.disk_throttled_bps_extra_tags)
 }
 
 #
@@ -106,6 +106,6 @@ include_tags = true
 require_full_window = false
 renotify_interval = 0
 
-tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform", var.disk_throttled_ops_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform"], var.disk_throttled_ops_extra_tags)
 }
 

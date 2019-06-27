@@ -22,7 +22,7 @@ EOQ
   locked = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform", var.status_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.status_extra_tags)
 }
 
 resource "datadog_monitor" "apimgt_failed_requests" {
@@ -53,7 +53,7 @@ locked              = false
 require_full_window = false
 renotify_interval   = 0
 
-tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform", var.failed_requests_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.failed_requests_extra_tags)
 }
 
 resource "datadog_monitor" "apimgt_other_requests" {
@@ -84,7 +84,7 @@ locked = false
 require_full_window = false
 renotify_interval = 0
 
-tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform", var.other_requests_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.other_requests_extra_tags)
 }
 
 resource "datadog_monitor" "apimgt_unauthorized_requests" {
@@ -115,7 +115,7 @@ EOQ
   require_full_window = false
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform", var.unauthorized_requests_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.unauthorized_requests_extra_tags)
 }
 
 resource "datadog_monitor" "apimgt_successful_requests" {
@@ -148,6 +148,6 @@ EOQ
   require_full_window = false
   renotify_interval = 0
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform", var.successful_requests_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.successful_requests_extra_tags)
 }
 

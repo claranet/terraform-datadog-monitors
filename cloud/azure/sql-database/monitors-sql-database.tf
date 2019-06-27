@@ -20,7 +20,7 @@ EOQ
   locked = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform", var.status_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform"], var.status_extra_tags)
 }
 
 resource "datadog_monitor" "sql-database_cpu" {
@@ -50,7 +50,7 @@ include_tags        = true
 locked              = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform", var.cpu_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform"], var.cpu_extra_tags)
 }
 
 resource "datadog_monitor" "sql-database_free_space_low" {
@@ -80,7 +80,7 @@ include_tags = true
 locked = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform", var.diskspace_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform"], var.diskspace_extra_tags)
 }
 
 resource "datadog_monitor" "sql-database_dtu_consumption_high" {
@@ -110,7 +110,7 @@ EOQ
   locked              = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform", var.dtu_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform"], var.dtu_extra_tags)
 }
 
 resource "datadog_monitor" "sql-database_deadlocks_count" {
@@ -139,6 +139,6 @@ EOQ
   locked = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform", var.deadlock_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform"], var.deadlock_extra_tags)
 }
 

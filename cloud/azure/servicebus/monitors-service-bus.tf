@@ -20,7 +20,7 @@ EOQ
   locked = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform", var.status_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform"], var.status_extra_tags)
 }
 
 resource "datadog_monitor" "service_bus_no_active_connections" {
@@ -45,7 +45,7 @@ include_tags        = true
 locked              = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
+tags = concat(["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "service_bus_user_errors" {
@@ -76,7 +76,7 @@ include_tags = true
 locked = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
+tags = concat(["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
 }
 
 resource "datadog_monitor" "service_bus_server_errors" {
@@ -107,6 +107,6 @@ EOQ
   locked              = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
+  tags = concat(["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
 }
 

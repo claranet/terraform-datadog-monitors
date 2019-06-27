@@ -25,6 +25,6 @@ EOQ
   locked = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:kinesis-firehose", "team:claranet", "created-by:terraform", var.incoming_records_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:kinesis-firehose", "team:claranet", "created-by:terraform"], var.incoming_records_extra_tags)
 }
 

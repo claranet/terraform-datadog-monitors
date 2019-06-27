@@ -31,7 +31,7 @@ EOQ
   locked = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticsearch", "team:claranet", "created-by:terraform", var.es_cluster_status_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.es_cluster_status_extra_tags)
 }
 
 ### Elasticsearch cluster free storage space monitor ###
@@ -63,7 +63,7 @@ include_tags        = true
 locked              = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticsearch", "team:claranet", "created-by:terraform", var.diskspace_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.diskspace_extra_tags)
 }
 
 ### Elasticsearch cluster CPU monitor ###
@@ -94,6 +94,6 @@ include_tags = true
 locked = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticsearch", "team:claranet", "created-by:terraform", var.cpu_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.cpu_extra_tags)
 }
 

@@ -24,7 +24,7 @@ EOQ
   timeout_h = 0
   include_tags = true
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure-search", "team:claranet", "created-by:terraform", var.latency_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure-search", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
 }
 
 # Monitoring Azure Search throttled queries
@@ -53,6 +53,6 @@ require_full_window = false
 timeout_h           = 0
 include_tags        = true
 
-tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure-search", "team:claranet", "created-by:terraform", var.throttled_queries_rate_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure-search", "team:claranet", "created-by:terraform"], var.throttled_queries_rate_extra_tags)
 }
 

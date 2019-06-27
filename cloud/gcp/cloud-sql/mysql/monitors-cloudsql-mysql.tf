@@ -28,6 +28,6 @@ EOQ
   notify_no_data = true
   renotify_interval = 0
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "engine:mysql", var.replication_lag_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "engine:mysql"], var.replication_lag_extra_tags)
 }
 

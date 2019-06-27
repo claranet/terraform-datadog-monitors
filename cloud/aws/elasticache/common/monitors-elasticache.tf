@@ -25,7 +25,7 @@ EOQ
   locked = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", var.eviction_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.eviction_extra_tags)
 }
 
 resource "datadog_monitor" "elasticache_max_connection" {
@@ -50,7 +50,7 @@ include_tags        = true
 locked              = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", var.max_connection_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.max_connection_extra_tags)
 }
 
 resource "datadog_monitor" "elasticache_no_connection" {
@@ -75,7 +75,7 @@ include_tags = true
 locked = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", var.no_connection_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.no_connection_extra_tags)
 }
 
 resource "datadog_monitor" "elasticache_swap" {
@@ -105,7 +105,7 @@ EOQ
   locked              = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", var.swap_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.swap_extra_tags)
 }
 
 resource "datadog_monitor" "elasticache_free_memory" {
@@ -135,7 +135,7 @@ EOQ
   locked = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", var.free_memory_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.free_memory_extra_tags)
 }
 
 resource "datadog_monitor" "elasticache_eviction_growing" {
@@ -165,6 +165,6 @@ include_tags        = true
 locked              = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", var.eviction_growing_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.eviction_growing_extra_tags)
 }
 

@@ -19,6 +19,6 @@ EOQ
   include_tags = true
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:vpn", "team:claranet", "created-by:terraform", var.vpn_status_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:vpn", "team:claranet", "created-by:terraform"], var.vpn_status_extra_tags)
 }
 

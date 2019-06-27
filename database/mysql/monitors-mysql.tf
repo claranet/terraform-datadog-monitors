@@ -23,7 +23,7 @@ EOQ
   locked = false
   require_full_window = true
 
-  tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", var.mysql_availability_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_availability_extra_tags)
 }
 
 resource "datadog_monitor" "mysql_connection" {
@@ -52,7 +52,7 @@ require_full_window = true
 timeout_h           = 0
 include_tags        = true
 
-tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", var.mysql_connection_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_connection_extra_tags)
 }
 
 resource "datadog_monitor" "mysql_aborted" {
@@ -81,7 +81,7 @@ require_full_window = true
 timeout_h = 0
 include_tags = true
 
-tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", var.mysql_aborted_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_aborted_extra_tags)
 }
 
 resource "datadog_monitor" "mysql_slow" {
@@ -110,7 +110,7 @@ EOQ
   timeout_h           = 0
   include_tags        = true
 
-  tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", var.mysql_slow_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_slow_extra_tags)
 }
 
 resource "datadog_monitor" "mysql_pool_efficiency" {
@@ -139,7 +139,7 @@ EOQ
   timeout_h = 0
   include_tags = true
 
-  tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", var.mysql_pool_efficiency_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_pool_efficiency_extra_tags)
 }
 
 resource "datadog_monitor" "mysql_pool_utilization" {
@@ -169,7 +169,7 @@ require_full_window = true
 timeout_h           = 0
 include_tags        = true
 
-tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", var.mysql_pool_utilization_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_pool_utilization_extra_tags)
 }
 
 resource "datadog_monitor" "mysql_threads_anomaly" {
@@ -206,7 +206,7 @@ require_full_window = true
 timeout_h = 0
 include_tags = true
 
-tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", var.mysql_threads_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_threads_extra_tags)
 }
 
 resource "datadog_monitor" "mysql_questions_anomaly" {
@@ -243,6 +243,6 @@ EOQ
   timeout_h           = 0
   include_tags        = true
 
-  tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", var.mysql_questions_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_questions_extra_tags)
 }
 

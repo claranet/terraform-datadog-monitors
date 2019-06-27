@@ -24,7 +24,7 @@ EOQ
   timeout_h = 0
   include_tags = true
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform", var.latency_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
 }
 
 # Monitoring API Gateway 5xx errors percent
@@ -54,7 +54,7 @@ require_full_window = false
 timeout_h           = 1
 include_tags        = true
 
-tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform", var.http_5xx_requests_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"], var.http_5xx_requests_extra_tags)
 }
 
 # Monitoring API Gateway 4xx errors percent
@@ -84,6 +84,6 @@ require_full_window = false
 timeout_h = 1
 include_tags = true
 
-tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform", var.http_4xx_requests_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"], var.http_4xx_requests_extra_tags)
 }
 

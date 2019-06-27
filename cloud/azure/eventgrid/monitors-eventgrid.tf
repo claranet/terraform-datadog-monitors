@@ -20,7 +20,7 @@ EOQ
   locked = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventgrid", "team:claranet", "created-by:terraform", var.no_successful_message_rate_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventgrid", "team:claranet", "created-by:terraform"], var.no_successful_message_rate_extra_tags)
 }
 
 resource "datadog_monitor" "eventgrid_failed_messages" {
@@ -54,7 +54,7 @@ include_tags        = true
 locked              = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventgrid", "team:claranet", "created-by:terraform", var.failed_messages_rate_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventgrid", "team:claranet", "created-by:terraform"], var.failed_messages_rate_extra_tags)
 }
 
 resource "datadog_monitor" "eventgrid_unmatched_events" {
@@ -88,6 +88,6 @@ include_tags = true
 locked = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventgrid", "team:claranet", "created-by:terraform", var.unmatched_events_rate_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventgrid", "team:claranet", "created-by:terraform"], var.unmatched_events_rate_extra_tags)
 }
 
