@@ -70,25 +70,31 @@ variable "status_timeframe" {
 }
 
 variable "no_active_connections_enabled" {
-  description = "Flag to enable Service Bus status monitor"
+  description = "Flag to enable Service Bus no active connections monitor"
   type        = string
   default     = "true"
 }
 
+variable "no_active_connections_extra_tags" {
+  description = "Extra tags for Service Bus no active connections monitor"
+  type        = list(string)
+  default     = []
+}
+
 variable "no_active_connections_message" {
-  description = "Custom message for Service Bus status monitor"
+  description = "Custom message for Service Bus no active connections monitor"
   type        = string
   default     = ""
 }
 
 variable "no_active_connections_time_aggregator" {
-  description = "Monitor aggregator for Service Bus status [available values: min, max or avg]"
+  description = "Monitor aggregator for Service Bus no active connections [available values: min, max or avg]"
   type        = string
   default     = "max"
 }
 
 variable "no_active_connections_timeframe" {
-  description = "Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  description = "Monitor timeframe for Service Bus no active connections [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
   default     = "last_5m"
 }
@@ -103,6 +109,12 @@ variable "server_errors_enabled" {
   description = "Flag to enable Service Bus server errors monitor"
   type        = string
   default     = "true"
+}
+
+variable "server_errors_extra_tags" {
+  description = "Extra tags for Service Bus server errors monitor"
+  type        = list(string)
+  default     = []
 }
 
 variable "server_errors_time_aggregator" {
@@ -137,6 +149,12 @@ variable "user_errors_enabled" {
   description = "Flag to enable Service Bus user errors monitor"
   type        = string
   default     = "true"
+}
+
+variable "user_errors_extra_tags" {
+  description = "Extra tags for Service Bus user errors monitor"
+  type        = list(string)
+  default     = []
 }
 
 variable "user_errors_time_aggregator" {

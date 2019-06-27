@@ -45,7 +45,7 @@ include_tags        = true
 locked              = false
 require_full_window = false
 
-tags = concat(["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
+tags = concat(["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"], var.no_active_connections_extra_tags)
 }
 
 resource "datadog_monitor" "service_bus_user_errors" {
@@ -76,7 +76,7 @@ include_tags = true
 locked = false
 require_full_window = false
 
-tags = concat(["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
+tags = concat(["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"], var.user_errors_extra_tags)
 }
 
 resource "datadog_monitor" "service_bus_server_errors" {
@@ -107,6 +107,6 @@ EOQ
   locked              = false
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"]
+  tags = concat(["env:${var.environment}", "resource:servicebus", "team:azure", "provider:azure"], var.server_errors_extra_tags)
 }
 
