@@ -7,7 +7,7 @@ goto_root
 root=$(basename ${PWD})
 
 # loop over every monitors set
-for path in $(find "$(get_scope $1)" -path ./incubator -prune -o -name 'monitors-*.tf' -print | sort -fdbi); do
+for path in $(find "$(get_scope $1)" -name 'monitors-*.tf' -print | sort -fdbi); do
     cd $(dirname $path)
     # get name of the monitors set directory
     resource="$(basename $(dirname $path))"
