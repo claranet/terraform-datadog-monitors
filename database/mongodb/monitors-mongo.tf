@@ -2,7 +2,7 @@ resource "datadog_monitor" "mongodb_primary" {
   count   = var.mongodb_primary_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] MongoDB primary state"
   message = coalesce(var.mongodb_primary_message, var.message)
-  type = "metric alert"
+  type    = "metric alert"
 
   query = <<EOQ
       ${var.mongodb_primary_aggregator}(${var.mongodb_primary_timeframe}):
@@ -54,7 +54,7 @@ resource "datadog_monitor" "mongodb_server_count" {
 count   = var.mongodb_server_count_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] MongoDB too much servers or wrong monitoring config"
 message = coalesce(var.mongodb_server_count_message, var.message)
-type = "metric alert"
+type    = "metric alert"
 
 query = <<EOQ
       ${var.mongodb_server_count_aggregator}(${var.mongodb_server_count_timeframe}):

@@ -2,7 +2,7 @@ resource "datadog_monitor" "eventhub_status" {
   count   = var.status_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Event Hub is down"
   message = coalesce(var.status_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.status_time_aggregator}(${var.status_timeframe}): (
@@ -58,7 +58,7 @@ resource "datadog_monitor" "eventhub_errors" {
 count   = var.errors_rate_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Event Hub too many errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.errors_rate_message, var.message)
-type = "query alert"
+type    = "query alert"
 
 query = <<EOQ
     ${var.errors_rate_time_aggregator}(${var.errors_rate_timeframe}): ( (

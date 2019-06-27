@@ -32,7 +32,7 @@ resource "datadog_monitor" "azure_search_throttled_queries_rate" {
   count = var.throttled_queries_rate_enabled == "true" ? 1 : 0
   name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Search throttled queries rate is too high {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = coalesce(var.throttled_queries_rate_message, var.message)
-  type    = "query alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.throttled_queries_rate_time_aggregator}(${var.throttled_queries_rate_timeframe}): (
@@ -45,8 +45,8 @@ warning  = var.throttled_queries_rate_threshold_warning
 critical = var.throttled_queries_rate_threshold_critical
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_no_data      = false
 renotify_interval   = 0
 require_full_window = false

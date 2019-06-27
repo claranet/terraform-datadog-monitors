@@ -2,7 +2,7 @@ resource "datadog_monitor" "disk_pressure" {
   count   = var.disk_pressure_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Disk pressure"
   message = coalesce(var.disk_pressure_message, var.message)
-  type = "service check"
+  type    = "service check"
 
   query = <<EOQ
     "kubernetes_state.node.disk_pressure"${module.filter-tags.service_check}.by("kubernetescluster","node").last(6).count_by_status()
@@ -56,7 +56,7 @@ resource "datadog_monitor" "memory_pressure" {
 count   = var.memory_pressure_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Memory pressure"
 message = coalesce(var.memory_pressure_message, var.message)
-type = "service check"
+type    = "service check"
 
 query = <<EOQ
     "kubernetes_state.node.memory_pressure"${module.filter-tags.service_check}.by("kubernetescluster","node").last(6).count_by_status()
@@ -110,7 +110,7 @@ resource "datadog_monitor" "kubelet_ping" {
   count   = var.kubelet_ping_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Kubelet API does not respond"
   message = coalesce(var.kubelet_ping_message, var.message)
-  type = "service check"
+  type    = "service check"
 
   query = <<EOQ
     "kubernetes.kubelet.check.ping"${module.filter-tags.service_check}.by("kubernetescluster","name").last(6).count_by_status()
@@ -197,8 +197,8 @@ EOQ
     critical = 0
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
@@ -207,7 +207,7 @@ EOQ
   locked              = false
   require_full_window = true
 
-  tags     = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.node_unschedulable_extra_tags)
+  tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.node_unschedulable_extra_tags)
 }
 
 resource "datadog_monitor" "volume_space" {
@@ -245,7 +245,7 @@ resource "datadog_monitor" "volume_inodes" {
   count = var.volume_inodes_enabled == "true" ? 1 : 0
   name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node volume inodes usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.volume_inodes_message, var.message)
-  type    = "query alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.volume_inodes_time_aggregator}(${var.volume_inodes_timeframe}):
@@ -259,8 +259,8 @@ critical = var.volume_inodes_threshold_critical
 warning  = var.volume_inodes_threshold_warning
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_no_data      = false
 renotify_interval   = 0
 notify_audit        = false
@@ -269,6 +269,6 @@ include_tags        = true
 locked              = false
 require_full_window = true
 
-tags     = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.volume_inodes_extra_tags)
+tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.volume_inodes_extra_tags)
 }
 

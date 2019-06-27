@@ -31,7 +31,7 @@ resource "datadog_monitor" "error" {
   count = var.error_enabled == "true" ? 1 : 0
   name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Pod waiting errors"
   message = coalesce(var.error_message, var.message)
-  type    = "query alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.error_time_aggregator}(${var.error_timeframe}):
@@ -44,8 +44,8 @@ critical = var.error_threshold_critical
 warning  = var.error_threshold_warning
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_no_data      = false
 renotify_interval   = 0
 notify_audit        = false
@@ -54,6 +54,6 @@ include_tags        = true
 locked              = false
 require_full_window = true
 
-tags     = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-pod", "team:claranet", "created-by:terraform"], var.error_extra_tags)
+tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-pod", "team:claranet", "created-by:terraform"], var.error_extra_tags)
 }
 

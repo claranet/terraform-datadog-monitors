@@ -32,7 +32,7 @@ resource "datadog_monitor" "ALB_latency" {
   count = var.latency_enabled == "true" ? 1 : 0
   name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB latency {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = coalesce(var.latency_message, var.message)
-  type    = "query alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.latency_time_aggregator}(${var.latency_timeframe}):
@@ -45,8 +45,8 @@ critical = var.latency_threshold_critical
 warning  = var.latency_threshold_warning
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_no_data      = false
 renotify_interval   = 0
 require_full_window = false
@@ -89,7 +89,7 @@ resource "datadog_monitor" "ALB_httpcode_4xx" {
 count = var.httpcode_alb_4xx_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB HTTP code 4xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.httpcode_alb_4xx_message, var.message)
-type    = "query alert"
+type = "query alert"
 
 query = <<EOQ
     ${var.httpcode_alb_4xx_time_aggregator}(${var.httpcode_alb_4xx_timeframe}):
@@ -103,8 +103,8 @@ EOQ
     warning  = var.httpcode_alb_4xx_threshold_warning
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
@@ -147,7 +147,7 @@ resource "datadog_monitor" "ALB_httpcode_target_4xx" {
   count = var.httpcode_target_4xx_enabled == "true" ? 1 : 0
   name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB target HTTP code 4xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.httpcode_target_4xx_message, var.message)
-  type    = "query alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.httpcode_target_4xx_time_aggregator}(${var.httpcode_target_4xx_timeframe}):
@@ -161,8 +161,8 @@ critical = var.httpcode_target_4xx_threshold_critical
 warning  = var.httpcode_target_4xx_threshold_warning
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_no_data      = false
 renotify_interval   = 0
 require_full_window = false

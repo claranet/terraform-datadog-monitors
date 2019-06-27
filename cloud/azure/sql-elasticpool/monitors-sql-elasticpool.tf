@@ -2,7 +2,7 @@ resource "datadog_monitor" "sql_elasticpool_cpu" {
   count   = var.cpu_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] SQL Elastic Pool CPU too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.cpu_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.cpu_time_aggregator}(${var.cpu_timeframe}): (
@@ -62,7 +62,7 @@ resource "datadog_monitor" "sql_elasticpool_dtu_consumption_high" {
 count   = var.dtu_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] SQL Elastic Pool DTU Consumption too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.dtu_message, var.message)
-type = "query alert"
+type    = "query alert"
 
 query = <<EOQ
     ${var.dtu_time_aggregator}(${var.dtu_timeframe}): (

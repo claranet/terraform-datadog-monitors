@@ -2,7 +2,7 @@ resource "datadog_monitor" "postgresql_availability" {
   count   = var.postgresql_availability_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] PostgreSQL server does not respond"
   message = coalesce(var.postgresql_availability_message, var.message)
-  type = "service check"
+  type    = "service check"
 
   query = <<EOQ
     "postgres.can_connect"${module.filter-tags.service_check}.by("port","server").last(6).count_by_status()
@@ -30,7 +30,7 @@ resource "datadog_monitor" "postgresql_connection_too_high" {
   count = var.postgresql_connection_enabled == "true" ? 1 : 0
   name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] PostgreSQL Connections {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.postgresql_connection_message, var.message)
-  type    = "query alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.postgresql_connection_time_aggregator}(${var.postgresql_connection_timeframe}):
@@ -43,8 +43,8 @@ warning  = var.postgresql_connection_threshold_warning
 critical = var.postgresql_connection_threshold_critical
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_no_data      = false
 renotify_interval   = 0
 require_full_window = true

@@ -31,7 +31,7 @@ Creates DataDog monitors with the following checks:
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | status\_enabled | Flag to enable Datalake Store status monitor | string | `"true"` | no |
-| status\_extra\_tags | Extra tags for Datalake Store status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | list | `[]` | no |
+| status\_extra\_tags | Extra tags for Datalake Store status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | list(string) | `[]` | no |
 | status\_message | Custom message for Datalake Store status monitor | string | `""` | no |
 | status\_time\_aggregator | Monitor aggregator for Datalake Store status [available values: min, max or avg] | string | `"max"` | no |
 | status\_timeframe | Monitor timeframe for Datalake Store status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |

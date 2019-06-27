@@ -3,7 +3,7 @@ resource "datadog_monitor" "firehose_incoming_records" {
   count   = var.incoming_records_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kinesis Firehose No incoming records"
   message = coalesce(var.incoming_records_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     sum(${var.incoming_records_timeframe}): (

@@ -32,7 +32,7 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
   count = var.memory_usage_enabled == "true" ? 1 : 0
   name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services memory usage {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.memory_usage_message, var.message)
-  type    = "query alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.memory_usage_time_aggregator}(${var.memory_usage_timeframe}): (
@@ -45,8 +45,8 @@ warning  = var.memory_usage_threshold_warning
 critical = var.memory_usage_threshold_critical
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_no_data      = false
 renotify_interval   = 0
 require_full_window = false
@@ -91,7 +91,7 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
 count = var.http_4xx_requests_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services HTTP 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.http_4xx_requests_message, var.message)
-type    = "query alert"
+type = "query alert"
 
 query = <<EOQ
     ${var.http_4xx_requests_time_aggregator}(${var.http_4xx_requests_timeframe}): (
@@ -105,8 +105,8 @@ EOQ
     critical = var.http_4xx_requests_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_no_data      = false # Will NOT notify when no data is received
   renotify_interval   = 0
   require_full_window = false
@@ -163,8 +163,8 @@ thresholds = {
 critical = 1
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_no_data      = true
 renotify_interval   = 0
 require_full_window = false

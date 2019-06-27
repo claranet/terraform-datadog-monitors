@@ -31,7 +31,7 @@ resource "datadog_monitor" "function_high_connections_count" {
   count = var.high_connections_count_enabled == "true" ? 1 : 0
   name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Function App connections count too high {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.high_connections_count_message, var.message)
-  type    = "query alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.high_connections_count_time_aggregator}(${var.high_connections_count_timeframe}):
@@ -44,8 +44,8 @@ warning  = var.high_connections_count_threshold_warning
 critical = var.high_connections_count_threshold_critical
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_no_data      = false
 renotify_interval   = 0
 require_full_window = false

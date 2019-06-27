@@ -25,7 +25,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|:----:|:-----:|:-----:|
 | environment | Architecture environment | string | n/a | yes |
 | error\_enabled | Flag to enable Pod errors monitor | string | `"true"` | no |
-| error\_extra\_tags | Extra tags for Pod errors monitor | list | `[]` | no |
+| error\_extra\_tags | Extra tags for Pod errors monitor | list(string) | `[]` | no |
 | error\_message | Custom message for Pod errors monitor | string | `""` | no |
 | error\_threshold\_critical | error critical threshold | string | `"0.5"` | no |
 | error\_threshold\_warning | error warning threshold | string | `"0"` | no |
@@ -38,7 +38,7 @@ Creates DataDog monitors with the following checks:
 | message | Message sent when a monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | pod\_phase\_status\_enabled | Flag to enable Pod phase status monitor | string | `"true"` | no |
-| pod\_phase\_status\_extra\_tags | Extra tags for Pod phase status monitor | list | `[]` | no |
+| pod\_phase\_status\_extra\_tags | Extra tags for Pod phase status monitor | list(string) | `[]` | no |
 | pod\_phase\_status\_message | Custom message for Pod phase status monitor | string | `""` | no |
 | pod\_phase\_status\_time\_aggregator | Monitor aggregator for Pod phase status [available values: min, max or avg] | string | `"max"` | no |
 | pod\_phase\_status\_timeframe | Monitor timeframe for Pod phase status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |

@@ -17,7 +17,6 @@ module "datadog-monitors-cloud-azure-eventhub" {
 Creates DataDog monitors with the following checks:
 
 - Event Hub is down
-- Event Hub too many errors
 - Event Hub too many failed requests
 
 ## Inputs
@@ -26,7 +25,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|:----:|:-----:|:-----:|
 | environment | Architecture environment | string | n/a | yes |
 | errors\_rate\_enabled | Flag to enable Event Hub errors monitor | string | `"true"` | no |
-| errors\_rate\_extra\_tags | Extra tags for Event Hub errors monitor | list | `[]` | no |
+| errors\_rate\_extra\_tags | Extra tags for Event Hub errors monitor | list(string) | `[]` | no |
 | errors\_rate\_message | Custom message for Event Hub errors monitor | string | `""` | no |
 | errors\_rate\_thresold\_critical | Errors ratio (percentage) to trigger the critical alert | string | `"90"` | no |
 | errors\_rate\_thresold\_warning | Errors ratio (percentage) to trigger a warning alert | string | `"50"` | no |
@@ -34,7 +33,7 @@ Creates DataDog monitors with the following checks:
 | errors\_rate\_timeframe | Monitor timeframe for Event Hub errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | evaluation\_delay | Delay in seconds for the metric evaluation | string | `"900"` | no |
 | failed\_requests\_rate\_enabled | Flag to enable Event Hub failed requests monitor | string | `"true"` | no |
-| failed\_requests\_rate\_extra\_tags | Extra tags for Event Hub failed requests monitor | list | `[]` | no |
+| failed\_requests\_rate\_extra\_tags | Extra tags for Event Hub failed requests monitor | list(string) | `[]` | no |
 | failed\_requests\_rate\_message | Custom message for Event Hub failed requests monitor | string | `""` | no |
 | failed\_requests\_rate\_thresold\_critical | Failed requests ratio (percentage) to trigger the critical alert | string | `"90"` | no |
 | failed\_requests\_rate\_thresold\_warning | Failed requests ratio (percentage) to trigger a warning alert | string | `"50"` | no |
@@ -47,7 +46,7 @@ Creates DataDog monitors with the following checks:
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | status\_enabled | Flag to enable Event Hub status monitor | string | `"true"` | no |
-| status\_extra\_tags | Extra tags for Event Hub status monitor | list | `[]` | no |
+| status\_extra\_tags | Extra tags for Event Hub status monitor | list(string) | `[]` | no |
 | status\_message | Custom message for Event Hub status monitor | string | `""` | no |
 | status\_time\_aggregator | Monitor aggregator for Event Hub status [available values: min, max or avg] | string | `"max"` | no |
 | status\_timeframe | Monitor timeframe for Event Hub status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |

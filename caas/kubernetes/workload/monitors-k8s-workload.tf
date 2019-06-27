@@ -2,7 +2,7 @@ resource "datadog_monitor" "job" {
   count   = var.job_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes job failed"
   message = coalesce(var.job_message, var.message)
-  type = "service check"
+  type    = "service check"
 
   query = <<EOQ
     "kubernetes_state.job.complete"${module.filter-tags.service_check}.by("job_name").last(6).count_by_status()
@@ -86,7 +86,7 @@ resource "datadog_monitor" "replica_ready" {
 count = var.replica_ready_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Ready replicas {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.replica_ready_message, var.message)
-type    = "query alert"
+type = "query alert"
 
 query = <<EOQ
     ${var.replica_available_time_aggregator}(${var.replica_available_timeframe}):
@@ -99,8 +99,8 @@ EOQ
     critical = var.replica_ready_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
@@ -109,7 +109,7 @@ EOQ
   locked              = false
   require_full_window = true
 
-  tags     = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.replica_ready_extra_tags)
+  tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.replica_ready_extra_tags)
 }
 
 resource "datadog_monitor" "replica_current" {

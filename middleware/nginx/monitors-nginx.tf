@@ -2,7 +2,7 @@ resource "datadog_monitor" "datadog_nginx_process" {
   count   = var.nginx_connect_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Nginx vhost status does not respond"
   message = coalesce(var.nginx_connect_message, var.message)
-  type = "service check"
+  type    = "service check"
 
   query = <<EOQ
     "nginx.can_connect"${module.filter-tags.service_check}.by("server","port").last(6).count_by_status()

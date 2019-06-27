@@ -23,7 +23,7 @@ Creates DataDog monitors with the following checks:
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | ark\_schedules\_enabled | Flag to enable Ark schedules monitor | string | `"true"` | no |
-| ark\_schedules\_extra\_tags | Extra tags for Ark schedules monitor | list | `[]` | no |
+| ark\_schedules\_extra\_tags | Extra tags for Ark schedules monitor | list(string) | `[]` | no |
 | ark\_schedules\_monitor\_message | Custom message for Ark schedules monitor | string | `""` | no |
 | ark\_schedules\_monitor\_no\_data\_timeframe | No data timeframe in minutes | string | `"1440"` | no |
 | ark\_schedules\_monitor\_timeframe | Monitor timeframe for Ark schedules monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1d"` | no |

@@ -16,37 +16,35 @@ module "datadog-monitors-cloud-azure-sql-database" {
 
 Creates DataDog monitors with the following checks:
 
-- SQL Database CPU too high
 - SQL Database Deadlocks too high
-- SQL Database DTU Consumption too high
-- SQL Database high disk usage
 - SQL Database is down
+- SQL Database CPU too high
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | cpu\_enabled | Flag to enable SQL CPU monitor | string | `"true"` | no |
-| cpu\_extra\_tags | Extra tags for SQL CPU monitor | list | `[]` | no |
+| cpu\_extra\_tags | Extra tags for SQL CPU monitor | list(string) | `[]` | no |
 | cpu\_message | Custom message for SQL CPU monitor | string | `""` | no |
 | cpu\_threshold\_critical | CPU usage in percent (critical threshold) | string | `"90"` | no |
 | cpu\_threshold\_warning | CPU usage in percent (warning threshold) | string | `"80"` | no |
 | cpu\_time\_aggregator | Monitor aggregator for SQL CPU [available values: min, max or avg] | string | `"min"` | no |
 | cpu\_timeframe | Monitor timeframe for SQL CPU [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
 | deadlock\_enabled | Flag to enable SQL Deadlock monitor | string | `"true"` | no |
-| deadlock\_extra\_tags | Extra tags for SQL Deadlock monitor | list | `[]` | no |
+| deadlock\_extra\_tags | Extra tags for SQL Deadlock monitor | list(string) | `[]` | no |
 | deadlock\_message | Custom message for SQL Deadlock monitor | string | `""` | no |
 | deadlock\_threshold\_critical | Amount of Deadlocks (critical threshold) | string | `"1"` | no |
 | deadlock\_timeframe | Monitor timeframe for SQL Deadlock [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | diskspace\_enabled | Flag to enable SQL disk space monitor | string | `"true"` | no |
-| diskspace\_extra\_tags | Extra tags for SQL disk space monitor | list | `[]` | no |
+| diskspace\_extra\_tags | Extra tags for SQL disk space monitor | list(string) | `[]` | no |
 | diskspace\_message | Custom message for SQL disk space monitor | string | `""` | no |
 | diskspace\_threshold\_critical | Disk space used in percent (critical threshold) | string | `"90"` | no |
 | diskspace\_threshold\_warning | Disk space used in percent (warning threshold) | string | `"80"` | no |
 | diskspace\_time\_aggregator | Monitor aggregator for SQL disk space [available values: min, max or avg] | string | `"max"` | no |
 | diskspace\_timeframe | Monitor timeframe for SQL disk space [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
 | dtu\_enabled | Flag to enable SQL DTU monitor | string | `"true"` | no |
-| dtu\_extra\_tags | Extra tags for SQL DTU monitor | list | `[]` | no |
+| dtu\_extra\_tags | Extra tags for SQL DTU monitor | list(string) | `[]` | no |
 | dtu\_message | Custom message for SQL DTU monitor | string | `""` | no |
 | dtu\_threshold\_critical | Amount of DTU used (critical threshold) | string | `"90"` | no |
 | dtu\_threshold\_warning | Amount of DTU used (warning threshold) | string | `"85"` | no |
@@ -61,7 +59,7 @@ Creates DataDog monitors with the following checks:
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | status\_enabled | Flag to enable Redis status monitor | string | `"true"` | no |
-| status\_extra\_tags | Extra tags for Redis status monitor | list | `[]` | no |
+| status\_extra\_tags | Extra tags for Redis status monitor | list(string) | `[]` | no |
 | status\_message | Custom message for Redis status monitor | string | `""` | no |
 | status\_time\_aggregator | Monitor aggregator for Redis status [available values: min, max or avg] | string | `"max"` | no |
 | status\_timeframe | Monitor timeframe for Redis status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |

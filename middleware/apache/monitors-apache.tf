@@ -2,7 +2,7 @@ resource "datadog_monitor" "datadog_apache_process" {
   count   = var.apache_connect_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Apache vhost status does not respond"
   message = coalesce(var.apache_connect_message, var.message)
-  type = "service check"
+  type    = "service check"
 
   query = <<EOQ
     "apache.can_connect"${module.filter-tags.service_check}.by("port","server").last(6).count_by_status()

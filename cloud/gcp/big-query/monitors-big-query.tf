@@ -5,7 +5,7 @@ resource "datadog_monitor" "concurrent_queries" {
   count   = var.concurrent_queries_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP Big Query Concurrent Queries {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.concurrent_queries_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     avg(${var.concurrent_queries_timeframe}):
@@ -51,8 +51,8 @@ warning  = var.execution_time_threshold_warning
 critical = var.execution_time_threshold_critical
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 include_tags        = true
 notify_no_data      = false
 require_full_window = false
@@ -71,7 +71,7 @@ resource "datadog_monitor" "scanned_bytes" {
 count   = var.scanned_bytes_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP Big Query Scanned Bytes {{#is_alert}}{{{comparator}}} {{threshold}}B/mn ({{value}}B/mn){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}B/mn ({{value}}B/mn){{/is_warning}}"
 message = coalesce(var.scanned_bytes_message, var.message)
-type = "query alert"
+type    = "query alert"
 
 query = <<EOQ
   avg(${var.scanned_bytes_timeframe}):
@@ -117,8 +117,8 @@ EOQ
     critical = var.scanned_bytes_billed_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   include_tags        = true
   notify_no_data      = false
   require_full_window = false
@@ -137,7 +137,7 @@ resource "datadog_monitor" "available_slots" {
   count   = var.available_slots_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP Big Query Available Slots {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.available_slots_message, var.message)
-  type = "metric alert"
+  type    = "metric alert"
 
   query = <<EOQ
     avg(${var.available_slots_timeframe}):
@@ -183,8 +183,8 @@ warning  = var.stored_bytes_threshold_warning
 critical = var.stored_bytes_threshold_critical
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 include_tags        = true
 notify_no_data      = false
 require_full_window = false
@@ -203,7 +203,7 @@ resource "datadog_monitor" "table_count" {
 count   = var.table_count_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP Big Query Table Count {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
 message = coalesce(var.table_count_message, var.message)
-type = "metric alert"
+type    = "metric alert"
 
 query = <<EOQ
   avg(${var.table_count_timeframe}):
@@ -249,8 +249,8 @@ EOQ
     critical = var.uploaded_bytes_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   include_tags        = true
   notify_no_data      = false
   require_full_window = false
@@ -269,7 +269,7 @@ resource "datadog_monitor" "uploaded_bytes_billed" {
   count   = var.uploaded_bytes_billed_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP Big Query Uploaded Bytes Billed {{#is_alert}}{{{comparator}}} {{threshold}}B/mn ({{value}}B/mn){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}B/mn ({{value}}B/mn){{/is_warning}}"
   message = coalesce(var.uploaded_bytes_billed_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     avg(${var.uploaded_bytes_billed_timeframe}):

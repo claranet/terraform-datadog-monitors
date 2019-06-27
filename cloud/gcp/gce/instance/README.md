@@ -18,21 +18,20 @@ Creates DataDog monitors with the following checks:
 
 - Compute Engine instance CPU Utilization
 - Compute Engine instance Disk Throttled Bps
-- Compute Engine instance Disk Throttled OPS
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | cpu\_utilization\_enabled | Flag to enable CPU Utilization monitor | string | `"true"` | no |
-| cpu\_utilization\_extra\_tags | Extra tags for CPU Utilization monitor | list | `[]` | no |
+| cpu\_utilization\_extra\_tags | Extra tags for CPU Utilization monitor | list(string) | `[]` | no |
 | cpu\_utilization\_message | Custom message for the CPU Utilization monitor | string | `""` | no |
 | cpu\_utilization\_threshold\_critical | CPU Utilization in percentage (critical threshold) | string | `"90"` | no |
 | cpu\_utilization\_threshold\_warning | CPU Utilization in percentage (warning threshold) | string | `"80"` | no |
 | cpu\_utilization\_time\_aggregator | Time aggregator for the CPU Utilization monitor | string | `"avg"` | no |
 | cpu\_utilization\_timeframe | Timeframe for the CPU Utilization monitor | string | `"last_15m"` | no |
 | disk\_throttled\_bps\_enabled | Flag to enable Disk Throttled Bps monitor | string | `"true"` | no |
-| disk\_throttled\_bps\_extra\_tags | Extra tags for Disk Throttled Bps monitor | list | `[]` | no |
+| disk\_throttled\_bps\_extra\_tags | Extra tags for Disk Throttled Bps monitor | list(string) | `[]` | no |
 | disk\_throttled\_bps\_message | Custom message for the Disk Throttled Bps monitor | string | `""` | no |
 | disk\_throttled\_bps\_notify\_no\_data | Flag to enable notification for no data on Disk Throttled Bps monitor | string | `"false"` | no |
 | disk\_throttled\_bps\_threshold\_critical | Disk Throttled Bps in percentage (critical threshold) | string | `"50"` | no |
@@ -40,7 +39,7 @@ Creates DataDog monitors with the following checks:
 | disk\_throttled\_bps\_time\_aggregator | Time aggregator for the Disk Throttled Bps monitor | string | `"min"` | no |
 | disk\_throttled\_bps\_timeframe | Timeframe for the Disk Throttled Bps monitor | string | `"last_15m"` | no |
 | disk\_throttled\_ops\_enabled | Flag to enable Disk Throttled OPS monitor | string | `"true"` | no |
-| disk\_throttled\_ops\_extra\_tags | Extra tags for Disk Throttled OPS monitor | list | `[]` | no |
+| disk\_throttled\_ops\_extra\_tags | Extra tags for Disk Throttled OPS monitor | list(string) | `[]` | no |
 | disk\_throttled\_ops\_message | Custom message for the Disk Throttled OPS monitor | string | `""` | no |
 | disk\_throttled\_ops\_notify\_no\_data | Flag to enable notification for no data on Disk Throttled OPS monitor | string | `"false"` | no |
 | disk\_throttled\_ops\_threshold\_critical | Disk Throttled OPS in percentage (critical threshold) | string | `"50"` | no |

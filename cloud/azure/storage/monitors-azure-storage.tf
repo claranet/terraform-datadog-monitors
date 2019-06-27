@@ -2,7 +2,7 @@ resource "datadog_monitor" "availability" {
   count   = var.availability_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage is down"
   message = coalesce(var.availability_message, var.message)
-  type                = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.availability_time_aggregator}(${var.availability_timeframe}): (default(
@@ -32,7 +32,7 @@ resource "datadog_monitor" "successful_requests" {
   count = var.successful_requests_enabled == "true" ? 1 : 0
   name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too few successful requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.successful_requests_message, var.message)
-  type                = "query alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.successful_requests_time_aggregator}(${var.successful_requests_timeframe}): (default(
@@ -62,7 +62,7 @@ resource "datadog_monitor" "latency" {
 count   = var.latency_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too high end to end latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
 message = coalesce(var.latency_message, var.message)
-type                = "query alert"
+type    = "query alert"
 
 query = <<EOQ
     ${var.latency_time_aggregator}(${var.latency_timeframe}): (default(
@@ -92,7 +92,7 @@ resource "datadog_monitor" "timeout_error_requests" {
 count = var.timeout_error_requests_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too many timeout errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.timeout_error_requests_message, var.message)
-type                = "query alert"
+type = "query alert"
 
 query = <<EOQ
     ${var.timeout_error_requests_time_aggregator}(${var.timeout_error_requests_timeframe}): (default(
@@ -122,7 +122,7 @@ resource "datadog_monitor" "network_error_requests" {
   count   = var.network_error_requests_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too many network errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.network_error_requests_message, var.message)
-  type                = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.network_error_requests_time_aggregator}(${var.network_error_requests_timeframe}): (default(
@@ -152,7 +152,7 @@ resource "datadog_monitor" "throttling_error_requests" {
   count = var.throttling_error_requests_enabled == "true" ? 1 : 0
   name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too many throttling errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.throttling_error_requests_message, var.message)
-  type                = "query alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.throttling_error_requests_time_aggregator}(${var.throttling_error_requests_timeframe}): (default(
@@ -182,7 +182,7 @@ resource "datadog_monitor" "server_other_error_requests" {
 count   = var.server_other_error_requests_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too many server_other errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.server_other_error_requests_message, var.message)
-type                = "query alert"
+type    = "query alert"
 
 query = <<EOQ
     ${var.server_other_error_requests_time_aggregator}(${var.server_other_error_requests_timeframe}): (default(
@@ -212,7 +212,7 @@ resource "datadog_monitor" "client_other_error_requests" {
 count = var.client_other_error_requests_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too many client_other errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.client_other_error_requests_message, var.message)
-type                = "query alert"
+type = "query alert"
 
 query = <<EOQ
     ${var.client_other_error_requests_time_aggregator}(${var.client_other_error_requests_timeframe}): (default(
@@ -242,7 +242,7 @@ resource "datadog_monitor" "authorization_error_requests" {
   count   = var.authorization_error_requests_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too many authorization errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.authorization_error_requests_message, var.message)
-  type                = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.authorization_error_requests_time_aggregator}(${var.authorization_error_requests_timeframe}): (default(

@@ -5,7 +5,7 @@ resource "datadog_monitor" "replication_lag" {
   count   = var.replication_lag_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL MySQL Replication Lag {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = coalesce(var.replication_lag_message, var.message)
-  type = "metric alert"
+  type    = "metric alert"
 
   query = <<EOQ
     ${var.replication_lag_time_aggregator}(${var.replication_lag_timeframe}):

@@ -2,7 +2,7 @@ resource "datadog_monitor" "mysql_availability" {
   count   = var.mysql_availability_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql server does not respond"
   message = coalesce(var.mysql_availability_message, var.message)
-  type = "service check"
+  type    = "service check"
 
   query = <<EOQ
     "mysql.can_connect"${module.filter-tags.service_check}.by("port","server").last(6).count_by_status()
@@ -30,7 +30,7 @@ resource "datadog_monitor" "mysql_connection" {
   count = var.mysql_connection_enabled == "true" ? 1 : 0
   name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql Connections limit {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.mysql_connection_message, var.message)
-  type    = "query alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.mysql_connection_time_aggregator}(${var.mysql_connection_timeframe}): (
@@ -44,8 +44,8 @@ warning  = var.mysql_connection_threshold_warning
 critical = var.mysql_connection_threshold_critical
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_no_data      = false
 renotify_interval   = 0
 require_full_window = true
@@ -88,7 +88,7 @@ resource "datadog_monitor" "mysql_slow" {
 count = var.mysql_slow_enabled == "true" ? 1 : 0
 name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql Slow queries {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.mysql_slow_message, var.message)
-type    = "query alert"
+type = "query alert"
 
 query = <<EOQ
     ${var.mysql_slow_time_aggregator}(${var.mysql_slow_timeframe}): (
@@ -102,8 +102,8 @@ EOQ
     critical = var.mysql_slow_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
@@ -146,7 +146,7 @@ resource "datadog_monitor" "mysql_pool_utilization" {
   count = var.mysql_pool_utilization_enabled == "true" ? 1 : 0
   name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql Innodb buffer pool utilization {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.mysql_pool_utilization_message, var.message)
-  type    = "query alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.mysql_pool_utilization_time_aggregator}(${var.mysql_pool_utilization_timeframe}):
@@ -161,8 +161,8 @@ warning  = var.mysql_pool_utilization_threshold_warning
 critical = var.mysql_pool_utilization_threshold_critical
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_no_data      = false
 renotify_interval   = 0
 require_full_window = true
@@ -235,8 +235,8 @@ EOQ
     critical_recovery = 0
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true

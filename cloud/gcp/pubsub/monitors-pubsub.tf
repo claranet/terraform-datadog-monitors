@@ -5,7 +5,7 @@ resource "datadog_monitor" "sending_operations_count" {
   count   = var.sending_operations_count_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP pubsub sending messages operations {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.sending_operations_count_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
   ${var.sending_operations_count_time_aggregator}(${var.sending_operations_count_timeframe}):
@@ -50,8 +50,8 @@ warning  = var.unavailable_sending_operations_count_threshold_warning
 critical = var.unavailable_sending_operations_count_threshold_critical
 }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay   = var.new_host_delay
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
 notify_audit        = false
 locked              = false
 timeout_h           = 0

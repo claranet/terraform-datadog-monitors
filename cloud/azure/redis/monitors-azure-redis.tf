@@ -2,7 +2,7 @@ resource "datadog_monitor" "status" {
   count   = var.status_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Redis {{name}} is down"
   message = coalesce(var.status_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.status_time_aggregator}(${var.status_timeframe}): (
@@ -57,7 +57,7 @@ resource "datadog_monitor" "percent_processor_time" {
 count   = var.percent_processor_time_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Redis processor time too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.percent_processor_time_message, var.message)
-type = "query alert"
+type    = "query alert"
 
 query = <<EOQ
     ${var.percent_processor_time_time_aggregator}(${var.percent_processor_time_timeframe}): (

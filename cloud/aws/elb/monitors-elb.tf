@@ -2,7 +2,7 @@ resource "datadog_monitor" "ELB_no_healthy_instances" {
   count   = var.elb_no_healthy_instance_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB healthy instances {{#is_alert}}is at 0{{/is_alert}}{{#is_warning}}is at {{value}}%%{{/is_warning}}"
   message = coalesce(var.elb_no_healthy_instance_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.elb_no_healthy_instance_time_aggregator}(${var.elb_no_healthy_instance_timeframe}): (
@@ -65,7 +65,7 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
 count   = var.elb_5xx_enabled == "true" ? 1 : 0
 name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
 message = coalesce(var.elb_5xx_message, var.message)
-type = "query alert"
+type    = "query alert"
 
 query = <<EOQ
     sum(${var.elb_5xx_timeframe}):
@@ -127,7 +127,7 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
   count   = var.elb_backend_5xx_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB backend 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.elb_backend_5xx_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     sum(${var.elb_backend_5xx_timeframe}):
