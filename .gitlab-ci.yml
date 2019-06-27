@@ -11,7 +11,7 @@ before_script:
   - apk add --no-cache curl
 
 auto_update:
-  image: hashicorp/terraform:0.12.1
+  image: hashicorp/terraform:0.12.3
   stage: test
   script:
     - apk add --no-cache bash git grep coreutils
