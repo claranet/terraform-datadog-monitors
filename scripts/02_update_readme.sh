@@ -4,6 +4,10 @@ set -xueo pipefail
 source "$(dirname $0)/utils.sh"
 goto_root
 
+# download awk script to hack terraform-docs
+TERRAFORM_AWK="/tmp/terraform-docs.awk"
+curl -Lo ${TERRAFORM_AWK} "https://raw.githubusercontent.com/cloudposse/build-harness/master/bin/terraform-docs.awk"
+
 ## root README generator
 # only keep current README from begining to "Monitors summary" section (delete monitors list)
 sed -i '/### Monitors summary ###/q' README.md
@@ -91,8 +95,12 @@ EOF
     done
     IFS=$SAVEIFS
     echo >> README.md
+    # hack for terraform-docs with terraform 0.12 / HCL2 support
+    tmp_tf=$(mktemp -d)
+    awk -f ${TERRAFORM_AWK} ./*.tf > ${tmp_tf}/main.tf
     # auto generate terraform docs (inputs and outputs)
-    terraform-docs --with-aggregate-type-defaults md table ./ >> README.md
+    terraform-docs --with-aggregate-type-defaults md table ${tmp_tf}/ >> README.md
+    rm -fr ${tmp_tf}
     # if README does not exist
     if [[ $EXIST -eq 0 ]]; then
         # Simply add empty documentation section
