@@ -198,6 +198,11 @@ critical = var.mysql_threads_threshold_critical
 critical_recovery = 0
 }
 
+threshold_windows = {
+trigger_window = var.mysql_threads_alert_window
+recovery_window = var.mysql_threads_alert_window
+}
+
 evaluation_delay = var.evaluation_delay
 new_host_delay = var.new_host_delay
 notify_no_data = false
@@ -233,6 +238,11 @@ EOQ
   thresholds = {
     critical          = var.mysql_questions_threshold_critical
     critical_recovery = 0
+  }
+
+  threshold_windows = {
+    trigger_window  = var.mysql_questions_alert_window
+    recovery_window = var.mysql_questions_alert_window
   }
 
   evaluation_delay    = var.evaluation_delay

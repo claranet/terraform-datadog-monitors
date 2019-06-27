@@ -437,6 +437,11 @@ warning  = var.http_connections_anomaly_threshold_warning
 critical = var.http_connections_anomaly_threshold_critical
 }
 
+threshold_windows = {
+trigger_window  = var.http_connections_anomaly_alert_window
+recovery_window = var.http_connections_anomaly_alert_window
+}
+
 evaluation_delay    = var.evaluation_delay
 new_host_delay      = var.new_host_delay
 notify_audit        = false
