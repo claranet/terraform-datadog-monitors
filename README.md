@@ -27,7 +27,7 @@ Before importing some modules, you must define the DataDog provider in your `mai
 
 ```
 provider "datadog" {
-  version = "1.7.0" # if you use version before 1.0.4 you will have diff on monitor type
+  version = "2.0.2"
 
   api_key = "${var.datadog_api_key}"
   app_key = "${var.datadog_app_key}"
