@@ -26,7 +26,7 @@ EOQ
   require_full_window = true
   renotify_interval = 0
 
-  tags = ["created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", "env:${var.environment}", "resource:elasticsearch", var.not_responding_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.not_responding_extra_tags)
 }
 
 #
@@ -58,7 +58,7 @@ include_tags        = true
 require_full_window = true
 notify_no_data      = false
 
-tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.cluster_status_not_green_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.cluster_status_not_green_extra_tags)
 }
 
 #
@@ -89,7 +89,7 @@ include_tags = true
 require_full_window = true
 notify_no_data = false
 
-tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.cluster_initializing_shards_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.cluster_initializing_shards_extra_tags)
 }
 
 #
@@ -120,7 +120,7 @@ EOQ
   require_full_window = true
   notify_no_data      = false
 
-  tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.cluster_relocating_shards_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.cluster_relocating_shards_extra_tags)
 }
 
 #
@@ -152,7 +152,7 @@ EOQ
   notify_no_data = false
 
 
-  tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.cluster_unassigned_shards_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.cluster_unassigned_shards_extra_tags)
 }
 
 #
@@ -187,7 +187,7 @@ include_tags        = true
 require_full_window = true
 notify_no_data      = false
 
-tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.node_free_space_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.node_free_space_extra_tags)
 }
 
 #
@@ -218,7 +218,7 @@ include_tags = true
 require_full_window = true
 notify_no_data = false
 
-tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.jvm_heap_memory_usage_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.jvm_heap_memory_usage_extra_tags)
 }
 
 #
@@ -249,7 +249,7 @@ EOQ
   require_full_window = true
   notify_no_data      = false
 
-  tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.jvm_memory_young_usage_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.jvm_memory_young_usage_extra_tags)
 }
 
 #
@@ -280,7 +280,7 @@ EOQ
   require_full_window = true
   notify_no_data = false
 
-  tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.jvm_memory_old_usage_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.jvm_memory_old_usage_extra_tags)
 }
 
 #
@@ -311,7 +311,7 @@ include_tags        = true
 require_full_window = true
 notify_no_data      = false
 
-tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.jvm_gc_old_collection_latency_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.jvm_gc_old_collection_latency_extra_tags)
 }
 
 #
@@ -342,7 +342,7 @@ include_tags = true
 require_full_window = true
 notify_no_data = false
 
-tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.jvm_gc_young_collection_latency_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.jvm_gc_young_collection_latency_extra_tags)
 }
 
 #
@@ -374,7 +374,7 @@ EOQ
   require_full_window = true
   notify_no_data      = false
 
-  tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.indexing_latency_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.indexing_latency_extra_tags)
 }
 
 #
@@ -406,7 +406,7 @@ EOQ
   require_full_window = true
   notify_no_data = false
 
-  tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.flush_latency_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.flush_latency_extra_tags)
 }
 
 #
@@ -445,7 +445,7 @@ include_tags        = true
 require_full_window = true
 notify_no_data      = false
 
-tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.http_connections_anomaly_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.http_connections_anomaly_extra_tags)
 }
 
 #
@@ -477,7 +477,7 @@ include_tags = true
 require_full_window = true
 notify_no_data = false
 
-tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.search_query_latency_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.search_query_latency_extra_tags)
 }
 
 #
@@ -509,7 +509,7 @@ EOQ
   require_full_window = true
   notify_no_data      = false
 
-  tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.fetch_latency_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.fetch_latency_extra_tags)
 }
 
 #
@@ -540,7 +540,7 @@ EOQ
   require_full_window = true
   notify_no_data = false
 
-  tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.search_query_change_extra_tags]
+ tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.search_query_change_extra_tags)
 }
 
 #
@@ -571,7 +571,7 @@ include_tags        = true
 require_full_window = true
 notify_no_data      = false
 
-tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.fetch_change_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.fetch_change_extra_tags)
 }
 
 #
@@ -603,7 +603,7 @@ include_tags = true
 require_full_window = true
 notify_no_data = false
 
-tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.field_data_evictions_change_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.field_data_evictions_change_extra_tags)
 }
 
 #
@@ -635,7 +635,7 @@ EOQ
   require_full_window = true
   notify_no_data      = false
 
-  tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.query_cache_evictions_change_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.query_cache_evictions_change_extra_tags)
 }
 
 #
@@ -667,7 +667,7 @@ EOQ
   require_full_window = true
   notify_no_data = false
 
-  tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.request_cache_evictions_change_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.request_cache_evictions_change_extra_tags)
 }
 
 #
@@ -698,6 +698,6 @@ include_tags        = true
 require_full_window = true
 notify_no_data      = false
 
-tags = ["resource:elasticsearch", "env:${var.environment}", "created-by:terraform", "team:claranet", "type:database", "provider:elasticsearch", var.task_time_in_queue_change_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.task_time_in_queue_change_extra_tags)
 }
 
