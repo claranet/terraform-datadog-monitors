@@ -62,8 +62,8 @@ for path in $(find "$(get_scope $1)" -name 'monitors-*.tf' -print | sort -fdbi);
 module "datadog-monitors-${module_dash}" {
   source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//${module_slash}?ref={revision}"
 
-  environment = "\${var.environment}"
-  message     = "\${module.datadog-message-alerting.alerting-message}"
+  environment = var.environment
+  message     = module.datadog-message-alerting.alerting-message
 EOF
 
     # if README already exist
