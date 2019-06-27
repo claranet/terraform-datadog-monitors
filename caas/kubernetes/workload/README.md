@@ -6,8 +6,8 @@
 module "datadog-monitors-caas-kubernetes-workload" {
   source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//caas/kubernetes/workload?ref={revision}"
 
-  environment = "${var.environment}"
-  message     = "${module.datadog-message-alerting.alerting-message}"
+  environment = var.environment
+  message     = module.datadog-message-alerting.alerting-message
 }
 
 ```
