@@ -23,7 +23,7 @@ EOQ
   locked = false
   require_full_window = true
 
-  tags = ["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform", var.postgresql_availability_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform"], var.postgresql_availability_extra_tags)
 }
 
 resource "datadog_monitor" "postgresql_connection_too_high" {
@@ -51,7 +51,7 @@ require_full_window = true
 timeout_h           = 0
 include_tags        = true
 
-tags = ["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform", var.postgresql_connection_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform"], var.postgresql_connection_extra_tags)
 }
 
 resource "datadog_monitor" "postgresql_too_many_locks" {
@@ -79,6 +79,6 @@ require_full_window = true
 timeout_h = 0
 include_tags = true
 
-tags = ["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform", var.postgresql_lock_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform"], var.postgresql_lock_extra_tags)
 }
 

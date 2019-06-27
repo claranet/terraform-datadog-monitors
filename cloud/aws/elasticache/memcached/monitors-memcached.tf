@@ -27,7 +27,7 @@ EOQ
   locked = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-memcached", "team:claranet", "created-by:terraform", "engine:memcached", var.get_hits_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-memcached", "team:claranet", "created-by:terraform", "engine:memcached"], var.get_hits_extra_tags)
 }
 
 resource "datadog_monitor" "memcached_cpu_high" {
@@ -57,6 +57,6 @@ include_tags        = true
 locked              = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-memcached", "team:claranet", "created-by:terraform", "engine:memcached", var.cpu_high_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-memcached", "team:claranet", "created-by:terraform", "engine:memcached"], var.cpu_high_extra_tags)
 }
 

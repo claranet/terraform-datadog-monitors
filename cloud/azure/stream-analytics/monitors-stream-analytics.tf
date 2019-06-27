@@ -20,7 +20,7 @@ EOQ
   locked = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform", var.status_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.status_extra_tags)
 }
 
 resource "datadog_monitor" "su_utilization" {
@@ -50,7 +50,7 @@ warning  = var.su_utilization_threshold_warning
 critical = var.su_utilization_threshold_critical
 }
 
-tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform", var.su_utilization_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.su_utilization_extra_tags)
 }
 
 resource "datadog_monitor" "failed_function_requests" {
@@ -80,7 +80,7 @@ include_tags = true
 locked = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform", var.failed_function_requests_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.failed_function_requests_extra_tags)
 }
 
 resource "datadog_monitor" "conversion_errors" {
@@ -110,7 +110,7 @@ EOQ
   locked              = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform", var.conversion_errors_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.conversion_errors_extra_tags)
 }
 
 resource "datadog_monitor" "runtime_errors" {
@@ -140,6 +140,6 @@ EOQ
   locked = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform", var.runtime_errors_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.runtime_errors_extra_tags)
 }
 

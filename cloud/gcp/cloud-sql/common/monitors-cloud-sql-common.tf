@@ -28,7 +28,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", var.cpu_utilization_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.cpu_utilization_extra_tags)
 }
 
 #
@@ -61,7 +61,7 @@ require_full_window = false
 notify_no_data      = true
 renotify_interval   = 0
 
-tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", var.disk_utilization_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.disk_utilization_extra_tags)
 }
 
 #
@@ -108,7 +108,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", var.disk_utilization_forecast_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.disk_utilization_forecast_extra_tags)
 }
 
 #
@@ -141,7 +141,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", var.memory_utilization_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.memory_utilization_extra_tags)
 }
 
 #
@@ -188,8 +188,17 @@ EOQ
     notify_no_data      = false
     renotify_interval   = 0
 
-    tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", var.memory_utilization_forecast_extra_tags]
+    tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.memory_utilization_forecast_extra_tags)
 }
+
+    #
+    # Failover Unavailable
+    #
+    resource "datadog_monitor" "failover_unavailable" {
+      count   = var.failover_unavailable_enabled == "true" ? 1 : 0
+      name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL Failover Unavailable"
+      message = coalesce(var.failover_unavailable_message, var.message)
+>>>>>>> MON-459 use concat for extra tags
 
 #
 # Failover Unavailable
@@ -221,6 +230,6 @@ require_full_window = false
 notify_no_data = false
 renotify_interval = 0
 
-tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", var.failover_unavailable_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.failover_unavailable_extra_tags)
 }
 

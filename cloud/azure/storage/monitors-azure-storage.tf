@@ -25,7 +25,7 @@ EOQ
   require_full_window = false
   renotify_interval = 0
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.availability_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.availability_extra_tags)
 }
 
 resource "datadog_monitor" "successful_requests" {
@@ -55,7 +55,7 @@ locked              = false
 require_full_window = false
 renotify_interval   = 0
 
-tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.successful_requests_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.successful_requests_extra_tags)
 }
 
 resource "datadog_monitor" "latency" {
@@ -85,7 +85,7 @@ locked = false
 require_full_window = false
 renotify_interval = 0
 
-tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.latency_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
 }
 
 resource "datadog_monitor" "timeout_error_requests" {
@@ -115,7 +115,7 @@ EOQ
   require_full_window = false
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.timeout_error_requests_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.timeout_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "network_error_requests" {
@@ -145,7 +145,7 @@ EOQ
   require_full_window = false
   renotify_interval = 0
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.network_error_requests_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.network_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "throttling_error_requests" {
@@ -175,7 +175,7 @@ locked              = false
 require_full_window = false
 renotify_interval   = 0
 
-tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.throttling_error_requests_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.throttling_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "server_other_error_requests" {
@@ -205,7 +205,7 @@ locked = false
 require_full_window = false
 renotify_interval = 0
 
-tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.server_other_error_requests_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.server_other_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "client_other_error_requests" {
@@ -235,7 +235,7 @@ EOQ
   require_full_window = false
   renotify_interval   = 0
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.client_other_error_requests_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.client_other_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "authorization_error_requests" {
@@ -265,6 +265,6 @@ EOQ
   require_full_window = false
   renotify_interval = 0
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform", var.authorization_error_requests_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.authorization_error_requests_extra_tags)
 }
 

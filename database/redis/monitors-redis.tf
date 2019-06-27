@@ -26,7 +26,7 @@ EOQ
   require_full_window = true
   renotify_interval = 0
 
-  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", var.not_responding_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.not_responding_extra_tags)
 }
 
 resource "datadog_monitor" "evicted_keys" {
@@ -56,7 +56,7 @@ include_tags        = true
 locked              = false
 require_full_window = true
 
-tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", var.evictedkeys_change_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.evictedkeys_change_extra_tags)
 }
 
 resource "datadog_monitor" "expirations" {
@@ -86,7 +86,7 @@ include_tags = true
 locked = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", var.expirations_rate_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.expirations_rate_extra_tags)
 }
 
 resource "datadog_monitor" "blocked_clients" {
@@ -117,7 +117,7 @@ EOQ
   locked              = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", var.blocked_clients_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.blocked_clients_extra_tags)
 }
 
 resource "datadog_monitor" "keyspace_full" {
@@ -147,7 +147,7 @@ EOQ
   locked = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", var.keyspace_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.keyspace_extra_tags)
 }
 
 resource "datadog_monitor" "memory_used" {
@@ -178,7 +178,7 @@ include_tags        = true
 locked              = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", var.mem_used_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.mem_used_extra_tags)
 }
 
 resource "datadog_monitor" "memory_frag" {
@@ -208,7 +208,7 @@ include_tags = true
 locked = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", var.mem_frag_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.mem_frag_extra_tags)
 }
 
 resource "datadog_monitor" "rejected_connections" {
@@ -238,7 +238,7 @@ EOQ
   locked              = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", var.rejected_con_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.rejected_con_extra_tags)
 }
 
 resource "datadog_monitor" "latency" {
@@ -268,7 +268,7 @@ EOQ
   locked = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", var.latency_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
 }
 
 resource "datadog_monitor" "hitrate" {
@@ -300,6 +300,6 @@ include_tags        = true
 locked              = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform", var.hitrate_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.hitrate_extra_tags)
 }
 

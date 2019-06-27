@@ -17,7 +17,7 @@ EOQ
   include_tags = true
   require_full_window = true
 
-  tags = ["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform", var.mongodb_primary_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform"], var.mongodb_primary_extra_tags)
 }
 
 resource "datadog_monitor" "mongodb_secondary" {
@@ -47,7 +47,7 @@ timeout_h           = 0
 include_tags        = true
 require_full_window = true
 
-tags = ["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform", var.mongodb_secondary_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform"], var.mongodb_secondary_extra_tags)
 }
 
 resource "datadog_monitor" "mongodb_server_count" {
@@ -76,7 +76,7 @@ timeout_h = 0
 include_tags = true
 require_full_window = true
 
-tags = ["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform", var.mongodb_secondary_extra_tags]
+tags = concat(["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform"], var.mongodb_secondary_extra_tags)
 }
 
 resource "datadog_monitor" "mongodb_replication" {
@@ -104,6 +104,6 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = ["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform", var.mongodb_replication_extra_tags]
+  tags = concat(["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform"], var.mongodb_replication_extra_tags)
 }
 

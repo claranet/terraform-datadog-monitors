@@ -23,7 +23,7 @@ EOQ
   locked = false
   require_full_window = true
 
-  tags = ["env:${var.environment}", "type:middleware", "provider:nginx", "resource:nginx", "team:claranet", "created-by:terraform", var.nginx_connect_extra_tags]
+  tags = concat(["env:${var.environment}", "type:middleware", "provider:nginx", "resource:nginx", "team:claranet", "created-by:terraform"], var.nginx_connect_extra_tags)
 }
 
 resource "datadog_monitor" "datadog_nginx_dropped_connections" {
@@ -51,6 +51,6 @@ include_tags        = true
 locked              = false
 require_full_window = true
 
-tags = ["env:${var.environment}", "type:middleware", "provider:nginx", "resource:nginx", "team:claranet", "created-by:terraform", var.nginx_dropped_extra_tags]
+tags = concat(["env:${var.environment}", "type:middleware", "provider:nginx", "resource:nginx", "team:claranet", "created-by:terraform"], var.nginx_dropped_extra_tags)
 }
 

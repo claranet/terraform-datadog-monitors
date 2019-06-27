@@ -25,7 +25,7 @@ EOQ
   locked = false
   require_full_window = false
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-elasticpool", "team:claranet", "created-by:terraform", var.cpu_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-elasticpool", "team:claranet", "created-by:terraform"], var.cpu_extra_tags)
 }
 
 resource "datadog_monitor" "sql_elasticpool_free_space_low" {
@@ -55,7 +55,7 @@ include_tags        = true
 locked              = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-elasticpool", "team:claranet", "created-by:terraform", var.diskspace_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-elasticpool", "team:claranet", "created-by:terraform"], var.diskspace_extra_tags)
 }
 
 resource "datadog_monitor" "sql_elasticpool_dtu_consumption_high" {
@@ -85,6 +85,6 @@ include_tags = true
 locked = false
 require_full_window = false
 
-tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-elasticpool", "team:claranet", "created-by:terraform", var.dtu_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-elasticpool", "team:claranet", "created-by:terraform"], var.dtu_extra_tags)
 }
 

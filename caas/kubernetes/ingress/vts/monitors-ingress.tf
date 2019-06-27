@@ -26,7 +26,7 @@ EOQ
   locked = false
   require_full_window = true
 
-  tags = ["env:${var.environment}", "type:caas", "provider:prometheus", "resource:nginx-ingress-controller", "team:claranet", "created-by:terraform", var.ingress_5xx_extra_tags]
+  tags = concat(["env:${var.environment}", "type:caas", "provider:prometheus", "resource:nginx-ingress-controller", "team:claranet", "created-by:terraform"], var.ingress_5xx_extra_tags)
 }
 
 resource "datadog_monitor" "nginx_ingress_too_many_4xx" {
@@ -57,6 +57,6 @@ include_tags        = true
 locked              = false
 require_full_window = true
 
-tags = ["env:${var.environment}", "type:caas", "provider:prometheus", "resource:nginx-ingress-controller", "team:claranet", "created-by:terraform", var.ingress_4xx_extra_tags]
+tags = concat(["env:${var.environment}", "type:caas", "provider:prometheus", "resource:nginx-ingress-controller", "team:claranet", "created-by:terraform"], var.ingress_4xx_extra_tags)
 }
 

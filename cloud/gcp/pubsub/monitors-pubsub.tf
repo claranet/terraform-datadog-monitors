@@ -27,7 +27,7 @@ EOQ
   notify_no_data = true
   renotify_interval = 0
 
-  tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "team:claranet", "created-by:terraform", var.sending_operations_count_extra_tags]
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "team:claranet", "created-by:terraform"], var.sending_operations_count_extra_tags)
 }
 
 #
@@ -60,6 +60,6 @@ require_full_window = false
 notify_no_data      = false
 renotify_interval   = 0
 
-tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "team:claranet", "created-by:terraform", var.unavailable_sending_operations_count_extra_tags]
+tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "team:claranet", "created-by:terraform"], var.unavailable_sending_operations_count_extra_tags)
 }
 
