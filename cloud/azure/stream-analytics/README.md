@@ -63,8 +63,8 @@ Creates DataDog monitors with the following checks:
 | su\_utilization\_enabled | Flag to enable Stream Analytics utilization monitor | string | `"true"` | no |
 | su\_utilization\_extra\_tags | Extra tags for Stream Analytics utilization monitor | list(string) | `[]` | no |
 | su\_utilization\_message | Custom message for Stream Analytics utilization monitor | string | `""` | no |
-| su\_utilization\_threshold\_critical | Streaming Unit utilization rate limit (critical threshold) | string | `"80"` | no |
-| su\_utilization\_threshold\_warning | Streaming Unit utilization rate limit (warning threshold) | string | `"60"` | no |
+| su\_utilization\_threshold\_critical | Streaming Unit utilization rate limit (critical threshold) | string | `"95"` | no |
+| su\_utilization\_threshold\_warning | Streaming Unit utilization rate limit (warning threshold) | string | `"80"` | no |
 | su\_utilization\_time\_aggregator | Monitor aggregator for Stream Analytics utilization [available values: min, max or avg] | string | `"min"` | no |
 | su\_utilization\_timeframe | Monitor timeframe for Stream Analytics utilization [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 
