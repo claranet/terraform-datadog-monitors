@@ -41,12 +41,6 @@ variable "filter_tags_custom_excluded" {
 
 # Apache Middleware specific
 
-variable "apache_connect_silenced" {
-  description = "Groups to mute for Apache status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "apache_connect_enabled" {
   description = "Flag to enable Apache status monitor"
   type        = "string"

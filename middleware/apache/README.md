@@ -25,7 +25,6 @@ Creates DataDog monitors with the following checks:
 | apache\_connect\_enabled | Flag to enable Apache status monitor | string | `"true"` | no |
 | apache\_connect\_extra\_tags | Extra tags for Apache process monitor | list | `[]` | no |
 | apache\_connect\_message | Custom message for Apache status monitor | string | `""` | no |
-| apache\_connect\_silenced | Groups to mute for Apache status monitor | map | `{}` | no |
 | apache\_connect\_threshold\_warning | Apache status monitor (warning threshold) | string | `"3"` | no |
 | environment | Architecture Environment | string | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | string | `"15"` | no |

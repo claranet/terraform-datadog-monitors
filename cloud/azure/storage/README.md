@@ -33,7 +33,6 @@ Creates DataDog monitors with the following checks:
 | authorization\_error\_requests\_enabled | Flag to enable Storage authorization errors monitor | string | `"true"` | no |
 | authorization\_error\_requests\_extra\_tags | Extra tags for Storage authorization errors monitor | list | `[]` | no |
 | authorization\_error\_requests\_message | Custom message for Storage authorization errors monitor | string | `""` | no |
-| authorization\_error\_requests\_silenced | Groups to mute for Storage authorization errors monitor | map | `{}` | no |
 | authorization\_error\_requests\_threshold\_critical | Maximum acceptable percent of authorization error requests for a storage | string | `"90"` | no |
 | authorization\_error\_requests\_threshold\_warning | Warning regarding acceptable percent of authorization error requests for a storage | string | `"50"` | no |
 | authorization\_error\_requests\_time\_aggregator | Monitor aggregator for Storage authorization errors [available values: min, max or avg] | string | `"min"` | no |
@@ -41,7 +40,6 @@ Creates DataDog monitors with the following checks:
 | availability\_enabled | Flag to enable Storage availability monitor | string | `"true"` | no |
 | availability\_extra\_tags | Extra tags for Storage availability monitor | list | `[]` | no |
 | availability\_message | Custom message for Storage availability monitor | string | `""` | no |
-| availability\_silenced | Groups to mute for Storage availability monitor | map | `{}` | no |
 | availability\_threshold\_critical | Minimum acceptable percent of availability for a storage | string | `"50"` | no |
 | availability\_threshold\_warning | Warning regarding acceptable percent of availability for a storage | string | `"90"` | no |
 | availability\_time\_aggregator | Monitor aggregator for Storage availability [available values: min, max or avg] | string | `"max"` | no |
@@ -49,7 +47,6 @@ Creates DataDog monitors with the following checks:
 | client\_other\_error\_requests\_enabled | Flag to enable Storage other errors monitor | string | `"true"` | no |
 | client\_other\_error\_requests\_extra\_tags | Extra tags for Storage other errors monitor | list | `[]` | no |
 | client\_other\_error\_requests\_message | Custom message for Storage other errors monitor | string | `""` | no |
-| client\_other\_error\_requests\_silenced | Groups to mute for Storage other errors monitor | map | `{}` | no |
 | client\_other\_error\_requests\_threshold\_critical | Maximum acceptable percent of client other error requests for a storage | string | `"90"` | no |
 | client\_other\_error\_requests\_threshold\_warning | Warning regarding acceptable percent of client other error requests for a storage | string | `"50"` | no |
 | client\_other\_error\_requests\_time\_aggregator | Monitor aggregator for Storage other errors [available values: min, max or avg] | string | `"min"` | no |
@@ -62,7 +59,6 @@ Creates DataDog monitors with the following checks:
 | latency\_enabled | Flag to enable Storage latency monitor | string | `"true"` | no |
 | latency\_extra\_tags | Extra tags for Storage latency monitor | list | `[]` | no |
 | latency\_message | Custom message for Storage latency monitor | string | `""` | no |
-| latency\_silenced | Groups to mute for Storage latency monitor | map | `{}` | no |
 | latency\_threshold\_critical | Maximum acceptable end to end latency (ms) for a storage | string | `"2000"` | no |
 | latency\_threshold\_warning | Warning regarding acceptable end to end latency (ms) for a storage | string | `"1000"` | no |
 | latency\_time\_aggregator | Monitor aggregator for Storage latency [available values: min, max or avg] | string | `"min"` | no |
@@ -71,7 +67,6 @@ Creates DataDog monitors with the following checks:
 | network\_error\_requests\_enabled | Flag to enable Storage network errors monitor | string | `"true"` | no |
 | network\_error\_requests\_extra\_tags | Extra tags for Storage network errors monitor | list | `[]` | no |
 | network\_error\_requests\_message | Custom message for Storage network errors monitor | string | `""` | no |
-| network\_error\_requests\_silenced | Groups to mute for Storage network errors monitor | map | `{}` | no |
 | network\_error\_requests\_threshold\_critical | Maximum acceptable percent of network error requests for a storage | string | `"90"` | no |
 | network\_error\_requests\_threshold\_warning | Warning regarding acceptable percent of network error requests for a storage | string | `"50"` | no |
 | network\_error\_requests\_time\_aggregator | Monitor aggregator for Storage network errors [available values: min, max or avg] | string | `"min"` | no |
@@ -81,7 +76,6 @@ Creates DataDog monitors with the following checks:
 | server\_other\_error\_requests\_enabled | Flag to enable Storage server other errors monitor | string | `"true"` | no |
 | server\_other\_error\_requests\_extra\_tags | Extra tags for Storage server other errors monitor | list | `[]` | no |
 | server\_other\_error\_requests\_message | Custom message for Storage server other errors monitor | string | `""` | no |
-| server\_other\_error\_requests\_silenced | Groups to mute for Storage server other errors monitor | map | `{}` | no |
 | server\_other\_error\_requests\_threshold\_critical | Maximum acceptable percent of server other error requests for a storage | string | `"90"` | no |
 | server\_other\_error\_requests\_threshold\_warning | Warning regarding acceptable percent of server other error requests for a storage | string | `"50"` | no |
 | server\_other\_error\_requests\_time\_aggregator | Monitor aggregator for Storage other errors [available values: min, max or avg] | string | `"min"` | no |
@@ -89,7 +83,6 @@ Creates DataDog monitors with the following checks:
 | successful\_requests\_enabled | Flag to enable Storage sucessful requests monitor | string | `"true"` | no |
 | successful\_requests\_extra\_tags | Extra tags for Storage sucessful requests monitor | list | `[]` | no |
 | successful\_requests\_message | Custom message for Storage sucessful requests monitor | string | `""` | no |
-| successful\_requests\_silenced | Groups to mute for Storage sucessful requests monitor | map | `{}` | no |
 | successful\_requests\_threshold\_critical | Minimum acceptable percent of successful requests for a storage | string | `"10"` | no |
 | successful\_requests\_threshold\_warning | Warning regarding acceptable percent of successful requests for a storage | string | `"30"` | no |
 | successful\_requests\_time\_aggregator | Monitor aggregator for Storage sucessful requests [available values: min, max or avg] | string | `"max"` | no |
@@ -97,7 +90,6 @@ Creates DataDog monitors with the following checks:
 | throttling\_error\_requests\_enabled | Flag to enable Storage throttling error monitor | string | `"true"` | no |
 | throttling\_error\_requests\_extra\_tags | Extra tags for Storage throttling error monitor | list | `[]` | no |
 | throttling\_error\_requests\_message | Custom message for Storage throttling error monitor | string | `""` | no |
-| throttling\_error\_requests\_silenced | Groups to mute for Storage throttling error monitor | map | `{}` | no |
 | throttling\_error\_requests\_threshold\_critical | Maximum acceptable percent of throttling error requests for a storage | string | `"90"` | no |
 | throttling\_error\_requests\_threshold\_warning | Warning regarding acceptable percent of throttling error requests for a storage | string | `"50"` | no |
 | throttling\_error\_requests\_time\_aggregator | Monitor aggregator for Storage throttling errors [available values: min, max or avg] | string | `"min"` | no |
@@ -105,7 +97,6 @@ Creates DataDog monitors with the following checks:
 | timeout\_error\_requests\_enabled | Flag to enable Storage timeout monitor | string | `"true"` | no |
 | timeout\_error\_requests\_extra\_tags | Extra tags for Storage timeout monitor | list | `[]` | no |
 | timeout\_error\_requests\_message | Custom message for Storage timeout monitor | string | `""` | no |
-| timeout\_error\_requests\_silenced | Groups to mute for Storage timeout monitor | map | `{}` | no |
 | timeout\_error\_requests\_threshold\_critical | Maximum acceptable percent of timeout error requests for a storage | string | `"90"` | no |
 | timeout\_error\_requests\_threshold\_warning | Warning regarding acceptable percent of timeout error requests for a storage | string | `"50"` | no |
 | timeout\_error\_requests\_time\_aggregator | Monitor aggregator for Storage timeout [available values: min, max or avg] | string | `"min"` | no |

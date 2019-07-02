@@ -3,7 +3,7 @@ resource "datadog_monitor" "memcached_get_hits" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache memcached cache hit ratio {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.get_hits_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.get_hits_time_aggregator}(${var.get_hits_timeframe}): (
@@ -28,8 +28,6 @@ resource "datadog_monitor" "memcached_get_hits" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.get_hits_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-memcached", "team:claranet", "created-by:terraform", "engine:memcached", "${var.get_hits_extra_tags}"]
 }
 
@@ -38,7 +36,7 @@ resource "datadog_monitor" "memcached_cpu_high" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache memcached CPU {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_high_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.cpu_high_time_aggregator}(${var.cpu_high_timeframe}): (
@@ -60,8 +58,6 @@ resource "datadog_monitor" "memcached_cpu_high" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
-
-  silenced = "${var.cpu_high_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-memcached", "team:claranet", "created-by:terraform", "engine:memcached", "${var.cpu_high_extra_tags}"]
 }

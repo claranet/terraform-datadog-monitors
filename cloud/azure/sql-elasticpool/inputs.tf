@@ -40,11 +40,6 @@ variable "filter_tags_custom_excluded" {
 }
 
 # Azure SQL Elastic Pool specific variables
-variable "cpu_silenced" {
-  description = "Groups to mute for SQL Elastic Pool CPU monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "cpu_enabled" {
   description = "Flag to enable SQL Elastic Pool CPU monitor"
@@ -86,12 +81,6 @@ variable "cpu_threshold_critical" {
   default     = "90"
 }
 
-variable "diskspace_silenced" {
-  description = "Groups to mute for SQL Elastic Pool disk space monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "diskspace_enabled" {
   description = "Flag to enable SQL Elastic Pool disk space monitor"
   type        = "string"
@@ -130,12 +119,6 @@ variable "diskspace_threshold_warning" {
 variable "diskspace_threshold_critical" {
   description = "Disk space used in percent (critical threshold)"
   default     = "90"
-}
-
-variable "dtu_silenced" {
-  description = "Groups to mute for SQL Elastic Pool DTU monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "dtu_enabled" {

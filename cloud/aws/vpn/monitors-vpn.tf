@@ -9,7 +9,7 @@ resource "datadog_monitor" "VPN_status" {
         ) < 1
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = true
   renotify_interval   = 0
@@ -19,8 +19,6 @@ resource "datadog_monitor" "VPN_status" {
   timeout_h           = 0
   include_tags        = true
   require_full_window = false
-
-  silenced = "${var.vpn_status_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:vpn", "team:claranet", "created-by:terraform", "${var.vpn_status_extra_tags}"]
 }

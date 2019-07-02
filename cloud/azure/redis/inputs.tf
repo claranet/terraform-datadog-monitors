@@ -40,11 +40,6 @@ variable "filter_tags_custom_excluded" {
 }
 
 # Azure Redis specific variables
-variable "status_silenced" {
-  description = "Groups to mute for Redis status monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "status_enabled" {
   description = "Flag to enable Redis status monitor"
@@ -74,12 +69,6 @@ variable "status_timeframe" {
   description = "Monitor timeframe for Redis status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
-}
-
-variable "evictedkeys_limit_silenced" {
-  description = "Groups to mute for Redis evicted keys monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "evictedkeys_limit_enabled" {
@@ -122,12 +111,6 @@ variable "evictedkeys_limit_threshold_critical" {
   default     = 100
 }
 
-variable "percent_processor_time_silenced" {
-  description = "Groups to mute for Redis processor monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "percent_processor_time_enabled" {
   description = "Flag to enable Redis processor monitor"
   type        = "string"
@@ -166,12 +149,6 @@ variable "percent_processor_time_threshold_critical" {
 variable "percent_processor_time_threshold_warning" {
   description = "Processor time percent (warning threshold)"
   default     = 60
-}
-
-variable "server_load_rate_silenced" {
-  description = "Groups to mute for Redis server load monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "server_load_rate_enabled" {

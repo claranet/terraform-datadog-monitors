@@ -6,7 +6,7 @@ resource "datadog_monitor" "cpu_utilization" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL CPU Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_utilization_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   ${var.cpu_utilization_time_aggregator}(${var.cpu_utilization_timeframe}):
@@ -31,8 +31,6 @@ resource "datadog_monitor" "cpu_utilization" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.cpu_utilization_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.cpu_utilization_extra_tags}"]
 }
 
@@ -44,7 +42,7 @@ resource "datadog_monitor" "disk_utilization" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL Disk Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.disk_utilization_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   ${var.disk_utilization_time_aggregator}(${var.disk_utilization_timeframe}):
@@ -69,8 +67,6 @@ resource "datadog_monitor" "disk_utilization" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.disk_utilization_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.disk_utilization_extra_tags}"]
 }
 
@@ -82,7 +78,7 @@ resource "datadog_monitor" "disk_utilization_forecast" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL Disk Utilization could reach {{#is_alert}}{{threshold}}%{{/is_alert}} in a near future"
   message = "${coalesce(var.disk_utilization_forecast_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   ${var.disk_utilization_forecast_time_aggregator}(${var.disk_utilization_forecast_timeframe}):
@@ -113,8 +109,6 @@ resource "datadog_monitor" "disk_utilization_forecast" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.disk_utilization_forecast_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.disk_utilization_forecast_extra_tags}"]
 }
 
@@ -126,7 +120,7 @@ resource "datadog_monitor" "memory_utilization" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL Memory Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.memory_utilization_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   ${var.memory_utilization_time_aggregator}(${var.memory_utilization_timeframe}):
@@ -150,8 +144,6 @@ resource "datadog_monitor" "memory_utilization" {
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
-
-  silenced = "${var.memory_utilization_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.memory_utilization_extra_tags}"]
 }
@@ -195,8 +187,6 @@ resource "datadog_monitor" "memory_utilization_forecast" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.memory_utilization_forecast_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.memory_utilization_forecast_extra_tags}"]
 }
 
@@ -231,8 +221,6 @@ resource "datadog_monitor" "failover_unavailable" {
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
-
-  silenced = "${var.failover_unavailable_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "${var.failover_unavailable_extra_tags}"]
 }

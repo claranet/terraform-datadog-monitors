@@ -27,7 +27,6 @@ Creates DataDog monitors with the following checks:
 | api\_latency\_enabled | Flag to enable Key Vault API latency monitor | string | `"true"` | no |
 | api\_latency\_extra\_tags | Extra tags for Key Vault API latency monitor | list | `[]` | no |
 | api\_latency\_message | Custom message for Key Vault API latency monitor | string | `""` | no |
-| api\_latency\_silenced | Groups to mute for Key Vault API latency monitor | map | `{}` | no |
 | api\_latency\_threshold\_critical | Critical threshold for Key Vault API latency rate | string | `"100"` | no |
 | api\_latency\_threshold\_warning | Warning threshold for Key Vault API latency rate | string | `"80"` | no |
 | api\_latency\_time\_aggregator | Monitor aggregator for Key Vault API latency [available values: min, max or avg] | string | `"min"` | no |
@@ -35,7 +34,6 @@ Creates DataDog monitors with the following checks:
 | api\_result\_enabled | Flag to enable Key Vault API result monitor | string | `"true"` | no |
 | api\_result\_extra\_tags | Extra tags for Key Vault API result monitor | list | `[]` | no |
 | api\_result\_message | Custom message for Key Vault API result monitor | string | `""` | no |
-| api\_result\_silenced | Groups to mute for Key Vault API result monitor | map | `{}` | no |
 | api\_result\_threshold\_critical | Critical threshold for Key Vault API result rate | string | `"10"` | no |
 | api\_result\_threshold\_warning | Warning threshold for Key Vault API result rate | string | `"30"` | no |
 | api\_result\_time\_aggregator | Monitor aggregator for Key Vault API result [available values: min, max or avg] | string | `"max"` | no |
@@ -51,7 +49,6 @@ Creates DataDog monitors with the following checks:
 | status\_enabled | Flag to enable Key Vault status monitor | string | `"true"` | no |
 | status\_extra\_tags | Extra tags for Key Vault status monitor | list | `[]` | no |
 | status\_message | Custom message for Key Vault status monitor | string | `""` | no |
-| status\_silenced | Groups to mute for Key Vault status monitor | map | `{}` | no |
 | status\_time\_aggregator | Monitor aggregator for Key Vault status [available values: min, max or avg] | string | `"max"` | no |
 | status\_timeframe | Monitor timeframe for Key Vault status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 

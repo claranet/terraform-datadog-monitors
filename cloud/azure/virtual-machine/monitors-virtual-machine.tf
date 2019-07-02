@@ -10,9 +10,7 @@ resource "datadog_monitor" "virtualmachine_status" {
       ) < 1
   EOQ
 
-  type = "metric alert"
-
-  silenced = "${var.status_silenced}"
+  type = "query alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -38,14 +36,12 @@ resource "datadog_monitor" "virtualmachine_cpu_usage" {
     ) > ${var.cpu_usage_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.cpu_usage_threshold_critical}"
     warning  = "${var.cpu_usage_threshold_warning}"
   }
-
-  silenced = "${var.cpu_usage_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -74,14 +70,12 @@ resource "datadog_monitor" "virtualmachine_credit_cpu_remaining_too_low" {
       * 100 , 100) < ${var.cpu_remaining_rate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.cpu_remaining_rate_threshold_warning}"
     critical = "${var.cpu_remaining_rate_threshold_critical}"
   }
-
-  silenced = "${var.cpu_remaining_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"

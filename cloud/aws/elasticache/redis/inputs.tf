@@ -40,11 +40,6 @@ variable "filter_tags_custom_excluded" {
 }
 
 # redis specific
-variable "cache_hits_silenced" {
-  description = "Groups to mute for Elasticache redis cache hits monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "cache_hits_enabled" {
   description = "Flag to enable Elasticache redis cache hits monitor"
@@ -86,12 +81,6 @@ variable "cache_hits_threshold_critical" {
   description = "Elasticache redis cache hits critical threshold in percentage"
   type        = "string"
   default     = 60
-}
-
-variable "cpu_high_silenced" {
-  description = "Groups to mute for Elasticache redis cpu high monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "cpu_high_enabled" {
@@ -136,12 +125,6 @@ variable "cpu_high_threshold_critical" {
   default     = 90
 }
 
-variable "replication_lag_silenced" {
-  description = "Groups to mute for Elasticache redis replication lag monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "replication_lag_enabled" {
   description = "Flag to enable Elasticache redis replication lag monitor"
   type        = "string"
@@ -182,12 +165,6 @@ variable "replication_lag_threshold_critical" {
   description = "Elasticache redis replication lag critical threshold in seconds"
   type        = "string"
   default     = 180
-}
-
-variable "commands_silenced" {
-  description = "Groups to mute for Elasticache redis commands monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "commands_enabled" {

@@ -10,9 +10,7 @@ resource "datadog_monitor" "keyvault_status" {
       ) < 1
   EOQ
 
-  type = "metric alert"
-
-  silenced = "${var.status_silenced}"
+  type = "query alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -47,9 +45,7 @@ resource "datadog_monitor" "keyvault_api_result" {
     warning  = "${var.api_result_threshold_warning}"
   }
 
-  type = "metric alert"
-
-  silenced = "${var.api_result_silenced}"
+  type = "query alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -82,8 +78,6 @@ resource "datadog_monitor" "keyvault_api_latency" {
   }
 
   type = "metric alert"
-
-  silenced = "${var.api_latency_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"

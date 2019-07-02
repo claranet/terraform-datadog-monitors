@@ -24,8 +24,6 @@ resource "datadog_monitor" "mysql_availability" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.mysql_availability_silenced}"
-
   tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_availability_extra_tags}"]
 }
 
@@ -33,7 +31,7 @@ resource "datadog_monitor" "mysql_connection" {
   count   = "${var.mysql_connection_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql Connections limit {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mysql_connection_message, var.message)}"
-  type    = "metric alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.mysql_connection_time_aggregator}(${var.mysql_connection_timeframe}): (
@@ -56,8 +54,6 @@ resource "datadog_monitor" "mysql_connection" {
   timeout_h           = 0
   include_tags        = true
 
-  silenced = "${var.mysql_connection_silenced}"
-
   tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_connection_extra_tags}"]
 }
 
@@ -65,7 +61,7 @@ resource "datadog_monitor" "mysql_aborted" {
   count   = "${var.mysql_aborted_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql Aborted connects {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mysql_aborted_message, var.message)}"
-  type    = "metric alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.mysql_aborted_time_aggregator}(${var.mysql_aborted_timeframe}): (
@@ -88,8 +84,6 @@ resource "datadog_monitor" "mysql_aborted" {
   timeout_h           = 0
   include_tags        = true
 
-  silenced = "${var.mysql_aborted_silenced}"
-
   tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_aborted_extra_tags}"]
 }
 
@@ -97,7 +91,7 @@ resource "datadog_monitor" "mysql_slow" {
   count   = "${var.mysql_slow_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql Slow queries {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.mysql_slow_message, var.message)}"
-  type    = "metric alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.mysql_slow_time_aggregator}(${var.mysql_slow_timeframe}): (
@@ -120,8 +114,6 @@ resource "datadog_monitor" "mysql_slow" {
   timeout_h           = 0
   include_tags        = true
 
-  silenced = "${var.mysql_slow_silenced}"
-
   tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_slow_extra_tags}"]
 }
 
@@ -129,7 +121,7 @@ resource "datadog_monitor" "mysql_pool_efficiency" {
   count   = "${var.mysql_pool_efficiency_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql Innodb buffer pool efficiency {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.mysql_pool_efficiency_message, var.message)}"
-  type    = "metric alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.mysql_pool_efficiency_time_aggregator}(${var.mysql_pool_efficiency_timeframe}): (
@@ -152,8 +144,6 @@ resource "datadog_monitor" "mysql_pool_efficiency" {
   timeout_h           = 0
   include_tags        = true
 
-  silenced = "${var.mysql_pool_efficiency_silenced}"
-
   tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_pool_efficiency_extra_tags}"]
 }
 
@@ -161,7 +151,7 @@ resource "datadog_monitor" "mysql_pool_utilization" {
   count   = "${var.mysql_pool_utilization_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql Innodb buffer pool utilization {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.mysql_pool_utilization_message, var.message)}"
-  type    = "metric alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.mysql_pool_utilization_time_aggregator}(${var.mysql_pool_utilization_timeframe}):
@@ -184,8 +174,6 @@ resource "datadog_monitor" "mysql_pool_utilization" {
   require_full_window = true
   timeout_h           = 0
   include_tags        = true
-
-  silenced = "${var.mysql_pool_utilization_silenced}"
 
   tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_pool_utilization_extra_tags}"]
 }
@@ -225,8 +213,6 @@ resource "datadog_monitor" "mysql_threads_anomaly" {
   timeout_h           = 0
   include_tags        = true
 
-  silenced = "${var.mysql_threads_silenced}"
-
   tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_threads_extra_tags}"]
 }
 
@@ -264,8 +250,6 @@ resource "datadog_monitor" "mysql_questions_anomaly" {
   require_full_window = true
   timeout_h           = 0
   include_tags        = true
-
-  silenced = "${var.mysql_questions_silenced}"
 
   tags = ["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform", "${var.mysql_questions_extra_tags}"]
 }

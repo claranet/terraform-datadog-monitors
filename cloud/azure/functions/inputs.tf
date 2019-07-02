@@ -38,11 +38,6 @@ variable "prefix_slug" {
 }
 
 # Azure Function App specific variables
-variable "http_5xx_errors_rate_silenced" {
-  description = "Groups to mute for Functions Http 5xx errors rate monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "http_5xx_errors_rate_enabled" {
   description = "Flag to enable Functions Http 5xx errors rate monitor"
@@ -84,12 +79,6 @@ variable "http_5xx_errors_rate_threshold_warning" {
   description = "Warning threshold for Functions Http 5xx errors rate"
 }
 
-variable "high_connections_count_silenced" {
-  description = "Groups to mute for Functions high connections count monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "high_connections_count_enabled" {
   description = "Flag to enable Functions high connections count monitor"
   type        = "string"
@@ -128,12 +117,6 @@ variable "high_connections_count_threshold_critical" {
 variable "high_connections_count_threshold_warning" {
   default     = 550
   description = "Warning threshold for Functions high connections count"
-}
-
-variable "high_threads_count_silenced" {
-  description = "Groups to mute for Functions high threads count monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "high_threads_count_enabled" {

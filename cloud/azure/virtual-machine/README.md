@@ -27,7 +27,6 @@ Creates DataDog monitors with the following checks:
 | cpu\_remaining\_rate\_enabled | Flag to enable Virtual Machine CPU remaining monitor | string | `"true"` | no |
 | cpu\_remaining\_rate\_extra\_tags | Extra tags for Virtual Machine CPU remaining monitor | list | `[]` | no |
 | cpu\_remaining\_rate\_message | Custom message for Virtual Machine CPU remaining monitor | string | `""` | no |
-| cpu\_remaining\_rate\_silenced | Groups to mute for Virtual Machine CPU remaining monitor | map | `{}` | no |
 | cpu\_remaining\_rate\_threshold\_critical | Virtual Machine CPU rate limit (critical threshold) | string | `"15"` | no |
 | cpu\_remaining\_rate\_threshold\_warning | Virtual Machine CPU rate limit (warning threshold) | string | `"30"` | no |
 | cpu\_remaining\_rate\_time\_aggregator | Monitor aggregator for Virtual Machine CPU remaining [available values: min, max, sum or avg] | string | `"min"` | no |
@@ -35,7 +34,6 @@ Creates DataDog monitors with the following checks:
 | cpu\_usage\_enabled | Flag to enable Virtual Machine status monitor | string | `"true"` | no |
 | cpu\_usage\_extra\_tags | Extra tags for Virtual Machine status monitor | list | `[]` | no |
 | cpu\_usage\_message | Custom message for Virtual Machine CPU monitor | string | `""` | no |
-| cpu\_usage\_silenced | Groups to mute for Virtual Machine CPU monitor | map | `{}` | no |
 | cpu\_usage\_threshold\_critical | Virtual Machine CPU usage in percent (critical threshold) | string | `"90"` | no |
 | cpu\_usage\_threshold\_warning | Virtual Machine CPU usage in percent (warning threshold) | string | `"80"` | no |
 | cpu\_usage\_time\_aggregator | Monitor aggregator for Virtual Machine CPU [available values: min, max or avg] | string | `"min"` | no |
@@ -51,7 +49,6 @@ Creates DataDog monitors with the following checks:
 | status\_enabled | Flag to enable Virtual Machine status monitor | string | `"true"` | no |
 | status\_extra\_tags | Extra tags for Virtual Machine status monitor | list | `[]` | no |
 | status\_message | Custom message for Virtual Machine status monitor | string | `""` | no |
-| status\_silenced | Groups to mute for Virtual Machine status monitor | map | `{}` | no |
 | status\_time\_aggregator | Monitor aggregator for Virtual Machine status [available values: min, max or avg] | string | `"max"` | no |
 | status\_timeframe | Monitor timeframe for Virtual Machine status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 

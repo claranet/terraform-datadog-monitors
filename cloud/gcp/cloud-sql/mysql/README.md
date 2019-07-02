@@ -31,7 +31,6 @@ Creates DataDog monitors with the following checks:
 | replication\_lag\_enabled | Flag to enable GCP Cloud SQL Replication Lag monitor | string | `"true"` | no |
 | replication\_lag\_extra\_tags | Extra tags for GCP Cloud SQL SQL Replication monitor | list | `[]` | no |
 | replication\_lag\_message | Custom message for the Replication Lag monitor | string | `""` | no |
-| replication\_lag\_silenced | Groups to mute for GCP Cloud SQL Replication Lag monitor | map | `{}` | no |
 | replication\_lag\_threshold\_critical | Seconds behind the master (critical threshold) | string | `"180"` | no |
 | replication\_lag\_threshold\_warning | Seconds behind the master (warning threshold) | string | `"90"` | no |
 | replication\_lag\_time\_aggregator | Time aggregator for the Replication Lag monitor | string | `"min"` | no |

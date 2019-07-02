@@ -69,12 +69,6 @@ variable "error_rate_4xx_threshold_critical" {
   default     = 60
 }
 
-variable "error_rate_4xx_silenced" {
-  description = "Groups to mute for GCP LB 4XX Errors monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "error_rate_4xx_enabled" {
   description = "Flag to enable GCP LB 4XX Errors monitor"
   type        = "string"
@@ -126,12 +120,6 @@ variable "error_rate_5xx_threshold_critical" {
   default     = 40
 }
 
-variable "error_rate_5xx_silenced" {
-  description = "Groups to mute for GCP LB 5XX Errors monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "error_rate_5xx_enabled" {
   description = "Flag to enable GCP LB 5XX Errors monitor"
   type        = "string"
@@ -177,12 +165,6 @@ variable "backend_latency_service_threshold_critical" {
   default     = 1500
 }
 
-variable "backend_latency_service_silenced" {
-  description = "Groups to mute for GCP LB Backend Latency monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "backend_latency_service_enabled" {
   description = "Flag to enable GCP LB Backend Latency monitor"
   type        = "string"
@@ -226,12 +208,6 @@ variable "backend_latency_bucket_threshold_critical" {
   description = "Latency in milliseconds (critical threshold)"
   type        = "string"
   default     = 8000
-}
-
-variable "backend_latency_bucket_silenced" {
-  description = "Groups to mute for GCP LB Backend Latency monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "backend_latency_bucket_enabled" {
@@ -283,12 +259,6 @@ variable "request_count_threshold_critical" {
   description = "Desviation in percentage (critical threshold)"
   type        = "string"
   default     = 500
-}
-
-variable "request_count_silenced" {
-  description = "Groups to mute for GCP LB Request Count monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "request_count_enabled" {

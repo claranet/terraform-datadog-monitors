@@ -24,7 +24,5 @@ resource "datadog_monitor" "host_unreachable" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.unreachable_silenced}"
-
   tags = ["env:${var.environment}", "type:system", "provider:host", "resource:unreachable", "team:claranet", "created-by:terraform", "${var.unreachable_extra_tags}"]
 }

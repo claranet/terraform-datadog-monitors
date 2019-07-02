@@ -31,7 +31,5 @@ resource "datadog_monitor" "replication_lag" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.replication_lag_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "engine:mysql", "${var.replication_lag_extra_tags}"]
 }

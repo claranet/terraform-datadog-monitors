@@ -44,12 +44,6 @@ variable "status_enabled" {
   default     = "true"
 }
 
-variable "status_silenced" {
-  description = "Groups to mute for Key Vault status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "status_message" {
   description = "Custom message for Key Vault status monitor"
   type        = "string"
@@ -77,12 +71,6 @@ variable "api_result_enabled" {
   description = "Flag to enable Key Vault API result monitor"
   type        = "string"
   default     = "true"
-}
-
-variable "api_result_silenced" {
-  description = "Groups to mute for Key Vault API result monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "api_result_message" {
@@ -122,12 +110,6 @@ variable "api_latency_enabled" {
   description = "Flag to enable Key Vault API latency monitor"
   type        = "string"
   default     = "true"
-}
-
-variable "api_latency_silenced" {
-  description = "Groups to mute for Key Vault API latency monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "api_latency_message" {

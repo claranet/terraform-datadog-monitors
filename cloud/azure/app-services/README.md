@@ -35,7 +35,6 @@ Creates DataDog monitors with the following checks:
 | http\_4xx\_requests\_enabled | Flag to enable App Services 4xx requests monitor | string | `"true"` | no |
 | http\_4xx\_requests\_extra\_tags | Extra tags for App Services 4xx requests monitor | list | `[]` | no |
 | http\_4xx\_requests\_message | Custom message for App Services 4xx requests monitor | string | `""` | no |
-| http\_4xx\_requests\_silenced | Groups to mute for App Services 4xx requests monitor | map | `{}` | no |
 | http\_4xx\_requests\_threshold\_critical | Maximum critical acceptable percent of 4xx errors | string | `"90"` | no |
 | http\_4xx\_requests\_threshold\_warning | Warning regarding acceptable percent of 4xx errors | string | `"50"` | no |
 | http\_4xx\_requests\_time\_aggregator | Monitor aggregator for App Services 4xx requests [available values: min, max or avg] | string | `"min"` | no |
@@ -43,7 +42,6 @@ Creates DataDog monitors with the following checks:
 | http\_5xx\_requests\_enabled | Flag to enable App Services 5xx requests monitor | string | `"true"` | no |
 | http\_5xx\_requests\_extra\_tags | Extra tags for App Services 5xx requests monitor | list | `[]` | no |
 | http\_5xx\_requests\_message | Custom message for App Services 5xx requests monitor | string | `""` | no |
-| http\_5xx\_requests\_silenced | Groups to mute for App Services 5xx requests monitor | map | `{}` | no |
 | http\_5xx\_requests\_threshold\_critical | Maximum critical acceptable percent of 5xx errors | string | `"90"` | no |
 | http\_5xx\_requests\_threshold\_warning | Warning regarding acceptable percent of 5xx errors | string | `"50"` | no |
 | http\_5xx\_requests\_time\_aggregator | Monitor aggregator for App Services 5xx requests [available values: min, max or avg] | string | `"min"` | no |
@@ -51,7 +49,6 @@ Creates DataDog monitors with the following checks:
 | http\_successful\_requests\_enabled | Flag to enable App Services successful requests monitor | string | `"true"` | no |
 | http\_successful\_requests\_extra\_tags | Extra tags for App Services successful requests monitor | list | `[]` | no |
 | http\_successful\_requests\_message | Custom message for App Services successful requests monitor | string | `""` | no |
-| http\_successful\_requests\_silenced | Groups to mute for App Services successful requests monitor | map | `{}` | no |
 | http\_successful\_requests\_threshold\_critical | Minimum critical acceptable percent of 2xx & 3xx requests | string | `"10"` | no |
 | http\_successful\_requests\_threshold\_warning | Warning regarding acceptable percent of 2xx & 3xx requests | string | `"30"` | no |
 | http\_successful\_requests\_time\_aggregator | Monitor aggregator for App Services successful requests [available values: min, max or avg] | string | `"max"` | no |
@@ -59,7 +56,6 @@ Creates DataDog monitors with the following checks:
 | memory\_usage\_enabled | Flag to enable App Services memory usage monitor | string | `"true"` | no |
 | memory\_usage\_extra\_tags | Extra tags for App Services memory usage monitor | list | `[]` | no |
 | memory\_usage\_message | Custom message for App Services memory usage monitor | string | `""` | no |
-| memory\_usage\_silenced | Groups to mute for App Services memory usage monitor | map | `{}` | no |
 | memory\_usage\_threshold\_critical | Alerting threshold in Mib | string | `"1073741824"` | no |
 | memory\_usage\_threshold\_warning | Warning threshold in MiB | string | `"536870912"` | no |
 | memory\_usage\_time\_aggregator | Monitor aggregator for App Services memory usage [available values: min, max or avg] | string | `"min"` | no |
@@ -70,7 +66,6 @@ Creates DataDog monitors with the following checks:
 | response\_time\_enabled | Flag to enable App Services response time monitor | string | `"true"` | no |
 | response\_time\_extra\_tags | Extra tags for App Services response time monitor | list | `[]` | no |
 | response\_time\_message | Custom message for App Services response time monitor | string | `""` | no |
-| response\_time\_silenced | Groups to mute for App Services response time monitor | map | `{}` | no |
 | response\_time\_threshold\_critical | Alerting threshold for response time in seconds | string | `"10"` | no |
 | response\_time\_threshold\_warning | Warning threshold for response time in seconds | string | `"5"` | no |
 | response\_time\_time\_aggregator | Monitor aggregator for App Services response time [available values: min, max or avg] | string | `"min"` | no |
@@ -78,7 +73,6 @@ Creates DataDog monitors with the following checks:
 | status\_enabled | Flag to enable App Services status monitor | string | `"true"` | no |
 | status\_extra\_tags | Extra tags for App Services status monitor | list | `[]` | no |
 | status\_message | Custom message for App Services status monitor | string | `""` | no |
-| status\_silenced | Groups to mute for App Services status monitor | map | `{}` | no |
 | status\_time\_aggregator | Monitor aggregator for App Services status [available values: min, max or avg] | string | `"max"` | no |
 | status\_timeframe | Monitor timeframe for App Services status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 

@@ -4,7 +4,7 @@ resource "datadog_monitor" "firehose_incoming_records" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kinesis Firehose No incoming records"
   message = "${coalesce(var.incoming_records_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
     sum(${var.incoming_records_timeframe}): (
@@ -25,8 +25,6 @@ resource "datadog_monitor" "firehose_incoming_records" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
-
-  silenced = "${var.incoming_records_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:kinesis-firehose", "team:claranet", "created-by:terraform", "${var.incoming_records_extra_tags}"]
 }

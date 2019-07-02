@@ -29,8 +29,6 @@ resource "datadog_monitor" "sending_operations_count" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.sending_operations_count_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "team:claranet", "created-by:terraform", "${var.sending_operations_count_extra_tags}"]
 }
 
@@ -65,8 +63,6 @@ resource "datadog_monitor" "unavailable_sending_operations_count" {
 
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
-
-  silenced = "${var.unavailable_sending_operations_count_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "team:claranet", "created-by:terraform", "${var.unavailable_sending_operations_count_extra_tags}"]
 }

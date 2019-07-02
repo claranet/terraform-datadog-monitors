@@ -11,7 +11,7 @@ resource "datadog_monitor" "ELB_no_healthy_instances" {
     ) * 100 < 1
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = 1
@@ -28,8 +28,6 @@ resource "datadog_monitor" "ELB_no_healthy_instances" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.elb_no_healthy_instance_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform", "${var.elb_no_healthy_instance_extra_tags}"]
 }
 
@@ -45,7 +43,7 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
       * 100 > ${var.elb_4xx_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.elb_4xx_threshold_warning}"
@@ -62,8 +60,6 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.elb_4xx_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform", "${var.elb_4xx_extra_tags}"]
 }
 
@@ -79,7 +75,7 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
       * 100 > ${var.elb_5xx_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.elb_5xx_threshold_warning}"
@@ -96,8 +92,6 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.elb_5xx_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform", "${var.elb_5xx_extra_tags}"]
 }
 
@@ -113,7 +107,7 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
       * 100 > ${var.elb_backend_4xx_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.elb_backend_4xx_threshold_warning}"
@@ -130,8 +124,6 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.elb_backend_4xx_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform", "${var.elb_backend_4xx_extra_tags}"]
 }
 
@@ -147,7 +139,7 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
       * 100 > ${var.elb_backend_5xx_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.elb_backend_5xx_threshold_warning}"
@@ -164,8 +156,6 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.elb_backend_5xx_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform", "${var.elb_backend_5xx_extra_tags}"]
 }
 
@@ -180,7 +170,7 @@ resource "datadog_monitor" "ELB_backend_latency" {
     > ${var.elb_backend_latency_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.elb_backend_latency_warning}"
@@ -196,8 +186,6 @@ resource "datadog_monitor" "ELB_backend_latency" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
-
-  silenced = "${var.elb_backend_latency_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform", "${var.elb_backend_latency_extra_tags}"]
 }

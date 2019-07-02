@@ -4,7 +4,7 @@ resource "datadog_monitor" "rds_cpu_90_15min" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] RDS instance CPU high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.cpu_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.cpu_time_aggregator}(${var.cpu_timeframe}): (
@@ -26,8 +26,6 @@ resource "datadog_monitor" "rds_cpu_90_15min" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.cpu_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform", "${var.cpu_extra_tags}"]
 }
 
@@ -37,7 +35,7 @@ resource "datadog_monitor" "rds_free_space_low" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] RDS instance free space {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.diskspace_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   ${var.diskspace_time_aggregator}(${var.diskspace_timeframe}): (
@@ -60,8 +58,6 @@ resource "datadog_monitor" "rds_free_space_low" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.diskspace_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform", "${var.diskspace_extra_tags}"]
 }
 
@@ -71,7 +67,7 @@ resource "datadog_monitor" "rds_replica_lag" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] RDS replica lag {{#is_alert}}{{{comparator}}} {{threshold}} ms ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ms ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.replicalag_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
   avg(${var.replicalag_timeframe}): (
@@ -92,8 +88,6 @@ resource "datadog_monitor" "rds_replica_lag" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
-
-  silenced = "${var.replicalag_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform", "${var.replicalag_extra_tags}"]
 }

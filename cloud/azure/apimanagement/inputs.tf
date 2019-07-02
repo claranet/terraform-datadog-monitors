@@ -40,11 +40,6 @@ variable "filter_tags_custom_excluded" {
 }
 
 # Azure API Management specific
-variable "status_silenced" {
-  description = "Groups to mute for API Management status monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "status_enabled" {
   description = "Flag to enable API Management status monitor"
@@ -74,12 +69,6 @@ variable "status_timeframe" {
   description = "Monitor timeframe for API Management status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
-}
-
-variable "failed_requests_silenced" {
-  description = "Groups to mute for API Management failed requests monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "failed_requests_enabled" {
@@ -122,12 +111,6 @@ variable "failed_requests_threshold_warning" {
   default     = 50
 }
 
-variable "other_requests_silenced" {
-  description = "Groups to mute for API Management other requests monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "other_requests_enabled" {
   description = "Flag to enable API Management other requests monitor"
   type        = "string"
@@ -168,12 +151,6 @@ variable "other_requests_threshold_warning" {
   default     = 50
 }
 
-variable "unauthorized_requests_silenced" {
-  description = "Groups to mute for API Management unauthorized requests monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "unauthorized_requests_enabled" {
   description = "Flag to enable API Management unauthorized requests monitor"
   type        = "string"
@@ -212,12 +189,6 @@ variable "unauthorized_requests_threshold_critical" {
 variable "unauthorized_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of unauthorized requests"
   default     = 50
-}
-
-variable "successful_requests_silenced" {
-  description = "Groups to mute for API Management successful requests monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "successful_requests_enabled" {

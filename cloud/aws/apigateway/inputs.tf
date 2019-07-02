@@ -31,12 +31,6 @@ variable "prefix_slug" {
 ###   LATENCY VARIABLES   ###
 ###################################
 
-variable "latency_silenced" {
-  description = "Groups to mute for API Gateway latency monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "latency_enabled" {
   description = "Flag to enable API Gateway latency monitor"
   type        = "string"
@@ -81,12 +75,6 @@ variable "latency_threshold_warning" {
 ###   HTTP 5xx status pages   ###
 #################################
 
-variable "http_5xx_requests_silenced" {
-  description = "Groups to mute for API Gateway HTTP 5xx requests monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "http_5xx_requests_enabled" {
   description = "Flag to enable API Gateway HTTP 5xx requests monitor"
   type        = "string"
@@ -130,12 +118,6 @@ variable "http_5xx_requests_threshold_warning" {
 #################################
 ###   HTTP 4xx status pages   ###
 #################################
-
-variable "http_4xx_requests_silenced" {
-  description = "Groups to mute for API Gateway HTTP 4xx requests monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "http_4xx_requests_enabled" {
   description = "Flag to enable API Gateway HTTP 4xx requests monitor"

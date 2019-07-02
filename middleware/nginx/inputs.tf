@@ -41,12 +41,6 @@ variable "filter_tags_custom_excluded" {
 
 # Nginx Middleware specific
 
-variable "nginx_connect_silenced" {
-  description = "Groups to mute for Nginx status monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "nginx_connect_enabled" {
   description = "Flag to enable Nginx status monitor"
   type        = "string"
@@ -75,12 +69,6 @@ variable "nginx_connect_no_data_timeframe" {
   description = "Nginx status monitor no data timeframe"
   type        = "string"
   default     = 10
-}
-
-variable "nginx_dropped_silenced" {
-  description = "Groups to mute for Nginx dropped connections monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "nginx_dropped_enabled" {

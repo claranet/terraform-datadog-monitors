@@ -38,24 +38,20 @@ Creates DataDog monitors with the following checks:
 | mongodb\_primary\_enabled | Flag to enable MongoDB primary state monitor | string | `"true"` | no |
 | mongodb\_primary\_extra\_tags | Extra tags for MongoDB primary state monitor | list | `[]` | no |
 | mongodb\_primary\_message | Custom message for MongoDB primary monitor | string | `""` | no |
-| mongodb\_primary\_silenced | Groups to mute for MongoDB primary state monitor | map | `{}` | no |
 | mongodb\_primary\_timeframe | Monitor timeframe for MongoDB wrong state for primary node [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1m"` | no |
 | mongodb\_replication\_aggregator | Monitor aggregator for MongoDB replication lag [available values: min, max, sum or avg] | string | `"avg"` | no |
 | mongodb\_replication\_enabled | Flag to enable MongoDB replication lag monitor | string | `"true"` | no |
 | mongodb\_replication\_extra\_tags | Extra tags for MongoDB replication lag monitor | list | `[]` | no |
 | mongodb\_replication\_message | Custom message for MongoDB replication monitor | string | `""` | no |
-| mongodb\_replication\_silenced | Groups to mute for MongoDB replication lag monitor | map | `{}` | no |
 | mongodb\_replication\_timeframe | Monitor timeframe for MongoDB replication lag  [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1m"` | no |
 | mongodb\_secondary\_aggregator | Monitor aggregator for MongoDB secondary state [available values: min, max] | string | `"max"` | no |
 | mongodb\_secondary\_enabled | Flag to enable MongoDB secondary state monitor | string | `"true"` | no |
 | mongodb\_secondary\_extra\_tags | Extra tags for MongoDB secondary state monitor | list | `[]` | no |
 | mongodb\_secondary\_message | Custom message for MongoDB secondary monitor | string | `""` | no |
-| mongodb\_secondary\_silenced | Groups to mute for MongoDB secondary state monitor | map | `{}` | no |
 | mongodb\_secondary\_timeframe | Monitor timeframe for MongoDB wrong state for secondaries nodes [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | mongodb\_server\_count\_aggregator | Monitor aggregator for MongoDB server count [available values: min, max] | string | `"min"` | no |
 | mongodb\_server\_count\_enabled | Flag to enable MongoDB server count monitor | string | `"true"` | no |
 | mongodb\_server\_count\_message | Custom message for MongoDB server count | string | `""` | no |
-| mongodb\_server\_count\_silenced | Groups to mute for MongoDB server count monitor | map | `{}` | no |
 | mongodb\_server\_count\_timeframe | Monitor timeframe for MongoDB wrong server count [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |

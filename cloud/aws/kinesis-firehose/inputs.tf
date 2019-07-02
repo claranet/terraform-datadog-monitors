@@ -41,12 +41,6 @@ variable "filter_tags_custom_excluded" {
 
 # Kinesis-Firehose
 
-variable "incoming_records_silenced" {
-  description = "Groups to mute for Kinesis Firehorse incoming records monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "incoming_records_enabled" {
   description = "Flag to enable Kinesis Firehorse incoming records monitor"
   type        = "string"

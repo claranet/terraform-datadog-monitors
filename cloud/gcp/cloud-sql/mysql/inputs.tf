@@ -64,12 +64,6 @@ variable "replication_lag_threshold_critical" {
   default     = 180
 }
 
-variable "replication_lag_silenced" {
-  description = "Groups to mute for GCP Cloud SQL Replication Lag monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "replication_lag_enabled" {
   description = "Flag to enable GCP Cloud SQL Replication Lag monitor"
   type        = "string"

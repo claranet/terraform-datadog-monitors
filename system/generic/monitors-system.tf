@@ -9,7 +9,7 @@ resource "datadog_monitor" "cpu" {
     ) > ${var.cpu_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.cpu_threshold_warning}"
@@ -25,8 +25,6 @@ resource "datadog_monitor" "cpu" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.cpu_silenced}"
-
   tags = ["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform", "${var.cpu_extra_tags}"]
 }
 
@@ -41,7 +39,7 @@ resource "datadog_monitor" "load" {
     ) > ${var.load_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.load_threshold_warning}"
@@ -57,8 +55,6 @@ resource "datadog_monitor" "load" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.load_silenced}"
-
   tags = ["env:${var.environment}", "type:system", "provider:system-core", "resource:generic", "team:claranet", "created-by:terraform", "${var.load_extra_tags}"]
 }
 
@@ -73,7 +69,7 @@ resource "datadog_monitor" "disk_space" {
     * 100 > ${var.disk_space_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.disk_space_threshold_warning}"
@@ -88,8 +84,6 @@ resource "datadog_monitor" "disk_space" {
   include_tags        = true
   locked              = false
   require_full_window = true
-
-  silenced = "${var.disk_space_silenced}"
 
   tags = ["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform", "${var.disk_space_extra_tags}"]
 }
@@ -129,8 +123,6 @@ resource "datadog_monitor" "disk_space_forecast" {
   evaluation_delay = "${var.evaluation_delay}"
   new_host_delay   = "${var.new_host_delay}"
 
-  silenced = "${var.disk_space_forecast_silenced}"
-
   tags = ["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform", "${var.disk_space_forecast_extra_tags}"]
 }
 
@@ -145,7 +137,7 @@ resource "datadog_monitor" "disk_inodes" {
     * 100 > ${var.disk_inodes_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.disk_inodes_threshold_warning}"
@@ -160,8 +152,6 @@ resource "datadog_monitor" "disk_inodes" {
   include_tags        = true
   locked              = false
   require_full_window = true
-
-  silenced = "${var.disk_inodes_silenced}"
 
   tags = ["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform", "${var.disk_inodes_extra_tags}"]
 }
@@ -178,7 +168,7 @@ resource "datadog_monitor" "memory" {
     < ${var.memory_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.memory_threshold_warning}"
@@ -194,8 +184,6 @@ resource "datadog_monitor" "memory" {
   include_tags        = true
   locked              = false
   require_full_window = true
-
-  silenced = "${var.memory_silenced}"
 
   tags = ["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform", "${var.memory_extra_tags}"]
 }
