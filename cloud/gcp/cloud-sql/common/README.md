@@ -17,6 +17,7 @@ module "datadog-monitors-cloud-gcp-cloud-sql-common" {
 Creates DataDog monitors with the following checks:
 
 - Cloud SQL CPU Utilization
+- Cloud SQL Failover Unavailable
 - Cloud SQL Memory Utilization
 - Cloud SQL Disk Utilization
 - Cloud SQL Memory Utilization forecast
@@ -32,8 +33,6 @@ Creates DataDog monitors with the following checks:
 | cpu\_utilization\_threshold\_warning | CPU Utilization in percentage (warning threshold) | string | `"80"` | no |
 | cpu\_utilization\_time\_aggregator | Time aggregator for the CPU Utilization monitor | string | `"avg"` | no |
 | cpu\_utilization\_timeframe | Timeframe for the CPU Utilization monitor | string | `"last_15m"` | no |
-| datadog\_api\_key |  | string | `"xxx"` | no |
-| datadog\_app\_key |  | string | `"yyy"` | no |
 | disk\_utilization\_enabled | Flag to enable GCP Cloud SQL Disk Utilization monitor | string | `"true"` | no |
 | disk\_utilization\_extra\_tags | Extra tags for GCP Cloud SQL CPU Utilization monitor | list(string) | `[]` | no |
 | disk\_utilization\_forecast\_algorithm | Algorithm for the Disk Utilization Forecast monitor | string | `"linear"` | no |
