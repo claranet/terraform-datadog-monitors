@@ -10,9 +10,7 @@ resource "datadog_monitor" "datalakestore_status" {
       ) < 1
   EOQ
 
-  type = "metric alert"
-
-  silenced = "${var.status_silenced}"
+  type = "query alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"

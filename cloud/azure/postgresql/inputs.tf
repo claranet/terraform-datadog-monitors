@@ -35,11 +35,6 @@ variable "filter_tags_custom" {
 }
 
 # Azure Databases for PostgreSQL Servers specific variables
-variable "cpu_usage_silenced" {
-  description = "Groups to mute for PostgreSQL CPU monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "cpu_usage_enabled" {
   description = "Flag to enable PostgreSQL status monitor"
@@ -81,12 +76,6 @@ variable "cpu_usage_threshold_critical" {
   default     = "90"
 }
 
-variable "no_connection_silenced" {
-  description = "Groups to mute for PostgreSQL no connection monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "no_connection_enabled" {
   description = "Flag to enable PostgreSQL status monitor"
   type        = "string"
@@ -115,12 +104,6 @@ variable "no_connection_timeframe" {
   description = "Monitor timeframe for PostgreSQL no connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
-}
-
-variable "free_storage_silenced" {
-  description = "Groups to mute for PostgreSQL Free Storage monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "free_storage_enabled" {
@@ -163,12 +146,6 @@ variable "free_storage_threshold_critical" {
   default     = "10"
 }
 
-variable "io_consumption_silenced" {
-  description = "Groups to mute for PostgreSQL IO consumption monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "io_consumption_enabled" {
   description = "Flag to enable PostgreSQL status monitor"
   type        = "string"
@@ -207,12 +184,6 @@ variable "io_consumption_threshold_warning" {
 variable "io_consumption_threshold_critical" {
   description = "PostgreSQL IO consumption in percent (critical threshold)"
   default     = "90"
-}
-
-variable "memory_usage_silenced" {
-  description = "Groups to mute for PostgreSQL memory monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "memory_usage_enabled" {

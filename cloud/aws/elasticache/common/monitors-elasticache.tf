@@ -3,7 +3,7 @@ resource "datadog_monitor" "elasticache_eviction" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache eviction {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}"
   message = "${coalesce(var.eviction_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
     sum(${var.eviction_timeframe}): (
@@ -26,8 +26,6 @@ resource "datadog_monitor" "elasticache_eviction" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.eviction_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.eviction_extra_tags}"]
 }
 
@@ -36,7 +34,7 @@ resource "datadog_monitor" "elasticache_max_connection" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache max connections reached {{#is_alert}}{{{comparator}}} {{threshold}} {{/is_alert}}"
   message = "${coalesce(var.max_connection_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.max_connection_time_aggregator}(${var.max_connection_timeframe}): (
@@ -54,8 +52,6 @@ resource "datadog_monitor" "elasticache_max_connection" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.max_connection_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.max_connection_extra_tags}"]
 }
 
@@ -64,7 +60,7 @@ resource "datadog_monitor" "elasticache_no_connection" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache connections {{#is_alert}}{{{comparator}}} {{threshold}} {{/is_alert}}"
   message = "${coalesce(var.no_connection_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.no_connection_time_aggregator}(${var.no_connection_timeframe}): (
@@ -82,8 +78,6 @@ resource "datadog_monitor" "elasticache_no_connection" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.no_connection_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.no_connection_extra_tags}"]
 }
 
@@ -92,7 +86,7 @@ resource "datadog_monitor" "elasticache_swap" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache swap {{#is_alert}}{{{comparator}}} {{threshold}}MB ({{value}}MB){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}MB ({{value}}MB){{/is_warning}}"
   message = "${coalesce(var.swap_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.swap_time_aggregator}(${var.swap_timeframe}): (
@@ -115,8 +109,6 @@ resource "datadog_monitor" "elasticache_swap" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.swap_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.swap_extra_tags}"]
 }
 
@@ -125,7 +117,7 @@ resource "datadog_monitor" "elasticache_free_memory" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache free memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.free_memory_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
     pct_change(avg(${var.free_memory_timeframe}),${var.free_memory_condition_timeframe}):
@@ -148,8 +140,6 @@ resource "datadog_monitor" "elasticache_free_memory" {
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
 
-  silenced = "${var.free_memory_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.free_memory_extra_tags}"]
 }
 
@@ -158,7 +148,7 @@ resource "datadog_monitor" "elasticache_eviction_growing" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache evictions is growing {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = "${coalesce(var.eviction_growing_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
     pct_change(avg(${var.eviction_growing_timeframe}),${var.eviction_growing_condition_timeframe}):
@@ -180,8 +170,6 @@ resource "datadog_monitor" "elasticache_eviction_growing" {
   locked              = false
   require_full_window = false
   new_host_delay      = "${var.new_host_delay}"
-
-  silenced = "${var.eviction_growing_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform", "${var.eviction_growing_extra_tags}"]
 }

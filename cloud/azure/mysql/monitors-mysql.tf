@@ -9,14 +9,12 @@ resource "datadog_monitor" "mysql_cpu_usage" {
     ) > ${var.cpu_usage_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.cpu_usage_threshold_critical}"
     warning  = "${var.cpu_usage_threshold_warning}"
   }
-
-  silenced = "${var.cpu_usage_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -42,14 +40,12 @@ resource "datadog_monitor" "mysql_free_storage" {
     ) < ${var.free_storage_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.free_storage_threshold_critical}"
     warning  = "${var.free_storage_threshold_warning}"
   }
-
-  silenced = "${var.free_storage_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -75,14 +71,12 @@ resource "datadog_monitor" "mysql_io_consumption" {
     ) > ${var.io_consumption_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.io_consumption_threshold_critical}"
     warning  = "${var.io_consumption_threshold_warning}"
   }
-
-  silenced = "${var.io_consumption_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -108,14 +102,12 @@ resource "datadog_monitor" "mysql_memory_usage" {
     ) > ${var.memory_usage_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     critical = "${var.memory_usage_threshold_critical}"
     warning  = "${var.memory_usage_threshold_warning}"
   }
-
-  silenced = "${var.memory_usage_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"

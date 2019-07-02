@@ -41,12 +41,6 @@ variable "prefix_slug" {
 
 # Datadog monitors variables
 
-variable "alb_no_healthy_instances_silenced" {
-  description = "Groups to mute for ALB no healthy instances monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "alb_no_healthy_instances_enabled" {
   description = "Flag to enable ALB no healthy instances monitor"
   type        = "string"
@@ -75,12 +69,6 @@ variable "alb_no_healthy_instances_timeframe" {
   description = "Monitor timeframe for ALB no healthy instances [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
-}
-
-variable "latency_silenced" {
-  description = "Groups to mute for ALB latency monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "latency_enabled" {
@@ -123,12 +111,6 @@ variable "latency_threshold_warning" {
   description = "latency warning threshold in milliseconds"
 }
 
-variable "httpcode_alb_4xx_silenced" {
-  description = "Groups to mute for ALB httpcode 4xx monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "httpcode_alb_4xx_enabled" {
   description = "Flag to enable ALB httpcode 4xx monitor"
   type        = "string"
@@ -167,12 +149,6 @@ variable "httpcode_alb_4xx_threshold_critical" {
 variable "httpcode_alb_4xx_threshold_warning" {
   default     = 60
   description = "loadbalancer 4xx warning threshold in percentage"
-}
-
-variable "httpcode_target_4xx_silenced" {
-  description = "Groups to mute for ALB target httpcode 4xx monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "httpcode_target_4xx_enabled" {
@@ -215,12 +191,6 @@ variable "httpcode_target_4xx_threshold_warning" {
   description = "target 4xx warning threshold in percentage"
 }
 
-variable "httpcode_alb_5xx_silenced" {
-  description = "Groups to mute for ALB httpcode 5xx monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "httpcode_alb_5xx_enabled" {
   description = "Flag to enable ALB httpcode 5xx monitor"
   type        = "string"
@@ -259,12 +229,6 @@ variable "httpcode_alb_5xx_threshold_critical" {
 variable "httpcode_alb_5xx_threshold_warning" {
   default     = 60
   description = "loadbalancer 5xx warning threshold in percentage"
-}
-
-variable "httpcode_target_5xx_silenced" {
-  description = "Groups to mute for ALB target httpcode 5xx monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "httpcode_target_5xx_enabled" {

@@ -40,11 +40,6 @@ variable "filter_tags_custom_excluded" {
 }
 
 # Elasticache specific
-variable "eviction_silenced" {
-  description = "Groups to mute for Elasticache eviction monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "eviction_enabled" {
   description = "Flag to enable Elasticache eviction monitor"
@@ -82,12 +77,6 @@ variable "eviction_threshold_critical" {
   default     = 30
 }
 
-variable "max_connection_silenced" {
-  description = "Groups to mute for Elasticache max connection monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "max_connection_enabled" {
   description = "Flag to enable Elasticache max connection monitor"
   type        = "string"
@@ -118,12 +107,6 @@ variable "max_connection_timeframe" {
   default     = "last_5m"
 }
 
-variable "no_connection_silenced" {
-  description = "Groups to mute for Elasticache no connection monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "no_connection_enabled" {
   description = "Flag to enable Elasticache no connection monitor"
   type        = "string"
@@ -152,12 +135,6 @@ variable "no_connection_timeframe" {
   description = "Monitor timeframe for Elasticache no connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
-}
-
-variable "swap_silenced" {
-  description = "Groups to mute for Elasticache swap monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "swap_enabled" {
@@ -202,12 +179,6 @@ variable "swap_threshold_critical" {
   default     = 50000000
 }
 
-variable "free_memory_silenced" {
-  description = "Groups to mute for Elasticache free memory monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "free_memory_enabled" {
   description = "Flag to enable Elasticache free memory monitor"
   type        = "string"
@@ -248,12 +219,6 @@ variable "free_memory_threshold_critical" {
   description = "Elasticache free memory critical threshold in percentage"
   type        = "string"
   default     = -70
-}
-
-variable "eviction_growing_silenced" {
-  description = "Groups to mute for Elasticache eviction growing monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "eviction_growing_enabled" {

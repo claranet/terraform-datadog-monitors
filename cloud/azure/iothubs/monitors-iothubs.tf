@@ -12,14 +12,12 @@ resource "datadog_monitor" "too_many_jobs_failed" {
       * 100 , 0) > ${var.failed_jobs_rate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.failed_jobs_rate_threshold_warning}"
     critical = "${var.failed_jobs_rate_threshold_critical}"
   }
-
-  silenced = "${var.failed_jobs_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -48,14 +46,12 @@ resource "datadog_monitor" "too_many_list_jobs_failed" {
       * 100, 0) > ${var.failed_listjobs_rate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.failed_listjobs_rate_threshold_warning}"
     critical = "${var.failed_listjobs_rate_threshold_critical}"
   }
-
-  silenced = "${var.failed_listjobs_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -84,14 +80,12 @@ resource "datadog_monitor" "too_many_query_jobs_failed" {
       * 100, 0) > ${var.failed_queryjobs_rate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.failed_queryjobs_rate_threshold_warning}"
     critical = "${var.failed_queryjobs_rate_threshold_critical}"
   }
-
-  silenced = "${var.failed_queryjobs_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -117,9 +111,7 @@ resource "datadog_monitor" "status" {
     ) < 1
   EOQ
 
-  type = "metric alert"
-
-  silenced = "${var.status_silenced}"
+  type = "query alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -145,9 +137,7 @@ resource "datadog_monitor" "total_devices" {
     ) == 0
   EOQ
 
-  type = "metric alert"
-
-  silenced = "${var.total_devices_silenced}"
+  type = "query alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -176,14 +166,12 @@ resource "datadog_monitor" "too_many_c2d_methods_failed" {
       * 100, 0) > ${var.failed_c2d_methods_rate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.failed_c2d_methods_rate_threshold_warning}"
     critical = "${var.failed_c2d_methods_rate_threshold_critical}"
   }
-
-  silenced = "${var.failed_c2d_methods_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -212,14 +200,12 @@ resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
       * 100, 0) > ${var.failed_c2d_twin_read_rate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.failed_c2d_twin_read_rate_threshold_warning}"
     critical = "${var.failed_c2d_twin_read_rate_threshold_critical}"
   }
-
-  silenced = "${var.failed_c2d_twin_read_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -248,14 +234,12 @@ resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
       * 100, 0) > ${var.failed_c2d_twin_update_rate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.failed_c2d_twin_update_rate_threshold_warning}"
     critical = "${var.failed_c2d_twin_update_rate_threshold_critical}"
   }
-
-  silenced = "${var.failed_c2d_twin_update_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -284,14 +268,12 @@ resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
       * 100, 0) > ${var.failed_d2c_twin_read_rate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.failed_d2c_twin_read_rate_threshold_warning}"
     critical = "${var.failed_d2c_twin_read_rate_threshold_critical}"
   }
-
-  silenced = "${var.failed_d2c_twin_read_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -320,14 +302,12 @@ resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
       * 100, 0) > ${var.failed_d2c_twin_update_rate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.failed_d2c_twin_update_rate_threshold_warning}"
     critical = "${var.failed_d2c_twin_update_rate_threshold_critical}"
   }
-
-  silenced = "${var.failed_d2c_twin_update_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -358,14 +338,12 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
       * 100, 0) > ${var.dropped_d2c_telemetry_egress_rate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.dropped_d2c_telemetry_egress_rate_threshold_warning}"
     critical = "${var.dropped_d2c_telemetry_egress_rate_threshold_critical}"
   }
-
-  silenced = "${var.dropped_d2c_telemetry_egress_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -396,14 +374,12 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
       * 100, 0) > ${var.orphaned_d2c_telemetry_egress_rate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.orphaned_d2c_telemetry_egress_rate_threshold_warning}"
     critical = "${var.orphaned_d2c_telemetry_egress_rate_threshold_critical}"
   }
-
-  silenced = "${var.orphaned_d2c_telemetry_egress_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -434,14 +410,12 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
       * 100, 0) > ${var.invalid_d2c_telemetry_egress_rate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.invalid_d2c_telemetry_egress_rate_threshold_warning}"
     critical = "${var.invalid_d2c_telemetry_egress_rate_threshold_critical}"
   }
-
-  silenced = "${var.invalid_d2c_telemetry_egress_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -469,9 +443,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
     , 0) > 0
   EOQ
 
-  type = "metric alert"
-
-  silenced = "${var.too_many_d2c_telemetry_ingress_nosent_silenced}"
+  type = "query alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"

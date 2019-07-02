@@ -43,12 +43,6 @@ variable "filter_tags_custom_excluded" {
 ###   MySQL availability      ###
 #################################
 
-variable "mysql_availability_silenced" {
-  description = "Groups to mute for Mysql availability monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "mysql_availability_enabled" {
   description = "Flag to enable Mysql availability monitor"
   type        = "string"
@@ -82,12 +76,6 @@ variable "mysql_availability_no_data_timeframe" {
 #################################
 ###   MySQL connections       ###
 #################################
-
-variable "mysql_connection_silenced" {
-  description = "Groups to mute for MySQL connection monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "mysql_connection_enabled" {
   description = "Flag to enable MySQL connection monitor"
@@ -133,12 +121,6 @@ variable "mysql_connection_timeframe" {
 ###   MySQL aborted connects  ###
 #################################
 
-variable "mysql_aborted_silenced" {
-  description = "Groups to mute for MySQL aborted connects monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "mysql_aborted_enabled" {
   description = "Flag to enable MySQL aborted connects monitor"
   type        = "string"
@@ -182,12 +164,6 @@ variable "mysql_aborted_timeframe" {
 #################################
 ###   MySQL slow queries      ###
 #################################
-
-variable "mysql_slow_silenced" {
-  description = "Groups to mute for MySQL slow queries monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "mysql_slow_enabled" {
   description = "Flag to enable MySQL slow queries monitor"
@@ -233,12 +209,6 @@ variable "mysql_slow_timeframe" {
 # MySQL innodb pool efficiency  #
 #################################
 
-variable "mysql_pool_efficiency_silenced" {
-  description = "Groups to mute for MySQL innodb buffer pool efficiency monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "mysql_pool_efficiency_enabled" {
   description = "Flag to enable MySQL innodb buffer pool efficiency monitor"
   type        = "string"
@@ -283,12 +253,6 @@ variable "mysql_pool_efficiency_timeframe" {
 # MySQL innodb pool utilization #
 #################################
 
-variable "mysql_pool_utilization_silenced" {
-  description = "Groups to mute for MySQL innodb buffer pool utilization monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "mysql_pool_utilization_enabled" {
   description = "Flag to enable MySQL innodb buffer pool utilization monitor"
   type        = "string"
@@ -332,12 +296,6 @@ variable "mysql_pool_utilization_timeframe" {
 #################################
 ###   MySQL threads           ###
 #################################
-
-variable "mysql_threads_silenced" {
-  description = "Groups to mute for mysql threads monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "mysql_threads_enabled" {
   description = "Flag to enable mysql threads monitor"
@@ -419,12 +377,6 @@ variable "mysql_threads_timeframe" {
 #################################
 ###   MySQL queries           ###
 #################################
-
-variable "mysql_questions_silenced" {
-  description = "Groups to mute for mysql queries monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "mysql_questions_enabled" {
   description = "Flag to enable mysql queries monitor"

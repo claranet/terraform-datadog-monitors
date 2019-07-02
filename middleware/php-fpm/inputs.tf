@@ -41,12 +41,6 @@ variable "filter_tags_custom_excluded" {
 
 # PHP FPM Middleware specific
 
-variable "php_fpm_busy_silenced" {
-  description = "Groups to mute for PHP FPM busy worker monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "php_fpm_busy_enabled" {
   description = "Flag to enable PHP FPM busy worker monitor"
   type        = "string"
@@ -85,12 +79,6 @@ variable "php_fpm_busy_threshold_warning" {
 variable "php_fpm_busy_threshold_critical" {
   description = "php fpm busy critical threshold"
   default     = 90
-}
-
-variable "php_fpm_connect_silenced" {
-  description = "Groups to mute for PHP FPM status monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "php_fpm_connect_enabled" {

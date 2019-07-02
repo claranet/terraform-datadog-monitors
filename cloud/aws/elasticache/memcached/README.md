@@ -26,7 +26,6 @@ Creates DataDog monitors with the following checks:
 | cpu\_high\_enabled | Flag to enable Elasticache memcached cpu high monitor | string | `"true"` | no |
 | cpu\_high\_extra\_tags | Extra tags for Elasticache memcached cpu high monitor | list | `[]` | no |
 | cpu\_high\_message | Custom message for Elasticache memcached cpu high monitor | string | `""` | no |
-| cpu\_high\_silenced | Groups to mute for Elasticache memcached cpu high monitor | map | `{}` | no |
 | cpu\_high\_threshold\_critical | Elasticache memcached cpu high critical threshold in percentage | string | `"90"` | no |
 | cpu\_high\_threshold\_warning | Elasticache memcached cpu high warning threshold in percentage | string | `"75"` | no |
 | cpu\_high\_time\_aggregator | Monitor aggregator for Elasticache memcached cpu high [available values: min, max or avg] | string | `"min"` | no |
@@ -39,7 +38,6 @@ Creates DataDog monitors with the following checks:
 | get\_hits\_enabled | Flag to enable Elasticache memcached get hits monitor | string | `"true"` | no |
 | get\_hits\_extra\_tags | Extra tags for Elasticache memcached get hits monitor | list | `[]` | no |
 | get\_hits\_message | Custom message for Elasticache memcached get hits monitor | string | `""` | no |
-| get\_hits\_silenced | Groups to mute for Elasticache memcached get hits monitor | map | `{}` | no |
 | get\_hits\_threshold\_critical | Elasticache memcached get hits critical threshold in percentage | string | `"60"` | no |
 | get\_hits\_threshold\_warning | Elasticache memcached get hits warning threshold in percentage | string | `"80"` | no |
 | get\_hits\_time\_aggregator | Monitor aggregator for Elasticache memcached get hits [available values: min, max or avg] | string | `"max"` | no |

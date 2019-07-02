@@ -41,12 +41,6 @@ variable "filter_tags_custom_excluded" {
 
 # AWS RDS instance specific
 
-variable "cpu_silenced" {
-  description = "Groups to mute for RDS CPU usage monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "cpu_enabled" {
   description = "Flag to enable RDS CPU usage monitor"
   type        = "string"
@@ -87,12 +81,6 @@ variable "cpu_threshold_critical" {
   default     = "90"
 }
 
-variable "diskspace_silenced" {
-  description = "Groups to mute for RDS free diskspace monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "diskspace_enabled" {
   description = "Flag to enable RDS free diskspace monitor"
   type        = "string"
@@ -131,12 +119,6 @@ variable "diskspace_threshold_warning" {
 variable "diskspace_threshold_critical" {
   description = "Disk free space in percent (critical threshold)"
   default     = "10"
-}
-
-variable "replicalag_silenced" {
-  description = "Groups to mute for RDS replica lag monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "replicalag_enabled" {

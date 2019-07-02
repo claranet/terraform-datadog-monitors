@@ -10,7 +10,7 @@ resource "datadog_monitor" "nginx_ingress_too_many_5xx" {
       * 100, 0) > ${var.ingress_5xx_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.ingress_5xx_threshold_warning}"
@@ -27,8 +27,6 @@ resource "datadog_monitor" "nginx_ingress_too_many_5xx" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.ingress_5xx_silenced}"
-
   tags = ["env:${var.environment}", "type:caas", "provider:prometheus", "resource:nginx-ingress-controller", "team:claranet", "created-by:terraform", "${var.ingress_5xx_extra_tags}"]
 }
 
@@ -44,7 +42,7 @@ resource "datadog_monitor" "nginx_ingress_too_many_4xx" {
     * 100, 0) > ${var.ingress_4xx_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.ingress_4xx_threshold_warning}"
@@ -60,8 +58,6 @@ resource "datadog_monitor" "nginx_ingress_too_many_4xx" {
   include_tags        = true
   locked              = false
   require_full_window = true
-
-  silenced = "${var.ingress_4xx_silenced}"
 
   tags = ["env:${var.environment}", "type:caas", "provider:prometheus", "resource:nginx-ingress-controller", "team:claranet", "created-by:terraform", "${var.ingress_4xx_extra_tags}"]
 }

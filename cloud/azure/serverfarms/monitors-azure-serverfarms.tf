@@ -9,9 +9,7 @@ resource "datadog_monitor" "status" {
     ) != 1
   EOQ
 
-  type = "metric alert"
-
-  silenced = "${var.status_silenced}"
+  type = "query alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -37,14 +35,12 @@ resource "datadog_monitor" "cpu_percentage" {
     ) > ${var.cpu_percentage_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.cpu_percentage_threshold_warning}"
     critical = "${var.cpu_percentage_threshold_critical}"
   }
-
-  silenced = "${var.cpu_percentage_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -70,14 +66,12 @@ resource "datadog_monitor" "memory_percentage" {
     ) > ${var.memory_percentage_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.memory_percentage_threshold_warning}"
     critical = "${var.memory_percentage_threshold_critical}"
   }
-
-  silenced = "${var.memory_percentage_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"

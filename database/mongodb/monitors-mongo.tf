@@ -19,8 +19,6 @@ resource "datadog_monitor" "mongodb_primary" {
   include_tags        = true
   require_full_window = true
 
-  silenced = "${var.mongodb_primary_silenced}"
-
   tags = ["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform", "${var.mongodb_primary_extra_tags}"]
 }
 
@@ -41,7 +39,7 @@ resource "datadog_monitor" "mongodb_secondary" {
     warning  = 0
   }
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = false
   renotify_interval   = 0
@@ -51,8 +49,6 @@ resource "datadog_monitor" "mongodb_secondary" {
   timeout_h           = 0
   include_tags        = true
   require_full_window = true
-
-  silenced = "${var.mongodb_secondary_silenced}"
 
   tags = ["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform", "${var.mongodb_secondary_extra_tags}"]
 }
@@ -84,8 +80,6 @@ resource "datadog_monitor" "mongodb_server_count" {
   include_tags        = true
   require_full_window = true
 
-  silenced = "${var.mongodb_secondary_silenced}"
-
   tags = ["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform", "${var.mongodb_secondary_extra_tags}"]
 }
 
@@ -114,8 +108,6 @@ resource "datadog_monitor" "mongodb_replication" {
   timeout_h           = 0
   include_tags        = true
   require_full_window = true
-
-  silenced = "${var.mongodb_replication_silenced}"
 
   tags = ["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform", "${var.mongodb_replication_extra_tags}"]
 }

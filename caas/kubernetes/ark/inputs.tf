@@ -52,12 +52,6 @@ variable "ark_schedules_monitor_timeframe" {
   default     = "last_1d"
 }
 
-variable "ark_schedules_monitor_silenced" {
-  description = "Groups to mute for Ark schedules monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "ark_schedules_enabled" {
   description = "Flag to enable Ark schedules monitor"
   type        = "string"

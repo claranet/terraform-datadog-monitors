@@ -34,7 +34,6 @@ Creates DataDog monitors with the following checks:
 | unreachable\_extra\_tags | Extra tags for Host unreachable monitor | list | `[]` | no |
 | unreachable\_message | Custom message for Host unreachable monitor | string | `""` | no |
 | unreachable\_no\_data\_timeframe | Timeframe for Host unreachable monitor to alert on no data | string | `"20"` | no |
-| unreachable\_silenced | Groups to mute for Host unreachable monitor | map | `{}` | no |
 
 ## Outputs
 

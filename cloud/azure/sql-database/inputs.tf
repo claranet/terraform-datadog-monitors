@@ -40,11 +40,6 @@ variable "filter_tags_custom_excluded" {
 }
 
 # Azure SQL Database specific variables
-variable "status_silenced" {
-  description = "Groups to mute for Redis status monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "status_enabled" {
   description = "Flag to enable Redis status monitor"
@@ -74,12 +69,6 @@ variable "status_timeframe" {
   description = "Monitor timeframe for Redis status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = "string"
   default     = "last_5m"
-}
-
-variable "cpu_silenced" {
-  description = "Groups to mute for SQL CPU monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "cpu_enabled" {
@@ -122,12 +111,6 @@ variable "cpu_threshold_critical" {
   default     = "90"
 }
 
-variable "diskspace_silenced" {
-  description = "Groups to mute for SQL disk space monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "diskspace_enabled" {
   description = "Flag to enable SQL disk space monitor"
   type        = "string"
@@ -168,12 +151,6 @@ variable "diskspace_threshold_critical" {
   default     = "90"
 }
 
-variable "dtu_silenced" {
-  description = "Groups to mute for SQL DTU monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "dtu_enabled" {
   description = "Flag to enable SQL DTU monitor"
   type        = "string"
@@ -212,12 +189,6 @@ variable "dtu_threshold_warning" {
 variable "dtu_threshold_critical" {
   description = "Amount of DTU used (critical threshold)"
   default     = "90"
-}
-
-variable "deadlock_silenced" {
-  description = "Groups to mute for SQL Deadlock monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "deadlock_enabled" {

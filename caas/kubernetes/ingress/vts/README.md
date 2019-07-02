@@ -32,7 +32,6 @@ Creates DataDog monitors with the following checks:
 | ingress\_4xx\_enabled | Flag to enable Ingress 4xx errors monitor | string | `"true"` | no |
 | ingress\_4xx\_extra\_tags | Extra tags for Ingress 4xx errors monitor | list | `[]` | no |
 | ingress\_4xx\_message | Message sent when an alert is triggered | string | `""` | no |
-| ingress\_4xx\_silenced | Groups to mute for Ingress 4xx errors monitor | map | `{}` | no |
 | ingress\_4xx\_threshold\_critical | 4xx critical threshold in percentage | string | `"40"` | no |
 | ingress\_4xx\_threshold\_warning | 4xx warning threshold in percentage | string | `"20"` | no |
 | ingress\_4xx\_time\_aggregator | Monitor aggregator for Ingress 4xx errors [available values: min, max or avg] | string | `"min"` | no |
@@ -40,7 +39,6 @@ Creates DataDog monitors with the following checks:
 | ingress\_5xx\_enabled | Flag to enable Ingress 5xx errors monitor | string | `"true"` | no |
 | ingress\_5xx\_extra\_tags | Extra tags for Ingress 5xx errors monitor | list | `[]` | no |
 | ingress\_5xx\_message | Message sent when an alert is triggered | string | `""` | no |
-| ingress\_5xx\_silenced | Groups to mute for Ingress 5xx errors monitor | map | `{}` | no |
 | ingress\_5xx\_threshold\_critical | 5xx critical threshold in percentage | string | `"20"` | no |
 | ingress\_5xx\_threshold\_warning | 5xx warning threshold in percentage | string | `"10"` | no |
 | ingress\_5xx\_time\_aggregator | Monitor aggregator for Ingress 5xx errors [available values: min, max or avg] | string | `"min"` | no |

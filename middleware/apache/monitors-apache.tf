@@ -23,7 +23,5 @@ resource "datadog_monitor" "datadog_apache_process" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.apache_connect_silenced}"
-
   tags = ["env:${var.environment}", "type:middleware", "provider:apache", "resource:apache", "team:claranet", "created-by:terraform", "${var.apache_connect_extra_tags}"]
 }

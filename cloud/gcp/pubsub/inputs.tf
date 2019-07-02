@@ -57,12 +57,6 @@ variable "sending_operations_count_threshold_critical" {
   default     = 0
 }
 
-variable "sending_operations_count_silenced" {
-  description = "Groups to mute for GCP Pub/Sub Sending Operations Count monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "sending_operations_count_enabled" {
   description = "Flag to enable GCP Pub/Sub Unavailable Sending Operations Count monitor"
   type        = "string"
@@ -106,12 +100,6 @@ variable "unavailable_sending_operations_count_threshold_critical" {
   description = "Critical threshold for the number of unavailable sending operations"
   type        = "string"
   default     = 4
-}
-
-variable "unavailable_sending_operations_count_silenced" {
-  description = "Groups to mute for GCP Pub/Sub Unavailable Sending Operations Count monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "unavailable_sending_operations_count_enabled" {

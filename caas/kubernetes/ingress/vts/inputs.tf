@@ -40,11 +40,6 @@ variable "filter_tags_custom_excluded" {
 }
 
 #Ingress
-variable "ingress_5xx_silenced" {
-  description = "Groups to mute for Ingress 5xx errors monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "ingress_5xx_enabled" {
   description = "Flag to enable Ingress 5xx errors monitor"
@@ -85,12 +80,6 @@ variable "ingress_5xx_threshold_warning" {
   type        = "string"
   default     = "10"
   description = "5xx warning threshold in percentage"
-}
-
-variable "ingress_4xx_silenced" {
-  description = "Groups to mute for Ingress 4xx errors monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "ingress_4xx_enabled" {

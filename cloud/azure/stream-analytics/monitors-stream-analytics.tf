@@ -9,9 +9,7 @@ resource "datadog_monitor" "status" {
     ) < 1
   EOQ
 
-  type = "metric alert"
-
-  silenced = "${var.status_silenced}"
+  type = "query alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -37,7 +35,7 @@ resource "datadog_monitor" "su_utilization" {
     ) > ${var.su_utilization_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -54,8 +52,6 @@ resource "datadog_monitor" "su_utilization" {
     critical = "${var.su_utilization_threshold_critical}"
   }
 
-  silenced = "${var.su_utilization_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform", "${var.su_utilization_extra_tags}"]
 }
 
@@ -71,7 +67,7 @@ resource "datadog_monitor" "failed_function_requests" {
     ) * 100 > ${var.failed_function_requests_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -88,8 +84,6 @@ resource "datadog_monitor" "failed_function_requests" {
     critical = "${var.failed_function_requests_threshold_critical}"
   }
 
-  silenced = "${var.failed_function_requests_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform", "${var.failed_function_requests_extra_tags}"]
 }
 
@@ -104,7 +98,7 @@ resource "datadog_monitor" "conversion_errors" {
     ) > ${var.conversion_errors_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -121,8 +115,6 @@ resource "datadog_monitor" "conversion_errors" {
     critical = "${var.conversion_errors_threshold_critical}"
   }
 
-  silenced = "${var.conversion_errors_silenced}"
-
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform", "${var.conversion_errors_extra_tags}"]
 }
 
@@ -137,7 +129,7 @@ resource "datadog_monitor" "runtime_errors" {
     ) > ${var.runtime_errors_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -153,8 +145,6 @@ resource "datadog_monitor" "runtime_errors" {
     warning  = "${var.runtime_errors_threshold_warning}"
     critical = "${var.runtime_errors_threshold_critical}"
   }
-
-  silenced = "${var.runtime_errors_silenced}"
 
   tags = ["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform", "${var.runtime_errors_extra_tags}"]
 }

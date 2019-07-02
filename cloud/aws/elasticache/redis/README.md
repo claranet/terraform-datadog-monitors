@@ -28,7 +28,6 @@ Creates DataDog monitors with the following checks:
 | cache\_hits\_enabled | Flag to enable Elasticache redis cache hits monitor | string | `"true"` | no |
 | cache\_hits\_extra\_tags | Extra tags for Elasticache redis cache hits monitor | list | `[]` | no |
 | cache\_hits\_message | Custom message for Elasticache redis cache hits monitor | string | `""` | no |
-| cache\_hits\_silenced | Groups to mute for Elasticache redis cache hits monitor | map | `{}` | no |
 | cache\_hits\_threshold\_critical | Elasticache redis cache hits critical threshold in percentage | string | `"60"` | no |
 | cache\_hits\_threshold\_warning | Elasticache redis cache hits warning threshold in percentage | string | `"80"` | no |
 | cache\_hits\_time\_aggregator | Monitor aggregator for Elasticache redis cache hits [available values: min, max or avg] | string | `"max"` | no |
@@ -36,12 +35,10 @@ Creates DataDog monitors with the following checks:
 | commands\_enabled | Flag to enable Elasticache redis commands monitor | string | `"true"` | no |
 | commands\_extra\_tags | Extra tags for Elasticache redis commands monitor | list | `[]` | no |
 | commands\_message | Custom message for Elasticache redis commands monitor | string | `""` | no |
-| commands\_silenced | Groups to mute for Elasticache redis commands monitor | map | `{}` | no |
 | commands\_timeframe | Monitor timeframe for Elasticache redis commands [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | cpu\_high\_enabled | Flag to enable Elasticache redis cpu high monitor | string | `"true"` | no |
 | cpu\_high\_extra\_tags | Extra tags for Elasticache redis cpu high monitor | list | `[]` | no |
 | cpu\_high\_message | Custom message for Elasticache redis cpu high monitor | string | `""` | no |
-| cpu\_high\_silenced | Groups to mute for Elasticache redis cpu high monitor | map | `{}` | no |
 | cpu\_high\_threshold\_critical | Elasticache redis cpu high critical threshold in percentage | string | `"90"` | no |
 | cpu\_high\_threshold\_warning | Elasticache redis cpu high warning threshold in percentage | string | `"75"` | no |
 | cpu\_high\_time\_aggregator | Monitor aggregator for Elasticache redis cpu high [available values: min, max or avg] | string | `"min"` | no |
@@ -57,7 +54,6 @@ Creates DataDog monitors with the following checks:
 | replication\_lag\_enabled | Flag to enable Elasticache redis replication lag monitor | string | `"true"` | no |
 | replication\_lag\_extra\_tags | Extra tags for Elasticache redis replication lag monitor | list | `[]` | no |
 | replication\_lag\_message | Custom message for Elasticache redis replication lag monitor | string | `""` | no |
-| replication\_lag\_silenced | Groups to mute for Elasticache redis replication lag monitor | map | `{}` | no |
 | replication\_lag\_threshold\_critical | Elasticache redis replication lag critical threshold in seconds | string | `"180"` | no |
 | replication\_lag\_threshold\_warning | Elasticache redis replication lag warning threshold in seconds | string | `"90"` | no |
 | replication\_lag\_time\_aggregator | Monitor aggregator for Elasticache redis replication lag [available values: min, max or avg] | string | `"min"` | no |

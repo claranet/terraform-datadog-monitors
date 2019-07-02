@@ -41,12 +41,6 @@ variable "filter_tags_custom_excluded" {
 
 # System generic specific
 
-variable "cpu_silenced" {
-  description = "Groups to mute for CPU high monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "cpu_enabled" {
   description = "Flag to enable CPU high monitor"
   type        = "string"
@@ -85,12 +79,6 @@ variable "cpu_threshold_warning" {
 variable "cpu_threshold_critical" {
   description = "CPU high critical threshold"
   default     = 90
-}
-
-variable "load_silenced" {
-  description = "Groups to mute for CPU load ratio monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "load_enabled" {
@@ -133,12 +121,6 @@ variable "load_threshold_critical" {
   default     = 2.5
 }
 
-variable "disk_space_silenced" {
-  description = "Groups to mute for Free diskspace monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "disk_space_enabled" {
   description = "Flag to enable Free diskspace monitor"
   type        = "string"
@@ -177,12 +159,6 @@ variable "disk_space_threshold_warning" {
 variable "disk_space_threshold_critical" {
   description = "Free disk space critical threshold"
   default     = 90
-}
-
-variable "disk_space_forecast_silenced" {
-  description = "Groups to mute for Free diskspace forecast monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "disk_space_forecast_enabled" {
@@ -261,12 +237,6 @@ variable "disk_space_forecast_threshold_critical" {
   default     = 80
 }
 
-variable "disk_inodes_silenced" {
-  description = "Groups to mute for Free disk inodes monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "disk_inodes_enabled" {
   description = "Flag to enable Free disk inodes monitor"
   type        = "string"
@@ -305,12 +275,6 @@ variable "disk_inodes_threshold_warning" {
 variable "disk_inodes_threshold_critical" {
   description = "Free disk space critical threshold"
   default     = 95
-}
-
-variable "memory_silenced" {
-  description = "Groups to mute for Free memory monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "memory_enabled" {

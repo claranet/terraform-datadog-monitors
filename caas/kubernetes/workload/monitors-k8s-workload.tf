@@ -23,8 +23,6 @@ resource "datadog_monitor" "job" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.job_silenced}"
-
   tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform", "${var.job_extra_tags}"]
 }
 
@@ -53,15 +51,13 @@ resource "datadog_monitor" "cronjob" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.cronjob_silenced}"
-
   tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform", "${var.cronjob_extra_tags}"]
 }
 
 resource "datadog_monitor" "replica_available" {
   count   = "${var.replica_available_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Available replicas {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.replica_available_message, var.message)}"
 
   query = <<EOQ
@@ -86,14 +82,13 @@ resource "datadog_monitor" "replica_available" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.replica_available_silenced}"
-  tags     = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform", "${var.replica_available_extra_tags}"]
+  tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform", "${var.replica_available_extra_tags}"]
 }
 
 resource "datadog_monitor" "replica_ready" {
   count   = "${var.replica_ready_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Ready replicas {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.replica_ready_message, var.message)}"
 
   query = <<EOQ
@@ -118,14 +113,13 @@ resource "datadog_monitor" "replica_ready" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.replica_ready_silenced}"
-  tags     = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform", "${var.replica_ready_extra_tags}"]
+  tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform", "${var.replica_ready_extra_tags}"]
 }
 
 resource "datadog_monitor" "replica_current" {
   count   = "${var.replica_current_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Current replicas {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.replica_current_message, var.message)}"
 
   query = <<EOQ
@@ -150,6 +144,5 @@ resource "datadog_monitor" "replica_current" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.replica_current_silenced}"
-  tags     = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform", "${var.replica_current_extra_tags}"]
+  tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform", "${var.replica_current_extra_tags}"]
 }

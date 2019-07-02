@@ -41,12 +41,6 @@ variable "filter_tags_custom_excluded" {
 
 # Unreachable
 
-variable "unreachable_silenced" {
-  description = "Groups to mute for Host unreachable monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "unreachable_enabled" {
   description = "Flag to enable Host unreachable monitor"
   type        = "string"

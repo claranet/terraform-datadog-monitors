@@ -24,8 +24,6 @@ resource "datadog_monitor" "php_fpm_connect" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.php_fpm_connect_silenced}"
-
   tags = ["env:${var.environment}", "type:middleware", "provider:php-fpm", "resource:php-fpm", "team:claranet", "created-by:terraform", "${var.php_fpm_connect_extra_tags}"]
 }
 
@@ -34,7 +32,7 @@ resource "datadog_monitor" "php_fpm_connect_idle" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Php-fpm busy worker {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = "${coalesce(var.php_fpm_busy_message, var.message)}"
 
-  type = "metric alert"
+  type = "query alert"
 
   query = <<EOQ
     ${var.php_fpm_busy_time_aggregator}(${var.php_fpm_busy_timeframe}): (
@@ -57,8 +55,6 @@ resource "datadog_monitor" "php_fpm_connect_idle" {
   include_tags        = true
   locked              = false
   require_full_window = true
-
-  silenced = "${var.php_fpm_busy_silenced}"
 
   tags = ["env:${var.environment}", "type:middleware", "provider:php-fpm", "resource:php-fpm", "team:claranet", "created-by:terraform", "${var.php_fpm_busy_extra_tags}"]
 }

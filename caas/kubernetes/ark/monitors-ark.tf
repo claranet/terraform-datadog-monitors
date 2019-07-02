@@ -1,7 +1,7 @@
 resource "datadog_monitor" "ark_schedules_monitor" {
   count   = "${var.ark_schedules_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Ark backup failed"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.ark_schedules_monitor_message, var.message)}"
 
   query = <<EOQ
@@ -25,6 +25,5 @@ resource "datadog_monitor" "ark_schedules_monitor" {
   locked              = false
   require_full_window = false
 
-  silenced = "${var.ark_schedules_monitor_silenced}"
-  tags     = ["env:${var.environment}", "type:caas", "provider:prometheus", "resource:ark", "team:claranet", "created-by:terraform", "${var.ark_schedules_extra_tags}"]
+  tags = ["env:${var.environment}", "type:caas", "provider:prometheus", "resource:ark", "team:claranet", "created-by:terraform", "${var.ark_schedules_extra_tags}"]
 }

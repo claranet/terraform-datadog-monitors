@@ -33,7 +33,6 @@ Creates DataDog monitors with the following checks:
 | php\_fpm\_busy\_enabled | Flag to enable PHP FPM busy worker monitor | string | `"true"` | no |
 | php\_fpm\_busy\_extra\_tags | Extra tags for PHP FPM busy worker monitor | list | `[]` | no |
 | php\_fpm\_busy\_message | Custom message for PHP FPM busy worker monitor | string | `""` | no |
-| php\_fpm\_busy\_silenced | Groups to mute for PHP FPM busy worker monitor | map | `{}` | no |
 | php\_fpm\_busy\_threshold\_critical | php fpm busy critical threshold | string | `"90"` | no |
 | php\_fpm\_busy\_threshold\_warning | php fpm busy warning threshold | string | `"80"` | no |
 | php\_fpm\_busy\_time\_aggregator | Monitor aggregator for PHP FPM busy worker [available values: min, max or avg] | string | `"avg"` | no |
@@ -42,7 +41,6 @@ Creates DataDog monitors with the following checks:
 | php\_fpm\_connect\_extra\_tags | Extra tags for PHP FPM status monitor | list | `[]` | no |
 | php\_fpm\_connect\_message | Custom message for PHP FPM status monitor | string | `""` | no |
 | php\_fpm\_connect\_no\_data\_timeframe | PHP FPM status monitor no data timeframe | string | `"10"` | no |
-| php\_fpm\_connect\_silenced | Groups to mute for PHP FPM status monitor | map | `{}` | no |
 | php\_fpm\_connect\_threshold\_warning | PHP FPM status monitor (warning threshold) | string | `"3"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 

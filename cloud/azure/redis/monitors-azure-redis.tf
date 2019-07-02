@@ -9,9 +9,7 @@ resource "datadog_monitor" "status" {
     ) != 1
   EOQ
 
-  type = "metric alert"
-
-  silenced = "${var.status_silenced}"
+  type = "query alert"
 
   notify_no_data      = true
   evaluation_delay    = "${var.evaluation_delay}"
@@ -37,14 +35,12 @@ resource "datadog_monitor" "evictedkeys" {
      ) > ${var.evictedkeys_limit_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.evictedkeys_limit_threshold_warning}"
     critical = "${var.evictedkeys_limit_threshold_critical}"
   }
-
-  silenced = "${var.evictedkeys_limit_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -70,14 +66,12 @@ resource "datadog_monitor" "percent_processor_time" {
     ) > ${var.percent_processor_time_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.percent_processor_time_threshold_warning}"
     critical = "${var.percent_processor_time_threshold_critical}"
   }
-
-  silenced = "${var.percent_processor_time_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"
@@ -103,14 +97,12 @@ resource "datadog_monitor" "server_load" {
     ) > ${var.server_load_rate_threshold_critical}
   EOQ
 
-  type = "metric alert"
+  type = "query alert"
 
   thresholds {
     warning  = "${var.server_load_rate_threshold_warning}"
     critical = "${var.server_load_rate_threshold_critical}"
   }
-
-  silenced = "${var.server_load_rate_silenced}"
 
   notify_no_data      = false
   evaluation_delay    = "${var.evaluation_delay}"

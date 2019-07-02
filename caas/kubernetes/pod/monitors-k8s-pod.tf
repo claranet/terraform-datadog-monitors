@@ -24,14 +24,13 @@ resource "datadog_monitor" "pod_phase_status" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.pod_phase_status_silenced}"
-  tags     = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-pod", "team:claranet", "created-by:terraform", "${var.pod_phase_status_extra_tags}"]
+  tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-pod", "team:claranet", "created-by:terraform", "${var.pod_phase_status_extra_tags}"]
 }
 
 resource "datadog_monitor" "error" {
   count   = "${var.error_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Pod waiting errors"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.error_message, var.message)}"
 
   query = <<EOQ
@@ -56,6 +55,5 @@ resource "datadog_monitor" "error" {
   locked              = false
   require_full_window = true
 
-  silenced = "${var.error_silenced}"
-  tags     = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-pod", "team:claranet", "created-by:terraform", "${var.error_extra_tags}"]
+  tags = ["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-pod", "team:claranet", "created-by:terraform", "${var.error_extra_tags}"]
 }

@@ -38,11 +38,6 @@ variable "prefix_slug" {
 }
 
 # Azure App Services specific variables
-variable "response_time_silenced" {
-  description = "Groups to mute for App Services response time monitor"
-  type        = "map"
-  default     = {}
-}
 
 variable "response_time_enabled" {
   description = "Flag to enable App Services response time monitor"
@@ -82,12 +77,6 @@ variable "response_time_threshold_critical" {
 variable "response_time_threshold_warning" {
   default     = 5
   description = "Warning threshold for response time in seconds"
-}
-
-variable "memory_usage_silenced" {
-  description = "Groups to mute for App Services memory usage monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "memory_usage_enabled" {
@@ -130,12 +119,6 @@ variable "memory_usage_threshold_warning" {
   description = "Warning threshold in MiB"
 }
 
-variable "http_4xx_requests_silenced" {
-  description = "Groups to mute for App Services 4xx requests monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "http_4xx_requests_enabled" {
   description = "Flag to enable App Services 4xx requests monitor"
   type        = "string"
@@ -176,12 +159,6 @@ variable "http_4xx_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of 4xx errors"
 }
 
-variable "http_5xx_requests_silenced" {
-  description = "Groups to mute for App Services 5xx requests monitor"
-  type        = "map"
-  default     = {}
-}
-
 variable "http_5xx_requests_enabled" {
   description = "Flag to enable App Services 5xx requests monitor"
   type        = "string"
@@ -220,12 +197,6 @@ variable "http_5xx_requests_threshold_critical" {
 variable "http_5xx_requests_threshold_warning" {
   default     = 50
   description = "Warning regarding acceptable percent of 5xx errors"
-}
-
-variable "http_successful_requests_silenced" {
-  description = "Groups to mute for App Services successful requests monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "http_successful_requests_enabled" {
@@ -278,12 +249,6 @@ variable "status_message" {
   description = "Custom message for App Services status monitor"
   type        = "string"
   default     = ""
-}
-
-variable "status_silenced" {
-  description = "Groups to mute for App Services status monitor"
-  type        = "map"
-  default     = {}
 }
 
 variable "status_extra_tags" {

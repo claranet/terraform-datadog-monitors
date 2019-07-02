@@ -17,8 +17,6 @@ resource "datadog_monitor" "not_responding" {
     critical = 5
   }
 
-  silenced = "${var.not_responding_silenced}"
-
   no_data_timeframe   = "${var.not_responding_no_data_timeframe}"
   notify_no_data      = true
   notify_audit        = false
@@ -71,8 +69,6 @@ resource "datadog_monitor" "cluster_status_not_green" {
 
   evaluation_delay = "${var.evaluation_delay}"
 
-  silenced = "${var.cluster_status_not_green_silenced}"
-
   tags = [
     "resource:elasticsearch",
     "env:${var.environment}",
@@ -112,8 +108,6 @@ resource "datadog_monitor" "cluster_initializing_shards" {
   notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
-
-  silenced = "${var.cluster_initializing_shards_silenced}"
 
   tags = [
     "resource:elasticsearch",
@@ -155,8 +149,6 @@ resource "datadog_monitor" "cluster_relocating_shards" {
 
   evaluation_delay = "${var.evaluation_delay}"
 
-  silenced = "${var.cluster_relocating_shards_silenced}"
-
   tags = [
     "resource:elasticsearch",
     "env:${var.environment}",
@@ -196,8 +188,6 @@ resource "datadog_monitor" "cluster_unassigned_shards" {
   notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
-
-  silenced = "${var.cluster_unassigned_shards_silenced}"
 
   tags = [
     "resource:elasticsearch",
@@ -242,8 +232,6 @@ resource "datadog_monitor" "node_free_space" {
 
   evaluation_delay = "${var.evaluation_delay}"
 
-  silenced = "${var.node_free_space_silenced}"
-
   tags = [
     "resource:elasticsearch",
     "env:${var.environment}",
@@ -283,8 +271,6 @@ resource "datadog_monitor" "jvm_heap_memory_usage" {
   notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
-
-  silenced = "${var.jvm_heap_memory_usage_silenced}"
 
   tags = [
     "resource:elasticsearch",
@@ -326,8 +312,6 @@ resource "datadog_monitor" "jvm_memory_young_usage" {
 
   evaluation_delay = "${var.evaluation_delay}"
 
-  silenced = "${var.jvm_memory_young_usage_silenced}"
-
   tags = [
     "resource:elasticsearch",
     "env:${var.environment}",
@@ -367,8 +351,6 @@ resource "datadog_monitor" "jvm_memory_old_usage" {
   notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
-
-  silenced = "${var.jvm_memory_old_usage_silenced}"
 
   tags = [
     "resource:elasticsearch",
@@ -410,8 +392,6 @@ resource "datadog_monitor" "jvm_gc_old_collection_latency" {
 
   evaluation_delay = "${var.evaluation_delay}"
 
-  silenced = "${var.jvm_gc_old_collection_latency_silenced}"
-
   tags = [
     "resource:elasticsearch",
     "env:${var.environment}",
@@ -451,8 +431,6 @@ resource "datadog_monitor" "jvm_gc_young_collection_latency" {
   notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
-
-  silenced = "${var.jvm_gc_young_collection_latency_silenced}"
 
   tags = [
     "resource:elasticsearch",
@@ -495,8 +473,6 @@ resource "datadog_monitor" "indexing_latency" {
 
   evaluation_delay = "${var.evaluation_delay}"
 
-  silenced = "${var.indexing_latency_silenced}"
-
   tags = [
     "resource:elasticsearch",
     "env:${var.environment}",
@@ -537,8 +513,6 @@ resource "datadog_monitor" "flush_latency" {
   notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
-
-  silenced = "${var.flush_latency_silenced}"
 
   tags = [
     "resource:elasticsearch",
@@ -588,8 +562,6 @@ resource "datadog_monitor" "http_connections_anomaly" {
 
   evaluation_delay = "${var.evaluation_delay}"
 
-  silenced = "${var.http_connections_anomaly_silenced}"
-
   tags = [
     "resource:elasticsearch",
     "env:${var.environment}",
@@ -630,8 +602,6 @@ resource "datadog_monitor" "search_query_latency" {
   notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
-
-  silenced = "${var.search_query_latency_silenced}"
 
   tags = [
     "resource:elasticsearch",
@@ -674,8 +644,6 @@ resource "datadog_monitor" "fetch_latency" {
 
   evaluation_delay = "${var.evaluation_delay}"
 
-  silenced = "${var.fetch_latency_silenced}"
-
   tags = [
     "resource:elasticsearch",
     "env:${var.environment}",
@@ -716,8 +684,6 @@ resource "datadog_monitor" "search_query_change" {
 
   evaluation_delay = "${var.evaluation_delay}"
 
-  silenced = "${var.search_query_change_silenced}"
-
   tags = [
     "resource:elasticsearch",
     "env:${var.environment}",
@@ -757,8 +723,6 @@ resource "datadog_monitor" "fetch_change" {
   notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
-
-  silenced = "${var.fetch_change_silenced}"
 
   tags = [
     "resource:elasticsearch",
@@ -801,8 +765,6 @@ resource "datadog_monitor" "field_data_evictions_change" {
 
   evaluation_delay = "${var.evaluation_delay}"
 
-  silenced = "${var.field_data_evictions_change_silenced}"
-
   tags = [
     "resource:elasticsearch",
     "env:${var.environment}",
@@ -843,8 +805,6 @@ resource "datadog_monitor" "query_cache_evictions_change" {
   notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
-
-  silenced = "${var.query_cache_evictions_change_silenced}"
 
   tags = [
     "resource:elasticsearch",
@@ -887,8 +847,6 @@ resource "datadog_monitor" "request_cache_evictions_change" {
 
   evaluation_delay = "${var.evaluation_delay}"
 
-  silenced = "${var.request_cache_evictions_change_silenced}"
-
   tags = [
     "resource:elasticsearch",
     "env:${var.environment}",
@@ -928,8 +886,6 @@ resource "datadog_monitor" "task_time_in_queue_change" {
   notify_no_data      = false
 
   evaluation_delay = "${var.evaluation_delay}"
-
-  silenced = "${var.task_time_in_queue_change_silenced}"
 
   tags = [
     "resource:elasticsearch",

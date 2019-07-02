@@ -2,7 +2,7 @@
 resource "datadog_monitor" "appservices_response_time" {
   count   = "${var.response_time_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services response time too high {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.response_time_message, var.message)}"
 
   query = <<EOQ
@@ -19,8 +19,6 @@ resource "datadog_monitor" "appservices_response_time" {
     critical = "${var.response_time_threshold_critical}"
   }
 
-  silenced = "${var.response_time_silenced}"
-
   notify_no_data      = false # Will NOT notify when no data is received
   renotify_interval   = 0
   require_full_window = false
@@ -34,7 +32,7 @@ resource "datadog_monitor" "appservices_response_time" {
 resource "datadog_monitor" "appservices_memory_usage_count" {
   count   = "${var.memory_usage_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services memory usage {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.memory_usage_message, var.message)}"
 
   query = <<EOQ
@@ -51,8 +49,6 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
     critical = "${var.memory_usage_threshold_critical}"
   }
 
-  silenced = "${var.memory_usage_silenced}"
-
   notify_no_data      = false # Will NOT notify when no data is received
   renotify_interval   = 0
   require_full_window = false
@@ -66,7 +62,7 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
 resource "datadog_monitor" "appservices_http_5xx_errors_count" {
   count   = "${var.http_5xx_requests_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services HTTP 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.http_5xx_requests_message, var.message)}"
 
   query = <<EOQ
@@ -84,8 +80,6 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
     critical = "${var.http_5xx_requests_threshold_critical}"
   }
 
-  silenced = "${var.http_5xx_requests_silenced}"
-
   notify_no_data      = false # Will NOT notify when no data is received
   renotify_interval   = 0
   require_full_window = false
@@ -99,7 +93,7 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
 resource "datadog_monitor" "appservices_http_4xx_errors_count" {
   count   = "${var.http_4xx_requests_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services HTTP 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.http_4xx_requests_message, var.message)}"
 
   query = <<EOQ
@@ -117,8 +111,6 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
     critical = "${var.http_4xx_requests_threshold_critical}"
   }
 
-  silenced = "${var.http_4xx_requests_silenced}"
-
   notify_no_data      = false # Will NOT notify when no data is received
   renotify_interval   = 0
   require_full_window = false
@@ -132,7 +124,7 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
 resource "datadog_monitor" "appservices_http_success_status_rate" {
   count   = "${var.http_successful_requests_enabled == "true" ? 1 : 0}"
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services HTTP successful responses too low {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  type    = "metric alert"
+  type    = "query alert"
   message = "${coalesce(var.http_successful_requests_message, var.message)}"
 
   query = <<EOQ
@@ -151,8 +143,6 @@ resource "datadog_monitor" "appservices_http_success_status_rate" {
     warning  = "${var.http_successful_requests_threshold_warning}"
     critical = "${var.http_successful_requests_threshold_critical}"
   }
-
-  silenced = "${var.http_successful_requests_silenced}"
 
   notify_no_data      = false # Will notify when no data is received
   renotify_interval   = 0
@@ -181,7 +171,6 @@ resource "datadog_monitor" "appservices_status" {
     critical = 1
   }
 
-  silenced            = "${var.status_silenced}"
   notify_no_data      = true                                                                                                                                                     # Will notify when no data is received
   renotify_interval   = 0
   require_full_window = false
