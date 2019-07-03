@@ -16,9 +16,11 @@ module "datadog-monitors-cloud-aws-elb" {
 
 Creates DataDog monitors with the following checks:
 
+- ELB 4xx errors too high
+- ELB 5xx errors too high
+- ELB backend 4xx errors too high
 - ELB backend 5xx errors too high
 - ELB healthy instances
-- ELB 4xx errors too high
 - ELB latency too high
 
 ## Inputs

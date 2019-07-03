@@ -17,10 +17,14 @@ module "datadog-monitors-cloud-azure-storage" {
 Creates DataDog monitors with the following checks:
 
 - Azure Storage is down
-- Azure Storage too many authorization errors
-- Azure Storage too many network errors
 - Azure Storage too few successful requests
+- Azure Storage too high end to end latency
+- Azure Storage too many authorization errors
+- Azure Storage too many client_other errors
+- Azure Storage too many network errors
+- Azure Storage too many server_other errors
 - Azure Storage too many throttling errors
+- Azure Storage too many timeout errors
 
 ## Inputs
 

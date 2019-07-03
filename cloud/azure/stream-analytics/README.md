@@ -17,8 +17,10 @@ module "datadog-monitors-cloud-azure-stream-analytics" {
 Creates DataDog monitors with the following checks:
 
 - Stream Analytics is down
-- Stream Analytics too many runtime errors
 - Stream Analytics streaming units utilization too high
+- Stream Analytics too many conversion errors
+- Stream Analytics too many failed requests
+- Stream Analytics too many runtime errors
 
 ## Inputs
 

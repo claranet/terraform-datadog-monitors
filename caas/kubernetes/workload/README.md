@@ -16,9 +16,11 @@ module "datadog-monitors-caas-kubernetes-workload" {
 
 Creates DataDog monitors with the following checks:
 
+- Kubernetes Available replicas
+- Kubernetes cronjob scheduling failed
 - Kubernetes Current replicas
 - Kubernetes job failed
-- Kubernetes cronjob scheduling failed
+- Kubernetes Ready replicas
 
 ## Inputs
 

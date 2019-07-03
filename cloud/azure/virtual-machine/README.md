@@ -16,8 +16,9 @@ module "datadog-monitors-cloud-azure-virtual-machine" {
 
 Creates DataDog monitors with the following checks:
 
-- Virtual Machine is unreachable
 - Virtual Machine CPU usage
+- Virtual Machine credit CPU
+- Virtual Machine is unreachable
 
 ## Inputs
 

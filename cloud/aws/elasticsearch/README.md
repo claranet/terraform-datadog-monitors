@@ -18,8 +18,9 @@ module "datadog-monitors-cloud-aws-elasticsearch" {
 
 Creates DataDog monitors with the following checks:
 
-- ElasticSearch cluster status is not green
+- ElasticSearch cluster CPU high
 - ElasticSearch cluster free storage space
+- ElasticSearch cluster status is not green
 
 ## Inputs
 

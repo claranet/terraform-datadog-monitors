@@ -17,6 +17,7 @@ module "datadog-monitors-cloud-azure-sql-elasticpool" {
 Creates DataDog monitors with the following checks:
 
 - SQL Elastic Pool CPU too high
+- SQL Elastic Pool DTU Consumption too high
 - SQL Elastic Pool high disk usage
 
 ## Inputs

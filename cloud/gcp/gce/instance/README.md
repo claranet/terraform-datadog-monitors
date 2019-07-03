@@ -18,6 +18,7 @@ Creates DataDog monitors with the following checks:
 
 - Compute Engine instance CPU Utilization
 - Compute Engine instance Disk Throttled Bps
+- Compute Engine instance Disk Throttled OPS
 
 ## Inputs
 

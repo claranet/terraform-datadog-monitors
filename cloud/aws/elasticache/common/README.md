@@ -16,10 +16,12 @@ module "datadog-monitors-cloud-aws-elasticache-common" {
 
 Creates DataDog monitors with the following checks:
 
+- Elasticache connections
 - Elasticache eviction
-- Elasticache free memory
 - Elasticache evictions is growing
+- Elasticache free memory
 - Elasticache max connections reached
+- Elasticache swap
 
 ## Inputs
 

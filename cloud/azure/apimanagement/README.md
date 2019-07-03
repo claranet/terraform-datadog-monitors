@@ -19,6 +19,8 @@ Creates DataDog monitors with the following checks:
 - API Management is down
 - API Management successful requests rate too low
 - API Management too many failed requests
+- API Management too many other requests
+- API Management too many unauthorized requests
 
 ## Inputs
 

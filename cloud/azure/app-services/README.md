@@ -16,10 +16,12 @@ module "datadog-monitors-cloud-azure-app-services" {
 
 Creates DataDog monitors with the following checks:
 
+- App Services HTTP 4xx errors too high
+- App Services HTTP 5xx errors too high
 - App Services HTTP successful responses too low
-- App Services response time too high
 - App Services is down
 - App Services memory usage
+- App Services response time too high
 
 ## Inputs
 
