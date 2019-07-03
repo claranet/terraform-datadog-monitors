@@ -9,18 +9,18 @@ resource "datadog_monitor" "host_unreachable" {
 EOQ
 
   thresholds = {
-    ok = 1
-    warning = 1
+    ok       = 1
+    warning  = 1
     critical = 5
   }
 
-  no_data_timeframe = var.unreachable_no_data_timeframe
-  new_host_delay = var.new_host_delay
-  notify_no_data = true
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  no_data_timeframe   = var.unreachable_no_data_timeframe
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = true
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:host", "resource:unreachable", "team:claranet", "created-by:terraform"], var.unreachable_extra_tags)

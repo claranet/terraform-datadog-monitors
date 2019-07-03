@@ -12,27 +12,27 @@ resource "datadog_monitor" "appservices_response_time" {
 EOQ
 
   thresholds = {
-    warning = var.response_time_threshold_warning
+    warning  = var.response_time_threshold_warning
     critical = var.response_time_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_no_data = false
-  renotify_interval = 0
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
   require_full_window = false
-  timeout_h = 0
-  include_tags = true
+  timeout_h           = 0
+  include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.response_time_extra_tags)
 }
 
 # Monitoring App Services memory usage
 resource "datadog_monitor" "appservices_memory_usage_count" {
-  count = var.memory_usage_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services memory usage {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  count   = var.memory_usage_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services memory usage {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.memory_usage_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.memory_usage_time_aggregator}(${var.memory_usage_timeframe}): (
@@ -40,28 +40,28 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
     ) > ${var.memory_usage_threshold_critical}
 EOQ
 
-thresholds = {
-warning  = var.memory_usage_threshold_warning
-critical = var.memory_usage_threshold_critical
-}
+  thresholds = {
+    warning  = var.memory_usage_threshold_warning
+    critical = var.memory_usage_threshold_critical
+  }
 
-evaluation_delay    = var.evaluation_delay
-new_host_delay      = var.new_host_delay
-notify_no_data      = false
-renotify_interval   = 0
-require_full_window = false
-timeout_h           = 0
-include_tags        = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  require_full_window = false
+  timeout_h           = 0
+  include_tags        = true
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.memory_usage_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.memory_usage_extra_tags)
 }
 
 # Monitoring App Services 5xx errors percent
 resource "datadog_monitor" "appservices_http_5xx_errors_count" {
-count   = var.http_5xx_requests_enabled == "true" ? 1 : 0
-name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services HTTP 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-message = coalesce(var.http_5xx_requests_message, var.message)
-type    = "query alert"
+  count   = var.http_5xx_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services HTTP 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.http_5xx_requests_message, var.message)
+  type    = "query alert"
 
 query = <<EOQ
     ${var.http_5xx_requests_time_aggregator}(${var.http_5xx_requests_timeframe}): (
@@ -70,28 +70,28 @@ query = <<EOQ
     ) * 100 > ${var.http_5xx_requests_threshold_critical}
 EOQ
 
-thresholds = {
-warning = var.http_5xx_requests_threshold_warning
-critical = var.http_5xx_requests_threshold_critical
-}
+  thresholds = {
+    warning  = var.http_5xx_requests_threshold_warning
+    critical = var.http_5xx_requests_threshold_critical
+  }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
-notify_no_data = false
-renotify_interval = 0
-require_full_window = false
-timeout_h = 1
-include_tags = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  require_full_window = false
+  timeout_h           = 1
+  include_tags        = true
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.http_5xx_requests_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.http_5xx_requests_extra_tags)
 }
 
 # Monitoring App Services 4xx errors percent
 resource "datadog_monitor" "appservices_http_4xx_errors_count" {
-count = var.http_4xx_requests_enabled == "true" ? 1 : 0
-name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services HTTP 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-message = coalesce(var.http_4xx_requests_message, var.message)
-type = "query alert"
+  count   = var.http_4xx_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services HTTP 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.http_4xx_requests_message, var.message)
+  type    = "query alert"
 
 query = <<EOQ
     ${var.http_4xx_requests_time_aggregator}(${var.http_4xx_requests_timeframe}): (
@@ -133,43 +133,43 @@ resource "datadog_monitor" "appservices_http_success_status_rate" {
 EOQ
 
   thresholds = {
-    warning = var.http_successful_requests_threshold_warning
+    warning  = var.http_successful_requests_threshold_warning
     critical = var.http_successful_requests_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_no_data = false
-  renotify_interval = 0
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
   require_full_window = false
-  timeout_h = 1
-  include_tags = true
+  timeout_h           = 1
+  include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.http_successful_requests_extra_tags)
 }
 
 # Monitoring App Services status
 resource "datadog_monitor" "appservices_status" {
-  count = var.status_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services is down"
-  type = "metric alert"
+  count   = var.status_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Services is down"
+  type    = "metric alert"
   message = coalesce(var.status_message, var.message)
 
   query = <<EOQ
       ${var.status_time_aggregator}(${var.status_timeframe}):avg:azure.app_services.status${module.filter-tags.query_alert} by {resource_group,region,name} < 1
 EOQ
 
-thresholds = {
-critical = 1
-}
+  thresholds = {
+    critical = 1
+  }
 
-evaluation_delay    = var.evaluation_delay
-new_host_delay      = var.new_host_delay
-notify_no_data      = true
-renotify_interval   = 0
-require_full_window = false
-timeout_h           = 0
-include_tags        = true
-tags                = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.status_extra_tags)
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = true
+  renotify_interval   = 0
+  require_full_window = false
+  timeout_h           = 0
+  include_tags        = true
+  tags                = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.status_extra_tags)
 }
 

@@ -12,27 +12,27 @@ resource "datadog_monitor" "API_Gateway_latency" {
 EOQ
 
   thresholds = {
-    warning = var.latency_threshold_warning
+    warning  = var.latency_threshold_warning
     critical = var.latency_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_no_data = false
-  renotify_interval = 0
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
   require_full_window = false
-  timeout_h = 0
-  include_tags = true
+  timeout_h           = 0
+  include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
 }
 
 # Monitoring API Gateway 5xx errors percent
 resource "datadog_monitor" "API_http_5xx_errors_count" {
-  count = var.http_5xx_requests_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] API Gateway HTTP 5xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.http_5xx_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] API Gateway HTTP 5xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.http_5xx_requests_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.http_5xx_requests_time_aggregator}(${var.http_5xx_requests_timeframe}):
@@ -41,28 +41,28 @@ resource "datadog_monitor" "API_http_5xx_errors_count" {
       * 100 > ${var.http_5xx_requests_threshold_critical}
 EOQ
 
-thresholds = {
-warning  = var.http_5xx_requests_threshold_warning
-critical = var.http_5xx_requests_threshold_critical
-}
+  thresholds = {
+    warning  = var.http_5xx_requests_threshold_warning
+    critical = var.http_5xx_requests_threshold_critical
+  }
 
-evaluation_delay    = var.evaluation_delay
-new_host_delay      = var.new_host_delay
-notify_no_data      = false
-renotify_interval   = 0
-require_full_window = false
-timeout_h           = 1
-include_tags        = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  require_full_window = false
+  timeout_h           = 1
+  include_tags        = true
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"], var.http_5xx_requests_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"], var.http_5xx_requests_extra_tags)
 }
 
 # Monitoring API Gateway 4xx errors percent
 resource "datadog_monitor" "API_http_4xx_errors_count" {
-count   = var.http_4xx_requests_enabled == "true" ? 1 : 0
-name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] API Gateway HTTP 4xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-message = coalesce(var.http_4xx_requests_message, var.message)
-type    = "query alert"
+  count   = var.http_4xx_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] API Gateway HTTP 4xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.http_4xx_requests_message, var.message)
+  type    = "query alert"
 
 query = <<EOQ
     ${var.http_4xx_requests_time_aggregator}(${var.http_4xx_requests_timeframe}):
@@ -71,19 +71,19 @@ query = <<EOQ
       * 100 > ${var.http_4xx_requests_threshold_critical}
 EOQ
 
-thresholds = {
-warning = var.http_4xx_requests_threshold_warning
-critical = var.http_4xx_requests_threshold_critical
-}
+  thresholds = {
+    warning  = var.http_4xx_requests_threshold_warning
+    critical = var.http_4xx_requests_threshold_critical
+  }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
-notify_no_data = false
-renotify_interval = 0
-require_full_window = false
-timeout_h = 1
-include_tags = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  require_full_window = false
+  timeout_h           = 1
+  include_tags        = true
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"], var.http_4xx_requests_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"], var.http_4xx_requests_extra_tags)
 }
 

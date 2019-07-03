@@ -10,13 +10,13 @@ resource "datadog_monitor" "VPN_status" {
         ) < 1
 EOQ
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_no_data = true
-  renotify_interval = 0
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = true
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:vpn", "team:claranet", "created-by:terraform"], var.vpn_status_extra_tags)

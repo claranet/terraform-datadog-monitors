@@ -12,24 +12,24 @@ EOQ
     critical = 1
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_no_data = true
-  renotify_interval = 0
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = true
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.status_extra_tags)
 }
 
 resource "datadog_monitor" "apimgt_failed_requests" {
-  count = var.failed_requests_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] API Management too many failed requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.failed_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] API Management too many failed requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.failed_requests_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.failed_requests_time_aggregator}(${var.failed_requests_timeframe}): (
@@ -38,29 +38,29 @@ resource "datadog_monitor" "apimgt_failed_requests" {
     ) * 100 > ${var.failed_requests_threshold_critical}
 EOQ
 
-thresholds = {
-critical = var.failed_requests_threshold_critical
-warning  = var.failed_requests_threshold_warning
-}
+  thresholds = {
+    critical = var.failed_requests_threshold_critical
+    warning  = var.failed_requests_threshold_warning
+  }
 
-new_host_delay      = var.new_host_delay
-evaluation_delay    = var.evaluation_delay
-notify_no_data      = false
-notify_audit        = false
-timeout_h           = 1
-include_tags        = true
-locked              = false
-require_full_window = false
-renotify_interval   = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 1
+  include_tags        = true
+  locked              = false
+  require_full_window = false
+  renotify_interval   = 0
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.failed_requests_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.failed_requests_extra_tags)
 }
 
 resource "datadog_monitor" "apimgt_other_requests" {
-count   = var.other_requests_enabled == "true" ? 1 : 0
-name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] API Management too many other requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-message = coalesce(var.other_requests_message, var.message)
-type    = "query alert"
+  count   = var.other_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] API Management too many other requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.other_requests_message, var.message)
+  type    = "query alert"
 
 query = <<EOQ
     ${var.other_requests_time_aggregator}(${var.other_requests_timeframe}): (
@@ -69,29 +69,29 @@ query = <<EOQ
     ) * 100 > ${var.other_requests_threshold_critical}
 EOQ
 
-thresholds = {
-critical = var.other_requests_threshold_critical
-warning = var.other_requests_threshold_warning
-}
+  thresholds = {
+    critical = var.other_requests_threshold_critical
+    warning  = var.other_requests_threshold_warning
+  }
 
-new_host_delay = var.new_host_delay
-evaluation_delay = var.evaluation_delay
-notify_no_data = false
-notify_audit = false
-timeout_h = 1
-include_tags = true
-locked = false
-require_full_window = false
-renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 1
+  include_tags        = true
+  locked              = false
+  require_full_window = false
+  renotify_interval   = 0
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.other_requests_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.other_requests_extra_tags)
 }
 
 resource "datadog_monitor" "apimgt_unauthorized_requests" {
-count = var.unauthorized_requests_enabled == "true" ? 1 : 0
-name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] API Management too many unauthorized requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-message = coalesce(var.unauthorized_requests_message, var.message)
-type = "query alert"
+  count   = var.unauthorized_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] API Management too many unauthorized requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.unauthorized_requests_message, var.message)
+  type    = "query alert"
 
 query = <<EOQ
     ${var.unauthorized_requests_time_aggregator}(${var.unauthorized_requests_timeframe}): (
@@ -135,18 +135,18 @@ EOQ
 
   thresholds = {
     critical = var.successful_requests_threshold_critical
-    warning = var.successful_requests_threshold_warning
+    warning  = var.successful_requests_threshold_warning
   }
 
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 1
-  include_tags = true
-  locked = false
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 1
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  renotify_interval = 0
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.successful_requests_extra_tags)
 }

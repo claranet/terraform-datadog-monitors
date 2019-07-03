@@ -14,27 +14,27 @@ EOQ
 
   thresholds = {
     critical = 1
-    warning = 100
+    warning  = 100
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_no_data = true
-  renotify_interval = 0
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = true
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"], var.elb_no_healthy_instance_extra_tags)
 }
 
 resource "datadog_monitor" "ELB_too_much_4xx" {
-  count = var.elb_4xx_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.elb_4xx_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.elb_4xx_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     sum(${var.elb_4xx_timeframe}):
@@ -43,29 +43,29 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
       * 100 > ${var.elb_4xx_threshold_critical}
 EOQ
 
-thresholds = {
-warning  = var.elb_4xx_threshold_warning
-critical = var.elb_4xx_threshold_critical
-}
+  thresholds = {
+    warning  = var.elb_4xx_threshold_warning
+    critical = var.elb_4xx_threshold_critical
+  }
 
-evaluation_delay    = var.evaluation_delay
-new_host_delay      = var.new_host_delay
-notify_no_data      = false
-renotify_interval   = 0
-notify_audit        = false
-timeout_h           = 0
-include_tags        = true
-locked              = false
-require_full_window = false
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"], var.elb_4xx_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"], var.elb_4xx_extra_tags)
 }
 
 resource "datadog_monitor" "ELB_too_much_5xx" {
-count   = var.elb_5xx_enabled == "true" ? 1 : 0
-name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-message = coalesce(var.elb_5xx_message, var.message)
-type    = "query alert"
+  count   = var.elb_5xx_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.elb_5xx_message, var.message)
+  type    = "query alert"
 
 query = <<EOQ
     sum(${var.elb_5xx_timeframe}):
@@ -74,29 +74,29 @@ query = <<EOQ
       * 100 > ${var.elb_5xx_threshold_critical}
 EOQ
 
-thresholds = {
-warning = var.elb_5xx_threshold_warning
-critical = var.elb_5xx_threshold_critical
-}
+  thresholds = {
+    warning  = var.elb_5xx_threshold_warning
+    critical = var.elb_5xx_threshold_critical
+  }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
-notify_no_data = false
-renotify_interval = 0
-notify_audit = false
-timeout_h = 0
-include_tags = true
-locked = false
-require_full_window = false
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"], var.elb_5xx_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"], var.elb_5xx_extra_tags)
 }
 
 resource "datadog_monitor" "ELB_too_much_4xx_backend" {
-count = var.elb_backend_4xx_enabled == "true" ? 1 : 0
-name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB backend 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-message = coalesce(var.elb_backend_4xx_message, var.message)
-type = "query alert"
+  count   = var.elb_backend_4xx_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB backend 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.elb_backend_4xx_message, var.message)
+  type    = "query alert"
 
 query = <<EOQ
     sum(${var.elb_backend_4xx_timeframe}):
@@ -137,28 +137,28 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
 EOQ
 
   thresholds = {
-    warning = var.elb_backend_5xx_threshold_warning
+    warning  = var.elb_backend_5xx_threshold_warning
     critical = var.elb_backend_5xx_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_no_data = false
-  renotify_interval = 0
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"], var.elb_backend_5xx_extra_tags)
 }
 
 resource "datadog_monitor" "ELB_backend_latency" {
-  count = var.elb_backend_latency_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB latency too high {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
+  count   = var.elb_backend_latency_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ELB latency too high {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = coalesce(var.elb_backend_latency_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.elb_backend_latency_time_aggregator}(${var.elb_backend_latency_timeframe}):
@@ -166,21 +166,21 @@ resource "datadog_monitor" "ELB_backend_latency" {
     > ${var.elb_backend_latency_critical}
 EOQ
 
-thresholds = {
-warning  = var.elb_backend_latency_warning
-critical = var.elb_backend_latency_critical
-}
+  thresholds = {
+    warning  = var.elb_backend_latency_warning
+    critical = var.elb_backend_latency_critical
+  }
 
-evaluation_delay    = var.evaluation_delay
-new_host_delay      = var.new_host_delay
-notify_no_data      = false
-renotify_interval   = 0
-notify_audit        = false
-timeout_h           = 0
-include_tags        = true
-locked              = false
-require_full_window = false
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"], var.elb_backend_latency_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"], var.elb_backend_latency_extra_tags)
 }
 

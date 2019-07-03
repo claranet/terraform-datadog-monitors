@@ -9,81 +9,81 @@ resource "datadog_monitor" "disk_pressure" {
 EOQ
 
   thresholds = {
-    warning = var.disk_pressure_threshold_warning
+    warning  = var.disk_pressure_threshold_warning
     critical = 5
   }
 
-  new_host_delay = var.new_host_delay
-  notify_no_data = false
-  renotify_interval = 0
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.disk_pressure_extra_tags)
 }
 
 resource "datadog_monitor" "disk_out" {
-  count = var.disk_out_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Out of disk"
+  count   = var.disk_out_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Out of disk"
   message = coalesce(var.disk_out_message, var.message)
-  type = "service check"
+  type    = "service check"
 
   query = <<EOQ
     "kubernetes_state.node.out_of_disk"${module.filter-tags.service_check}.by("kubernetescluster","node").last(6).count_by_status()
 EOQ
 
-thresholds = {
-warning  = var.disk_out_threshold_warning
-critical = 5
-}
+  thresholds = {
+    warning  = var.disk_out_threshold_warning
+    critical = 5
+  }
 
-new_host_delay      = var.new_host_delay
-notify_no_data      = false
-renotify_interval   = 0
-notify_audit        = false
-timeout_h           = 0
-include_tags        = true
-locked              = false
-require_full_window = true
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
 
-tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.disk_out_extra_tags)
+  tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.disk_out_extra_tags)
 }
 
 resource "datadog_monitor" "memory_pressure" {
-count   = var.memory_pressure_enabled == "true" ? 1 : 0
-name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Memory pressure"
-message = coalesce(var.memory_pressure_message, var.message)
-type    = "service check"
+  count   = var.memory_pressure_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Memory pressure"
+  message = coalesce(var.memory_pressure_message, var.message)
+  type    = "service check"
 
 query = <<EOQ
     "kubernetes_state.node.memory_pressure"${module.filter-tags.service_check}.by("kubernetescluster","node").last(6).count_by_status()
 EOQ
 
-thresholds = {
-warning = var.memory_pressure_threshold_warning
-critical = 5
-}
+  thresholds = {
+    warning  = var.memory_pressure_threshold_warning
+    critical = 5
+  }
 
-new_host_delay = var.new_host_delay
-notify_no_data = false
-renotify_interval = 0
-notify_audit = false
-timeout_h = 0
-include_tags = true
-locked = false
-require_full_window = true
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
 
-tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.memory_pressure_extra_tags)
+  tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.memory_pressure_extra_tags)
 }
 
 resource "datadog_monitor" "ready" {
-count = var.ready_enabled == "true" ? 1 : 0
-name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node not ready"
-message = coalesce(var.ready_message, var.message)
-type = "service check"
+  count   = var.ready_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node not ready"
+  message = coalesce(var.ready_message, var.message)
+  type    = "service check"
 
 query = <<EOQ
     "kubernetes_state.node.ready"${module.filter-tags.service_check}.by("kubernetescluster","node").last(6).count_by_status()
@@ -117,75 +117,75 @@ resource "datadog_monitor" "kubelet_ping" {
 EOQ
 
   thresholds = {
-    warning = var.kubelet_ping_threshold_warning
+    warning  = var.kubelet_ping_threshold_warning
     critical = 5
   }
 
-  new_host_delay = var.new_host_delay
-  notify_no_data = true
-  renotify_interval = 0
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = true
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.kubelet_ping_extra_tags)
 }
 
 resource "datadog_monitor" "kubelet_syncloop" {
-  count = var.kubelet_syncloop_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Kubelet sync loop that updates containers does not work"
+  count   = var.kubelet_syncloop_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Kubelet sync loop that updates containers does not work"
   message = coalesce(var.kubelet_syncloop_message, var.message)
-  type = "service check"
+  type    = "service check"
 
   query = <<EOQ
     "kubernetes.kubelet.check.syncloop"${module.filter-tags.service_check}.by("kubernetescluster","name").last(6).count_by_status()
 EOQ
 
-thresholds = {
-warning  = var.kubelet_syncloop_threshold_warning
-critical = 5
-}
+  thresholds = {
+    warning  = var.kubelet_syncloop_threshold_warning
+    critical = 5
+  }
 
-new_host_delay      = var.new_host_delay
-notify_no_data      = false
-renotify_interval   = 0
-notify_audit        = false
-timeout_h           = 0
-include_tags        = true
-locked              = false
-require_full_window = true
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
 
-tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.kubelet_syncloop_extra_tags)
+  tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.kubelet_syncloop_extra_tags)
 }
 
 resource "datadog_monitor" "unregister_net_device" {
-count   = var.unregister_net_device_enabled == "true" ? 1 : 0
-name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Frequent unregister net device"
-message = coalesce(var.unregister_net_device_message, var.message)
-type    = "event alert"
+  count   = var.unregister_net_device_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Frequent unregister net device"
+  message = coalesce(var.unregister_net_device_message, var.message)
+  type    = "event alert"
 
 query = <<EOQ
     events('sources:kubernetes priority:all ${module.filter-tags.event_alert} \"UnregisterNetDevice\"').rollup('count').last('${var.unregister_net_device_timeframe}') > ${var.unregister_net_device_threshold_critical}
 EOQ
 
-new_host_delay = var.new_host_delay
-notify_no_data = false
-renotify_interval = 0
-notify_audit = false
-timeout_h = 0
-include_tags = true
-locked = false
+  new_host_delay    = var.new_host_delay
+  notify_no_data    = false
+  renotify_interval = 0
+  notify_audit      = false
+  timeout_h         = 0
+  include_tags      = true
+  locked            = false
 
-tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.unregister_net_device_extra_tags)
+  tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.unregister_net_device_extra_tags)
 }
 
 resource "datadog_monitor" "node_unschedulable" {
-count = var.node_unschedulable_enabled == "true" ? 1 : 0
-name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node unschedulable"
-message = coalesce(var.node_unschedulable_message, var.message)
-type = "metric alert"
+  count   = var.node_unschedulable_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node unschedulable"
+  message = coalesce(var.node_unschedulable_message, var.message)
+  type    = "metric alert"
 
 query = <<EOQ
     ${var.node_unschedulable_time_aggregator}(${var.node_unschedulable_timeframe}):
@@ -225,27 +225,27 @@ EOQ
 
   thresholds = {
     critical = var.volume_space_threshold_critical
-    warning = var.volume_space_threshold_warning
+    warning  = var.volume_space_threshold_warning
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_no_data = false
-  renotify_interval = 0
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.volume_space_extra_tags)
 }
 
 resource "datadog_monitor" "volume_inodes" {
-  count = var.volume_inodes_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node volume inodes usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.volume_inodes_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node volume inodes usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.volume_inodes_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.volume_inodes_time_aggregator}(${var.volume_inodes_timeframe}):
@@ -254,21 +254,21 @@ resource "datadog_monitor" "volume_inodes" {
     * 100 > ${var.volume_inodes_threshold_critical}
 EOQ
 
-thresholds = {
-critical = var.volume_inodes_threshold_critical
-warning  = var.volume_inodes_threshold_warning
-}
+  thresholds = {
+    critical = var.volume_inodes_threshold_critical
+    warning  = var.volume_inodes_threshold_warning
+  }
 
-evaluation_delay    = var.evaluation_delay
-new_host_delay      = var.new_host_delay
-notify_no_data      = false
-renotify_interval   = 0
-notify_audit        = false
-timeout_h           = 0
-include_tags        = true
-locked              = false
-require_full_window = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
 
-tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.volume_inodes_extra_tags)
+  tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.volume_inodes_extra_tags)
 }
 

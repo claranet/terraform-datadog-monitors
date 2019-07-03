@@ -9,28 +9,28 @@ resource "datadog_monitor" "datadog_nginx_process" {
 EOQ
 
   thresholds = {
-    warning = var.nginx_connect_threshold_warning
+    warning  = var.nginx_connect_threshold_warning
     critical = 5
   }
 
-  no_data_timeframe = var.nginx_connect_no_data_timeframe
-  new_host_delay = var.new_host_delay
-  notify_no_data = true
-  renotify_interval = 0
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  no_data_timeframe   = var.nginx_connect_no_data_timeframe
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = true
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:middleware", "provider:nginx", "resource:nginx", "team:claranet", "created-by:terraform"], var.nginx_connect_extra_tags)
 }
 
 resource "datadog_monitor" "datadog_nginx_dropped_connections" {
-  count = var.nginx_dropped_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Nginx dropped connections {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  count   = var.nginx_dropped_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Nginx dropped connections {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.nginx_dropped_message, var.message)
-  type = "metric alert"
+  type    = "metric alert"
 
   query = <<EOQ
     ${var.nginx_dropped_time_aggregator}(${var.nginx_dropped_timeframe}):
@@ -38,19 +38,19 @@ resource "datadog_monitor" "datadog_nginx_dropped_connections" {
     > ${var.nginx_dropped_threshold_critical}
 EOQ
 
-thresholds = {
-critical = var.nginx_dropped_threshold_critical
-}
+  thresholds = {
+    critical = var.nginx_dropped_threshold_critical
+  }
 
-evaluation_delay    = var.evaluation_delay
-new_host_delay      = var.new_host_delay
-notify_no_data      = false
-notify_audit        = false
-timeout_h           = 0
-include_tags        = true
-locked              = false
-require_full_window = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
 
-tags = concat(["env:${var.environment}", "type:middleware", "provider:nginx", "resource:nginx", "team:claranet", "created-by:terraform"], var.nginx_dropped_extra_tags)
+  tags = concat(["env:${var.environment}", "type:middleware", "provider:nginx", "resource:nginx", "team:claranet", "created-by:terraform"], var.nginx_dropped_extra_tags)
 }
 

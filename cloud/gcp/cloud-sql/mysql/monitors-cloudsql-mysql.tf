@@ -15,18 +15,18 @@ EOQ
 
   thresholds = {
     critical = var.replication_lag_threshold_critical
-    warning = var.replication_lag_threshold_warning
+    warning  = var.replication_lag_threshold_warning
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_audit = false
-  locked = false
-  timeout_h = 0
-  include_tags = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
   require_full_window = false
-  notify_no_data = true
-  renotify_interval = 0
+  notify_no_data      = true
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "engine:mysql"], var.replication_lag_extra_tags)
 }

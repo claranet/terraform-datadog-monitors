@@ -14,19 +14,19 @@ resource "datadog_monitor" "cpu_utilization" {
 EOQ
 
   thresholds = {
-    warning = var.cpu_utilization_threshold_warning
+    warning  = var.cpu_utilization_threshold_warning
     critical = var.cpu_utilization_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_audit = false
-  locked = false
-  timeout_h = 0
-  include_tags = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
   require_full_window = false
-  notify_no_data = false
-  renotify_interval = 0
+  notify_no_data      = false
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.cpu_utilization_extra_tags)
 }
@@ -35,10 +35,10 @@ EOQ
 # Disk Utilization
 #
 resource "datadog_monitor" "disk_utilization" {
-  count = var.disk_utilization_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL Disk Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.disk_utilization_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL Disk Utilization {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.disk_utilization_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.disk_utilization_time_aggregator}(${var.disk_utilization_timeframe}):
@@ -46,32 +46,32 @@ resource "datadog_monitor" "disk_utilization" {
     > ${var.disk_utilization_threshold_critical}
 EOQ
 
-thresholds = {
-warning  = var.disk_utilization_threshold_warning
-critical = var.disk_utilization_threshold_critical
-}
+  thresholds = {
+    warning  = var.disk_utilization_threshold_warning
+    critical = var.disk_utilization_threshold_critical
+  }
 
-evaluation_delay    = var.evaluation_delay
-new_host_delay      = var.new_host_delay
-notify_audit        = false
-locked              = false
-timeout_h           = 0
-include_tags        = true
-require_full_window = false
-notify_no_data      = true
-renotify_interval   = 0
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
+  require_full_window = false
+  notify_no_data      = true
+  renotify_interval   = 0
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.disk_utilization_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.disk_utilization_extra_tags)
 }
 
 #
 # Disk Utilization Forecast
 #
 resource "datadog_monitor" "disk_utilization_forecast" {
-count   = var.disk_utilization_forecast_enabled == "true" ? 1 : 0
-name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL Disk Utilization could reach {{#is_alert}}{{threshold}}%%{{/is_alert}} in a near future"
-message = coalesce(var.disk_utilization_forecast_message, var.message)
-  type  = "query alert"
+  count   = var.disk_utilization_forecast_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL Disk Utilization could reach {{#is_alert}}{{threshold}}%%{{/is_alert}} in a near future"
+  message = coalesce(var.disk_utilization_forecast_message, var.message)
+  type    = "query alert"
 
 query = <<EOQ
   ${var.disk_utilization_forecast_time_aggregator}(${var.disk_utilization_forecast_timeframe}):
@@ -127,19 +127,19 @@ resource "datadog_monitor" "memory_utilization" {
 EOQ
 
   thresholds = {
-    warning = var.memory_utilization_threshold_warning
+    warning  = var.memory_utilization_threshold_warning
     critical = var.memory_utilization_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_audit = false
-  locked = false
-  timeout_h = 0
-  include_tags = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
   require_full_window = false
-  notify_no_data = false
-  renotify_interval = 0
+  notify_no_data      = false
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.memory_utilization_extra_tags)
 }
@@ -148,10 +148,10 @@ EOQ
 # Memory Utilization Forecast
 #
 resource "datadog_monitor" "memory_utilization_forecast" {
-  count = var.memory_utilization_forecast_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL Memory Utilization could reach {{#is_alert}}{{threshold}}%%{{/is_alert}} in a near future"
+  count   = var.memory_utilization_forecast_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL Memory Utilization could reach {{#is_alert}}{{threshold}}%%{{/is_alert}} in a near future"
   message = coalesce(var.memory_utilization_forecast_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.memory_utilization_forecast_time_aggregator}(${var.memory_utilization_forecast_timeframe}):
@@ -173,32 +173,32 @@ var.memory_utilization_forecast_seasonal_seasonality,
     >= ${var.memory_utilization_forecast_threshold_critical}
 EOQ
 
-    thresholds = {
-      critical          = var.memory_utilization_forecast_threshold_critical
-      critical_recovery = var.memory_utilization_forecast_threshold_critical_recovery
-    }
+  thresholds = {
+    critical          = var.memory_utilization_forecast_threshold_critical
+    critical_recovery = var.memory_utilization_forecast_threshold_critical_recovery
+  }
 
-    evaluation_delay    = var.evaluation_delay
-    new_host_delay      = var.new_host_delay
-    notify_audit        = false
-    locked              = false
-    timeout_h           = 0
-    include_tags        = true
-    require_full_window = false
-    notify_no_data      = false
-    renotify_interval   = 0
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
+  require_full_window = false
+  notify_no_data      = false
+  renotify_interval   = 0
 
-    tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.memory_utilization_forecast_extra_tags)
-    }
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.memory_utilization_forecast_extra_tags)
+}
 
-    #
-    # Failover Unavailable
-    #
-    resource "datadog_monitor" "failover_unavailable" {
-      count   = var.failover_unavailable_enabled == "true" ? 1 : 0
-      name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL Failover Unavailable"
-      message = coalesce(var.failover_unavailable_message, var.message)
-      type    = "metric alert"
+#
+# Failover Unavailable
+#
+resource "datadog_monitor" "failover_unavailable" {
+  count   = var.failover_unavailable_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Cloud SQL Failover Unavailable"
+  message = coalesce(var.failover_unavailable_message, var.message)
+  type    = "metric alert"
 
       query = <<EOQ
   ${var.failover_unavailable_time_aggregator}(${var.failover_unavailable_timeframe}):
@@ -207,20 +207,20 @@ EOQ
   <= ${var.failover_unavailable_threshold_critical}
 EOQ
 
-      thresholds = {
-        critical = var.failover_unavailable_threshold_critical
-      }
+  thresholds = {
+    critical = var.failover_unavailable_threshold_critical
+  }
 
-      evaluation_delay = var.evaluation_delay
-      new_host_delay = var.new_host_delay
-      notify_audit = false
-      locked = false
-      timeout_h = 0
-      include_tags = true
-      require_full_window = false
-      notify_no_data = false
-      renotify_interval = 0
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
+  require_full_window = false
+  notify_no_data      = false
+  renotify_interval   = 0
 
-      tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.failover_unavailable_extra_tags)
-    }
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.failover_unavailable_extra_tags)
+}
 

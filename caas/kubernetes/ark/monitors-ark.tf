@@ -10,19 +10,19 @@ EOQ
 
   thresholds = {
     critical = 1
-    warning = 0
+    warning  = 0
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
+  evaluation_delay  = var.evaluation_delay
+  new_host_delay    = var.new_host_delay
   no_data_timeframe = var.ark_schedules_monitor_no_data_timeframe
 
-  notify_no_data = true
-  renotify_interval = 0
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  notify_no_data      = true
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:prometheus", "resource:ark", "team:claranet", "created-by:terraform"], var.ark_schedules_extra_tags)
