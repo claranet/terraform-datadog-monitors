@@ -17,6 +17,8 @@ module "datadog-monitors-cloud-azure-mysql" {
 Creates DataDog monitors with the following checks:
 
 - Mysql Server CPU usage
+- Mysql Server IO consumption
+- Mysql Server memory usage
 - Mysql Server storage
 
 ## Inputs

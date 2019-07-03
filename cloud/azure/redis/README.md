@@ -17,6 +17,8 @@ module "datadog-monitors-cloud-azure-redis" {
 Creates DataDog monitors with the following checks:
 
 - Redis {{name}} is down
+- Redis processor time too high
+- Redis server load too high
 - Redis too many evictedkeys
 
 ## Inputs

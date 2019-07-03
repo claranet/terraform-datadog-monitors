@@ -17,16 +17,26 @@ module "datadog-monitors-database-elasticsearch" {
 Creates DataDog monitors with the following checks:
 
 - Elasticsearch average index flushing to disk latency
-- Elasticsearch change alert on the number of currently active queries
-- Elasticsearch change alert on the number of request cache evictions
-- ElasticSearch Cluster has unassigned shards
-- ElasticSearch does not respond
-- Elasticsearch JVM memory Old usage
+- Elasticsearch average indexing time by document
 - Elasticsearch average Old-generation garbage collections latency
+- Elasticsearch average search fetch latency
+- Elasticsearch average search query latency
+- Elasticsearch average Young-generation garbage collections latency
 - Elasticsearch change alert on the average time spent by tasks in the queue
+- Elasticsearch change alert on the number of currently active queries
+- Elasticsearch change alert on the number of query cache evictions
+- Elasticsearch change alert on the number of request cache evictions
 - Elasticsearch change alert on the number of search fetches currently running
+- Elasticsearch change alert on the total number of evictions from the fielddata cache
+- ElasticSearch Cluster has unassigned shards
+- ElasticSearch Cluster is initializing shards
+- ElasticSearch Cluster is relocating shards
 - ElasticSearch Cluster status not green
+- ElasticSearch does not respond
 - ElasticSearch free space < 10%
+- Elasticsearch JVM HEAP memory usage
+- Elasticsearch JVM memory Old usage
+- Elasticsearch JVM memory Young usage
 - Elasticsearch number of current open HTTP connections anomaly detected
 
 ## Inputs

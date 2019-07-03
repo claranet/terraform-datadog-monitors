@@ -17,8 +17,10 @@ module "datadog-monitors-cloud-gcp-lb" {
 Creates DataDog monitors with the following checks:
 
 - GCP LB 4xx errors
-- GCP LB Requests count increased abruptly
 - GCP LB 5xx errors
+- GCP LB bucket backend latency
+- GCP LB Requests count increased abruptly
+- GCP LB service backend latency
 
 ## Inputs
 

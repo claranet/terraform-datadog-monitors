@@ -16,8 +16,9 @@ module "datadog-monitors-cloud-azure-functions" {
 
 Creates DataDog monitors with the following checks:
 
-- Function App HTTP 5xx errors too high
 - Function App connections count too high
+- Function App HTTP 5xx errors too high
+- Function App threads count too high
 
 ## Inputs
 

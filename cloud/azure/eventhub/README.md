@@ -17,6 +17,7 @@ module "datadog-monitors-cloud-azure-eventhub" {
 Creates DataDog monitors with the following checks:
 
 - Event Hub is down
+- Event Hub too many errors
 - Event Hub too many failed requests
 
 ## Inputs

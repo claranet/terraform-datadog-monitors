@@ -18,6 +18,7 @@ Creates DataDog monitors with the following checks:
 
 - Event Grid no successful message
 - Event Grid too many failed messages
+- Event Grid too many unmatched events
 
 ## Inputs
 

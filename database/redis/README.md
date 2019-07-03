@@ -16,12 +16,16 @@ module "datadog-monitors-database-redis" {
 
 Creates DataDog monitors with the following checks:
 
+- Redis blocked clients
 - Redis does not respond
+- Redis evicted keys
+- Redis expired keys
+- Redis hitrate
 - Redis keyspace seems full (no changes since ${var.keyspace_timeframe})
 - Redis latency
-- Redis evicted keys
-- Redis hitrate
+- Redis memory fragmented
 - Redis memory used
+- Redis rejected connections
 
 ## Inputs
 

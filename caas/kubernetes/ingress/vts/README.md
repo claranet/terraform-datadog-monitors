@@ -16,8 +16,8 @@ module "datadog-monitors-caas-kubernetes-ingress-vts" {
 
 Creates DataDog monitors with the following checks:
 
-- Nginx Ingress 5xx errors
 - Nginx Ingress 4xx errors
+- Nginx Ingress 5xx errors
 
 ## Inputs
 

@@ -17,11 +17,15 @@ module "datadog-monitors-caas-kubernetes-node" {
 Creates DataDog monitors with the following checks:
 
 - Kubernetes Node Disk pressure
+- Kubernetes Node Frequent unregister net device
 - Kubernetes Node Kubelet API does not respond
-- Kubernetes Node volume space usage
 - Kubernetes Node Kubelet sync loop that updates containers does not work
+- Kubernetes Node Memory pressure
+- Kubernetes Node not ready
 - Kubernetes Node Out of disk
+- Kubernetes Node unschedulable
 - Kubernetes Node volume inodes usage
+- Kubernetes Node volume space usage
 
 ## Inputs
 

@@ -16,8 +16,10 @@ module "datadog-monitors-cloud-azure-cosmosdb" {
 
 Creates DataDog monitors with the following checks:
 
-- Cosmos DB is down
 - Cosmos DB 4xx requests rate is high
+- Cosmos DB 5xx requests rate is high
+- Cosmos DB is down
+- Cosmos DB max scaling reached for collection
 
 ## Inputs
 

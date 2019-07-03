@@ -16,8 +16,9 @@ module "datadog-monitors-database-postgresql" {
 
 Creates DataDog monitors with the following checks:
 
-- PostgreSQL server does not respond
 - PostgreSQL Connections
+- PostgreSQL server does not respond
+- PostgreSQL too many locks
 
 ## Inputs
 

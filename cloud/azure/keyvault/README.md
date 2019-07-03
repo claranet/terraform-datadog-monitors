@@ -16,8 +16,9 @@ module "datadog-monitors-cloud-azure-keyvault" {
 
 Creates DataDog monitors with the following checks:
 
-- Key Vault is down
+- Key Vault API latency is high
 - Key Vault API result rate is low
+- Key Vault is down
 
 ## Inputs
 

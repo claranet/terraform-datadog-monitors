@@ -16,9 +16,11 @@ module "datadog-monitors-cloud-azure-sql-database" {
 
 Creates DataDog monitors with the following checks:
 
-- SQL Database Deadlocks too high
-- SQL Database is down
 - SQL Database CPU too high
+- SQL Database Deadlocks too high
+- SQL Database DTU Consumption too high
+- SQL Database high disk usage
+- SQL Database is down
 
 ## Inputs
 
