@@ -91,7 +91,6 @@ name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment
 message = coalesce(var.commands_message, var.message)
 type = "query alert"
 
-
 query = <<EOQ
     sum(${var.commands_timeframe}): (
       avg:aws.elasticache.get_type_cmds${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count() +
