@@ -151,7 +151,6 @@ EOQ
   require_full_window = true
   notify_no_data = false
 
-
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.cluster_unassigned_shards_extra_tags)
 }
 
