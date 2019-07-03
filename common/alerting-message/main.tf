@@ -10,7 +10,6 @@ $${prepend_text}
 $${append_text}
 EOF
 
-
   vars = {
     message_alert   = var.message_alert
     message_warning = var.message_warning
