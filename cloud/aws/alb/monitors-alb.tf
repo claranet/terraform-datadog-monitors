@@ -14,25 +14,25 @@ EOQ
 
   thresholds = {
     critical = 1
-    warning = 100
+    warning  = 100
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_no_data = true
-  renotify_interval = 0
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = true
+  renotify_interval   = 0
   require_full_window = false
-  timeout_h = 0
-  include_tags = true
+  timeout_h           = 0
+  include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.alb_no_healthy_instances_extra_tags)
 }
 
 resource "datadog_monitor" "ALB_latency" {
-  count = var.latency_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB latency {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
+  count   = var.latency_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB latency {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = coalesce(var.latency_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.latency_time_aggregator}(${var.latency_timeframe}):
@@ -40,27 +40,27 @@ resource "datadog_monitor" "ALB_latency" {
     > ${var.latency_threshold_critical}
 EOQ
 
-thresholds = {
-critical = var.latency_threshold_critical
-warning  = var.latency_threshold_warning
-}
+  thresholds = {
+    critical = var.latency_threshold_critical
+    warning  = var.latency_threshold_warning
+  }
 
-evaluation_delay    = var.evaluation_delay
-new_host_delay      = var.new_host_delay
-notify_no_data      = false
-renotify_interval   = 0
-require_full_window = false
-timeout_h           = 0
-include_tags        = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  require_full_window = false
+  timeout_h           = 0
+  include_tags        = true
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
 }
 
 resource "datadog_monitor" "ALB_httpcode_5xx" {
-count   = var.httpcode_alb_5xx_enabled == "true" ? 1 : 0
-name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB HTTP code 5xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-message = coalesce(var.httpcode_alb_5xx_message, var.message)
-type    = "query alert"
+  count   = var.httpcode_alb_5xx_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB HTTP code 5xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.httpcode_alb_5xx_message, var.message)
+  type    = "query alert"
 
 query = <<EOQ
     ${var.httpcode_alb_5xx_time_aggregator}(${var.httpcode_alb_5xx_timeframe}):
@@ -69,27 +69,27 @@ query = <<EOQ
       * 100 > ${var.httpcode_alb_5xx_threshold_critical}
 EOQ
 
-thresholds = {
-critical = var.httpcode_alb_5xx_threshold_critical
-warning = var.httpcode_alb_5xx_threshold_warning
-}
+  thresholds = {
+    critical = var.httpcode_alb_5xx_threshold_critical
+    warning  = var.httpcode_alb_5xx_threshold_warning
+  }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
-notify_no_data = false
-renotify_interval = 0
-require_full_window = false
-timeout_h = 0
-include_tags = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  require_full_window = false
+  timeout_h           = 0
+  include_tags        = true
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.httpcode_alb_5xx_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.httpcode_alb_5xx_extra_tags)
 }
 
 resource "datadog_monitor" "ALB_httpcode_4xx" {
-count = var.httpcode_alb_4xx_enabled == "true" ? 1 : 0
-name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB HTTP code 4xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-message = coalesce(var.httpcode_alb_4xx_message, var.message)
-type = "query alert"
+  count   = var.httpcode_alb_4xx_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB HTTP code 4xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.httpcode_alb_4xx_message, var.message)
+  type    = "query alert"
 
 query = <<EOQ
     ${var.httpcode_alb_4xx_time_aggregator}(${var.httpcode_alb_4xx_timeframe}):
@@ -129,25 +129,25 @@ EOQ
 
   thresholds = {
     critical = var.httpcode_target_5xx_threshold_critical
-    warning = var.httpcode_target_5xx_threshold_warning
+    warning  = var.httpcode_target_5xx_threshold_warning
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_no_data = false
-  renotify_interval = 0
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
   require_full_window = false
-  timeout_h = 0
-  include_tags = true
+  timeout_h           = 0
+  include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.httpcode_target_5xx_extra_tags)
 }
 
 resource "datadog_monitor" "ALB_httpcode_target_4xx" {
-  count = var.httpcode_target_4xx_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB target HTTP code 4xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.httpcode_target_4xx_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB target HTTP code 4xx {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.httpcode_target_4xx_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.httpcode_target_4xx_time_aggregator}(${var.httpcode_target_4xx_timeframe}):
@@ -156,19 +156,19 @@ resource "datadog_monitor" "ALB_httpcode_target_4xx" {
       * 100 > ${var.httpcode_target_4xx_threshold_critical}
 EOQ
 
-thresholds = {
-critical = var.httpcode_target_4xx_threshold_critical
-warning  = var.httpcode_target_4xx_threshold_warning
-}
+  thresholds = {
+    critical = var.httpcode_target_4xx_threshold_critical
+    warning  = var.httpcode_target_4xx_threshold_warning
+  }
 
-evaluation_delay    = var.evaluation_delay
-new_host_delay      = var.new_host_delay
-notify_no_data      = false
-renotify_interval   = 0
-require_full_window = false
-timeout_h           = 0
-include_tags        = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  require_full_window = false
+  timeout_h           = 0
+  include_tags        = true
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.httpcode_target_4xx_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.httpcode_target_4xx_extra_tags)
 }
 

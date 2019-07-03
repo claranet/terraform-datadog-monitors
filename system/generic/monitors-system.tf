@@ -11,27 +11,27 @@ resource "datadog_monitor" "cpu" {
 EOQ
 
   thresholds = {
-    warning = var.cpu_threshold_warning
+    warning  = var.cpu_threshold_warning
     critical = var.cpu_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform"], var.cpu_extra_tags)
 }
 
 resource "datadog_monitor" "load" {
-  count = var.load_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] CPU load 5 ratio {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  count   = var.load_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] CPU load 5 ratio {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.load_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.load_time_aggregator}(${var.load_timeframe}): (
@@ -39,28 +39,28 @@ resource "datadog_monitor" "load" {
     ) > ${var.load_threshold_critical}
 EOQ
 
-thresholds = {
-warning  = var.load_threshold_warning
-critical = var.load_threshold_critical
-}
+  thresholds = {
+    warning  = var.load_threshold_warning
+    critical = var.load_threshold_critical
+  }
 
-evaluation_delay    = var.evaluation_delay
-new_host_delay      = var.new_host_delay
-notify_no_data      = false
-notify_audit        = false
-timeout_h           = 0
-include_tags        = true
-locked              = false
-require_full_window = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
 
-tags = concat(["env:${var.environment}", "type:system", "provider:system-core", "resource:generic", "team:claranet", "created-by:terraform"], var.load_extra_tags)
+  tags = concat(["env:${var.environment}", "type:system", "provider:system-core", "resource:generic", "team:claranet", "created-by:terraform"], var.load_extra_tags)
 }
 
 resource "datadog_monitor" "disk_space" {
-count   = var.disk_space_enabled == "true" ? 1 : 0
-name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Disk space usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-message = coalesce(var.disk_space_message, var.message)
-type    = "query alert"
+  count   = var.disk_space_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Disk space usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.disk_space_message, var.message)
+  type    = "query alert"
 
 query = <<EOQ
     ${var.disk_space_time_aggregator}(${var.disk_space_timeframe}):
@@ -68,28 +68,28 @@ query = <<EOQ
     * 100 > ${var.disk_space_threshold_critical}
 EOQ
 
-thresholds = {
-warning = var.disk_space_threshold_warning
-critical = var.disk_space_threshold_critical
-}
+  thresholds = {
+    warning  = var.disk_space_threshold_warning
+    critical = var.disk_space_threshold_critical
+  }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
-notify_no_data = false
-notify_audit = false
-timeout_h = 0
-include_tags = true
-locked = false
-require_full_window = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
 
-tags = concat(["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"], var.disk_space_extra_tags)
+  tags = concat(["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"], var.disk_space_extra_tags)
 }
 
 resource "datadog_monitor" "disk_space_forecast" {
-count = var.disk_space_forecast_enabled == "true" ? 1 : 0
-name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Disk Space usage could reach {{#is_alert}}{{threshold}}%%{{/is_alert}} in a near future"
-message = coalesce(var.disk_space_forecast_message, var.message)
-type = "query alert"
+  count   = var.disk_space_forecast_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Disk Space usage could reach {{#is_alert}}{{threshold}}%%{{/is_alert}} in a near future"
+  message = coalesce(var.disk_space_forecast_message, var.message)
+  type    = "query alert"
 
 query = <<EOQ
     ${var.disk_space_forecast_time_aggregator}(${var.disk_space_forecast_timeframe}):
@@ -141,27 +141,27 @@ resource "datadog_monitor" "disk_inodes" {
 EOQ
 
   thresholds = {
-    warning = var.disk_inodes_threshold_warning
+    warning  = var.disk_inodes_threshold_warning
     critical = var.disk_inodes_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"], var.disk_inodes_extra_tags)
 }
 
 resource "datadog_monitor" "memory" {
-  count = var.memory_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Usable Memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.memory_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Usable Memory {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = var.memory_message
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.memory_time_aggregator}(${var.memory_timeframe}):
@@ -170,21 +170,21 @@ resource "datadog_monitor" "memory" {
     < ${var.memory_threshold_critical}
 EOQ
 
-thresholds = {
-warning  = var.memory_threshold_warning
-critical = var.memory_threshold_critical
-}
+  thresholds = {
+    warning  = var.memory_threshold_warning
+    critical = var.memory_threshold_critical
+  }
 
-evaluation_delay    = var.evaluation_delay
-new_host_delay      = var.new_host_delay
-notify_no_data      = false
-renotify_interval   = 0
-notify_audit        = false
-timeout_h           = 0
-include_tags        = true
-locked              = false
-require_full_window = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
 
-tags = concat(["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform"], var.memory_extra_tags)
+  tags = concat(["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform"], var.memory_extra_tags)
 }
 

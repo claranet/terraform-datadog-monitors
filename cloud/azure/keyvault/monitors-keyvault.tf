@@ -10,24 +10,24 @@ resource "datadog_monitor" "keyvault_status" {
       ) < 1
 EOQ
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_no_data = true
-  renotify_interval = 0
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = true
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:keyvault", "team:claranet", "created-by:terraform"], var.status_extra_tags)
 }
 
 resource "datadog_monitor" "keyvault_api_result" {
-  count = var.api_result_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Key Vault API result rate is low {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.api_result_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Key Vault API result rate is low {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.status_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
       ${var.api_result_time_aggregator}(${var.api_result_timeframe}):
@@ -38,29 +38,29 @@ resource "datadog_monitor" "keyvault_api_result" {
       , 100) < ${var.api_result_threshold_critical}
 EOQ
 
-thresholds = {
-critical = var.api_result_threshold_critical
-warning  = var.api_result_threshold_warning
-}
+  thresholds = {
+    critical = var.api_result_threshold_critical
+    warning  = var.api_result_threshold_warning
+  }
 
-evaluation_delay    = var.evaluation_delay
-new_host_delay      = var.new_host_delay
-notify_no_data      = false
-renotify_interval   = 0
-notify_audit        = false
-timeout_h           = 0
-include_tags        = true
-locked              = false
-require_full_window = false
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:keyvault", "team:claranet", "created-by:terraform"], var.api_result_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:keyvault", "team:claranet", "created-by:terraform"], var.api_result_extra_tags)
 }
 
 resource "datadog_monitor" "keyvault_api_latency" {
-count   = var.api_latency_enabled == "true" ? 1 : 0
-name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Key Vault API latency is high {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
-message = coalesce(var.status_message, var.message)
-type    = "metric alert"
+  count   = var.api_latency_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Key Vault API latency is high {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
+  message = coalesce(var.status_message, var.message)
+  type    = "metric alert"
 
 query = <<EOQ
       ${var.api_latency_time_aggregator}(${var.api_latency_timeframe}):
@@ -68,21 +68,21 @@ query = <<EOQ
         > ${var.api_latency_threshold_critical}
 EOQ
 
-thresholds = {
-critical = var.api_latency_threshold_critical
-warning = var.api_latency_threshold_warning
-}
+  thresholds = {
+    critical = var.api_latency_threshold_critical
+    warning  = var.api_latency_threshold_warning
+  }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
-notify_no_data = false
-renotify_interval = 0
-notify_audit = false
-timeout_h = 0
-include_tags = true
-locked = false
-require_full_window = false
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:keyvault", "team:claranet", "created-by:terraform"], var.api_latency_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:keyvault", "team:claranet", "created-by:terraform"], var.api_latency_extra_tags)
 }
 

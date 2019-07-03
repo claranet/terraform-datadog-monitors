@@ -12,27 +12,27 @@ EOQ
 
   thresholds = {
     critical = var.cpu_usage_threshold_critical
-    warning = var.cpu_usage_threshold_warning
+    warning  = var.cpu_usage_threshold_warning
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_no_data = false
-  renotify_interval = 0
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform"], var.cpu_usage_extra_tags)
 }
 
 resource "datadog_monitor" "postgresql_no_connection" {
-  count = var.no_connection_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Postgresql Server has no connection"
+  count   = var.no_connection_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Postgresql Server has no connection"
   message = coalesce(var.no_connection_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.no_connection_time_aggregator}(${var.no_connection_timeframe}): (
@@ -40,24 +40,24 @@ resource "datadog_monitor" "postgresql_no_connection" {
     ) < 1
 EOQ
 
-evaluation_delay    = var.evaluation_delay
-new_host_delay      = var.new_host_delay
-notify_no_data      = true
-renotify_interval   = 0
-notify_audit        = false
-timeout_h           = 0
-include_tags        = true
-locked              = false
-require_full_window = false
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = true
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform"], var.no_connection_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform"], var.no_connection_extra_tags)
 }
 
 resource "datadog_monitor" "postgresql_free_storage" {
-count   = var.free_storage_enabled == "true" ? 1 : 0
-name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Postgresql Server storage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-message = coalesce(var.free_storage_message, var.message)
-type    = "query alert"
+  count   = var.free_storage_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Postgresql Server storage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.free_storage_message, var.message)
+  type    = "query alert"
 
 query = <<EOQ
     ${var.free_storage_time_aggregator}(${var.free_storage_timeframe}): (
@@ -65,29 +65,29 @@ query = <<EOQ
     ) < ${var.free_storage_threshold_critical}
 EOQ
 
-thresholds = {
-critical = var.free_storage_threshold_critical
-warning = var.free_storage_threshold_warning
-}
+  thresholds = {
+    critical = var.free_storage_threshold_critical
+    warning  = var.free_storage_threshold_warning
+  }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
-notify_no_data = false
-renotify_interval = 0
-notify_audit = false
-timeout_h = 0
-include_tags = true
-locked = false
-require_full_window = false
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform"], var.free_storage_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform"], var.free_storage_extra_tags)
 }
 
 resource "datadog_monitor" "postgresql_io_consumption" {
-count = var.io_consumption_enabled == "true" ? 1 : 0
-name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Postgresql Server IO consumption {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-message = coalesce(var.io_consumption_message, var.message)
-type = "query alert"
+  count   = var.io_consumption_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Postgresql Server IO consumption {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.io_consumption_message, var.message)
+  type    = "query alert"
 
 query = <<EOQ
     ${var.io_consumption_time_aggregator}(${var.io_consumption_timeframe}): (
@@ -127,17 +127,17 @@ EOQ
 
   thresholds = {
     critical = var.memory_usage_threshold_critical
-    warning = var.memory_usage_threshold_warning
+    warning  = var.memory_usage_threshold_warning
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_no_data = false
-  renotify_interval = 0
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform"], var.memory_usage_extra_tags)

@@ -14,19 +14,19 @@ resource "datadog_monitor" "cpu_utilization" {
 EOQ
 
   thresholds = {
-    warning = var.cpu_utilization_threshold_warning
+    warning  = var.cpu_utilization_threshold_warning
     critical = var.cpu_utilization_threshold_critical
   }
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay = var.new_host_delay
-  notify_audit = false
-  locked = false
-  timeout_h = 0
-  include_tags = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
   require_full_window = false
-  notify_no_data = true
-  renotify_interval = 0
+  notify_no_data      = true
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform"], var.cpu_utilization_extra_tags)
 }
@@ -35,10 +35,10 @@ EOQ
 # Disk Throttled Bps
 #
 resource "datadog_monitor" "disk_throttled_bps" {
-  count = var.disk_throttled_bps_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Compute Engine instance Disk Throttled Bps {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.disk_throttled_bps_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Compute Engine instance Disk Throttled Bps {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.disk_throttled_bps_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
   ${var.disk_throttled_bps_time_aggregator}(${var.disk_throttled_bps_timeframe}):
@@ -52,32 +52,32 @@ resource "datadog_monitor" "disk_throttled_bps" {
     > ${var.disk_throttled_bps_threshold_critical}
 EOQ
 
-thresholds = {
-warning  = var.disk_throttled_bps_threshold_warning
-critical = var.disk_throttled_bps_threshold_critical
-}
+  thresholds = {
+    warning  = var.disk_throttled_bps_threshold_warning
+    critical = var.disk_throttled_bps_threshold_critical
+  }
 
-evaluation_delay    = var.evaluation_delay
-new_host_delay      = var.new_host_delay
-notify_audit        = false
-locked              = false
-timeout_h           = 0
-include_tags        = true
-require_full_window = false
-notify_no_data      = var.disk_throttled_bps_notify_no_data
-renotify_interval   = 0
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
+  require_full_window = false
+  notify_no_data      = var.disk_throttled_bps_notify_no_data
+  renotify_interval   = 0
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform"], var.disk_throttled_bps_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform"], var.disk_throttled_bps_extra_tags)
 }
 
 #
 # Disk Throttled OPS
 #
 resource "datadog_monitor" "disk_throttled_ops" {
-count   = var.disk_throttled_ops_enabled == "true" ? 1 : 0
-name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Compute Engine instance Disk Throttled OPS {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-message = coalesce(var.disk_throttled_ops_message, var.message)
-type    = "query alert"
+  count   = var.disk_throttled_ops_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Compute Engine instance Disk Throttled OPS {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.disk_throttled_ops_message, var.message)
+  type    = "query alert"
 
 query = <<EOQ
   ${var.disk_throttled_ops_time_aggregator}(${var.disk_throttled_ops_timeframe}):
@@ -91,21 +91,21 @@ query = <<EOQ
     > ${var.disk_throttled_ops_threshold_critical}
 EOQ
 
-thresholds = {
-warning = var.disk_throttled_ops_threshold_warning
-critical = var.disk_throttled_ops_threshold_critical
-}
+  thresholds = {
+    warning  = var.disk_throttled_ops_threshold_warning
+    critical = var.disk_throttled_ops_threshold_critical
+  }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
-notify_no_data = var.disk_throttled_ops_notify_no_data
-notify_audit = false
-locked = false
-timeout_h = 0
-include_tags = true
-require_full_window = false
-renotify_interval = 0
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = var.disk_throttled_ops_notify_no_data
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
+  require_full_window = false
+  renotify_interval   = 0
 
-tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform"], var.disk_throttled_ops_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform"], var.disk_throttled_ops_extra_tags)
 }
 

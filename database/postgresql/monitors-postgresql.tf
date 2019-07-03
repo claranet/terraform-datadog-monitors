@@ -9,28 +9,28 @@ resource "datadog_monitor" "postgresql_availability" {
 EOQ
 
   thresholds = {
-    warning = var.postgresql_availability_threshold_warning
+    warning  = var.postgresql_availability_threshold_warning
     critical = 5
   }
 
-  no_data_timeframe = var.postgresql_availability_no_data_timeframe
-  new_host_delay = var.new_host_delay
-  notify_no_data = true
-  renotify_interval = 0
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  no_data_timeframe   = var.postgresql_availability_no_data_timeframe
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = true
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform"], var.postgresql_availability_extra_tags)
 }
 
 resource "datadog_monitor" "postgresql_connection_too_high" {
-  count = var.postgresql_connection_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] PostgreSQL Connections {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.postgresql_connection_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] PostgreSQL Connections {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.postgresql_connection_message, var.message)
-  type = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.postgresql_connection_time_aggregator}(${var.postgresql_connection_timeframe}):
@@ -38,27 +38,27 @@ resource "datadog_monitor" "postgresql_connection_too_high" {
     * 100 > ${var.postgresql_connection_threshold_critical}
 EOQ
 
-thresholds = {
-warning  = var.postgresql_connection_threshold_warning
-critical = var.postgresql_connection_threshold_critical
-}
+  thresholds = {
+    warning  = var.postgresql_connection_threshold_warning
+    critical = var.postgresql_connection_threshold_critical
+  }
 
-evaluation_delay    = var.evaluation_delay
-new_host_delay      = var.new_host_delay
-notify_no_data      = false
-renotify_interval   = 0
-require_full_window = true
-timeout_h           = 0
-include_tags        = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  require_full_window = true
+  timeout_h           = 0
+  include_tags        = true
 
-tags = concat(["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform"], var.postgresql_connection_extra_tags)
+  tags = concat(["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform"], var.postgresql_connection_extra_tags)
 }
 
 resource "datadog_monitor" "postgresql_too_many_locks" {
-count   = var.postgresql_lock_enabled == "true" ? 1 : 0
-name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] PostgreSQL too many locks {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
-message = coalesce(var.postgresql_lock_message, var.message)
-type    = "query alert"
+  count   = var.postgresql_lock_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] PostgreSQL too many locks {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  message = coalesce(var.postgresql_lock_message, var.message)
+  type    = "query alert"
 
 query = <<EOQ
     ${var.postgresql_lock_time_aggregator}(${var.postgresql_lock_timeframe}):
@@ -66,19 +66,19 @@ query = <<EOQ
     > ${var.postgresql_lock_threshold_critical}
 EOQ
 
-thresholds = {
-warning = var.postgresql_lock_threshold_warning
-critical = var.postgresql_lock_threshold_critical
-}
+  thresholds = {
+    warning  = var.postgresql_lock_threshold_warning
+    critical = var.postgresql_lock_threshold_critical
+  }
 
-evaluation_delay = var.evaluation_delay
-new_host_delay = var.new_host_delay
-notify_no_data = false
-renotify_interval = 0
-require_full_window = true
-timeout_h = 0
-include_tags = true
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  require_full_window = true
+  timeout_h           = 0
+  include_tags        = true
 
-tags = concat(["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform"], var.postgresql_lock_extra_tags)
+  tags = concat(["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform"], var.postgresql_lock_extra_tags)
 }
 

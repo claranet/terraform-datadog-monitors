@@ -10,17 +10,17 @@ resource "datadog_monitor" "apiserver" {
 EOQ
 
   thresholds = {
-    warning = var.apiserver_threshold_warning
+    warning  = var.apiserver_threshold_warning
     critical = 5
   }
 
-  new_host_delay = var.new_host_delay
-  notify_no_data = true
-  renotify_interval = 0
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = true
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.apiserver_extra_tags)
