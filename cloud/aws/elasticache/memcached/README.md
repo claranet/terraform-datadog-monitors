@@ -6,8 +6,8 @@
 module "datadog-monitors-cloud-aws-elasticache-memcached" {
   source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//cloud/aws/elasticache/memcached?ref={revision}"
 
-  environment = "${var.environment}"
-  message     = "${module.datadog-message-alerting.alerting-message}"
+  environment = var.environment
+  message     = module.datadog-message-alerting.alerting-message
 }
 
 ```
@@ -24,7 +24,7 @@ Creates DataDog monitors with the following checks:
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | cpu\_high\_enabled | Flag to enable Elasticache memcached cpu high monitor | string | `"true"` | no |
-| cpu\_high\_extra\_tags | Extra tags for Elasticache memcached cpu high monitor | list | `[]` | no |
+| cpu\_high\_extra\_tags | Extra tags for Elasticache memcached cpu high monitor | list(string) | `[]` | no |
 | cpu\_high\_message | Custom message for Elasticache memcached cpu high monitor | string | `""` | no |
 | cpu\_high\_threshold\_critical | Elasticache memcached cpu high critical threshold in percentage | string | `"90"` | no |
 | cpu\_high\_threshold\_warning | Elasticache memcached cpu high warning threshold in percentage | string | `"75"` | no |
@@ -36,7 +36,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_custom\_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `""` | no |
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
 | get\_hits\_enabled | Flag to enable Elasticache memcached get hits monitor | string | `"true"` | no |
-| get\_hits\_extra\_tags | Extra tags for Elasticache memcached get hits monitor | list | `[]` | no |
+| get\_hits\_extra\_tags | Extra tags for Elasticache memcached get hits monitor | list(string) | `[]` | no |
 | get\_hits\_message | Custom message for Elasticache memcached get hits monitor | string | `""` | no |
 | get\_hits\_threshold\_critical | Elasticache memcached get hits critical threshold in percentage | string | `"60"` | no |
 | get\_hits\_threshold\_warning | Elasticache memcached get hits warning threshold in percentage | string | `"80"` | no |

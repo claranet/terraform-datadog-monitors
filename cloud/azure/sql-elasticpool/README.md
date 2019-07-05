@@ -6,8 +6,8 @@
 module "datadog-monitors-cloud-azure-sql-elasticpool" {
   source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//cloud/azure/sql-elasticpool?ref={revision}"
 
-  environment = "${var.environment}"
-  message     = "${module.datadog-message-alerting.alerting-message}"
+  environment = var.environment
+  message     = module.datadog-message-alerting.alerting-message
 }
 
 ```
@@ -25,21 +25,21 @@ Creates DataDog monitors with the following checks:
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | cpu\_enabled | Flag to enable SQL Elastic Pool CPU monitor | string | `"true"` | no |
-| cpu\_extra\_tags | Extra tags for SQL Elastic Pool CPU monitor | list | `[]` | no |
+| cpu\_extra\_tags | Extra tags for SQL Elastic Pool CPU monitor | list(string) | `[]` | no |
 | cpu\_message | Custom message for SQL Elastic Pool CPU monitor | string | `""` | no |
 | cpu\_threshold\_critical | CPU usage in percent (critical threshold) | string | `"90"` | no |
 | cpu\_threshold\_warning | CPU usage in percent (warning threshold) | string | `"80"` | no |
 | cpu\_time\_aggregator | Monitor aggregator for SQL Elastic Pool CPU [available values: min, max or avg] | string | `"min"` | no |
 | cpu\_timeframe | Monitor timeframe for SQL Elastic Pool CPU [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
 | diskspace\_enabled | Flag to enable SQL Elastic Pool disk space monitor | string | `"true"` | no |
-| diskspace\_extra\_tags | Extra tags for SQL Elastic Pool disk space monitor | list | `[]` | no |
+| diskspace\_extra\_tags | Extra tags for SQL Elastic Pool disk space monitor | list(string) | `[]` | no |
 | diskspace\_message | Custom message for SQL Elastic Pool disk space monitor | string | `""` | no |
 | diskspace\_threshold\_critical | Disk space used in percent (critical threshold) | string | `"90"` | no |
 | diskspace\_threshold\_warning | Disk space used in percent (warning threshold) | string | `"80"` | no |
 | diskspace\_time\_aggregator | Monitor aggregator for SQL Elastic Pool disk space [available values: min, max or avg] | string | `"max"` | no |
 | diskspace\_timeframe | Monitor timeframe for SQL Elastic Pool disk space [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
 | dtu\_enabled | Flag to enable SQL Elastic Pool DTU monitor | string | `"true"` | no |
-| dtu\_extra\_tags | Extra tags for SQL Elastic Pool DTU monitor | list | `[]` | no |
+| dtu\_extra\_tags | Extra tags for SQL Elastic Pool DTU monitor | list(string) | `[]` | no |
 | dtu\_message | Custom message for SQL Elastic Pool DTU monitor | string | `""` | no |
 | dtu\_threshold\_critical | Amount of DTU used (critical threshold) | string | `"90"` | no |
 | dtu\_threshold\_warning | Amount of DTU used (warning threshold) | string | `"85"` | no |

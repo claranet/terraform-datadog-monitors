@@ -1,6 +1,6 @@
 variable "environment" {
   description = "Architecture environment"
-  type        = "string"
+  type        = string
 }
 
 variable "filter_tags_use_defaults" {
@@ -40,19 +40,19 @@ variable "prefix_slug" {
 # Azure Load Balancer specific variables
 variable "status_enabled" {
   description = "Flag to enable Load Balancer status monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "status_message" {
   description = "Custom message for Load Balancer status monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "status_time_aggregator" {
   description = "Monitor aggregator for Load Balancer status [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "max"
 }
 
@@ -63,6 +63,7 @@ variable "status_timeframe" {
 
 variable "status_extra_tags" {
   description = "Extra tags for Load Balancer status monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
+

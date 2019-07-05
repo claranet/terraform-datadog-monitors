@@ -6,8 +6,8 @@
 module "datadog-monitors-middleware-nginx" {
   source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//middleware/nginx?ref={revision}"
 
-  environment = "${var.environment}"
-  message     = "${module.datadog-message-alerting.alerting-message}"
+  environment = var.environment
+  message     = module.datadog-message-alerting.alerting-message
 }
 
 ```
@@ -31,12 +31,12 @@ Creates DataDog monitors with the following checks:
 | message | Message sent when an alert is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | nginx\_connect\_enabled | Flag to enable Nginx status monitor | string | `"true"` | no |
-| nginx\_connect\_extra\_tags | Extra tags for Nginx process monitor | list | `[]` | no |
+| nginx\_connect\_extra\_tags | Extra tags for Nginx process monitor | list(string) | `[]` | no |
 | nginx\_connect\_message | Custom message for Nginx status monitor | string | `""` | no |
 | nginx\_connect\_no\_data\_timeframe | Nginx status monitor no data timeframe | string | `"10"` | no |
 | nginx\_connect\_threshold\_warning | Nginx status monitor (warning threshold) | string | `"3"` | no |
 | nginx\_dropped\_enabled | Flag to enable Nginx dropped monitor | string | `"true"` | no |
-| nginx\_dropped\_extra\_tags | Extra tags for Nginx dropped connections monitor | list | `[]` | no |
+| nginx\_dropped\_extra\_tags | Extra tags for Nginx dropped connections monitor | list(string) | `[]` | no |
 | nginx\_dropped\_message | Custom message for Nginx dropped connections monitor | string | `""` | no |
 | nginx\_dropped\_threshold\_critical | Nginx dropped connections critical threshold | string | `"0"` | no |
 | nginx\_dropped\_time\_aggregator | Monitor aggregator for Nginx dropped connections [available values: min, max or avg] | string | `"min"` | no |

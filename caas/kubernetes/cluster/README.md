@@ -6,8 +6,8 @@
 module "datadog-monitors-caas-kubernetes-cluster" {
   source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//caas/kubernetes/cluster?ref={revision}"
 
-  environment = "${var.environment}"
-  message     = "${module.datadog-message-alerting.alerting-message}"
+  environment = var.environment
+  message     = module.datadog-message-alerting.alerting-message
 }
 
 ```
@@ -23,7 +23,7 @@ Creates DataDog monitors with the following checks:
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | apiserver\_enabled | Flag to enable API server monitor | string | `"true"` | no |
-| apiserver\_extra\_tags | Extra tags for API server monitor | list | `[]` | no |
+| apiserver\_extra\_tags | Extra tags for API server monitor | list(string) | `[]` | no |
 | apiserver\_message | Custom message for API server monitor | string | `""` | no |
 | apiserver\_threshold\_warning | API server monitor (warning threshold) | string | `"3"` | no |
 | environment | Architecture environment | string | n/a | yes |

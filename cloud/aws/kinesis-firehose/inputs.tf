@@ -1,7 +1,7 @@
 # Global Terraform
 variable "environment" {
   description = "Environment"
-  type        = "string"
+  type        = string
 }
 
 # Global DataDog
@@ -43,19 +43,19 @@ variable "filter_tags_custom_excluded" {
 
 variable "incoming_records_enabled" {
   description = "Flag to enable Kinesis Firehorse incoming records monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "incoming_records_extra_tags" {
   description = "Extra tags for Kinesis Firehorse incoming records monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "incoming_records_message" {
   description = "Custom message for Kinesis Firehorse incoming records monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
@@ -63,3 +63,4 @@ variable "incoming_records_timeframe" {
   description = "Monitor timeframe for incoming records metrics evaluation [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   default     = "last_15m"
 }
+

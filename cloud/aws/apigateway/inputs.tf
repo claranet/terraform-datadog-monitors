@@ -1,6 +1,6 @@
 variable "environment" {
   description = "Environment"
-  type        = "string"
+  type        = string
 }
 
 variable "filter_tags" {
@@ -33,31 +33,31 @@ variable "prefix_slug" {
 
 variable "latency_enabled" {
   description = "Flag to enable API Gateway latency monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "latency_extra_tags" {
   description = "Extra tags for API Gateway latency monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "latency_message" {
   description = "Custom message for API Gateway latency monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "latency_time_aggregator" {
   description = "Monitor aggregator for API Gateway latency [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "latency_timeframe" {
   description = "Monitor timeframe for API latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -77,31 +77,31 @@ variable "latency_threshold_warning" {
 
 variable "http_5xx_requests_enabled" {
   description = "Flag to enable API Gateway HTTP 5xx requests monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "http_5xx_requests_extra_tags" {
   description = "Extra tags for API Gateway HTTP 5xx requests monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "http_5xx_requests_message" {
   description = "Custom message for API Gateway HTTP 5xx requests monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "http_5xx_requests_time_aggregator" {
   description = "Monitor aggregator for API HTTP 5xx requests [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "http_5xx_requests_timeframe" {
   description = "Monitor timeframe for API HTTP 5xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -121,31 +121,31 @@ variable "http_5xx_requests_threshold_warning" {
 
 variable "http_4xx_requests_enabled" {
   description = "Flag to enable API Gateway HTTP 4xx requests monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "http_4xx_requests_extra_tags" {
   description = "Extra tags for API Gateway HTTP 4xx requests monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "http_4xx_requests_message" {
   description = "Custom message for API Gateway HTTP 4xx requests monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "http_4xx_requests_time_aggregator" {
   description = "Monitor aggregator for API HTTP 4xx requests [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "http_4xx_requests_timeframe" {
   description = "Monitor timeframe for API HTTP 4xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -163,3 +163,4 @@ variable "artificial_requests_count" {
   default     = 5
   description = "Number of false requests used to mitigate false positive in case of low trafic"
 }
+

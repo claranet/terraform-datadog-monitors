@@ -6,8 +6,8 @@
 module "datadog-monitors-cloud-aws-elb" {
   source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//cloud/aws/elb?ref={revision}"
 
-  environment = "${var.environment}"
-  message     = "${module.datadog-message-alerting.alerting-message}"
+  environment = var.environment
+  message     = module.datadog-message-alerting.alerting-message
 }
 
 ```
@@ -29,38 +29,38 @@ Creates DataDog monitors with the following checks:
 |------|-------------|:----:|:-----:|:-----:|
 | artificial\_requests\_count | Number of false requests used to mitigate false positive in case of low trafic | string | `"5"` | no |
 | elb\_4xx\_enabled | Flag to enable ELB 4xx errors monitor | string | `"true"` | no |
-| elb\_4xx\_extra\_tags | Extra tags for ELB 4xx errors monitor | list | `[]` | no |
+| elb\_4xx\_extra\_tags | Extra tags for ELB 4xx errors monitor | list(string) | `[]` | no |
 | elb\_4xx\_message | Custom message for ELB 4xx errors monitor | string | `""` | no |
 | elb\_4xx\_threshold\_critical | loadbalancer 4xx critical threshold in percentage | string | `"10"` | no |
 | elb\_4xx\_threshold\_warning | loadbalancer 4xx warning threshold in percentage | string | `"5"` | no |
 | elb\_4xx\_timeframe | Monitor timeframe for ELB 4xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | elb\_5xx\_enabled | Flag to enable ELB 5xx errors monitor | string | `"true"` | no |
-| elb\_5xx\_extra\_tags | Extra tags for ELB 5xx errors monitor | list | `[]` | no |
+| elb\_5xx\_extra\_tags | Extra tags for ELB 5xx errors monitor | list(string) | `[]` | no |
 | elb\_5xx\_message | Custom message for ELB 5xx errors monitor | string | `""` | no |
 | elb\_5xx\_threshold\_critical | loadbalancer 5xx critical threshold in percentage | string | `"10"` | no |
 | elb\_5xx\_threshold\_warning | loadbalancer 5xx warning threshold in percentage | string | `"5"` | no |
 | elb\_5xx\_timeframe | Monitor timeframe for ELB 5xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | elb\_backend\_4xx\_enabled | Flag to enable ELB backend 4xx errors monitor | string | `"true"` | no |
-| elb\_backend\_4xx\_extra\_tags | Extra tags for ELB backend 4xx errors monitor | list | `[]` | no |
+| elb\_backend\_4xx\_extra\_tags | Extra tags for ELB backend 4xx errors monitor | list(string) | `[]` | no |
 | elb\_backend\_4xx\_message | Custom message for ELB backend 4xx errors monitor | string | `""` | no |
 | elb\_backend\_4xx\_threshold\_critical | loadbalancer backend 4xx critical threshold in percentage | string | `"10"` | no |
 | elb\_backend\_4xx\_threshold\_warning | loadbalancer backend 4xx warning threshold in percentage | string | `"5"` | no |
 | elb\_backend\_4xx\_timeframe | Monitor timeframe for ELB backend 4xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | elb\_backend\_5xx\_enabled | Flag to enable ELB backend 5xx errors monitor | string | `"true"` | no |
-| elb\_backend\_5xx\_extra\_tags | Extra tags for ELB backend 5xx errors monitor | list | `[]` | no |
+| elb\_backend\_5xx\_extra\_tags | Extra tags for ELB backend 5xx errors monitor | list(string) | `[]` | no |
 | elb\_backend\_5xx\_message | Custom message for ELB backend 5xx errors monitor | string | `""` | no |
 | elb\_backend\_5xx\_threshold\_critical | loadbalancer backend 5xx critical threshold in percentage | string | `"10"` | no |
 | elb\_backend\_5xx\_threshold\_warning | loadbalancer backend 5xx warning threshold in percentage | string | `"5"` | no |
 | elb\_backend\_5xx\_timeframe | Monitor timeframe for ELB backend 5xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | elb\_backend\_latency\_critical | latency critical threshold in seconds | string | `"5"` | no |
 | elb\_backend\_latency\_enabled | Flag to enable ELB backend latency monitor | string | `"true"` | no |
-| elb\_backend\_latency\_extra\_tags | Extra tags for ELB backend latency monitor | list | `[]` | no |
+| elb\_backend\_latency\_extra\_tags | Extra tags for ELB backend latency monitor | list(string) | `[]` | no |
 | elb\_backend\_latency\_message | Custom message for ELB backend latency monitor | string | `""` | no |
 | elb\_backend\_latency\_time\_aggregator | Monitor aggregator for ELB backend latency [available values: min, max or avg] | string | `"min"` | no |
 | elb\_backend\_latency\_timeframe | Monitor timeframe for ELB backend latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | elb\_backend\_latency\_warning | latency warning threshold in seconds | string | `"1"` | no |
 | elb\_no\_healthy\_instance\_enabled | Flag to enable ELB no healty instance monitor | string | `"true"` | no |
-| elb\_no\_healthy\_instance\_extra\_tags | Extra tags for ELB no healty instance monitor | list | `[]` | no |
+| elb\_no\_healthy\_instance\_extra\_tags | Extra tags for ELB no healty instance monitor | list(string) | `[]` | no |
 | elb\_no\_healthy\_instance\_message | Custom message for ELB no healty instance monitor | string | `""` | no |
 | elb\_no\_healthy\_instance\_time\_aggregator | Monitor aggregator for ELB no healty instance [available values: min or max] | string | `"min"` | no |
 | elb\_no\_healthy\_instance\_timeframe | Monitor timeframe for ELB no healty instance [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |

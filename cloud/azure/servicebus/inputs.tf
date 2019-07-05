@@ -1,7 +1,7 @@
 # Global Terraform
 variable "environment" {
   description = "Architecture Environment"
-  type        = "string"
+  type        = string
 }
 
 # Global DataDog
@@ -42,25 +42,25 @@ variable "filter_tags_custom_excluded" {
 # Azure Service Bus specific variables
 variable "status_enabled" {
   description = "Flag to enable Service Bus status monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "status_extra_tags" {
   description = "Extra tags for Service Bus status monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "status_message" {
   description = "Custom message for Service Bus status monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "status_time_aggregator" {
   description = "Monitor aggregator for Service Bus status [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "max"
 }
 
@@ -70,50 +70,62 @@ variable "status_timeframe" {
 }
 
 variable "no_active_connections_enabled" {
-  description = "Flag to enable Service Bus status monitor"
-  type        = "string"
+  description = "Flag to enable Service Bus no active connections monitor"
+  type        = string
   default     = "true"
 }
 
+variable "no_active_connections_extra_tags" {
+  description = "Extra tags for Service Bus no active connections monitor"
+  type        = list(string)
+  default     = []
+}
+
 variable "no_active_connections_message" {
-  description = "Custom message for Service Bus status monitor"
-  type        = "string"
+  description = "Custom message for Service Bus no active connections monitor"
+  type        = string
   default     = ""
 }
 
 variable "no_active_connections_time_aggregator" {
-  description = "Monitor aggregator for Service Bus status [available values: min, max or avg]"
-  type        = "string"
+  description = "Monitor aggregator for Service Bus no active connections [available values: min, max or avg]"
+  type        = string
   default     = "max"
 }
 
 variable "no_active_connections_timeframe" {
-  description = "Monitor timeframe for Service Bus status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  description = "Monitor timeframe for Service Bus no active connections [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
   default     = "last_5m"
 }
 
 variable "server_errors_message" {
   description = "Custom message for Service Bus server errors monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "server_errors_enabled" {
   description = "Flag to enable Service Bus server errors monitor"
-  type        = "string"
+  type        = string
   default     = "true"
+}
+
+variable "server_errors_extra_tags" {
+  description = "Extra tags for Service Bus server errors monitor"
+  type        = list(string)
+  default     = []
 }
 
 variable "server_errors_time_aggregator" {
   description = "Monitor aggregator for Service Bus server errors [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "server_errors_timeframe" {
   description = "Monitor timeframe for Service Bus server errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -129,25 +141,31 @@ variable "server_errors_threshold_warning" {
 
 variable "user_errors_message" {
   description = "Custom message for Service Bus user errors monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "user_errors_enabled" {
   description = "Flag to enable Service Bus user errors monitor"
-  type        = "string"
+  type        = string
   default     = "true"
+}
+
+variable "user_errors_extra_tags" {
+  description = "Extra tags for Service Bus user errors monitor"
+  type        = list(string)
+  default     = []
 }
 
 variable "user_errors_time_aggregator" {
   description = "Monitor aggregator for Service Bus user errors [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "user_errors_timeframe" {
   description = "Monitor timeframe for Service Bus user errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -160,3 +178,4 @@ variable "user_errors_threshold_warning" {
   description = "Warning threshold for Service Bus user errors monitor"
   default     = 50
 }
+

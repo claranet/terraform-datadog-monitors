@@ -1,7 +1,7 @@
 # Global Terraform
 variable "environment" {
   description = "Architecture Environment"
-  type        = "string"
+  type        = string
 }
 
 # Global DataDog
@@ -43,25 +43,25 @@ variable "filter_tags_custom_excluded" {
 
 variable "aurora_replicalag_enabled" {
   description = "Flag to enable RDS Aurora replica lag monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "aurora_replicalag_extra_tags" {
   description = "Extra tags for RDS Aurora replica lag monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "aurora_replicalag_message" {
   description = "Custom message for RDS Aurora replica lag monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "aurora_replicalag_timeframe" {
   description = "Monitor timeframe for RDS Aurora replica lag monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -74,3 +74,4 @@ variable "aurora_replicalag_threshold_critical" {
   description = "Aurora replica lag in milliseconds (critical threshold)"
   default     = "200"
 }
+

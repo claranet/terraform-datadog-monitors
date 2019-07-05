@@ -6,8 +6,8 @@
 module "datadog-monitors-cloud-azure-keyvault" {
   source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//cloud/azure/keyvault?ref={revision}"
 
-  environment = "${var.environment}"
-  message     = "${module.datadog-message-alerting.alerting-message}"
+  environment = var.environment
+  message     = module.datadog-message-alerting.alerting-message
 }
 
 ```
@@ -25,14 +25,14 @@ Creates DataDog monitors with the following checks:
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | api\_latency\_enabled | Flag to enable Key Vault API latency monitor | string | `"true"` | no |
-| api\_latency\_extra\_tags | Extra tags for Key Vault API latency monitor | list | `[]` | no |
+| api\_latency\_extra\_tags | Extra tags for Key Vault API latency monitor | list(string) | `[]` | no |
 | api\_latency\_message | Custom message for Key Vault API latency monitor | string | `""` | no |
 | api\_latency\_threshold\_critical | Critical threshold for Key Vault API latency rate | string | `"100"` | no |
 | api\_latency\_threshold\_warning | Warning threshold for Key Vault API latency rate | string | `"80"` | no |
 | api\_latency\_time\_aggregator | Monitor aggregator for Key Vault API latency [available values: min, max or avg] | string | `"min"` | no |
 | api\_latency\_timeframe | Monitor timeframe for Key Vault API latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | api\_result\_enabled | Flag to enable Key Vault API result monitor | string | `"true"` | no |
-| api\_result\_extra\_tags | Extra tags for Key Vault API result monitor | list | `[]` | no |
+| api\_result\_extra\_tags | Extra tags for Key Vault API result monitor | list(string) | `[]` | no |
 | api\_result\_message | Custom message for Key Vault API result monitor | string | `""` | no |
 | api\_result\_threshold\_critical | Critical threshold for Key Vault API result rate | string | `"10"` | no |
 | api\_result\_threshold\_warning | Warning threshold for Key Vault API result rate | string | `"30"` | no |
@@ -47,7 +47,7 @@ Creates DataDog monitors with the following checks:
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | status\_enabled | Flag to enable Key Vault status monitor | string | `"true"` | no |
-| status\_extra\_tags | Extra tags for Key Vault status monitor | list | `[]` | no |
+| status\_extra\_tags | Extra tags for Key Vault status monitor | list(string) | `[]` | no |
 | status\_message | Custom message for Key Vault status monitor | string | `""` | no |
 | status\_time\_aggregator | Monitor aggregator for Key Vault status [available values: min, max or avg] | string | `"max"` | no |
 | status\_timeframe | Monitor timeframe for Key Vault status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |

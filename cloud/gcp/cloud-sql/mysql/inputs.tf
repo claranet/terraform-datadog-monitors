@@ -3,7 +3,7 @@
 #
 variable "environment" {
   description = "Architecture environment"
-  type        = "string"
+  type        = string
 }
 
 variable "filter_tags" {
@@ -36,42 +36,43 @@ variable "prefix_slug" {
 
 variable "replication_lag_message" {
   description = "Custom message for the Replication Lag monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "replication_lag_time_aggregator" {
   description = "Time aggregator for the Replication Lag monitor"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "replication_lag_timeframe" {
   description = "Timeframe for the Replication Lag monitor"
-  type        = "string"
+  type        = string
   default     = "last_10m"
 }
 
 variable "replication_lag_threshold_warning" {
   description = "Seconds behind the master (warning threshold)"
-  type        = "string"
+  type        = string
   default     = 90
 }
 
 variable "replication_lag_threshold_critical" {
   description = "Seconds behind the master (critical threshold)"
-  type        = "string"
+  type        = string
   default     = 180
 }
 
 variable "replication_lag_enabled" {
   description = "Flag to enable GCP Cloud SQL Replication Lag monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "replication_lag_extra_tags" {
   description = "Extra tags for GCP Cloud SQL SQL Replication monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
+

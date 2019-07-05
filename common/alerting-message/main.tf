@@ -10,11 +10,12 @@ $${prepend_text}
 $${append_text}
 EOF
 
-  vars {
-    message_alert   = "${var.message_alert}"
-    message_warning = "${var.message_warning}"
-    message_nodata  = "${coalesce(var.message_nodata,var.message_alert)}"
-    prepend_text    = "${var.prepend_text}"
-    append_text     = "${var.append_text}"
+  vars = {
+    message_alert   = var.message_alert
+    message_warning = var.message_warning
+    message_nodata  = coalesce(var.message_nodata, var.message_alert)
+    prepend_text    = var.prepend_text
+    append_text     = var.append_text
   }
 }
+
