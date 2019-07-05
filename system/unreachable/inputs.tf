@@ -1,7 +1,7 @@
 # Global Terraform
 variable "environment" {
   description = "Architecture Environment"
-  type        = "string"
+  type        = string
 }
 
 # Global DataDog
@@ -43,24 +43,25 @@ variable "filter_tags_custom_excluded" {
 
 variable "unreachable_enabled" {
   description = "Flag to enable Host unreachable monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "unreachable_extra_tags" {
   description = "Extra tags for Host unreachable monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "unreachable_message" {
   description = "Custom message for Host unreachable monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "unreachable_no_data_timeframe" {
   description = "Timeframe for Host unreachable monitor to alert on no data"
-  type        = "string"
+  type        = string
   default     = 20
 }
+

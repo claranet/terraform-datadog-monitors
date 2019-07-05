@@ -6,8 +6,8 @@
 module "datadog-monitors-cloud-azure-cosmosdb" {
   source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//cloud/azure/cosmosdb?ref={revision}"
 
-  environment = "${var.environment}"
-  message     = "${module.datadog-message-alerting.alerting-message}"
+  environment = var.environment
+  message     = module.datadog-message-alerting.alerting-message
 }
 
 ```
@@ -25,14 +25,14 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| cosmos\_db\_4xx\_request\_extra\_tags | Extra tags for Cosmos DB 4xx requests monitor | list | `[]` | no |
+| cosmos\_db\_4xx\_request\_extra\_tags | Extra tags for Cosmos DB 4xx requests monitor | list(string) | `[]` | no |
 | cosmos\_db\_4xx\_request\_rate\_threshold\_critical | Critical threshold for Cosmos DB 4xx requests monitor | string | `"80"` | no |
 | cosmos\_db\_4xx\_request\_rate\_threshold\_warning | Warning threshold for Cosmos DB 4xx requests monitor | string | `"50"` | no |
 | cosmos\_db\_4xx\_request\_time\_aggregator | Monitor aggregator for Cosmos DB 4xx requests [available values: min, max or avg] | string | `"min"` | no |
 | cosmos\_db\_4xx\_request\_timeframe | Monitor timeframe for Cosmos DB 4xx requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | cosmos\_db\_4xx\_requests\_enabled | Flag to enable Cosmos DB 4xx requests monitor | string | `"true"` | no |
 | cosmos\_db\_4xx\_requests\_message | Custom message for Cosmos DB 4xx requests monitor | string | `""` | no |
-| cosmos\_db\_5xx\_request\_rate\_extra\_tags | Extra tags for Cosmos DB 5xx requests monitor | list | `[]` | no |
+| cosmos\_db\_5xx\_request\_rate\_extra\_tags | Extra tags for Cosmos DB 5xx requests monitor | list(string) | `[]` | no |
 | cosmos\_db\_5xx\_request\_rate\_threshold\_critical | Critical threshold for Cosmos DB 5xx requests monitor | string | `"80"` | no |
 | cosmos\_db\_5xx\_request\_rate\_threshold\_warning | Warning threshold for Cosmos DB 5xx requests monitor | string | `"50"` | no |
 | cosmos\_db\_5xx\_request\_time\_aggregator | Monitor aggregator for Cosmos DB 5xx requests [available values: min, max or avg] | string | `"min"` | no |
@@ -42,7 +42,7 @@ Creates DataDog monitors with the following checks:
 | cosmos\_db\_scaling\_enabled | Flag to enable Cosmos DB scaling monitor | string | `"true"` | no |
 | cosmos\_db\_scaling\_error\_rate\_threshold\_critical | Critical threshold for Cosmos DB scaling monitor | string | `"10"` | no |
 | cosmos\_db\_scaling\_error\_rate\_threshold\_warning | Warning threshold for Cosmos DB scaling monitor | string | `"5"` | no |
-| cosmos\_db\_scaling\_extra\_tags | Extra tags for Cosmos DB scaling monitor | list | `[]` | no |
+| cosmos\_db\_scaling\_extra\_tags | Extra tags for Cosmos DB scaling monitor | list(string) | `[]` | no |
 | cosmos\_db\_scaling\_message | Custom message for Cosmos DB scaling monitor | string | `""` | no |
 | cosmos\_db\_scaling\_time\_aggregator | Monitor aggregator for Cosmos DB scaling [available values: min, max or avg] | string | `"min"` | no |
 | cosmos\_db\_scaling\_timeframe | Monitor timeframe for Cosmos DB scaling [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
@@ -55,7 +55,7 @@ Creates DataDog monitors with the following checks:
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | status\_enabled | Flag to enable Cosmos DB status monitor | string | `"true"` | no |
-| status\_extra\_tags | Extra tags for Cosmos DB status monitor | list | `[]` | no |
+| status\_extra\_tags | Extra tags for Cosmos DB status monitor | list(string) | `[]` | no |
 | status\_message | Custom message for Cosmos DB status monitor | string | `""` | no |
 | status\_time\_aggregator | Monitor aggregator for Cosmos DB status [available values: min, max or avg] | string | `"max"` | no |
 | status\_timeframe | Monitor timeframe for Cosmos DB status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |

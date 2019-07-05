@@ -3,7 +3,7 @@
 #
 variable "environment" {
   description = "Architecture environment"
-  type        = "string"
+  type        = string
 }
 
 variable "filter_tags" {
@@ -35,37 +35,37 @@ variable "prefix_slug" {
 #
 variable "sending_operations_count_message" {
   description = "Custom message for the GCP Pub/Sub Sending Operations Count monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "sending_operations_count_time_aggregator" {
   description = "Timeframe for the GCP Pub/Sub Sending Operations Count monitor"
-  type        = "string"
+  type        = string
   default     = "sum"
 }
 
 variable "sending_operations_count_timeframe" {
   description = "Timeframe for the GCP Pub/Sub Sending Operations Count monitor"
-  type        = "string"
+  type        = string
   default     = "last_30m"
 }
 
 variable "sending_operations_count_threshold_critical" {
   description = "Critical threshold for the number of sending operations."
-  type        = "string"
+  type        = string
   default     = 0
 }
 
 variable "sending_operations_count_enabled" {
   description = "Flag to enable GCP Pub/Sub Unavailable Sending Operations Count monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "sending_operations_count_extra_tags" {
   description = "Extra tags for GCP Pub/Sub Sending Operations Count monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -74,42 +74,43 @@ variable "sending_operations_count_extra_tags" {
 #
 variable "unavailable_sending_operations_count_message" {
   description = "Custom message for the GCP Pub/Sub Unavailable Sending Operations Count monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "unavailable_sending_operations_count_time_aggregator" {
   description = "Timeframe for the GCP Pub/Sub Unavailable Sending Operations Count monitor"
-  type        = "string"
+  type        = string
   default     = "sum"
 }
 
 variable "unavailable_sending_operations_count_timeframe" {
   description = "Timeframe for the GCP Pub/Sub Unavailable Sending Operations Count monitor"
-  type        = "string"
+  type        = string
   default     = "last_10m"
 }
 
 variable "unavailable_sending_operations_count_threshold_warning" {
   description = "Warning threshold for the number of unavailable sending operations"
-  type        = "string"
+  type        = string
   default     = 2
 }
 
 variable "unavailable_sending_operations_count_threshold_critical" {
   description = "Critical threshold for the number of unavailable sending operations"
-  type        = "string"
+  type        = string
   default     = 4
 }
 
 variable "unavailable_sending_operations_count_enabled" {
   description = "Flag to enable GCP Pub/Sub Unavailable Sending Operations Count monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "unavailable_sending_operations_count_extra_tags" {
   description = "Extra tags for GCP Pub/Sub Unavailable Sending Operations Count monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
+

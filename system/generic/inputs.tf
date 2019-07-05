@@ -1,7 +1,7 @@
 # Global Terraform
 variable "environment" {
   description = "Architecture Environment"
-  type        = "string"
+  type        = string
 }
 
 # Global DataDog
@@ -43,31 +43,31 @@ variable "filter_tags_custom_excluded" {
 
 variable "cpu_enabled" {
   description = "Flag to enable CPU high monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "cpu_extra_tags" {
   description = "Extra tags for CPU high monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "cpu_message" {
   description = "Custom message for CPU high monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "cpu_time_aggregator" {
   description = "Monitor aggregator for CPU high [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "cpu_timeframe" {
   description = "Monitor timeframe for CPU high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_10m"
 }
 
@@ -83,31 +83,31 @@ variable "cpu_threshold_critical" {
 
 variable "load_enabled" {
   description = "Flag to enable CPU load ratio monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "load_extra_tags" {
   description = "Extra tags for CPU load ratio monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "load_message" {
   description = "Custom message for CPU load ratio monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "load_time_aggregator" {
   description = "Monitor aggregator for CPU load ratio [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "load_timeframe" {
   description = "Monitor timeframe for CPU load ratio [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_15m"
 }
 
@@ -123,31 +123,31 @@ variable "load_threshold_critical" {
 
 variable "disk_space_enabled" {
   description = "Flag to enable Free diskspace monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "disk_space_extra_tags" {
   description = "Extra tags for Free diskspace monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "disk_space_message" {
   description = "Custom message for Free diskspace monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "disk_space_time_aggregator" {
   description = "Monitor aggregator for Free diskspace [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "max"
 }
 
 variable "disk_space_timeframe" {
   description = "Monitor timeframe for Free diskspace [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -163,67 +163,67 @@ variable "disk_space_threshold_critical" {
 
 variable "disk_space_forecast_enabled" {
   description = "Flag to enable Free diskspace forecast monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "disk_space_forecast_extra_tags" {
   description = "Extra tags for Free diskspace forecast monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "disk_space_forecast_message" {
   description = "Custom message for Free diskspace forecast monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "disk_space_forecast_time_aggregator" {
   description = "Monitor aggregator for Free diskspace forecast [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "max"
 }
 
 variable "disk_space_forecast_timeframe" {
   description = "Monitor timeframe for Free diskspace forecast [available values: `next_12h`, `next_#d` (1, 2, or 3), `next_#w` (1 or 2) or `next_#mo` (1, 2 or 3)]"
-  type        = "string"
+  type        = string
   default     = "next_1w"
 }
 
 variable "disk_space_forecast_algorithm" {
   description = "Algorithm for the Free diskspace Forecast monitor [available values: `linear` or `seasonal`]"
-  type        = "string"
+  type        = string
   default     = "linear"
 }
 
 variable "disk_space_forecast_deviations" {
   description = "Deviations for the Free diskspace Forecast monitor [available values: `1`, `2`, `3`, `4` or `5`]"
-  type        = "string"
+  type        = string
   default     = 1
 }
 
 variable "disk_space_forecast_interval" {
   description = "Interval for the Free diskspace Forecast monitor [available values: `30m`, `60m` or `120m`]"
-  type        = "string"
+  type        = string
   default     = "60m"
 }
 
 variable "disk_space_forecast_linear_history" {
   description = "History for the Free diskspace Forecast monitor [available values: `12h`, `#d` (1, 2, or 3), `#w` (1, or 2) or `#mo` (1, 2 or 3)]"
-  type        = "string"
+  type        = string
   default     = "1w"
 }
 
 variable "disk_space_forecast_linear_model" {
   description = "Model for the Free diskspace Forecast monitor [available values: `default`, `simple` or `reactive`]"
-  type        = "string"
+  type        = string
   default     = "default"
 }
 
 variable "disk_space_forecast_seasonal_seasonality" {
   description = "Seasonality for the Free diskspace Forecast monitor"
-  type        = "string"
+  type        = string
   default     = "weekly"
 }
 
@@ -239,31 +239,31 @@ variable "disk_space_forecast_threshold_critical" {
 
 variable "disk_inodes_enabled" {
   description = "Flag to enable Free disk inodes monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "disk_inodes_extra_tags" {
   description = "Extra tags for Free disk inodes monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "disk_inodes_message" {
   description = "Custom message for Free disk inodes monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "disk_inodes_time_aggregator" {
   description = "Monitor aggregator for Free disk inodes [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "min"
 }
 
 variable "disk_inodes_timeframe" {
   description = "Monitor timeframe for Free disk inodes [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -279,30 +279,30 @@ variable "disk_inodes_threshold_critical" {
 
 variable "memory_enabled" {
   description = "Flag to enable Free memory monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "memory_extra_tags" {
   description = "Extra tags for Free memory monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "memory_message" {
   description = "Mandatory message for Free memory monitor to avoid NBH alerting by default"
-  type        = "string"
+  type        = string
 }
 
 variable "memory_time_aggregator" {
   description = "Monitor aggregator for Free memory [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "max"
 }
 
 variable "memory_timeframe" {
   description = "Monitor timeframe for Free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
@@ -315,3 +315,4 @@ variable "memory_threshold_critical" {
   description = "Free disk space critical threshold"
   default     = 5
 }
+

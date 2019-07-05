@@ -1,7 +1,7 @@
 # Global Terraform
 variable "environment" {
   description = "Architecture Environment"
-  type        = "string"
+  type        = string
 }
 
 # Global DataDog
@@ -43,31 +43,31 @@ variable "filter_tags_custom_excluded" {
 
 variable "php_fpm_busy_enabled" {
   description = "Flag to enable PHP FPM busy worker monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "php_fpm_busy_extra_tags" {
   description = "Extra tags for PHP FPM busy worker monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "php_fpm_busy_message" {
   description = "Custom message for PHP FPM busy worker monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "php_fpm_busy_time_aggregator" {
   description = "Monitor aggregator for PHP FPM busy worker [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "avg"
 }
 
 variable "php_fpm_busy_timeframe" {
   description = "Monitor timeframe for PHP FPM busy worker [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_10m"
 }
 
@@ -83,30 +83,31 @@ variable "php_fpm_busy_threshold_critical" {
 
 variable "php_fpm_connect_enabled" {
   description = "Flag to enable PHP FPM status monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "php_fpm_connect_extra_tags" {
   description = "Extra tags for PHP FPM status monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "php_fpm_connect_message" {
   description = "Custom message for PHP FPM status monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "php_fpm_connect_threshold_warning" {
   description = "PHP FPM status monitor (warning threshold)"
-  type        = "string"
+  type        = string
   default     = 3
 }
 
 variable "php_fpm_connect_no_data_timeframe" {
   description = "PHP FPM status monitor no data timeframe"
-  type        = "string"
+  type        = string
   default     = 10
 }
+

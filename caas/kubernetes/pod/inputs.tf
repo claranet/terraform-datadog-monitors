@@ -42,61 +42,61 @@ variable "prefix_slug" {
 
 variable "pod_phase_status_enabled" {
   description = "Flag to enable Pod phase status monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "pod_phase_status_extra_tags" {
   description = "Extra tags for Pod phase status monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "pod_phase_status_message" {
   description = "Custom message for Pod phase status monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "pod_phase_status_time_aggregator" {
   description = "Monitor aggregator for Pod phase status [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "max"
 }
 
 variable "pod_phase_status_timeframe" {
   description = "Monitor timeframe for Pod phase status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_5m"
 }
 
 variable "error_enabled" {
   description = "Flag to enable Pod errors monitor"
-  type        = "string"
+  type        = string
   default     = "true"
 }
 
 variable "error_extra_tags" {
   description = "Extra tags for Pod errors monitor"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "error_message" {
   description = "Custom message for Pod errors monitor"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "error_time_aggregator" {
   description = "Monitor aggregator for Pod errors [available values: min, max or avg]"
-  type        = "string"
+  type        = string
   default     = "sum"
 }
 
 variable "error_timeframe" {
   description = "Monitor timeframe for Pod errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
-  type        = "string"
+  type        = string
   default     = "last_15m"
 }
 
@@ -109,3 +109,4 @@ variable "error_threshold_warning" {
   default     = 0
   description = "error warning threshold"
 }
+

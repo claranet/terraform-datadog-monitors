@@ -4,13 +4,17 @@ set -xueo pipefail
 source "$(dirname $0)/utils.sh"
 goto_root
 
+# download awk script to hack terraform-docs
+TERRAFORM_AWK="/tmp/terraform-docs.awk"
+curl -Lo ${TERRAFORM_AWK} "https://raw.githubusercontent.com/cloudposse/build-harness/master/bin/terraform-docs.awk"
+
 ## root README generator
 # only keep current README from begining to "Monitors summary" section (delete monitors list)
 sed -i '/### Monitors summary ###/q' README.md
 # add a newline after listing section
 echo >> README.md
 # loop over all ready monitors sets on the repo
-for path in $(find -mindepth 1 \( -path './incubator' -o -path './scripts' -o -path './testing'  -o -path '*/\.*' \) -prune -o -type d -print | sort -fdbi); do
+for path in $(find -mindepth 1 -type d ! -path '*/.*' ! -path './scripts*' -print | sort -fdbi); do
     # split path in directories
     directories=($(list_dirs $path))
     # loop over directories in path
@@ -32,7 +36,7 @@ done
 PATTERN_DOC="Related documentation"
 
 # loop over every monitors set readme
-for path in $(find "$(get_scope $1)" -path ./incubator -prune -o -name 'monitors-*.tf' -print | sort -fdbi); do
+for path in $(find "$(get_scope $1)" -name 'monitors-*.tf' -print | sort -fdbi); do
     cd $(dirname $path)
     EXIST=0
     if [ -f README.md ]; then
@@ -58,8 +62,8 @@ for path in $(find "$(get_scope $1)" -path ./incubator -prune -o -name 'monitors
 module "datadog-monitors-${module_dash}" {
   source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//${module_slash}?ref={revision}"
 
-  environment = "\${var.environment}"
-  message     = "\${module.datadog-message-alerting.alerting-message}"
+  environment = var.environment
+  message     = module.datadog-message-alerting.alerting-message
 EOF
 
     # if README already exist
@@ -91,8 +95,12 @@ EOF
     done
     IFS=$SAVEIFS
     echo >> README.md
+    # hack for terraform-docs with terraform 0.12 / HCL2 support
+    tmp_tf=$(mktemp -d)
+    awk -f ${TERRAFORM_AWK} ./*.tf > ${tmp_tf}/main.tf
     # auto generate terraform docs (inputs and outputs)
-    terraform-docs --with-aggregate-type-defaults md table ./ >> README.md
+    terraform-docs --with-aggregate-type-defaults md table ${tmp_tf}/ >> README.md
+    rm -fr ${tmp_tf}
     # if README does not exist
     if [[ $EXIST -eq 0 ]]; then
         # Simply add empty documentation section
