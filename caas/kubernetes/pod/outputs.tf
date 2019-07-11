@@ -8,3 +8,8 @@ output "error_id" {
   value       = datadog_monitor.error.*.id
 }
 
+output "terminated_id" {
+  description = "id for monitor terminated"
+  value       = datadog_monitor.terminated.*.id
+}
+

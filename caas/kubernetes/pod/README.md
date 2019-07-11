@@ -17,6 +17,7 @@ module "datadog-monitors-caas-kubernetes-pod" {
 Creates DataDog monitors with the following checks:
 
 - Kubernetes Pod phase status failed
+- Kubernetes Pod terminated anormaly
 - Kubernetes Pod waiting errors
 
 ## Inputs
@@ -43,6 +44,13 @@ Creates DataDog monitors with the following checks:
 | pod\_phase\_status\_time\_aggregator | Monitor aggregator for Pod phase status [available values: min, max or avg] | string | `"max"` | no |
 | pod\_phase\_status\_timeframe | Monitor timeframe for Pod phase status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
+| terminated\_enabled | Flag to enable Pod terminated monitor | string | `"true"` | no |
+| terminated\_extra\_tags | Extra tags for Pod terminated monitor | list(string) | `[]` | no |
+| terminated\_message | Custom message for Pod terminated monitor | string | `""` | no |
+| terminated\_threshold\_critical | terminated critical threshold | string | `"0.5"` | no |
+| terminated\_threshold\_warning | terminated warning threshold | string | `"0"` | no |
+| terminated\_time\_aggregator | Monitor aggregator for Pod terminated [available values: min, max or avg] | string | `"sum"` | no |
+| terminated\_timeframe | Monitor timeframe for Pod terminated [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_10m"` | no |
 
 ## Outputs
 
@@ -50,6 +58,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | error\_id | id for monitor error |
 | pod\_phase\_status\_id | id for monitor pod_phase_status |
+| terminated\_id | id for monitor terminated |
 
 ## Related documentation
 
