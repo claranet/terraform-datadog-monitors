@@ -26,6 +26,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform"], var.cpu_usage_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "postgresql_no_connection" {
@@ -51,6 +55,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform"], var.no_connection_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "postgresql_free_storage" {
@@ -81,6 +89,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform"], var.free_storage_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "postgresql_io_consumption" {
@@ -111,6 +123,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform"], var.io_consumption_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "postgresql_memory_usage" {
@@ -141,5 +157,9 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform"], var.memory_usage_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 

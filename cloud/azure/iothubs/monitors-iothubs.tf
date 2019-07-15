@@ -29,6 +29,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_jobs_rate_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "too_many_list_jobs_failed" {
@@ -62,6 +66,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_listjobs_rate_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "too_many_query_jobs_failed" {
@@ -95,6 +103,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_queryjobs_rate_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "status" {
@@ -120,6 +132,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.status_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "total_devices" {
@@ -145,6 +161,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.total_devices_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "too_many_c2d_methods_failed" {
@@ -178,6 +198,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_c2d_methods_rate_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
@@ -211,6 +235,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_c2d_twin_read_rate_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
@@ -244,6 +272,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_c2d_twin_update_rate_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
@@ -277,6 +309,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_d2c_twin_read_rate_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
@@ -310,6 +346,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_d2c_twin_update_rate_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
@@ -345,6 +385,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.dropped_d2c_telemetry_egress_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
@@ -380,6 +424,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.orphaned_d2c_telemetry_egress_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
@@ -415,6 +463,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.invalid_d2c_telemetry_egress_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
@@ -442,5 +494,9 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.too_many_d2c_telemetry_ingress_nosent_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 

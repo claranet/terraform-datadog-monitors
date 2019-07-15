@@ -21,6 +21,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:serverfarms", "team:claranet", "created-by:terraform"], var.status_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "cpu_percentage" {
@@ -51,6 +55,10 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:serverfarms", "team:claranet", "created-by:terraform"], var.cpu_percentage_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "memory_percentage" {
@@ -81,5 +89,9 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:serverfarms", "team:claranet", "created-by:terraform"], var.memory_percentage_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 

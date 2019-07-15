@@ -25,6 +25,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform"], var.cpu_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "load" {
@@ -54,6 +58,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:system-core", "resource:generic", "team:claranet", "created-by:terraform"], var.load_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "disk_space" {
@@ -83,6 +91,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"], var.disk_space_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "disk_space_forecast" {
@@ -126,6 +138,10 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"], var.disk_space_forecast_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "disk_inodes" {
@@ -155,6 +171,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"], var.disk_inodes_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "memory" {
@@ -186,5 +206,9 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform"], var.memory_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
