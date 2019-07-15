@@ -59,7 +59,7 @@ EOQ
 
 resource "datadog_monitor" "terminated" {
   count   = var.terminated_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Pod terminated anormaly"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Pod terminated abnormally"
   message = coalesce(var.terminated_message, var.message)
   type    = "query alert"
 
