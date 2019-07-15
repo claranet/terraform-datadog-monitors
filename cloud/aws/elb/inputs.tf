@@ -244,7 +244,7 @@ variable "elb_backend_latency_warning" {
 
 variable "elb_backend_latency_critical" {
   description = "latency critical threshold in seconds"
-  default     = 5
+  default     = 3
 }
 
 variable "artificial_requests_count" {

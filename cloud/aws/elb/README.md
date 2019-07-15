@@ -52,7 +52,7 @@ Creates DataDog monitors with the following checks:
 | elb\_backend\_5xx\_threshold\_critical | loadbalancer backend 5xx critical threshold in percentage | string | `"10"` | no |
 | elb\_backend\_5xx\_threshold\_warning | loadbalancer backend 5xx warning threshold in percentage | string | `"5"` | no |
 | elb\_backend\_5xx\_timeframe | Monitor timeframe for ELB backend 5xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
-| elb\_backend\_latency\_critical | latency critical threshold in seconds | string | `"5"` | no |
+| elb\_backend\_latency\_critical | latency critical threshold in seconds | string | `"3"` | no |
 | elb\_backend\_latency\_enabled | Flag to enable ELB backend latency monitor | string | `"true"` | no |
 | elb\_backend\_latency\_extra\_tags | Extra tags for ELB backend latency monitor | list(string) | `[]` | no |
 | elb\_backend\_latency\_message | Custom message for ELB backend latency monitor | string | `""` | no |

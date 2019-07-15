@@ -45,8 +45,8 @@ Creates DataDog monitors with the following checks:
 | latency\_enabled | Flag to enable API Gateway latency monitor | string | `"true"` | no |
 | latency\_extra\_tags | Extra tags for API Gateway latency monitor | list(string) | `[]` | no |
 | latency\_message | Custom message for API Gateway latency monitor | string | `""` | no |
-| latency\_threshold\_critical | Alerting threshold in milliseconds | string | `"800"` | no |
-| latency\_threshold\_warning | Warning threshold in milliseconds | string | `"400"` | no |
+| latency\_threshold\_critical | Alerting threshold in milliseconds | string | `"3000"` | no |
+| latency\_threshold\_warning | Warning threshold in milliseconds | string | `"1000"` | no |
 | latency\_time\_aggregator | Monitor aggregator for API Gateway latency [available values: min, max or avg] | string | `"min"` | no |
 | latency\_timeframe | Monitor timeframe for API latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | message | Message sent when a monitor is triggered | string | n/a | yes |
