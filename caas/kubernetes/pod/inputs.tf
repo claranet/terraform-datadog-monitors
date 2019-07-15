@@ -110,3 +110,43 @@ variable "error_threshold_warning" {
   description = "error warning threshold"
 }
 
+variable "terminated_enabled" {
+  description = "Flag to enable Pod terminated monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "terminated_extra_tags" {
+  description = "Extra tags for Pod terminated monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "terminated_message" {
+  description = "Custom message for Pod terminated monitor"
+  type        = string
+  default     = ""
+}
+
+variable "terminated_time_aggregator" {
+  description = "Monitor aggregator for Pod terminated [available values: min, max or avg]"
+  type        = string
+  default     = "sum"
+}
+
+variable "terminated_timeframe" {
+  description = "Monitor timeframe for Pod terminated [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_10m"
+}
+
+variable "terminated_threshold_critical" {
+  default     = 0.5
+  description = "terminated critical threshold"
+}
+
+variable "terminated_threshold_warning" {
+  default     = 0
+  description = "terminated warning threshold"
+}
+

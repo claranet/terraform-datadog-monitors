@@ -57,3 +57,33 @@ EOQ
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-pod", "team:claranet", "created-by:terraform"], var.error_extra_tags)
 }
 
+resource "datadog_monitor" "terminated" {
+  count   = var.terminated_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Pod terminated abnormally"
+  message = coalesce(var.terminated_message, var.message)
+  type    = "query alert"
+
+  query = <<EOQ
+    ${var.terminated_time_aggregator}(${var.terminated_timeframe}):
+      sum:kubernetes_state.container.status_report.count.terminated${module.filter-tags-nocontainercreating.query_alert} by {namespace,pod,reason}
+    > ${var.terminated_threshold_critical}
+EOQ
+
+  thresholds = {
+    critical = var.terminated_threshold_critical
+    warning  = var.terminated_threshold_warning
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+
+  tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-pod", "team:claranet", "created-by:terraform"], var.terminated_extra_tags)
+}
+
