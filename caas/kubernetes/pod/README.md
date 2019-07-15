@@ -17,7 +17,7 @@ module "datadog-monitors-caas-kubernetes-pod" {
 Creates DataDog monitors with the following checks:
 
 - Kubernetes Pod phase status failed
-- Kubernetes Pod terminated anormaly
+- Kubernetes Pod terminated abnormally
 - Kubernetes Pod waiting errors
 
 ## Inputs
