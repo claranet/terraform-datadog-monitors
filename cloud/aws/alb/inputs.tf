@@ -102,13 +102,13 @@ variable "latency_timeframe" {
 }
 
 variable "latency_threshold_critical" {
-  default     = 1000
-  description = "latency critical threshold in milliseconds"
+  default     = 3
+  description = "latency critical threshold in seconds"
 }
 
 variable "latency_threshold_warning" {
-  default     = 500
-  description = "latency warning threshold in milliseconds"
+  default     = 1
+  description = "latency warning threshold in seconds"
 }
 
 variable "httpcode_alb_4xx_enabled" {

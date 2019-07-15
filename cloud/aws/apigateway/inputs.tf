@@ -62,12 +62,12 @@ variable "latency_timeframe" {
 }
 
 variable "latency_threshold_critical" {
-  default     = 800
+  default     = 3000
   description = "Alerting threshold in milliseconds"
 }
 
 variable "latency_threshold_warning" {
-  default     = 400
+  default     = 1000
   description = "Warning threshold in milliseconds"
 }
 
