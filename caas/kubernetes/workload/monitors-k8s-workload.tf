@@ -23,6 +23,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.job_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "cronjob" {
@@ -50,6 +54,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.cronjob_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "replica_available" {
@@ -80,6 +88,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.replica_available_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "replica_ready" {
@@ -110,6 +122,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.replica_ready_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "replica_current" {
@@ -140,5 +156,9 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.replica_current_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 

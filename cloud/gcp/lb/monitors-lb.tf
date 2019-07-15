@@ -30,6 +30,10 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform"], var.error_rate_4xx_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 #
@@ -64,6 +68,10 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform"], var.error_rate_5xx_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 #
@@ -97,6 +105,10 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform"], var.backend_latency_service_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 #
@@ -130,6 +142,10 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform"], var.backend_latency_bucket_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 #
@@ -163,5 +179,9 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform"], var.request_count_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 

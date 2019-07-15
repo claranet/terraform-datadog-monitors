@@ -23,6 +23,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.disk_pressure_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "disk_out" {
@@ -50,6 +54,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.disk_out_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "memory_pressure" {
@@ -77,6 +85,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.memory_pressure_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "ready" {
@@ -104,6 +116,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.ready_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "kubelet_ping" {
@@ -131,6 +147,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.kubelet_ping_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "kubelet_syncloop" {
@@ -158,6 +178,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.kubelet_syncloop_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "unregister_net_device" {
@@ -179,6 +203,10 @@ EOQ
   locked            = false
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.unregister_net_device_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "node_unschedulable" {
@@ -208,6 +236,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.node_unschedulable_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "volume_space" {
@@ -239,6 +271,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.volume_space_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "volume_inodes" {
@@ -270,5 +306,9 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.volume_inodes_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
