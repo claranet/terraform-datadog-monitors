@@ -27,6 +27,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:prometheus", "resource:nginx-ingress-controller", "team:claranet", "created-by:terraform"], var.ingress_5xx_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "nginx_ingress_too_many_4xx" {
@@ -58,5 +62,9 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:prometheus", "resource:nginx-ingress-controller", "team:claranet", "created-by:terraform"], var.ingress_4xx_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
