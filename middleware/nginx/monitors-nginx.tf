@@ -24,6 +24,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:middleware", "provider:nginx", "resource:nginx", "team:claranet", "created-by:terraform"], var.nginx_connect_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "datadog_nginx_dropped_connections" {
@@ -52,5 +56,9 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:middleware", "provider:nginx", "resource:nginx", "team:claranet", "created-by:terraform"], var.nginx_dropped_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 

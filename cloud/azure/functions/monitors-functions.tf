@@ -25,6 +25,10 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure_functions", "team:claranet", "created-by:terraform"], var.http_5xx_errors_rate_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "function_high_connections_count" {
@@ -53,6 +57,10 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure_functions", "team:claranet", "created-by:terraform"], var.high_connections_count_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "function_high_threads_count" {
@@ -81,5 +89,9 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure_functions", "team:claranet", "created-by:terraform"], var.high_threads_count_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 

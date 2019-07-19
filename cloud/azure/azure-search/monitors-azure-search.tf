@@ -25,6 +25,10 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure-search", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 # Monitoring Azure Search throttled queries
@@ -54,5 +58,9 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure-search", "team:claranet", "created-by:terraform"], var.throttled_queries_rate_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 

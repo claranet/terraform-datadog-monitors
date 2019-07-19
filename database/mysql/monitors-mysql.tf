@@ -24,6 +24,10 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_availability_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "mysql_connection" {
@@ -53,6 +57,10 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_connection_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "mysql_aborted" {
@@ -82,6 +90,10 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_aborted_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "mysql_slow" {
@@ -111,6 +123,10 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_slow_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "mysql_pool_efficiency" {
@@ -140,6 +156,10 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_pool_efficiency_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "mysql_pool_utilization" {
@@ -170,6 +190,10 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_pool_utilization_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "mysql_threads_anomaly" {
@@ -212,6 +236,10 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_threads_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
 resource "datadog_monitor" "mysql_questions_anomaly" {
@@ -254,5 +282,9 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_questions_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
 
