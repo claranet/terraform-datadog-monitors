@@ -12,24 +12,24 @@ EOQ
     critical = 1
   }
 
-  silenced = var.status_silenced
-  type = "metric alert"
-  notify_no_data = true
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  silenced            = var.status_silenced
+  type                = "metric alert"
+  notify_no_data      = true
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.status_extra_tags)
 }
 
 resource "datadog_monitor" "blobservices_availability" {
-  count = var.availability_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Blob services is down"
+  count   = var.availability_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Blob services is down"
   message = coalesce(var.availability_message, var.message)
 
   query = <<EOQ
@@ -74,28 +74,28 @@ EOQ
 
   thresholds = {
     critical = var.availability_threshold_critical
-    warning = var.availability_threshold_warning
+    warning  = var.availability_threshold_warning
   }
 
   silenced = var.availability_silenced
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.availability_extra_tags)
 }
 
 resource "datadog_monitor" "queueservices_availability" {
-  count = var.availability_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Queue service is down"
+  count   = var.availability_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Queue service is down"
   message = coalesce(var.availability_message, var.message)
 
 query = <<EOQ
@@ -140,28 +140,28 @@ EOQ
 
   thresholds = {
     critical = var.availability_threshold_critical
-    warning = var.availability_threshold_warning
+    warning  = var.availability_threshold_warning
   }
 
   silenced = var.availability_silenced
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.availability_extra_tags)
 }
 
 resource "datadog_monitor" "blobservices_requests_error" {
-  count = var.successful_requests_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Blob service too few successful requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.successful_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Blob service too few successful requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.successful_requests_message, var.message)
 
   query = <<EOQ
@@ -208,28 +208,28 @@ EOQ
 
   thresholds = {
     critical = var.successful_storage_requests_threshold_critical
-    warning = var.successful_storage_requests_threshold_warning
+    warning  = var.successful_storage_requests_threshold_warning
   }
 
   silenced = var.successful_requests_silenced
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.successful_requests_extra_tags)
 }
 
 resource "datadog_monitor" "queueservices_requests_error" {
-  count = var.successful_requests_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Queue service too few successful requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.successful_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Queue service too few successful requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.successful_requests_message, var.message)
 
 query = <<EOQ
@@ -276,28 +276,28 @@ EOQ
 
   thresholds = {
     critical = var.successful_storage_requests_threshold_critical
-    warning = var.successful_storage_requests_threshold_warning
+    warning  = var.successful_storage_requests_threshold_warning
   }
 
   silenced = var.successful_requests_silenced
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.successful_requests_extra_tags)
 }
 
 resource "datadog_monitor" "blobservices_latency" {
-  count = var.latency_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Blob service too high end to end latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
+  count   = var.latency_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Blob service too high end to end latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = coalesce(var.latency_message, var.message)
 
   query = <<EOQ
@@ -342,21 +342,21 @@ EOQ
 
   thresholds = {
     critical = var.latency_threshold_critical
-    warning = var.latency_threshold_warning
+    warning  = var.latency_threshold_warning
   }
 
   silenced = var.latency_silenced
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   lifecycle {
     ignore_changes = ["silenced"]
@@ -366,8 +366,8 @@ EOQ
 }
 
 resource "datadog_monitor" "queueservices_latency" {
-  count = var.latency_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Queue service too high end to end latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
+  count   = var.latency_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Queue service too high end to end latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = coalesce(var.latency_message, var.message)
 
 query = <<EOQ
@@ -416,21 +416,21 @@ EOQ
 
   thresholds = {
     critical = var.latency_threshold_critical
-    warning = var.latency_threshold_warning
+    warning  = var.latency_threshold_warning
   }
 
   silenced = var.latency_silenced
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   lifecycle {
     ignore_changes = ["silenced"]
@@ -440,8 +440,8 @@ EOQ
 }
 
 resource "datadog_monitor" "blob_timeout_error_requests" {
-  count = var.timeout_error_requests_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Blob Storage too many timeout errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.timeout_error_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Blob Storage too many timeout errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.timeout_error_requests_message, var.message)
 
   query = <<EOQ
@@ -486,28 +486,28 @@ EOQ
 
   thresholds = {
     critical = var.timeout_error_requests_threshold_critical
-    warning = var.timeout_error_requests_threshold_warning
+    warning  = var.timeout_error_requests_threshold_warning
   }
 
   silenced = var.timeout_error_requests_silenced
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.timeout_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "queue_timeout_error_requests" {
-  count = var.timeout_error_requests_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Queue Storage too many timeout errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.timeout_error_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Queue Storage too many timeout errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.timeout_error_requests_message, var.message)
 
 query = <<EOQ
@@ -552,28 +552,28 @@ EOQ
 
   thresholds = {
     critical = var.timeout_error_requests_threshold_critical
-    warning = var.timeout_error_requests_threshold_warning
+    warning  = var.timeout_error_requests_threshold_warning
   }
 
   silenced = var.timeout_error_requests_silenced
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.timeout_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "blob_network_error_requests" {
-  count = var.network_error_requests_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Blob Storage too many network errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.network_error_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Blob Storage too many network errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.network_error_requests_message, var.message)
 
   query = <<EOQ
@@ -618,28 +618,28 @@ EOQ
 
   thresholds = {
     critical = var.network_error_requests_threshold_critical
-    warning = var.network_error_requests_threshold_warning
+    warning  = var.network_error_requests_threshold_warning
   }
 
   silenced = var.network_error_requests_silenced
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.network_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "queue_network_error_requests" {
-  count = var.network_error_requests_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Queue Storage too many network errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.network_error_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Queue Storage too many network errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.network_error_requests_message, var.message)
 
 query = <<EOQ
@@ -688,28 +688,28 @@ EOQ
 
   thresholds = {
     critical = var.network_error_requests_threshold_critical
-    warning = var.network_error_requests_threshold_warning
+    warning  = var.network_error_requests_threshold_warning
   }
 
   silenced = var.network_error_requests_silenced
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.network_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "blob_throttling_error_requests" {
-  count = var.throttling_error_requests_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Blob Storage too many throttling errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.throttling_error_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Blob Storage too many throttling errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.throttling_error_requests_message, var.message)
 
   query = <<EOQ
@@ -758,28 +758,28 @@ EOQ
 
   thresholds = {
     critical = var.throttling_error_requests_threshold_critical
-    warning = var.throttling_error_requests_threshold_warning
+    warning  = var.throttling_error_requests_threshold_warning
   }
 
   silenced = var.throttling_error_requests_silenced
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.throttling_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "queue_throttling_error_requests" {
-  count = var.throttling_error_requests_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too many throttling errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.throttling_error_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage too many throttling errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.throttling_error_requests_message, var.message)
 
 query = <<EOQ
@@ -824,28 +824,28 @@ EOQ
 
   thresholds = {
     critical = var.throttling_error_requests_threshold_critical
-    warning = var.throttling_error_requests_threshold_warning
+    warning  = var.throttling_error_requests_threshold_warning
   }
 
   silenced = var.throttling_error_requests_silenced
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.throttling_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "blob_server_other_error_requests" {
-  count = var.server_other_error_requests_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Blob Storage too many server_other errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.server_other_error_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Blob Storage too many server_other errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.server_other_error_requests_message, var.message)
 
   query = <<EOQ
@@ -890,28 +890,28 @@ EOQ
 
   thresholds = {
     critical = var.server_other_error_requests_threshold_critical
-    warning = var.server_other_error_requests_threshold_warning
+    warning  = var.server_other_error_requests_threshold_warning
   }
 
   silenced = var.server_other_error_requests_silenced
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.server_other_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "queue_server_other_error_requests" {
-  count = var.server_other_error_requests_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Queue Storage too many server_other errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.server_other_error_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Queue Storage too many server_other errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.server_other_error_requests_message, var.message)
 
 query = <<EOQ
@@ -960,28 +960,28 @@ EOQ
 
   thresholds = {
     critical = var.server_other_error_requests_threshold_critical
-    warning = var.server_other_error_requests_threshold_warning
+    warning  = var.server_other_error_requests_threshold_warning
   }
 
   silenced = var.server_other_error_requests_silenced
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.server_other_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "blob_client_other_error_requests" {
-  count = var.client_other_error_requests_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Blob Storage too many client_other errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.client_other_error_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Blob Storage too many client_other errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.client_other_error_requests_message, var.message)
 
   query = <<EOQ
@@ -1026,7 +1026,7 @@ EOQ
 
   thresholds = {
     critical = var.client_other_error_requests_threshold_critical
-    warning = var.client_other_error_requests_threshold_warning
+    warning  = var.client_other_error_requests_threshold_warning
   }
 
   silenced = var.client_other_error_requests_silenced
@@ -1035,23 +1035,23 @@ EOQ
     ignore_changes = ["silenced"]
   }
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.client_other_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "queue_client_other_error_requests" {
-  count = var.client_other_error_requests_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Queue Storage too many client_other errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.client_other_error_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Queue Storage too many client_other errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.client_other_error_requests_message, var.message)
 
 query = <<EOQ
@@ -1100,28 +1100,28 @@ EOQ
 
   thresholds = {
     critical = var.client_other_error_requests_threshold_critical
-    warning = var.client_other_error_requests_threshold_warning
+    warning  = var.client_other_error_requests_threshold_warning
   }
 
   silenced = var.client_other_error_requests_silenced
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.client_other_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "blob_authorization_error_requests" {
-  count = var.authorization_error_requests_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Blob Storage too many authorization errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.authorization_error_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Blob Storage too many authorization errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.authorization_error_requests_message, var.message)
 
   query = <<EOQ
@@ -1166,21 +1166,21 @@ EOQ
 
   thresholds = {
     critical = var.authorization_error_requests_threshold_critical
-    warning = var.authorization_error_requests_threshold_warning
+    warning  = var.authorization_error_requests_threshold_warning
   }
 
   silenced = var.authorization_error_requests_silenced
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   lifecycle {
     ignore_changes = ["silenced"]
@@ -1190,8 +1190,8 @@ EOQ
 }
 
 resource "datadog_monitor" "queue_authorization_error_requests" {
-  count = var.authorization_error_requests_enabled == "true" ? 1 : 0
-  name = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Queue Storage too many authorization errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  count   = var.authorization_error_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Queue Storage too many authorization errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.authorization_error_requests_message, var.message)
 
 query = <<EOQ
@@ -1236,21 +1236,21 @@ EOQ
 
   thresholds = {
     critical = var.authorization_error_requests_threshold_critical
-    warning = var.authorization_error_requests_threshold_warning
+    warning  = var.authorization_error_requests_threshold_warning
   }
 
   silenced = var.authorization_error_requests_silenced
 
-  type = "metric alert"
-  notify_no_data = false
-  notify_audit = false
-  timeout_h = 0
-  include_tags = true
-  locked = false
+  type                = "metric alert"
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
   require_full_window = false
-  new_host_delay = var.new_host_delay
-  evaluation_delay = var.evaluation_delay
-  renotify_interval = 0
+  new_host_delay      = var.new_host_delay
+  evaluation_delay    = var.evaluation_delay
+  renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.authorization_error_requests_extra_tags)
 }
