@@ -16,25 +16,43 @@ module "datadog-monitors-cloud-azure-storage" {
 
 Creates DataDog monitors with the following checks:
 
-- Azure Storage is down
-- Azure Storage Table service is down
-- Azure Storage Table service too few successful requests
-- Azure Storage Table service too high end to end latency
-- Azure Storage too many throttling errors
-- Azure Table Storage too many authorization errors
-- Azure Table Storage too many client_other errors
-- Azure Table Storage too many network errors
-- Azure Table Storage too many server_other errors
-- Azure Table Storage too many timeout errors
 - Azure Blob Storage too many authorization errors
 - Azure Blob Storage too many client_other errors
 - Azure Blob Storage too many network errors
 - Azure Blob Storage too many server_other errors
 - Azure Blob Storage too many throttling errors
 - Azure Blob Storage too many timeout errors
+- Azure File Storage too many authorization errors
+- Azure File Storage too many client_other errors
+- Azure File Storage too many network errors
+- Azure File Storage too many server_other errors
+- Azure File Storage too many timeout errors
+- Azure Queue Storage too many authorization errors
+- Azure Queue Storage too many client_other errors
+- Azure Queue Storage too many network errors
+- Azure Queue Storage too many server_other errors
+- Azure Queue Storage too many timeout errors
 - Azure Storage Blob service too few successful requests
 - Azure Storage Blob service too high end to end latency
 - Azure Storage Blob services is down
+- Azure Storage File service too few successful requests
+- Azure Storage File service too high end to end latency
+- Azure Storage File services is down
+- Azure Storage is down
+- Azure Storage Queue service is down
+- Azure Storage Queue service too few successful requests
+- Azure Storage Queue service too high end to end latency
+- Azure Storage Table service is down
+- Azure Storage Table service too few successful requests
+- Azure Storage Table service too high end to end latency
+- Azure Storage too many throttling errors
+- Azure Storage too many throttling errors
+- Azure Storage too many throttling errors
+- Azure Table Storage too many authorization errors
+- Azure Table Storage too many client_other errors
+- Azure Table Storage too many network errors
+- Azure Table Storage too many server_other errors
+- Azure Table Storage too many timeout errors
 
 ## Inputs
 
