@@ -6,7 +6,7 @@ module "filter-tags" {
   filter_tags_use_defaults    = var.filter_tags_use_defaults
   filter_tags_custom          = var.filter_tags_custom
   filter_tags_custom_excluded = var.filter_tags_custom_excluded
-  extra_tags                  = ["transaction_type:all"]
+  extra_tags                  = []
 }
 
 module "filter-tags-success" {
@@ -17,7 +17,7 @@ module "filter-tags-success" {
   filter_tags_use_defaults    = var.filter_tags_use_defaults
   filter_tags_custom          = var.filter_tags_custom
   filter_tags_custom_excluded = var.filter_tags_custom_excluded
-  extra_tags                  = ["transaction_type:all,responsetype:success"]
+  extra_tags                  = ["responsetype:success"]
 }
 
 module "filter-tags-timeout-error" {
@@ -28,7 +28,7 @@ module "filter-tags-timeout-error" {
   filter_tags_use_defaults    = var.filter_tags_use_defaults
   filter_tags_custom          = var.filter_tags_custom
   filter_tags_custom_excluded = var.filter_tags_custom_excluded
-  extra_tags                  = ["transaction_type:all,responsetype:ServerTimeoutError"]
+  extra_tags                  = ["responsetype:servertimeouterror"]
 }
 
 module "filter-tags-network-error" {
@@ -39,7 +39,7 @@ module "filter-tags-network-error" {
   filter_tags_use_defaults    = var.filter_tags_use_defaults
   filter_tags_custom          = var.filter_tags_custom
   filter_tags_custom_excluded = var.filter_tags_custom_excluded
-  extra_tags                  = ["transaction_type:all,responsetype:NetworkError"]
+  extra_tags                  = ["responsetype:networkerror"]
 }
 
 module "filter-tags-throttling-error" {
@@ -50,7 +50,7 @@ module "filter-tags-throttling-error" {
   filter_tags_use_defaults    = var.filter_tags_use_defaults
   filter_tags_custom          = var.filter_tags_custom
   filter_tags_custom_excluded = var.filter_tags_custom_excluded
-  extra_tags                  = ["transaction_type:all,responsetype:ServerBusyError"]
+  extra_tags                  = ["responsetype:serverbusyerror"]
 }
 
 module "filter-tags-server-other-error" {
@@ -61,7 +61,7 @@ module "filter-tags-server-other-error" {
   filter_tags_use_defaults    = var.filter_tags_use_defaults
   filter_tags_custom          = var.filter_tags_custom
   filter_tags_custom_excluded = var.filter_tags_custom_excluded
-  extra_tags                  = ["transaction_type:all,responsetype:ServerOtherError"]
+  extra_tags                  = ["responsetype:serverothererror"]
 }
 
 module "filter-tags-client-other-error" {
@@ -72,7 +72,7 @@ module "filter-tags-client-other-error" {
   filter_tags_use_defaults    = var.filter_tags_use_defaults
   filter_tags_custom          = var.filter_tags_custom
   filter_tags_custom_excluded = var.filter_tags_custom_excluded
-  extra_tags                  = ["transaction_type:all,responsetype:ClientOtherError"]
+  extra_tags                  = ["responsetype:clientothererror"]
 }
 
 module "filter-tags-authorization-error" {
@@ -83,6 +83,5 @@ module "filter-tags-authorization-error" {
   filter_tags_use_defaults    = var.filter_tags_use_defaults
   filter_tags_custom          = var.filter_tags_custom
   filter_tags_custom_excluded = var.filter_tags_custom_excluded
-  extra_tags                  = ["transaction_type:all,responsetype:AuthorizationError"]
+  extra_tags                  = ["responsetype:authorizationerror"]
 }
-
