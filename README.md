@@ -10,7 +10,14 @@ To contribute you will need to [report an issue](https://confluence.fr.clara.net
 
 If you would like to resolve an issue or implement new monitors you must follow our [best practices](https://confluence.fr.clara.net/display/DAT/Templates+monitors).
 
-After any change you should run `./scripts/auto_update.sh ./` command to make sure all is up to date else the CI pipeline will fail on the branch.
+After any change on this repo, you need to run the `./scripts/auto_update.sh ./` command to make sure all is up to date otherwise the CI pipeline will fail:
+- the parameter will limit the scripts execution on a specific path on the repository
+- on linux system it is possible to run the script directly while `terraform` and `terraform-docs` commands are available in your PATH
+- else you can use [the same docker image as the CI](https://hub.docker.com/r/claranet/datadog-terraform) with docker which is available on every platforms
+
+```
+ docker run --rm -v "$PWD:/work" claranet/datadog-terraform /work/scripts/auto_update.sh ./
+```
 
 ## Important notes ##
 
