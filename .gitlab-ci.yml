@@ -5,18 +5,10 @@ stages:
   - build
   - deploy
 
-before_script:
-  - apk update
-  - apk upgrade
-  - apk add --no-cache curl
-
 auto_update:
-  image: hashicorp/terraform:0.12.3
+  image: qmanfroi/datadog-terraform:latest
   stage: test
   script:
-    - apk add --no-cache bash git grep coreutils
-    - curl -Lo /usr/local/bin/terraform-docs "https://github.com/$(curl -s https://github.com/segmentio/terraform-docs/releases | grep terraform-docs-v0.6.0-linux-amd | head -n 1 | cut -d '"' -f 2)"
-    - chmod +x /usr/local/bin/terraform-docs
     - ./scripts/auto_update.sh ./
     - git status
     - git diff --exit-code
