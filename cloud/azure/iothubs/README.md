@@ -128,6 +128,7 @@ Creates DataDog monitors with the following checks:
 | too\_many\_d2c\_telemetry\_ingress\_nosent\_enabled | Flag to enable IoT Hub unsent d2c telemetry monitor | string | `"true"` | no |
 | too\_many\_d2c\_telemetry\_ingress\_nosent\_extra\_tags | Extra tags for IoT Hub unsent d2c telemetry monitor | list(string) | `[]` | no |
 | too\_many\_d2c\_telemetry\_ingress\_nosent\_message | Custom message for IoT Hub unsent d2c telemetry monitor | string | `""` | no |
+| too\_many\_d2c\_telemetry\_ingress\_nosent\_threshold\_critical | D2C Telemetry ingress not sent limit (critical threshold) | string | `"0.3"` | no |
 | too\_many\_d2c\_telemetry\_ingress\_nosent\_timeframe | Monitor timeframe for IoT Hub unsent d2c telemetry [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | total\_devices\_enabled | Flag to enable IoT Hub total devices monitor | string | `"true"` | no |
 | total\_devices\_extra\_tags | Extra tags for IoT Hub total devices monitor | list(string) | `[]` | no |
