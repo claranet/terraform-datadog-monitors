@@ -475,12 +475,13 @@ resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
   message = coalesce(var.too_many_d2c_telemetry_ingress_nosent_message, var.message)
   type    = "query alert"
 
+  #For this monitor, the avg is needed to smooth the -1 and +1 that we meet regularly. With just a tiny diff like -1 / + 1, if we put 0.3 it should not ring anymore. But there is a bigger difference (exemple 20) The average will be strongly raised and an alert will be triggered.
   query = <<EOQ
-    sum(${var.too_many_d2c_telemetry_ingress_nosent_timeframe}):
+    avg(${var.too_many_d2c_telemetry_ingress_nosent_timeframe}):
     default(
-      avg:azure.devices_iothubs.d2c.telemetry.ingress.all_protocol${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() -
-      avg:azure.devices_iothubs.d2c.telemetry.ingress.success${module.filter-tags.query_alert} by {resource_group,region,name}.as_count()
-    , 0) > 0
+      avg:azure.devices_iothubs.d2c.telemetry.ingress.all_protocol${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate() -
+      avg:azure.devices_iothubs.d2c.telemetry.ingress.success${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate()
+    , 0) > ${var.too_many_d2c_telemetry_ingress_nosent_threshold_critical}
 EOQ
 
   evaluation_delay    = var.evaluation_delay
@@ -499,4 +500,3 @@ EOQ
     ignore_changes = ["silenced"]
   }
 }
-
