@@ -20,6 +20,8 @@ auto_update:
 deploy_terraform:
   stage: deploy
   script:
+    - apk update
+    - apk add --no-cache curl
     - "curl -X POST -F token=${TEMPLATES_GITLAB_TOKEN} -F ref=${TEMPLATES_GITLAB_BRANCH:-master} -F \"variables[SCENARIO]=test\" ${CI_API_V4_URL}/projects/${TEMPLATES_GITLAB_ID}/trigger/pipeline"
   only:
     - master
@@ -31,6 +33,8 @@ deploy_terraform:
 build_template:
   stage: build
   script:
+    - apk update
+    - apk add --no-cache curl
     - "curl -X POST -F token=${TEMPLATES_GITLAB_TOKEN} -F ref=${TEMPLATES_GITLAB_BRANCH:-master} -F \"variables[SCENARIO]=build\" -F \"variables[TAG]=$CI_COMMIT_TAG\" ${CI_API_V4_URL}/projects/${TEMPLATES_GITLAB_ID}/trigger/pipeline"
   only:
     - tags
