@@ -31,153 +31,6 @@ EOQ
   }
 }
 
-resource "datadog_monitor" "blobservices_availability" {
-  count   = var.availability_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Blob services is down"
-  message = coalesce(var.availability_message, var.message)
-
-  query = <<EOQ
-    ${var.availability_time_aggregator}(${var.availability_timeframe}): (default(
-      avg:azure.storage_storageaccounts_blobservices.availability${module.filter-tags.query_alert} by {name},
-    100)) < ${var.availability_threshold_critical}  
-EOQ
-
-
-  thresholds = {
-    critical = var.availability_threshold_critical
-    warning  = var.availability_threshold_warning
-  }
-
-  silenced = var.availability_silenced
-
-  type                = "metric alert"
-  notify_no_data      = false
-  notify_audit        = false
-  timeout_h           = 0
-  include_tags        = true
-  locked              = false
-  require_full_window = false
-  new_host_delay      = var.new_host_delay
-  evaluation_delay    = var.evaluation_delay
-  renotify_interval   = 0
-
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.availability_extra_tags)
-
-  lifecycle {
-    ignore_changes = ["silenced"]
-  }
-}
-
-resource "datadog_monitor" "fileservices_availability" {
-  count   = var.availability_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage File services is down"
-  message = coalesce(var.availability_message, var.message)
-
-query = <<EOQ
-    ${var.availability_time_aggregator}(${var.availability_timeframe}): (default(
-      avg:azure.storage_storageaccounts_fileservices.availability${module.filter-tags.query_alert} by {name},
-    100)) < ${var.availability_threshold_critical}
-EOQ
-
-
-  thresholds = {
-    critical = var.availability_threshold_critical
-    warning  = var.availability_threshold_warning
-  }
-
-  silenced = var.availability_silenced
-
-  type                = "metric alert"
-  notify_no_data      = false
-  notify_audit        = false
-  timeout_h           = 0
-  include_tags        = true
-  locked              = false
-  require_full_window = false
-  new_host_delay      = var.new_host_delay
-  evaluation_delay    = var.evaluation_delay
-  renotify_interval   = 0
-
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.availability_extra_tags)
-
-  lifecycle {
-    ignore_changes = ["silenced"]
-  }
-}
-
-resource "datadog_monitor" "queueservices_availability" {
-  count   = var.availability_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Queue service is down"
-  message = coalesce(var.availability_message, var.message)
-
-query = <<EOQ
-    ${var.availability_time_aggregator}(${var.availability_timeframe}): (default(
-      avg:azure.storage_storageaccounts_queueservices.availability${module.filter-tags.query_alert} by {name},
-    100)) < ${var.availability_threshold_critical}
-EOQ
-
-
-  thresholds = {
-    critical = var.availability_threshold_critical
-    warning  = var.availability_threshold_warning
-  }
-
-  silenced = var.availability_silenced
-
-  type                = "metric alert"
-  notify_no_data      = false
-  notify_audit        = false
-  timeout_h           = 0
-  include_tags        = true
-  locked              = false
-  require_full_window = false
-  new_host_delay      = var.new_host_delay
-  evaluation_delay    = var.evaluation_delay
-  renotify_interval   = 0
-
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.availability_extra_tags)
-
-  lifecycle {
-    ignore_changes = ["silenced"]
-  }
-}
-
-resource "datadog_monitor" "table_availability" {
-  count   = var.availability_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage Table service is down"
-  message = coalesce(var.availability_message, var.message)
-
-  query = <<EOQ
-    ${var.availability_time_aggregator}(${var.availability_timeframe}): (default(
-      avg:azure.storage_storageaccounts_tableservices.availability${module.filter-tags.query_alert} by {name},
-    100)) < ${var.availability_threshold_critical}
-EOQ
-
-
-  thresholds = {
-    critical = var.availability_threshold_critical
-    warning  = var.availability_threshold_warning
-  }
-
-  silenced = var.availability_silenced
-
-  type                = "metric alert"
-  notify_no_data      = false
-  notify_audit        = false
-  timeout_h           = 0
-  include_tags        = true
-  locked              = false
-  require_full_window = false
-  new_host_delay      = var.new_host_delay
-  evaluation_delay    = var.evaluation_delay
-  renotify_interval   = 0
-
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.availability_extra_tags)
-
-  lifecycle {
-    ignore_changes = ["silenced"]
-  }
-}
 
 resource "datadog_monitor" "blobservices_requests_error" {
   count   = var.successful_requests_enabled == "true" ? 1 : 0
@@ -338,7 +191,7 @@ resource "datadog_monitor" "blobservices_latency" {
 
   query = <<EOQ
     ${var.latency_time_aggregator}(${var.latency_timeframe}): (default(
-      avg:azure.storage_storageaccounts_blobservices.success_e2_elatency${module.filter-tags.query_alert} by {name},
+      avg:azure.storage_storageaccounts_blobservices.success_e2_e_latency${module.filter-tags.query_alert} by {name},
     0)) > ${var.latency_threshold_critical}
 EOQ
 
@@ -412,7 +265,7 @@ resource "datadog_monitor" "queueservices_latency" {
 
 query = <<EOQ
     ${var.latency_time_aggregator}(${var.latency_timeframe}): (default(
-      avg:azure.storage_storageaccounts_queueservices.success_e2_elatency${module.filter-tags.query_alert} by {name},
+      avg:azure.storage_storageaccounts_queueservices.success_e2_e_latency${module.filter-tags.query_alert} by {name},
     0)) > ${var.latency_threshold_critical}
 EOQ
 
