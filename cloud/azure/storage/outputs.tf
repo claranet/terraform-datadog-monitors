@@ -3,26 +3,6 @@ output "storage_status_id" {
   value       = datadog_monitor.storage_status.*.id
 }
 
-output "blobservices_availability_id" {
-  description = "id for monitor blobservices_availability"
-  value       = datadog_monitor.blobservices_availability.*.id
-}
-
-output "fileservices_availability_id" {
-  description = "id for monitor fileservices_availability"
-  value       = datadog_monitor.fileservices_availability.*.id
-}
-
-output "queueservices_availability_id" {
-  description = "id for monitor queueservices_availability"
-  value       = datadog_monitor.queueservices_availability.*.id
-}
-
-output "table_availability_id" {
-  description = "id for monitor table_availability"
-  value       = datadog_monitor.table_availability.*.id
-}
-
 output "blobservices_requests_error_id" {
   description = "id for monitor blobservices_requests_error"
   value       = datadog_monitor.blobservices_requests_error.*.id
@@ -182,4 +162,3 @@ output "table_authorization_error_requests_id" {
   description = "id for monitor table_authorization_error_requests"
   value       = datadog_monitor.table_authorization_error_requests.*.id
 }
-
