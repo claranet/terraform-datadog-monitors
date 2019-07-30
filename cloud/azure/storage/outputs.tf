@@ -162,3 +162,4 @@ output "table_authorization_error_requests_id" {
   description = "id for monitor table_authorization_error_requests"
   value       = datadog_monitor.table_authorization_error_requests.*.id
 }
+

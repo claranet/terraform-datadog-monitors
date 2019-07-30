@@ -34,15 +34,11 @@ Creates DataDog monitors with the following checks:
 - Azure Queue Storage too many timeout errors
 - Azure Storage Blob service too few successful requests
 - Azure Storage Blob service too high end to end latency
-- Azure Storage Blob services is down
 - Azure Storage File service too few successful requests
 - Azure Storage File service too high end to end latency
-- Azure Storage File services is down
 - Azure Storage is down
-- Azure Storage Queue service is down
 - Azure Storage Queue service too few successful requests
 - Azure Storage Queue service too high end to end latency
-- Azure Storage Table service is down
 - Azure Storage Table service too few successful requests
 - Azure Storage Table service too high end to end latency
 - Azure Storage too many throttling errors
@@ -155,7 +151,6 @@ Creates DataDog monitors with the following checks:
 | blob\_server\_other\_error\_requests\_id | id for monitor blob_server_other_error_requests |
 | blob\_throttling\_error\_requests\_id | id for monitor blob_throttling_error_requests |
 | blob\_timeout\_error\_requests\_id | id for monitor blob_timeout_error_requests |
-| blobservices\_availability\_id | id for monitor blobservices_availability |
 | blobservices\_latency\_id | id for monitor blobservices_latency |
 | blobservices\_requests\_error\_id | id for monitor blobservices_requests_error |
 | file\_authorization\_error\_requests\_id | id for monitor file_authorization_error_requests |
@@ -164,7 +159,6 @@ Creates DataDog monitors with the following checks:
 | file\_server\_other\_error\_requests\_id | id for monitor file_server_other_error_requests |
 | file\_throttling\_error\_requests\_id | id for monitor file_throttling_error_requests |
 | file\_timeout\_error\_requests\_id | id for monitor file_timeout_error_requests |
-| fileservices\_availability\_id | id for monitor fileservices_availability |
 | fileservices\_latency\_id | id for monitor fileservices_latency |
 | fileservices\_requests\_error\_id | id for monitor fileservices_requests_error |
 | queue\_authorization\_error\_requests\_id | id for monitor queue_authorization_error_requests |
@@ -173,12 +167,10 @@ Creates DataDog monitors with the following checks:
 | queue\_server\_other\_error\_requests\_id | id for monitor queue_server_other_error_requests |
 | queue\_throttling\_error\_requests\_id | id for monitor queue_throttling_error_requests |
 | queue\_timeout\_error\_requests\_id | id for monitor queue_timeout_error_requests |
-| queueservices\_availability\_id | id for monitor queueservices_availability |
 | queueservices\_latency\_id | id for monitor queueservices_latency |
 | queueservices\_requests\_error\_id | id for monitor queueservices_requests_error |
 | storage\_status\_id | id for monitor storage_status |
 | table\_authorization\_error\_requests\_id | id for monitor table_authorization_error_requests |
-| table\_availability\_id | id for monitor table_availability |
 | table\_client\_other\_error\_requests\_id | id for monitor table_client_other_error_requests |
 | table\_network\_error\_requests\_id | id for monitor table_network_error_requests |
 | table\_server\_other\_error\_requests\_id | id for monitor table_server_other_error_requests |
