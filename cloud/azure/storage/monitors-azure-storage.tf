@@ -153,9 +153,9 @@ resource "datadog_monitor" "tableservices_requests_error" {
 
   query = <<EOQ
       ${var.successful_requests_time_aggregator}(${var.successful_requests_timeframe}):
-        100-(sum:azure.storage_storageaccounts_tableservices.transactions${module.filter-tags-success.query_alert} by {name}.as_count() /
-        sum:azure.storage_storageaccounts_tableservices.transactions${module.filter-tags.query_alert} by {name}.as_count()
-      * 100) > ${var.successful_storage_requests_threshold_critical}
+        default(100-(default(sum:azure.storage_storageaccounts_tableservices.transactions${module.filter-tags-success.query_alert} by {name}.as_rate(),0) /
+        default(sum:azure.storage_storageaccounts_tableservices.transactions${module.filter-tags.query_alert} by {name}.as_rate(),0)
+      * 100),0) > ${var.successful_storage_requests_threshold_critical}
 EOQ
 
 
