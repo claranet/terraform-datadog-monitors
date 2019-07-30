@@ -115,7 +115,7 @@ resource "datadog_monitor" "queueservices_requests_error" {
 
 query = <<EOQ
       ${var.successful_requests_time_aggregator}(${var.successful_requests_timeframe}):
-        default(100-(default(sum:azure.storage_storageaccounts_queueservices.transactions${module.filter-tags-success.query_alert} by {name}.as_rate(),0 /
+        default(100-(default(sum:azure.storage_storageaccounts_queueservices.transactions${module.filter-tags-success.query_alert} by {name}.as_rate(),0) /
         default(sum:azure.storage_storageaccounts_queueservices.transactions${module.filter-tags.query_alert} by {name}.as_rate(),0)
       * 100),0) > ${var.successful_storage_requests_threshold_critical}
 EOQ
