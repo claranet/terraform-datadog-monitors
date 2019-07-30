@@ -489,4 +489,3 @@ variable "status_extra_tags" {
   type        = list(string)
   default     = []
 }
-
