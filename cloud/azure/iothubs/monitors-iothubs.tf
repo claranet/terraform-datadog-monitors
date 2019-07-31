@@ -479,9 +479,9 @@ resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
   query = <<EOQ
     avg(${var.too_many_d2c_telemetry_ingress_nosent_timeframe}):
     default(
-      avg:azure.devices_iothubs.d2c.telemetry.ingress.all_protocol${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate() -
-      avg:azure.devices_iothubs.d2c.telemetry.ingress.success${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate()
-    , 0) > ${var.too_many_d2c_telemetry_ingress_nosent_threshold_critical}
+      100-(default(avg:zure.devices_iothubs.d2c.telemetry.ingress.success${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(),0) /
+      default(avg:azure.devices_iothubs.d2c.telemetry.ingress.all_protocol${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(),0)
+      * 100),0) > ${var.too_many_d2c_telemetry_ingress_nosent_threshold_critical}
 EOQ
 
   evaluation_delay    = var.evaluation_delay
