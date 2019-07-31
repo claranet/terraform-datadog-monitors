@@ -567,10 +567,10 @@ variable "invalid_d2c_telemetry_egress_rate_threshold_critical" {
 
 variable "too_many_d2c_telemetry_ingress_nosent_rate_threshold_critical" {
   description = "D2C Telemetry ingress not sent limit (critical threshold)"
-  default     = 10
+  default     = 20
 }
 
 variable "too_many_d2c_telemetry_ingress_nosent_rate_threshold_warning" {
   description = "D2C Telemetry ingress not sent limit (warning threshold)"
-  default     = 20
+  default     = 10
 }
