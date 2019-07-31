@@ -481,8 +481,13 @@ resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
     default(
       100-(default(avg:zure.devices_iothubs.d2c.telemetry.ingress.success${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(),0) /
       default(avg:azure.devices_iothubs.d2c.telemetry.ingress.all_protocol${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(),0)
-      * 100),0) > ${var.too_many_d2c_telemetry_ingress_nosent_threshold_critical}
+      * 100),0) > ${var.too_many_d2c_telemetry_ingress_nosent_rate_threshold_critical}
 EOQ
+
+  thresholds = {
+    warning  = var.too_many_d2c_telemetry_ingress_nosent_rate_threshold_warning
+    critical = var.too_many_d2c_telemetry_ingress_nosent_rate_threshold_critical
+  }
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
