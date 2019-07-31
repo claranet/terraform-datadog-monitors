@@ -103,12 +103,12 @@ variable "su_utilization_timeframe" {
 
 variable "su_utilization_threshold_warning" {
   description = "Streaming Unit utilization rate limit (warning threshold)"
-  default     = 60
+  default     = 80
 }
 
 variable "su_utilization_threshold_critical" {
   description = "Streaming Unit utilization rate limit (critical threshold)"
-  default     = 80
+  default     = 95
 }
 
 variable "failed_function_requests_enabled" {
