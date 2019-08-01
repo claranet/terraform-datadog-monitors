@@ -62,7 +62,7 @@ resource "datadog_monitor" "service_bus_user_errors" {
   message = coalesce(var.user_errors_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
       ${var.user_errors_time_aggregator}(${var.user_errors_timeframe}): (
         default(avg:azure.servicebus_namespaces.user_errors.preview${module.filter-tags.query_alert} by {resource_group,region,name,entityname}, 0) /
         default(avg:azure.servicebus_namespaces.incoming_requests_preview${module.filter-tags.query_alert} by {resource_group,region,name,entityname}, 1)
@@ -97,7 +97,7 @@ resource "datadog_monitor" "service_bus_server_errors" {
   message = coalesce(var.server_errors_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
       ${var.server_errors_time_aggregator}(${var.server_errors_timeframe}): (
         default(avg:azure.servicebus_namespaces.server_errors.preview${module.filter-tags.query_alert} by {resource_group,region,name,entityname}, 0) /
         default(avg:azure.servicebus_namespaces.incoming_requests_preview${module.filter-tags.query_alert} by {resource_group,region,name,entityname}, 1)

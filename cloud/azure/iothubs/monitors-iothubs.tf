@@ -78,7 +78,7 @@ resource "datadog_monitor" "too_many_query_jobs_failed" {
   message = coalesce(var.failed_queryjobs_rate_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.failed_queryjobs_rate_time_aggregator}(${var.failed_queryjobs_rate_timeframe}):
     default(
       default(avg:azure.devices_iothubs.jobs.query_jobs.failure${module.filter-tags.query_alert} by {resource_group,name}.as_rate(), 0) / (
@@ -115,7 +115,7 @@ resource "datadog_monitor" "status" {
   message = coalesce(var.status_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.status_time_aggregator}(${var.status_timeframe}): (
       avg:azure.devices_iothubs.status${module.filter-tags.query_alert} by {resource_group,region,name}
     ) < 1
@@ -210,7 +210,7 @@ resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
   message = coalesce(var.failed_c2d_twin_read_rate_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.failed_c2d_twin_read_rate_time_aggregator}(${var.failed_c2d_twin_read_rate_timeframe}):
     default(
       default(avg:azure.devices_iothubs.c2d.twin.read.failure${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) / (
@@ -247,7 +247,7 @@ resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
   message = coalesce(var.failed_c2d_twin_update_rate_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.failed_c2d_twin_update_rate_time_aggregator}(${var.failed_c2d_twin_update_rate_timeframe}):
     default(
       default(avg:azure.devices_iothubs.c2d.twin.update.failure${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) / (
@@ -358,7 +358,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
   message = coalesce(var.dropped_d2c_telemetry_egress_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.dropped_d2c_telemetry_egress_time_aggregator}(${var.dropped_d2c_telemetry_egress_timeframe}):
     default(
       default(avg:azure.devices_iothubs.d2c.telemetry.egress.dropped${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) / (
@@ -397,7 +397,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
   message = coalesce(var.orphaned_d2c_telemetry_egress_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.orphaned_d2c_telemetry_egress_time_aggregator}(${var.orphaned_d2c_telemetry_egress_timeframe}):
     default(
       default(avg:azure.devices_iothubs.d2c.telemetry.egress.orphaned${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) / (

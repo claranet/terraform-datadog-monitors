@@ -68,7 +68,7 @@ resource "datadog_monitor" "postgresql_too_many_locks" {
   message = coalesce(var.postgresql_lock_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.postgresql_lock_time_aggregator}(${var.postgresql_lock_timeframe}):
       default(avg:postgresql.locks${module.filter-tags.query_alert} by {server}, 0)
     > ${var.postgresql_lock_threshold_critical}

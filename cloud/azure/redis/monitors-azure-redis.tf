@@ -67,7 +67,7 @@ resource "datadog_monitor" "percent_processor_time" {
   message = coalesce(var.percent_processor_time_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.percent_processor_time_time_aggregator}(${var.percent_processor_time_timeframe}): (
       avg:azure.cache_redis.percent_processor_time${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.percent_processor_time_threshold_critical}
@@ -101,7 +101,7 @@ resource "datadog_monitor" "server_load" {
   message = coalesce(var.server_load_rate_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.server_load_rate_time_aggregator}(${var.server_load_rate_timeframe}): (
       avg:azure.cache_redis.server_load${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.server_load_rate_threshold_critical}

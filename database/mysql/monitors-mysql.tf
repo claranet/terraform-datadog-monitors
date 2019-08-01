@@ -69,7 +69,7 @@ resource "datadog_monitor" "mysql_aborted" {
   message = coalesce(var.mysql_aborted_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.mysql_aborted_time_aggregator}(${var.mysql_aborted_timeframe}): (
       avg:mysql.net.aborted_connects${module.filter-tags.query_alert} by {server} /
       avg:mysql.performance.threads_connected${module.filter-tags.query_alert} by {server}
@@ -102,7 +102,7 @@ resource "datadog_monitor" "mysql_slow" {
   message = coalesce(var.mysql_slow_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.mysql_slow_time_aggregator}(${var.mysql_slow_timeframe}): (
       avg:mysql.performance.slow_queries${module.filter-tags.query_alert} by {server} /
       avg:mysql.performance.queries${module.filter-tags.query_alert} by {server}
@@ -202,7 +202,7 @@ resource "datadog_monitor" "mysql_threads_anomaly" {
   message = coalesce(var.mysql_threads_message, var.message)
   type    = "metric alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.mysql_threads_time_aggregator}(${var.mysql_threads_timeframe}):
       anomalies(
         avg:mysql.performance.threads_running${module.filter-tags.query_alert} by {server},
@@ -248,7 +248,7 @@ resource "datadog_monitor" "mysql_questions_anomaly" {
   message = coalesce(var.mysql_questions_message, var.message)
   type    = "metric alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.mysql_questions_time_aggregator}(${var.mysql_questions_timeframe}):
       anomalies(
         avg:mysql.performance.questions${module.filter-tags.query_alert} by {server},

@@ -31,11 +31,11 @@ After any change on this repo, you need to run the `./scripts/auto_update.sh ./`
 
 ### Terraform ###
 
-Version >= 0.12 is required to use these modules of monitors.
+Here is the minimum version required to use these modules of integrations.
 
 ```
 terraform {
-  required_version = "~> 0.12"
+  required_version = ">= 0.12.6"
 }
 
 ```

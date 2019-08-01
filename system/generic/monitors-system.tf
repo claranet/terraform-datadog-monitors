@@ -70,7 +70,7 @@ resource "datadog_monitor" "disk_space" {
   message = coalesce(var.disk_space_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.disk_space_time_aggregator}(${var.disk_space_timeframe}):
       avg:system.disk.in_use${module.filter-tags-disk.query_alert} by {host,device}
     * 100 > ${var.disk_space_threshold_critical}
@@ -103,21 +103,14 @@ resource "datadog_monitor" "disk_space_forecast" {
   message = coalesce(var.disk_space_forecast_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.disk_space_forecast_time_aggregator}(${var.disk_space_forecast_timeframe}):
       forecast(avg:system.disk.in_use${module.filter-tags-disk.query_alert} by {host,device} * 100,
               '${var.disk_space_forecast_algorithm}',
                ${var.disk_space_forecast_deviations},
                interval='${var.disk_space_forecast_interval}',
-               ${var.disk_space_forecast_algorithm == "linear" ? format(
-"history='%s',model='%s'",
-var.disk_space_forecast_linear_history,
-var.disk_space_forecast_linear_model,
-) : ""}
-               ${var.disk_space_forecast_algorithm == "seasonal" ? format(
-"seasonality='%s'",
-var.disk_space_forecast_seasonal_seasonality,
-) : ""}
+               ${var.disk_space_forecast_algorithm == "linear" ? format("history='%s',model='%s'", var.disk_space_forecast_linear_history, var.disk_space_forecast_linear_model) : ""}
+               ${var.disk_space_forecast_algorithm == "seasonal" ? format("seasonality='%s'", var.disk_space_forecast_seasonal_seasonality) : ""}
               )
     >= ${var.disk_space_forecast_threshold_critical}
 EOQ

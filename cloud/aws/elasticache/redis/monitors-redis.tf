@@ -69,7 +69,7 @@ resource "datadog_monitor" "redis_replication_lag" {
   message = coalesce(var.replication_lag_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.replication_lag_time_aggregator}(${var.replication_lag_timeframe}): (
       avg:aws.elasticache.replication_lag${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     ) > ${var.replication_lag_threshold_critical}
@@ -103,7 +103,7 @@ resource "datadog_monitor" "redis_commands" {
   message = coalesce(var.commands_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     sum(${var.commands_timeframe}): (
       avg:aws.elasticache.get_type_cmds${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count() +
       avg:aws.elasticache.set_type_cmds${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count()

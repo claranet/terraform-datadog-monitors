@@ -81,22 +81,15 @@ resource "datadog_monitor" "disk_utilization_forecast" {
   message = coalesce(var.disk_utilization_forecast_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
   ${var.disk_utilization_forecast_time_aggregator}(${var.disk_utilization_forecast_timeframe}):
     forecast(
       avg:gcp.cloudsql.database.disk.utilization{${var.filter_tags}} by {database_id} * 100,
       '${var.disk_utilization_forecast_algorithm}',
       ${var.disk_utilization_forecast_deviations},
       interval='${var.disk_utilization_forecast_interval}',
-      ${var.disk_utilization_forecast_algorithm == "linear" ? format(
-"history='%s',model='%s'",
-var.disk_utilization_forecast_linear_history,
-var.disk_utilization_forecast_linear_model,
-) : ""}
-      ${var.disk_utilization_forecast_algorithm == "seasonal" ? format(
-"seasonality='%s'",
-var.disk_utilization_forecast_seasonal_seasonality,
-) : ""}
+      ${var.disk_utilization_forecast_algorithm == "linear" ? format("history='%s',model='%s'", var.disk_utilization_forecast_linear_history, var.disk_utilization_forecast_linear_model) : ""}
+      ${var.disk_utilization_forecast_algorithm == "seasonal" ? format("seasonality='%s'", var.disk_utilization_forecast_seasonal_seasonality) : ""}
     )
   >= ${var.disk_utilization_forecast_threshold_critical}
 EOQ
@@ -170,21 +163,14 @@ resource "datadog_monitor" "memory_utilization_forecast" {
   type    = "query alert"
 
   query = <<EOQ
-    ${var.memory_utilization_forecast_time_aggregator}(${var.memory_utilization_forecast_timeframe}):
-      forecast(
-        avg:gcp.cloudsql.database.memory.utilization{${var.filter_tags}} by {database_id} * 100,
-        '${var.memory_utilization_forecast_algorithm}',
-        ${var.memory_utilization_forecast_deviations},
-        interval='${var.memory_utilization_forecast_interval}',
-        ${var.memory_utilization_forecast_algorithm == "linear" ? format(
-"history='%s',model='%s'",
-var.memory_utilization_forecast_linear_history,
-var.memory_utilization_forecast_linear_model,
-) : ""}
-      ${var.memory_utilization_forecast_algorithm == "seasonal" ? format(
-"seasonality='%s'",
-var.memory_utilization_forecast_seasonal_seasonality,
-) : ""}
+  ${var.memory_utilization_forecast_time_aggregator}(${var.memory_utilization_forecast_timeframe}):
+    forecast(
+      avg:gcp.cloudsql.database.memory.utilization{${var.filter_tags}} by {database_id} * 100,
+      '${var.memory_utilization_forecast_algorithm}',
+      ${var.memory_utilization_forecast_deviations},
+      interval='${var.memory_utilization_forecast_interval}',
+      ${var.memory_utilization_forecast_algorithm == "linear" ? format("history='%s',model='%s'", var.memory_utilization_forecast_linear_history, var.memory_utilization_forecast_linear_model) : ""}
+      ${var.memory_utilization_forecast_algorithm == "seasonal" ? format("seasonality='%s'", var.memory_utilization_forecast_seasonal_seasonality) : ""}
       )
     >= ${var.memory_utilization_forecast_threshold_critical}
 EOQ
@@ -220,7 +206,7 @@ resource "datadog_monitor" "failover_unavailable" {
   message = coalesce(var.failover_unavailable_message, var.message)
   type    = "metric alert"
 
-      query = <<EOQ
+  query = <<EOQ
   ${var.failover_unavailable_time_aggregator}(${var.failover_unavailable_timeframe}):
     avg:gcp.cloudsql.database.available_for_failover{${var.filter_tags}}
     by {database_id}

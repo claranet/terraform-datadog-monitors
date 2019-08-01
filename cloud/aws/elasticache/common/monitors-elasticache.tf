@@ -67,7 +67,7 @@ resource "datadog_monitor" "elasticache_no_connection" {
   message = coalesce(var.no_connection_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.no_connection_time_aggregator}(${var.no_connection_timeframe}): (
       avg:aws.elasticache.curr_connections${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     ) <= 0
@@ -96,7 +96,7 @@ resource "datadog_monitor" "elasticache_swap" {
   message = coalesce(var.swap_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.swap_time_aggregator}(${var.swap_timeframe}): (
       avg:aws.elasticache.swap_usage${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
     ) > ${var.swap_threshold_critical}

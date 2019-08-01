@@ -67,7 +67,7 @@ resource "datadog_monitor" "memory_percentage" {
   message = coalesce(var.memory_percentage_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.memory_percentage_time_aggregator}(${var.memory_percentage_timeframe}): (
       avg:azure.web_serverfarms.memory_percentage${module.filter-tags.query_alert} by {resource_group,region,name,instance}
     ) > ${var.memory_percentage_threshold_critical}

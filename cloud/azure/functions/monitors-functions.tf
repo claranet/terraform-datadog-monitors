@@ -69,7 +69,7 @@ resource "datadog_monitor" "function_high_threads_count" {
   message = coalesce(var.high_threads_count_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.high_threads_count_time_aggregator}(${var.high_threads_count_timeframe}):
       default(azure.functions.thread_count${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 0)
     > ${var.high_threads_count_threshold_critical}

@@ -73,7 +73,7 @@ resource "datadog_monitor" "expirations" {
   message = coalesce(var.expirations_rate_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.expirations_rate_time_aggregator}(${var.expirations_rate_timeframe}): (
       avg:redis.expires.percent${module.filter-tags.query_alert} by {redis_host,redis_port}
      ) > ${var.expirations_rate_threshold_critical}
@@ -107,7 +107,7 @@ resource "datadog_monitor" "blocked_clients" {
   message = coalesce(var.blocked_clients_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.blocked_clients_time_aggregator}(${var.blocked_clients_timeframe}): (
       sum:redis.clients.blocked${module.filter-tags.query_alert} by {redis_host,redis_port}
       / sum:redis.net.clients${module.filter-tags.query_alert} by {redis_host,redis_port}
@@ -211,7 +211,7 @@ resource "datadog_monitor" "memory_frag" {
   message = coalesce(var.mem_frag_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.mem_frag_time_aggregator}(${var.mem_frag_timeframe}):
       avg:redis.mem.fragmentation_ratio${module.filter-tags.query_alert} by {redis_host,redis_port}
      * 100 > ${var.mem_frag_threshold_critical}
@@ -245,7 +245,7 @@ resource "datadog_monitor" "rejected_connections" {
   message = coalesce(var.rejected_con_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     change(${var.rejected_con_time_aggregator}(${var.rejected_con_timeframe}),${var.rejected_con_timeframe}): (
       avg:redis.net.rejected${module.filter-tags.query_alert} by {redis_host,redis_port}
      ) > ${var.rejected_con_threshold_critical}
