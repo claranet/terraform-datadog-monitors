@@ -4,7 +4,7 @@ resource "datadog_monitor" "mongodb_primary" {
   message = coalesce(var.mongodb_primary_message, var.message)
   type    = "metric alert"
 
-  query = <<EOQ
+  query               = <<EOQ
       ${var.mongodb_primary_aggregator}(${var.mongodb_primary_timeframe}):
       min:mongodb.replset.state${module.filter-tags.query_alert} by {replset_name} >= 2
 EOQ
@@ -64,7 +64,7 @@ resource "datadog_monitor" "mongodb_server_count" {
   message = coalesce(var.mongodb_server_count_message, var.message)
   type    = "metric alert"
 
-query = <<EOQ
+  query = <<EOQ
       ${var.mongodb_server_count_aggregator}(${var.mongodb_server_count_timeframe}):
       sum:mongodb.replset.health${module.filter-tags.query_alert} by {replset_name}
       > 99
@@ -97,7 +97,7 @@ resource "datadog_monitor" "mongodb_replication" {
   message = coalesce(var.mongodb_replication_message, var.message)
   type    = "metric alert"
 
-query = <<EOQ
+  query = <<EOQ
       ${var.mongodb_replication_aggregator}(${var.mongodb_replication_timeframe}):
       avg:mongodb.replset.replicationlag${module.filter-tags-secondary.query_alert} by {server} > ${var.mongodb_lag_critical}
 EOQ

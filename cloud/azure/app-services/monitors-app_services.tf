@@ -71,7 +71,7 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
   message = coalesce(var.http_5xx_requests_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.http_5xx_requests_time_aggregator}(${var.http_5xx_requests_timeframe}): (
       default(avg:azure.app_services.http5xx${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 0) /
       default(avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 1)
@@ -105,7 +105,7 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
   message = coalesce(var.http_4xx_requests_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.http_4xx_requests_time_aggregator}(${var.http_4xx_requests_timeframe}): (
       default(avg:azure.app_services.http4xx${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 0) /
       default(avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 1)

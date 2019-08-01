@@ -68,7 +68,7 @@ resource "datadog_monitor" "eventhub_errors" {
   message = coalesce(var.errors_rate_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.errors_rate_time_aggregator}(${var.errors_rate_timeframe}): ( (
       default(avg:azure.eventhub_namespaces.internal_server_errors${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) +
       default(avg:azure.eventhub_namespaces.server_busy_errors${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) +

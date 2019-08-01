@@ -78,7 +78,7 @@ resource "datadog_monitor" "cluster_initializing_shards" {
   message = coalesce(var.cluster_initializing_shards_message, var.message)
   type    = "metric alert"
 
-query = <<EOQ
+  query = <<EOQ
   ${var.cluster_initializing_shards_time_aggregator}(${var.cluster_initializing_shards_timeframe}):
     avg:elasticsearch.initializing_shards${module.filter-tags.query_alert} by {cluster_name}
   > ${var.cluster_initializing_shards_threshold_critical}
@@ -113,7 +113,7 @@ resource "datadog_monitor" "cluster_relocating_shards" {
   message = coalesce(var.cluster_relocating_shards_message, var.message)
   type    = "metric alert"
 
-query = <<EOQ
+  query = <<EOQ
   ${var.cluster_relocating_shards_time_aggregator}(${var.cluster_relocating_shards_timeframe}):
     avg:elasticsearch.relocating_shards${module.filter-tags.query_alert} by {cluster_name}
   > ${var.cluster_relocating_shards_threshold_critical}
@@ -222,7 +222,7 @@ resource "datadog_monitor" "jvm_heap_memory_usage" {
   message = coalesce(var.jvm_heap_memory_usage_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
   ${var.jvm_heap_memory_usage_time_aggregator}(${var.jvm_heap_memory_usage_timeframe}):
     avg:jvm.mem.heap_in_use${module.filter-tags.query_alert} by {node_name}
   > ${var.jvm_heap_memory_usage_threshold_critical}
@@ -257,7 +257,7 @@ resource "datadog_monitor" "jvm_memory_young_usage" {
   message = coalesce(var.jvm_memory_young_usage_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
   ${var.jvm_memory_young_usage_time_aggregator}(${var.jvm_memory_young_usage_timeframe}):
     avg:jvm.mem.pools.young.used${module.filter-tags.query_alert} by {node_name} / avg:jvm.mem.pools.young.max${module.filter-tags.query_alert} by {node_name} * 100
   > ${var.jvm_memory_young_usage_threshold_critical}
@@ -362,7 +362,7 @@ resource "datadog_monitor" "jvm_gc_young_collection_latency" {
   message = coalesce(var.jvm_gc_young_collection_latency_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
   ${var.jvm_gc_young_collection_latency_time_aggregator}(${var.jvm_gc_young_collection_latency_timeframe}):
     avg:jvm.gc.collectors.young.collection_time${module.filter-tags.query_alert} by {node_name} / avg:jvm.gc.collectors.young.count${module.filter-tags.query_alert} by {node_name} * 1000
   > ${var.jvm_gc_young_collection_latency_threshold_critical}
@@ -398,7 +398,7 @@ resource "datadog_monitor" "indexing_latency" {
   type    = "query alert"
 
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
-query = <<EOQ
+  query = <<EOQ
   ${var.indexing_latency_time_aggregator}(${var.indexing_latency_timeframe}):
     avg:elasticsearch.indexing.index.time${module.filter-tags.query_alert} by {node_name}/ avg:elasticsearch.indexing.index.total${module.filter-tags.query_alert} by {node_name} * 1000
    > ${var.indexing_latency_threshold_critical}
@@ -518,7 +518,7 @@ resource "datadog_monitor" "search_query_latency" {
   type    = "query alert"
 
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
-query = <<EOQ
+  query = <<EOQ
   ${var.search_query_latency_time_aggregator}(${var.search_query_latency_timeframe}):
     avg:elasticsearch.search.query.time${module.filter-tags.query_alert} by {node_name} / avg:elasticsearch.search.query.total${module.filter-tags.query_alert} by {node_name} * 1000
   > ${var.search_query_latency_threshold_critical}
@@ -554,7 +554,7 @@ resource "datadog_monitor" "fetch_latency" {
   type    = "query alert"
 
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
-query = <<EOQ
+  query = <<EOQ
   ${var.fetch_latency_time_aggregator}(${var.fetch_latency_timeframe}):
     avg:elasticsearch.search.fetch.time${module.filter-tags.query_alert} by {node_name} / avg:elasticsearch.search.fetch.total${module.filter-tags.query_alert} by {node_name} * 1000
   > ${var.fetch_latency_threshold_critical}
@@ -660,7 +660,7 @@ resource "datadog_monitor" "field_data_evictions_change" {
   type    = "query alert"
 
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
-query = <<EOQ
+  query = <<EOQ
   change(${var.field_data_evictions_change_time_aggregator}(${var.field_data_evictions_change_timeframe}),${var.field_data_evictions_change_timeshift}):
     avg:elasticsearch.fielddata.evictions${module.filter-tags.query_alert} by {node_name}
   > ${var.field_data_evictions_change_threshold_critical}
@@ -696,7 +696,7 @@ resource "datadog_monitor" "query_cache_evictions_change" {
   type    = "query alert"
 
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
-query = <<EOQ
+  query = <<EOQ
   change(${var.query_cache_evictions_change_time_aggregator}(${var.query_cache_evictions_change_timeframe}),${var.query_cache_evictions_change_timeshift}):
     avg:elasticsearch.indices.query_cache.evictions${module.filter-tags.query_alert} by {node_name}
   > ${var.query_cache_evictions_change_threshold_critical}

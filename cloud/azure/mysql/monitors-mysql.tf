@@ -72,7 +72,7 @@ resource "datadog_monitor" "mysql_io_consumption" {
   message = coalesce(var.io_consumption_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.io_consumption_time_aggregator}(${var.io_consumption_timeframe}): (
       avg:azure.dbformysql_servers.io_consumption_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.io_consumption_threshold_critical}
@@ -106,7 +106,7 @@ resource "datadog_monitor" "mysql_memory_usage" {
   message = coalesce(var.memory_usage_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.memory_usage_time_aggregator}(${var.memory_usage_timeframe}): (
       avg:azure.dbformysql_servers.memory_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.memory_usage_threshold_critical}

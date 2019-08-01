@@ -67,7 +67,7 @@ resource "datadog_monitor" "postgresql_free_storage" {
   message = coalesce(var.free_storage_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.free_storage_time_aggregator}(${var.free_storage_timeframe}): (
       100 - avg:azure.dbforpostgresql_servers.storage_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) < ${var.free_storage_threshold_critical}
@@ -101,7 +101,7 @@ resource "datadog_monitor" "postgresql_io_consumption" {
   message = coalesce(var.io_consumption_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.io_consumption_time_aggregator}(${var.io_consumption_timeframe}): (
       avg:azure.dbforpostgresql_servers.io_consumption_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.io_consumption_threshold_critical}

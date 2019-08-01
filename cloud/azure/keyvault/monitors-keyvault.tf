@@ -70,7 +70,7 @@ resource "datadog_monitor" "keyvault_api_latency" {
   message = coalesce(var.status_message, var.message)
   type    = "metric alert"
 
-query = <<EOQ
+  query = <<EOQ
       ${var.api_latency_time_aggregator}(${var.api_latency_timeframe}):
         avg:azure.keyvault_vaults.service_api_latency${module.filter-tags-activity.query_alert} by {name,resource_group,region}
         > ${var.api_latency_threshold_critical}

@@ -72,7 +72,7 @@ resource "datadog_monitor" "API_http_4xx_errors_count" {
   message = coalesce(var.http_4xx_requests_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.http_4xx_requests_time_aggregator}(${var.http_4xx_requests_timeframe}):
       default(avg:aws.apigateway.4xxerror{${var.filter_tags}} by {region,apiname,stage}.as_rate(), 0) / (
       default(avg:aws.apigateway.count{${var.filter_tags}} by {region,apiname,stage}.as_rate() + ${var.artificial_requests_count}, 1))

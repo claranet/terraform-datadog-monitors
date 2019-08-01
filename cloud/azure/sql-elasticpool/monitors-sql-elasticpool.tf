@@ -72,7 +72,7 @@ resource "datadog_monitor" "sql_elasticpool_dtu_consumption_high" {
   message = coalesce(var.dtu_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.dtu_time_aggregator}(${var.dtu_timeframe}): (
       azure.sql_servers_elasticpools.dtu_consumption_percent${module.filter-tags.query_alert} by {resource_group,region,server_name,name}
     ) > ${var.dtu_threshold_critical}
