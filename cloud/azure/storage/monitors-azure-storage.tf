@@ -74,7 +74,7 @@ resource "datadog_monitor" "fileservices_requests_error" {
   count   = var.successful_requests_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Storage File service too few successful requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.successful_requests_message, var.message)
-  query = <<EOQ
+  query   = <<EOQ
       ${var.successful_requests_time_aggregator}(${var.successful_requests_timeframe}):
         default(100-(default(sum:azure.storage_storageaccounts_fileservices.transactions${module.filter-tags-success.query_alert} by {name}.as_rate(),0) /
         default(sum:azure.storage_storageaccounts_fileservices.transactions${module.filter-tags.query_alert} by {name}.as_rate(),0)
@@ -939,7 +939,7 @@ resource "datadog_monitor" "blob_client_other_error_requests" {
   count   = var.client_other_error_requests_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Azure Blob Storage too many client_other errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.client_other_error_requests_message, var.message)
-query = <<EOQ
+  query   = <<EOQ
   ${var.client_other_error_requests_time_aggregator}(${var.client_other_error_requests_timeframe}):
   default((default(sum:azure.storage_storageaccounts_blobservices.transactions${module.filter-tags-client-other-error.query_alert} by {name}.as_rate(),0) /
   default(sum:azure.storage_storageaccounts_blobservices.transactions${module.filter-tags.query_alert} by {name}.as_rate(),0)

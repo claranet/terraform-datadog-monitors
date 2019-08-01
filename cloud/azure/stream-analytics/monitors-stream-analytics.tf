@@ -67,7 +67,7 @@ resource "datadog_monitor" "failed_function_requests" {
   message = coalesce(var.failed_function_requests_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.failed_function_requests_time_aggregator}(${var.failed_function_requests_timeframe}): (
       default(avg:azure.streamanalytics_streamingjobs.aml_callout_failed_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
       default(avg:azure.streamanalytics_streamingjobs.aml_callout_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
@@ -102,7 +102,7 @@ resource "datadog_monitor" "conversion_errors" {
   message = coalesce(var.conversion_errors_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.conversion_errors_time_aggregator}(${var.conversion_errors_timeframe}): (
       avg:azure.streamanalytics_streamingjobs.conversion_errors${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.conversion_errors_threshold_critical}

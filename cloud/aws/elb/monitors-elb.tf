@@ -75,7 +75,7 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
   message = coalesce(var.elb_5xx_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     sum(${var.elb_5xx_timeframe}):
       default(avg:aws.elb.httpcode_elb_5xx${module.filter-tags.query_alert} by {region,loadbalancername}.as_rate(), 0) / (
       default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_rate() + ${var.artificial_requests_count}, 1))
@@ -110,7 +110,7 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
   message = coalesce(var.elb_backend_4xx_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     sum(${var.elb_backend_4xx_timeframe}):
       default(avg:aws.elb.httpcode_backend_4xx${module.filter-tags.query_alert} by {region,loadbalancername}.as_rate(), 0) / (
       default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_rate() + ${var.artificial_requests_count}, 1))

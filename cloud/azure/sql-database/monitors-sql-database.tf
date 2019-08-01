@@ -67,7 +67,7 @@ resource "datadog_monitor" "sql-database_free_space_low" {
   message = coalesce(var.diskspace_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.diskspace_time_aggregator}(${var.diskspace_timeframe}): (
       avg:azure.sql_servers_databases.storage_percent${module.filter-tags.query_alert} by {resource_group,region,server_name,name}
     ) > ${var.diskspace_threshold_critical}
@@ -101,7 +101,7 @@ resource "datadog_monitor" "sql-database_dtu_consumption_high" {
   message = coalesce(var.dtu_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.dtu_time_aggregator}(${var.dtu_timeframe}): (
       avg:azure.sql_servers_databases.dtu_consumption_percent${module.filter-tags.query_alert} by {resource_group,region,server_name,name}
     ) > ${var.dtu_threshold_critical}

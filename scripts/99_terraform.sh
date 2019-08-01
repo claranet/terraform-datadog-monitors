@@ -31,11 +31,7 @@ EOF
     terraform init ${dir}
     terraform validate ${dir}
     rm -f ${dir}/tmp.tf
-    # hack to work around bug https://github.com/hashicorp/terraform/issues/21434
-    # TODO when fixed, remove this bloc and add "terraform fmt -recursive" to the end of this file
-    for file in $(grep ' = <<E' ${dir}/* | cut -d':' -f1 | sort | uniq); do
-        sed -Ei '/<<EO(Q|F)/,/EO(Q|F)/ s/^#*/#/' ${file}
-        terraform fmt ${dir}
-        sed -Ei '/<<EO(Q|F)/,/EO(Q|F)/ s/^[[:space:]]*#//' ${file}
-    done
 done
+
+terraform fmt -recursive
+

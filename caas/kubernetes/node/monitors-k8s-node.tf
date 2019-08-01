@@ -66,7 +66,7 @@ resource "datadog_monitor" "memory_pressure" {
   message = coalesce(var.memory_pressure_message, var.message)
   type    = "service check"
 
-query = <<EOQ
+  query = <<EOQ
     "kubernetes_state.node.memory_pressure"${module.filter-tags.service_check}.by("kubernetescluster","node").last(6).count_by_status()
 EOQ
 
@@ -97,7 +97,7 @@ resource "datadog_monitor" "ready" {
   message = coalesce(var.ready_message, var.message)
   type    = "service check"
 
-query = <<EOQ
+  query = <<EOQ
     "kubernetes_state.node.ready"${module.filter-tags.service_check}.by("kubernetescluster","node").last(6).count_by_status()
 EOQ
 
@@ -190,7 +190,7 @@ resource "datadog_monitor" "unregister_net_device" {
   message = coalesce(var.unregister_net_device_message, var.message)
   type    = "event alert"
 
-query = <<EOQ
+  query = <<EOQ
     events('sources:kubernetes priority:all ${module.filter-tags.event_alert} \"UnregisterNetDevice\"').rollup('count').last('${var.unregister_net_device_timeframe}') > ${var.unregister_net_device_threshold_critical}
 EOQ
 
@@ -215,7 +215,7 @@ resource "datadog_monitor" "node_unschedulable" {
   message = coalesce(var.node_unschedulable_message, var.message)
   type    = "metric alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.node_unschedulable_time_aggregator}(${var.node_unschedulable_timeframe}):
       sum:kubernetes_state.node.status${module.filter-tags-unschedulable.query_alert} by {kubernetescluster,node}
     > 0

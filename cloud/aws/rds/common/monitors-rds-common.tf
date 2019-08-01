@@ -74,7 +74,7 @@ resource "datadog_monitor" "rds_replica_lag" {
   message = coalesce(var.replicalag_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
   avg(${var.replicalag_timeframe}): (
     avg:aws.rds.replica_lag${module.filter-tags.query_alert} by {region,name}
   ) > ${var.replicalag_threshold_critical}

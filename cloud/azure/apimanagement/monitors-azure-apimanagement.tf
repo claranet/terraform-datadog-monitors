@@ -70,7 +70,7 @@ resource "datadog_monitor" "apimgt_other_requests" {
   message = coalesce(var.other_requests_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.other_requests_time_aggregator}(${var.other_requests_timeframe}): (
       default(avg:azure.apimanagement_service.other_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
       default(avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
@@ -105,7 +105,7 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
   message = coalesce(var.unauthorized_requests_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.unauthorized_requests_time_aggregator}(${var.unauthorized_requests_timeframe}): (
       default(avg:azure.apimanagement_service.unauthorized_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
       default(avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)

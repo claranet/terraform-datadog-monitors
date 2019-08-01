@@ -81,7 +81,7 @@ resource "datadog_monitor" "es_cpu_90_15min" {
   message = coalesce(var.cpu_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
   ${var.cpu_time_aggregator}(${var.cpu_timeframe}): (
     avg:aws.es.cpuutilization${module.filter-tags.query_alert} by {region,name}
   ) > ${var.cpu_threshold_critical}

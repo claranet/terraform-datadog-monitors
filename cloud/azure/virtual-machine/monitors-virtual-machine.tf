@@ -67,7 +67,7 @@ resource "datadog_monitor" "virtualmachine_credit_cpu_remaining_too_low" {
   message = coalesce(var.cpu_remaining_rate_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.cpu_remaining_rate_time_aggregator}(${var.cpu_remaining_rate_timeframe}):
     default(
       default(avg:azure.vm.cpu_credits_remaining${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 100) / (

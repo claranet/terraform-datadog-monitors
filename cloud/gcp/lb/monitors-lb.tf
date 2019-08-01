@@ -83,7 +83,7 @@ resource "datadog_monitor" "backend_latency_service" {
   message = coalesce(var.backend_latency_service_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
   ${var.backend_latency_service_time_aggregator}(${var.backend_latency_service_timeframe}):
     default(min:gcp.loadbalancing.https.backend_latencies.avg{${var.filter_tags},backend_target_type:backend_service} by {backend_target_name,forwarding_rule_name}, 0)
   > ${var.backend_latency_service_threshold_critical}
@@ -120,7 +120,7 @@ resource "datadog_monitor" "backend_latency_bucket" {
   message = coalesce(var.backend_latency_bucket_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
   ${var.backend_latency_bucket_time_aggregator}(${var.backend_latency_bucket_timeframe}):
     default(min:gcp.loadbalancing.https.backend_latencies.avg{${var.filter_tags},backend_target_type:backend_bucket} by {backend_target_name,forwarding_rule_name}, 0)
   > ${var.backend_latency_bucket_threshold_critical}

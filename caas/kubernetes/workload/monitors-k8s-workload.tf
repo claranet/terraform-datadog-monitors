@@ -66,7 +66,7 @@ resource "datadog_monitor" "replica_available" {
   message = coalesce(var.replica_available_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.replica_available_time_aggregator}(${var.replica_available_timeframe}):
       max:kubernetes_state.deployment.replicas_desired${module.filter-tags.query_alert} by {namespace, deployment} -
       max:kubernetes_state.deployment.replicas_available${module.filter-tags.query_alert} by {namespace, deployment}
@@ -100,7 +100,7 @@ resource "datadog_monitor" "replica_ready" {
   message = coalesce(var.replica_ready_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.replica_available_time_aggregator}(${var.replica_available_timeframe}):
       max:kubernetes_state.replicaset.replicas_desired${module.filter-tags.query_alert} by {namespace, replicaset} -
       max:kubernetes_state.replicaset.replicas_ready${module.filter-tags.query_alert} by {namespace, replicaset}
