@@ -4,10 +4,11 @@ resource "datadog_monitor" "mongodb_primary" {
   message = coalesce(var.mongodb_primary_message, var.message)
   type    = "metric alert"
 
-  query               = <<EOQ
+  query = <<EOQ
       ${var.mongodb_primary_aggregator}(${var.mongodb_primary_timeframe}):
       min:mongodb.replset.state${module.filter-tags.query_alert} by {replset_name} >= 2
 EOQ
+
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   notify_no_data      = true
