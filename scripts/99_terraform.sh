@@ -4,11 +4,13 @@ set -xueo pipefail
 source "$(dirname $0)/utils.sh"
 goto_root
 
+provider_version=$(grep ^[[:space:]]*version[[:space:]]= README.md | awk '{print $3}')
+
 for path in $(find "$(get_scope $1)" -name 'inputs.tf' -print); do
     dir=$(dirname ${path})
     cat <<EOF > ${dir}/tmp.tf
 provider "datadog" {
-  version = "2.0.2"
+  version = $provider_version
 
   api_key = var.datadog_api_key
   app_key = var.datadog_app_key
