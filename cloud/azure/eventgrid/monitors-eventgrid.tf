@@ -71,7 +71,7 @@ resource "datadog_monitor" "eventgrid_unmatched_events" {
   message = coalesce(var.unmatched_events_rate_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.unmatched_events_rate_time_aggregator}(${var.unmatched_events_rate_timeframe}): (default(
       avg:azure.eventgrid_topics.unmatched_event_count${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate() /
       (avg:azure.eventgrid_topics.publish_success_count${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate() +

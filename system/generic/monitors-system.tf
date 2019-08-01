@@ -70,7 +70,7 @@ resource "datadog_monitor" "disk_space" {
   message = coalesce(var.disk_space_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.disk_space_time_aggregator}(${var.disk_space_timeframe}):
       avg:system.disk.in_use${module.filter-tags-disk.query_alert} by {host,device}
     * 100 > ${var.disk_space_threshold_critical}
@@ -103,45 +103,45 @@ resource "datadog_monitor" "disk_space_forecast" {
   message = coalesce(var.disk_space_forecast_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
     ${var.disk_space_forecast_time_aggregator}(${var.disk_space_forecast_timeframe}):
       forecast(avg:system.disk.in_use${module.filter-tags-disk.query_alert} by {host,device} * 100,
               '${var.disk_space_forecast_algorithm}',
                ${var.disk_space_forecast_deviations},
                interval='${var.disk_space_forecast_interval}',
                ${var.disk_space_forecast_algorithm == "linear" ? format(
-"history='%s',model='%s'",
-var.disk_space_forecast_linear_history,
-var.disk_space_forecast_linear_model,
-) : ""}
+  "history='%s',model='%s'",
+  var.disk_space_forecast_linear_history,
+  var.disk_space_forecast_linear_model,
+  ) : ""}
                ${var.disk_space_forecast_algorithm == "seasonal" ? format(
-"seasonality='%s'",
-var.disk_space_forecast_seasonal_seasonality,
+  "seasonality='%s'",
+  var.disk_space_forecast_seasonal_seasonality,
 ) : ""}
               )
     >= ${var.disk_space_forecast_threshold_critical}
 EOQ
 
-  thresholds = {
-    critical_recovery = var.disk_space_forecast_threshold_critical_recovery
-    critical          = var.disk_space_forecast_threshold_critical
-  }
+thresholds = {
+  critical_recovery = var.disk_space_forecast_threshold_critical_recovery
+  critical          = var.disk_space_forecast_threshold_critical
+}
 
-  evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
-  notify_audit        = false
-  locked              = false
-  timeout_h           = 0
-  include_tags        = true
-  require_full_window = true
-  notify_no_data      = false
-  renotify_interval   = 0
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
+notify_audit        = false
+locked              = false
+timeout_h           = 0
+include_tags        = true
+require_full_window = true
+notify_no_data      = false
+renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"], var.disk_space_forecast_extra_tags)
+tags = concat(["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"], var.disk_space_forecast_extra_tags)
 
-  lifecycle {
-    ignore_changes = ["silenced"]
-  }
+lifecycle {
+  ignore_changes = ["silenced"]
+}
 }
 
 resource "datadog_monitor" "disk_inodes" {

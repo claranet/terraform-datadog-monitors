@@ -87,7 +87,7 @@ resource "datadog_monitor" "disk_throttled_ops" {
   message = coalesce(var.disk_throttled_ops_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
   ${var.disk_throttled_ops_time_aggregator}(${var.disk_throttled_ops_timeframe}):
     (
       sum:gcp.gce.instance.disk.throttled_read_ops_count{${var.filter_tags}} by {instance_name, device_name} +

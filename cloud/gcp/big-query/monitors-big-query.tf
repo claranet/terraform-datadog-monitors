@@ -81,7 +81,7 @@ resource "datadog_monitor" "scanned_bytes" {
   message = coalesce(var.scanned_bytes_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
   avg(${var.scanned_bytes_timeframe}):
     default(avg:gcp.bigquery.query.scanned_bytes{${var.filter_tags}}, 0)
   > ${var.scanned_bytes_threshold_critical}
@@ -118,7 +118,7 @@ resource "datadog_monitor" "scanned_bytes_billed" {
   message = coalesce(var.scanned_bytes_billed_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
   avg(${var.scanned_bytes_billed_timeframe}):
     default(avg:gcp.bigquery.query.scanned_bytes_billed{${var.filter_tags}}, 0)
   > ${var.scanned_bytes_billed_threshold_critical}
@@ -229,7 +229,7 @@ resource "datadog_monitor" "table_count" {
   message = coalesce(var.table_count_message, var.message)
   type    = "metric alert"
 
-query = <<EOQ
+  query = <<EOQ
   avg(${var.table_count_timeframe}):
     avg:gcp.bigquery.storage.table_count{${var.filter_tags}} by {dataset_id}
   > ${var.table_count_threshold_critical}
@@ -266,7 +266,7 @@ resource "datadog_monitor" "uploaded_bytes" {
   message = coalesce(var.uploaded_bytes_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
   avg(${var.uploaded_bytes_timeframe}):
     default(avg:gcp.bigquery.storage.uploaded_bytes{${var.filter_tags}} by {dataset_id,table}, 0)
   > ${var.uploaded_bytes_threshold_critical}

@@ -81,7 +81,7 @@ resource "datadog_monitor" "disk_utilization_forecast" {
   message = coalesce(var.disk_utilization_forecast_message, var.message)
   type    = "query alert"
 
-query = <<EOQ
+  query = <<EOQ
   ${var.disk_utilization_forecast_time_aggregator}(${var.disk_utilization_forecast_timeframe}):
     forecast(
       avg:gcp.cloudsql.database.disk.utilization{${var.filter_tags}} by {database_id} * 100,
@@ -89,38 +89,38 @@ query = <<EOQ
       ${var.disk_utilization_forecast_deviations},
       interval='${var.disk_utilization_forecast_interval}',
       ${var.disk_utilization_forecast_algorithm == "linear" ? format(
-"history='%s',model='%s'",
-var.disk_utilization_forecast_linear_history,
-var.disk_utilization_forecast_linear_model,
-) : ""}
+  "history='%s',model='%s'",
+  var.disk_utilization_forecast_linear_history,
+  var.disk_utilization_forecast_linear_model,
+  ) : ""}
       ${var.disk_utilization_forecast_algorithm == "seasonal" ? format(
-"seasonality='%s'",
-var.disk_utilization_forecast_seasonal_seasonality,
+  "seasonality='%s'",
+  var.disk_utilization_forecast_seasonal_seasonality,
 ) : ""}
     )
   >= ${var.disk_utilization_forecast_threshold_critical}
 EOQ
 
-  thresholds = {
-    critical          = var.disk_utilization_forecast_threshold_critical
-    critical_recovery = var.disk_utilization_forecast_threshold_critical_recovery
-  }
+thresholds = {
+  critical          = var.disk_utilization_forecast_threshold_critical
+  critical_recovery = var.disk_utilization_forecast_threshold_critical_recovery
+}
 
-  evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
-  notify_audit        = false
-  locked              = false
-  timeout_h           = 0
-  include_tags        = true
-  require_full_window = false
-  notify_no_data      = false
-  renotify_interval   = 0
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
+notify_audit        = false
+locked              = false
+timeout_h           = 0
+include_tags        = true
+require_full_window = false
+notify_no_data      = false
+renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.disk_utilization_forecast_extra_tags)
+tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.disk_utilization_forecast_extra_tags)
 
-  lifecycle {
-    ignore_changes = ["silenced"]
-  }
+lifecycle {
+  ignore_changes = ["silenced"]
+}
 }
 
 #
@@ -177,38 +177,38 @@ resource "datadog_monitor" "memory_utilization_forecast" {
         ${var.memory_utilization_forecast_deviations},
         interval='${var.memory_utilization_forecast_interval}',
         ${var.memory_utilization_forecast_algorithm == "linear" ? format(
-"history='%s',model='%s'",
-var.memory_utilization_forecast_linear_history,
-var.memory_utilization_forecast_linear_model,
-) : ""}
+  "history='%s',model='%s'",
+  var.memory_utilization_forecast_linear_history,
+  var.memory_utilization_forecast_linear_model,
+  ) : ""}
       ${var.memory_utilization_forecast_algorithm == "seasonal" ? format(
-"seasonality='%s'",
-var.memory_utilization_forecast_seasonal_seasonality,
+  "seasonality='%s'",
+  var.memory_utilization_forecast_seasonal_seasonality,
 ) : ""}
       )
     >= ${var.memory_utilization_forecast_threshold_critical}
 EOQ
 
-  thresholds = {
-    critical          = var.memory_utilization_forecast_threshold_critical
-    critical_recovery = var.memory_utilization_forecast_threshold_critical_recovery
-  }
+thresholds = {
+  critical          = var.memory_utilization_forecast_threshold_critical
+  critical_recovery = var.memory_utilization_forecast_threshold_critical_recovery
+}
 
-  evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
-  notify_audit        = false
-  locked              = false
-  timeout_h           = 0
-  include_tags        = true
-  require_full_window = false
-  notify_no_data      = false
-  renotify_interval   = 0
+evaluation_delay    = var.evaluation_delay
+new_host_delay      = var.new_host_delay
+notify_audit        = false
+locked              = false
+timeout_h           = 0
+include_tags        = true
+require_full_window = false
+notify_no_data      = false
+renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.memory_utilization_forecast_extra_tags)
+tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.memory_utilization_forecast_extra_tags)
 
-  lifecycle {
-    ignore_changes = ["silenced"]
-  }
+lifecycle {
+  ignore_changes = ["silenced"]
+}
 }
 
 #
@@ -220,7 +220,7 @@ resource "datadog_monitor" "failover_unavailable" {
   message = coalesce(var.failover_unavailable_message, var.message)
   type    = "metric alert"
 
-      query = <<EOQ
+  query = <<EOQ
   ${var.failover_unavailable_time_aggregator}(${var.failover_unavailable_timeframe}):
     avg:gcp.cloudsql.database.available_for_failover{${var.filter_tags}}
     by {database_id}
