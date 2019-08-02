@@ -98,3 +98,39 @@ EOQ
   }
 }
 
+resource "datadog_monitor" "virtualmachine_ram_reserved" {
+  count   = var.ram_reserved_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Virtual Machine RAM reserved {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.ram_reserved_message, var.message)
+  type    = "query alert"
+
+  query = <<EOQ
+    ${var.ram_reserved_time_aggregator}(${var.ram_reserved_timeframe}): 
+      avg:azure.vm.memory_committed_bytes${module.filter-tags.query_alert} by {resource_group,region,name} / (
+      avg:azure.vm.memory_committed_bytes${module.filter-tags.query_alert} by {resource_group,region,name} +
+      avg:azure.vm.memory_available_bytes${module.filter-tags.query_alert} by {resource_group,region,name}) * 100
+      > ${var.ram_reserved_threshold_critical}
+EOQ
+
+  thresholds = {
+    critical = var.ram_reserved_threshold_critical
+    warning  = var.ram_reserved_threshold_warning
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
+
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:virtualmachine", "team:claranet", "created-by:terraform"], var.ram_reserved_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
+}
+
