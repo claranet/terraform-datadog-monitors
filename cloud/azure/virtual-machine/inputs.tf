@@ -151,3 +151,44 @@ variable "cpu_remaining_rate_threshold_critical" {
   default     = 15
 }
 
+variable "ram_reserved_enabled" {
+  description = "Flag to enable Virtual Machine RAM reserved monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "ram_reserved_message" {
+  description = "Custom message for Virtual Machine RAM reserved monitor"
+  type        = string
+  default     = ""
+}
+
+variable "ram_reserved_extra_tags" {
+  description = "Extra tags for Virtual Machine RAM reserved monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "ram_reserved_time_aggregator" {
+  description = "Monitor aggregator for Virtual Machine RAM reserved [available values: min, max, sum or avg]"
+  type        = string
+  default     = "min"
+}
+
+variable "ram_reserved_timeframe" {
+  description = "Monitor timeframe for Virtual Machine RAM reserved [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_15m"
+}
+
+variable "ram_reserved_threshold_warning" {
+  description = "Virtual Machine RAM reserved limit (warning threshold)"
+  default     = 90
+}
+
+variable "ram_reserved_threshold_critical" {
+  description = "Virtual Machine RAM reserved limit (critical threshold)"
+  default     = 95
+}
+
+

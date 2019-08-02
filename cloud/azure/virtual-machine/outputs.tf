@@ -13,3 +13,8 @@ output "virtualmachine_credit_cpu_remaining_too_low_id" {
   value       = datadog_monitor.virtualmachine_credit_cpu_remaining_too_low.*.id
 }
 
+output "virtualmachine_ram_reserved_id" {
+  description = "id for monitor virtualmachine_ram_reserved"
+  value       = datadog_monitor.virtualmachine_ram_reserved.*.id
+}
+
