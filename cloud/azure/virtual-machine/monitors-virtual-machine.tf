@@ -105,7 +105,7 @@ resource "datadog_monitor" "virtualmachine_ram_reserved" {
   type    = "query alert"
 
   query = <<EOQ
-    ${var.ram_reserved_time_aggregator}(${var.ram_reserved_timeframe}): 
+    ${var.ram_reserved_time_aggregator}(${var.ram_reserved_timeframe}):
       avg:azure.vm.memory_committed_bytes${module.filter-tags.query_alert} by {resource_group,region,name} / (
       avg:azure.vm.memory_committed_bytes${module.filter-tags.query_alert} by {resource_group,region,name} +
       avg:azure.vm.memory_available_bytes${module.filter-tags.query_alert} by {resource_group,region,name}) * 100
@@ -134,3 +134,36 @@ EOQ
   }
 }
 
+resource "datadog_monitor" "virtualmachine_free_filesystem_disk_space_low" {
+  count   = var.filesystem_free_disk_space_low_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Virtual Machine filesystem disk space too low {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.filesystem_free_disk_space_low_message, var.message)
+  type    = "query alert"
+
+  query = <<EOQ
+    ${var.filesystem_free_disk_space_low_time_aggregator}(${var.filesystem_free_disk_space_low_timeframe}): (
+      avg:azure.vm.builtin_filesystem_percentfreespace${module.filter-tags.query_alert} by {resource_group,region,name}
+    ) < ${var.filesystem_free_disk_space_low_threshold_critical}
+EOQ
+
+  thresholds = {
+    warning  = var.filesystem_free_disk_space_low_threshold_warning
+    critical = var.filesystem_free_disk_space_low_threshold_critical
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 1
+  include_tags        = true
+  locked              = false
+  require_full_window = false
+
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:virtualmachine", "team:claranet", "created-by:terraform"], var.filesystem_free_disk_space_low_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
+}
