@@ -107,14 +107,16 @@ if [[ "$answer" == "y" ]]; then
     echo -e "$(cat $TMP_CHANGELOG)${separator}$(cat CHANGELOG.md)" > CHANGELOG.md
 fi
 
-if jira --endpoint=${JIRA_ENDPOINT} --login=${JIRA_LOGIN} editmeta $(head -n 1 $TMP_ALLOWED_ISSUES) --template=versions | grep $TAG_TARGET; then
-    read -p "Close all issues and fix version $TAG_TARGET ? (y/n): " -r answer
-    if [[ "$answer" == "y" ]]; then
-        for issue in $(cat $TMP_ALLOWED_ISSUES); do
-            echo jira --endpoint=${JIRA_ENDPOINT} --login=${JIRA_LOGIN} transition Close $issue
-            echo jira --endpoint=${JIRA_ENDPOINT} --login=${JIRA_LOGIN} edit $issue --template=fixversion --override fixVersions=${TAG_TARGET} --noedit
-        done
+read -p "Close all issues and fix version $TAG_TARGET ? (y/n): " -r answer
+if [[ "$answer" == "y" ]]; then
+    # Create version if does not exists
+    one_issue=$(head -n 1 $TMP_ALLOWED_ISSUES)
+    auth_header=$(printf "${JIRA_LOGIN}:${JIRA_API_TOKEN}" | base64)
+    if ! jira --endpoint=${JIRA_ENDPOINT} --login=${JIRA_LOGIN} editmeta $one_issue --template=versions | grep -q $TAG_TARGET; then
+        curl -H "Authorization: Basic $auth_header" -H "Content-Type: application/json" -X POST -d "{\"name\": \"${TAG_TARGET}\",\"userReleaseDate\": \"$(echo -n $(LANG=eng date +'%-d/%b/%Y'))\",\"project\": \"$(echo -n $one_issue | cut -d'-' -f1)\",\"archived\": false,\"released\": true}" ${JIRA_ENDPOINT}/rest/api/latest/version
     fi
-else
-    echo "Impossible to close issues because version \"${TAG_TARGET}\" does not exists, please create it on JIRA"
+    for issue in $(cat $TMP_ALLOWED_ISSUES); do
+        jira --endpoint=${JIRA_ENDPOINT} --login=${JIRA_LOGIN} transition Close $issue
+        jira --endpoint=${JIRA_ENDPOINT} --login=${JIRA_LOGIN} edit $issue --template=fixversion --override fixVersions=${TAG_TARGET} --noedit
+    done
 fi
