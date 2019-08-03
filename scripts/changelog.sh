@@ -48,6 +48,22 @@ mkdir -p ${HOME}/.jira.d/templates
 cat > ${HOME}/.jira.d/templates/changelog <<EOF
 {{ .fields.issuetype.name }};{{ .key }};{{if .fields.status -}}{{ .fields.status.name }}{{end -}};{{ .fields.summary }}
 EOF
+# Create the go-jira template to list allowed versions
+cat > ${HOME}/.jira.d/templates/versions <<EOF
+{{ range .fields.fixVersions.allowedValues }}{{.name}}
+{{end}}
+EOF
+# Create the go-jira template to edit issue fixing version
+cp -f ${HOME}/.jira.d/templates/edit ${HOME}/.jira.d/templates/fixversion
+cat >> ${HOME}/.jira.d/templates/fixversion <<EOF
+{{if .meta.fields.fixVersions -}}
+  {{if .meta.fields.fixVersions.allowedValues}}
+  fixVersions: # Values: {{ range .meta.fields.fixVersions.allowedValues }}{{.name}}, {{end}}{{if .overrides.fixVersions}}{{ range (split "," .overrides.fixVersions)}}
+    - name: {{.}}{{end}}{{else}}{{range .fields.fixVersions}}
+    - name: {{.name}}{{end}}{{end}}
+  {{- end -}}
+{{- end -}}
+EOF
 
 # List all issues in commits from previous tag
 TMP_ISSUES=$TMP/issues.txt
@@ -56,6 +72,7 @@ for commit in $(git log $(git describe --tags --abbrev=0)..HEAD --oneline); do
 done | sort -u > $TMP_ISSUES
 
 TMP_CHANGELOG=${TMP}/changelog.md
+TMP_ALLOWED_ISSUES=${TMP}/allowed-issues.txt
 # init changelog for next version
 echo -e "\n# $TAG_TARGET ($(LANG=eng date +"%B %d, %Y"))" >> $TMP_CHANGELOG
 for issue in $(cat $TMP_ISSUES); do
@@ -69,6 +86,7 @@ for issue in $(cat $TMP_ISSUES); do
         fi
         # add jira issue line to changelog
         echo "*   [[$issue](${JIRA_ENDPOINT}/browse/${issue})] - $summary" >> $TMP_CHANGELOG
+        echo $issue >> $TMP_ALLOWED_ISSUES
     else
         echo "Ignore $issue with status \"$status\" not in [$JIRA_STATUS] ($summary)"
     fi
@@ -89,3 +107,14 @@ if [[ "$answer" == "y" ]]; then
     echo -e "$(cat $TMP_CHANGELOG)${separator}$(cat CHANGELOG.md)" > CHANGELOG.md
 fi
 
+if jira --endpoint=${JIRA_ENDPOINT} --login=${JIRA_LOGIN} editmeta $(head -n 1 $TMP_ALLOWED_ISSUES) --template=versions | grep $TAG_TARGET; then
+    read -p "Close all issues and fix version $TAG_TARGET ? (y/n): " -r answer
+    if [[ "$answer" == "y" ]]; then
+        for issue in $(cat $TMP_ALLOWED_ISSUES); do
+            echo jira --endpoint=${JIRA_ENDPOINT} --login=${JIRA_LOGIN} transition Close $issue
+            echo jira --endpoint=${JIRA_ENDPOINT} --login=${JIRA_LOGIN} edit $issue --template=fixversion --override fixVersions=${TAG_TARGET} --noedit
+        done
+    fi
+else
+    echo "Impossible to close issues because version \"${TAG_TARGET}\" does not exists, please create it on JIRA"
+fi
