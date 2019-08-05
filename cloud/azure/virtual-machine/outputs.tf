@@ -18,8 +18,8 @@ output "virtualmachine_ram_reserved_id" {
   value       = datadog_monitor.virtualmachine_ram_reserved.*.id
 }
 
-output "virtualmachine_free_filesystem_disk_space_low_id" {
-  description = "id for monitor virtualmachine_free_filesystem_disk_space_low"
-  value       = datadog_monitor.virtualmachine_free_filesystem_disk_space_low.*.id
+output "virtualmachine_free_disk_space_low_id" {
+  description = "id for monitor virtualmachine_free_disk_space_low"
+  value       = datadog_monitor.virtualmachine_free_disk_space_low.*.id
 }
 
