@@ -18,7 +18,7 @@ Creates DataDog monitors with the following checks:
 
 - Virtual Machine CPU usage
 - Virtual Machine credit CPU
-- Virtual Machine filesystem disk space too low
+- Virtual Machine disk space too low
 - Virtual Machine is unreachable
 - Virtual Machine RAM reserved
 
@@ -42,16 +42,16 @@ Creates DataDog monitors with the following checks:
 | cpu\_usage\_timeframe | Monitor timeframe for Virtual Machine CPU [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
 | environment | Architecture environment | string | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | string | `"900"` | no |
-| filesystem\_free\_disk\_space\_low\_enabled | Flag to enable Virtual Machine status monitor | string | `"true"` | no |
-| filesystem\_free\_disk\_space\_low\_extra\_tags | Extra tags for Virtual Machine free disk space monitor | list(string) | `[]` | no |
-| filesystem\_free\_disk\_space\_low\_message | Custom message for Virtual Machine CPU free disk space monitor | string | `""` | no |
-| filesystem\_free\_disk\_space\_low\_threshold\_critical | Virtual Machine free disk space in percent (critical threshold) | string | `"5"` | no |
-| filesystem\_free\_disk\_space\_low\_threshold\_warning | Virtual Machine free disk space in percent (warning threshold) | string | `"10"` | no |
-| filesystem\_free\_disk\_space\_low\_time\_aggregator | Monitor aggregator for Virtual Machine free disk space [available values: min, max or avg] | string | `"avg"` | no |
-| filesystem\_free\_disk\_space\_low\_timeframe | Monitor timeframe for Virtual Machine free disk space too low [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
 | filter\_tags\_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `"*"` | no |
 | filter\_tags\_custom\_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `""` | no |
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
+| free\_disk\_space\_low\_enabled | Flag to enable Virtual Machine status monitor | string | `"true"` | no |
+| free\_disk\_space\_low\_extra\_tags | Extra tags for Virtual Machine free disk space monitor | list(string) | `[]` | no |
+| free\_disk\_space\_low\_message | Custom message for Virtual Machine CPU free disk space monitor | string | `""` | no |
+| free\_disk\_space\_low\_threshold\_critical | Virtual Machine free disk space in percent (critical threshold) | string | `"5"` | no |
+| free\_disk\_space\_low\_threshold\_warning | Virtual Machine free disk space in percent (warning threshold) | string | `"10"` | no |
+| free\_disk\_space\_low\_time\_aggregator | Monitor aggregator for Virtual Machine free disk space [available values: min, max or avg] | string | `"avg"` | no |
+| free\_disk\_space\_low\_timeframe | Monitor timeframe for Virtual Machine free disk space too low [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
 | message | Message sent when a Redis monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
@@ -74,7 +74,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | virtualmachine\_cpu\_usage\_id | id for monitor virtualmachine_cpu_usage |
 | virtualmachine\_credit\_cpu\_remaining\_too\_low\_id | id for monitor virtualmachine_credit_cpu_remaining_too_low |
-| virtualmachine\_free\_filesystem\_disk\_space\_low\_id | id for monitor virtualmachine_free_filesystem_disk_space_low |
+| virtualmachine\_free\_disk\_space\_low\_id | id for monitor virtualmachine_free_disk_space_low |
 | virtualmachine\_ram\_reserved\_id | id for monitor virtualmachine_ram_reserved |
 | virtualmachine\_status\_id | id for monitor virtualmachine_status |
 
