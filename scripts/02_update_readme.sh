@@ -88,8 +88,17 @@ EOF
     IFS=$(echo -en "\n\b")
     # loop over each monitor in the set
     for match in $(grep -E ^[[:space:]]+name[[:space:]]+= $(basename ${path}) | sort -fdbi); do
+        ## TODO rewrite this (and other things) using:
+        ## terraform-config-inspect --json| jq -C
+        ## awk '1;/^\}/{exit}' monitors-ingress.tf # with line numer of each resource
         # parse monitor's name
         name=$(get_name "${match}")
+        # search if monitor is enabled
+        [[ "$(grep -B1 "$name" $(basename ${path}) | grep enabled)" =~ ^[[:space:]]*count[[:space:]]*=[[:space:]]*var\.([a-z0-9_]*_enabled) ]] &&
+        # add "disabled by default" mention if not enabled
+        if ! grep -A4 "${BASH_REMATCH[1]}" inputs.tf | grep default.*true; then
+            name="${name} (disabled by default)"
+        fi
         # monitor name element to the list and replace "could reach" pattern to "forecast" for better naming
         echo "- ${name/could reach/forecast}" >> README.md
     done
