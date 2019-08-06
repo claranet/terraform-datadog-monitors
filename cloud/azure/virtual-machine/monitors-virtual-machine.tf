@@ -134,21 +134,21 @@ EOQ
   }
 }
 
-resource "datadog_monitor" "virtualmachine_free_disk_space_low" {
-  count   = var.free_disk_space_low_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Virtual Machine disk space too low {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = coalesce(var.free_disk_space_low_message, var.message)
+resource "datadog_monitor" "virtualmachine_disk_space" {
+  count   = var.disk_space_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Virtual Machine disk space {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.disk_space_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
-    ${var.free_disk_space_low_time_aggregator}(${var.free_disk_space_low_timeframe}):
-    avg:azure.vm.builtin_filesystem_percentfreespace${module.filter-tags.query_alert} by {resource_group,region,name}
-    < ${var.free_disk_space_low_threshold_critical}
+    ${var.disk_space_time_aggregator}(${var.disk_space_timeframe}):
+    avg:azure.vm.builtin_filesystem_percentusedspace${module.filter-tags.query_alert} by {resource_group,region,name}
+    > ${var.disk_space_threshold_critical}
 EOQ
 
   thresholds = {
-    warning  = var.free_disk_space_low_threshold_warning
-    critical = var.free_disk_space_low_threshold_critical
+    warning  = var.disk_space_threshold_warning
+    critical = var.disk_space_threshold_critical
   }
 
   evaluation_delay    = var.evaluation_delay
@@ -161,7 +161,7 @@ EOQ
   locked              = false
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:virtualmachine", "team:claranet", "created-by:terraform"], var.free_disk_space_low_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:virtualmachine", "team:claranet", "created-by:terraform"], var.disk_space_extra_tags)
 
   lifecycle {
     ignore_changes = ["silenced"]
