@@ -45,8 +45,8 @@ Creates DataDog monitors with the following checks:
 | disk\_space\_message | Custom message for Virtual Machine CPU free disk space monitor | string | `""` | no |
 | disk\_space\_threshold\_critical | Virtual Machine free disk space in percent (critical threshold) | string | `"95"` | no |
 | disk\_space\_threshold\_warning | Virtual Machine free disk space in percent (warning threshold) | string | `"90"` | no |
-| disk\_space\_time\_aggregator | Monitor aggregator for Virtual Machine free disk space [available values: min, max or avg] | string | `"avg"` | no |
-| disk\_space\_timeframe | Monitor timeframe for Virtual Machine free disk space too low [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
+| disk\_space\_time\_aggregator | Monitor aggregator for Virtual Machine free disk space [available values: min, max or avg] | string | `"max"` | no |
+| disk\_space\_timeframe | Monitor timeframe for Virtual Machine free disk space too low [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | environment | Architecture environment | string | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | string | `"900"` | no |
 | filter\_tags\_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `"*"` | no |
