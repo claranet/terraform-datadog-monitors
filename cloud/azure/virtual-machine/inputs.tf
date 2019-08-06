@@ -230,3 +230,43 @@ variable "disk_space_message" {
   type        = string
   default     = ""
 }
+
+variable "requests_failed_enabled" {
+  description = "Flag to enable Virtual Machine requests failed monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "requests_failed_message" {
+  description = "Custom message for Virtual Machine requests failed monitor"
+  type        = string
+  default     = ""
+}
+
+variable "requests_failed_extra_tags" {
+  description = "Extra tags for Virtual Machine requests failed monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "requests_failed_time_aggregator" {
+  description = "Monitor aggregator for Virtual Machine requests failed [available values: min, max, sum or avg]"
+  type        = string
+  default     = "min"
+}
+
+variable "requests_failed_timeframe" {
+  description = "Monitor timeframe for Virtual Machine requests failed [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_10m"
+}
+
+variable "requests_failed_threshold_warning" {
+  description = "Virtual Machine requests failed limit (warning threshold)"
+  default     = 90
+}
+
+variable "requests_failed_threshold_critical" {
+  description = "Virtual Machine requests failed limit (critical threshold)"
+  default     = 95
+}

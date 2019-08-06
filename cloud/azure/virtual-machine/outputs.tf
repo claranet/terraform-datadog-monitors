@@ -23,3 +23,8 @@ output "virtualmachine_disk_space_id" {
   value       = datadog_monitor.virtualmachine_disk_space.*.id
 }
 
+output "virtualmachine_requests_failed_id" {
+  description = "id for monitor virtualmachine_requests_failed"
+  value       = datadog_monitor.virtualmachine_requests_failed.*.id
+}
+
