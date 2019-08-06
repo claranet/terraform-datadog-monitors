@@ -18,3 +18,8 @@ output "virtualmachine_ram_reserved_id" {
   value       = datadog_monitor.virtualmachine_ram_reserved.*.id
 }
 
+output "virtualmachine_disk_space_id" {
+  description = "id for monitor virtualmachine_disk_space"
+  value       = datadog_monitor.virtualmachine_disk_space.*.id
+}
+

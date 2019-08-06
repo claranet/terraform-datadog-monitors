@@ -191,4 +191,42 @@ variable "ram_reserved_threshold_critical" {
   default     = 95
 }
 
+variable "disk_space_enabled" {
+  description = "Flag to enable Virtual Machine status monitor"
+  type        = string
+  default     = "true"
+}
 
+variable "disk_space_time_aggregator" {
+  description = "Monitor aggregator for Virtual Machine free disk space [available values: min, max or avg]"
+  type        = string
+  default     = "max"
+}
+
+variable "disk_space_timeframe" {
+  description = "Monitor timeframe for Virtual Machine free disk space too low [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_5m"
+}
+
+variable "disk_space_threshold_critical" {
+  description = "Virtual Machine free disk space in percent (critical threshold)"
+  default     = "95"
+}
+
+variable "disk_space_threshold_warning" {
+  description = "Virtual Machine free disk space in percent (warning threshold)"
+  default     = "90"
+}
+
+variable "disk_space_extra_tags" {
+  description = "Extra tags for Virtual Machine free disk space monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "disk_space_message" {
+  description = "Custom message for Virtual Machine CPU free disk space monitor"
+  type        = string
+  default     = ""
+}
