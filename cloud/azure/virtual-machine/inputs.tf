@@ -200,13 +200,13 @@ variable "disk_space_enabled" {
 variable "disk_space_time_aggregator" {
   description = "Monitor aggregator for Virtual Machine free disk space [available values: min, max or avg]"
   type        = string
-  default     = "avg"
+  default     = "max"
 }
 
 variable "disk_space_timeframe" {
   description = "Monitor timeframe for Virtual Machine free disk space too low [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
-  default     = "last_15m"
+  default     = "last_5m"
 }
 
 variable "disk_space_threshold_critical" {
