@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Virtual Machine disk space
 - Virtual Machine is unreachable
 - Virtual Machine RAM reserved
+- Virtual Machine requests failed
 
 ## Inputs
 
@@ -62,6 +63,13 @@ Creates DataDog monitors with the following checks:
 | ram\_reserved\_threshold\_warning | Virtual Machine RAM reserved limit (warning threshold) | string | `"90"` | no |
 | ram\_reserved\_time\_aggregator | Monitor aggregator for Virtual Machine RAM reserved [available values: min, max, sum or avg] | string | `"min"` | no |
 | ram\_reserved\_timeframe | Monitor timeframe for Virtual Machine RAM reserved [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
+| requests\_failed\_enabled | Flag to enable Virtual Machine requests failed monitor | string | `"true"` | no |
+| requests\_failed\_extra\_tags | Extra tags for Virtual Machine requests failed monitor | list(string) | `[]` | no |
+| requests\_failed\_message | Custom message for Virtual Machine requests failed monitor | string | `""` | no |
+| requests\_failed\_threshold\_critical | Virtual Machine requests failed limit (critical threshold) | string | `"95"` | no |
+| requests\_failed\_threshold\_warning | Virtual Machine requests failed limit (warning threshold) | string | `"90"` | no |
+| requests\_failed\_time\_aggregator | Monitor aggregator for Virtual Machine requests failed [available values: min, max, sum or avg] | string | `"min"` | no |
+| requests\_failed\_timeframe | Monitor timeframe for Virtual Machine requests failed [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_10m"` | no |
 | status\_enabled | Flag to enable Virtual Machine status monitor | string | `"true"` | no |
 | status\_extra\_tags | Extra tags for Virtual Machine status monitor | list(string) | `[]` | no |
 | status\_message | Custom message for Virtual Machine status monitor | string | `""` | no |
@@ -76,6 +84,7 @@ Creates DataDog monitors with the following checks:
 | virtualmachine\_credit\_cpu\_remaining\_too\_low\_id | id for monitor virtualmachine_credit_cpu_remaining_too_low |
 | virtualmachine\_disk\_space\_id | id for monitor virtualmachine_disk_space |
 | virtualmachine\_ram\_reserved\_id | id for monitor virtualmachine_ram_reserved |
+| virtualmachine\_requests\_failed\_id | id for monitor virtualmachine_requests_failed |
 | virtualmachine\_status\_id | id for monitor virtualmachine_status |
 
 ## Related documentation
