@@ -36,7 +36,7 @@ done
 PATTERN_DOC="Related documentation"
 
 # loop over every monitors set readme
-for path in $(find "$(get_scope $1)" -name 'monitors-*.tf' -print | sort -fdbi); do
+for path in $(find "$(get_scope ${1-})" -name 'monitors-*.tf' -print | sort -fdbi); do
     cd $(dirname $path)
     EXIST=0
     if [ -f README.md ]; then

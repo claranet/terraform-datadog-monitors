@@ -10,9 +10,12 @@ function goto_root {
 }
 
 function get_scope {
-    TO_PARSE="."
-    if [ ! -z ${1+x} ]; then
+    TO_PARSE="./"
+    if [ ! -z ${1+x} ] && [ $1 != "." ]; then
         TO_PARSE="$1"
+    fi
+    if [[ $TO_PARSE != ./* ]]; then
+        TO_PARSE="./${TO_PARSE}"
     fi
     echo $TO_PARSE
 }
