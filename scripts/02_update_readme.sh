@@ -1,12 +1,11 @@
 #!/bin/bash
-set -xueo pipefail
 
 source "$(dirname $0)/utils.sh"
-goto_root
+init
 
 # download awk script to hack terraform-docs
 TERRAFORM_AWK="/tmp/terraform-docs.awk"
-curl -Lo ${TERRAFORM_AWK} "https://raw.githubusercontent.com/cloudposse/build-harness/master/bin/terraform-docs.awk"
+curl -Lso ${TERRAFORM_AWK} "https://raw.githubusercontent.com/cloudposse/build-harness/master/bin/terraform-docs.awk"
 
 ## root README generator
 # only keep current README from begining to "Monitors summary" section (delete monitors list)
@@ -36,7 +35,7 @@ done
 PATTERN_DOC="Related documentation"
 
 # loop over every monitors set readme
-for path in $(find "$(get_scope ${1-})" -name 'monitors-*.tf' -print | sort -fdbi); do
+for path in $(find "$(get_scope ${1:-})" -name 'monitors-*.tf' -print | sort -fdbi); do
     cd $(dirname $path)
     EXIST=0
     if [ -f README.md ]; then
@@ -94,7 +93,7 @@ EOF
         # parse monitor's name
         name=$(get_name "${match}")
         # search if monitor is enabled
-        [[ "$(grep -B1 "$name" $(basename ${path}) | grep enabled)" =~ ^[[:space:]]*count[[:space:]]*=[[:space:]]*var\.([a-z0-9_]*_enabled) ]] &&
+        [[ "$(grep -B1 "$name" $(basename ${path}) | grep -q enabled)" =~ ^[[:space:]]*count[[:space:]]*=[[:space:]]*var\.([a-z0-9_]*_enabled) ]] &&
         # add "disabled by default" mention if not enabled
         if ! grep -A4 "${BASH_REMATCH[1]}" inputs.tf | grep default.*true; then
             name="${name} (disabled by default)"
@@ -123,6 +122,6 @@ EOF
         rm README.md.bak
     fi
     # force unix format (I don't know why for now but you never know)
-    dos2unix README.md
+    dos2unix README.md 2> /dev/null
     cd - >> /dev/null
 done

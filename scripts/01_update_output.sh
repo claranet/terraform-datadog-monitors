@@ -1,11 +1,10 @@
 #!/bin/bash
-set -xueo pipefail
 
 source "$(dirname $0)/utils.sh"
-goto_root
+init
 
 # loop over every monitors set
-for path in $(find "$(get_scope ${1-})" -name 'monitors-*.tf' -print | sort -fdbi); do
+for path in $(find "$(get_scope ${1:-})" -name 'monitors-*.tf' -print | sort -fdbi); do
     cd $(dirname $path)
     # empty outputs
     > outputs.tf
