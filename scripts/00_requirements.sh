@@ -1,8 +1,7 @@
 #!/bin/bash
-set -u
 
 source "$(dirname $0)/utils.sh"
-goto_root
+init
 
 function check_command() {
     local cmd="$1"
