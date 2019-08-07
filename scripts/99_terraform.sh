@@ -6,7 +6,7 @@ goto_root
 
 provider_version=$(grep ^[[:space:]]*version[[:space:]]= README.md | awk '{print $3}')
 
-for path in $(find "$(get_scope $1)" -name 'inputs.tf' -print); do
+for path in $(find "$(get_scope ${1-})" -name 'inputs.tf' -print); do
     dir=$(dirname ${path})
     cat <<EOF > ${dir}/tmp.tf
 provider "datadog" {
