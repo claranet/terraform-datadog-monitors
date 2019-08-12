@@ -109,3 +109,7 @@ Creates DataDog monitors with the following checks:
 * [Datadog metrics](https://docs.datadoghq.com/agent/kubernetes/metrics/)
 * [Datadog documentation](https://docs.datadoghq.com/integrations/kubernetes/)
 * [Datadog Blog](https://www.datadoghq.com/blog/monitor-kubernetes-docker/)
+
+## Requirements
+
+* Datadog Agent > v6.6
