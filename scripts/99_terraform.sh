@@ -4,6 +4,12 @@ source "$(dirname $0)/utils.sh"
 init
 echo "Check terraform CI"
 
+# Clean when exit
+err() {
+    rm -f "${module}/tmp.tf"
+}
+trap 'err $LINENO' ERR TERM EXIT INT
+
 provider_version=$(grep ^[[:space:]]*version[[:space:]]= README.md | awk '{print $3}')
 
 for path in $(browse_modules "$(get_scope ${1:-})" 'inputs.tf'); do
