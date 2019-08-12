@@ -167,3 +167,40 @@ EOQ
     ignore_changes = ["silenced"]
   }
 }
+
+resource "datadog_monitor" "virtualmachine_requests_failed" {
+  count   = var.requests_failed_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Virtual Machine requests failed {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.requests_failed_message, var.message)
+  type    = "query alert"
+
+  query = <<EOQ
+    ${var.requests_failed_time_aggregator}(${var.requests_failed_timeframe}):
+      default( 
+        default(avg:azure.vm.asp.net_applications_total_requests_failed${module.filter-tags.query_alert} by {resource_group,region,name}, 0) /
+        default(avg:azure.vm.asp.net_applications_total_requests_total${module.filter-tags.query_alert} by {resource_group,region,name}, 1)
+      , 0) * 100
+      > ${var.requests_failed_threshold_critical}
+EOQ
+
+  thresholds = {
+    critical = var.requests_failed_threshold_critical
+    warning  = var.requests_failed_threshold_warning
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
+
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:virtualmachine", "team:claranet", "created-by:terraform"], var.requests_failed_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
+}
