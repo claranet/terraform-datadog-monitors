@@ -11,8 +11,7 @@ curl -Lso ${TERRAFORM_AWK} "https://raw.githubusercontent.com/cloudposse/build-h
 PATTERN_DOC="Related documentation"
 
 # loop over every monitors set readme
-for path in $(browse_modules "$(get_scope ${1:-})" 'monitors-*.tf'); do
-    module=$(dirname $path)
+for module in $(browse_modules "$(get_scope ${1:-})" 'monitors-*.tf'); do
     echo -e "\t- Generate outputs.tf for module: ${module}"
     cd ${module}
     EXIST=0
@@ -21,17 +20,17 @@ for path in $(browse_modules "$(get_scope ${1:-})" 'monitors-*.tf'); do
         EXIST=1
     fi
     # module name from path
-    module=$(list_dirs $(dirname ${path}))
+    module_space=$(list_dirs ${module})
     # module name with space as separator
-    module_space=${module^^}
+    module_upper=${module_space^^}
     # module name with dash as separator
-    module_dash=${module//[ ]/-}
+    module_dash=${module_space//[ ]/-}
     # module name with slash as separator
-    module_slash=${module//[ ]/\/}
+    module_slash=${module_space//[ ]/\/}
 
     # (re)generate README from scratch
     cat <<EOF > README.md
-# ${module_space} DataDog monitors
+# ${module_upper} DataDog monitors
 
 ## How to use this module
 
@@ -64,14 +63,14 @@ EOF
     # allow looping over strings which contains spaces
     IFS=$(echo -en "\n\b")
     # loop over each monitor in the set
-    for match in $(grep -E ^[[:space:]]+name[[:space:]]+= $(basename ${path}) | sort -fdbi); do
+    for match in $(cat monitors-*.tf | grep -E ^[[:space:]]+name[[:space:]]+= | sort -fdbi); do
         ## TODO rewrite this (and other things) using:
         ## terraform-config-inspect --json| jq -C
         ## awk '1;/^\}/{exit}' monitors-ingress.tf # with line numer of each resource
         # parse monitor's name
         name=$(get_name "${match}")
         # search if monitor is enabled
-        [[ "$(grep -B1 "$name" $(basename ${path}) | grep -q enabled)" =~ ^[[:space:]]*count[[:space:]]*=[[:space:]]*var\.([a-z0-9_]*_enabled) ]] &&
+        [[ "$(cat monitors-*.tf | grep -B1 "$name" | grep -q enabled)" =~ ^[[:space:]]*count[[:space:]]*=[[:space:]]*var\.([a-z0-9_]*_enabled) ]] &&
         # add "disabled by default" mention if not enabled
         if ! grep -A4 "${BASH_REMATCH[1]}" inputs.tf | grep default.*true; then
             name="${name} (disabled by default)"

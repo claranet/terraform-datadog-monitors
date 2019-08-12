@@ -53,5 +53,5 @@ function get_name() {
 }
 
 function browse_modules() {
-    find "$1" -name "$2" -print | sort -fdbi
+    find "$1" -name "$2" -exec dirname "{}" \; | sort -fdbiu
 }
