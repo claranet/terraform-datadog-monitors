@@ -2,6 +2,7 @@
 
 source "$(dirname $0)/utils.sh"
 init
+echo "Update README.md for every monitors modules"
 
 # download awk script to hack terraform-docs
 TERRAFORM_AWK="/tmp/terraform-docs.awk"
@@ -10,8 +11,10 @@ curl -Lso ${TERRAFORM_AWK} "https://raw.githubusercontent.com/cloudposse/build-h
 PATTERN_DOC="Related documentation"
 
 # loop over every monitors set readme
-for path in $(find "$(get_scope ${1:-})" -name 'monitors-*.tf' -print | sort -fdbi); do
-    cd $(dirname $path)
+for path in $(browse_modules "$(get_scope ${1:-})" 'monitors-*.tf'); do
+    module=$(dirname $path)
+    echo -e "\t- Generate outputs.tf for module: ${module}"
+    cd ${module}
     EXIST=0
     if [ -f README.md ]; then
         mv README.md README.md.bak

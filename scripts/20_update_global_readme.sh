@@ -2,6 +2,7 @@
 
 source "$(dirname $0)/utils.sh"
 init
+echo "Update global README.md"
 
 # only keep current README from begining to "Monitors summary" section (delete monitors list)
 sed -i '/### Monitors summary ###/q' README.md
