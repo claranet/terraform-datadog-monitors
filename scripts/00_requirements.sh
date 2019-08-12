@@ -23,7 +23,9 @@ function check_version() {
     if [[ "$1" == "terraform" ]]; then
         tmp_dir=$(mktemp -d)
         cd ${tmp_dir}
+        set +o pipefail # terraform fails on command piping when not last version
         cur_ver=$(terraform version | head -n 1 | cut -d' ' -f2)
+        set -o pipefail
         cur_ver=${cur_ver#"v"}
         cd - > /dev/null
         rm -fr ${tmp_dir}
