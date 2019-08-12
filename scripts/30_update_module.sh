@@ -6,11 +6,10 @@ echo "Generate outputs.tf files when does not exist for every monitors modules"
 root=$(basename ${PWD})
 
 # loop over every monitors set
-for path in $(browse_modules "$(get_scope ${1:-})" 'monitors-*.tf'); do
-    module=$(dirname ${path})
+for module in $(browse_modules "$(get_scope ${1:-})" 'monitors-*.tf'); do
     cd ${module}
     # get name of the monitors set directory
-    resource="$(basename $(dirname $path))"
+    resource="$(basename ${module})"
     # if modules.tf does not exist AND if this set respect our tagging convention
     if ! [ -f modules.tf ] && grep -q filter_tags_use_defaults inputs.tf; then
         echo -e "\t- Generate modules.tf for module: ${module}"
@@ -28,11 +27,13 @@ for path in $(browse_modules "$(get_scope ${1:-})" 'monitors-*.tf'); do
 module "filter-tags" {
   source = "${relative}common/filter-tags"
 
-  environment              = var.environment
-  resource                 = "$resource"
-  filter_tags_use_defaults = var.filter_tags_use_defaults
-  filter_tags_custom       = var.filter_tags_custom
+  environment                 = var.environment
+  resource                    = "$resource"
+  filter_tags_use_defaults    = var.filter_tags_use_defaults
+  filter_tags_custom          = var.filter_tags_custom
+  filter_tags_custom_excluded = var.filter_tags_custom_excluded
 }
+
 EOF
     fi
     cd - >> /dev/null
