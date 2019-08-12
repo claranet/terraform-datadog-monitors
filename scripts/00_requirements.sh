@@ -2,6 +2,7 @@
 
 source "$(dirname $0)/utils.sh"
 init
+echo "Check requirements"
 
 function check_command() {
     local cmd="$1"
@@ -44,6 +45,7 @@ function check_version() {
 }
 
 for cmd in terraform terraform-docs; do
+    echo -e "\t- Check command \"$cmd\" exists and in right version"
     check_command $cmd
     check_version $cmd
 done

@@ -51,3 +51,7 @@ function get_name() {
     echo $name
     return 0
 }
+
+function browse_modules() {
+    find "$1" -name "$2" -print | sort -fdbi
+}

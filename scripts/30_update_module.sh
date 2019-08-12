@@ -2,15 +2,18 @@
 
 source "$(dirname $0)/utils.sh"
 init
+echo "Generate outputs.tf files when does not exist for every monitors modules"
 root=$(basename ${PWD})
 
 # loop over every monitors set
-for path in $(find "$(get_scope ${1:-})" -name 'monitors-*.tf' -print | sort -fdbi); do
-    cd $(dirname $path)
+for path in $(browse_modules "$(get_scope ${1:-})" 'monitors-*.tf'); do
+    module=$(dirname ${path})
+    cd ${module}
     # get name of the monitors set directory
     resource="$(basename $(dirname $path))"
     # if modules.tf does not exist AND if this set respect our tagging convention
     if ! [ -f modules.tf ] && grep -q filter_tags_use_defaults inputs.tf; then
+        echo -e "\t- Generate modules.tf for module: ${module}"
         relative=""
         current="${PWD}"
         # iterate on path until we go back to root
