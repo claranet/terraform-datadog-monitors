@@ -10,9 +10,9 @@ curl -Lso ${TERRAFORM_AWK} "https://raw.githubusercontent.com/cloudposse/build-h
 # this is the pattern from where custom information is saved to be restored
 PATTERN_DOC="Related documentation"
 
-# loop over every monitors set readme
+# loop over every modules
 for module in $(browse_modules "$(get_scope ${1:-})" 'monitors-*.tf'); do
-    echo -e "\t- Generate outputs.tf for module: ${module}"
+    echo -e "\t- Generate README.md for module: ${module}"
     cd ${module}
     EXIST=0
     if [ -f README.md ]; then
@@ -59,27 +59,30 @@ EOF
 Creates DataDog monitors with the following checks:
 
 EOF
-    SAVEIFS=$IFS
-    # allow looping over strings which contains spaces
-    IFS=$(echo -en "\n\b")
-    # loop over each monitor in the set
-    for match in $(cat monitors-*.tf | grep -E ^[[:space:]]+name[[:space:]]+= | sort -fdbi); do
-        ## TODO rewrite this (and other things) using:
-        ## terraform-config-inspect --json| jq -C
-        ## awk '1;/^\}/{exit}' monitors-ingress.tf # with line numer of each resource
+    list=""
+    # gather a information line splitted with "|" for every monitor
+    for row in $(terraform-config-inspect --json | jq -c -r '.managed_resources | map([.pos.filename, .pos.line] | join("|")) | join("\n")' | sort -fdbi); do
+        # split line for each info one variable
+        IFS='|' read filename line < <(echo $row)
+        # gather all config HCL code for current monitor
+        config=$(tail -n +${line} ${filename} | sed '/^}/q')
         # parse monitor's name
-        name=$(get_name "${match}")
+        name=$(get_name "$(echo "${config}" | grep 'name[[:space:]]*=')")
         # search if monitor is enabled
-        [[ "$(cat monitors-*.tf | grep -B1 "$name" | grep -q enabled)" =~ ^[[:space:]]*count[[:space:]]*=[[:space:]]*var\.([a-z0-9_]*_enabled) ]] &&
+        [[ "$(echo "${config}" | grep 'count[[:space:]]*=')" =~ ^[[:space:]]*count[[:space:]]*=[[:space:]]*var\.([a-z0-9_]*_enabled) ]] &&
         # add "disabled by default" mention if not enabled
-        if ! grep -A4 "${BASH_REMATCH[1]}" inputs.tf | grep default.*true; then
+        if ! grep -A4 "${BASH_REMATCH[1]}" inputs.tf | grep -q default.*true; then
             name="${name} (disabled by default)"
         fi
-        # monitor name element to the list and replace "could reach" pattern to "forecast" for better naming
-        echo "- ${name/could reach/forecast}" >> README.md
+        # append new line to list if not empty
+        if ! [ -z "${list}" ]; then
+            list="${list}\n"
+        fi
+        # append name to list and improve forecast naming
+        list="${list}- ${name/could reach/forecast}"
     done
-    IFS=$SAVEIFS
-    echo >> README.md
+    # write sorted list to readme appending newline to end
+    echo -e "$(echo -e "${list}" | sort -fdbi)\n" >> README.md
     # hack for terraform-docs with terraform 0.12 / HCL2 support
     tmp_tf=$(mktemp -d)
     awk -f ${TERRAFORM_AWK} ./*.tf > ${tmp_tf}/main.tf

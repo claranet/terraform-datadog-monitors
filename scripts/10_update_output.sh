@@ -4,14 +4,16 @@ source "$(dirname $0)/utils.sh"
 init
 echo "Generate terraform outputs.tf files for every monitors modules"
 
-# loop over every monitors set
+# loop over every modules
 for module in $(browse_modules "$(get_scope ${1:-})" 'monitors-*.tf'); do
     echo -e "\t- Generate outputs.tf for module: ${module}"
     cd ${module}
     # empty outputs
     > outputs.tf
-    # loop over monitors for each set
-    for monitor in $(cat monitors-*.tf | grep 'resource "datadog_monitor"' | awk '{print $3}' | tr -d '"' ); do
+    # gather a information line splitted with "|" for every monitor
+    for row in $(terraform-config-inspect --json | jq -c -r '.managed_resources | map([.name] | join("|")) | join("\n")'); do
+        # split line for each info one variable
+        IFS='|' read monitor type < <(echo $row)
         # create output block for current monitor
         cat >> outputs.tf <<EOF
 output "${monitor}_id" {

@@ -5,7 +5,7 @@ init
 echo "Generate outputs.tf files when does not exist for every monitors modules"
 root=$(basename ${PWD})
 
-# loop over every monitors set
+# loop over every modules
 for module in $(browse_modules "$(get_scope ${1:-})" 'monitors-*.tf'); do
     cd ${module}
     # get name of the monitors set directory
