@@ -12,6 +12,7 @@ trap 'err $LINENO' ERR TERM EXIT INT
 
 provider_version=$(grep ^[[:space:]]*version[[:space:]]= README.md | awk '{print $3}')
 
+# loop over every modules
 for module in $(browse_modules "$(get_scope ${1:-})" 'inputs.tf'); do
     echo -e "\t- Terraform validate on module: ${module}"
     cat <<EOF > ${module}/tmp.tf
