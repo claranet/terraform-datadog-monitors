@@ -65,7 +65,9 @@ EOF
         # split line for each info one variable
         IFS='|' read filename line < <(echo $row)
         # gather all config HCL code for current monitor
+        set +o pipefail
         config=$(tail -n +${line} ${filename} | sed '/^}/q')
+        set -o pipefail
         # parse monitor's name
         name=$(get_name "$(echo "${config}" | grep 'name[[:space:]]*=')")
         # search if monitor is enabled
