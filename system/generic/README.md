@@ -21,8 +21,8 @@ Creates DataDog monitors with the following checks:
 - CPU load 5 ratio
 - CPU usage
 - Disk inodes usage
-- Disk Space usage forecast
 - Disk space usage
+- Disk Space usage forecast
 - Usable Memory
 
 ## Inputs

@@ -9,7 +9,7 @@ auto_update:
   image: claranet/datadog-terraform:latest
   stage: test
   script:
-    - ./scripts/auto_update.sh ./
+    - ./scripts/auto_update.sh
     - git status
     - git diff --exit-code
   tags:
