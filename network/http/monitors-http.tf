@@ -54,7 +54,7 @@ EOQ
 
   new_host_delay      = var.new_host_delay
   no_data_timeframe   = var.invalid_ssl_certificate_no_data_timeframe
-  notify_no_data      = true
+  notify_no_data      = false
   notify_audit        = false
   locked              = false
   timeout_h           = 0
