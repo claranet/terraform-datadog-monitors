@@ -1,0 +1,107 @@
+#
+# HTTP Cannot Connect
+#
+resource "datadog_monitor" "cannot_connect" {
+  count   = var.cannot_connect_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] HTTP cannot connect"
+  message = coalesce(var.cannot_connect_message, var.message)
+  type    = "service check"
+
+  query = <<EOQ
+    "http.can_connect"${module.filter-tags.service_check}.by("instance","url").last(${var.cannot_connect_last}).count_by_status()
+EOQ
+
+  thresholds = {
+    warning  = var.cannot_connect_threshold_warning
+    critical = var.cannot_connect_threshold_critical
+    ok       = var.cannot_connect_threshold_ok
+  }
+
+  new_host_delay      = var.new_host_delay
+  no_data_timeframe   = var.cannot_connect_no_data_timeframe
+  notify_no_data      = true
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
+  require_full_window = true
+  renotify_interval   = 0
+
+  tags = concat(["env:${var.environment}", "type:network", "provider:http_check", "resource:webcheck", "team:claranet", "created-by:terraform"], var.cannot_connect_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
+}
+
+#
+# Invalid SSL Certificate
+#
+resource "datadog_monitor" "invalid_ssl_certificate" {
+  count   = var.invalid_ssl_certificate_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] SSL invalid certificate"
+  message = coalesce(var.invalid_ssl_certificate_message, var.message)
+  type    = "service check"
+
+  query = <<EOQ
+    "http.ssl_cert"${module.filter-tags.service_check}.by("instance","url").last(${var.invalid_ssl_certificate_last}).count_by_status()
+EOQ
+
+  thresholds = {
+    warning  = var.invalid_ssl_certificate_threshold_warning
+    critical = var.invalid_ssl_certificate_threshold_critical
+  }
+
+  new_host_delay      = var.new_host_delay
+  no_data_timeframe   = var.invalid_ssl_certificate_no_data_timeframe
+  notify_no_data      = true
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
+  include_tags        = true
+  require_full_window = true
+  renotify_interval   = 0
+
+  tags = concat(["env:${var.environment}", "type:network", "provider:http_check", "resource:ssl-certificate", "team:claranet", "created-by:terraform"], var.invalid_ssl_certificate_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
+}
+
+#
+# Certificate Expiration Date
+#
+resource "datadog_monitor" "certificate_expiration_date" {
+  count   = var.certificate_expiration_date_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] SSL certificate expiration {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}} days){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}} days){{/is_warning}}"
+  message = coalesce(var.certificate_expiration_date_message, var.message)
+  type    = "query alert"
+
+  query = <<EOQ
+    ${var.certificate_expiration_date_time_aggregator}(${var.certificate_expiration_date_timeframe}):
+      avg:http.ssl.days_left${module.filter-tags.query_alert} by {url}
+    < ${var.certificate_expiration_date_threshold_critical}
+EOQ
+
+  thresholds = {
+    warning  = var.certificate_expiration_date_threshold_warning
+    critical = var.certificate_expiration_date_threshold_critical
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+
+  tags = concat(["env:${var.environment}", "type:network", "provider:http_check", "resource:ssl-certificate", "team:claranet", "created-by:terraform"], var.certificate_expiration_date_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
+}
