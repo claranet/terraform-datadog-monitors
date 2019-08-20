@@ -17,7 +17,7 @@ module "datadog-monitors-network-http" {
 Creates DataDog monitors with the following checks:
 
 - HTTP cannot connect
-- SSL certificate expiration
+- SSL certificate expiration (disabled by default)
 - SSL invalid certificate
 
 ## Inputs
@@ -32,7 +32,7 @@ Creates DataDog monitors with the following checks:
 | cannot\_connect\_threshold\_critical | HTTP cannot connect monitor (warning threshold) | string | `"3"` | no |
 | cannot\_connect\_threshold\_ok | HTTP cannot connect monitor (ok threshold) | string | `"3"` | no |
 | cannot\_connect\_threshold\_warning | HTTP cannot connect monitor (warning threshold) | string | `"2"` | no |
-| certificate\_expiration\_date\_enabled | Flag to enable Certificate Expiration Date monitor | string | `"true"` | no |
+| certificate\_expiration\_date\_enabled | Flag to enable Certificate Expiration Date monitor | string | `"false"` | no |
 | certificate\_expiration\_date\_extra\_tags | Extra tags for Certificate Expiration Date monitor | list(string) | `[]` | no |
 | certificate\_expiration\_date\_message | Custom message for the Certificate Expiration Date monitor | string | `""` | no |
 | certificate\_expiration\_date\_threshold\_critical | Certificate Expiration Date critical threshold | string | `"8"` | no |

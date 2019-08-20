@@ -17,7 +17,7 @@ module "datadog-monitors-network-tls" {
 Creates DataDog monitors with the following checks:
 
 - TLS cannot connect
-- TLS certificate expiration
+- TLS certificate expiration (disabled by default)
 - TLS certificate expiring
 - TLS invalid certificate
 
@@ -33,7 +33,7 @@ Creates DataDog monitors with the following checks:
 | cannot\_connect\_threshold\_critical | TLS cannot connect monitor (warning threshold) | string | `"3"` | no |
 | cannot\_connect\_threshold\_ok | TLS cannot connect monitor (ok threshold) | string | `"3"` | no |
 | cannot\_connect\_threshold\_warning | TLS cannot connect monitor (warning threshold) | string | `"2"` | no |
-| certificate\_expiration\_date\_enabled | Flag to enable Certificate Expiration Date monitor | string | `"true"` | no |
+| certificate\_expiration\_date\_enabled | Flag to enable Certificate Expiration Date monitor | string | `"false"` | no |
 | certificate\_expiration\_date\_extra\_tags | Extra tags for Certificate Expiration Date monitor | list(string) | `[]` | no |
 | certificate\_expiration\_date\_message | Custom message for the Certificate Expiration Date monitor | string | `""` | no |
 | certificate\_expiration\_date\_threshold\_critical | Container Memory Usage critical threshold | string | `"8"` | no |
