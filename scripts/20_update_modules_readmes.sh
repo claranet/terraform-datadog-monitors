@@ -99,7 +99,7 @@ EOF
     else
         # else restore the custom information saved before
         grep -Pzo --color=never ".*${PATTERN_DOC}(.*\n)*" README.md.bak | head -n -1 >> README.md
-        rm README.md.bak
+        rm -f README.md.bak
     fi
     # force unix format (I don't know why for now but you never know)
     dos2unix README.md 2> /dev/null
