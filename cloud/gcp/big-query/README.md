@@ -19,12 +19,12 @@ Creates DataDog monitors with the following checks:
 - GCP Big Query Available Slots
 - GCP Big Query Concurrent Queries
 - GCP Big Query Execution Time
-- GCP Big Query Scanned Bytes Billed
 - GCP Big Query Scanned Bytes
+- GCP Big Query Scanned Bytes Billed
 - GCP Big Query Stored Bytes
 - GCP Big Query Table Count
-- GCP Big Query Uploaded Bytes Billed
 - GCP Big Query Uploaded Bytes
+- GCP Big Query Uploaded Bytes Billed
 
 ## Inputs
 

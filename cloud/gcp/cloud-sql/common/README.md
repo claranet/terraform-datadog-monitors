@@ -17,11 +17,11 @@ module "datadog-monitors-cloud-gcp-cloud-sql-common" {
 Creates DataDog monitors with the following checks:
 
 - Cloud SQL CPU Utilization
-- Cloud SQL Disk Utilization forecast
 - Cloud SQL Disk Utilization
+- Cloud SQL Disk Utilization forecast
 - Cloud SQL Failover Unavailable
-- Cloud SQL Memory Utilization forecast
 - Cloud SQL Memory Utilization
+- Cloud SQL Memory Utilization forecast
 
 ## Inputs
 
