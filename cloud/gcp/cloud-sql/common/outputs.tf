@@ -13,6 +13,11 @@ output "disk_utilization_forecast_id" {
   value       = datadog_monitor.disk_utilization_forecast.*.id
 }
 
+output "failover_unavailable_id" {
+  description = "id for monitor failover_unavailable"
+  value       = datadog_monitor.failover_unavailable.*.id
+}
+
 output "memory_utilization_id" {
   description = "id for monitor memory_utilization"
   value       = datadog_monitor.memory_utilization.*.id
@@ -21,10 +26,5 @@ output "memory_utilization_id" {
 output "memory_utilization_forecast_id" {
   description = "id for monitor memory_utilization_forecast"
   value       = datadog_monitor.memory_utilization_forecast.*.id
-}
-
-output "failover_unavailable_id" {
-  description = "id for monitor failover_unavailable"
-  value       = datadog_monitor.failover_unavailable.*.id
 }
 

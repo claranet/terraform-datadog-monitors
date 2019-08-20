@@ -1,14 +1,21 @@
 #!/bin/bash
-set -xueo pipefail
 
 source "$(dirname $0)/utils.sh"
-goto_root
+init
+echo "Check terraform CI"
+
+# Clean when exit
+err() {
+    rm -f "${module}/tmp.tf"
+}
+trap 'err $LINENO' ERR TERM EXIT INT
 
 provider_version=$(grep ^[[:space:]]*version[[:space:]]= README.md | awk '{print $3}')
 
-for path in $(find "$(get_scope $1)" -name 'inputs.tf' -print); do
-    dir=$(dirname ${path})
-    cat <<EOF > ${dir}/tmp.tf
+# loop over every modules
+for module in $(browse_modules "$(get_scope ${1:-})" 'inputs.tf'); do
+    echo -e "\t- Terraform validate on module: ${module}"
+    cat <<EOF > ${module}/tmp.tf
 provider "datadog" {
   version = $provider_version
 
@@ -27,13 +34,14 @@ variable "datadog_app_key" {
 }
 
 EOF
-    if [ -f ${dir}/test.tf.ci ]; then
-        cat ${dir}/test.tf.ci >> ${dir}/tmp.tf
+    if [ -f ${module}/test.tf.ci ]; then
+        cat ${module}/test.tf.ci >> ${module}/tmp.tf
     fi
-    terraform init ${dir}
-    terraform validate ${dir}
-    rm -f ${dir}/tmp.tf
+    terraform init ${module} > /tmp/null
+    terraform validate ${module}
+    rm -f ${module}/tmp.tf
 done
 
+echo -e "\t- Terraform fmt recursive"
 terraform fmt -recursive
 
