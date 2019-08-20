@@ -186,7 +186,7 @@ variable "tls_certificate_expiration_extra_tags" {
 variable "certificate_expiration_date_enabled" {
   description = "Flag to enable Certificate Expiration Date monitor"
   type        = string
-  default     = "true"
+  default     = "false"
 }
 
 variable "certificate_expiration_date_message" {
