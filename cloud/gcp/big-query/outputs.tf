@@ -1,3 +1,8 @@
+output "available_slots_id" {
+  description = "id for monitor available_slots"
+  value       = datadog_monitor.available_slots.*.id
+}
+
 output "concurrent_queries_id" {
   description = "id for monitor concurrent_queries"
   value       = datadog_monitor.concurrent_queries.*.id
@@ -16,11 +21,6 @@ output "scanned_bytes_id" {
 output "scanned_bytes_billed_id" {
   description = "id for monitor scanned_bytes_billed"
   value       = datadog_monitor.scanned_bytes_billed.*.id
-}
-
-output "available_slots_id" {
-  description = "id for monitor available_slots"
-  value       = datadog_monitor.available_slots.*.id
 }
 
 output "stored_bytes_id" {

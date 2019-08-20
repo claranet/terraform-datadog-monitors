@@ -3,9 +3,9 @@ output "cpu_id" {
   value       = datadog_monitor.cpu.*.id
 }
 
-output "load_id" {
-  description = "id for monitor load"
-  value       = datadog_monitor.load.*.id
+output "disk_inodes_id" {
+  description = "id for monitor disk_inodes"
+  value       = datadog_monitor.disk_inodes.*.id
 }
 
 output "disk_space_id" {
@@ -18,9 +18,9 @@ output "disk_space_forecast_id" {
   value       = datadog_monitor.disk_space_forecast.*.id
 }
 
-output "disk_inodes_id" {
-  description = "id for monitor disk_inodes"
-  value       = datadog_monitor.disk_inodes.*.id
+output "load_id" {
+  description = "id for monitor load"
+  value       = datadog_monitor.load.*.id
 }
 
 output "memory_id" {
