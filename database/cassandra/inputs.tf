@@ -70,26 +70,25 @@ variable "process_cassandra_availability_extra_tags" {
 }
 
 variable "node_cassandra_status_message" {
-  description = "Custom message for Mysql availability monitor"
+  description = "Custom message for Cassandra availability monitor"
   type        = string
   default     = ""
 }
 
 variable "process_cassandra_status_message" {
-  description = "Custom message for MySQL connection monitor"
+  description = "Custom message for Cassandra connection monitor"
   type        = string
   default     = ""
 }
 
-
 variable "node_cassandra_status_time_aggregator" {
-  description = "Monitor aggregator for IoT Hub failed jobs [available values: min, max, sum or avg]"
+  description = "Monitor aggregator for Cassandra [available values: min, max, sum or avg]"
   type        = string
   default     = "min"
 }
 
 variable "node_cassandra_status_timeframe" {
-  description = "Monitor timeframe for IoT Hub failed jobs [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  description = "Monitor timeframe for Cassandra [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
   default     = "last_5m"
 }
