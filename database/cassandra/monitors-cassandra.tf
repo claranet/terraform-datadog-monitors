@@ -6,7 +6,7 @@ resource "datadog_monitor" "datadog_node_cassandra_down" {
 
   query = <<EOQ
     ${var.node_cassandra_status_time_aggregator}(${var.node_cassandra_status_timeframe}): (
-      avg:cassandra.nodetool.status.status${module.filter-tags.query_alert} by {datacenter}
+      avg:cassandra.nodetool.status.status${module.filter-tags.query_alert} by {datacenter,node_id}
     ) < 1
 EOQ
 
