@@ -10,7 +10,7 @@ To contribute you will need to [report an issue](https://confluence.fr.clara.net
 
 If you would like to resolve an issue or implement new monitors you must follow our [best practices](https://confluence.fr.clara.net/display/DAT/Templates+monitors).
 
-After any change, you will need to run the [auto update scripts](./scripts/README.md) to make sure all is up to date otherwise the CI pipeline will fail.
+After any change, you will need to run the [auto update scripts](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/scripts/blob/master/README.md) to make sure all is up to date otherwise the CI pipeline will fail.
 
 ## Important notes ##
 
