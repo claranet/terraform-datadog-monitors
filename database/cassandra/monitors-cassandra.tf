@@ -2,7 +2,7 @@ resource "datadog_monitor" "datadog_node_cassandra_down" {
   count   = var.node_cassandra_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] DSE Cassandra node is down"
   message = coalesce(var.node_cassandra_status_message, var.message)
-  type  = "query alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.node_cassandra_status_time_aggregator}(${var.node_cassandra_status_timeframe}): (
@@ -27,7 +27,7 @@ resource "datadog_monitor" "datadog_cassandra_process_down" {
   count   = var.process_cassandra_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] DSE Cassandra process is down"
   message = coalesce(var.process_cassandra_status_message, var.message)
-  type = "metric alert"
+  type    = "metric alert"
 
   query = "max(last_5m):min:system.processes.number${module.filter-tags-check-process.query_alert} by {host} < 1"
 
