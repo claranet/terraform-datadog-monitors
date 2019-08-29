@@ -55,16 +55,10 @@ variable "not_responding_message" {
   default     = ""
 }
 
-variable "not_responding_last" {
-  description = "Parameter 'last' for the service check"
+variable "not_responding_threshold_warning" {
+  description = "Warning threshold for the service check"
   type        = string
-  default     = 6
-}
-
-variable "not_responding_threshold_critical" {
-  description = "Parameter 'last' for the service check"
-  type        = string
-  default     = 5
+  default     = 3
 }
 
 variable "not_responding_no_data_timeframe" {
@@ -80,7 +74,7 @@ variable "not_responding_extra_tags" {
 }
 
 #
-# treatment Limit
+# Treatment Limit
 #
 variable "treatment_limit_enabled" {
   description = "Flag to enable Kong Treatment Limit monitor"
