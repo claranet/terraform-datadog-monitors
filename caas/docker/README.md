@@ -17,7 +17,7 @@ module "datadog-monitors-caas-docker" {
 Creates DataDog monitors with the following checks:
 
 - Docker Container Memory Used (disabled by default)
-- Service Docker does not respond
+- Docker does not respond
 
 ## Inputs
 
