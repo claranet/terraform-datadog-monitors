@@ -32,10 +32,9 @@ Creates DataDog monitors with the following checks:
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | not\_responding\_enabled | Flag to enable Kong does not respond monitor | string | `"true"` | no |
 | not\_responding\_extra\_tags | Extra tags for Kong does not respond monitor | list(string) | `[]` | no |
-| not\_responding\_last | Parameter 'last' for the service check | string | `"6"` | no |
 | not\_responding\_message | Custom message for Kong does not respond monitor | string | `""` | no |
 | not\_responding\_no\_data\_timeframe | Kong does not respond monitor no data timeframe | string | `"10"` | no |
-| not\_responding\_threshold\_critical | Parameter 'last' for the service check | string | `"5"` | no |
+| not\_responding\_threshold\_warning | Warning threshold for the service check | string | `"3"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | treatment\_limit\_enabled | Flag to enable Kong Treatment Limit monitor | string | `"true"` | no |
 | treatment\_limit\_extra\_tags | Extra tags for Kong Treatment Limit monitor | list(string) | `[]` | no |
