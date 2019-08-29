@@ -32,17 +32,15 @@ Creates DataDog monitors with the following checks:
 | memory\_used\_extra\_tags | Extra tags for Container Memory Usage monitor | list(string) | `[]` | no |
 | memory\_used\_message | Custom message for the Container Memory Usage monitor | string | `""` | no |
 | memory\_used\_threshold\_critical | Container Memory Usage critical threshold | string | `"90"` | no |
-| memory\_used\_threshold\_warning | Container Memory Usage warning threshold | string | `"80"` | no |
+| memory\_used\_threshold\_warning | Container Memory Usage warning threshold | string | `"85"` | no |
 | memory\_used\_time\_aggregator | Time aggregator for the Container Memory Usage monitor | string | `"min"` | no |
 | memory\_used\_timeframe | Timeframe for the Container Memory Usage monitor | string | `"last_5m"` | no |
 | message | Message sent when an alert is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | not\_responding\_enabled | Flag to enable Docker does not respond monitor | string | `"true"` | no |
 | not\_responding\_extra\_tags | Extra tags for Docker does not respond monitor | list(string) | `[]` | no |
-| not\_responding\_last | Parameter 'last' for the service check | string | `"6"` | no |
 | not\_responding\_message | Custom message for Docker does not respond monitor | string | `""` | no |
 | not\_responding\_no\_data\_timeframe | Docker does not respond monitor no data timeframe | string | `"10"` | no |
-| not\_responding\_threshold\_critical | Docker does not respond monitor (warning threshold) | string | `"5"` | no |
 | not\_responding\_threshold\_warning | Docker does not respond monitor (warning threshold) | string | `"3"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 

@@ -8,12 +8,12 @@ resource "datadog_monitor" "not_responding" {
   type    = "service check"
 
   query = <<EOQ
-    "docker.service_up"${module.filter-tags.service_check}.by("host").last(${var.not_responding_last}).count_by_status()
+    "docker.service_up"${module.filter-tags.service_check}.by("host").last(6).count_by_status()
 EOQ
 
   thresholds = {
     warning  = var.not_responding_threshold_warning
-    critical = var.not_responding_threshold_critical
+    critical = 5
   }
 
   new_host_delay      = var.new_host_delay
