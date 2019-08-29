@@ -27,7 +27,7 @@ EOQ
   notify_no_data      = true
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "pubsub_category:topic", "team:claranet", "created-by:terraform"], var.sending_operations_count_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "category:topic", "team:claranet", "created-by:terraform"], var.sending_operations_count_extra_tags)
 
   lifecycle {
     ignore_changes = ["silenced"]
@@ -64,7 +64,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "pubsub_category:topic", "team:claranet", "created-by:terraform"], var.unavailable_sending_operations_count_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "category:topic", "team:claranet", "created-by:terraform"], var.unavailable_sending_operations_count_extra_tags)
 
   lifecycle {
     ignore_changes = ["silenced"]
@@ -103,7 +103,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "pubsub_category:topic", "team:claranet", "created-by:terraform"], var.unavailable_sending_operations_ratio_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "category:topic", "team:claranet", "created-by:terraform"], var.unavailable_sending_operations_ratio_extra_tags)
 
   lifecycle {
     ignore_changes = ["silenced"]
