@@ -7,7 +7,7 @@
 #
 resource "datadog_monitor" "oldest_unacked_message_age" {
   count   = var.oldest_unacked_message_age_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Pub/Sub Subscription Oldest unacknowledged message {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Pub/Sub Subscription oldest unacknowledged message {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = coalesce(var.oldest_unacked_message_age_message, var.message)
   type    = "query alert"
 
@@ -48,7 +48,7 @@ EOQ
 #
 resource "datadog_monitor" "subscription_push_latency" {
   count   = var.subscription_push_latency_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Pub/Sub Subscription Latency on push endpoint {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Pub/Sub Subscription latency on push endpoint {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = coalesce(var.subscription_push_latency_message, var.message)
   type    = "query alert"
 
@@ -85,7 +85,7 @@ EOQ
 #
 resource "datadog_monitor" "subscription_push_latency_anomaly" {
   count   = var.subscription_push_latency_anomaly_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Pub/Sub Subscription Latency on push endpoint changed abnormally {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Pub/Sub Subscription latency on push endpoint changed abnormally {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.subscription_push_latency_anomaly_message, var.message)
   type    = "query alert"
 

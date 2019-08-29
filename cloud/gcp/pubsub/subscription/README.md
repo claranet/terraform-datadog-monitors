@@ -16,9 +16,9 @@ module "datadog-monitors-cloud-gcp-pubsub-subscription" {
 
 Creates DataDog monitors with the following checks:
 
-- GCP Pub/Sub Subscription Anomaly latency on push endpoint (disabled by default)
-- GCP Pub/Sub Subscription Latency on push endpoint
-- GCP Pub/Sub Subscription Oldest unacked message is
+- Pub/Sub Subscription latency on push endpoint
+- Pub/Sub Subscription latency on push endpoint changed abnormally (disabled by default)
+- Pub/Sub Subscription oldest unacknowledged message
 
 ## Inputs
 
