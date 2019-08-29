@@ -78,12 +78,12 @@ resource "datadog_monitor" "data_sent" {
   query = <<EOQ
     ${var.data_sent_time_aggregator}(${var.data_sent_timeframe}):
       avg:new_relic.apdex.score${module.filter-tags.query_alert} by {application}
-    < ${var.data_sent_threshold_critical}
+    < 0
 EOQ
 
   thresholds = {
     # No alert for this monitor, just send notification in case of no-data
-    critical = var.data_sent_threshold_critical
+    critical = 0
   }
 
   evaluation_delay    = var.evaluation_delay
