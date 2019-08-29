@@ -48,7 +48,7 @@ EOQ
 #
 resource "datadog_monitor" "subscription_push_latency" {
   count   = var.subscription_push_latency_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP Pub/Sub Subscription Latency on push endpoint {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] GCP Pub/Sub Subscription Latency on push endpoint {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = coalesce(var.subscription_push_latency_message, var.message)
   type    = "query alert"
 
