@@ -45,13 +45,13 @@ variable "filter_tags_custom_excluded" {
 ###    Cassandra availability    ###
 ####################################
 
-variable "node_cassandra_enabled" {
+variable "cassandra_node_enabled" {
   description = "Flag to enable Cassandra availability monitor"
   type        = string
   default     = "true"
 }
 
-variable "process_cassandra_enabled" {
+variable "cassandra_process_enabled" {
   description = "Flag to enable Cassandra availability monitor"
   type        = string
   default     = "true"
@@ -76,7 +76,7 @@ variable "node_cassandra_status_message" {
 }
 
 variable "process_cassandra_status_message" {
-  description = "Custom message for Cassandra connection monitor"
+  description = "Custom message for Cassandra status monitor"
   type        = string
   default     = ""
 }
@@ -91,4 +91,165 @@ variable "node_cassandra_status_timeframe" {
   description = "Monitor timeframe for Cassandra [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
   default     = "last_5m"
+}
+
+variable "cassandra_read_latency_enabled" {
+  description = "Flag to enable Cassandra read latency monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "cassandra_read_latency_status_message" {
+  description = "Custom message for Cassandra read latency monitor"
+  type        = string
+  default     = ""
+}
+
+variable "cassandra_read_latency_time_aggregator" {
+  description = "Monitor time aggregator for Cassandra read latency monitor [available values: min, max or avg]"
+  type        = string
+  default     = "avg"
+}
+
+variable "cassandra_read_latency_timeframe" {
+  description = "Monitor timeframe for Cassandra read latency monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_15m"
+}
+
+variable "cassandra_read_latency_threshold_critical" {
+  default     = 300000
+  description = "Maximum critical acceptable ms of read latency"
+}
+
+variable "cassandra_read_latency_threshold_warning" {
+  default     = 250000
+  description = "Maximum critical acceptable ms of read latency"
+}
+
+variable "cassandra_read_latency_availability_extra_tags" {
+  description = "Extra tags for Cassandra read latency monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "cassandra_write_latency_enabled" {
+  description = "Flag to enable Cassandra write latency monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "cassandra_write_latency_status_message" {
+  description = "Custom message for Cassandra write latency monitor"
+  type        = string
+  default     = ""
+}
+
+variable "cassandra_write_latency_time_aggregator" {
+  description = "Monitor time aggregator for Cassandra write latency monitor [available values: min, max or avg]"
+  type        = string
+  default     = "avg"
+}
+
+variable "cassandra_write_latency_timeframe" {
+  description = "Monitor timeframe for Cassandra write latency monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_15m"
+}
+
+variable "cassandra_write_latency_threshold_critical" {
+  default     = 300000
+  description = "Maximum critical acceptable ms of write latency"
+}
+
+variable "cassandra_write_latency_threshold_warning" {
+  default     = 250000
+  description = "Maximum critical acceptable ms of write latency"
+}
+
+variable "cassandra_write_latency_availability_extra_tags" {
+  description = "Extra tags for Cassandra write latency monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "cassandra_key_cache_enabled" {
+  description = "Flag to enable Cassandra key cache monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "cassandra_key_cache_status_message" {
+  description = "Custom message for Cassandra key cache monitor"
+  type        = string
+  default     = ""
+}
+
+variable "cassandra_key_cache_time_aggregator" {
+  description = "Monitor time aggregator for Cassandra key cache monitor [available values: min, max or avg]"
+  type        = string
+  default     = "avg"
+}
+
+variable "cassandra_key_cache_timeframe" {
+  description = "Monitor timeframe for Cassandra key cache monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_15m"
+}
+
+variable "cassandra_key_cache_threshold_critical" {
+  default     = 0.30
+  description = "Maximum critical acceptable rate of key cache"
+}
+
+variable "cassandra_key_cache_threshold_warning" {
+  default     = 0.40
+  description = "Maximum critical acceptable rate of key cache"
+}
+
+variable "cassandra_key_cache_extra_tags" {
+  description = "Extra tags for Cassandra key cache monitor"
+  type        = list(string)
+  default     = []
+}
+
+
+variable "cassandra_exceptions_enabled" {
+  description = "Flag to enable Cassandra exceptions monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "cassandra_exceptions_status_message" {
+  description = "Custom message for Cassandra exceptions monitor"
+  type        = string
+  default     = ""
+}
+
+variable "cassandra_exceptions_time_aggregator" {
+  description = "Monitor time aggregator for Cassandra exceptions monitor [available values: min, max or avg]"
+  type        = string
+  default     = "avg"
+}
+
+variable "cassandra_exceptions_timeframe" {
+  description = "Monitor timeframe for Cassandra exceptions monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_15m"
+}
+
+variable "cassandra_exceptions_threshold_critical" {
+  default     = 1000
+  description = "Maximum critical acceptable rate of exceptions"
+}
+
+variable "cassandra_exceptions_threshold_warning" {
+  default     = 500
+  description = "Maximum critical acceptable rate of exceptions"
+}
+
+variable "cassandra_exceptions_extra_tags" {
+  description = "Extra tags for Cassandra exceptions monitor"
+  type        = list(string)
+  default     = []
 }
