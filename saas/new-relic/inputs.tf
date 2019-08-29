@@ -156,12 +156,6 @@ variable "data_sent_timeframe" {
   default     = "last_15m"
 }
 
-variable "data_sent_threshold_critical" {
-  description = "Critical threshold for the New Relic Data Sent monitor"
-  type        = string
-  default     = 0
-}
-
 variable "data_sent_no_data_timeframe" {
   description = "No data timeframe for the New Relic Data Sent monitor"
   type        = string
