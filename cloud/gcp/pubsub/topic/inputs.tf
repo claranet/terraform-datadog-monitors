@@ -105,7 +105,7 @@ variable "unavailable_sending_operations_count_threshold_critical" {
 variable "unavailable_sending_operations_count_enabled" {
   description = "Flag to enable GCP Pub/Sub Unavailable Sending Operations Count monitor"
   type        = string
-  default     = "true"
+  default     = "false"
 }
 
 variable "unavailable_sending_operations_count_extra_tags" {
