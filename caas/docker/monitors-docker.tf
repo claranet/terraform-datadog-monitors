@@ -3,7 +3,7 @@
 #
 resource "datadog_monitor" "not_responding" {
   count   = var.not_responding_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Service Docker does not respond"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Docker does not respond"
   message = coalesce(var.not_responding_message, var.message)
   type    = "service check"
 
