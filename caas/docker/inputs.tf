@@ -54,22 +54,10 @@ variable "not_responding_message" {
   default     = ""
 }
 
-variable "not_responding_last" {
-  description = "Parameter 'last' for the service check"
-  type        = string
-  default     = 6
-}
-
 variable "not_responding_threshold_warning" {
   description = "Docker does not respond monitor (warning threshold)"
   type        = string
   default     = 3
-}
-
-variable "not_responding_threshold_critical" {
-  description = "Docker does not respond monitor (warning threshold)"
-  type        = string
-  default     = 5
 }
 
 variable "not_responding_no_data_timeframe" {
@@ -114,7 +102,7 @@ variable "memory_used_timeframe" {
 variable "memory_used_threshold_warning" {
   description = "Container Memory Usage warning threshold"
   type        = string
-  default     = 80
+  default     = 85
 }
 
 variable "memory_used_threshold_critical" {
