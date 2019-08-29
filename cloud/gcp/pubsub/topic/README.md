@@ -1,10 +1,10 @@
-# CLOUD GCP PUBSUB DataDog monitors
+# CLOUD GCP PUBSUB TOPIC DataDog monitors
 
 ## How to use this module
 
 ```
-module "datadog-monitors-cloud-gcp-pubsub" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//cloud/gcp/pubsub?ref={revision}"
+module "datadog-monitors-cloud-gcp-pubsub-topic" {
+  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//cloud/gcp/pubsub/topic?ref={revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message
@@ -16,8 +16,9 @@ module "datadog-monitors-cloud-gcp-pubsub" {
 
 Creates DataDog monitors with the following checks:
 
-- GCP pubsub sending messages operations
-- GCP pubsub sending messages with result unavailable
+- Pub/Sub Topic ratio of sending messages with result unavailable
+- Pub/Sub Topic sending messages operations
+- Pub/Sub Topic sending messages with result unavailable (disabled by default)
 
 ## Inputs
 
@@ -35,13 +36,20 @@ Creates DataDog monitors with the following checks:
 | sending\_operations\_count\_threshold\_critical | Critical threshold for the number of sending operations. | string | `"0"` | no |
 | sending\_operations\_count\_time\_aggregator | Timeframe for the GCP Pub/Sub Sending Operations Count monitor | string | `"sum"` | no |
 | sending\_operations\_count\_timeframe | Timeframe for the GCP Pub/Sub Sending Operations Count monitor | string | `"last_30m"` | no |
-| unavailable\_sending\_operations\_count\_enabled | Flag to enable GCP Pub/Sub Unavailable Sending Operations Count monitor | string | `"true"` | no |
+| unavailable\_sending\_operations\_count\_enabled | Flag to enable GCP Pub/Sub Unavailable Sending Operations Count monitor | string | `"false"` | no |
 | unavailable\_sending\_operations\_count\_extra\_tags | Extra tags for GCP Pub/Sub Unavailable Sending Operations Count monitor | list(string) | `[]` | no |
 | unavailable\_sending\_operations\_count\_message | Custom message for the GCP Pub/Sub Unavailable Sending Operations Count monitor | string | `""` | no |
 | unavailable\_sending\_operations\_count\_threshold\_critical | Critical threshold for the number of unavailable sending operations | string | `"4"` | no |
 | unavailable\_sending\_operations\_count\_threshold\_warning | Warning threshold for the number of unavailable sending operations | string | `"2"` | no |
 | unavailable\_sending\_operations\_count\_time\_aggregator | Timeframe for the GCP Pub/Sub Unavailable Sending Operations Count monitor | string | `"sum"` | no |
 | unavailable\_sending\_operations\_count\_timeframe | Timeframe for the GCP Pub/Sub Unavailable Sending Operations Count monitor | string | `"last_10m"` | no |
+| unavailable\_sending\_operations\_ratio\_enabled | Flag to enable GCP Pub/Sub Unavailable Sending Operations Ratio monitor | string | `"true"` | no |
+| unavailable\_sending\_operations\_ratio\_extra\_tags | Extra tags for GCP Pub/Sub Unavailable Sending Operations Ratio monitor | list(string) | `[]` | no |
+| unavailable\_sending\_operations\_ratio\_message | Custom message for the GCP Pub/Sub Unavailable Sending Operations Ratio monitor | string | `""` | no |
+| unavailable\_sending\_operations\_ratio\_threshold\_critical | Critical threshold (%) for the ratio of unavailable sending operations | string | `"20"` | no |
+| unavailable\_sending\_operations\_ratio\_threshold\_warning | Warning threshold (%) for the ratio of unavailable sending operations | string | `"10"` | no |
+| unavailable\_sending\_operations\_ratio\_time\_aggregator | Timeframe for the GCP Pub/Sub Unavailable Sending Operations Ratio monitor | string | `"sum"` | no |
+| unavailable\_sending\_operations\_ratio\_timeframe | Timeframe for the GCP Pub/Sub Unavailable Sending Operations Ratio monitor | string | `"last_10m"` | no |
 
 ## Outputs
 
@@ -49,6 +57,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | sending\_operations\_count\_id | id for monitor sending_operations_count |
 | unavailable\_sending\_operations\_count\_id | id for monitor unavailable_sending_operations_count |
+| unavailable\_sending\_operations\_ratio\_id | id for monitor unavailable_sending_operations_ratio |
 
 ## Related documentation
 

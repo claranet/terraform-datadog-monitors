@@ -105,7 +105,7 @@ variable "unavailable_sending_operations_count_threshold_critical" {
 variable "unavailable_sending_operations_count_enabled" {
   description = "Flag to enable GCP Pub/Sub Unavailable Sending Operations Count monitor"
   type        = string
-  default     = "true"
+  default     = "false"
 }
 
 variable "unavailable_sending_operations_count_extra_tags" {
@@ -114,3 +114,47 @@ variable "unavailable_sending_operations_count_extra_tags" {
   default     = []
 }
 
+#
+# Unavailable Sending Operations Ratio
+#
+variable "unavailable_sending_operations_ratio_message" {
+  description = "Custom message for the GCP Pub/Sub Unavailable Sending Operations Ratio monitor"
+  type        = string
+  default     = ""
+}
+
+variable "unavailable_sending_operations_ratio_time_aggregator" {
+  description = "Timeframe for the GCP Pub/Sub Unavailable Sending Operations Ratio monitor"
+  type        = string
+  default     = "sum"
+}
+
+variable "unavailable_sending_operations_ratio_timeframe" {
+  description = "Timeframe for the GCP Pub/Sub Unavailable Sending Operations Ratio monitor"
+  type        = string
+  default     = "last_10m"
+}
+
+variable "unavailable_sending_operations_ratio_threshold_warning" {
+  description = "Warning threshold (%) for the ratio of unavailable sending operations"
+  type        = string
+  default     = 10
+}
+
+variable "unavailable_sending_operations_ratio_threshold_critical" {
+  description = "Critical threshold (%) for the ratio of unavailable sending operations"
+  type        = string
+  default     = 20
+}
+
+variable "unavailable_sending_operations_ratio_enabled" {
+  description = "Flag to enable GCP Pub/Sub Unavailable Sending Operations Ratio monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "unavailable_sending_operations_ratio_extra_tags" {
+  description = "Extra tags for GCP Pub/Sub Unavailable Sending Operations Ratio monitor"
+  type        = list(string)
+  default     = []
+}
