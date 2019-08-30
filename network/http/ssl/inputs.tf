@@ -54,22 +54,10 @@ variable "invalid_ssl_certificate_message" {
   default     = ""
 }
 
-variable "invalid_ssl_certificate_last" {
-  description = "Parameter 'last' for the service check"
-  type        = string
-  default     = 6
-}
-
 variable "invalid_ssl_certificate_threshold_warning" {
   description = "SSL invalid certificate monitor (warning threshold)"
   type        = string
-  default     = 5
-}
-
-variable "invalid_ssl_certificate_threshold_critical" {
-  description = "SSL invalid certificate monitor (warning threshold)"
-  type        = string
-  default     = 5
+  default     = 3
 }
 
 variable "invalid_ssl_certificate_no_data_timeframe" {

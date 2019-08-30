@@ -54,26 +54,8 @@ variable "cannot_connect_message" {
   default     = ""
 }
 
-variable "cannot_connect_last" {
-  description = "Parameter 'last' for the service check"
-  type        = string
-  default     = 6
-}
-
 variable "cannot_connect_threshold_warning" {
   description = "TLS cannot connect monitor (warning threshold)"
-  type        = string
-  default     = 2
-}
-
-variable "cannot_connect_threshold_critical" {
-  description = "TLS cannot connect monitor (warning threshold)"
-  type        = string
-  default     = 3
-}
-
-variable "cannot_connect_threshold_ok" {
-  description = "TLS cannot connect monitor (ok threshold)"
   type        = string
   default     = 3
 }
@@ -105,22 +87,10 @@ variable "invalid_tls_certificate_message" {
   default     = ""
 }
 
-variable "invalid_tls_certificate_last" {
-  description = "Parameter 'last' for the service check"
-  type        = string
-  default     = 6
-}
-
 variable "invalid_tls_certificate_threshold_warning" {
   description = "TLS certificate expiration monitor (warning threshold)"
   type        = string
-  default     = 5
-}
-
-variable "invalid_tls_certificate_threshold_critical" {
-  description = "TLS certificate expiration monitor (warning threshold)"
-  type        = string
-  default     = 5
+  default     = 3
 }
 
 variable "invalid_tls_certificate_no_data_timeframe" {
@@ -150,19 +120,7 @@ variable "tls_certificate_expiration_message" {
   default     = ""
 }
 
-variable "tls_certificate_expiration_last" {
-  description = "Parameter 'last' for the service check"
-  type        = string
-  default     = 6
-}
-
 variable "tls_certificate_expiration_threshold_warning" {
-  description = "TLS certificate expiration monitor (warning threshold)"
-  type        = string
-  default     = 5
-}
-
-variable "tls_certificate_expiration_threshold_critical" {
   description = "TLS certificate expiration monitor (warning threshold)"
   type        = string
   default     = 5

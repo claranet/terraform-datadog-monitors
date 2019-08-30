@@ -8,12 +8,12 @@ resource "datadog_monitor" "invalid_ssl_certificate" {
   type    = "service check"
 
   query = <<EOQ
-    "http.ssl_cert"${module.filter-tags.service_check}.by("instance","url").last(${var.invalid_ssl_certificate_last}).count_by_status()
+    "http.ssl_cert"${module.filter-tags.service_check}.by("instance","url").last(6).count_by_status()
 EOQ
 
   thresholds = {
     warning  = var.invalid_ssl_certificate_threshold_warning
-    critical = var.invalid_ssl_certificate_threshold_critical
+    critical = 5
   }
 
   new_host_delay      = var.new_host_delay

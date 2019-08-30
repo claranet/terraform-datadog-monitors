@@ -54,22 +54,10 @@ variable "cannot_resolve_message" {
   default     = ""
 }
 
-variable "cannot_resolve_last" {
-  description = "Parameter 'last' for the service check"
-  type        = string
-  default     = 6
-}
-
 variable "cannot_resolve_threshold_warning" {
   description = "DNS cannot resolve monitor (warning threshold)"
   type        = string
   default     = 3
-}
-
-variable "cannot_resolve_threshold_critical" {
-  description = "DNS cannot resolve monitor (warning threshold)"
-  type        = string
-  default     = 5
 }
 
 variable "cannot_resolve_no_data_timeframe" {
