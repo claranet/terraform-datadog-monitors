@@ -28,7 +28,7 @@ Here is the minimum version required to use these modules of integrations.
 
 ```
 terraform {
-  required_version = ">= 0.12.6"
+  required_version = ">= 0.12.7"
 }
 
 ```
@@ -39,7 +39,7 @@ Here is the last tester terraform provider version for datadog but next versions
 
 ```
 provider "datadog" {
-  version = "2.1.0" # last tested working version
+  version = "2.3.0" # last tested working version
 
   api_key = var.datadog_api_key
   app_key = var.datadog_app_key
