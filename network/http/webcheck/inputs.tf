@@ -54,26 +54,8 @@ variable "cannot_connect_message" {
   default     = ""
 }
 
-variable "cannot_connect_last" {
-  description = "Parameter 'last' for the service check"
-  type        = string
-  default     = 6
-}
-
 variable "cannot_connect_threshold_warning" {
   description = "HTTP cannot connect monitor (warning threshold)"
-  type        = string
-  default     = 2
-}
-
-variable "cannot_connect_threshold_critical" {
-  description = "HTTP cannot connect monitor (warning threshold)"
-  type        = string
-  default     = 3
-}
-
-variable "cannot_connect_threshold_ok" {
-  description = "HTTP cannot connect monitor (ok threshold)"
   type        = string
   default     = 3
 }

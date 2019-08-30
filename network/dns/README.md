@@ -24,10 +24,8 @@ Creates DataDog monitors with the following checks:
 |------|-------------|:----:|:-----:|:-----:|
 | cannot\_resolve\_enabled | Flag to enable DNS cannot resolve monitor | string | `"true"` | no |
 | cannot\_resolve\_extra\_tags | Extra tags for DNS cannot resolve monitor | list(string) | `[]` | no |
-| cannot\_resolve\_last | Parameter 'last' for the service check | string | `"6"` | no |
 | cannot\_resolve\_message | Custom message for DNS cannot resolve monitor | string | `""` | no |
 | cannot\_resolve\_no\_data\_timeframe | DNS cannot resolve monitor no data timeframe | string | `"10"` | no |
-| cannot\_resolve\_threshold\_critical | DNS cannot resolve monitor (warning threshold) | string | `"5"` | no |
 | cannot\_resolve\_threshold\_warning | DNS cannot resolve monitor (warning threshold) | string | `"3"` | no |
 | environment | Architecture Environment | string | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | string | `"15"` | no |

@@ -8,13 +8,12 @@ resource "datadog_monitor" "cannot_connect" {
   type    = "service check"
 
   query = <<EOQ
-    "http.can_connect"${module.filter-tags.service_check}.by("instance","url").last(${var.cannot_connect_last}).count_by_status()
+    "http.can_connect"${module.filter-tags.service_check}.by("instance","url").last(6).count_by_status()
 EOQ
 
   thresholds = {
     warning  = var.cannot_connect_threshold_warning
-    critical = var.cannot_connect_threshold_critical
-    ok       = var.cannot_connect_threshold_ok
+    critical = 5
   }
 
   new_host_delay      = var.new_host_delay

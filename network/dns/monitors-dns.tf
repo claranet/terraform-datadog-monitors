@@ -8,12 +8,12 @@ resource "datadog_monitor" "cannot_resolve" {
   type    = "service check"
 
   query = <<EOQ
-    "dns.can_resolve"${module.filter-tags.service_check}.by("nameserver","resolved_hostname").last(${var.cannot_resolve_last}).count_by_status()
+    "dns.can_resolve"${module.filter-tags.service_check}.by("nameserver","resolved_hostname").last(6).count_by_status()
 EOQ
 
   thresholds = {
     warning  = var.cannot_resolve_threshold_warning
-    critical = var.cannot_resolve_threshold_critical
+    critical = 5
   }
 
   new_host_delay      = var.new_host_delay

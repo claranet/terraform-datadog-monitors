@@ -8,13 +8,12 @@ resource "datadog_monitor" "cannot_connect" {
   type    = "service check"
 
   query = <<EOQ
-    "tls.can_connect"${module.filter-tags.service_check}.by("name","server","port","server_hostname").last(${var.cannot_connect_last}).count_by_status()
+    "tls.can_connect"${module.filter-tags.service_check}.by("name","server","port","server_hostname").last(6).count_by_status()
 EOQ
 
   thresholds = {
     warning  = var.cannot_connect_threshold_warning
-    critical = var.cannot_connect_threshold_critical
-    ok       = var.cannot_connect_threshold_ok
+    critical = 5
   }
 
   new_host_delay      = var.new_host_delay
@@ -44,12 +43,12 @@ resource "datadog_monitor" "invalid_tls_certificate" {
   type    = "service check"
 
   query = <<EOQ
-    "tls.cert_validation"${module.filter-tags.service_check}.by("name","server","port","server_hostname").last(${var.invalid_tls_certificate_last}).count_by_status()
+    "tls.cert_validation"${module.filter-tags.service_check}.by("name","server","port","server_hostname").last(6).count_by_status()
 EOQ
 
   thresholds = {
     warning  = var.invalid_tls_certificate_threshold_warning
-    critical = var.invalid_tls_certificate_threshold_critical
+    critical = 5
   }
 
   new_host_delay      = var.new_host_delay
@@ -79,12 +78,12 @@ resource "datadog_monitor" "tls_certificate_expiration" {
   type    = "service check"
 
   query = <<EOQ
-    "tls.cert_expiration"${module.filter-tags.service_check}.by("name","server","port","server_hostname").last(${var.tls_certificate_expiration_last}).count_by_status()
+    "tls.cert_expiration"${module.filter-tags.service_check}.by("name","server","port","server_hostname").last(6).count_by_status()
 EOQ
 
   thresholds = {
     warning  = var.tls_certificate_expiration_threshold_warning
-    critical = var.tls_certificate_expiration_threshold_critical
+    critical = 5
   }
 
   new_host_delay      = var.new_host_delay
