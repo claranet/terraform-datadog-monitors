@@ -40,57 +40,6 @@ variable "filter_tags_custom_excluded" {
 }
 
 #
-# HTTP Cannot Connect
-#
-variable "cannot_connect_enabled" {
-  description = "Flag to enable HTTP cannot connect monitor"
-  type        = string
-  default     = "true"
-}
-
-variable "cannot_connect_message" {
-  description = "Custom message for HTTP cannot connect monitor"
-  type        = string
-  default     = ""
-}
-
-variable "cannot_connect_last" {
-  description = "Parameter 'last' for the service check"
-  type        = string
-  default     = 6
-}
-
-variable "cannot_connect_threshold_warning" {
-  description = "HTTP cannot connect monitor (warning threshold)"
-  type        = string
-  default     = 2
-}
-
-variable "cannot_connect_threshold_critical" {
-  description = "HTTP cannot connect monitor (warning threshold)"
-  type        = string
-  default     = 3
-}
-
-variable "cannot_connect_threshold_ok" {
-  description = "HTTP cannot connect monitor (ok threshold)"
-  type        = string
-  default     = 3
-}
-
-variable "cannot_connect_no_data_timeframe" {
-  description = "HTTP cannot connect monitor no data timeframe"
-  type        = string
-  default     = 10
-}
-
-variable "cannot_connect_extra_tags" {
-  description = "Extra tags for HTTP cannot connect monitor"
-  type        = list(string)
-  default     = []
-}
-
-#
 # SSL invalid certificate
 #
 variable "invalid_ssl_certificate_enabled" {
@@ -171,7 +120,7 @@ variable "certificate_expiration_date_threshold_warning" {
 variable "certificate_expiration_date_threshold_critical" {
   description = "Certificate Expiration Date critical threshold"
   type        = string
-  default     = 8
+  default     = 15
 }
 
 variable "certificate_expiration_date_extra_tags" {
