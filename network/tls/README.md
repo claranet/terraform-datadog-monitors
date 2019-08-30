@@ -36,7 +36,7 @@ Creates DataDog monitors with the following checks:
 | certificate\_expiration\_date\_enabled | Flag to enable Certificate Expiration Date monitor | string | `"false"` | no |
 | certificate\_expiration\_date\_extra\_tags | Extra tags for Certificate Expiration Date monitor | list(string) | `[]` | no |
 | certificate\_expiration\_date\_message | Custom message for the Certificate Expiration Date monitor | string | `""` | no |
-| certificate\_expiration\_date\_threshold\_critical | Container Memory Usage critical threshold | string | `"8"` | no |
+| certificate\_expiration\_date\_threshold\_critical | Container Memory Usage critical threshold | string | `"15"` | no |
 | certificate\_expiration\_date\_threshold\_warning | Container Memory Usage warning threshold | string | `"30"` | no |
 | certificate\_expiration\_date\_time\_aggregator | Time aggregator for the Certificate Expiration Date monitor | string | `"max"` | no |
 | certificate\_expiration\_date\_timeframe | Timeframe for the Certificate Expiration Date monitor | string | `"last_5m"` | no |

@@ -1,10 +1,10 @@
-# NETWORK HTTP DataDog monitors
+# NETWORK HTTP SSL DataDog monitors
 
 ## How to use this module
 
 ```
-module "datadog-monitors-network-http" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//network/http?ref={revision}"
+module "datadog-monitors-network-http-ssl" {
+  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//network/http/ssl?ref={revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message
@@ -16,7 +16,6 @@ module "datadog-monitors-network-http" {
 
 Creates DataDog monitors with the following checks:
 
-- HTTP cannot connect
 - SSL certificate expiration (disabled by default)
 - SSL invalid certificate
 
@@ -24,18 +23,10 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| cannot\_connect\_enabled | Flag to enable HTTP cannot connect monitor | string | `"true"` | no |
-| cannot\_connect\_extra\_tags | Extra tags for HTTP cannot connect monitor | list(string) | `[]` | no |
-| cannot\_connect\_last | Parameter 'last' for the service check | string | `"6"` | no |
-| cannot\_connect\_message | Custom message for HTTP cannot connect monitor | string | `""` | no |
-| cannot\_connect\_no\_data\_timeframe | HTTP cannot connect monitor no data timeframe | string | `"10"` | no |
-| cannot\_connect\_threshold\_critical | HTTP cannot connect monitor (warning threshold) | string | `"3"` | no |
-| cannot\_connect\_threshold\_ok | HTTP cannot connect monitor (ok threshold) | string | `"3"` | no |
-| cannot\_connect\_threshold\_warning | HTTP cannot connect monitor (warning threshold) | string | `"2"` | no |
 | certificate\_expiration\_date\_enabled | Flag to enable Certificate Expiration Date monitor | string | `"false"` | no |
 | certificate\_expiration\_date\_extra\_tags | Extra tags for Certificate Expiration Date monitor | list(string) | `[]` | no |
 | certificate\_expiration\_date\_message | Custom message for the Certificate Expiration Date monitor | string | `""` | no |
-| certificate\_expiration\_date\_threshold\_critical | Certificate Expiration Date critical threshold | string | `"8"` | no |
+| certificate\_expiration\_date\_threshold\_critical | Certificate Expiration Date critical threshold | string | `"15"` | no |
 | certificate\_expiration\_date\_threshold\_warning | Certificate Expiration Date warning threshold | string | `"30"` | no |
 | certificate\_expiration\_date\_time\_aggregator | Time aggregator for the Certificate Expiration Date monitor | string | `"max"` | no |
 | certificate\_expiration\_date\_timeframe | Timeframe for the Certificate Expiration Date monitor | string | `"last_5m"` | no |
@@ -59,10 +50,8 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description |
 |------|-------------|
-| cannot\_connect\_id | id for monitor cannot_connect |
 | certificate\_expiration\_date\_id | id for monitor certificate_expiration_date |
 | invalid\_ssl\_certificate\_id | id for monitor invalid_ssl_certificate |
 
 ## Related documentation
 
-- [Datadog HTTP integration](https://docs.datadoghq.com/integrations/http_check/)

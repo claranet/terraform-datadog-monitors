@@ -216,7 +216,7 @@ variable "certificate_expiration_date_threshold_warning" {
 variable "certificate_expiration_date_threshold_critical" {
   description = "Container Memory Usage critical threshold"
   type        = string
-  default     = 8
+  default     = 15
 }
 
 variable "certificate_expiration_date_extra_tags" {
