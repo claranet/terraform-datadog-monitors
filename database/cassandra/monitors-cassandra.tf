@@ -184,7 +184,7 @@ resource "datadog_monitor" "datadog_monitor_cassandra_outliers_latency" {
   type    = "query alert"
 
 
-query = <<EOQ
+  query = <<EOQ
   ${var.cassandra_outliers_latency_time_aggregator}(${var.cassandra_outliers_latency_timeframe}):
    outliers(avg:cassandra.latency.75th_percentile{*} by {host,datacenter}, 'scaledMAD', 5, 90) > 0
 EOQ
