@@ -1,11 +1,11 @@
 resource "datadog_monitor" "datadog_node_cassandra_down" {
   count   = var.cassandra_node_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] DSE Cassandra node is down"
-  message = coalesce(var.node_cassandra_status_message, var.message)
+  message = coalesce(var.cassandra_node_status_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
-    ${var.node_cassandra_status_time_aggregator}(${var.node_cassandra_status_timeframe}): (
+    ${var.cassandra_node_time_aggregator}(${var.cassandra_node_timeframe}): (
       avg:cassandra.nodetool.status.status${module.filter-tags.query_alert} by {datacenter,node_id}
     ) < 1
 EOQ
@@ -19,17 +19,19 @@ EOQ
   locked              = false
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:cassandra", "resource:cassandra", "team:claranet", "created-by:terraform"], var.node_cassandra_availability_extra_tags)
+  tags = concat(["env:${var.environment}", "type:database", "provider:cassandra", "resource:cassandra", "team:claranet", "created-by:terraform"], var.cassandra_node_availability_extra_tags)
 }
-
 
 resource "datadog_monitor" "datadog_cassandra_process_down" {
   count   = var.cassandra_process_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] DSE Cassandra process is down"
-  message = coalesce(var.process_cassandra_status_message, var.message)
+  message = coalesce(var.cassandra_process_message, var.message)
   type    = "metric alert"
 
-  query = "max(last_5m):min:system.processes.number${module.filter-tags-check-process.query_alert} by {host} < 1"
+  query = <<EOQ
+    ${var.cassandra_process_time_aggregator}(${var.cassandra_process_timeframe}):
+    min:system.processes.number${module.filter-tags-check-process.query_alert} by {host} < 1
+EOQ
 
   thresholds = {
     critical = 1
@@ -44,9 +46,8 @@ resource "datadog_monitor" "datadog_cassandra_process_down" {
   locked              = false
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:process", "provider:process-check", "resource:custom", "team:claranet", "created-by:terraform"], var.process_cassandra_availability_extra_tags)
+  tags = concat(["env:${var.environment}", "type:process", "provider:process-check", "resource:custom", "team:claranet", "created-by:terraform"], var.cassandra_process_extra_tags)
 }
-
 
 resource "datadog_monitor" "datadog_monitor_cassandra_read_latency" {
   count   = var.cassandra_read_latency_enabled == "true" ? 1 : 0
@@ -79,7 +80,6 @@ EOQ
     ignore_changes = ["silenced"]
   }
 }
-
 
 resource "datadog_monitor" "datadog_monitor_cassandra_write_latency" {
   count   = var.cassandra_write_latency_enabled == "true" ? 1 : 0
@@ -171,6 +171,34 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:cassandra", "resource:cassandra", "team:claranet", "created-by:terraform"], var.cassandra_exceptions_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
+}
+
+resource "datadog_monitor" "datadog_monitor_cassandra_outliers_latency" {
+  count   = var.cassandra_outliers_latency_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] DSE Cassandra outliers_latency {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.cassandra_outliers_latency_status_message, var.message)
+  type    = "query alert"
+
+
+query = <<EOQ
+  ${var.cassandra_outliers_latency_time_aggregator}(${var.cassandra_outliers_latency_timeframe}):
+   outliers(avg:cassandra.latency.75th_percentile{*} by {host,datacenter}, 'scaledMAD', 5, 90) > 0
+EOQ
+
+  notify_no_data      = false
+  evaluation_delay    = 15
+  new_host_delay      = 300
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+
+  tags = concat(["env:${var.environment}", "type:database", "provider:cassandra", "resource:cassandra", "team:claranet", "created-by:terraform"], var.cassandra_outliers_latency_extra_tags)
 
   lifecycle {
     ignore_changes = ["silenced"]

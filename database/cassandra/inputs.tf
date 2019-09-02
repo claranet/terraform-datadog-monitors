@@ -45,54 +45,69 @@ variable "filter_tags_custom_excluded" {
 ###    Cassandra availability    ###
 ####################################
 
+## Check Node monitor
 variable "cassandra_node_enabled" {
-  description = "Flag to enable Cassandra availability monitor"
+  description = "Flag to enable Cassandra node availability monitor"
   type        = string
   default     = "true"
 }
 
+variable "cassandra_node_status_message" {
+  description = "Custom message for Cassandra node status monitor"
+  type        = string
+  default     = ""
+}
+
+variable "cassandra_node_time_aggregator" {
+  description = "Monitor aggregator for Cassandra node [available values: min, max, sum or avg]"
+  type        = string
+  default     = "min"
+}
+
+variable "cassandra_node_timeframe" {
+  description = "Monitor timeframe for Cassandra node monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_5m"
+}
+
+variable "cassandra_node_availability_extra_tags" {
+  description = "Extra tags for Cassandra node availability monitor"
+  type        = list(string)
+  default     = []
+}
+
+## Check process monitor
 variable "cassandra_process_enabled" {
   description = "Flag to enable Cassandra availability monitor"
   type        = string
   default     = "true"
 }
 
-variable "node_cassandra_availability_extra_tags" {
-  description = "Extra tags for Cassandra availability monitor"
-  type        = list(string)
-  default     = []
-}
-
-variable "process_cassandra_availability_extra_tags" {
-  description = "Extra tags for Cassandra availability monitor"
-  type        = list(string)
-  default     = []
-}
-
-variable "node_cassandra_status_message" {
-  description = "Custom message for Cassandra availability monitor"
+variable "cassandra_process_message" {
+  description = "Custom message for Cassandra process monitor"
   type        = string
   default     = ""
 }
 
-variable "process_cassandra_status_message" {
-  description = "Custom message for Cassandra status monitor"
+variable "cassandra_process_time_aggregator" {
+  description = "Monitor aggregator for Cassandra process monitor [available values: min, max, sum or avg]"
   type        = string
-  default     = ""
+  default     = "max"
 }
 
-variable "node_cassandra_status_time_aggregator" {
-  description = "Monitor aggregator for Cassandra [available values: min, max, sum or avg]"
-  type        = string
-  default     = "min"
-}
-
-variable "node_cassandra_status_timeframe" {
-  description = "Monitor timeframe for Cassandra [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+variable "cassandra_process_timeframe" {
+  description = "Monitor timeframe for Cassandra process monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
   default     = "last_5m"
 }
 
+variable "cassandra_process_extra_tags" {
+  description = "Extra tags for Cassandra process monitor"
+  type        = list(string)
+  default     = []
+}
+
+## Check read latency monitor
 variable "cassandra_read_latency_enabled" {
   description = "Flag to enable Cassandra read latency monitor"
   type        = string
@@ -118,13 +133,13 @@ variable "cassandra_read_latency_timeframe" {
 }
 
 variable "cassandra_read_latency_threshold_critical" {
+  description = "Maximum critical acceptable ms of read latency monitor"
   default     = 300000
-  description = "Maximum critical acceptable ms of read latency"
 }
 
 variable "cassandra_read_latency_threshold_warning" {
+  description = "Maximum warning acceptable ms of read latency monitor"
   default     = 250000
-  description = "Maximum critical acceptable ms of read latency"
 }
 
 variable "cassandra_read_latency_availability_extra_tags" {
@@ -133,6 +148,7 @@ variable "cassandra_read_latency_availability_extra_tags" {
   default     = []
 }
 
+## Check read latency monitor
 variable "cassandra_write_latency_enabled" {
   description = "Flag to enable Cassandra write latency monitor"
   type        = string
@@ -158,13 +174,13 @@ variable "cassandra_write_latency_timeframe" {
 }
 
 variable "cassandra_write_latency_threshold_critical" {
+  description = "Maximum critical acceptable ms of write latency monitor"
   default     = 300000
-  description = "Maximum critical acceptable ms of write latency"
 }
 
 variable "cassandra_write_latency_threshold_warning" {
+  description = "Maximum warning acceptable ms of write latency monitor"
   default     = 250000
-  description = "Maximum critical acceptable ms of write latency"
 }
 
 variable "cassandra_write_latency_availability_extra_tags" {
@@ -173,6 +189,7 @@ variable "cassandra_write_latency_availability_extra_tags" {
   default     = []
 }
 
+## Check keycache monitor
 variable "cassandra_key_cache_enabled" {
   description = "Flag to enable Cassandra key cache monitor"
   type        = string
@@ -198,13 +215,13 @@ variable "cassandra_key_cache_timeframe" {
 }
 
 variable "cassandra_key_cache_threshold_critical" {
+  description = "Maximum critical acceptable rate of key cache monitor"
   default     = 0.30
-  description = "Maximum critical acceptable rate of key cache"
 }
 
 variable "cassandra_key_cache_threshold_warning" {
+  description = "Maximum warning acceptable rate of key cache monitor"
   default     = 0.40
-  description = "Maximum critical acceptable rate of key cache"
 }
 
 variable "cassandra_key_cache_extra_tags" {
@@ -214,6 +231,7 @@ variable "cassandra_key_cache_extra_tags" {
 }
 
 
+## Check exceptions monitor
 variable "cassandra_exceptions_enabled" {
   description = "Flag to enable Cassandra exceptions monitor"
   type        = string
@@ -239,16 +257,57 @@ variable "cassandra_exceptions_timeframe" {
 }
 
 variable "cassandra_exceptions_threshold_critical" {
+  description = "Maximum critical acceptable rate of exceptions monitor"
   default     = 1000
-  description = "Maximum critical acceptable rate of exceptions"
 }
 
 variable "cassandra_exceptions_threshold_warning" {
+  description = "Maximum warning acceptable rate of exceptions monitor"
   default     = 500
-  description = "Maximum critical acceptable rate of exceptions"
 }
 
 variable "cassandra_exceptions_extra_tags" {
+  description = "Extra tags for Cassandra exceptions monitor"
+  type        = list(string)
+  default     = []
+}
+
+## Check outliers monitor
+variable "cassandra_outliers_latency_enabled" {
+  description = "Flag to enable Cassandra outliers_latencys monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "cassandra_outliers_latency_status_message" {
+  description = "Custom message for Cassandra outliers_latency monitor"
+  type        = string
+  default     = ""
+}
+
+variable "cassandra_outliers_latency_time_aggregator" {
+  description = "Monitor time aggregator for Cassandra outliers_latency monitor [available values: min, max or avg]"
+  type        = string
+  default     = "avg"
+}
+
+variable "cassandra_outliers_latency_timeframe" {
+  description = "Monitor timeframe for Cassandra outliers_latency monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_15m"
+}
+
+variable "cassandra_outliers_latency_threshold_critical" {
+  description = "Maximum critical acceptable rate of outliers_latency monitor"
+  default     = 90
+}
+
+variable "cassandra_outliers_latency_threshold_warning" {
+  description = "Maximum warning acceptable rate of outliers_latency monitor"
+  default     = 85
+}
+
+variable "cassandra_outliers_latency_extra_tags" {
   description = "Extra tags for Cassandra exceptions monitor"
   type        = list(string)
   default     = []
