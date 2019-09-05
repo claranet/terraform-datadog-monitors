@@ -45,7 +45,6 @@ Creates DataDog monitors with the following checks:
 | invalid\_tls\_certificate\_enabled | Flag to enable TLS certificate expiration monitor | string | `"true"` | no |
 | invalid\_tls\_certificate\_extra\_tags | Extra tags for TLS certificate expiration monitor | list(string) | `[]` | no |
 | invalid\_tls\_certificate\_message | Custom message for TLS certificate expiration monitor | string | `""` | no |
-| invalid\_tls\_certificate\_no\_data\_timeframe | TLS certificate expiration monitor no data timeframe | string | `"10"` | no |
 | invalid\_tls\_certificate\_threshold\_warning | TLS certificate expiration monitor (warning threshold) | string | `"3"` | no |
 | message | Message sent when an alert is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
@@ -53,7 +52,6 @@ Creates DataDog monitors with the following checks:
 | tls\_certificate\_expiration\_enabled | Flag to enable TLS certificate expiration monitor | string | `"true"` | no |
 | tls\_certificate\_expiration\_extra\_tags | Extra tags for TLS certificate expiration monitor | list(string) | `[]` | no |
 | tls\_certificate\_expiration\_message | Custom message for TLS certificate expiration monitor | string | `""` | no |
-| tls\_certificate\_expiration\_no\_data\_timeframe | TLS certificate expiration monitor no data timeframe | string | `"10"` | no |
 | tls\_certificate\_expiration\_threshold\_warning | TLS certificate expiration monitor (warning threshold) | string | `"5"` | no |
 
 ## Outputs
