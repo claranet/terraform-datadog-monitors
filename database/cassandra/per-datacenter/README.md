@@ -8,14 +8,7 @@ module "datadog-monitors-database-cassandra-per-datacenter" {
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message
-}
-  message     = "${module.datadog-message-alerting.alerting-message}"
-}
-  message     = "${module.datadog-message-alerting.alerting-message}"
-  cassandra_datacenter_name = "dc0"
-}
-  message     = "${module.datadog-message-alerting.alerting-message}"
-  cassandra_datacenter_name = "dc2"
+  cassandra_datacenter_name = "name_of_datacenter"
 }
 
 ```
@@ -55,30 +48,10 @@ Creates DataDog monitors with the following checks:
 
 ## Related documentation
 
-As we know Cassandra use a system of datacenter for his cluster. And some monitor need to filter by datacenter.  
+DataDog documentation: https://docs.datadoghq.com/integrations/cassandra/
+
+## Notes
+
+As we know Cassandra use a system of datacenter for his cluster. And some monitors need to filter metric by datacenter.  
 This module can be used for the monitor that need to be filtered by datacenter.
-
-Look this example for the oultier latency :
-In your client stack terraform you can have this :
-
-`module "datadog-monitors-database-cassandra" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//database/cassandra/common"
-  environment = "${var.environment}"
-  message     = "${module.datadog-message-alerting.alerting-message}"
-}
-
-module "datadog-monitors-database-cassandra-latency-per-datacenter-name1" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//database/cassandra/per_datacenter"
-  environment = "${var.environment}"
-  message     = "${module.datadog-message-alerting.alerting-message}"
-  cassandra_datacenter_name = "dc0"
-}
-
-module "datadog-monitors-database-cassandra-latency-per-datacenter-name2" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//database/cassandra/per_datacenter"
-  environment = "${var.environment}"
-  message     = "${module.datadog-message-alerting.alerting-message}"
-  cassandra_datacenter_name = "dc2"
-}`
-
-In this way you just have to add a variable with the name of your datacenter: `cassandra_datacenter_name`
+You just have to add a variable var.cassandra_datacenter_name with the name of your datacenter in your terraform client : cassandra_datacenter_name = "name_of_datacenter"
