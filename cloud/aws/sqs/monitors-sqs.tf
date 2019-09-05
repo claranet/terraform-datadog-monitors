@@ -1,7 +1,7 @@
 # Approximate Number of Visible Messages
 resource "datadog_monitor" "visible_messages" {
   count   = var.visible_messages_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] SQS Visible Messages {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] SQS Visible messages {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   type    = "metric alert"
   message = coalesce(var.visible_messages_message, var.message)
 

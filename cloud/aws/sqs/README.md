@@ -17,7 +17,7 @@ module "datadog-monitors-cloud-aws-sqs" {
 Creates DataDog monitors with the following checks:
 
 - SQS Age of the oldest message
-- SQS Visible Messages (disabled by default)
+- SQS Visible messages (disabled by default)
 
 ## Inputs
 
