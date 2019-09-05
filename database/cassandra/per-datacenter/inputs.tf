@@ -87,7 +87,7 @@ variable "cassandra_outliers_latency_extra_tags" {
   default     = []
 }
 
-variable "cassandra_outliers_latency_datacenter_name" {
+variable "cassandra_datacenter_name" {
   description = "Name of datacenter you want to monitor"
   type        = string
   default     = ""

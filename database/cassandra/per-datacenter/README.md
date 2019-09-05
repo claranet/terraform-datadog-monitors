@@ -1,13 +1,21 @@
-# DATABASE CASSANDRA CASSANDRA_OUTLIERS_LATENCY_PER_DATACENTER DataDog monitors
+# DATABASE CASSANDRA PER-DATACENTER DataDog monitors
 
 ## How to use this module
 
 ```
-module "datadog-monitors-database-cassandra-cassandra_outliers_latency_per_datacenter" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//database/cassandra/cassandra_outliers_latency_per_datacenter?ref={revision}"
+module "datadog-monitors-database-cassandra-per-datacenter" {
+  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//database/cassandra/per-datacenter?ref={revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message
+}
+  message     = "${module.datadog-message-alerting.alerting-message}"
+}
+  message     = "${module.datadog-message-alerting.alerting-message}"
+  cassandra_datacenter_name = "dc0"
+}
+  message     = "${module.datadog-message-alerting.alerting-message}"
+  cassandra_datacenter_name = "dc2"
 }
 
 ```
@@ -16,13 +24,13 @@ module "datadog-monitors-database-cassandra-cassandra_outliers_latency_per_datac
 
 Creates DataDog monitors with the following checks:
 
-- DSE Cassandra datacenter:${var.cassandra_outliers_latency_datacenter_name} outliers_latency
+- DSE Cassandra datacenter:${var.cassandra_datacenter_name} outliers_latency
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| cassandra\_outliers\_latency\_datacenter\_name | Name of datacenter you want to monitor | string | `""` | no |
+| cassandra\_datacenter\_name | Name of datacenter you want to monitor | string | `""` | no |
 | cassandra\_outliers\_latency\_enabled | Flag to enable Cassandra outliers_latencys monitor | string | `"true"` | no |
 | cassandra\_outliers\_latency\_extra\_tags | Extra tags for Cassandra exceptions monitor | list(string) | `[]` | no |
 | cassandra\_outliers\_latency\_status\_message | Custom message for Cassandra outliers_latency monitor | string | `""` | no |
@@ -47,3 +55,30 @@ Creates DataDog monitors with the following checks:
 
 ## Related documentation
 
+As we know Cassandra use a system of datacenter for his cluster. And some monitor need to filter by datacenter.  
+This module can be used for the monitor that need to be filtered by datacenter.
+
+Look this example for the oultier latency :
+In your client stack terraform you can have this :
+
+`module "datadog-monitors-database-cassandra" {
+  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//database/cassandra/common"
+  environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
+}
+
+module "datadog-monitors-database-cassandra-latency-per-datacenter-name1" {
+  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//database/cassandra/per_datacenter"
+  environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
+  cassandra_datacenter_name = "dc0"
+}
+
+module "datadog-monitors-database-cassandra-latency-per-datacenter-name2" {
+  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//database/cassandra/per_datacenter"
+  environment = "${var.environment}"
+  message     = "${module.datadog-message-alerting.alerting-message}"
+  cassandra_datacenter_name = "dc2"
+}`
+
+In this way you just have to add a variable with the name of your datacenter: `cassandra_datacenter_name`
