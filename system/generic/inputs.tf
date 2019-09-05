@@ -68,7 +68,7 @@ variable "cpu_time_aggregator" {
 variable "cpu_timeframe" {
   description = "Monitor timeframe for CPU high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
-  default     = "last_10m"
+  default     = "last_1h"
 }
 
 variable "cpu_threshold_warning" {
@@ -108,7 +108,7 @@ variable "load_time_aggregator" {
 variable "load_timeframe" {
   description = "Monitor timeframe for CPU load ratio [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
-  default     = "last_15m"
+  default     = "last_30m"
 }
 
 variable "load_threshold_warning" {
