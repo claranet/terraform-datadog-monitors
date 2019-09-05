@@ -35,7 +35,7 @@ Creates DataDog monitors with the following checks:
 | cpu\_threshold\_critical | CPU high critical threshold | string | `"90"` | no |
 | cpu\_threshold\_warning | CPU high warning threshold | string | `"85"` | no |
 | cpu\_time\_aggregator | Monitor aggregator for CPU high [available values: min, max or avg] | string | `"min"` | no |
-| cpu\_timeframe | Monitor timeframe for CPU high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_10m"` | no |
+| cpu\_timeframe | Monitor timeframe for CPU high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1h"` | no |
 | disk\_inodes\_enabled | Flag to enable Free disk inodes monitor | string | `"true"` | no |
 | disk\_inodes\_extra\_tags | Extra tags for Free disk inodes monitor | list(string) | `[]` | no |
 | disk\_inodes\_message | Custom message for Free disk inodes monitor | string | `""` | no |
@@ -74,7 +74,7 @@ Creates DataDog monitors with the following checks:
 | load\_threshold\_critical | CPU load ratio critical threshold | string | `"2.5"` | no |
 | load\_threshold\_warning | CPU load ratio warning threshold | string | `"2"` | no |
 | load\_time\_aggregator | Monitor aggregator for CPU load ratio [available values: min, max or avg] | string | `"min"` | no |
-| load\_timeframe | Monitor timeframe for CPU load ratio [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
+| load\_timeframe | Monitor timeframe for CPU load ratio [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_30m"` | no |
 | memory\_enabled | Flag to enable Free memory monitor | string | `"true"` | no |
 | memory\_extra\_tags | Extra tags for Free memory monitor | list(string) | `[]` | no |
 | memory\_message | Mandatory message for Free memory monitor to avoid NBH alerting by default | string | n/a | yes |
