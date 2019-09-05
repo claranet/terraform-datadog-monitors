@@ -1,10 +1,10 @@
-# DATABASE CASSANDRA DataDog monitors
+# DATABASE CASSANDRA COMMON DataDog monitors
 
 ## How to use this module
 
 ```
-module "datadog-monitors-database-cassandra" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//database/cassandra?ref={revision}"
+module "datadog-monitors-database-cassandra-common" {
+  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//database/cassandra/common?ref={revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message
@@ -19,7 +19,7 @@ Creates DataDog monitors with the following checks:
 - DSE Cassandra exceptions
 - DSE Cassandra key cache
 - DSE Cassandra node is down
-- DSE Cassandra outliers_latency
+- DSE Cassandra outliers_latency (disabled by default)
 - DSE Cassandra process is down
 - DSE Cassandra read latency
 - DSE Cassandra write latency
@@ -47,7 +47,7 @@ Creates DataDog monitors with the following checks:
 | cassandra\_node\_status\_message | Custom message for Cassandra node status monitor | string | `""` | no |
 | cassandra\_node\_time\_aggregator | Monitor aggregator for Cassandra node [available values: min, max, sum or avg] | string | `"min"` | no |
 | cassandra\_node\_timeframe | Monitor timeframe for Cassandra node monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
-| cassandra\_outliers\_latency\_enabled | Flag to enable Cassandra outliers_latencys monitor | string | `"true"` | no |
+| cassandra\_outliers\_latency\_enabled | Flag to enable Cassandra outliers_latencys monitor | string | `"false"` | no |
 | cassandra\_outliers\_latency\_extra\_tags | Extra tags for Cassandra exceptions monitor | list(string) | `[]` | no |
 | cassandra\_outliers\_latency\_status\_message | Custom message for Cassandra outliers_latency monitor | string | `""` | no |
 | cassandra\_outliers\_latency\_threshold\_critical | Maximum critical acceptable rate of outliers_latency monitor | string | `"90"` | no |
