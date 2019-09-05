@@ -93,12 +93,6 @@ variable "invalid_tls_certificate_threshold_warning" {
   default     = 3
 }
 
-variable "invalid_tls_certificate_no_data_timeframe" {
-  description = "TLS certificate expiration monitor no data timeframe"
-  type        = string
-  default     = 10
-}
-
 variable "invalid_tls_certificate_extra_tags" {
   description = "Extra tags for TLS certificate expiration monitor"
   type        = list(string)
@@ -124,12 +118,6 @@ variable "tls_certificate_expiration_threshold_warning" {
   description = "TLS certificate expiration monitor (warning threshold)"
   type        = string
   default     = 5
-}
-
-variable "tls_certificate_expiration_no_data_timeframe" {
-  description = "TLS certificate expiration monitor no data timeframe"
-  type        = string
-  default     = 10
 }
 
 variable "tls_certificate_expiration_extra_tags" {
