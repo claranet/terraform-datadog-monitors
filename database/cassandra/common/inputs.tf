@@ -276,7 +276,7 @@ variable "cassandra_exceptions_extra_tags" {
 variable "cassandra_outliers_latency_enabled" {
   description = "Flag to enable Cassandra outliers_latencys monitor"
   type        = string
-  default     = "true"
+  default     = "false"
 }
 
 variable "cassandra_outliers_latency_status_message" {

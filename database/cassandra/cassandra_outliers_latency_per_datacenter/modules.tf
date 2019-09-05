@@ -1,5 +1,5 @@
 module "filter-tags" {
-  source = "../../common/filter-tags"
+  source = "../../../common/filter-tags"
 
   environment                 = var.environment
   resource                    = "cassandra"
@@ -10,7 +10,7 @@ module "filter-tags" {
 }
 
 module "filter-tags-check-process" {
-  source = "../../common/filter-tags"
+  source = "../../../common/filter-tags"
 
   environment                 = var.environment
   resource                    = "cassandra"
