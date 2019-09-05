@@ -17,7 +17,7 @@ module "datadog-monitors-cloud-aws-sqs" {
 Creates DataDog monitors with the following checks:
 
 - SQS Age of the oldest message
-- SQS Number of messages visible (disabled by default)
+- SQS Visible Messages (disabled by default)
 
 ## Inputs
 
@@ -54,4 +54,5 @@ Creates DataDog monitors with the following checks:
 | visible\_messages\_id | id for monitor visible_messages |
 
 ## Related documentation
-
+* [Datadog Documentation](https://docs.datadoghq.com/integrations/amazon_sqs/)
+* [Service Documentation](https://docs.aws.amazon.com/sqs/index.html)
