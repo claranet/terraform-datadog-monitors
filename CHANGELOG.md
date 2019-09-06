@@ -1,4 +1,10 @@
 
+# v3.1.1 (September 06, 2019)
+
+## Improvement
+
+*   [[MON-507](https://claranet-morea.atlassian.net/browse/MON-507)] - add manifest for pubsub monitors
+
 # v3.1.0 (September 06, 2019)
 
 ## Bug
