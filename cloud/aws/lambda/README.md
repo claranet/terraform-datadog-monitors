@@ -16,9 +16,9 @@ module "datadog-monitors-cloud-aws-lambda" {
 
 Creates DataDog monitors with the following checks:
 
-- Lambda Number of Errors
-- Lambda Number of Invocations (disabled by default)
-- Lambda Number of Throttles
+- Lambda Invocations throttled due to concurrent limit reached
+- Lambda Number of errors
+- Lambda Number of invocations (disabled by default)
 - Lambda Percentage of errors
 
 ## Inputs
@@ -44,7 +44,7 @@ Creates DataDog monitors with the following checks:
 | invocations\_threshold\_critical | Alerting threshold in number of invocations | string | `"1"` | no |
 | invocations\_threshold\_warning | Warning threshold in number of invocations | string | `"2"` | no |
 | invocations\_time\_aggregator | Monitor aggregator for Invocations [available values: min, max or avg] | string | `"sum"` | no |
-| invocations\_timeframe | Monitor timeframe for Invocations [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1h"` | no |
+| invocations\_timeframe | Monitor timeframe for Invocations [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_30m"` | no |
 | message | Message sent when a monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | pct\_errors\_enabled | Flag to enable Percentage of errors monitor | string | `"true"` | no |
