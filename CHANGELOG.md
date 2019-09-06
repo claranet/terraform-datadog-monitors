@@ -1,4 +1,43 @@
 
+# v3.1.0 (September 06, 2019)
+
+## Bug
+
+*   [[MON-481](https://claranet-morea.atlassian.net/browse/MON-481)] - Fix alb latency metric unit and homogenize latency thresholds
+
+## Documentation
+
+*   [[MON-495](https://claranet-morea.atlassian.net/browse/MON-495)] - Add requirements to kubernetes monitors readme
+
+## Improvement
+
+*   [[MON-400](https://claranet-morea.atlassian.net/browse/MON-400)] - GCP Pub Sub improvements
+*   [[MON-456](https://claranet-morea.atlassian.net/browse/MON-456)] - remove as_count() on kubernetes_state.container.status_report.count.waiting
+*   [[MON-480](https://claranet-morea.atlassian.net/browse/MON-480)] - Increase alert treshold for Stream Analytics streaming units utilization
+*   [[MON-482](https://claranet-morea.atlassian.net/browse/MON-482)] - Ignore silenced since we now must use downtime instead
+*   [[MON-484](https://claranet-morea.atlassian.net/browse/MON-484)] - Ajust monitor Hub Too many d2c telemetry ingress not sent
+*   [[MON-486](https://claranet-morea.atlassian.net/browse/MON-486)] - Remove workaround for here doc fmt now it is fixed in terraform 0.12.6
+*   [[MON-494](https://claranet-morea.atlassian.net/browse/MON-494)] - Refactor auto update scripts
+*   [[MON-502](https://claranet-morea.atlassian.net/browse/MON-502)] - Increase basic system triggers timeframes
+*   [[MON-504](https://claranet-morea.atlassian.net/browse/MON-504)] - Update terraform and provider versions
+
+## New Feature
+
+*   [[MON-39](https://claranet-morea.atlassian.net/browse/MON-39)] - Monitors for Newrelic
+*   [[MON-413](https://claranet-morea.atlassian.net/browse/MON-413)] - Terraform feature for pagerduty integration
+*   [[MON-455](https://claranet-morea.atlassian.net/browse/MON-455)] - Monitor for kubernetes_state.container.status_report.count.terminated
+*   [[MON-46](https://claranet-morea.atlassian.net/browse/MON-46)] - Monitors for AWS Lambdas
+*   [[MON-472](https://claranet-morea.atlassian.net/browse/MON-472)] - Monitors for AWS SQS
+*   [[MON-485](https://claranet-morea.atlassian.net/browse/MON-485)] - docker image for datadog terraform
+*   [[MON-487](https://claranet-morea.atlassian.net/browse/MON-487)] - Datadog monitors VM integration RAM reserved
+*   [[MON-489](https://claranet-morea.atlassian.net/browse/MON-489)] - Datadog monitors Azure VM Disk
+*   [[MON-490](https://claranet-morea.atlassian.net/browse/MON-490)] - Changelog generation on git repos
+*   [[MON-492](https://claranet-morea.atlassian.net/browse/MON-492)] - Indicate if a monitor is disabled by default on the README of each module
+*   [[MON-493](https://claranet-morea.atlassian.net/browse/MON-493)] - Datadog monitors VM integration - requests failed
+*   [[MON-497](https://claranet-morea.atlassian.net/browse/MON-497)] - Monitors for Docker
+*   [[MON-498](https://claranet-morea.atlassian.net/browse/MON-498)] - Monitors for Kong
+*   [[MON-499](https://claranet-morea.atlassian.net/browse/MON-499)] - Monitors HTTP, DNS and TLS
+
 # v3.0.0 (July 05, 2019)
 
 ## Improvement
