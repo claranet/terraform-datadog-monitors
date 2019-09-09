@@ -1,4 +1,10 @@
 
+# v3.1.2 (September 09, 2019)
+
+## Improvement
+
+*   [[MON-508](https://claranet-morea.atlassian.net/browse/MON-508)] - GCP Pub/Sub Topic no data removal
+
 # v3.1.1 (September 06, 2019)
 
 ## Improvement
