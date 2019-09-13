@@ -418,19 +418,19 @@ variable "jvm_gc_old_collection_latency_time_aggregator" {
 variable "jvm_gc_old_collection_latency_timeframe" {
   description = "Timeframe for the Cluster Status monitor"
   type        = string
-  default     = "last_10m"
+  default     = "last_15m"
 }
 
 variable "jvm_gc_old_collection_latency_threshold_warning" {
   description = "Cluster Status warning threshold"
   type        = string
-  default     = 160
+  default     = 200
 }
 
 variable "jvm_gc_old_collection_latency_threshold_critical" {
   description = "Cluster Status  critical threshold"
   type        = string
-  default     = 200
+  default     = 300
 }
 
 variable "jvm_gc_old_collection_latency_enabled" {
@@ -463,7 +463,7 @@ variable "jvm_gc_young_collection_latency_time_aggregator" {
 variable "jvm_gc_young_collection_latency_timeframe" {
   description = "Timeframe for the Cluster Status monitor"
   type        = string
-  default     = "last_10m"
+  default     = "last_15m"
 }
 
 variable "jvm_gc_young_collection_latency_threshold_warning" {
@@ -475,7 +475,7 @@ variable "jvm_gc_young_collection_latency_threshold_warning" {
 variable "jvm_gc_young_collection_latency_threshold_critical" {
   description = "Cluster Status  critical threshold"
   type        = string
-  default     = 25
+  default     = 40
 }
 
 variable "jvm_gc_young_collection_latency_enabled" {
@@ -514,13 +514,13 @@ variable "indexing_latency_timeframe" {
 variable "indexing_latency_threshold_warning" {
   description = "Cluster Status warning threshold"
   type        = string
-  default     = 10
+  default     = 15
 }
 
 variable "indexing_latency_threshold_critical" {
   description = "Cluster Status  critical threshold"
   type        = string
-  default     = 15
+  default     = 30
 }
 
 variable "indexing_latency_enabled" {
@@ -553,19 +553,19 @@ variable "flush_latency_time_aggregator" {
 variable "flush_latency_timeframe" {
   description = "Timeframe for the Cluster Status monitor"
   type        = string
-  default     = "last_10m"
+  default     = "last_15m"
 }
 
 variable "flush_latency_threshold_warning" {
   description = "Cluster Status warning threshold"
   type        = string
-  default     = 50
+  default     = 100
 }
 
 variable "flush_latency_threshold_critical" {
   description = "Cluster Status  critical threshold"
   type        = string
-  default     = 100
+  default     = 150
 }
 
 variable "flush_latency_enabled" {
@@ -685,19 +685,19 @@ variable "search_query_latency_time_aggregator" {
 variable "search_query_latency_timeframe" {
   description = "Timeframe for the Cluster Status monitor"
   type        = string
-  default     = "last_10m"
+  default     = "last_15m"
 }
 
 variable "search_query_latency_threshold_warning" {
   description = "Cluster Status warning threshold"
   type        = string
-  default     = 0.5
+  default     = 10
 }
 
 variable "search_query_latency_threshold_critical" {
   description = "Cluster Status  critical threshold"
   type        = string
-  default     = 1
+  default     = 20
 }
 
 variable "search_query_latency_enabled" {
@@ -730,19 +730,19 @@ variable "fetch_latency_time_aggregator" {
 variable "fetch_latency_timeframe" {
   description = "Timeframe for the Cluster Status monitor"
   type        = string
-  default     = "last_10m"
+  default     = "last_15m"
 }
 
 variable "fetch_latency_threshold_warning" {
   description = "Cluster Status warning threshold"
   type        = string
-  default     = 2
+  default     = 10
 }
 
 variable "fetch_latency_threshold_critical" {
   description = "Cluster Status  critical threshold"
   type        = string
-  default     = 4
+  default     = 20
 }
 
 variable "fetch_latency_enabled" {
