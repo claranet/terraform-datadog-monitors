@@ -39,8 +39,8 @@ resource "datadog_monitor" "blobservices_requests_error" {
 
   query = <<EOQ
       ${var.successful_requests_time_aggregator}(${var.successful_requests_timeframe}):
-        default(100-(default(sum:azure.storage_storageaccounts_blobservices.transactions${module.filter-tags-success.query_alert} by {resource_group,name}.as_rate(),0) /
-        default(sum:azure.storage_storageaccounts_blobservices.transactions${module.filter-tags.query_alert} by {resource_group,name}.as_rate(),0)
+        default(100-(default(sum:azure.storage_storageaccounts_blobservices.transactions${module.filter-tags-success-blob.query_alert} by {resource_group,name}.as_rate(),0) /
+        default(sum:azure.storage_storageaccounts_blobservices.transactions${module.filter-tags-blob.query_alert} by {resource_group,name}.as_rate(),0)
       * 100),0) > ${var.successful_storage_requests_threshold_critical}
 EOQ
 
@@ -941,8 +941,8 @@ resource "datadog_monitor" "blob_client_other_error_requests" {
   message = coalesce(var.client_other_error_requests_message, var.message)
   query   = <<EOQ
   ${var.client_other_error_requests_time_aggregator}(${var.client_other_error_requests_timeframe}):
-  default((default(sum:azure.storage_storageaccounts_blobservices.transactions${module.filter-tags-client-other-error.query_alert} by {resource_group,name}.as_rate(),0) /
-  default(sum:azure.storage_storageaccounts_blobservices.transactions${module.filter-tags.query_alert} by {resource_group,name}.as_rate(),0)
+  default((default(sum:azure.storage_storageaccounts_blobservices.transactions${module.filter-tags-client-other-error-blob.query_alert} by {resource_group,name}.as_rate(),0) /
+  default(sum:azure.storage_storageaccounts_blobservices.transactions${module.filter-tags-blob.query_alert} by {resource_group,name}.as_rate(),0)
   * 100),0) > ${var.client_other_error_requests_threshold_critical}
 EOQ
 
