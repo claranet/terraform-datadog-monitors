@@ -129,8 +129,8 @@ resource "datadog_monitor" "appgateway_http_4xx_errors" {
 
   query = <<EOQ
     ${var.appgateway_http_4xx_errors_time_aggregator}(${var.appgateway_http_4xx_errors_timeframe}):
-      default((default(sum:azure.network_applicationgateways.response_status${module.filter-tags-4xx-error.query_alert} by {resource_group,region,name,instance}.as_rate(), 0) /
-      default(sum:azure.network_applicationgateways.response_status${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(),0)
+      default((default(sum:azure.network_applicationgateways.response_status${module.filter-tags-4xx-error.query_alert} by {resource_group,region,name}.as_rate(), 0) /
+      default(sum:azure.network_applicationgateways.response_status${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(),0)
       * 100),0) > ${var.appgateway_http_4xx_errors_threshold_critical}
 EOQ
 
@@ -164,8 +164,8 @@ resource "datadog_monitor" "appgateway_http_5xx_errors" {
 
   query = <<EOQ
     ${var.appgateway_http_5xx_errors_time_aggregator}(${var.appgateway_http_5xx_errors_timeframe}):
-      default((default(sum:azure.network_applicationgateways.response_status${module.filter-tags-5xx-error.query_alert} by {resource_group,region,name,instance}.as_rate(), 0) /
-      default(sum:azure.network_applicationgateways.response_status${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(),0)
+      default((default(sum:azure.network_applicationgateways.response_status${module.filter-tags-5xx-error.query_alert} by {resource_group,region,name}.as_rate(), 0) /
+      default(sum:azure.network_applicationgateways.response_status${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(),0)
       * 100),0) > ${var.appgateway_http_5xx_errors_threshold_critical}
 EOQ
 
