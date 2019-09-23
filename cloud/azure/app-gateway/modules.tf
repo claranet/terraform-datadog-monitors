@@ -16,7 +16,7 @@ module "filter-tags-4xx-error" {
   filter_tags_use_defaults    = var.filter_tags_use_defaults
   filter_tags_custom          = var.filter_tags_custom
   filter_tags_custom_excluded = var.filter_tags_custom_excluded
-  extra_tags                  = ["httpstatus:5xx"]
+  extra_tags                  = ["httpstatusgroup:4xx"]
 }
 
 module "filter-tags-5xx-error" {
@@ -27,5 +27,5 @@ module "filter-tags-5xx-error" {
   filter_tags_use_defaults    = var.filter_tags_use_defaults
   filter_tags_custom          = var.filter_tags_custom
   filter_tags_custom_excluded = var.filter_tags_custom_excluded
-  extra_tags                  = ["httpstatus:5xx"]
+  extra_tags                  = ["httpstatusgroup:5xx"]
 }
