@@ -1,3 +1,18 @@
+output "appgateway_backend_connect_time_id" {
+  description = "id for monitor appgateway_backend_connect_time"
+  value       = datadog_monitor.appgateway_backend_connect_time.*.id
+}
+
+output "appgateway_backend_http_4xx_errors_id" {
+  description = "id for monitor appgateway_backend_http_4xx_errors"
+  value       = datadog_monitor.appgateway_backend_http_4xx_errors.*.id
+}
+
+output "appgateway_backend_http_5xx_errors_id" {
+  description = "id for monitor appgateway_backend_http_5xx_errors"
+  value       = datadog_monitor.appgateway_backend_http_5xx_errors.*.id
+}
+
 output "appgateway_failed_requests_id" {
   description = "id for monitor appgateway_failed_requests"
   value       = datadog_monitor.appgateway_failed_requests.*.id

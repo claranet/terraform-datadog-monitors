@@ -28,7 +28,7 @@ EOQ
   }
 }
 
-# Monitoring App Gateway current_connections (count)
+# Monitoring App Gateway current_connections
 resource "datadog_monitor" "current_connection" {
   count   = var.current_connection_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway no connection {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
@@ -57,16 +57,52 @@ EOQ
   }
 }
 
-# Monitoring App Gateway failed_requests (count)
+# Monitoring App Gateway backend_connect_time
+resource "datadog_monitor" "appgateway_backend_connect_time" {
+  count   = var.appgateway_backend_connect_time_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway backend connect time {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.appgateway_backend_connect_time_message, var.message)
+  type    = "query alert"
+
+  query = <<EOQ
+    ${var.appgateway_backend_connect_time_time_aggregator}(${var.appgateway_backend_connect_time_timeframe}):
+      sum:azure.network_applicationgateways.backend_connect_time${module.filter-tags.query_alert} by {resource_group,region,name,backendserver} > ${var.appgateway_backend_connect_time_threshold_critical}
+EOQ
+
+  thresholds = {
+    critical = var.appgateway_backend_connect_time_threshold_critical
+    warning  = var.appgateway_backend_connect_time_threshold_warning
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
+
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_backend_connect_time_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
+}
+
+# Monitoring App Gateway failed_requests
 resource "datadog_monitor" "appgateway_failed_requests" {
   count   = var.appgateway_failed_requests_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway failed requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.appgateway_failed_requests_message, var.message)
-  type    = "query alert"
+  type    = "metric alert"
 
   query = <<EOQ
-    ${var.appgateway_failed_requests_time_aggregator}(${var.appgateway_failed_requests_timeframe}): (
-      avg:azure.network_applicationgateways.failed_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_count() > ${var.appgateway_failed_requests_threshold_critical}
+    ${var.appgateway_failed_requests_time_aggregator}(${var.appgateway_failed_requests_timeframe}):
+      default((default(avg:azure.network_applicationgateways.failed_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
+      default(avg:azure.network_applicationgateways.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(),0)
+      * 100),0) > ${var.appgateway_failed_requests_threshold_critical}
 EOQ
 
   thresholds = {
@@ -91,7 +127,7 @@ EOQ
   }
 }
 
-# Monitoring App Gateway healthy_host_count (count)
+# Monitoring App Gateway healthy_host_count
 resource "datadog_monitor" "appgateway_healthy_host_count" {
   count   = var.appgateway_healthy_host_count_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway no healthy host {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
@@ -120,10 +156,10 @@ EOQ
   }
 }
 
-# Monitoring App Gateway response_status 4xx (count)
+# Monitoring App Gateway response_status 4xx
 resource "datadog_monitor" "appgateway_http_4xx_errors" {
   count   = var.appgateway_http_4xx_errors_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway HTTP 4xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway HTTP 4xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.appgateway_http_4xx_errors_message, var.message)
   type    = "metric alert"
 
@@ -155,10 +191,10 @@ EOQ
   }
 }
 
-# Monitoring App Gateway response_status 5xx (count)
+# Monitoring App Gateway response_status 5xx
 resource "datadog_monitor" "appgateway_http_5xx_errors" {
   count   = var.appgateway_http_5xx_errors_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway HTTP 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway HTTP 5xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.appgateway_http_5xx_errors_message, var.message)
   type    = "query alert"
 
@@ -183,6 +219,75 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_http_5xx_errors_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
+}
+
+# Monitoring App Gateway Backend response_status 4xx
+resource "datadog_monitor" "appgateway_backend_http_4xx_errors" {
+  count   = var.appgateway_backend_http_4xx_errors_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway Backend HTTP 4xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.appgateway_backend_http_4xx_errors_message, var.message)
+  type    = "metric alert"
+
+  query = <<EOQ
+    ${var.appgateway_backend_http_4xx_errors_time_aggregator}(${var.appgateway_backend_http_4xx_errors_timeframe}):
+      default((default(sum:azure.network_applicationgateways.backend_response_status${module.filter-tags-backend-4xx-error.query_alert} by {resource_group,region,name}.as_rate(), 0) /
+      default(sum:azure.network_applicationgateways.backend_response_status${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(),0)
+      * 100),0) > ${var.appgateway_backend_http_4xx_errors_threshold_critical}
+EOQ
+
+
+  thresholds = {
+    warning  = var.appgateway_backend_http_4xx_errors_threshold_warning
+    critical = var.appgateway_backend_http_4xx_errors_threshold_critical
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  require_full_window = false
+  timeout_h           = 1
+  include_tags        = true
+
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_backend_http_4xx_errors_extra_tags)
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
+}
+
+# Monitoring App Gateway Backend response_status 5xx
+resource "datadog_monitor" "appgateway_backend_http_5xx_errors" {
+  count   = var.appgateway_backend_http_5xx_errors_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway HTTP Backend 5xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.appgateway_backend_http_5xx_errors_message, var.message)
+  type    = "query alert"
+
+  query = <<EOQ
+    ${var.appgateway_backend_http_5xx_errors_time_aggregator}(${var.appgateway_backend_http_5xx_errors_timeframe}):
+      default((default(sum:azure.network_applicationgateways.backend_response_status${module.filter-tags-backend-5xx-error.query_alert} by {resource_group,region,name}.as_rate(), 0) /
+      default(sum:azure.network_applicationgateways.backend_response_status${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(),0)
+      * 100),0) > ${var.appgateway_backend_http_5xx_errors_threshold_critical}
+EOQ
+
+  thresholds = {
+    warning  = var.appgateway_backend_http_5xx_errors_threshold_warning
+    critical = var.appgateway_backend_http_5xx_errors_threshold_critical
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  require_full_window = false
+  timeout_h           = 1
+  include_tags        = true
+
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_backend_http_5xx_errors_extra_tags)
 
   lifecycle {
     ignore_changes = ["silenced"]
