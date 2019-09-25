@@ -3,7 +3,7 @@ resource "datadog_monitor" "appgateway_status" {
   count   = var.status_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway is down"
   message = coalesce(var.status_message, var.message)
-  type    = "query alert"
+  type    = "metric alert"
 
   query = <<EOQ
     ${var.status_time_aggregator}(${var.status_timeframe}): (
@@ -96,7 +96,7 @@ resource "datadog_monitor" "appgateway_failed_requests" {
   count   = var.appgateway_failed_requests_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway failed requests {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.appgateway_failed_requests_message, var.message)
-  type    = "metric alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.appgateway_failed_requests_time_aggregator}(${var.appgateway_failed_requests_timeframe}):
@@ -161,7 +161,7 @@ resource "datadog_monitor" "appgateway_http_4xx_errors" {
   count   = var.appgateway_http_4xx_errors_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway HTTP 4xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.appgateway_http_4xx_errors_message, var.message)
-  type    = "metric alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.appgateway_http_4xx_errors_time_aggregator}(${var.appgateway_http_4xx_errors_timeframe}):
@@ -230,7 +230,7 @@ resource "datadog_monitor" "appgateway_backend_http_4xx_errors" {
   count   = var.appgateway_backend_http_4xx_errors_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway Backend HTTP 4xx errors {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.appgateway_backend_http_4xx_errors_message, var.message)
-  type    = "metric alert"
+  type    = "query alert"
 
   query = <<EOQ
     ${var.appgateway_backend_http_4xx_errors_time_aggregator}(${var.appgateway_backend_http_4xx_errors_timeframe}):
