@@ -234,8 +234,8 @@ resource "datadog_monitor" "appgateway_backend_http_4xx_errors" {
 
   query = <<EOQ
     ${var.appgateway_backend_http_4xx_errors_time_aggregator}(${var.appgateway_backend_http_4xx_errors_timeframe}):
-      default((default(sum:azure.network_applicationgateways.backend_response_status${module.filter-tags-backend-4xx-error.query_alert} by {resource_group,region,name}.as_rate(), 0) /
-      default(sum:azure.network_applicationgateways.backend_response_status${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(),0)
+      default((default(sum:azure.network_applicationgateways.backend_response_status${module.filter-tags-backend-4xx-error.query_alert} by {resource_group,region,name,backendserver}.as_rate(), 0) /
+      default(sum:azure.network_applicationgateways.backend_response_status${module.filter-tags.query_alert} by {resource_group,region,name,backendserver}.as_rate(),0)
       * 100),0) > ${var.appgateway_backend_http_4xx_errors_threshold_critical}
 EOQ
 
@@ -269,8 +269,8 @@ resource "datadog_monitor" "appgateway_backend_http_5xx_errors" {
 
   query = <<EOQ
     ${var.appgateway_backend_http_5xx_errors_time_aggregator}(${var.appgateway_backend_http_5xx_errors_timeframe}):
-      default((default(sum:azure.network_applicationgateways.backend_response_status${module.filter-tags-backend-5xx-error.query_alert} by {resource_group,region,name}.as_rate(), 0) /
-      default(sum:azure.network_applicationgateways.backend_response_status${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(),0)
+      default((default(sum:azure.network_applicationgateways.backend_response_status${module.filter-tags-backend-5xx-error.query_alert} by {resource_group,region,name,backendserver}.as_rate(), 0) /
+      default(sum:azure.network_applicationgateways.backend_response_status${module.filter-tags.query_alert} by {resource_group,region,name,backendserver}.as_rate(),0)
       * 100),0) > ${var.appgateway_backend_http_5xx_errors_threshold_critical}
 EOQ
 
