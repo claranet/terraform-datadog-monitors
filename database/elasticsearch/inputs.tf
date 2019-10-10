@@ -724,7 +724,7 @@ variable "fetch_latency_message" {
 variable "fetch_latency_time_aggregator" {
   description = "Time aggregator for the Cluster Status monitor"
   type        = string
-  default     = "avg"
+  default     = "min"
 }
 
 variable "fetch_latency_timeframe" {
