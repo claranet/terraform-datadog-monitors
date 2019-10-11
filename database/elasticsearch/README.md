@@ -86,7 +86,7 @@ Creates DataDog monitors with the following checks:
 | fetch\_latency\_message | Custom message for the Cluster Status monitor | string | `""` | no |
 | fetch\_latency\_threshold\_critical | Cluster Status  critical threshold | string | `"4"` | no |
 | fetch\_latency\_threshold\_warning | Cluster Status warning threshold | string | `"2"` | no |
-| fetch\_latency\_time\_aggregator | Time aggregator for the Cluster Status monitor | string | `"avg"` | no |
+| fetch\_latency\_time\_aggregator | Time aggregator for the Cluster Status monitor | string | `"min"` | no |
 | fetch\_latency\_timeframe | Timeframe for the Cluster Status monitor | string | `"last_10m"` | no |
 | field\_data\_evictions\_change\_enabled | Flag to enable Cluster Status monitor | string | `"true"` | no |
 | field\_data\_evictions\_change\_extra\_tags | Extra tags for Cluster Status monitor | list(string) | `[]` | no |
