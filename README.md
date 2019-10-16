@@ -148,6 +148,7 @@ The `//` is very important, it's a terraform specific syntax used to separate gi
 		- [elb](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/elb/)
 		- [kinesis-firehose](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/kinesis-firehose/)
 		- [lambda](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/lambda/)
+		- [nlb](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/nlb/)
 		- [rds](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/rds/)
 			- [aurora](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/rds/aurora/)
 				- [mysql](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/rds/aurora/mysql/)
