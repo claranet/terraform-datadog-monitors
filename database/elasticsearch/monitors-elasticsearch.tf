@@ -329,7 +329,10 @@ resource "datadog_monitor" "jvm_gc_old_collection_latency" {
 
   query = <<EOQ
   ${var.jvm_gc_old_collection_latency_time_aggregator}(${var.jvm_gc_old_collection_latency_timeframe}):
-    avg:jvm.gc.collectors.old.collection_time${module.filter-tags.query_alert} by {node_name} / avg:jvm.gc.collectors.old.count${module.filter-tags.query_alert} by {node_name} * 1000
+    default(
+      diff(avg:jvm.gc.collectors.old.collection_time${module.filter-tags.query_alert} by {node_name}) /
+      diff(avg:jvm.gc.collectors.old.count${module.filter-tags.query_alert} by {node_name})
+    * 1000, 0)
   > ${var.jvm_gc_old_collection_latency_threshold_critical}
 EOQ
 
@@ -364,7 +367,10 @@ resource "datadog_monitor" "jvm_gc_young_collection_latency" {
 
   query = <<EOQ
   ${var.jvm_gc_young_collection_latency_time_aggregator}(${var.jvm_gc_young_collection_latency_timeframe}):
-    avg:jvm.gc.collectors.young.collection_time${module.filter-tags.query_alert} by {node_name} / avg:jvm.gc.collectors.young.count${module.filter-tags.query_alert} by {node_name} * 1000
+    default(
+      diff(avg:jvm.gc.collectors.young.collection_time${module.filter-tags.query_alert} by {node_name}) /
+      diff(avg:jvm.gc.collectors.young.count${module.filter-tags.query_alert} by {node_name})
+    * 1000, 0)
   > ${var.jvm_gc_young_collection_latency_threshold_critical}
 EOQ
 
@@ -393,14 +399,17 @@ EOQ
 #
 resource "datadog_monitor" "indexing_latency" {
   count   = var.indexing_latency_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch average indexing time by document {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch average indexing latency by document {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = coalesce(var.indexing_latency_message, var.message)
   type    = "query alert"
 
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
   query = <<EOQ
   ${var.indexing_latency_time_aggregator}(${var.indexing_latency_timeframe}):
-    avg:elasticsearch.indexing.index.time${module.filter-tags.query_alert} by {node_name}/ avg:elasticsearch.indexing.index.total${module.filter-tags.query_alert} by {node_name} * 1000
+    default(
+      diff(avg:elasticsearch.indexing.index.time${module.filter-tags.query_alert} by {node_name}) /
+      diff(avg:elasticsearch.indexing.index.total${module.filter-tags.query_alert} by {node_name})
+    * 1000, 0)
    > ${var.indexing_latency_threshold_critical}
 EOQ
 
@@ -436,7 +445,10 @@ resource "datadog_monitor" "flush_latency" {
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
   query = <<EOQ
   ${var.flush_latency_time_aggregator}(${var.flush_latency_timeframe}):
-    avg:elasticsearch.flush.total.time${module.filter-tags.query_alert} by {node_name} / avg:elasticsearch.flush.total${module.filter-tags.query_alert} by {node_name} * 1000
+    default(
+      diff(avg:elasticsearch.flush.total.time${module.filter-tags.query_alert} by {node_name}) /
+      diff(avg:elasticsearch.flush.total${module.filter-tags.query_alert} by {node_name})
+    * 1000, 0)
   > ${var.flush_latency_threshold_critical}
 EOQ
 
@@ -520,7 +532,10 @@ resource "datadog_monitor" "search_query_latency" {
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
   query = <<EOQ
   ${var.search_query_latency_time_aggregator}(${var.search_query_latency_timeframe}):
-    avg:elasticsearch.search.query.time${module.filter-tags.query_alert} by {node_name} / avg:elasticsearch.search.query.total${module.filter-tags.query_alert} by {node_name} * 1000
+    default(
+      diff(avg:elasticsearch.search.query.time${module.filter-tags.query_alert} by {node_name}) /
+      diff(avg:elasticsearch.search.query.total${module.filter-tags.query_alert} by {node_name})
+    * 1000, 0)
   > ${var.search_query_latency_threshold_critical}
 EOQ
 
@@ -556,7 +571,10 @@ resource "datadog_monitor" "fetch_latency" {
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
   query = <<EOQ
   ${var.fetch_latency_time_aggregator}(${var.fetch_latency_timeframe}):
-    avg:elasticsearch.search.fetch.time${module.filter-tags.query_alert} by {node_name} / avg:elasticsearch.search.fetch.total${module.filter-tags.query_alert} by {node_name} * 1000
+    default(
+      diff(avg:elasticsearch.search.fetch.time${module.filter-tags.query_alert} by {node_name}) /
+      diff(avg:elasticsearch.search.fetch.total${module.filter-tags.query_alert} by {node_name})
+    * 1000, 0)
   > ${var.fetch_latency_threshold_critical}
 EOQ
 
