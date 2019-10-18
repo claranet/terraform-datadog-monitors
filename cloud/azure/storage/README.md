@@ -26,11 +26,13 @@ Creates DataDog monitors with the following checks:
 - Azure File Storage too many client_other errors
 - Azure File Storage too many network errors
 - Azure File Storage too many server_other errors
+- Azure File Storage too many throttling errors
 - Azure File Storage too many timeout errors
 - Azure Queue Storage too many authorization errors
 - Azure Queue Storage too many client_other errors
 - Azure Queue Storage too many network errors
 - Azure Queue Storage too many server_other errors
+- Azure Queue Storage too many throttling errors
 - Azure Queue Storage too many timeout errors
 - Azure Storage Blob service too few successful requests
 - Azure Storage Blob service too high end to end latency
@@ -41,13 +43,11 @@ Creates DataDog monitors with the following checks:
 - Azure Storage Queue service too high end to end latency
 - Azure Storage Table service too few successful requests
 - Azure Storage Table service too high end to end latency
-- Azure Storage too many throttling errors
-- Azure Storage too many throttling errors
-- Azure Storage too many throttling errors
 - Azure Table Storage too many authorization errors
 - Azure Table Storage too many client_other errors
 - Azure Table Storage too many network errors
 - Azure Table Storage too many server_other errors
+- Azure Table Storage too many throttling errors
 - Azure Table Storage too many timeout errors
 
 ## Inputs
