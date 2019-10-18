@@ -17,7 +17,7 @@ module "datadog-monitors-database-elasticsearch" {
 Creates DataDog monitors with the following checks:
 
 - Elasticsearch average index flushing to disk latency
-- Elasticsearch average indexing time by document
+- Elasticsearch average indexing latency by document
 - Elasticsearch average Old-generation garbage collections latency
 - Elasticsearch average search fetch latency
 - Elasticsearch average search query latency
@@ -84,10 +84,10 @@ Creates DataDog monitors with the following checks:
 | fetch\_latency\_enabled | Flag to enable Cluster Status monitor | string | `"true"` | no |
 | fetch\_latency\_extra\_tags | Extra tags for Cluster Status monitor | list(string) | `[]` | no |
 | fetch\_latency\_message | Custom message for the Cluster Status monitor | string | `""` | no |
-| fetch\_latency\_threshold\_critical | Cluster Status  critical threshold | string | `"4"` | no |
-| fetch\_latency\_threshold\_warning | Cluster Status warning threshold | string | `"2"` | no |
+| fetch\_latency\_threshold\_critical | Cluster Status  critical threshold | string | `"20"` | no |
+| fetch\_latency\_threshold\_warning | Cluster Status warning threshold | string | `"10"` | no |
 | fetch\_latency\_time\_aggregator | Time aggregator for the Cluster Status monitor | string | `"min"` | no |
-| fetch\_latency\_timeframe | Timeframe for the Cluster Status monitor | string | `"last_10m"` | no |
+| fetch\_latency\_timeframe | Timeframe for the Cluster Status monitor | string | `"last_15m"` | no |
 | field\_data\_evictions\_change\_enabled | Flag to enable Cluster Status monitor | string | `"true"` | no |
 | field\_data\_evictions\_change\_extra\_tags | Extra tags for Cluster Status monitor | list(string) | `[]` | no |
 | field\_data\_evictions\_change\_message | Custom message for the Cluster Status monitor | string | `""` | no |
@@ -102,10 +102,10 @@ Creates DataDog monitors with the following checks:
 | flush\_latency\_enabled | Flag to enable Cluster Status monitor | string | `"true"` | no |
 | flush\_latency\_extra\_tags | Extra tags for Cluster Status monitor | list(string) | `[]` | no |
 | flush\_latency\_message | Custom message for the Cluster Status monitor | string | `""` | no |
-| flush\_latency\_threshold\_critical | Cluster Status  critical threshold | string | `"100"` | no |
-| flush\_latency\_threshold\_warning | Cluster Status warning threshold | string | `"50"` | no |
+| flush\_latency\_threshold\_critical | Cluster Status  critical threshold | string | `"150"` | no |
+| flush\_latency\_threshold\_warning | Cluster Status warning threshold | string | `"100"` | no |
 | flush\_latency\_time\_aggregator | Time aggregator for the Cluster Status monitor | string | `"avg"` | no |
-| flush\_latency\_timeframe | Timeframe for the Cluster Status monitor | string | `"last_10m"` | no |
+| flush\_latency\_timeframe | Timeframe for the Cluster Status monitor | string | `"last_15m"` | no |
 | http\_connections\_anomaly\_alert\_window | Alert window. | string | `"last_15m"` | no |
 | http\_connections\_anomaly\_count\_default\_zero | Count default zero. | string | `"true"` | no |
 | http\_connections\_anomaly\_detection\_algorithm | Anomaly Detection Algorithm used | string | `"agile"` | no |
@@ -123,24 +123,24 @@ Creates DataDog monitors with the following checks:
 | indexing\_latency\_enabled | Flag to enable Cluster Status monitor | string | `"true"` | no |
 | indexing\_latency\_extra\_tags | Extra tags for Cluster Status monitor | list(string) | `[]` | no |
 | indexing\_latency\_message | Custom message for the Cluster Status monitor | string | `""` | no |
-| indexing\_latency\_threshold\_critical | Cluster Status  critical threshold | string | `"15"` | no |
-| indexing\_latency\_threshold\_warning | Cluster Status warning threshold | string | `"10"` | no |
+| indexing\_latency\_threshold\_critical | Cluster Status  critical threshold | string | `"30"` | no |
+| indexing\_latency\_threshold\_warning | Cluster Status warning threshold | string | `"15"` | no |
 | indexing\_latency\_time\_aggregator | Time aggregator for the Cluster Status monitor | string | `"avg"` | no |
 | indexing\_latency\_timeframe | Timeframe for the Cluster Status monitor | string | `"last_10m"` | no |
 | jvm\_gc\_old\_collection\_latency\_enabled | Flag to enable Cluster Status monitor | string | `"true"` | no |
 | jvm\_gc\_old\_collection\_latency\_extra\_tags | Extra tags for Cluster Status monitor | list(string) | `[]` | no |
 | jvm\_gc\_old\_collection\_latency\_message | Custom message for the Cluster Status monitor | string | `""` | no |
-| jvm\_gc\_old\_collection\_latency\_threshold\_critical | Cluster Status  critical threshold | string | `"200"` | no |
-| jvm\_gc\_old\_collection\_latency\_threshold\_warning | Cluster Status warning threshold | string | `"160"` | no |
+| jvm\_gc\_old\_collection\_latency\_threshold\_critical | Cluster Status  critical threshold | string | `"300"` | no |
+| jvm\_gc\_old\_collection\_latency\_threshold\_warning | Cluster Status warning threshold | string | `"200"` | no |
 | jvm\_gc\_old\_collection\_latency\_time\_aggregator | Time aggregator for the Cluster Status monitor | string | `"avg"` | no |
-| jvm\_gc\_old\_collection\_latency\_timeframe | Timeframe for the Cluster Status monitor | string | `"last_10m"` | no |
+| jvm\_gc\_old\_collection\_latency\_timeframe | Timeframe for the Cluster Status monitor | string | `"last_15m"` | no |
 | jvm\_gc\_young\_collection\_latency\_enabled | Flag to enable Cluster Status monitor | string | `"true"` | no |
 | jvm\_gc\_young\_collection\_latency\_extra\_tags | Extra tags for Cluster Status monitor | list(string) | `[]` | no |
 | jvm\_gc\_young\_collection\_latency\_message | Custom message for the Cluster Status monitor | string | `""` | no |
-| jvm\_gc\_young\_collection\_latency\_threshold\_critical | Cluster Status  critical threshold | string | `"25"` | no |
+| jvm\_gc\_young\_collection\_latency\_threshold\_critical | Cluster Status  critical threshold | string | `"40"` | no |
 | jvm\_gc\_young\_collection\_latency\_threshold\_warning | Cluster Status warning threshold | string | `"20"` | no |
 | jvm\_gc\_young\_collection\_latency\_time\_aggregator | Time aggregator for the Cluster Status monitor | string | `"avg"` | no |
-| jvm\_gc\_young\_collection\_latency\_timeframe | Timeframe for the Cluster Status monitor | string | `"last_10m"` | no |
+| jvm\_gc\_young\_collection\_latency\_timeframe | Timeframe for the Cluster Status monitor | string | `"last_15m"` | no |
 | jvm\_heap\_memory\_usage\_enabled | Flag to enable Cluster Status monitor | string | `"true"` | no |
 | jvm\_heap\_memory\_usage\_extra\_tags | Extra tags for Cluster Status monitor | list(string) | `[]` | no |
 | jvm\_heap\_memory\_usage\_message | Custom message for the Cluster Status monitor | string | `""` | no |
@@ -204,10 +204,10 @@ Creates DataDog monitors with the following checks:
 | search\_query\_latency\_enabled | Flag to enable Cluster Status monitor | string | `"true"` | no |
 | search\_query\_latency\_extra\_tags | Extra tags for Cluster Status monitor | list(string) | `[]` | no |
 | search\_query\_latency\_message | Custom message for the Cluster Status monitor | string | `""` | no |
-| search\_query\_latency\_threshold\_critical | Cluster Status  critical threshold | string | `"1"` | no |
-| search\_query\_latency\_threshold\_warning | Cluster Status warning threshold | string | `"0.5"` | no |
+| search\_query\_latency\_threshold\_critical | Cluster Status  critical threshold | string | `"20"` | no |
+| search\_query\_latency\_threshold\_warning | Cluster Status warning threshold | string | `"10"` | no |
 | search\_query\_latency\_time\_aggregator | Time aggregator for the Cluster Status monitor | string | `"avg"` | no |
-| search\_query\_latency\_timeframe | Timeframe for the Cluster Status monitor | string | `"last_10m"` | no |
+| search\_query\_latency\_timeframe | Timeframe for the Cluster Status monitor | string | `"last_15m"` | no |
 | task\_time\_in\_queue\_change\_enabled | Flag to enable Cluster Status monitor | string | `"true"` | no |
 | task\_time\_in\_queue\_change\_extra\_tags | Extra tags for Cluster Status monitor | list(string) | `[]` | no |
 | task\_time\_in\_queue\_change\_message | Custom message for the Cluster Status monitor | string | `""` | no |
