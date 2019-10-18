@@ -1017,8 +1017,8 @@ resource "datadog_monitor" "queue_client_other_error_requests" {
 
   query = <<EOQ
     ${var.client_other_error_requests_time_aggregator}(${var.client_other_error_requests_timeframe}):
-    default((default(sum:azure.storage_storageaccounts_fileservices.transactions${module.filter-tags-client-other-error.query_alert} by {resource_group,name}.as_rate(),0) /
-    default(sum:azure.storage_storageaccounts_fileservices.transactions${module.filter-tags.query_alert} by {resource_group,name}.as_rate(),0)
+    default((default(sum:azure.storage_storageaccounts_queueservices.transactions${module.filter-tags-client-other-error.query_alert} by {resource_group,name}.as_rate(),0) /
+    default(sum:azure.storage_storageaccounts_queueservices.transactions${module.filter-tags.query_alert} by {resource_group,name}.as_rate(),0)
     * 100),0) > ${var.client_other_error_requests_threshold_critical}
 EOQ
 
