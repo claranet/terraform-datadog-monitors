@@ -6,8 +6,8 @@ resource "datadog_monitor" "NLB_no_healthy_instances" {
 
   query = <<EOQ
     ${var.nlb_no_healthy_instances_time_aggregator}(${var.nlb_no_healthy_instances_timeframe}): (
-      sum:aws.networkelb.healthy_host_count.maximum${module.filter-tags.query_alert} by {region,loadbalancer} / (
-      sum:aws.networkelb.healthy_host_count.maximum${module.filter-tags.query_alert} by {region,loadbalancer} +
+      sum:aws.networkelb.healthy_host_count.minimum${module.filter-tags.query_alert} by {region,loadbalancer} / (
+      sum:aws.networkelb.healthy_host_count.minimum${module.filter-tags.query_alert} by {region,loadbalancer} +
       sum:aws.networkelb.un_healthy_host_count.maximum${module.filter-tags.query_alert} by {region,loadbalancer} )
     ) * 100 < 1
 EOQ
