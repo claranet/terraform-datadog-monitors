@@ -71,3 +71,7 @@ variable "nlb_no_healthy_instances_timeframe" {
   default     = "last_5m"
 }
 
+variable "nlb_no_healthy_instances_threshold_warning" {
+  description = "NLB no healthy instances warning threshold in percentage"
+  default     = 100
+}
