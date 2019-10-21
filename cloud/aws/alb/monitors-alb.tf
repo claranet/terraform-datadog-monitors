@@ -14,7 +14,7 @@ EOQ
 
   thresholds = {
     critical = 1
-    warning  = 100
+    warning  = var.alb_no_healthy_instances_threshold_warning
   }
 
   evaluation_delay    = var.evaluation_delay

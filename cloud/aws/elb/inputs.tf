@@ -71,6 +71,11 @@ variable "elb_no_healthy_instance_timeframe" {
   default     = "last_5m"
 }
 
+variable "elb_no_healthy_instance_threshold_warning" {
+  description = "ELB no healthy instances warning threshold in percentage"
+  default     = 100
+}
+
 variable "elb_4xx_enabled" {
   description = "Flag to enable ELB 4xx errors monitor"
   type        = string
