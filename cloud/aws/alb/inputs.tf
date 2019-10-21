@@ -71,6 +71,11 @@ variable "alb_no_healthy_instances_timeframe" {
   default     = "last_5m"
 }
 
+variable "alb_no_healthy_instances_threshold_warning" {
+  description = "ALB no healthy instances warning threshold in percentage"
+  default     = 100
+}
+
 variable "latency_enabled" {
   description = "Flag to enable ALB latency monitor"
   type        = string
