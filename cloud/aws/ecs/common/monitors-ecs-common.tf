@@ -7,7 +7,7 @@ resource "datadog_monitor" "service_cpu_utilization" {
 
   query = <<EOQ
     ${var.service_cpu_utilization_time_aggregator}(${var.service_cpu_utilization_timeframe}):
-      avg:aws.ecs.cpuutilization${module.filter-tags.query_alert} by {region,servicename}
+      avg:aws.ecs.service.cpuutilization${module.filter-tags.query_alert} by {region,servicename}
     > ${var.service_cpu_utilization_threshold_critical}
 EOQ
 
@@ -42,7 +42,7 @@ resource "datadog_monitor" "service_memory_utilization" {
 
   query = <<EOQ
     ${var.service_memory_utilization_time_aggregator}(${var.service_memory_utilization_timeframe}):
-      avg:aws.ecs.memory_utilization${module.filter-tags.query_alert} by {region,servicename}
+      avg:aws.ecs.service.memory_utilization${module.filter-tags.query_alert} by {region,servicename}
     > ${var.service_memory_utilization_threshold_critical}
 EOQ
 
