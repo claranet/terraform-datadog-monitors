@@ -65,3 +65,26 @@ variable "supervisord_connect_threshold_warning" {
   default     = 3
 }
 
+variable "supervisord_process_not_available_enabled" {
+  description = "Flag to enable supervisord process status monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "supervisord_process_not_available_extra_tags" {
+  description = "Extra tags for supervisord process monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "supervisord_process_not_available_message" {
+  description = "Custom message for supervisord process status monitor"
+  type        = string
+  default     = ""
+}
+
+variable "supervisord_process_not_available_threshold_warning" {
+  description = "supervisord process status monitor (warning threshold)"
+  type        = string
+  default     = 3
+}

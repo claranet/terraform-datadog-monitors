@@ -16,7 +16,8 @@ module "datadog-monitors-middleware-supervisord" {
 
 Creates DataDog monitors with the following checks:
 
-- supervisord vhost status does not respond
+- Supervisord does not respond
+- Supervisord does not respond
 
 ## Inputs
 
@@ -34,12 +35,17 @@ Creates DataDog monitors with the following checks:
 | supervisord\_connect\_extra\_tags | Extra tags for supervisord process monitor | list(string) | `[]` | no |
 | supervisord\_connect\_message | Custom message for supervisord status monitor | string | `""` | no |
 | supervisord\_connect\_threshold\_warning | supervisord status monitor (warning threshold) | string | `"3"` | no |
+| supervisord\_process\_not\_available\_enabled | Flag to enable supervisord process status monitor | string | `"true"` | no |
+| supervisord\_process\_not\_available\_extra\_tags | Extra tags for supervisord process monitor | list(string) | `[]` | no |
+| supervisord\_process\_not\_available\_message | Custom message for supervisord process status monitor | string | `""` | no |
+| supervisord\_process\_not\_available\_threshold\_warning | supervisord process status monitor (warning threshold) | string | `"3"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | datadog\_supervisord\_process\_id | id for monitor datadog_supervisord_process |
+| datadog\_supervisord\_process\_not\_available\_id | id for monitor datadog_supervisord_process_not_available |
 
 ## Related documentation
 
