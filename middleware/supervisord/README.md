@@ -16,8 +16,6 @@ module "datadog-monitors-middleware-supervisord" {
 
 Creates DataDog monitors with the following checks:
 
-- Supervisord status does not respond
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -41,4 +39,6 @@ Creates DataDog monitors with the following checks:
 | Name | Description |
 |------|-------------|
 | supervisord\_status\_id | id for monitor supervisord_status |
+
+## Related documentation
 
