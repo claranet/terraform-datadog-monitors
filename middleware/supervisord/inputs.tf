@@ -40,35 +40,34 @@ variable "filter_tags_custom_excluded" {
   default     = ""
 }
 
-
 #
 # Agent Status
 #
-variable supervisord_status_enabled" {
+variable "supervisord_status_enabled" {
   description = "Flag to enable Agent Status monitor"
   type        = string
   default     = "true"
 }
 
-variable supervisord_status_extra_tags" {
+variable "supervisord_status_extra_tags" {
   description = "Extra tags for Agent Status monitor"
   type        = list(string)
   default     = []
 }
 
-variable supervisord_status_message" {
+variable "supervisord_status_message" {
   description = "Custom message for the Agent Status monitor"
   type        = string
   default     = ""
 }
 
-variable supervisord_status_threshold_warning" {
+variable "supervisord_status_threshold_warning" {
   description = "Warning threshold for the Agent Status monitor"
   type        = string
   default     = 3
 }
 
-variable supervisord_status_no_data_timeframe" {
+variable "supervisord_status_no_data_timeframe" {
   description = "Agent status does not respond monitor no data timeframe"
   type        = string
   default     = 10

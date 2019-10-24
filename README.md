@@ -206,6 +206,7 @@ The `//` is very important, it's a terraform specific syntax used to separate gi
 	- [kong](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/middleware/kong/)
 	- [nginx](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/middleware/nginx/)
 	- [php-fpm](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/middleware/php-fpm/)
+	- [supervisord](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/middleware/supervisord/)
 - [network](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/network/)
 	- [dns](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/network/dns/)
 	- [http](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/network/http/)

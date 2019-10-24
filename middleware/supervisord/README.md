@@ -30,6 +30,11 @@ Creates DataDog monitors with the following checks:
 | message | Message sent when a monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
+| supervisord\_status\_enabled | Flag to enable Agent Status monitor | string | `"true"` | no |
+| supervisord\_status\_extra\_tags | Extra tags for Agent Status monitor | list(string) | `[]` | no |
+| supervisord\_status\_message | Custom message for the Agent Status monitor | string | `""` | no |
+| supervisord\_status\_no\_data\_timeframe | Agent status does not respond monitor no data timeframe | string | `"10"` | no |
+| supervisord\_status\_threshold\_warning | Warning threshold for the Agent Status monitor | string | `"3"` | no |
 
 ## Outputs
 
