@@ -1,5 +1,5 @@
-output "supervisord_status_id" {
-  description = "id for monitor supervisord_status"
-  value       = datadog_monitor.supervisord_status.*.id
+output "datadog_supervisord_process_id" {
+  description = "id for monitor datadog_supervisord_process"
+  value       = datadog_monitor.datadog_supervisord_process.*.id
 }
 
