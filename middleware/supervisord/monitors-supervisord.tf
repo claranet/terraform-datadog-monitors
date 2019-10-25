@@ -1,6 +1,6 @@
 resource "datadog_monitor" "datadog_supervisord_process" {
   count   = var.supervisord_connect_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Supervisord process is down on {{host.name}} {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Supervisord process is down on {{host.name}} {{#is_alert}}{{{comparator}}} {{threshold}}({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.supervisord_connect_message, var.message)
   type    = "service check"
 
@@ -31,7 +31,7 @@ EOQ
 
 resource "datadog_monitor" "datadog_supervisord_process_not_available" {
   count   = var.supervisord_process_not_available_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Supervisor status {{supervisord_process.name}} is not OK {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Supervisor status {{supervisord_process.name}} is not OK on {{host.name}} {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.supervisord_process_not_available_message, var.message)
   type    = "service check"
 
