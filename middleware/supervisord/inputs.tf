@@ -8,16 +8,19 @@ variable "environment" {
 variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 15
+  type        = number
 }
 
 variable "new_host_delay" {
   description = "Delay in seconds before monitor new resource"
   default     = 300
+  type        = number
 }
 
 variable "prefix_slug" {
   description = "Prefix string to prepend between brackets on every monitors names"
   default     = ""
+  type        = string
 }
 
 variable "message" {

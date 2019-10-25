@@ -16,20 +16,20 @@ module "datadog-monitors-middleware-supervisord" {
 
 Creates DataDog monitors with the following checks:
 
-- Supervisord does not respond
-- Supervisord does not respond
+- Supervisor status {{supervisord_process.name}} is not OK
+- Supervisord process is down on {{host.name}}
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | environment | Architecture Environment | string | n/a | yes |
-| evaluation\_delay | Delay in seconds for the metric evaluation | string | `"15"` | no |
+| evaluation\_delay | Delay in seconds for the metric evaluation | number | `"15"` | no |
 | filter\_tags\_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `"*"` | no |
 | filter\_tags\_custom\_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `""` | no |
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
 | message | Message sent when an alert is triggered | string | n/a | yes |
-| new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| new\_host\_delay | Delay in seconds before monitor new resource | number | `"300"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | supervisord\_connect\_enabled | Flag to enable supervisord status monitor | string | `"true"` | no |
 | supervisord\_connect\_extra\_tags | Extra tags for supervisord process monitor | list(string) | `[]` | no |
