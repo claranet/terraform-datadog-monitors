@@ -58,7 +58,7 @@ variable "status_extra_tags" {
 variable "status_time_aggregator" {
   description = "Monitor aggregator for serverfarms status [available values: min, max or avg]"
   type        = string
-  default     = "min"
+  default     = "max"
 }
 
 variable "status_timeframe" {
