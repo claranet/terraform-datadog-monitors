@@ -142,7 +142,7 @@ resource "datadog_monitor" "virtualmachine_disk_space" {
 
   query = <<EOQ
     ${var.disk_space_time_aggregator}(${var.disk_space_timeframe}):
-    avg:azure.vm.builtin_filesystem_percentusedspace${module.filter-tags.query_alert} by {resource_group,region,name}
+    100 - avg:azure.vm.logical_disk_total_pct_free_space${module.filter-tags.query_alert} by {resource_group,region,name}
     > ${var.disk_space_threshold_critical}
 EOQ
 
