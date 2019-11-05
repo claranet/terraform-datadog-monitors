@@ -127,18 +127,25 @@ EOQ
   }
 }
 
-# Monitoring App Gateway healthy_host_count
-resource "datadog_monitor" "appgateway_healthy_host_count" {
-  count   = var.appgateway_healthy_host_count_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway backend has no healthy host"
-  message = coalesce(var.appgateway_healthy_host_count_message, var.message)
+# Monitoring App Gateway unhealthy_host_ratio
+resource "datadog_monitor" "appgateway_healthy_host_ratio" {
+  count   = var.appgateway_unhealthy_host_ratio_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway backend unhealthy host ratio is too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.appgateway_unhealthy_host_ratio_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
-    ${var.appgateway_healthy_host_count_time_aggregator}(${var.appgateway_healthy_host_count_timeframe}):
-      sum:azure.network_applicationgateways.healthy_host_count${module.filter-tags.query_alert} by {resource_group,region,name,backendsettingspool} < 1
+    ${var.appgateway_unhealthy_host_ratio_time_aggregator}(${var.appgateway_unhealthy_host_ratio_timeframe}):
+      sum:azure.network_applicationgateways.unhealthy_host_count${module.filter-tags.query_alert} by {resource_group,region,name,backendsettingspool} /
+      (sum:azure.network_applicationgateways.unhealthy_host_count${module.filter-tags.query_alert} by {resource_group,region,name,backendsettingspool} +
+       sum:azure.network_applicationgateways.healthy_host_count${module.filter-tags.query_alert} by {resource_group,region,name,backendsettingspool})
+      * 100 > ${var.appgateway_unhealthy_host_ratio_threshold_critical}
 EOQ
 
+  thresholds = {
+    critical = var.appgateway_unhealthy_host_ratio_threshold_critical
+    warning  = var.appgateway_unhealthy_host_ratio_threshold_warning
+  }
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   notify_no_data      = false
@@ -149,7 +156,7 @@ EOQ
   locked              = false
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_healthy_host_count_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_unhealthy_host_ratio_extra_tags)
 
   lifecycle {
     ignore_changes = ["silenced"]

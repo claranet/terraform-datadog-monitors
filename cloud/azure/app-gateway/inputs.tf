@@ -134,12 +134,12 @@ variable "appgateway_backend_connect_time_timeframe" {
 
 variable "appgateway_backend_connect_time_threshold_critical" {
   default     = 50
-  description = "Maximum critical backend_connect_time errors in seconds"
+  description = "Maximum critical backend_connect_time errors in milliseconds"
 }
 
 variable "appgateway_backend_connect_time_threshold_warning" {
   default     = 40
-  description = "Warning regarding backend_connect_time errors in seconds"
+  description = "Warning regarding backend_connect_time errors in milliseconds"
 }
 
 # Monitoring App Gateway failed_requests
@@ -183,35 +183,45 @@ variable "appgateway_failed_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of failed errors"
 }
 
-# Monitoring App Gateway healthy_host_count
-variable "appgateway_healthy_host_count_enabled" {
-  description = "Flag to enable App Gateway healthy host monitor"
+# Monitoring App Gateway unhealthy_host_ratio
+variable "appgateway_unhealthy_host_ratio_enabled" {
+  description = "Flag to enable App Gateway unhealthy host ratio monitor"
   type        = string
   default     = "true"
 }
 
-variable "appgateway_healthy_host_count_extra_tags" {
-  description = "Extra tags for App Gateway healthy host monitor"
+variable "appgateway_unhealthy_host_ratio_extra_tags" {
+  description = "Extra tags for App Gateway unhealthy host ratio monitor"
   type        = list(string)
   default     = []
 }
 
-variable "appgateway_healthy_host_count_message" {
-  description = "Custom message for App Gateway healthy host monitor"
+variable "appgateway_unhealthy_host_ratio_message" {
+  description = "Custom message for App Gateway unhealthy host ratio monitor"
   type        = string
   default     = ""
 }
 
-variable "appgateway_healthy_host_count_time_aggregator" {
-  description = "Monitor aggregator for App Gateway healthy host [available values: min, max or avg]"
+variable "appgateway_unhealthy_host_ratio_time_aggregator" {
+  description = "Monitor aggregator for App Gateway unhealthy host ratio [available values: min, max or avg]"
   type        = string
   default     = "max"
 }
 
-variable "appgateway_healthy_host_count_timeframe" {
-  description = "Monitor timeframe for App Gateway healthy host [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+variable "appgateway_unhealthy_host_ratio_timeframe" {
+  description = "Monitor timeframe for App Gateway unhealthy host ratio [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
   default     = "last_5m"
+}
+
+variable "appgateway_unhealthy_host_ratio_threshold_critical" {
+  default     = 75
+  description = "Maximum critical acceptable ratio of unhealthy host"
+}
+
+variable "appgateway_unhealthy_host_ratio_threshold_warning" {
+  default     = 50
+  description = "Warning regarding acceptable ratio of unhealthy host"
 }
 
 # Monitoring App Gateway response_status 4xx

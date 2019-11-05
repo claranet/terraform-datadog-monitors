@@ -18,9 +18,9 @@ output "appgateway_failed_requests_id" {
   value       = datadog_monitor.appgateway_failed_requests.*.id
 }
 
-output "appgateway_healthy_host_count_id" {
-  description = "id for monitor appgateway_healthy_host_count"
-  value       = datadog_monitor.appgateway_healthy_host_count.*.id
+output "appgateway_healthy_host_ratio_id" {
+  description = "id for monitor appgateway_healthy_host_ratio"
+  value       = datadog_monitor.appgateway_healthy_host_ratio.*.id
 }
 
 output "appgateway_http_4xx_errors_id" {
