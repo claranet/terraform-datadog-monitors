@@ -17,9 +17,9 @@ module "datadog-monitors-cloud-azure-app-gateway" {
 Creates DataDog monitors with the following checks:
 
 - App Gateway backend connect time is too high
-- App Gateway backend has no healthy host
 - App Gateway backend HTTP 4xx errors rate is too high
 - App Gateway backend HTTP 5xx errors rate is too high
+- App Gateway backend unhealthy host ratio is too high
 - App Gateway failed requests
 - App Gateway has no connection
 - App Gateway HTTP 4xx errors rate is too high
@@ -33,8 +33,8 @@ Creates DataDog monitors with the following checks:
 | appgateway\_backend\_connect\_time\_enabled | Flag to enable App Gateway backend_connect_time monitor | string | `"true"` | no |
 | appgateway\_backend\_connect\_time\_extra\_tags | Extra tags for App Gateway backend_connect_time monitor | list(string) | `[]` | no |
 | appgateway\_backend\_connect\_time\_message | Custom message for App Gateway backend_connect_time monitor | string | `""` | no |
-| appgateway\_backend\_connect\_time\_threshold\_critical | Maximum critical backend_connect_time errors in seconds | string | `"50"` | no |
-| appgateway\_backend\_connect\_time\_threshold\_warning | Warning regarding backend_connect_time errors in seconds | string | `"40"` | no |
+| appgateway\_backend\_connect\_time\_threshold\_critical | Maximum critical backend_connect_time errors in milliseconds | string | `"50"` | no |
+| appgateway\_backend\_connect\_time\_threshold\_warning | Warning regarding backend_connect_time errors in milliseconds | string | `"40"` | no |
 | appgateway\_backend\_connect\_time\_time\_aggregator | Monitor aggregator for App Gateway backend_connect_time [available values: min, max or avg] | string | `"max"` | no |
 | appgateway\_backend\_connect\_time\_timeframe | Monitor timeframe for App Gateway backend_connect_time [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | appgateway\_backend\_http\_4xx\_errors\_enabled | Flag to enable App Gateway http 4xx errors monitor | string | `"true"` | no |
@@ -58,11 +58,6 @@ Creates DataDog monitors with the following checks:
 | appgateway\_failed\_requests\_threshold\_warning | Warning regarding acceptable percent of failed errors | string | `"80"` | no |
 | appgateway\_failed\_requests\_time\_aggregator | Monitor aggregator for App Gateway failed requests [available values: min, max or avg] | string | `"min"` | no |
 | appgateway\_failed\_requests\_timeframe | Monitor timeframe for App Gateway failed requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
-| appgateway\_healthy\_host\_count\_enabled | Flag to enable App Gateway healthy host monitor | string | `"true"` | no |
-| appgateway\_healthy\_host\_count\_extra\_tags | Extra tags for App Gateway healthy host monitor | list(string) | `[]` | no |
-| appgateway\_healthy\_host\_count\_message | Custom message for App Gateway healthy host monitor | string | `""` | no |
-| appgateway\_healthy\_host\_count\_time\_aggregator | Monitor aggregator for App Gateway healthy host [available values: min, max or avg] | string | `"max"` | no |
-| appgateway\_healthy\_host\_count\_timeframe | Monitor timeframe for App Gateway healthy host [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | appgateway\_http\_4xx\_errors\_enabled | Flag to enable App Gateway http 4xx errors monitor | string | `"true"` | no |
 | appgateway\_http\_4xx\_errors\_extra\_tags | Extra tags for App Gateway http 4xx errors monitor | list(string) | `[]` | no |
 | appgateway\_http\_4xx\_errors\_message | Custom message for App Gateway http 4xx errors monitor | string | `""` | no |
@@ -77,6 +72,13 @@ Creates DataDog monitors with the following checks:
 | appgateway\_http\_5xx\_errors\_threshold\_warning | Warning regarding acceptable percent of 5xx error | string | `"80"` | no |
 | appgateway\_http\_5xx\_errors\_time\_aggregator | Monitor aggregator for App Gateway http 5xx errors [available values: min, max or avg] | string | `"max"` | no |
 | appgateway\_http\_5xx\_errors\_timeframe | Monitor timeframe for App Gateway http 5xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| appgateway\_unhealthy\_host\_ratio\_enabled | Flag to enable App Gateway unhealthy host ratio monitor | string | `"true"` | no |
+| appgateway\_unhealthy\_host\_ratio\_extra\_tags | Extra tags for App Gateway unhealthy host ratio monitor | list(string) | `[]` | no |
+| appgateway\_unhealthy\_host\_ratio\_message | Custom message for App Gateway unhealthy host ratio monitor | string | `""` | no |
+| appgateway\_unhealthy\_host\_ratio\_threshold\_critical | Maximum critical acceptable ratio of unhealthy host | string | `"75"` | no |
+| appgateway\_unhealthy\_host\_ratio\_threshold\_warning | Warning regarding acceptable ratio of unhealthy host | string | `"50"` | no |
+| appgateway\_unhealthy\_host\_ratio\_time\_aggregator | Monitor aggregator for App Gateway unhealthy host ratio [available values: min, max or avg] | string | `"max"` | no |
+| appgateway\_unhealthy\_host\_ratio\_timeframe | Monitor timeframe for App Gateway unhealthy host ratio [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | current\_connection\_enabled | Flag to enable App Gateway current connections monitor | string | `"true"` | no |
 | current\_connection\_extra\_tags | Extra tags for App Gateway current connections monitor | list(string) | `[]` | no |
 | current\_connection\_message | Custom message for App Gateway current connections monitor | string | `""` | no |
@@ -104,7 +106,7 @@ Creates DataDog monitors with the following checks:
 | appgateway\_backend\_http\_4xx\_errors\_id | id for monitor appgateway_backend_http_4xx_errors |
 | appgateway\_backend\_http\_5xx\_errors\_id | id for monitor appgateway_backend_http_5xx_errors |
 | appgateway\_failed\_requests\_id | id for monitor appgateway_failed_requests |
-| appgateway\_healthy\_host\_count\_id | id for monitor appgateway_healthy_host_count |
+| appgateway\_healthy\_host\_ratio\_id | id for monitor appgateway_healthy_host_ratio |
 | appgateway\_http\_4xx\_errors\_id | id for monitor appgateway_http_4xx_errors |
 | appgateway\_http\_5xx\_errors\_id | id for monitor appgateway_http_5xx_errors |
 | appgateway\_status\_id | id for monitor appgateway_status |
