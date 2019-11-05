@@ -61,7 +61,7 @@ variable "status_message" {
 variable "status_time_aggregator" {
   description = "Monitor aggregator for App Gateway status [available values: min, max or avg]"
   type        = string
-  default     = "min"
+  default     = "max"
 }
 
 variable "status_timeframe" {
@@ -92,7 +92,7 @@ variable "current_connection_message" {
 variable "current_connection_time_aggregator" {
   description = "Monitor aggregator for App Gateway current connections [available values: min, max or avg]"
   type        = string
-  default     = "min"
+  default     = "max"
 }
 
 variable "current_connection_timeframe" {
@@ -123,7 +123,7 @@ variable "appgateway_backend_connect_time_message" {
 variable "appgateway_backend_connect_time_time_aggregator" {
   description = "Monitor aggregator for App Gateway backend_connect_time [available values: min, max or avg]"
   type        = string
-  default     = "min"
+  default     = "max"
 }
 
 variable "appgateway_backend_connect_time_timeframe" {
@@ -134,12 +134,12 @@ variable "appgateway_backend_connect_time_timeframe" {
 
 variable "appgateway_backend_connect_time_threshold_critical" {
   default     = 50
-  description = "Maximum critical backend_connect_time errors"
+  description = "Maximum critical backend_connect_time errors in seconds"
 }
 
 variable "appgateway_backend_connect_time_threshold_warning" {
   default     = 40
-  description = "Warning regarding backend_connect_time errors"
+  description = "Warning regarding backend_connect_time errors in seconds"
 }
 
 # Monitoring App Gateway failed_requests
@@ -174,12 +174,12 @@ variable "appgateway_failed_requests_timeframe" {
 }
 
 variable "appgateway_failed_requests_threshold_critical" {
-  default     = 50
+  default     = 95
   description = "Maximum critical acceptable percent of failed errors"
 }
 
 variable "appgateway_failed_requests_threshold_warning" {
-  default     = 40
+  default     = 80
   description = "Warning regarding acceptable percent of failed errors"
 }
 
@@ -205,7 +205,7 @@ variable "appgateway_healthy_host_count_message" {
 variable "appgateway_healthy_host_count_time_aggregator" {
   description = "Monitor aggregator for App Gateway healthy host [available values: min, max or avg]"
   type        = string
-  default     = "min"
+  default     = "max"
 }
 
 variable "appgateway_healthy_host_count_timeframe" {
@@ -246,12 +246,12 @@ variable "appgateway_http_4xx_errors_timeframe" {
 }
 
 variable "appgateway_http_4xx_errors_threshold_critical" {
-  default     = 30
-  description = "Minimum critical acceptable percent of 4xx error"
+  default     = 95
+  description = "Maximum critical acceptable percent of 4xx error"
 }
 
 variable "appgateway_http_4xx_errors_threshold_warning" {
-  default     = 20
+  default     = 80
   description = "Warning regarding acceptable percent of 4xx error"
 }
 
@@ -287,12 +287,12 @@ variable "appgateway_http_5xx_errors_timeframe" {
 }
 
 variable "appgateway_http_5xx_errors_threshold_critical" {
-  default     = 30
-  description = "Minimum critical acceptable percent of 5xx error"
+  default     = 95
+  description = "Maximum critical acceptable percent of 5xx error"
 }
 
 variable "appgateway_http_5xx_errors_threshold_warning" {
-  default     = 20
+  default     = 80
   description = "Warning regarding acceptable percent of 5xx error"
 }
 
@@ -328,12 +328,12 @@ variable "appgateway_backend_http_4xx_errors_timeframe" {
 }
 
 variable "appgateway_backend_http_4xx_errors_threshold_critical" {
-  default     = 30
+  default     = 95
   description = "Minimum critical acceptable percent of 4xx error"
 }
 
 variable "appgateway_backend_http_4xx_errors_threshold_warning" {
-  default     = 20
+  default     = 80
   description = "Warning regarding acceptable percent of 4xx error"
 }
 
@@ -369,11 +369,11 @@ variable "appgateway_backend_http_5xx_errors_timeframe" {
 }
 
 variable "appgateway_backend_http_5xx_errors_threshold_critical" {
-  default     = 30
+  default     = 95
   description = "Minimum critical acceptable percent of 5xx error"
 }
 
 variable "appgateway_backend_http_5xx_errors_threshold_warning" {
-  default     = 20
+  default     = 80
   description = "Warning regarding acceptable percent of 5xx error"
 }
