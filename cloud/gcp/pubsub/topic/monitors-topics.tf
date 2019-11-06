@@ -82,9 +82,9 @@ resource "datadog_monitor" "unavailable_sending_operations_ratio" {
 
   query = <<EOQ
   ${var.unavailable_sending_operations_ratio_time_aggregator}(${var.unavailable_sending_operations_ratio_timeframe}):
-   (100 * default(avg:gcp.pubsub.topic.send_message_operation_count{${var.filter_tags},response_code:unavailable} by {topic_id}.as_count(), 0))
+   (100 * default(sum:gcp.pubsub.topic.send_message_operation_count{${var.filter_tags},response_code:unavailable} by {topic_id}.as_rate(), 0))
     /
-    default(avg:gcp.pubsub.topic.send_message_operation_count{${var.filter_tags}} by {topic_id}.as_count(), 0)
+    default(sum:gcp.pubsub.topic.send_message_operation_count{${var.filter_tags}} by {topic_id}.as_rate(), 0)
     >= ${var.unavailable_sending_operations_ratio_threshold_critical}
 EOQ
 
