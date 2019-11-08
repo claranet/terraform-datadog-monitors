@@ -84,26 +84,26 @@ variable "mongodb_primary_enabled" {
   default     = "true"
 }
 
-variable "mongodb_primary_extra_tags" {
-  description = "Extra tags for MongoDB primary state monitor"
-  type        = list(string)
-  default     = []
-}
-
-variable "mongodb_secondary_enabled" {
-  description = "Flag to enable MongoDB secondary state monitor"
+variable "mongodb_connect_enabled" {
+  description = "Flag to enable MongoDB status monitor"
   type        = string
   default     = "true"
 }
 
-variable "mongodb_secondary_extra_tags" {
-  description = "Extra tags for MongoDB secondary state monitor"
-  type        = list(string)
-  default     = []
+variable "mongodb_connections_limit_enabled" {
+  description = "Flag to enable MongoDB connections limit monitor"
+  type        = string
+  default     = "true"
 }
 
-variable "mongodb_server_count_enabled" {
-  description = "Flag to enable MongoDB server count monitor"
+variable "mongodb_memory_limit_enabled" {
+  description = "Flag to enable MongoDB memory limit monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "mongodb_secondary_enabled" {
+  description = "Flag to enable MongoDB secondary state monitor"
   type        = string
   default     = "true"
 }
@@ -114,8 +114,44 @@ variable "mongodb_replication_enabled" {
   default     = "true"
 }
 
+variable "mongodb_server_count_enabled" {
+  description = "Flag to enable MongoDB server count monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "mongodb_primary_extra_tags" {
+  description = "Extra tags for MongoDB primary state monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "mongodb_secondary_extra_tags" {
+  description = "Extra tags for MongoDB secondary state monitor"
+  type        = list(string)
+  default     = []
+}
+
 variable "mongodb_replication_extra_tags" {
   description = "Extra tags for MongoDB replication lag monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "mongodb_connect_extra_tags" {
+  description = "Extra tags for MongoDB status monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "mongodb_connections_limit_extra_tags" {
+  description = "Extra tags for MongoDB connections limit monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "mongodb_memory_limit_extra_tags" {
+  description = "Extra tags for MongoDB memory limit monitor"
   type        = list(string)
   default     = []
 }
@@ -140,6 +176,24 @@ variable "mongodb_server_count_message" {
 
 variable "mongodb_replication_message" {
   description = "Custom message for MongoDB replication monitor"
+  type        = string
+  default     = ""
+}
+
+variable "mongodb_connect_message" {
+  description = "Custom message for MongoDB status monitor"
+  type        = string
+  default     = ""
+}
+
+variable "mongodb_connections_limit_message" {
+  description = "Custom message for MongoDB connections limit monitor"
+  type        = string
+  default     = ""
+}
+
+variable "mongodb_memory_limit_message" {
+  description = "Custom message for MongoDB memory limit monitor"
   type        = string
   default     = ""
 }

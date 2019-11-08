@@ -1,3 +1,18 @@
+output "mongodb_connect_id" {
+  description = "id for monitor mongodb_connect"
+  value       = datadog_monitor.mongodb_connect.*.id
+}
+
+output "mongodb_connections_limit_id" {
+  description = "id for monitor mongodb_connections_limit"
+  value       = datadog_monitor.mongodb_connections_limit.*.id
+}
+
+output "mongodb_memory_limit_id" {
+  description = "id for monitor mongodb_memory_limit"
+  value       = datadog_monitor.mongodb_memory_limit.*.id
+}
+
 output "mongodb_primary_id" {
   description = "id for monitor mongodb_primary"
   value       = datadog_monitor.mongodb_primary.*.id

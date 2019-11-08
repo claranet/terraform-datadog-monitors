@@ -16,7 +16,10 @@ module "datadog-monitors-database-mongodb" {
 
 Creates DataDog monitors with the following checks:
 
+- MongoDB connections limit
+- MongoDB memory limit
 - MongoDB primary state
+- MongoDB process is down
 - MongoDB replication lag
 - MongoDB secondary missing
 - MongoDB too much servers or wrong monitoring config
@@ -31,9 +34,18 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_custom\_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `""` | no |
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
 | message | Message sent when an alert is triggered | string | n/a | yes |
+| mongodb\_connect\_enabled | Flag to enable MongoDB status monitor | string | `"true"` | no |
+| mongodb\_connect\_extra\_tags | Extra tags for MongoDB status monitor | list(string) | `[]` | no |
+| mongodb\_connect\_message | Custom message for MongoDB status monitor | string | `""` | no |
+| mongodb\_connections\_limit\_enabled | Flag to enable MongoDB connections limit monitor | string | `"true"` | no |
+| mongodb\_connections\_limit\_extra\_tags | Extra tags for MongoDB connections limit monitor | list(string) | `[]` | no |
+| mongodb\_connections\_limit\_message | Custom message for MongoDB connections limit monitor | string | `""` | no |
 | mongodb\_desired\_servers\_count | Number of servers that should be instanciated for this cluster | string | `"3"` | no |
 | mongodb\_lag\_critical | Critical replication lag in s | string | `"5"` | no |
 | mongodb\_lag\_warning | Warn replication lag in s | string | `"2"` | no |
+| mongodb\_memory\_limit\_enabled | Flag to enable MongoDB memory limit monitor | string | `"true"` | no |
+| mongodb\_memory\_limit\_extra\_tags | Extra tags for MongoDB memory limit monitor | list(string) | `[]` | no |
+| mongodb\_memory\_limit\_message | Custom message for MongoDB memory limit monitor | string | `""` | no |
 | mongodb\_primary\_aggregator | Monitor aggregator for MongoDB primary state [available values: min, max] | string | `"max"` | no |
 | mongodb\_primary\_enabled | Flag to enable MongoDB primary state monitor | string | `"true"` | no |
 | mongodb\_primary\_extra\_tags | Extra tags for MongoDB primary state monitor | list(string) | `[]` | no |
@@ -60,6 +72,9 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description |
 |------|-------------|
+| mongodb\_connect\_id | id for monitor mongodb_connect |
+| mongodb\_connections\_limit\_id | id for monitor mongodb_connections_limit |
+| mongodb\_memory\_limit\_id | id for monitor mongodb_memory_limit |
 | mongodb\_primary\_id | id for monitor mongodb_primary |
 | mongodb\_replication\_id | id for monitor mongodb_replication |
 | mongodb\_secondary\_id | id for monitor mongodb_secondary |

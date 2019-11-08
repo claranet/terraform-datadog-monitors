@@ -124,3 +124,90 @@ EOQ
   }
 }
 
+resource "datadog_monitor" "mongodb_connect" {
+  count   = "${var.mongodb_connect_enabled == "true" ? 1 : 0}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] MongoDB process is down"
+  message = "${coalesce(var.mongodb_connect_message, var.message)}"
+  query   = <<EOQ
+    mongodb.can_connect${module.filter-tags.service_check}.by("host").last(6).count_by_status()
+EOQ
+  type    = "service check"
+  thresholds = {
+    critical = 5
+  }
+  notify_no_data    = false
+  notify_audit      = false
+  no_data_timeframe = 2
+  new_host_delay    = "${var.new_host_delay}"
+  renotify_interval = 0
+  timeout_h         = 0
+
+  tags = "${concat(list("env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform"), var.mongodb_connect_extra_tags)}"
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
+}
+
+resource "datadog_monitor" "mongodb_connections_limit" {
+  count   = "${var.mongodb_connections_limit_enabled == "true" ? 1 : 0}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] MongoDB connections limit"
+  message = "${coalesce(var.mongodb_connections_limit_message, var.message)}"
+  type    = "metric alert"
+  query   = <<EOQ
+    avg(last_10m): (
+      avg:mongodb.connections.current${module.filter-tags.query_alert} by {host} /
+      avg:mongodb.connections.available${module.filter-tags.query_alert} by {host}
+    ) * 100 > 80
+EOQ
+
+  thresholds = {
+    critical = 80
+    warning  = 70
+  }
+  notify_no_data      = false
+  notify_audit        = false
+  no_data_timeframe   = 2
+  new_host_delay      = "${var.new_host_delay}"
+  renotify_interval   = 0
+  timeout_h           = 0
+  require_full_window = true
+
+  tags = "${concat(list("env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform"), var.mongodb_connections_limit_extra_tags)}"
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
+}
+
+resource "datadog_monitor" "mongodb_memory_limit" {
+  count   = "${var.mongodb_memory_limit_enabled == "true" ? 1 : 0}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] MongoDB memory limit"
+  message = "${coalesce(var.mongodb_memory_limit_message, var.message)}"
+  type    = "metric alert"
+  query   = <<EOQ
+    avg(last_10m):( 
+      avg:mongodb.mem.resident${module.filter-tags.query_alert} by {host} / 
+      ( avg:system.mem.total${module.filter-tags.query_alert} by {host} / 1000000 ) 
+    ) * 100 > 80
+EOQ
+
+  thresholds = {
+    critical = 80
+    warning  = 70
+  }
+
+  notify_no_data      = false
+  notify_audit        = false
+  no_data_timeframe   = 2
+  new_host_delay      = "${var.new_host_delay}"
+  renotify_interval   = 0
+  timeout_h           = 0
+  require_full_window = true
+
+  tags = "${concat(list("env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform"), var.mongodb_memory_limit_extra_tags)}"
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
+}
