@@ -22,7 +22,6 @@ Creates DataDog monitors with the following checks:
 - Cloud SQL Disk Utilization forecast
 - Cloud SQL Failover Unavailable
 - Cloud SQL Memory Utilization
-- Cloud SQL Memory Utilization forecast
 
 ## Inputs
 
@@ -97,7 +96,6 @@ Creates DataDog monitors with the following checks:
 | disk\_utilization\_forecast\_id | id for monitor disk_utilization_forecast |
 | disk\_utilization\_id | id for monitor disk_utilization |
 | failover\_unavailable\_id | id for monitor failover_unavailable |
-| memory\_utilization\_forecast\_id | id for monitor memory_utilization_forecast |
 | memory\_utilization\_id | id for monitor memory_utilization |
 
 ## Related documentation

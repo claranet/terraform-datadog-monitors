@@ -23,8 +23,3 @@ output "memory_utilization_id" {
   value       = datadog_monitor.memory_utilization.*.id
 }
 
-output "memory_utilization_forecast_id" {
-  description = "id for monitor memory_utilization_forecast"
-  value       = datadog_monitor.memory_utilization_forecast.*.id
-}
-
