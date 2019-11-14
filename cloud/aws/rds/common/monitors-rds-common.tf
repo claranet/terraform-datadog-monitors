@@ -70,7 +70,7 @@ EOQ
 ### RDS Replica Lag monitor ###
 resource "datadog_monitor" "rds_replica_lag" {
   count   = var.replicalag_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] RDS replica lag {{#is_alert}}{{{comparator}}} {{threshold}} ms ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ms ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] RDS replica lag {{#is_alert}}{{{comparator}}} {{threshold}} ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ms ({{value}}ms){{/is_warning}}"
   message = coalesce(var.replicalag_message, var.message)
   type    = "query alert"
 
@@ -100,4 +100,3 @@ EOQ
     ignore_changes = ["silenced"]
   }
 }
-
