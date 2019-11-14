@@ -45,3 +45,7 @@ Creates DataDog monitors with the following checks:
 | rds\_aurora\_mysql\_replica\_lag\_id | id for monitor rds_aurora_mysql_replica_lag |
 
 ## Related documentation
+
+DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_rds/](https://docs.datadoghq.com/integrations/amazon_rds/)
+
+AWS RDS Instance metrics documentation: [https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MonitoringOverview.html#monitoring-cloudwatch](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MonitoringOverview.html#monitoring-cloudwatch)
