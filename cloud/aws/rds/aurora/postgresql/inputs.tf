@@ -62,7 +62,7 @@ variable "aurora_replicalag_message" {
 variable "aurora_replicalag_time_aggregator" {
   description = "Monitor aggregator for RDS Aurora replica lag [available values: min, max or avg]"
   type        = string
-  default     = "avg"
+  default     = "min"
 }
 
 variable "aurora_replicalag_timeframe" {
