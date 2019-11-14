@@ -59,6 +59,12 @@ variable "aurora_replicalag_message" {
   default     = ""
 }
 
+variable "aurora_replicalag_time_aggregator" {
+  description = "Monitor aggregator for RDS Aurora replica lag [available values: min, max or avg]"
+  type        = string
+  default     = "avg"
+}
+
 variable "aurora_replicalag_timeframe" {
   description = "Monitor timeframe for RDS Aurora replica lag monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
@@ -74,4 +80,3 @@ variable "aurora_replicalag_threshold_critical" {
   description = "Aurora replica lag in milliseconds (critical threshold)"
   default     = "200"
 }
-
