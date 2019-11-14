@@ -51,6 +51,7 @@ Creates DataDog monitors with the following checks:
 | replicalag\_message | Custom message for RDS replica lag monitor | string | `""` | no |
 | replicalag\_threshold\_critical | replica lag in seconds (critical threshold) | string | `"300"` | no |
 | replicalag\_threshold\_warning | replica lag in seconds (warning threshold) | string | `"200"` | no |
+| replicalag\_time\_aggregator | Monitor aggregator for RDS replica lag [available values: min, max or avg] | string | `"min"` | no |
 | replicalag\_timeframe | Monitor timeframe for RDS replica lag monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 
 ## Outputs
@@ -65,5 +66,4 @@ Creates DataDog monitors with the following checks:
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_rds/](https://docs.datadoghq.com/integrations/amazon_rds/)
 
-AWS RDS Instance metrics documentation: [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/rds-metricscollected.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/rds-metricscollected.html)
-
+AWS RDS Instance metrics documentation: [https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MonitoringOverview.html#monitoring-cloudwatch](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MonitoringOverview.html#monitoring-cloudwatch)

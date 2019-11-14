@@ -139,6 +139,12 @@ variable "replicalag_message" {
   default     = ""
 }
 
+variable "replicalag_time_aggregator" {
+  description = "Monitor aggregator for RDS replica lag [available values: min, max or avg]"
+  type        = string
+  default     = "min"
+}
+
 variable "replicalag_timeframe" {
   description = "Monitor timeframe for RDS replica lag monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
@@ -154,4 +160,3 @@ variable "replicalag_threshold_critical" {
   description = "replica lag in seconds (critical threshold)"
   default     = "300"
 }
-
