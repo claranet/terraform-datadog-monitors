@@ -27,7 +27,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -61,7 +61,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"], var.http_5xx_requests_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -95,7 +95,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"], var.http_4xx_requests_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 

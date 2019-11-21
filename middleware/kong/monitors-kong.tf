@@ -29,7 +29,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:middleware", "provider:kong", "resource:kong", "team:claranet", "created-by:terraform"], var.not_responding_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -64,7 +64,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:middleware", "provider:kong", "resource:kong", "team:claranet", "created-by:terraform"], var.treatment_limit_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 

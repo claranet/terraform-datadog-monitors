@@ -29,7 +29,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:docker", "provider:docker", "resource:docker", "team:claranet", "created-by:terraform"], var.not_responding_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -63,7 +63,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:docker", "provider:docker", "resource:docker", "team:claranet", "created-by:terraform"], var.memory_used_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
