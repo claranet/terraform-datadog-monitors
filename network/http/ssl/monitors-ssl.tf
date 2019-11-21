@@ -29,7 +29,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:network", "provider:http_check", "resource:ssl-certificate", "team:claranet", "created-by:terraform"], var.invalid_ssl_certificate_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -66,6 +66,6 @@ EOQ
   tags = concat(["env:${var.environment}", "type:network", "provider:http_check", "resource:ssl-certificate", "team:claranet", "created-by:terraform"], var.certificate_expiration_date_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }

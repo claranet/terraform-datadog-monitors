@@ -29,7 +29,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:sqs", "team:claranet", "created-by:terraform"], var.visible_messages_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -64,6 +64,6 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:sqs", "team:claranet", "created-by:terraform"], var.age_of_oldest_message_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
