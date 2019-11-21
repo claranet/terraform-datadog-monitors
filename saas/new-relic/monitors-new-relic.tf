@@ -28,7 +28,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:saas", "provider:new-relic", "resource:new-relic", "team:claranet", "created-by:terraform"], var.app_error_rate_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -62,6 +62,6 @@ EOQ
   tags = concat(["env:${var.environment}", "type:saas", "provider:new-relic", "resource:new-relic", "team:claranet", "created-by:terraform"], var.app_apdex_score_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }

@@ -25,7 +25,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:middleware", "provider:apache", "resource:apache", "team:claranet", "created-by:terraform"], var.apache_connect_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 

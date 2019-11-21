@@ -29,6 +29,6 @@ EOQ
   tags = concat(["env:${var.environment}", "type:network", "provider:dns_check", "resource:dns", "team:claranet", "created-by:terraform"], var.cannot_resolve_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }

@@ -25,7 +25,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.status_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -60,7 +60,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.failed_requests_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -95,7 +95,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.other_requests_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -130,7 +130,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.unauthorized_requests_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -167,7 +167,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.successful_requests_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 

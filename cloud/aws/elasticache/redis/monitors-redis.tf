@@ -30,7 +30,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis"], var.cache_hits_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -59,7 +59,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis"], var.cpu_high_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -93,7 +93,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis"], var.replication_lag_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -123,7 +123,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis"], var.commands_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
