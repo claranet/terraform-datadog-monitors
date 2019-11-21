@@ -23,7 +23,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:serverfarms", "team:claranet", "created-by:terraform"], var.status_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -57,7 +57,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:serverfarms", "team:claranet", "created-by:terraform"], var.cpu_percentage_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -91,7 +91,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:serverfarms", "team:claranet", "created-by:terraform"], var.memory_percentage_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 

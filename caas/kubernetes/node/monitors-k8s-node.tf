@@ -25,7 +25,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.disk_pressure_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -56,7 +56,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.disk_out_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -87,7 +87,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.memory_pressure_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -118,7 +118,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.ready_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -149,7 +149,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.kubelet_ping_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -180,7 +180,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.kubelet_syncloop_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -205,7 +205,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.unregister_net_device_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -238,7 +238,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.node_unschedulable_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -273,7 +273,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.volume_space_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -308,7 +308,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.volume_inodes_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 

@@ -23,7 +23,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform"], var.status_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -52,7 +52,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform"], var.no_active_connections_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -87,7 +87,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform"], var.user_errors_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -122,7 +122,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform"], var.server_errors_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 

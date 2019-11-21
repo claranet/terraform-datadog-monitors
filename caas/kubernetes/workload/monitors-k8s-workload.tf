@@ -25,7 +25,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.job_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -56,7 +56,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.cronjob_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -90,7 +90,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.replica_available_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -124,7 +124,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.replica_ready_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -158,7 +158,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.replica_current_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 

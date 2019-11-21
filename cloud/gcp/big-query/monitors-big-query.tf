@@ -31,7 +31,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform"], var.concurrent_queries_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -68,7 +68,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform"], var.execution_time_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -105,7 +105,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform"], var.scanned_bytes_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -142,7 +142,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform"], var.scanned_bytes_billed_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -179,7 +179,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform"], var.available_slots_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -216,7 +216,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform"], var.stored_bytes_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -253,7 +253,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform"], var.table_count_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -290,7 +290,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform"], var.uploaded_bytes_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -327,7 +327,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:big-query", "team:claranet", "created-by:terraform"], var.uploaded_bytes_billed_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 

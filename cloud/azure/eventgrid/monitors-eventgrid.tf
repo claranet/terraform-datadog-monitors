@@ -23,7 +23,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventgrid", "team:claranet", "created-by:terraform"], var.no_successful_message_rate_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -61,7 +61,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventgrid", "team:claranet", "created-by:terraform"], var.failed_messages_rate_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -99,7 +99,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventgrid", "team:claranet", "created-by:terraform"], var.unmatched_events_rate_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 

@@ -21,7 +21,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform"], var.mongodb_primary_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -55,7 +55,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform"], var.mongodb_secondary_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -88,7 +88,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform"], var.mongodb_secondary_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -120,7 +120,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform"], var.mongodb_replication_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
