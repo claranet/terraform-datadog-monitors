@@ -4,7 +4,7 @@
 
 ```
 module "datadog-monitors-cloud-aws-elasticache-memcached" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//cloud/aws/elasticache/memcached?ref={revision}"
+  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/aws/elasticache/memcached?ref={revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message
