@@ -9,9 +9,9 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 * If you have required permissions, you can create a branch from master else you can fork this repo to be able to submit a Pull Request.
 
-* [The changelog](../CHANGELOG.md) is generated using issues IDs (Jira & Github) detected in commit messages which must follow `#GithubID My commit message` form.
+* [The changelog](CHANGELOG.md) is generated using issues IDs (Jira & Github) detected in commit messages which must follow `#GithubID My commit message` form.
 
-* If you would like to work on monitors you must follow our [templating best practices](../TEMPLATING.md) to make this base homogenous and generic.
+* If you would like to work on monitors you must follow our [templating best practices](TEMPLATING.md) to make this base homogenous and generic.
 
 * After any change, you will need to run the [auto update scripts](https://github.com/claranet/terraform-datadog-scripts/blob/master/README.md) to make sure all is up to date otherwise the CI pipeline will fail.
 
