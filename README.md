@@ -1,4 +1,5 @@
-# DataDog Monitors [![pipeline status](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/badges/master/pipeline.svg)](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/commits/master)
+# DataDog Monitors
+[![Changelog](https://img.shields.io/badge/changelog-release-green.svg)](CHANGELOG.md) [![Notice](https://img.shields.io/badge/notice-copyright-yellow.svg)](NOTICE) [![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](LICENSE) [![pipeline status](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/badges/master/pipeline.svg)](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/commits/master)
 
 This repository aims to provide a base of generic and pre configured monitors for [Datadog](https://www.datadoghq.com/) templated thanks to [Terraform](https://www.terraform.io/) and the [Datadog Provider](https://github.com/terraform-providers/terraform-provider-datadog).
 
