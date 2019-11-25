@@ -5,7 +5,7 @@ This repository aims to provide a base of generic and pre configured monitors fo
 
 ## Important notes
 
-* This repository provide multiple Terraform module which could be imported, you must choose the one(s) you need.
+* This repository provide multiple Terraform modules which could be imported, you must choose the one(s) you need.
 * Each of these modules contains the most commons monitors, but they probably do not fulfill all your needs.
 * You still can create some specific DataDog monitors after importing a module, it's even advisable to complete your needs.
 * You will find a complete `README.md` on each module, explaining how to use it and its specificities if there.
