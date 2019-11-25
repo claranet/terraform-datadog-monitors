@@ -1,28 +1,19 @@
-# DataDog Monitors [![pipeline status](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/badges/master/pipeline.svg)](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/commits/master) #
+# DataDog Monitors [![pipeline status](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/badges/master/pipeline.svg)](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/commits/master)
 
-This repository is used to store all our monitors templates ready to use for generic purpose.
+This repository aims to provide a base of generic and pre configured monitors for [Datadog](https://www.datadoghq.com/) templated thanks to [Terraform](https://www.terraform.io/) and the [Datadog Provider](https://github.com/terraform-providers/terraform-provider-datadog).
 
-## How to contribute ? ##
+## Important notes
 
-First, you may refresh your knowledge and look at the [terminology](https://confluence.fr.clara.net/display/DAT/Getting+started).
+* This repository provide multiple Terraform module which could be imported, you must choose the one(s) you need.
+* Each of these modules contains the most commons monitors, but they probably do not fulfill all your needs.
+* You still can create some specific DataDog monitors after importing a module, it's even advisable to complete your needs.
+* You will find a complete `README.md` on each module, explaining how to use it and its specificities if there.
+* The `alerting-message` module could be used to easily generate a templating message to re-use and could be used multiple times to suit different use cases.
+* Some monitors are disabled by default because not generic or "plug and play" enough, if you use them you will need to tweak them or in some cases disabled another one which could "duplicate" the check.
 
-To contribute you will need to [report an issue](https://confluence.fr.clara.net/display/DAT/Project+and+Workflow) and create a branch with its Jira ID.
+## Getting started
 
-If you would like to resolve an issue or implement new monitors you must follow our [best practices](https://confluence.fr.clara.net/display/DAT/Templates+monitors).
-
-After any change, you will need to run the [auto update scripts](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/scripts/blob/master/README.md) to make sure all is up to date otherwise the CI pipeline will fail.
-
-## Important notes ##
-
-* This repository represents a terraform feature and each first level directory could be imported as a terraform module, you must choose the one(s) you need.
-* Each of these modules contains the most commons monitors, but they probably do not fulfill all your customer needs
-* You still can create some specific DataDog monitors after importing a module, it's even advisable to complete your needs
-* You will find a complete `README.md` on each module, explaining how to use it.
-* The `alerting-message` module could be used to easily generate a templating message to use by default but it could be used also multiple times to generate messages for specific monitors.
-
-## Getting started ##
-
-### Terraform ###
+### Terraform
 
 Here is the minimum version required to use these modules of integrations.
 
@@ -33,7 +24,7 @@ terraform {
 
 ```
 
-### DataDog provider ###
+### DataDog provider
 
 Here is the last tester terraform provider version for datadog but next versions should work too.
 
@@ -54,7 +45,7 @@ datadog_api_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 datadog_app_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
 
-### Variables ###
+### Variables
 
 Some variables need to be declared.
 
@@ -74,7 +65,7 @@ variable "datadog_app_key" {
 
 ```
 
-## Modules declaration example ##
+## Modules declaration example
 
 A quick example of alerting message module declaration:
 
@@ -120,9 +111,9 @@ module "datadog-monitors-system-generic" {
 
 ```
 
-Replace `{revision}` to the last git tag available on this repository.
-The `//` is very important, it's a terraform specific syntax used to separate git url and folder path.
-`my/monitors/set` represents the path to a monitors set sub directory listed below.
+* Replace `{revision}` to the last git tag available on this repository.
+* The `//` is very important, it's a terraform specific syntax used to separate git url and folder path.
+* `my/monitors/set` represents the path to a monitors set sub directory listed below.
 
 ### Monitors summary ###
 
