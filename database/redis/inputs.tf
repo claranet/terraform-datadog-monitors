@@ -113,12 +113,12 @@ variable "expirations_rate_timeframe" {
 
 variable "expirations_rate_threshold_critical" {
   description = "Expirations percent (critical threshold)"
-  default     = 80
+  default     = 20
 }
 
 variable "expirations_rate_threshold_warning" {
   description = "Expirations percent (warning threshold)"
-  default     = 60
+  default     = 40
 }
 
 variable "blocked_clients_enabled" {

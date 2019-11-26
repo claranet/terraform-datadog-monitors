@@ -50,8 +50,8 @@ Creates DataDog monitors with the following checks:
 | expirations\_rate\_enabled | Flag to enable Redis keys expirations monitor | string | `"true"` | no |
 | expirations\_rate\_extra\_tags | Extra tags for Redis keys expirations monitor | list(string) | `[]` | no |
 | expirations\_rate\_message | Custom message for Redis keys expirations monitor | string | `""` | no |
-| expirations\_rate\_threshold\_critical | Expirations percent (critical threshold) | string | `"80"` | no |
-| expirations\_rate\_threshold\_warning | Expirations percent (warning threshold) | string | `"60"` | no |
+| expirations\_rate\_threshold\_critical | Expirations percent (critical threshold) | string | `"20"` | no |
+| expirations\_rate\_threshold\_warning | Expirations percent (warning threshold) | string | `"40"` | no |
 | expirations\_rate\_time\_aggregator | Monitor aggregator for Redis keys expirations [available values: min, max or avg] | string | `"min"` | no |
 | expirations\_rate\_timeframe | Monitor timeframe for Redis keys expirations [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | filter\_tags\_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `"*"` | no |

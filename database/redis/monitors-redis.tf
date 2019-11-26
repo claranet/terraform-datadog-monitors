@@ -69,15 +69,14 @@ EOQ
 
 resource "datadog_monitor" "expirations" {
   count   = var.expirations_rate_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Redis expired keys {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Redis high number of non-expiring keys {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.expirations_rate_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
     ${var.expirations_rate_time_aggregator}(${var.expirations_rate_timeframe}): (
-      avg:redis.keys.expired${module.filter-tags.query_alert} by {redis_host,redis_port}
-      / avg:redis.keys${module.filter-tags.query_alert} by {redis_host,redis_port}
-     ) * 100 > ${var.expirations_rate_threshold_critical}
+      avg:redis.expires.percent${module.filter-tags.query_alert} by {redis_host,redis_port}
+     ) < ${var.expirations_rate_threshold_critical}
 EOQ
 
   thresholds = {
