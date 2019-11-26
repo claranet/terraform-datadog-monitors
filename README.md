@@ -66,7 +66,7 @@ variable "datadog_app_key" {
 
 ```
 
-## Modules declaration example
+### Modules declaration example
 
 A quick example of alerting message module declaration:
 
@@ -116,7 +116,7 @@ module "datadog-monitors-system-generic" {
 * The `//` is very important, it's a terraform specific syntax used to separate git url and folder path.
 * `my/monitors/set` represents the path to a monitors set sub directory listed below.
 
-### Monitors summary ###
+## Monitors summary
 
 - [caas](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/)
 	- [docker](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/docker/)
