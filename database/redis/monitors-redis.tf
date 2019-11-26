@@ -75,7 +75,7 @@ resource "datadog_monitor" "expirations" {
 
   query = <<EOQ
     ${var.expirations_rate_time_aggregator}(${var.expirations_rate_timeframe}): (
-      avg:redis.expires.percent${module.filter-tags.query_alert} by {redis_host,redis_port}
+      avg:redis.expires.percent${module.filter-tags.query_alert} by {redis_host,redis_port,redis_db}
      ) < ${var.expirations_rate_threshold_critical}
 EOQ
 
