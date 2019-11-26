@@ -4,7 +4,7 @@
 
 ```
 module "datadog-monitors-cloud-azure-iothubs" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//cloud/azure/iothubs?ref={revision}"
+  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/azure/iothubs?ref={revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

@@ -4,7 +4,7 @@
 
 ```
 module "datadog-monitors-system-unreachable" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//system/unreachable?ref={revision}"
+  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//system/unreachable?ref={revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

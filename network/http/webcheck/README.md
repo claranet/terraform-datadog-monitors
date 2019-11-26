@@ -4,7 +4,7 @@
 
 ```
 module "datadog-monitors-network-http-webcheck" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//network/http/webcheck?ref={revision}"
+  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//network/http/webcheck?ref={revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message
