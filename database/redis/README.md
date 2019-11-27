@@ -18,7 +18,7 @@ Creates DataDog monitors with the following checks:
 
 - Redis blocked clients
 - Redis does not respond
-- Redis evicted keys
+- Redis eviction of keys changed abruptly
 - Redis high number of non-expiring keys
 - Redis hitrate
 - Redis keyspace seems full (no changes since ${var.keyspace_timeframe})
