@@ -66,6 +66,12 @@ variable "not_responding_no_data_timeframe" {
   default     = 10
 }
 
+variable "not_responding_notify_no_data" {
+  description = "Docker does not respond monitor notify no data"
+  type        = string
+  default     = true
+}
+
 variable "not_responding_extra_tags" {
   description = "Extra tags for Docker does not respond monitor"
   type        = list(string)
