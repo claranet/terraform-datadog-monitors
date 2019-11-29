@@ -34,7 +34,6 @@ Creates DataDog monitors with the following checks:
 | disk\_throttled\_bps\_enabled | Flag to enable Disk Throttled Bps monitor | string | `"true"` | no |
 | disk\_throttled\_bps\_extra\_tags | Extra tags for Disk Throttled Bps monitor | list(string) | `[]` | no |
 | disk\_throttled\_bps\_message | Custom message for the Disk Throttled Bps monitor | string | `""` | no |
-| disk\_throttled\_bps\_notify\_no\_data | Flag to enable notification for no data on Disk Throttled Bps monitor | string | `"false"` | no |
 | disk\_throttled\_bps\_threshold\_critical | Disk Throttled Bps in percentage (critical threshold) | string | `"50"` | no |
 | disk\_throttled\_bps\_threshold\_warning | Disk Throttled Bps in percentage (warning threshold) | string | `"30"` | no |
 | disk\_throttled\_bps\_time\_aggregator | Time aggregator for the Disk Throttled Bps monitor | string | `"min"` | no |
@@ -42,7 +41,6 @@ Creates DataDog monitors with the following checks:
 | disk\_throttled\_ops\_enabled | Flag to enable Disk Throttled OPS monitor | string | `"true"` | no |
 | disk\_throttled\_ops\_extra\_tags | Extra tags for Disk Throttled OPS monitor | list(string) | `[]` | no |
 | disk\_throttled\_ops\_message | Custom message for the Disk Throttled OPS monitor | string | `""` | no |
-| disk\_throttled\_ops\_notify\_no\_data | Flag to enable notification for no data on Disk Throttled OPS monitor | string | `"false"` | no |
 | disk\_throttled\_ops\_threshold\_critical | Disk Throttled OPS in percentage (critical threshold) | string | `"50"` | no |
 | disk\_throttled\_ops\_threshold\_warning | Disk Throttled OPS in percentage (warning threshold) | string | `"30"` | no |
 | disk\_throttled\_ops\_time\_aggregator | Time aggregator for the Disk Throttled OPS monitor | string | `"min"` | no |
