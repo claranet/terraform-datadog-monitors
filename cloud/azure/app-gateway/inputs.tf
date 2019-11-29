@@ -38,6 +38,11 @@ variable "prefix_slug" {
   default     = ""
 }
 
+variable "notify_no_data" {
+  description = "Will raise no data alert if set to true"
+  default     = true
+}
+
 # Azure App Gateway specific variables
 # Monitoring App Gateway status
 variable "status_enabled" {

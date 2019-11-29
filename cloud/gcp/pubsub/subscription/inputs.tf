@@ -30,6 +30,11 @@ variable "prefix_slug" {
   default     = ""
 }
 
+variable "notify_no_data" {
+  description = "Will raise no data alert if set to true"
+  default     = true
+}
+
 #
 # oldest_unacked_message_age
 #

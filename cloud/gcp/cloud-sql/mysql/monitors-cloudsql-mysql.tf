@@ -25,7 +25,7 @@ EOQ
   timeout_h           = 0
   include_tags        = true
   require_full_window = false
-  notify_no_data      = true
+  notify_no_data      = var.notify_no_data
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "engine:mysql"], var.replication_lag_extra_tags)

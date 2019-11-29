@@ -30,6 +30,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
 | message | Message sent when an alert is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | php\_fpm\_busy\_enabled | Flag to enable PHP FPM busy worker monitor | string | `"true"` | no |
 | php\_fpm\_busy\_extra\_tags | Extra tags for PHP FPM busy worker monitor | list(string) | `[]` | no |
 | php\_fpm\_busy\_message | Custom message for PHP FPM busy worker monitor | string | `""` | no |

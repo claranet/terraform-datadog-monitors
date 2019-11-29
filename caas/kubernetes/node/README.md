@@ -63,6 +63,7 @@ Creates DataDog monitors with the following checks:
 | node\_unschedulable\_message | Custom message for node unschedulable monitor | string | `""` | no |
 | node\_unschedulable\_time\_aggregator | Monitor aggregator for node unschedulable [available values: min, max or avg] | string | `"min"` | no |
 | node\_unschedulable\_timeframe | Monitor timeframe for node unschedulable [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1h"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | ready\_enabled | Flag to enable Node ready monitor | string | `"true"` | no |
 | ready\_extra\_tags | Extra tags for Node ready monitor | list(string) | `[]` | no |

@@ -48,6 +48,7 @@ Creates DataDog monitors with the following checks:
 | invalid\_tls\_certificate\_threshold\_warning | TLS certificate expiration monitor (warning threshold) | string | `"3"` | no |
 | message | Message sent when an alert is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | tls\_certificate\_expiration\_enabled | Flag to enable TLS certificate expiration monitor | string | `"true"` | no |
 | tls\_certificate\_expiration\_extra\_tags | Extra tags for TLS certificate expiration monitor | list(string) | `[]` | no |

@@ -37,6 +37,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
 | message | Message sent when a monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | visible\_messages\_enabled | Flag to enable Number of Visible Messages monitor | string | `"false"` | no |
 | visible\_messages\_extra\_tags | Extra tags for Number of Visible Messages monitor | list(string) | `[]` | no |

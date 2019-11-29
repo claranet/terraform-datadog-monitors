@@ -53,6 +53,7 @@ Creates DataDog monitors with the following checks:
 | health\_timeframe | Monitor timeframe for beanstalk health [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_10m"` | no |
 | message | Message sent when an alert is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | root\_filesystem\_usage\_aggregator | Monitor aggregator for beanstalk instance file system usage [available values: min, max or avg] | string | `"max"` | no |
 | root\_filesystem\_usage\_enabled | Flag to enable Beanstalk instance file system usage monitor | string | `"true"` | no |

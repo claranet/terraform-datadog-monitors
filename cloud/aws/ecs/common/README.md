@@ -32,6 +32,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
 | message | Message sent when a monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | service\_cpu\_utilization\_enabled | Flag to enable Service CPU Utilization monitor | string | `"false"` | no |
 | service\_cpu\_utilization\_extra\_tags | Extra tags for Service CPU Utilization monitor | list(string) | `[]` | no |

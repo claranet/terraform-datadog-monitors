@@ -29,6 +29,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags | Tags used for filtering | string | `"*"` | no |
 | message | Message sent when a monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds for the new host evaluation | string | `"300"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | oldest\_unacked\_message\_age\_enabled | Flag to enable GCP Pub/Sub Subscription Oldest Unacked Message Age monitor | string | `"true"` | no |
 | oldest\_unacked\_message\_age\_extra\_tags | Extra tags for GCP Pub/Sub Subscription Oldest Unacked Message Age monitor | list(string) | `[]` | no |
 | oldest\_unacked\_message\_age\_message | Custom message for the GCP Pub/Sub Subscription Oldest Unacked Message Age monitor | string | `""` | no |

@@ -112,6 +112,7 @@ Creates DataDog monitors with the following checks:
 | invalid\_d2c\_telemetry\_egress\_timeframe | Monitor timeframe for IoT Hub invalid d2c telemetry [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | message | Message sent when an alert is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | orphaned\_d2c\_telemetry\_egress\_enabled | Flag to enable IoT Hub orphaned d2c telemetry monitor | string | `"true"` | no |
 | orphaned\_d2c\_telemetry\_egress\_extra\_tags | Extra tags for IoT Hub orphaned d2c telemetry monitor | list(string) | `[]` | no |
 | orphaned\_d2c\_telemetry\_egress\_message | Custom message for IoT Hub orphaned d2c telemetry monitor | string | `""` | no |

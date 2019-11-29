@@ -38,6 +38,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
 | message | Message sent when a monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | pod\_phase\_status\_enabled | Flag to enable Pod phase status monitor | string | `"true"` | no |
 | pod\_phase\_status\_extra\_tags | Extra tags for Pod phase status monitor | list(string) | `[]` | no |
 | pod\_phase\_status\_message | Custom message for Pod phase status monitor | string | `""` | no |
