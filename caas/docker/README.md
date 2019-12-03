@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-caas-docker" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//caas/docker?ref={revision}"
+  source = "claranet/monitors/datadog//caas/docker"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-azure-serverfarms" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/azure/serverfarms?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/azure/serverfarms"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

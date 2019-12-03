@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-aws-kinesis-firehose" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/aws/kinesis-firehose?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/aws/kinesis-firehose"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-gcp-big-query" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/gcp/big-query?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/gcp/big-query"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-aws-elasticache-redis" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/aws/elasticache/redis?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/aws/elasticache/redis"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

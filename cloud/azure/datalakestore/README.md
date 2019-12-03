@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-azure-datalakestore" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/azure/datalakestore?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/azure/datalakestore"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

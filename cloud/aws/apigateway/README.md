@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-aws-apigateway" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/aws/apigateway?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/aws/apigateway"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

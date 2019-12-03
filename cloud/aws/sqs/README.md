@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-aws-sqs" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/aws/sqs?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/aws/sqs"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

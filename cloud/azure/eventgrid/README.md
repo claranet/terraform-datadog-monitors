@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-azure-eventgrid" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/azure/eventgrid?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/azure/eventgrid"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

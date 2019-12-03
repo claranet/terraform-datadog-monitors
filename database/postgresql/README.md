@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-database-postgresql" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//database/postgresql?ref={revision}"
+  source = "claranet/monitors/datadog//database/postgresql"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

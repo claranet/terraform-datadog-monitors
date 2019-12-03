@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-aws-rds-common" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/aws/rds/common?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/aws/rds/common"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-network-http-ssl" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//network/http/ssl?ref={revision}"
+  source = "claranet/monitors/datadog//network/http/ssl"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

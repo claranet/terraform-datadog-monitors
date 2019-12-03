@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-database-redis" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//database/redis?ref={revision}"
+  source = "claranet/monitors/datadog//database/redis"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message
