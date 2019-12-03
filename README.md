@@ -77,7 +77,8 @@ locals {
 }
 
 module "datadog-message-alerting" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//common/alerting-message?ref={RELEASE}"
+  source = "claranet/monitors/datadog//common/alerting-message"
+  version = "{revision}"
 
   message_alert   = local.oncall_24x7
   message_warning = local.oncall_office_hours
@@ -85,7 +86,8 @@ module "datadog-message-alerting" {
 }
 
 module "datadog-message-alerting-bh-only" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//common/alerting-message?ref={RELEASE}"
+  source = "claranet/monitors/datadog//common/alerting-message"
+  version = "{revision}"
 
   message_alert   = local.oncall_office_hours
   message_warning = local.oncall_office_hours
@@ -93,7 +95,8 @@ module "datadog-message-alerting-bh-only" {
 }
 
 module "datadog-monitors-system-generic" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//system/generic?ref={RELEASE}"
+  source = "claranet/monitors/datadog//system/generic"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message
@@ -104,7 +107,8 @@ module "datadog-monitors-system-generic" {
 
 # Other monitors modules to declare ...
 #module "datadog-monitors-my-monitors-set" {
-#  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//my/monitors/set?ref={RELEASE}"
+#  source = "claranet/monitors/datadog//my/monitors/set"
+#  version = "{revision}"
 #
 #  environment = var.environment
 #  message     = module.datadog-message-alerting.alerting-message
