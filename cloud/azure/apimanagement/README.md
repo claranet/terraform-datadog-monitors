@@ -40,6 +40,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
 | message | Message sent when a Redis monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | other\_requests\_enabled | Flag to enable API Management other requests monitor | string | `"true"` | no |
 | other\_requests\_extra\_tags | Extra tags for API Management other requests monitor | list(string) | `[]` | no |
 | other\_requests\_message | Custom message for API Management other requests monitor | string | `""` | no |

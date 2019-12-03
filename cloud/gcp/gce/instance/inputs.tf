@@ -30,6 +30,11 @@ variable "prefix_slug" {
   default     = ""
 }
 
+variable "notify_no_data" {
+  description = "Will raise no data alert if set to true"
+  default     = true
+}
+
 #
 # CPU
 #
@@ -122,12 +127,6 @@ variable "disk_throttled_bps_extra_tags" {
   default     = []
 }
 
-variable "disk_throttled_bps_notify_no_data" {
-  description = "Flag to enable notification for no data on Disk Throttled Bps monitor"
-  type        = string
-  default     = "false"
-}
-
 #
 # Disk Throttled OPS
 #
@@ -172,11 +171,5 @@ variable "disk_throttled_ops_extra_tags" {
   description = "Extra tags for Disk Throttled OPS monitor"
   type        = list(string)
   default     = []
-}
-
-variable "disk_throttled_ops_notify_no_data" {
-  description = "Flag to enable notification for no data on Disk Throttled OPS monitor"
-  type        = string
-  default     = "false"
 }
 

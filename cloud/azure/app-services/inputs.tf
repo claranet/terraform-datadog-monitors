@@ -37,6 +37,11 @@ variable "prefix_slug" {
   default     = ""
 }
 
+variable "notify_no_data" {
+  description = "Will raise no data alert if set to true"
+  default     = true
+}
+
 # Azure App Services specific variables
 
 variable "response_time_enabled" {

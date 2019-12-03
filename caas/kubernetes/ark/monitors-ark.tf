@@ -17,7 +17,7 @@ EOQ
   new_host_delay    = var.new_host_delay
   no_data_timeframe = var.ark_schedules_monitor_no_data_timeframe
 
-  notify_no_data      = true
+  notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0

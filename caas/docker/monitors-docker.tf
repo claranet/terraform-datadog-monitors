@@ -18,7 +18,7 @@ EOQ
 
   new_host_delay      = var.new_host_delay
   no_data_timeframe   = var.not_responding_no_data_timeframe
-  notify_no_data      = true
+  notify_no_data      = var.notify_no_data
   notify_audit        = false
   locked              = false
   timeout_h           = 0

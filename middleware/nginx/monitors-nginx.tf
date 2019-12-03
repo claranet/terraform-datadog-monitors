@@ -15,7 +15,7 @@ EOQ
 
   no_data_timeframe   = var.nginx_connect_no_data_timeframe
   new_host_delay      = var.new_host_delay
-  notify_no_data      = true
+  notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0

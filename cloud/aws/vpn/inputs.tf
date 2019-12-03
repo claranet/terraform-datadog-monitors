@@ -20,6 +20,11 @@ variable "prefix_slug" {
   default     = ""
 }
 
+variable "notify_no_data" {
+  description = "Will raise no data alert if set to true"
+  default     = true
+}
+
 variable "message" {
   description = "Message sent when an alert is triggered"
 }

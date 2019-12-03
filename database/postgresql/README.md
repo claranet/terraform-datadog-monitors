@@ -31,6 +31,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
 | message | Message sent when an alert is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds for the metric evaluation | string | `"300"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | postgresql\_availability\_enabled | Flag to enable PostgreSQL availability monitor | string | `"true"` | no |
 | postgresql\_availability\_extra\_tags | Extra tags for PostgreSQL availability monitor | list(string) | `[]` | no |
 | postgresql\_availability\_message | Custom message for PostgreSQL availability monitor | string | `""` | no |

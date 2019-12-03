@@ -102,6 +102,7 @@ Creates DataDog monitors with the following checks:
 | mysql\_threads\_time\_aggregator | Monitor time aggregator for MySQL threads monitor [available values: min, max or avg] | string | `"avg"` | no |
 | mysql\_threads\_timeframe | Monitor timeframe for MySQL threads monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_4h"` | no |
 | new\_host\_delay | Delay in seconds for the metric evaluation | string | `"300"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 
 ## Outputs

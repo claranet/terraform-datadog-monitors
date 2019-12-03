@@ -176,6 +176,7 @@ Creates DataDog monitors with the following checks:
 | not\_responding\_message | Custom message for Elasticsearch does not respond monitor | string | `""` | no |
 | not\_responding\_no\_data\_timeframe | Elasticsearch not responding monitor no data timeframe | string | `"10"` | no |
 | not\_responding\_threshold\_warning | Elasticsearch not responding limit (warning threshold) | string | `"3"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | query\_cache\_evictions\_change\_enabled | Flag to enable Cluster Status monitor | string | `"true"` | no |
 | query\_cache\_evictions\_change\_extra\_tags | Extra tags for Cluster Status monitor | list(string) | `[]` | no |

@@ -42,6 +42,7 @@ Creates DataDog monitors with the following checks:
 | not\_responding\_message | Custom message for Docker does not respond monitor | string | `""` | no |
 | not\_responding\_no\_data\_timeframe | Docker does not respond monitor no data timeframe | string | `"10"` | no |
 | not\_responding\_threshold\_warning | Docker does not respond monitor (warning threshold) | string | `"3"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 
 ## Outputs

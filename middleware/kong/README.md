@@ -35,6 +35,7 @@ Creates DataDog monitors with the following checks:
 | not\_responding\_message | Custom message for Kong does not respond monitor | string | `""` | no |
 | not\_responding\_no\_data\_timeframe | Kong does not respond monitor no data timeframe | string | `"10"` | no |
 | not\_responding\_threshold\_warning | Warning threshold for the service check | string | `"3"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | treatment\_limit\_enabled | Flag to enable Kong Treatment Limit monitor | string | `"true"` | no |
 | treatment\_limit\_extra\_tags | Extra tags for Kong Treatment Limit monitor | list(string) | `[]` | no |

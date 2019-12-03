@@ -35,6 +35,7 @@ Creates DataDog monitors with the following checks:
 | nlb\_no\_healthy\_instances\_threshold\_warning | NLB no healthy instances warning threshold in percentage | string | `"100"` | no |
 | nlb\_no\_healthy\_instances\_time\_aggregator | Monitor aggregator for NLB no healthy instances [available values: min, max or avg] | string | `"min"` | no |
 | nlb\_no\_healthy\_instances\_timeframe | Monitor timeframe for NLB no healthy instances [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 
 ## Outputs

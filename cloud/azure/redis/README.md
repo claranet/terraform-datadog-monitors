@@ -39,6 +39,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
 | message | Message sent when a Redis monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | percent\_processor\_time\_enabled | Flag to enable Redis processor monitor | string | `"true"` | no |
 | percent\_processor\_time\_extra\_tags | Extra tags for Redis processor monitor | list(string) | `[]` | no |
 | percent\_processor\_time\_message | Custom message for Redis processor monitor | string | `""` | no |

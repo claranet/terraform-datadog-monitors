@@ -61,6 +61,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags | Tags used for filtering | string | `"*"` | no |
 | message | Message sent when a monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds for the new host evaluation | string | `"300"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | request\_count\_enabled | Flag to enable GCP LB Request Count monitor | string | `"true"` | no |
 | request\_count\_extra\_tags | Extra tags for GCP LB Request Count monitor | list(string) | `[]` | no |

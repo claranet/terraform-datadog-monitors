@@ -99,6 +99,7 @@ Creates DataDog monitors with the following checks:
 | not\_responding\_message | Custom message for Redis does not respond monitor | string | `""` | no |
 | not\_responding\_no\_data\_timeframe | Redis does not respond monitor no data timeframe | string | `"10"` | no |
 | not\_responding\_threshold\_warning | Redis does not respond monitor (warning threshold) | string | `"3"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | rejected\_con\_enabled | Flag to enable Redis rejected connections errors monitor | string | `"true"` | no |
 | rejected\_con\_extra\_tags | Extra tags for Redis rejected connections errors monitor | list(string) | `[]` | no |

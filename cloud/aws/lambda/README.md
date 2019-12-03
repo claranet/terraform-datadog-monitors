@@ -47,6 +47,7 @@ Creates DataDog monitors with the following checks:
 | invocations\_timeframe | Monitor timeframe for Invocations [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_30m"` | no |
 | message | Message sent when a monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | pct\_errors\_enabled | Flag to enable Percentage of errors monitor | string | `"true"` | no |
 | pct\_errors\_extra\_tags | Extra tags for Percentage of errors monitor | list(string) | `[]` | no |
 | pct\_errors\_message | Custom message for Percentage of errors monitor | string | `""` | no |

@@ -37,6 +37,7 @@ Creates DataDog monitors with the following checks:
 | no\_active\_connections\_message | Custom message for Service Bus no active connections monitor | string | `""` | no |
 | no\_active\_connections\_time\_aggregator | Monitor aggregator for Service Bus no active connections [available values: min, max or avg] | string | `"max"` | no |
 | no\_active\_connections\_timeframe | Monitor timeframe for Service Bus no active connections [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | server\_errors\_enabled | Flag to enable Service Bus server errors monitor | string | `"true"` | no |
 | server\_errors\_extra\_tags | Extra tags for Service Bus server errors monitor | list(string) | `[]` | no |

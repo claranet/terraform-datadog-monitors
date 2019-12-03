@@ -37,6 +37,7 @@ Creates DataDog monitors with the following checks:
 | latency\_timeframe | Monitor timeframe for Azure Search latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | message | Message sent when a monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
+| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
 | throttled\_queries\_rate\_enabled | Flag to enable Azure Search throttled queries rate monitor | string | `"true"` | no |
 | throttled\_queries\_rate\_extra\_tags | Extra tags for Azure Search throttled queries rate monitor | list(string) | `[]` | no |
