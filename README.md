@@ -1,28 +1,20 @@
-# DataDog Monitors [![pipeline status](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/badges/master/pipeline.svg)](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/commits/master) #
+# DataDog Monitors
+[![Changelog](https://img.shields.io/badge/changelog-release-green.svg)](CHANGELOG.md) [![Notice](https://img.shields.io/badge/notice-copyright-yellow.svg)](NOTICE) [![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](LICENSE) [![ ](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/badges/master/pipeline.svg)](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/commits/master)
 
-This repository is used to store all our monitors templates ready to use for generic purpose.
+This repository aims to provide a base of generic and pre configured monitors for [Datadog](https://www.datadoghq.com/) templated thanks to [Terraform](https://www.terraform.io/) and the [Datadog Provider](https://github.com/terraform-providers/terraform-provider-datadog).
 
-## How to contribute ? ##
+## Important notes
 
-First, you may refresh your knowledge and look at the [terminology](https://confluence.fr.clara.net/display/DAT/Getting+started).
+* This repository provide multiple Terraform modules which could be imported, you must choose the one(s) you need.
+* Each of these modules contains the most commons monitors, but they probably do not fulfill all your needs.
+* You still can create some specific DataDog monitors after importing a module, it's even advisable to complete your needs.
+* You will find a complete `README.md` on each module, explaining how to use it and its specificities if there.
+* The `alerting-message` module could be used to easily generate a templating message to re-use and could be used multiple times to suit different use cases.
+* Some monitors are disabled by default because not generic or "plug and play" enough, if you use them you will need to tweak them or in some cases disabled another one which could "duplicate" the check.
 
-To contribute you will need to [report an issue](https://confluence.fr.clara.net/display/DAT/Project+and+Workflow) and create a branch with its Jira ID.
+## Getting started
 
-If you would like to resolve an issue or implement new monitors you must follow our [best practices](https://confluence.fr.clara.net/display/DAT/Templates+monitors).
-
-After any change, you will need to run the [auto update scripts](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/scripts/blob/master/README.md) to make sure all is up to date otherwise the CI pipeline will fail.
-
-## Important notes ##
-
-* This repository represents a terraform feature and each first level directory could be imported as a terraform module, you must choose the one(s) you need.
-* Each of these modules contains the most commons monitors, but they probably do not fulfill all your customer needs
-* You still can create some specific DataDog monitors after importing a module, it's even advisable to complete your needs
-* You will find a complete `README.md` on each module, explaining how to use it.
-* The `alerting-message` module could be used to easily generate a templating message to use by default but it could be used also multiple times to generate messages for specific monitors.
-
-## Getting started ##
-
-### Terraform ###
+### Terraform
 
 Here is the minimum version required to use these modules of integrations.
 
@@ -33,7 +25,7 @@ terraform {
 
 ```
 
-### DataDog provider ###
+### DataDog provider
 
 Here is the last tester terraform provider version for datadog but next versions should work too.
 
@@ -54,7 +46,7 @@ datadog_api_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 datadog_app_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
 
-### Variables ###
+### Variables
 
 Some variables need to be declared.
 
@@ -74,7 +66,7 @@ variable "datadog_app_key" {
 
 ```
 
-## Modules declaration example ##
+### Modules declaration example
 
 A quick example of alerting message module declaration:
 
@@ -85,7 +77,7 @@ locals {
 }
 
 module "datadog-message-alerting" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//common/alerting-message?ref={RELEASE}"
+  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//common/alerting-message?ref={RELEASE}"
 
   message_alert   = local.oncall_24x7
   message_warning = local.oncall_office_hours
@@ -93,7 +85,7 @@ module "datadog-message-alerting" {
 }
 
 module "datadog-message-alerting-bh-only" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//common/alerting-message?ref={RELEASE}"
+  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//common/alerting-message?ref={RELEASE}"
 
   message_alert   = local.oncall_office_hours
   message_warning = local.oncall_office_hours
@@ -101,7 +93,7 @@ module "datadog-message-alerting-bh-only" {
 }
 
 module "datadog-monitors-system-generic" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//system/generic?ref={RELEASE}"
+  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//system/generic?ref={RELEASE}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message
@@ -112,7 +104,7 @@ module "datadog-monitors-system-generic" {
 
 # Other monitors modules to declare ...
 #module "datadog-monitors-my-monitors-set" {
-#  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//my/monitors/set?ref={RELEASE}"
+#  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//my/monitors/set?ref={RELEASE}"
 #
 #  environment = var.environment
 #  message     = module.datadog-message-alerting.alerting-message
@@ -120,102 +112,102 @@ module "datadog-monitors-system-generic" {
 
 ```
 
-Replace `{revision}` to the last git tag available on this repository.
-The `//` is very important, it's a terraform specific syntax used to separate git url and folder path.
-`my/monitors/set` represents the path to a monitors set sub directory listed below.
+* Replace `{revision}` to the last git tag available on this repository.
+* The `//` is very important, it's a terraform specific syntax used to separate git url and folder path.
+* `my/monitors/set` represents the path to a monitors set sub directory listed below.
 
-### Monitors summary ###
+## Monitors summary
 
-- [caas](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/)
-	- [docker](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/docker/)
-	- [kubernetes](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/)
-		- [ark](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/ark/)
-		- [cluster](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/cluster/)
-		- [ingress](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/ingress/)
-			- [vts](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/ingress/vts/)
-		- [node](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/node/)
-		- [pod](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/pod/)
-		- [workload](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/caas/kubernetes/workload/)
-- [cloud](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/)
-	- [aws](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/)
-		- [alb](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/alb/)
-		- [apigateway](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/apigateway/)
-		- [beanstalk](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/beanstalk/)
-		- [ecs](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/ecs/)
-			- [common](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/ecs/common/)
-			- [ec2-cluster](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/ecs/ec2-cluster/)
-		- [elasticache](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/elasticache/)
-			- [common](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/elasticache/common/)
-			- [memcached](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/elasticache/memcached/)
-			- [redis](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/elasticache/redis/)
-		- [elasticsearch](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/elasticsearch/)
-		- [elb](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/elb/)
-		- [kinesis-firehose](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/kinesis-firehose/)
-		- [lambda](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/lambda/)
-		- [nlb](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/nlb/)
-		- [rds](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/rds/)
-			- [aurora](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/rds/aurora/)
-				- [mysql](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/rds/aurora/mysql/)
-				- [postgresql](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/rds/aurora/postgresql/)
-			- [common](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/rds/common/)
-		- [sqs](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/sqs/)
-		- [vpn](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/aws/vpn/)
-	- [azure](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/)
-		- [apimanagement](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/apimanagement/)
-		- [app-gateway](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/app-gateway/)
-		- [app-services](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/app-services/)
-		- [azure-search](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/azure-search/)
-		- [cosmosdb](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/cosmosdb/)
-		- [datalakestore](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/datalakestore/)
-		- [eventgrid](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/eventgrid/)
-		- [eventhub](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/eventhub/)
-		- [functions](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/functions/)
-		- [iothubs](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/iothubs/)
-		- [keyvault](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/keyvault/)
-		- [load-balancer](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/load-balancer/)
-		- [mysql](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/mysql/)
-		- [postgresql](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/postgresql/)
-		- [redis](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/redis/)
-		- [serverfarms](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/serverfarms/)
-		- [servicebus](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/servicebus/)
-		- [sql-database](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/sql-database/)
-		- [sql-elasticpool](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/sql-elasticpool/)
-		- [storage](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/storage/)
-		- [stream-analytics](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/stream-analytics/)
-		- [virtual-machine](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/azure/virtual-machine/)
-	- [gcp](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/gcp/)
-		- [big-query](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/gcp/big-query/)
-		- [cloud-sql](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/gcp/cloud-sql/)
-			- [common](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/gcp/cloud-sql/common/)
-			- [mysql](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/gcp/cloud-sql/mysql/)
-		- [gce](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/gcp/gce/)
-			- [instance](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/gcp/gce/instance/)
-		- [lb](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/gcp/lb/)
-		- [pubsub](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/gcp/pubsub/)
-			- [subscription](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/gcp/pubsub/subscription/)
-			- [topic](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/cloud/gcp/pubsub/topic/)
-- [common](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/common/)
-	- [alerting-message](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/common/alerting-message/)
-	- [filter-tags](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/common/filter-tags/)
-- [database](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/database/)
-	- [elasticsearch](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/database/elasticsearch/)
-	- [mongodb](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/database/mongodb/)
-	- [mysql](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/database/mysql/)
-	- [postgresql](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/database/postgresql/)
-	- [redis](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/database/redis/)
-- [middleware](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/middleware/)
-	- [apache](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/middleware/apache/)
-	- [kong](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/middleware/kong/)
-	- [nginx](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/middleware/nginx/)
-	- [php-fpm](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/middleware/php-fpm/)
-- [network](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/network/)
-	- [dns](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/network/dns/)
-	- [http](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/network/http/)
-		- [ssl](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/network/http/ssl/)
-		- [webcheck](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/network/http/webcheck/)
-	- [tls](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/network/tls/)
-- [saas](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/saas/)
-	- [new-relic](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/saas/new-relic/)
-- [system](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/system/)
-	- [generic](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/system/generic/)
-	- [unreachable](https://git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors/tree/master/system/unreachable/)
+- [caas](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/)
+	- [docker](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/docker/)
+	- [kubernetes](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/kubernetes/)
+		- [ark](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/kubernetes/ark/)
+		- [cluster](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/kubernetes/cluster/)
+		- [ingress](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/kubernetes/ingress/)
+			- [vts](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/kubernetes/ingress/vts/)
+		- [node](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/kubernetes/node/)
+		- [pod](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/kubernetes/pod/)
+		- [workload](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/kubernetes/workload/)
+- [cloud](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/)
+	- [aws](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/)
+		- [alb](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/alb/)
+		- [apigateway](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/apigateway/)
+		- [beanstalk](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/beanstalk/)
+		- [ecs](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/ecs/)
+			- [common](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/ecs/common/)
+			- [ec2-cluster](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/ecs/ec2-cluster/)
+		- [elasticache](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/elasticache/)
+			- [common](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/elasticache/common/)
+			- [memcached](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/elasticache/memcached/)
+			- [redis](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/elasticache/redis/)
+		- [elasticsearch](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/elasticsearch/)
+		- [elb](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/elb/)
+		- [kinesis-firehose](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/kinesis-firehose/)
+		- [lambda](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/lambda/)
+		- [nlb](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/nlb/)
+		- [rds](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/rds/)
+			- [aurora](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/rds/aurora/)
+				- [mysql](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/rds/aurora/mysql/)
+				- [postgresql](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/rds/aurora/postgresql/)
+			- [common](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/rds/common/)
+		- [sqs](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/sqs/)
+		- [vpn](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/vpn/)
+	- [azure](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/)
+		- [apimanagement](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/apimanagement/)
+		- [app-gateway](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/app-gateway/)
+		- [app-services](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/app-services/)
+		- [azure-search](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/azure-search/)
+		- [cosmosdb](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/cosmosdb/)
+		- [datalakestore](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/datalakestore/)
+		- [eventgrid](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/eventgrid/)
+		- [eventhub](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/eventhub/)
+		- [functions](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/functions/)
+		- [iothubs](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/iothubs/)
+		- [keyvault](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/keyvault/)
+		- [load-balancer](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/load-balancer/)
+		- [mysql](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/mysql/)
+		- [postgresql](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/postgresql/)
+		- [redis](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/redis/)
+		- [serverfarms](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/serverfarms/)
+		- [servicebus](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/servicebus/)
+		- [sql-database](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/sql-database/)
+		- [sql-elasticpool](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/sql-elasticpool/)
+		- [storage](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/storage/)
+		- [stream-analytics](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/stream-analytics/)
+		- [virtual-machine](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/virtual-machine/)
+	- [gcp](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/)
+		- [big-query](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/big-query/)
+		- [cloud-sql](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/cloud-sql/)
+			- [common](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/cloud-sql/common/)
+			- [mysql](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/cloud-sql/mysql/)
+		- [gce](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/gce/)
+			- [instance](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/gce/instance/)
+		- [lb](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/lb/)
+		- [pubsub](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/pubsub/)
+			- [subscription](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/pubsub/subscription/)
+			- [topic](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/pubsub/topic/)
+- [common](https://github.com/claranet/terraform-datadog-monitors/tree/master/common/)
+	- [alerting-message](https://github.com/claranet/terraform-datadog-monitors/tree/master/common/alerting-message/)
+	- [filter-tags](https://github.com/claranet/terraform-datadog-monitors/tree/master/common/filter-tags/)
+- [database](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/)
+	- [elasticsearch](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/elasticsearch/)
+	- [mongodb](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/mongodb/)
+	- [mysql](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/mysql/)
+	- [postgresql](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/postgresql/)
+	- [redis](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/redis/)
+- [middleware](https://github.com/claranet/terraform-datadog-monitors/tree/master/middleware/)
+	- [apache](https://github.com/claranet/terraform-datadog-monitors/tree/master/middleware/apache/)
+	- [kong](https://github.com/claranet/terraform-datadog-monitors/tree/master/middleware/kong/)
+	- [nginx](https://github.com/claranet/terraform-datadog-monitors/tree/master/middleware/nginx/)
+	- [php-fpm](https://github.com/claranet/terraform-datadog-monitors/tree/master/middleware/php-fpm/)
+- [network](https://github.com/claranet/terraform-datadog-monitors/tree/master/network/)
+	- [dns](https://github.com/claranet/terraform-datadog-monitors/tree/master/network/dns/)
+	- [http](https://github.com/claranet/terraform-datadog-monitors/tree/master/network/http/)
+		- [ssl](https://github.com/claranet/terraform-datadog-monitors/tree/master/network/http/ssl/)
+		- [webcheck](https://github.com/claranet/terraform-datadog-monitors/tree/master/network/http/webcheck/)
+	- [tls](https://github.com/claranet/terraform-datadog-monitors/tree/master/network/tls/)
+- [saas](https://github.com/claranet/terraform-datadog-monitors/tree/master/saas/)
+	- [new-relic](https://github.com/claranet/terraform-datadog-monitors/tree/master/saas/new-relic/)
+- [system](https://github.com/claranet/terraform-datadog-monitors/tree/master/system/)
+	- [generic](https://github.com/claranet/terraform-datadog-monitors/tree/master/system/generic/)
+	- [unreachable](https://github.com/claranet/terraform-datadog-monitors/tree/master/system/unreachable/)
