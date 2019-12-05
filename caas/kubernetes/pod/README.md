@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-caas-kubernetes-pod" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//caas/kubernetes/pod?ref={revision}"
+  source = "claranet/monitors/datadog//caas/kubernetes/pod"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

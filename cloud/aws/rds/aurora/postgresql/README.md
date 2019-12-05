@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-aws-rds-aurora-postgresql" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/aws/rds/aurora/postgresql?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/aws/rds/aurora/postgresql"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

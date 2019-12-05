@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-aws-beanstalk" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/aws/beanstalk?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/aws/beanstalk"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

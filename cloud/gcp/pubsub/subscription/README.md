@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-gcp-pubsub-subscription" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/gcp/pubsub/subscription?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/gcp/pubsub/subscription"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

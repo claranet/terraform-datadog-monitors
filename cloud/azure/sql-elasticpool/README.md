@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-azure-sql-elasticpool" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/azure/sql-elasticpool?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/azure/sql-elasticpool"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

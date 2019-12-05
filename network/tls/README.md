@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-network-tls" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//network/tls?ref={revision}"
+  source = "claranet/monitors/datadog//network/tls"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

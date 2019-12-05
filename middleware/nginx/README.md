@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-middleware-nginx" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//middleware/nginx?ref={revision}"
+  source = "claranet/monitors/datadog//middleware/nginx"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

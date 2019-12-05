@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-aws-ecs-ec2-cluster" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/aws/ecs/ec2-cluster?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/aws/ecs/ec2-cluster"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-gcp-cloud-sql-mysql" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/gcp/cloud-sql/mysql?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/gcp/cloud-sql/mysql"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

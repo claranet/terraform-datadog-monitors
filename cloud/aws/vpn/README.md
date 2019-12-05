@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-aws-vpn" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/aws/vpn?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/aws/vpn"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

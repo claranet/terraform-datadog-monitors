@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-azure-cosmosdb" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/azure/cosmosdb?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/azure/cosmosdb"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

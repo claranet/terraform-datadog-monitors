@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-middleware-php-fpm" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//middleware/php-fpm?ref={revision}"
+  source = "claranet/monitors/datadog//middleware/php-fpm"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

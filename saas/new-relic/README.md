@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-saas-new-relic" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//saas/new-relic?ref={revision}"
+  source = "claranet/monitors/datadog//saas/new-relic"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

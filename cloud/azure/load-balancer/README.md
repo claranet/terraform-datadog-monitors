@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-cloud-azure-load-balancer" {
-  source = "git::ssh://git@github.com/claranet/terraform-datadog-monitors.git//cloud/azure/load-balancer?ref={revision}"
+  source = "claranet/monitors/datadog//cloud/azure/load-balancer"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message
