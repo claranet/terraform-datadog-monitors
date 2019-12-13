@@ -6,13 +6,13 @@ variable "message_alert" {
 variable "message_warning" {
   description = "Define a broadcast channel for warning alerts"
   type        = string
-  default     = "false"
+  default     = null
 }
 
 variable "message_nodata" {
   description = "Define a broadcast channel for nodata alerts"
   type        = string
-  default     = "false"
+  default     = null
 }
 
 variable "prepend_text" {
