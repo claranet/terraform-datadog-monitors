@@ -29,7 +29,7 @@ Creates a DataDog monitor alert message with the following inputs :
 | append_text | Optional free text string to append to alert | string | `` | no |
 | message_alert | Define a broadcast channel for critical alerts | string | - | yes |
 | message_nodata | Define a broadcast channel for nodata alerts | string | `` | no |
-| message_warning | Define a broadcast channel for warning alerts | string | - | yes |
+| message_warning | Define a broadcast channel for warning alerts | string | - | no |
 | prepend_text | Optional free text string to prepend to alert | string | `` | no |
 
 ## Outputs
@@ -41,3 +41,18 @@ Creates a DataDog monitor alert message with the following inputs :
 ## Related documentation
 
 Datadog notifications official documentation: [https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning](https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning)
+
+## Notes
+
+This module aims to generate a valid message to split notification into different destinations based on its type (alert, warning, no data).
+
+If this way matchs your need so you should be able to use its output alone directly for your monitors.
+You can even use `append_text` and `prepend_text` variables to add context or documentation to monitors.
+
+Else you can still use its output with one or multiple destinations to use it in your own messsage (i.e. with `{{#is_match}}` splitting mechanism).
+
+Here is some tips to understand the behavior of this module and espacially its resulted output:
+* Only `message_alert` is mandatory
+* If `message_warning` or `message_nodata` are not defined it will use `message_alert` by default
+* You can "disable" one notification type by set its variable to empty (i.e. `message_warning = ""`)
+* feel free to use this module multiple times with different combinations to suit your needs
