@@ -1,4 +1,45 @@
 
+# v3.2.0 (December 13, 2019)
+
+## Bug
+
+*   [[MON-512](https://claranet-morea.atlassian.net/browse/MON-512)] - Elasticsearch latency is a counter
+*   [[MON-516](https://claranet-morea.atlassian.net/browse/MON-516)] - ELB & ALB  "no healthy instances" monitor's value is not accurate
+*   [[MON-518](https://claranet-morea.atlassian.net/browse/MON-518)] - Respect best practice for message mention
+*   [[MON-523](https://claranet-morea.atlassian.net/browse/MON-523)] - Fix Azure server farm status aggregator
+*   [[MON-524](https://claranet-morea.atlassian.net/browse/MON-524)] - Azure virtual machine free space monitor has no data
+*   [[MON-526](https://claranet-morea.atlassian.net/browse/MON-526)] - Fix wrong percentage calculation on GCP pubsub messages unavailable
+*   [[MON-530](https://claranet-morea.atlassian.net/browse/MON-530)] - Fix RDS Replica Lag monitors name (use ms instead of %)
+*   [[MON-532](https://claranet-morea.atlassian.net/browse/MON-532)] - Syntax warning on ignore_changes attribute
+*   [[MON-535](https://claranet-morea.atlassian.net/browse/MON-535)] - Fix HCL2 syntax
+*   [[MON-544](https://claranet-morea.atlassian.net/browse/MON-544)] - kubernetescluster tag does not exist anymore
+
+## Documentation
+
+*   [[MON-519](https://claranet-morea.atlassian.net/browse/MON-519)] - Opensource integrations and monitors
+
+## Epic
+
+*   [[MON-62](https://claranet-morea.atlassian.net/browse/MON-62)] - Monitors for AWS ECS
+
+## Improvement
+
+*   [[MON-364](https://claranet-morea.atlassian.net/browse/MON-364)] - Monitors for AWS NLB
+*   [[MON-509](https://claranet-morea.atlassian.net/browse/MON-509)] - Fix monitor name for storage account monitor
+*   [[MON-510](https://claranet-morea.atlassian.net/browse/MON-510)] - Fix metric for storage account queue monitor
+*   [[MON-513](https://claranet-morea.atlassian.net/browse/MON-513)] - Fix false alarms on Azure storage monitoring
+*   [[MON-514](https://claranet-morea.atlassian.net/browse/MON-514)] - Replace avg with min on ElasticSearch fetch latency
+*   [[MON-517](https://claranet-morea.atlassian.net/browse/MON-517)] - Make warning threshold customizable on load balancer healthy instances monitors
+*   [[MON-531](https://claranet-morea.atlassian.net/browse/MON-531)] - Add time aggregator on RDS Replica Lag Monitor
+*   [[MON-541](https://claranet-morea.atlassian.net/browse/MON-541)] - Add notify_no_data parameter on every monitors where it is true
+*   [[MON-543](https://claranet-morea.atlassian.net/browse/MON-543)] - alerting message could use common recovering conditional variable
+
+## New Feature
+
+*   [[MON-182](https://claranet-morea.atlassian.net/browse/MON-182)] - Monitors structure and config examples / stack template
+*   [[MON-366](https://claranet-morea.atlassian.net/browse/MON-366)] - Monitors for Azure Application Gateway
+*   [[MON-525](https://claranet-morea.atlassian.net/browse/MON-525)] - Monitors for AWS Beanstalk
+
 # v3.1.2 (September 09, 2019)
 
 ## Improvement
