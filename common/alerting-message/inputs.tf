@@ -6,12 +6,13 @@ variable "message_alert" {
 variable "message_warning" {
   description = "Define a broadcast channel for warning alerts"
   type        = string
+  default     = "false"
 }
 
 variable "message_nodata" {
   description = "Define a broadcast channel for nodata alerts"
   type        = string
-  default     = ""
+  default     = "false"
 }
 
 variable "prepend_text" {
@@ -25,4 +26,5 @@ variable "append_text" {
   type        = string
   default     = ""
 }
+
 
