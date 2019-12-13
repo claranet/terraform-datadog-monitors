@@ -11,7 +11,7 @@ EOF
   vars = {
     message_alert    = var.message_alert
     message_warning  = var.message_warning == "false" ? var.message_alert : var.message_warning
-    message_nodata   = var.message_nodata == "false" ? var.message_alert : var.message_nodata
+    message_nodata   = var.message_nodata == null ? var.message_alert : var.message_nodata
     message_recovery = join(" ", compact(distinct(list(var.message_alert, var.message_warning, var.message_nodata))))
     prepend_text     = var.prepend_text
     append_text      = var.append_text
