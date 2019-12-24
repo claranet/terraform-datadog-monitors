@@ -38,3 +38,12 @@ output "mysql_threads_anomaly_id" {
   value       = datadog_monitor.mysql_threads_anomaly.*.id
 }
 
+output "mysql_replication_lag_id" {
+  description = "id for monitor mysql_replication_lag"
+  value       = datadog_monitor.mysql_replication_lag.*.id
+}
+
+output "mysql_replication_status_id" {
+  description = "id for monitor mysql_replication_status"
+  value       = datadog_monitor.mysql_replication_status.*.id
+}
