@@ -38,8 +38,8 @@ EOQ
   }
 
   notify_no_data      = false
-  evaluation_delay    = 15
-  new_host_delay      = 300
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -51,7 +51,7 @@ EOQ
 
 resource "datadog_monitor" "datadog_monitor_cassandra_read_latency" {
   count   = var.cassandra_read_latency_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] DSE Cassandra read latency {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] DSE Cassandra read latency {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.cassandra_read_latency_status_message, var.message)
   type    = "metric alert"
 
@@ -66,8 +66,8 @@ EOQ
   }
 
   notify_no_data      = false
-  evaluation_delay    = 15
-  new_host_delay      = 300
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -83,7 +83,7 @@ EOQ
 
 resource "datadog_monitor" "datadog_monitor_cassandra_write_latency" {
   count   = var.cassandra_write_latency_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] DSE Cassandra write latency {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] DSE Cassandra write latency {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.cassandra_write_latency_status_message, var.message)
   type    = "metric alert"
 
@@ -98,8 +98,8 @@ EOQ
   }
 
   notify_no_data      = false
-  evaluation_delay    = 15
-  new_host_delay      = 300
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -130,8 +130,8 @@ EOQ
   }
 
   notify_no_data      = false
-  evaluation_delay    = 15
-  new_host_delay      = 300
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -162,8 +162,8 @@ EOQ
   }
 
   notify_no_data      = false
-  evaluation_delay    = 15
-  new_host_delay      = 300
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
@@ -171,34 +171,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:cassandra", "resource:cassandra", "team:claranet", "created-by:terraform"], var.cassandra_exceptions_extra_tags)
-
-  lifecycle {
-    ignore_changes = ["silenced"]
-  }
-}
-
-resource "datadog_monitor" "datadog_monitor_cassandra_outliers_latency" {
-  count   = var.cassandra_outliers_latency_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] DSE Cassandra outliers_latency {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
-  message = coalesce(var.cassandra_outliers_latency_status_message, var.message)
-  type    = "query alert"
-
-
-  query = <<EOQ
-  ${var.cassandra_outliers_latency_time_aggregator}(${var.cassandra_outliers_latency_timeframe}):
-   outliers(avg:cassandra.latency.75th_percentile{*} by {host}, 'scaledMAD', 5, 90) > 0
-EOQ
-
-  notify_no_data      = false
-  evaluation_delay    = 15
-  new_host_delay      = 300
-  notify_audit        = false
-  timeout_h           = 0
-  include_tags        = true
-  locked              = false
-  require_full_window = true
-
-  tags = concat(["env:${var.environment}", "type:database", "provider:cassandra", "resource:cassandra", "team:claranet", "created-by:terraform"], var.cassandra_outliers_latency_extra_tags)
 
   lifecycle {
     ignore_changes = ["silenced"]

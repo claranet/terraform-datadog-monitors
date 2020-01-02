@@ -11,8 +11,8 @@ resource "datadog_monitor" "datadog_monitor_cassandra_outliers_latency" {
 EOQ
 
   notify_no_data      = false
-  evaluation_delay    = 15
-  new_host_delay      = 300
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true

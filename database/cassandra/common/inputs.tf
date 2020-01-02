@@ -133,13 +133,13 @@ variable "cassandra_read_latency_timeframe" {
 }
 
 variable "cassandra_read_latency_threshold_critical" {
-  description = "Maximum critical acceptable ms of read latency monitor"
-  default     = 300000
+  description = "Maximum critical acceptable µs of read latency monitor"
+  default     = 3000000
 }
 
 variable "cassandra_read_latency_threshold_warning" {
-  description = "Maximum warning acceptable ms of read latency monitor"
-  default     = 250000
+  description = "Maximum warning acceptable µs of read latency monitor"
+  default     = 2000000
 }
 
 variable "cassandra_read_latency_availability_extra_tags" {
@@ -174,12 +174,12 @@ variable "cassandra_write_latency_timeframe" {
 }
 
 variable "cassandra_write_latency_threshold_critical" {
-  description = "Maximum critical acceptable ms of write latency monitor"
+  description = "Maximum critical acceptable µs of write latency monitor"
   default     = 300000
 }
 
 variable "cassandra_write_latency_threshold_warning" {
-  description = "Maximum warning acceptable ms of write latency monitor"
+  description = "Maximum warning acceptable µs of write latency monitor"
   default     = 250000
 }
 
