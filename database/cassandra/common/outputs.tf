@@ -13,11 +13,6 @@ output "datadog_monitor_cassandra_key_cache_id" {
   value       = datadog_monitor.datadog_monitor_cassandra_key_cache.*.id
 }
 
-output "datadog_monitor_cassandra_outliers_latency_id" {
-  description = "id for monitor datadog_monitor_cassandra_outliers_latency"
-  value       = datadog_monitor.datadog_monitor_cassandra_outliers_latency.*.id
-}
-
 output "datadog_monitor_cassandra_read_latency_id" {
   description = "id for monitor datadog_monitor_cassandra_read_latency"
   value       = datadog_monitor.datadog_monitor_cassandra_read_latency.*.id
