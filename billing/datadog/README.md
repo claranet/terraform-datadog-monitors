@@ -4,7 +4,8 @@
 
 ```
 module "datadog-monitors-billing-datadog" {
-  source = "git::ssh://git@git.fr.clara.net/claranet/pt-monitoring/projects/datadog/terraform/monitors.git//billing/datadog?ref={revision}"
+  source = "claranet/monitors/datadog//billing/datadog"
+  version = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

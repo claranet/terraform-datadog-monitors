@@ -37,7 +37,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:datadog", "provider:billing", "resource:estimated-usage", "team:claranet", "created-by:terraform"], var.host_basic_anomaly_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -81,7 +81,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:datadog", "provider:billing", "resource:estimated-usage", "team:claranet", "created-by:terraform"], var.host_agile_anomaly_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -113,7 +113,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:datadog", "provider:billing", "resource:estimated-usage", "team:claranet", "created-by:terraform"], var.host_change_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 
@@ -155,7 +155,7 @@ EOQ
   tags = concat(["env:${var.environment}", "type:datadog", "provider:billing", "resource:estimated-usage", "team:claranet", "created-by:terraform"], var.host_timeshift_extra_tags)
 
   lifecycle {
-    ignore_changes = ["silenced"]
+    ignore_changes = [silenced]
   }
 }
 

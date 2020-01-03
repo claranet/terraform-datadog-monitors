@@ -122,6 +122,8 @@ module "datadog-monitors-system-generic" {
 
 ## Monitors summary
 
+- [billing](https://github.com/claranet/terraform-datadog-monitors/tree/master/billing/)
+	- [datadog](https://github.com/claranet/terraform-datadog-monitors/tree/master/billing/datadog/)
 - [caas](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/)
 	- [docker](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/docker/)
 	- [kubernetes](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/kubernetes/)
