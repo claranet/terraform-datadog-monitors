@@ -288,3 +288,62 @@ EOQ
   }
 }
 
+resource "datadog_monitor" "mysql_replication_lag" {
+  count   = var.mysql_replication_lag_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql replication lag {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
+  message = coalesce(var.mysql_replication_lag_message, var.message)
+  type    = "query alert"
+
+  query = <<EOQ
+    ${var.mysql_replication_lag_time_aggregator}(${var.mysql_replication_lag_timeframe}):avg:mysql.replication.seconds_behind_master${module.filter-tags.query_alert} by {server} > ${var.mysql_replication_lag_threshold_critical}
+EOQ
+
+  thresholds = {
+    warning  = var.mysql_replication_lag_threshold_warning
+    critical = var.mysql_replication_lag_threshold_critical
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  require_full_window = false
+  timeout_h           = 0
+  include_tags        = true
+
+  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_replication_lag_extra_tags)
+
+  lifecycle {
+    ignore_changes = [silenced]
+  }
+}
+
+resource "datadog_monitor" "mysql_replication_status" {
+  count   = var.mysql_replication_status_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql replication status changed abnormally"
+  message = coalesce(var.mysql_replication_status_message, var.message)
+  type    = "metric alert"
+
+  query = <<EOQ
+    ${var.mysql_replication_status_time_aggregator}(${var.mysql_replication_status_timeframe}):avg:mysql.replication.slave_running${module.filter-tags.query_alert} by {server} < 1
+EOQ
+
+  thresholds = {
+    critical = 1
+  }
+
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = true
+
+  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_replication_status_extra_tags)
+
+  lifecycle {
+    ignore_changes = [silenced]
+  }
+}

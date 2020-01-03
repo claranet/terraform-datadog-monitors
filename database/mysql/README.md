@@ -22,6 +22,8 @@ Creates DataDog monitors with the following checks:
 - Mysql Innodb buffer pool efficiency
 - Mysql Innodb buffer pool utilization
 - Mysql queries changed abnormally
+- Mysql replication lag (disabled by default)
+- Mysql replication status changed abnormally (disabled by default)
 - Mysql server does not respond
 - Mysql Slow queries
 - Mysql threads changed abnormally
@@ -82,6 +84,18 @@ Creates DataDog monitors with the following checks:
 | mysql\_questions\_threshold\_critical | Maximum critical acceptable number of queries | string | `"1"` | no |
 | mysql\_questions\_time\_aggregator | Monitor time aggregator for MySQL queries monitor [available values: min, max or avg] | string | `"avg"` | no |
 | mysql\_questions\_timeframe | Monitor timeframe for MySQL queries monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_4h"` | no |
+| mysql\_replication\_lag\_enabled | Flag to enable mysql replication lag monitor | string | `"false"` | no |
+| mysql\_replication\_lag\_extra\_tags | Extra tags for MySQL replication lag monitor | list(string) | `[]` | no |
+| mysql\_replication\_lag\_message | Custom message for MySQL replication lag monitor | string | `""` | no |
+| mysql\_replication\_lag\_threshold\_critical | Maximum critical acceptable seconds of replication lag | string | `"200"` | no |
+| mysql\_replication\_lag\_threshold\_warning | Maximum warning acceptable seconds of replication lag | string | `"100"` | no |
+| mysql\_replication\_lag\_time\_aggregator | Monitor time aggregator for MySQL replication lag monitor [available values: min, max or avg] | string | `"min"` | no |
+| mysql\_replication\_lag\_timeframe | Monitor timeframe for MySQL replication lag monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_15m"` | no |
+| mysql\_replication\_status\_enabled | Flag to enable mysql replication status monitor | string | `"false"` | no |
+| mysql\_replication\_status\_extra\_tags | Extra tags for MySQL replication status monitor | list(string) | `[]` | no |
+| mysql\_replication\_status\_message | Custom message for MySQL replication status monitor | string | `""` | no |
+| mysql\_replication\_status\_time\_aggregator | Monitor time aggregator for MySQL replication status monitor [available values: min, max or avg] | string | `"min"` | no |
+| mysql\_replication\_status\_timeframe | Monitor timeframe for MySQL replication status monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_5m"` | no |
 | mysql\_slow\_enabled | Flag to enable MySQL slow queries monitor | string | `"true"` | no |
 | mysql\_slow\_extra\_tags | Extra tags for MySQL slow queries monitor | list(string) | `[]` | no |
 | mysql\_slow\_message | Custom message for MySQL slow queries monitor | string | `""` | no |
@@ -116,6 +130,8 @@ Creates DataDog monitors with the following checks:
 | mysql\_pool\_efficiency\_id | id for monitor mysql_pool_efficiency |
 | mysql\_pool\_utilization\_id | id for monitor mysql_pool_utilization |
 | mysql\_questions\_anomaly\_id | id for monitor mysql_questions_anomaly |
+| mysql\_replication\_lag\_id | id for monitor mysql_replication_lag |
+| mysql\_replication\_status\_id | id for monitor mysql_replication_status |
 | mysql\_slow\_id | id for monitor mysql_slow |
 | mysql\_threads\_anomaly\_id | id for monitor mysql_threads_anomaly |
 

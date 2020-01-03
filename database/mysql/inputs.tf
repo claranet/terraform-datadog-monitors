@@ -460,3 +460,80 @@ variable "mysql_questions_timeframe" {
   default     = "last_4h"
 }
 
+#################################
+###   MySQL replication lag  ###
+#################################
+
+variable "mysql_replication_lag_enabled" {
+  description = "Flag to enable mysql replication lag monitor"
+  type        = string
+  default     = "false"
+}
+
+variable "mysql_replication_lag_extra_tags" {
+  description = "Extra tags for MySQL replication lag monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "mysql_replication_lag_message" {
+  description = "Custom message for MySQL replication lag monitor"
+  type        = string
+  default     = ""
+}
+
+variable "mysql_replication_lag_threshold_warning" {
+  default     = 100
+  description = "Maximum warning acceptable seconds of replication lag"
+}
+
+variable "mysql_replication_lag_threshold_critical" {
+  default     = 200
+  description = "Maximum critical acceptable seconds of replication lag"
+}
+
+variable "mysql_replication_lag_time_aggregator" {
+  description = "Monitor time aggregator for MySQL replication lag monitor [available values: min, max or avg]"
+  type        = string
+  default     = "min"
+}
+
+variable "mysql_replication_lag_timeframe" {
+  description = "Monitor timeframe for MySQL replication lag monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_15m"
+}
+
+###################################
+###   MySQL replication status  ###
+###################################
+
+variable "mysql_replication_status_enabled" {
+  description = "Flag to enable mysql replication status monitor"
+  type        = string
+  default     = "false"
+}
+
+variable "mysql_replication_status_extra_tags" {
+  description = "Extra tags for MySQL replication status monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "mysql_replication_status_message" {
+  description = "Custom message for MySQL replication status monitor"
+  type        = string
+  default     = ""
+}
+
+variable "mysql_replication_status_time_aggregator" {
+  description = "Monitor time aggregator for MySQL replication status monitor [available values: min, max or avg]"
+  type        = string
+  default     = "min"
+}
+
+variable "mysql_replication_status_timeframe" {
+  description = "Monitor timeframe for MySQL replication status monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_5m"
+}
