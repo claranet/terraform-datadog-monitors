@@ -318,7 +318,7 @@ variable "memory_utilization_forecast_threshold_critical_recovery" {
 variable "memory_utilization_forecast_enabled" {
   description = "Flag to enable GCP Cloud SQL Memory Utilization Forecast monitor"
   type        = string
-  default     = "true"
+  default     = "false"
 }
 
 variable "memory_utilization_forecast_extra_tags" {

@@ -22,7 +22,7 @@ Creates DataDog monitors with the following checks:
 - Cloud SQL Disk Utilization forecast
 - Cloud SQL Failover Unavailable
 - Cloud SQL Memory Utilization
-- Cloud SQL Memory Utilization forecast
+- Cloud SQL Memory Utilization forecast (disabled by default)
 
 ## Inputs
 
@@ -68,7 +68,7 @@ Creates DataDog monitors with the following checks:
 | memory\_utilization\_extra\_tags | Extra tags for GCP Cloud SQL Memory Utilization monitor | list(string) | `[]` | no |
 | memory\_utilization\_forecast\_algorithm | Algorithm for the Memory Utilization Forecast monitor | string | `"linear"` | no |
 | memory\_utilization\_forecast\_deviations | Deviations for the Memory Utilization Forecast monitor | string | `"1"` | no |
-| memory\_utilization\_forecast\_enabled | Flag to enable GCP Cloud SQL Memory Utilization Forecast monitor | string | `"true"` | no |
+| memory\_utilization\_forecast\_enabled | Flag to enable GCP Cloud SQL Memory Utilization Forecast monitor | string | `"false"` | no |
 | memory\_utilization\_forecast\_extra\_tags | Extra tags for GCP Cloud SQL Memory Utilization Forecast monitor | list(string) | `[]` | no |
 | memory\_utilization\_forecast\_interval | Interval for the Memory Utilization Forecast monitor | string | `"30m"` | no |
 | memory\_utilization\_forecast\_linear\_history | History for the Memory Utilization Forecast monitor | string | `"12h"` | no |
