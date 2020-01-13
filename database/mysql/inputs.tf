@@ -232,14 +232,24 @@ variable "mysql_pool_efficiency_message" {
   default     = ""
 }
 
-variable "mysql_pool_efficiency_threshold_critical" {
-  default     = 30
+variable "mysql_pool_efficiency_threshold_high_critical" {
+  default     = 90
   description = "Maximum critical acceptable percent of innodb buffer pool efficiency"
 }
 
-variable "mysql_pool_efficiency_threshold_warning" {
-  default     = 20
+variable "mysql_pool_efficiency_threshold_high_warning" {
+  default     = 80
   description = "Maximum warning acceptable percent of innodb buffer pool efficiency"
+}
+
+variable "mysql_pool_efficiency_threshold_low_critical" {
+  default     = 20
+  description = "Minimum critical acceptable percent of innodb buffer pool efficiency"
+}
+
+variable "mysql_pool_efficiency_threshold_low_warning" {
+  default     = 50
+  description = "Minimum warning acceptable percent of innodb buffer pool efficiency"
 }
 
 variable "mysql_pool_efficiency_time_aggregator" {
@@ -248,12 +258,17 @@ variable "mysql_pool_efficiency_time_aggregator" {
   default     = "min"
 }
 
-variable "mysql_pool_efficiency_timeframe" {
-  description = "Monitor timeframe for MySQL innodb buffer pool efficiency monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+variable "mysql_pool_efficiency_high_timeframe" {
+  description = "Monitor timeframe for MySQL innodb buffer pool high efficiency monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
   default     = "last_1h"
 }
 
+variable "mysql_pool_efficiency_low_timeframe" {
+  description = "Monitor timeframe for MySQL innodb buffer pool low efficiency monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_1d"
+}
 #################################
 # MySQL innodb pool utilization #
 #################################
@@ -276,14 +291,24 @@ variable "mysql_pool_utilization_message" {
   default     = ""
 }
 
-variable "mysql_pool_utilization_threshold_critical" {
+variable "mysql_pool_utilization_threshold_high_critical" {
   default     = 95
   description = "Maximum critical acceptable percent of innodb buffer pool utilization"
 }
 
-variable "mysql_pool_utilization_threshold_warning" {
+variable "mysql_pool_utilization_threshold_high_warning" {
   default     = 80
   description = "Maximum warning acceptable percent of innodb buffer pool utilization"
+}
+
+variable "mysql_pool_utilization_threshold_low_critical" {
+  default     = 20
+  description = "Minimum critical acceptable percent of innodb buffer pool utilization"
+}
+
+variable "mysql_pool_utilization_threshold_low_warning" {
+  default     = 50
+  description = "Minimum warning acceptable percent of innodb buffer pool utilization"
 }
 
 variable "mysql_pool_utilization_time_aggregator" {
@@ -292,12 +317,17 @@ variable "mysql_pool_utilization_time_aggregator" {
   default     = "min"
 }
 
-variable "mysql_pool_utilization_timeframe" {
-  description = "Monitor timeframe for MySQL innodb buffer pool utilization monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+variable "mysql_pool_utilization_high_timeframe" {
+  description = "Monitor timeframe for MySQL innodb buffer pool high utilization monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
   default     = "last_1h"
 }
 
+variable "mysql_pool_utilization_low_timeframe" {
+  description = "Monitor timeframe for MySQL innodb buffer pool low utilization monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_1d"
+}
 #################################
 ###   MySQL threads           ###
 #################################

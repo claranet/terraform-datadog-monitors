@@ -129,22 +129,22 @@ EOQ
   }
 }
 
-resource "datadog_monitor" "mysql_pool_efficiency" {
+resource "datadog_monitor" "mysql_pool_efficiency_high" {
   count   = var.mysql_pool_efficiency_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql Innodb buffer pool efficiency {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.mysql_pool_efficiency_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
-    ${var.mysql_pool_efficiency_time_aggregator}(${var.mysql_pool_efficiency_timeframe}): (
+    ${var.mysql_pool_efficiency_time_aggregator}(${var.mysql_pool_efficiency_timeframe_high}): (
       avg:mysql.innodb.buffer_pool_reads${module.filter-tags.query_alert} by {server} /
       avg:mysql.innodb.buffer_pool_read_requests${module.filter-tags.query_alert} by {server}
     ) * 100 > ${var.mysql_pool_efficiency_threshold_critical}
 EOQ
 
   thresholds = {
-    warning  = var.mysql_pool_efficiency_threshold_warning
-    critical = var.mysql_pool_efficiency_threshold_critical
+    warning  = var.mysql_pool_efficiency_threshold_high_warning
+    critical = var.mysql_pool_efficiency_threshold_high_critical
   }
 
   evaluation_delay    = var.evaluation_delay
@@ -162,14 +162,47 @@ EOQ
   }
 }
 
-resource "datadog_monitor" "mysql_pool_utilization" {
+resource "datadog_monitor" "mysql_pool_efficiency_low" {
+  count   = var.mysql_pool_efficiency_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql Innodb buffer pool efficiency {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  message = coalesce(var.mysql_pool_efficiency_message, var.message)
+  type    = "query alert"
+
+  query = <<EOQ
+    ${var.mysql_pool_efficiency_time_aggregator}(${var.mysql_pool_efficiency_timeframe_low}): (
+      avg:mysql.innodb.buffer_pool_reads${module.filter-tags.query_alert} by {server} /
+      avg:mysql.innodb.buffer_pool_read_requests${module.filter-tags.query_alert} by {server}
+    ) * 100 > ${var.mysql_pool_efficiency_threshold_critical}
+EOQ
+
+  thresholds = {
+    warning  = var.mysql_pool_efficiency_threshold_low_warning
+    critical = var.mysql_pool_efficiency_threshold_low_critical
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  require_full_window = true
+  timeout_h           = 0
+  include_tags        = true
+
+  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_pool_efficiency_extra_tags)
+
+  lifecycle {
+    ignore_changes = [silenced]
+  }
+}
+
+resource "datadog_monitor" "mysql_pool_utilization_high" {
   count   = var.mysql_pool_utilization_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql Innodb buffer pool utilization {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   message = coalesce(var.mysql_pool_utilization_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
-    ${var.mysql_pool_utilization_time_aggregator}(${var.mysql_pool_utilization_timeframe}):
+    ${var.mysql_pool_utilization_time_aggregator}(${var.mysql_pool_utilization_high_timeframe}):
       ( avg:mysql.innodb.buffer_pool_total${module.filter-tags.query_alert} by {server} -
       avg:mysql.innodb.buffer_pool_free${module.filter-tags.query_alert} by {server} ) /
       avg:mysql.innodb.buffer_pool_total${module.filter-tags.query_alert} by {server}
@@ -177,8 +210,8 @@ resource "datadog_monitor" "mysql_pool_utilization" {
 EOQ
 
   thresholds = {
-    warning  = var.mysql_pool_utilization_threshold_warning
-    critical = var.mysql_pool_utilization_threshold_critical
+    warning  = var.mysql_pool_utilization_threshold_high_warning
+    critical = var.mysql_pool_utilization_threshold_high_critical
   }
 
   evaluation_delay    = var.evaluation_delay
@@ -196,6 +229,39 @@ EOQ
   }
 }
 
+resource "datadog_monitor" "mysql_pool_utilization_low" {
+  count   = var.mysql_pool_utilization_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql Innodb buffer pool under-utilization {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  message = coalesce(var.mysql_pool_utilization_message, var.message)
+  type    = "query alert"
+
+  query = <<EOQ
+    ${var.mysql_pool_utilization_time_aggregator}(${var.mysql_pool_utilization_low_timeframe}):
+      ( avg:mysql.innodb.buffer_pool_total${module.filter-tags.query_alert} by {server} -
+      avg:mysql.innodb.buffer_pool_free${module.filter-tags.query_alert} by {server} ) /
+      avg:mysql.innodb.buffer_pool_total${module.filter-tags.query_alert} by {server}
+    * 100 > ${var.mysql_pool_utilization_threshold_critical}
+EOQ
+
+  thresholds = {
+    warning  = var.mysql_pool_utilization_threshold_low_warning
+    critical = var.mysql_pool_utilization_threshold_low_critical
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  require_full_window = true
+  timeout_h           = 0
+  include_tags        = true
+
+  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_pool_utilization_extra_tags)
+
+  lifecycle {
+    ignore_changes = [silenced]
+  }
+}
 resource "datadog_monitor" "mysql_threads_anomaly" {
   count   = var.mysql_threads_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Mysql threads changed abnormally"
