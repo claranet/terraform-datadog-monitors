@@ -60,17 +60,23 @@ Creates DataDog monitors with the following checks:
 | mysql\_pool\_efficiency\_enabled | Flag to enable MySQL innodb buffer pool efficiency monitor | string | `"true"` | no |
 | mysql\_pool\_efficiency\_extra\_tags | Extra tags for MySQL innodb buffer pool efficiency monitor | list(string) | `[]` | no |
 | mysql\_pool\_efficiency\_message | Custom message for MySQL innodb buffer pool efficiency monitor | string | `""` | no |
-| mysql\_pool\_efficiency\_threshold\_critical | Maximum critical acceptable percent of innodb buffer pool efficiency | string | `"30"` | no |
-| mysql\_pool\_efficiency\_threshold\_warning | Maximum warning acceptable percent of innodb buffer pool efficiency | string | `"20"` | no |
+| mysql\_pool\_efficiency\_threshold\_high\_critical | Maximum critical acceptable percent of innodb buffer pool efficiency | string | `"30"` | no |
+| mysql\_pool\_efficiency\_threshold\_high\_warning | Maximum warning acceptable percent of innodb buffer pool efficiency | string | `"20"` | no |
+| mysql\_pool\_efficiency\_threshold\_low\_critical | Minimum critical acceptable percent of innodb buffer pool efficiency | string | `"30"` | no |
+| mysql\_pool\_efficiency\_threshold\_low\_warning | Minimum warning acceptable percent of innodb buffer pool efficiency | string | `"20"` | no |
 | mysql\_pool\_efficiency\_time\_aggregator | Monitor time aggregator for MySQL innodb buffer pool efficiency monitor [available values: min, max or avg] | string | `"min"` | no |
-| mysql\_pool\_efficiency\_timeframe | Monitor timeframe for MySQL innodb buffer pool efficiency monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1h"` | no |
+| mysql\_pool\_efficiency\_timeframe\_high | Monitor timeframe for MySQL innodb buffer pool high efficiency monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1h"` | no |
+| mysql\_pool\_efficiency\_timeframe\_low | Monitor timeframe for MySQL innodb buffer pool low efficiency monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1d"` | no |
 | mysql\_pool\_utilization\_enabled | Flag to enable MySQL innodb buffer pool utilization monitor | string | `"true"` | no |
 | mysql\_pool\_utilization\_extra\_tags | Extra tags for MySQL innodb buffer pool utilization monitor | list(string) | `[]` | no |
 | mysql\_pool\_utilization\_message | Custom message for MySQL innodb buffer pool utilization monitor | string | `""` | no |
-| mysql\_pool\_utilization\_threshold\_critical | Maximum critical acceptable percent of innodb buffer pool utilization | string | `"95"` | no |
-| mysql\_pool\_utilization\_threshold\_warning | Maximum warning acceptable percent of innodb buffer pool utilization | string | `"80"` | no |
+| mysql\_pool\_utilization\_threshold\_high\_critical | Maximum critical acceptable percent of innodb buffer pool utilization | string | `"95"` | no |
+| mysql\_pool\_utilization\_threshold\_high\_warning | Maximum warning acceptable percent of innodb buffer pool utilization | string | `"80"` | no |
+| mysql\_pool\_utilization\_threshold\_low\_critical | Minimum critical acceptable percent of innodb buffer pool utilization | string | `"95"` | no |
+| mysql\_pool\_utilization\_threshold\_low\_warning | Minimum warning acceptable percent of innodb buffer pool utilization | string | `"80"` | no |
 | mysql\_pool\_utilization\_time\_aggregator | Monitor time aggregator for MySQL innodb buffer pool utilization monitor [available values: min, max or avg] | string | `"min"` | no |
-| mysql\_pool\_utilization\_timeframe | Monitor timeframe for MySQL innodb buffer pool utilization monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1h"` | no |
+| mysql\_pool\_utilization\_timeframe\_high | Monitor timeframe for MySQL innodb buffer pool high utilization monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1h"` | no |
+| mysql\_pool\_utilization\_timeframe\_low | Monitor timeframe for MySQL innodb buffer pool low utilization monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1d"` | no |
 | mysql\_questions\_alert\_window | Alert window. | string | `"last_15m"` | no |
 | mysql\_questions\_count\_default\_zero | Count default zero. | string | `"true"` | no |
 | mysql\_questions\_detection\_algorithm | Anomaly Detection Algorithm used | string | `"agile"` | no |
