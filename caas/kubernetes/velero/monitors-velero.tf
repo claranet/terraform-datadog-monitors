@@ -50,7 +50,6 @@ EOQ
   new_host_delay    = var.new_host_delay
   no_data_timeframe = var.velero_backup_failure_monitor_no_data_timeframe
 
-  notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
@@ -84,7 +83,6 @@ EOQ
   new_host_delay    = var.new_host_delay
   no_data_timeframe = var.velero_backup_partial_failure_monitor_no_data_timeframe
 
-  notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
@@ -118,7 +116,6 @@ EOQ
   new_host_delay    = var.new_host_delay
   no_data_timeframe = var.velero_backup_deletion_failure_monitor_no_data_timeframe
 
-  notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
@@ -152,7 +149,6 @@ EOQ
   new_host_delay    = var.new_host_delay
   no_data_timeframe = var.velero_volume_snapshot_failure_monitor_no_data_timeframe
 
-  notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
