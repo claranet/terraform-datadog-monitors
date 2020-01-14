@@ -131,6 +131,7 @@ module "datadog-monitors-system-generic" {
 			- [vts](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/kubernetes/ingress/vts/)
 		- [node](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/kubernetes/node/)
 		- [pod](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/kubernetes/pod/)
+		- [velero](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/kubernetes/velero/)
 		- [workload](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/kubernetes/workload/)
 - [cloud](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/)
 	- [aws](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/)
