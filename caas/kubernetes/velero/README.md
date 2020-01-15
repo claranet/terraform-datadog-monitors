@@ -70,3 +70,65 @@ Creates DataDog monitors with the following checks:
 
 ## Related documentation
 
+Documentation for Datadog prometheus intergration: https://docs.datadoghq.com/integrations/prometheus/
+Documentation for Datadog OpenMetrics integration: https://docs.datadoghq.com/integrations/openmetrics/
+Documentation for Datadog autodiscovery: https://docs.datadoghq.com/agent/autodiscovery/clusterchecks/
+
+### How to configure Datadog agent for these monitors ?
+You can configure Datadog agent by autodiscovery pod annotations or by configuration file.
+
+#### Configuration by autodiscovery pod annotations
+Add these annotations to Velero pods:
+
+```
+podAnnotations: {
+  "ad.datadoghq.com/velero.check_names": '["openmetrics"]',
+  "ad.datadoghq.com/velero.init_configs": '[{}]',
+  "ad.datadoghq.com/velero.instances": '[{"prometheus_url": "http://%%host%%:8085/metrics", "namespace": "velero", "metrics": ["velero*"]}]'
+}
+```
+
+#### Configuration by configuration file
+Example of `openmetrics.d/conf.yaml`:
+
+```
+init_config:
+
+instances:
+
+    ## @param prometheus_url - string - required
+    ## The URL where your application metrics are exposed by Prometheus.
+    #
+  - prometheus_url: http://velero.velero.svc.cluster.local:8085/metrics
+
+    ## @param namespace - string - required
+    ## The namespace to be prepended to all metrics.
+    #
+    namespace: "velero"
+
+    ## @param metrics - list of strings - required
+    ## List of metrics to be fetched from the prometheus endpoint, if there's a
+    ## value it'll be renamed. This list should contain at least one metric
+    #
+    metrics:
+      - velero*
+```
+
+### How to monitor multiple schedule witch have different frequencies ?
+
+If you have multiple Velero schedules with different frequencies, you must duplicate this module and disable common monitors in the others instance of module.
+
+```
+module "datadog-monitors-caas-kubernetes-velero" {
+  source = "claranet/monitors/datadog//caas/kubernetes/velero"
+  version = "{revision}"
+
+  environment = var.environment
+  message     = module.datadog-message-alerting.alerting-message
+
+  velero_backup_failure_enabled          = false
+  velero_backup_partial_failure_enabled  = false
+  velero_backup_deletion_failure_enabled = false
+  velero_volume_snapshot_failure_enabled = false
+}
+
