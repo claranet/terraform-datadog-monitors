@@ -31,9 +31,6 @@ Creates DataDog monitors with the following checks:
 | evaluation\_delay | Delay in seconds for the metric evaluation | string | `"15"` | no |
 | filter\_tags\_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `"*"` | no |
 | filter\_tags\_custom\_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `""` | no |
-| filter\_tags\_scheduled\_backup\_custom | Tags used for scheduled backup custom filtering when filter_tags_scheduled_backup_use_defaults is false | string | `"null"` | no |
-| filter\_tags\_scheduled\_backup\_custom\_excluded | Tags excluded for scheduled backup custom filtering when filter_tags_scheduled_backup_use_defaults is false | string | `"null"` | no |
-| filter\_tags\_scheduled\_backup\_use\_defaults | Use default filter tags scheduled backup convention | string | `"null"` | no |
 | filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
 | message | Message sent when a monitor is triggered | string | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |

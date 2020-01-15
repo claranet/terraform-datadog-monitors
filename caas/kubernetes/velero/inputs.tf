@@ -19,21 +19,6 @@ variable "filter_tags_custom_excluded" {
   default     = ""
 }
 
-variable "filter_tags_scheduled_backup_use_defaults" {
-  description = "Use default filter tags scheduled backup convention"
-  default     = null
-}
-
-variable "filter_tags_scheduled_backup_custom" {
-  description = "Tags used for scheduled backup custom filtering when filter_tags_scheduled_backup_use_defaults is false"
-  default     = null
-}
-
-variable "filter_tags_scheduled_backup_custom_excluded" {
-  description = "Tags excluded for scheduled backup custom filtering when filter_tags_scheduled_backup_use_defaults is false"
-  default     = null
-}
-
 variable "message" {
   description = "Message sent when a monitor is triggered"
 }
