@@ -24,7 +24,7 @@ EOQ
   locked              = false
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:prometheus", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_scheduled_backup_missing_extra_tags)
+  tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_scheduled_backup_missing_extra_tags)
 
   lifecycle {
     ignore_changes = [silenced]
@@ -46,10 +46,10 @@ EOQ
     warning  = 0
   }
 
-  evaluation_delay  = var.evaluation_delay
-  new_host_delay    = var.new_host_delay
-  no_data_timeframe = var.velero_backup_failure_monitor_no_data_timeframe
+  evaluation_delay = var.evaluation_delay
+  new_host_delay   = var.new_host_delay
 
+  notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
@@ -57,7 +57,7 @@ EOQ
   locked              = false
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:prometheus", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_backup_failure_extra_tags)
+  tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_backup_failure_extra_tags)
 
   lifecycle {
     ignore_changes = [silenced]
@@ -79,10 +79,10 @@ EOQ
     warning  = 0
   }
 
-  evaluation_delay  = var.evaluation_delay
-  new_host_delay    = var.new_host_delay
-  no_data_timeframe = var.velero_backup_partial_failure_monitor_no_data_timeframe
+  evaluation_delay = var.evaluation_delay
+  new_host_delay   = var.new_host_delay
 
+  notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
@@ -90,7 +90,7 @@ EOQ
   locked              = false
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:prometheus", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_backup_partial_failure_extra_tags)
+  tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_backup_partial_failure_extra_tags)
 
   lifecycle {
     ignore_changes = [silenced]
@@ -112,10 +112,10 @@ EOQ
     warning  = 0
   }
 
-  evaluation_delay  = var.evaluation_delay
-  new_host_delay    = var.new_host_delay
-  no_data_timeframe = var.velero_backup_deletion_failure_monitor_no_data_timeframe
+  evaluation_delay = var.evaluation_delay
+  new_host_delay   = var.new_host_delay
 
+  notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
@@ -123,7 +123,7 @@ EOQ
   locked              = false
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:prometheus", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_backup_deletion_failure_extra_tags)
+  tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_backup_deletion_failure_extra_tags)
 
   lifecycle {
     ignore_changes = [silenced]
@@ -145,10 +145,10 @@ EOQ
     warning  = 0
   }
 
-  evaluation_delay  = var.evaluation_delay
-  new_host_delay    = var.new_host_delay
-  no_data_timeframe = var.velero_volume_snapshot_failure_monitor_no_data_timeframe
+  evaluation_delay = var.evaluation_delay
+  new_host_delay   = var.new_host_delay
 
+  notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
@@ -156,7 +156,7 @@ EOQ
   locked              = false
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:prometheus", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_volume_snapshot_failure_extra_tags)
+  tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_volume_snapshot_failure_extra_tags)
 
   lifecycle {
     ignore_changes = [silenced]

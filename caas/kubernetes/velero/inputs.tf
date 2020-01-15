@@ -113,11 +113,6 @@ variable "velero_backup_failure_extra_tags" {
   default     = []
 }
 
-variable "velero_backup_failure_monitor_no_data_timeframe" {
-  description = "No data timeframe in minutes"
-  default     = 1440
-}
-
 variable "velero_backup_partial_failure_monitor_message" {
   description = "Custom message for Velero backup partial failure monitor"
   type        = string
@@ -140,11 +135,6 @@ variable "velero_backup_partial_failure_extra_tags" {
   description = "Extra tags for Velero backup partial failure monitor"
   type        = list(string)
   default     = []
-}
-
-variable "velero_backup_partial_failure_monitor_no_data_timeframe" {
-  description = "No data timeframe in minutes"
-  default     = 1440
 }
 
 variable "velero_backup_deletion_failure_monitor_message" {
@@ -171,11 +161,6 @@ variable "velero_backup_deletion_failure_extra_tags" {
   default     = []
 }
 
-variable "velero_backup_deletion_failure_monitor_no_data_timeframe" {
-  description = "No data timeframe in minutes"
-  default     = 1440
-}
-
 variable "velero_volume_snapshot_failure_monitor_message" {
   description = "Custom message for Velero volume snapshot failure monitor"
   type        = string
@@ -198,9 +183,4 @@ variable "velero_volume_snapshot_failure_extra_tags" {
   description = "Extra tags for Velero volume snapshot failure monitor"
   type        = list(string)
   default     = []
-}
-
-variable "velero_volume_snapshot_failure_monitor_no_data_timeframe" {
-  description = "No data timeframe in minutes"
-  default     = 1440
 }
