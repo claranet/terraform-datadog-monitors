@@ -136,7 +136,7 @@ resource "datadog_monitor" "mysql_pool_efficiency_high" {
   type    = "query alert"
 
   query = <<EOQ
-    ${var.mysql_pool_efficiency_time_aggregator}(${var.mysql_pool_efficiency_timeframe_high}): (
+    ${var.mysql_pool_efficiency_time_aggregator}(${var.mysql_pool_efficiency_high_timeframe}): (
       avg:mysql.innodb.buffer_pool_reads${module.filter-tags.query_alert} by {server} /
       avg:mysql.innodb.buffer_pool_read_requests${module.filter-tags.query_alert} by {server}
     ) * 100 > ${var.mysql_pool_efficiency_threshold_high_critical}
@@ -169,7 +169,7 @@ resource "datadog_monitor" "mysql_pool_efficiency_low" {
   type    = "query alert"
 
   query = <<EOQ
-    ${var.mysql_pool_efficiency_time_aggregator}(${var.mysql_pool_efficiency_timeframe_low}): (
+    ${var.mysql_pool_efficiency_time_aggregator}(${var.mysql_pool_efficiency_low_timeframe}): (
       avg:mysql.innodb.buffer_pool_reads${module.filter-tags.query_alert} by {server} /
       avg:mysql.innodb.buffer_pool_read_requests${module.filter-tags.query_alert} by {server}
     ) * 100 < ${var.mysql_pool_efficiency_threshold_low_critical}
