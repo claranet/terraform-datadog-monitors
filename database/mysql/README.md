@@ -133,8 +133,10 @@ Creates DataDog monitors with the following checks:
 | mysql\_aborted\_id | id for monitor mysql_aborted |
 | mysql\_availability\_id | id for monitor mysql_availability |
 | mysql\_connection\_id | id for monitor mysql_connection |
-| mysql\_pool\_efficiency\_id | id for monitor mysql_pool_efficiency |
-| mysql\_pool\_utilization\_id | id for monitor mysql_pool_utilization |
+| mysql\_pool\_efficiency\_high\_id | id for monitor mysql_pool_efficiency_high |
+| mysql\_pool\_efficiency\_low\_id | id for monitor mysql_pool_efficiency_low |
+| mysql\_pool\_utilization\_high\_id | id for monitor mysql_pool_utilization_high |
+| mysql\_pool\_utilization\_low\_id | id for monitor mysql_pool_utilization_low |
 | mysql\_questions\_anomaly\_id | id for monitor mysql_questions_anomaly |
 | mysql\_replication\_lag\_id | id for monitor mysql_replication_lag |
 | mysql\_replication\_status\_id | id for monitor mysql_replication_status |
