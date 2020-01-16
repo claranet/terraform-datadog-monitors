@@ -13,14 +13,24 @@ output "mysql_connection_id" {
   value       = datadog_monitor.mysql_connection.*.id
 }
 
-output "mysql_pool_efficiency_id" {
-  description = "id for monitor mysql_pool_efficiency"
-  value       = datadog_monitor.mysql_pool_efficiency.*.id
+output "mysql_pool_efficiency_high_id" {
+  description = "id for monitor mysql_pool_efficiency_high"
+  value       = datadog_monitor.mysql_pool_efficiency_high.*.id
 }
 
-output "mysql_pool_utilization_id" {
-  description = "id for monitor mysql_pool_utilization"
-  value       = datadog_monitor.mysql_pool_utilization.*.id
+output "mysql_pool_efficiency_low_id" {
+  description = "id for monitor mysql_pool_efficiency_low"
+  value       = datadog_monitor.mysql_pool_efficiency_low.*.id
+}
+
+output "mysql_pool_utilization_high_id" {
+  description = "id for monitor mysql_pool_utilization_high"
+  value       = datadog_monitor.mysql_pool_utilization_high.*.id
+}
+
+output "mysql_pool_utilization_low_id" {
+  description = "id for monitor mysql_pool_utilization_low"
+  value       = datadog_monitor.mysql_pool_utilization_low.*.id
 }
 
 output "mysql_questions_anomaly_id" {
