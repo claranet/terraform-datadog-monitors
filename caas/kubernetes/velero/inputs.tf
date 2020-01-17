@@ -71,7 +71,7 @@ variable "velero_scheduled_backup_missing_extra_tags" {
 
 variable "velero_scheduled_backup_missing_monitor_no_data_timeframe" {
   description = "No data timeframe in minutes"
-  default     = 1440
+  default     = 2880
 }
 
 variable "velero_backup_failure_monitor_message" {
