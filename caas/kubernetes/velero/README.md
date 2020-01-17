@@ -51,7 +51,7 @@ Creates DataDog monitors with the following checks:
 | velero\_scheduled\_backup\_missing\_enabled | Flag to enable Velero scheduled backup missing monitor | string | `"true"` | no |
 | velero\_scheduled\_backup\_missing\_extra\_tags | Extra tags for Velero scheduled backup missing monitor | list(string) | `[]` | no |
 | velero\_scheduled\_backup\_missing\_monitor\_message | Custom message for Velero scheduled backup missing monitor | string | `""` | no |
-| velero\_scheduled\_backup\_missing\_monitor\_no\_data\_timeframe | No data timeframe in minutes | string | `"1440"` | no |
+| velero\_scheduled\_backup\_missing\_monitor\_no\_data\_timeframe | No data timeframe in minutes | string | `"2880"` | no |
 | velero\_scheduled\_backup\_missing\_monitor\_timeframe | Monitor timeframe for Velero scheduled backup missing monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1d"` | no |
 | velero\_volume\_snapshot\_failure\_enabled | Flag to enable Velero volume snapshot failure monitor | string | `"true"` | no |
 | velero\_volume\_snapshot\_failure\_extra\_tags | Extra tags for Velero volume snapshot failure monitor | list(string) | `[]` | no |
