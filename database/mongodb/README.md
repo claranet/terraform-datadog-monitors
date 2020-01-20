@@ -39,6 +39,7 @@ Creates DataDog monitors with the following checks:
 | mongodb\_primary\_enabled | Flag to enable MongoDB primary state monitor | `string` | `"true"` | no |
 | mongodb\_primary\_extra\_tags | Extra tags for MongoDB primary state monitor | `list(string)` | `[]` | no |
 | mongodb\_primary\_message | Custom message for MongoDB primary monitor | `string` | `""` | no |
+| mongodb\_primary\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | mongodb\_primary\_timeframe | Monitor timeframe for MongoDB wrong state for primary node [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_1m"` | no |
 | mongodb\_replication\_aggregator | Monitor aggregator for MongoDB replication lag [available values: min, max, sum or avg] | `string` | `"avg"` | no |
 | mongodb\_replication\_enabled | Flag to enable MongoDB replication lag monitor | `string` | `"true"` | no |

@@ -29,6 +29,12 @@ variable "notify_no_data" {
   default     = true
 }
 
+variable "eventgrid_no_successful_message_no_data_timeframe" {
+  description = "Number of minutes before reporting no data"
+  type        = string
+  default     = 10
+}
+
 variable "filter_tags_use_defaults" {
   description = "Use default filter tags convention"
   default     = "true"

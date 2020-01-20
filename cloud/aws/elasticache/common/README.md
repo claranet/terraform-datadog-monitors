@@ -28,6 +28,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:-----:|
+| elasticache\_max\_connection\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | environment | Infrastructure Environment | `string` | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | eviction\_enabled | Flag to enable Elasticache eviction monitor | `string` | `"true"` | no |

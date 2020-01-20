@@ -27,6 +27,7 @@ Creates DataDog monitors with the following checks:
 | apache\_connect\_extra\_tags | Extra tags for Apache process monitor | `list(string)` | `[]` | no |
 | apache\_connect\_message | Custom message for Apache status monitor | `string` | `""` | no |
 | apache\_connect\_threshold\_warning | Apache status monitor (warning threshold) | `string` | `3` | no |
+| datadog\_apache\_process\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | environment | Architecture Environment | `string` | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `15` | no |
 | filter\_tags\_custom | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |

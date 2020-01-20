@@ -25,6 +25,12 @@ variable "notify_no_data" {
   default     = true
 }
 
+variable "datadog_apache_process_no_data_timeframe" {
+  description = "Number of minutes before reporting no data"
+  type        = string
+  default     = 10
+}
+
 variable "message" {
   description = "Message sent when an alert is triggered"
 }

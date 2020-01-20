@@ -39,6 +39,7 @@ Creates DataDog monitors with the following checks:
 | new\_host\_delay | Delay in seconds before monitor new resource | `number` | `300` | no |
 | notify\_no\_data | Will raise no data alert if set to true | `bool` | `true` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| rds\_aurora\_mysql\_replica\_lag\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 
 ## Outputs
 

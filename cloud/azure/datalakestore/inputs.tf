@@ -42,6 +42,12 @@ variable "notify_no_data" {
   default     = true
 }
 
+variable "datalakestore_status_no_data_timeframe" {
+  description = "Number of minutes before reporting no data"
+  type        = string
+  default     = 10
+}
+
 # Azure Datalake Store specific variables
 variable "status_enabled" {
   description = "Flag to enable Datalake Store status monitor"

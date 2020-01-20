@@ -42,6 +42,12 @@ variable "notify_no_data" {
   default     = true
 }
 
+variable "azure_search_latency_no_data_timeframe" {
+  description = "Number of minutes before reporting no data"
+  type        = string
+  default     = 10
+}
+
 # Azure Search specific variables
 
 variable "latency_enabled" {

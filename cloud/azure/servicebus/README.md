@@ -47,6 +47,7 @@ Creates DataDog monitors with the following checks:
 | server\_errors\_threshold\_warning | Warning threshold for Service Bus server errors monitor | `number` | `50` | no |
 | server\_errors\_time\_aggregator | Monitor aggregator for Service Bus server errors [available values: min, max or avg] | `string` | `"min"` | no |
 | server\_errors\_timeframe | Monitor timeframe for Service Bus server errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| servicebus\_status\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | status\_enabled | Flag to enable Service Bus status monitor | `string` | `"true"` | no |
 | status\_extra\_tags | Extra tags for Service Bus status monitor | `list(string)` | `[]` | no |
 | status\_message | Custom message for Service Bus status monitor | `string` | `""` | no |

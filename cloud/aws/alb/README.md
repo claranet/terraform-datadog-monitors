@@ -31,6 +31,7 @@ Creates DataDog monitors with the following checks:
 | alb\_no\_healthy\_instances\_enabled | Flag to enable ALB no healthy instances monitor | `string` | `"true"` | no |
 | alb\_no\_healthy\_instances\_extra\_tags | Extra tags for ALB no healthy instances monitor | `list(string)` | `[]` | no |
 | alb\_no\_healthy\_instances\_message | Custom message for ALB no healthy instances monitor | `string` | `""` | no |
+| alb\_no\_healthy\_instances\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | alb\_no\_healthy\_instances\_threshold\_warning | ALB no healthy instances warning threshold in percentage | `number` | `100` | no |
 | alb\_no\_healthy\_instances\_time\_aggregator | Monitor aggregator for ALB no healthy instances [available values: min, max or avg] | `string` | `"min"` | no |
 | alb\_no\_healthy\_instances\_timeframe | Monitor timeframe for ALB no healthy instances [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
