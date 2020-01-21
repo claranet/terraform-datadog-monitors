@@ -22,27 +22,27 @@ Creates DataDog monitors with the following checks:
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| ark\_schedules\_enabled | Flag to enable Ark schedules monitor | string | `"true"` | no |
-| ark\_schedules\_extra\_tags | Extra tags for Ark schedules monitor | list(string) | `[]` | no |
-| ark\_schedules\_monitor\_message | Custom message for Ark schedules monitor | string | `""` | no |
-| ark\_schedules\_monitor\_no\_data\_timeframe | No data timeframe in minutes | string | `"1440"` | no |
-| ark\_schedules\_monitor\_timeframe | Monitor timeframe for Ark schedules monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | string | `"last_1d"` | no |
-| environment | Architecture environment | string | n/a | yes |
-| evaluation\_delay | Delay in seconds for the metric evaluation | string | `"15"` | no |
-| filter\_tags\_custom | Tags used for custom filtering when filter_tags_use_defaults is false | string | `"*"` | no |
-| filter\_tags\_custom\_excluded | Tags excluded for custom filtering when filter_tags_use_defaults is false | string | `""` | no |
-| filter\_tags\_use\_defaults | Use default filter tags convention | string | `"true"` | no |
-| message | Message sent when a monitor is triggered | string | n/a | yes |
-| new\_host\_delay | Delay in seconds before monitor new resource | string | `"300"` | no |
-| notify\_no\_data | Will raise no data alert if set to true | string | `"true"` | no |
-| prefix\_slug | Prefix string to prepend between brackets on every monitors names | string | `""` | no |
+|------|-------------|------|---------|:-----:|
+| ark\_schedules\_enabled | Flag to enable Ark schedules monitor | `string` | `"true"` | no |
+| ark\_schedules\_extra\_tags | Extra tags for Ark schedules monitor | `list(string)` | `[]` | no |
+| ark\_schedules\_monitor\_message | Custom message for Ark schedules monitor | `string` | `""` | no |
+| ark\_schedules\_monitor\_no\_data\_timeframe | No data timeframe in minutes | `number` | `1440` | no |
+| ark\_schedules\_monitor\_timeframe | Monitor timeframe for Ark schedules monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_1d"` | no |
+| environment | Architecture environment | `any` | n/a | yes |
+| evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `15` | no |
+| filter\_tags\_custom | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
+| filter\_tags\_custom\_excluded | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
+| filter\_tags\_use\_defaults | Use default filter tags convention | `string` | `"true"` | no |
+| message | Message sent when a monitor is triggered | `any` | n/a | yes |
+| new\_host\_delay | Delay in seconds before monitor new resource | `number` | `300` | no |
+| notify\_no\_data | Will raise no data alert if set to true | `bool` | `true` | no |
+| prefix\_slug | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| ark\_schedules\_monitor\_id | id for monitor ark_schedules_monitor |
+| ark\_schedules\_monitor\_id | id for monitor ark\_schedules\_monitor |
 
 ## Related documentation
 
