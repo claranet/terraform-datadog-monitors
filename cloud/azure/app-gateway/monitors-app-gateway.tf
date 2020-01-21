@@ -136,9 +136,9 @@ resource "datadog_monitor" "appgateway_healthy_host_ratio" {
 
   query = <<EOQ
     ${var.appgateway_unhealthy_host_ratio_time_aggregator}(${var.appgateway_unhealthy_host_ratio_timeframe}):
-      sum:azure.network_applicationgateways.unhealthy_host_count${module.filter-tags.query_alert} by {resource_group,region,name,backendsettingspool} /
-      (sum:azure.network_applicationgateways.unhealthy_host_count${module.filter-tags.query_alert} by {resource_group,region,name,backendsettingspool} +
-       sum:azure.network_applicationgateways.healthy_host_count${module.filter-tags.query_alert} by {resource_group,region,name,backendsettingspool})
+      default(sum:azure.network_applicationgateways.unhealthy_host_count${module.filter-tags.query_alert} by {resource_group,region,name,backendsettingspool}, 0) /
+      (default(sum:azure.network_applicationgateways.unhealthy_host_count${module.filter-tags.query_alert} by {resource_group,region,name,backendsettingspool}, 0) +
+       default(sum:azure.network_applicationgateways.healthy_host_count${module.filter-tags.query_alert} by {resource_group,region,name,backendsettingspool}, 0))
       * 100 > ${var.appgateway_unhealthy_host_ratio_threshold_critical}
 EOQ
 
