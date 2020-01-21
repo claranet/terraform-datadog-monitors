@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-cloud-azure-cosmosdb" {
-  source = "claranet/monitors/datadog//cloud/azure/cosmosdb"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//cloud/azure/cosmosdb"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

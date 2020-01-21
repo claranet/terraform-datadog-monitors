@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-database-redis" {
-  source = "claranet/monitors/datadog//database/redis"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//database/redis"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

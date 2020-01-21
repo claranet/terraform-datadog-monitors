@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-network-http-ssl" {
-  source = "claranet/monitors/datadog//network/http/ssl"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//network/http/ssl"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

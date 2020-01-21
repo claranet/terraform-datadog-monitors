@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-cloud-azure-apimanagement" {
-  source = "claranet/monitors/datadog//cloud/azure/apimanagement"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//cloud/azure/apimanagement"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

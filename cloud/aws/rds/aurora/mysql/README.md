@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-cloud-aws-rds-aurora-mysql" {
-  source = "claranet/monitors/datadog//cloud/aws/rds/aurora/mysql"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//cloud/aws/rds/aurora/mysql"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

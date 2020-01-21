@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-network-http-webcheck" {
-  source = "claranet/monitors/datadog//network/http/webcheck"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//network/http/webcheck"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

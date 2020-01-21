@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-network-tls" {
-  source = "claranet/monitors/datadog//network/tls"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//network/tls"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

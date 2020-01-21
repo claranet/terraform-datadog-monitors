@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-cloud-aws-apigateway" {
-  source = "claranet/monitors/datadog//cloud/aws/apigateway"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//cloud/aws/apigateway"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

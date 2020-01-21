@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-cloud-aws-vpn" {
-  source = "claranet/monitors/datadog//cloud/aws/vpn"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//cloud/aws/vpn"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

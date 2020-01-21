@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-middleware-php-fpm" {
-  source = "claranet/monitors/datadog//middleware/php-fpm"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//middleware/php-fpm"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

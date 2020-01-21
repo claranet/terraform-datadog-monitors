@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-caas-kubernetes-velero" {
-  source = "claranet/monitors/datadog//caas/kubernetes/velero"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//caas/kubernetes/velero"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

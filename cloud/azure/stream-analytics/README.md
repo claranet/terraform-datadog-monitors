@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-cloud-azure-stream-analytics" {
-  source = "claranet/monitors/datadog//cloud/azure/stream-analytics"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//cloud/azure/stream-analytics"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

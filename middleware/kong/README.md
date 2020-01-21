@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-middleware-kong" {
-  source = "claranet/monitors/datadog//middleware/kong"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//middleware/kong"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-caas-kubernetes-cluster" {
-  source = "claranet/monitors/datadog//caas/kubernetes/cluster"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//caas/kubernetes/cluster"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

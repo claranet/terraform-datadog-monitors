@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-cloud-aws-elasticache-common" {
-  source = "claranet/monitors/datadog//cloud/aws/elasticache/common"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//cloud/aws/elasticache/common"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

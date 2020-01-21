@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-caas-kubernetes-ingress-vts" {
-  source = "claranet/monitors/datadog//caas/kubernetes/ingress/vts"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//caas/kubernetes/ingress/vts"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

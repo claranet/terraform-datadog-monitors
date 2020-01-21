@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-system-unreachable" {
-  source = "claranet/monitors/datadog//system/unreachable"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//system/unreachable"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

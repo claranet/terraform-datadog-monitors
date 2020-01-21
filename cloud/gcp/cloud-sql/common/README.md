@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-cloud-gcp-cloud-sql-common" {
-  source = "claranet/monitors/datadog//cloud/gcp/cloud-sql/common"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//cloud/gcp/cloud-sql/common"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-database-postgresql" {
-  source = "claranet/monitors/datadog//database/postgresql"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//database/postgresql"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

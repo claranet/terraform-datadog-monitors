@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-system-generic" {
-  source = "claranet/monitors/datadog//system/generic"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//system/generic"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message

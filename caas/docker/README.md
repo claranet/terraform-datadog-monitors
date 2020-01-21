@@ -2,10 +2,10 @@
 
 ## How to use this module
 
-```
+```hcl
 module "datadog-monitors-caas-docker" {
-  source = "claranet/monitors/datadog//caas/docker"
-  version = "{revision}"
+  source      = "claranet/monitors/datadog//caas/docker"
+  version     = "{revision}"
 
   environment = var.environment
   message     = module.datadog-message-alerting.alerting-message
