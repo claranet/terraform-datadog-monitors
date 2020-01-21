@@ -116,19 +116,32 @@ instances:
 
 ### How to monitor multiple schedule witch have different frequencies ?
 
-If you have multiple Velero schedules with different frequencies, you must duplicate this module and disable common monitors in the others instance of module.
+If you have multiple Velero schedules with different frequencies, you must duplicate the default example module declaration specifying right timeframes and disabling others common monitors.
+
+For instance, for an hourly schedule you can uncomment this block:
 
 ```
-module "datadog-monitors-caas-kubernetes-velero" {
-  source = "claranet/monitors/datadog//caas/kubernetes/velero"
-  version = "{revision}"
+#module "datadog-monitors-caas-kubernetes-velero" {
+#  source                                                    = "claranet/monitors/datadog//caas/kubernetes/velero"
+#  version                                                   = "{revision}"
+#
+#  environment                                               = var.environment
+#  message                                                   = module.datadog-message-alerting.alerting-message
+#}
 
-  environment = var.environment
-  message     = module.datadog-message-alerting.alerting-message
-
-  velero_backup_failure_enabled          = false
-  velero_backup_partial_failure_enabled  = false
-  velero_backup_deletion_failure_enabled = false
-  velero_volume_snapshot_failure_enabled = false
-}
+#module "datadog-monitors-caas-kubernetes-velero-hourly" {
+#  source                                                    = "claranet/monitors/datadog//caas/kubernetes/velero"
+#  version                                                   = "{revision}"
+#
+#  environment                                               = var.environment
+#  message                                                   = module.datadog-message-alerting.alerting-message
+#
+#  velero_scheduled_backup_missing_monitor_timeframe         = "last_1h"
+#  velero_scheduled_backup_missing_monitor_no_data_timeframe = 120
+#  velero_backup_failure_enabled                             = false
+#  velero_backup_partial_failure_enabled                     = false
+#  velero_backup_deletion_failure_enabled                    = false
+#  velero_volume_snapshot_failure_enabled                    = false
+#}
+```
 
