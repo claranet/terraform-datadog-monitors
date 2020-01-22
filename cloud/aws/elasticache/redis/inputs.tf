@@ -25,11 +25,6 @@ variable "notify_no_data" {
   default     = true
 }
 
-variable "redis_cache_hits_no_data_timeframe" {
-  description = "Number of minutes before reporting no data"
-  default     = ""
-}
-
 variable "redis_cpu_high_no_data_timeframe" {
   description = "Number of minutes before reporting no data"
   default     = ""
