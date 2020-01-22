@@ -28,6 +28,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_custom | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | filter\_tags\_custom\_excluded | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | filter\_tags\_use\_defaults | Use default filter tags convention | `string` | `"true"` | no |
+| firehose\_incoming\_records\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | incoming\_records\_enabled | Flag to enable Kinesis Firehorse incoming records monitor | `string` | `"true"` | no |
 | incoming\_records\_extra\_tags | Extra tags for Kinesis Firehorse incoming records monitor | `list(string)` | `[]` | no |
 | incoming\_records\_message | Custom message for Kinesis Firehorse incoming records monitor | `string` | `""` | no |
