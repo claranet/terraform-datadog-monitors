@@ -46,8 +46,8 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_use\_defaults | Use default filter tags convention | `string` | `"true"` | no |
 | message | Message sent when an alert is triggered | `any` | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | `number` | `300` | no |
+| no\_data\_timeframe | Number of minutes before reporting no data | `number` | `10` | no |
 | notify\_no\_data | Will raise no data alert if set to true | `bool` | `true` | no |
-| no\_data\_timeframe | Number of minutes before reporting no data | `string` | `"10"` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
 | replicalag\_enabled | Flag to enable RDS replica lag monitor | `string` | `"true"` | no |
 | replicalag\_extra\_tags | Extra tags for RDS replica lag monitor | `list(string)` | `[]` | no |
