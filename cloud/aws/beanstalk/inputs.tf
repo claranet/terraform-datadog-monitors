@@ -27,7 +27,8 @@ variable "notify_no_data" {
 
 variable "health_no_data_timeframe" {
   description = "Number of minutes before reporting no data"
-  default     = ""
+  type        = string
+  default     = 10
 }
 
 variable "message" {
