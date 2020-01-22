@@ -54,6 +54,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   notify_no_data      = var.notify_no_data
+  no_data_timeframe   = var.memcached_cpu_high_no_data_timeframe
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0

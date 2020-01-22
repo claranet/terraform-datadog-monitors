@@ -43,6 +43,7 @@ Creates DataDog monitors with the following checks:
 | get\_hits\_threshold\_warning | Elasticache memcached get hits warning threshold in percentage | `string` | `80` | no |
 | get\_hits\_time\_aggregator | Monitor aggregator for Elasticache memcached get hits [available values: min, max or avg] | `string` | `"max"` | no |
 | get\_hits\_timeframe | Monitor timeframe for Elasticache memcached get hits [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_15m"` | no |
+| memcached\_cpu\_high\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | message | Message sent when an alert is triggered | `any` | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | `number` | `300` | no |
 | notify\_no\_data | Will raise no data alert if set to true | `bool` | `true` | no |
