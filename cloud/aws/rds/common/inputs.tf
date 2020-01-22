@@ -25,8 +25,9 @@ variable "notify_no_data" {
   default     = true
 }
 
-variable "no_data_timeframe" {
+variable "rds_free_space_low_no_data_timeframe" {
   description = "Number of minutes before reporting no data"
+  type        = string
   default     = 10
 }
 
