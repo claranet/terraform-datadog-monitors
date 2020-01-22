@@ -48,6 +48,7 @@ Creates DataDog monitors with the following checks:
 | health\_enabled | Flag to enable Beanstalk Health monitor | `string` | `"true"` | no |
 | health\_extra\_tags | Extra tags for health monitor | `list(string)` | `[]` | no |
 | health\_message | Custom message for health monitor | `string` | `""` | no |
+| health\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `""` | no |
 | health\_threshold\_critical | Health critical threshold (see the `aws.elasticbeanstalk.environment_health` values in the Datadog documentation) | `number` | `20` | no |
 | health\_threshold\_warning | Health critical threshold (see the `aws.elasticbeanstalk.environment_health` values in the Datadog documentation) | `number` | `15` | no |
 | health\_time\_aggregator | Monitor aggregator for beanstalk health [available values: min, max or avg] | `string` | `"min"` | no |
