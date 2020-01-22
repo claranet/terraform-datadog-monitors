@@ -44,6 +44,11 @@ variable "notify_no_data" {
   default     = true
 }
 
+variable "alb_no_healthy_instances_no_data_timeframe" {
+  description = "Number of minutes before reporting no data"
+  default     = ""
+}
+
 # Datadog monitors variables
 
 variable "alb_no_healthy_instances_enabled" {
