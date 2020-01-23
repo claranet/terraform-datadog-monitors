@@ -131,7 +131,8 @@ resource "datadog_monitor" "invocations" {
     warning  = var.invocations_threshold_warning
   }
 
-  notify_no_data      = false
+  notify_no_data      = var.notify_no_data
+  no_data_timeframe   = var.invocations_no_data_timeframe
   require_full_window = false
   renotify_interval   = 0
   notify_audit        = false
