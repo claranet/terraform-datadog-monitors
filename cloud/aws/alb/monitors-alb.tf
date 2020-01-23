@@ -139,8 +139,8 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
 
   query = <<EOQ
     ${var.httpcode_target_5xx_time_aggregator}(${var.httpcode_target_5xx_timeframe}):
-      default(avg:aws.applicationelb.httpcode_target_5xx${module.filter-tags.query_alert} by {region,loadbalancer}.as_rate(), 0) / (
-      default(avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_rate() + ${var.artificial_requests_count}, 1))
+      default(avg:aws.applicationelb.httpcode_target_5xx${module.filter-tags.query_alert} by {region,loadbalancer,targetgroup}.as_rate(), 0) / (
+      default(avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer,targetgroup}.as_rate() + ${var.artificial_requests_count}, 1))
       * 100 > ${var.httpcode_target_5xx_threshold_critical}
 EOQ
 
@@ -172,8 +172,8 @@ resource "datadog_monitor" "ALB_httpcode_target_4xx" {
 
   query = <<EOQ
     ${var.httpcode_target_4xx_time_aggregator}(${var.httpcode_target_4xx_timeframe}):
-      default(avg:aws.applicationelb.httpcode_target_4xx${module.filter-tags.query_alert} by {region,loadbalancer}.as_rate(), 0) / (
-      default(avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer}.as_rate() + ${var.artificial_requests_count}, 1))
+      default(avg:aws.applicationelb.httpcode_target_4xx${module.filter-tags.query_alert} by {region,loadbalancer,targetgroup}.as_rate(), 0) / (
+      default(avg:aws.applicationelb.request_count${module.filter-tags.query_alert} by {region,loadbalancer,targetgroup}.as_rate() + ${var.artificial_requests_count}, 1))
       * 100 > ${var.httpcode_target_4xx_threshold_critical}
 EOQ
 
