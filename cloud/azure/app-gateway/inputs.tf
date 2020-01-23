@@ -43,6 +43,12 @@ variable "notify_no_data" {
   default     = true
 }
 
+variable "appgateway_status_no_data_timeframe" {
+  description = "Number of minutes before reporting no data"
+  type        = string
+  default     = 10
+}
+
 # Azure App Gateway specific variables
 # Monitoring App Gateway status
 variable "status_enabled" {

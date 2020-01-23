@@ -35,6 +35,12 @@ variable "notify_no_data" {
   default     = true
 }
 
+variable "replication_lag_no_data_timeframe" {
+  description = "Number of minutes before reporting no data"
+  type        = string
+  default     = 20
+}
+
 #
 # Replication Lag
 #

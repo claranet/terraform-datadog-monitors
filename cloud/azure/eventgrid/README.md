@@ -27,6 +27,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|------|---------|:-----:|
 | environment | Architecture environment | `string` | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `900` | no |
+| eventgrid\_no\_successful\_message\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | failed\_messages\_rate\_enabled | Flag to enable Event Grid failed messages monitor | `string` | `"true"` | no |
 | failed\_messages\_rate\_extra\_tags | Extra tags for Event Grid failed messages monitor | `list(string)` | `[]` | no |
 | failed\_messages\_rate\_message | Custom message for Event Grid failed messages monitor | `string` | `""` | no |

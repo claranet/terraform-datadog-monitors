@@ -35,6 +35,12 @@ variable "notify_no_data" {
   default     = true
 }
 
+variable "cpu_utilization_no_data_timeframe" {
+  description = "Number of minutes before reporting no data"
+  type        = string
+  default     = 30
+}
+
 #
 # CPU
 #

@@ -118,6 +118,7 @@ Creates DataDog monitors with the following checks:
 | status\_silenced | Groups to mute for App Services status monitor | `map(string)` | `{}` | no |
 | status\_time\_aggregator | Monitor aggregator for Storage Services status [available values: min, max or avg] | `string` | `"max"` | no |
 | status\_timeframe | Monitor timeframe for Storage Services status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| storage\_status\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | successful\_requests\_enabled | Flag to enable Storage sucessful requests monitor | `string` | `"true"` | no |
 | successful\_requests\_extra\_tags | Extra tags for Storage sucessful requests monitor | `list(string)` | `[]` | no |
 | successful\_requests\_message | Custom message for Storage sucessful requests monitor | `string` | `""` | no |

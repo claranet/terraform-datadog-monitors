@@ -63,6 +63,7 @@ EOQ
   include_tags        = true
   require_full_window = false
   notify_no_data      = var.notify_no_data
+  no_data_timeframe   = var.disk_utilization_no_data_timeframe
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.disk_utilization_extra_tags)

@@ -48,6 +48,7 @@ Creates DataDog monitors with the following checks:
 | kubelet\_ping\_enabled | Flag to enable Kubelet ping monitor | `string` | `"true"` | no |
 | kubelet\_ping\_extra\_tags | Extra tags for Kubelet ping monitor | `list(string)` | `[]` | no |
 | kubelet\_ping\_message | Custom message for Kubelet ping monitor | `string` | `""` | no |
+| kubelet\_ping\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | kubelet\_ping\_threshold\_warning | Kubelet ping monitor (warning threshold) | `string` | `3` | no |
 | kubelet\_syncloop\_enabled | Flag to enable Kubelet sync loop monitor | `string` | `"true"` | no |
 | kubelet\_syncloop\_extra\_tags | Extra tags for Kubelet sync loop monitor | `list(string)` | `[]` | no |

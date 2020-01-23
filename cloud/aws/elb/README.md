@@ -63,6 +63,7 @@ Creates DataDog monitors with the following checks:
 | elb\_no\_healthy\_instance\_enabled | Flag to enable ELB no healty instance monitor | `string` | `"true"` | no |
 | elb\_no\_healthy\_instance\_extra\_tags | Extra tags for ELB no healty instance monitor | `list(string)` | `[]` | no |
 | elb\_no\_healthy\_instance\_message | Custom message for ELB no healty instance monitor | `string` | `""` | no |
+| elb\_no\_healthy\_instance\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | elb\_no\_healthy\_instance\_threshold\_warning | ELB no healthy instances warning threshold in percentage | `number` | `100` | no |
 | elb\_no\_healthy\_instance\_time\_aggregator | Monitor aggregator for ELB no healty instance [available values: min or max] | `string` | `"min"` | no |
 | elb\_no\_healthy\_instance\_timeframe | Monitor timeframe for ELB no healty instance [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |

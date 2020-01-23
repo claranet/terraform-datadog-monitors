@@ -28,6 +28,7 @@ Creates DataDog monitors with the following checks:
 | cpu\_utilization\_enabled | Flag to enable CPU Utilization monitor | `string` | `"true"` | no |
 | cpu\_utilization\_extra\_tags | Extra tags for CPU Utilization monitor | `list(string)` | `[]` | no |
 | cpu\_utilization\_message | Custom message for the CPU Utilization monitor | `string` | `""` | no |
+| cpu\_utilization\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `30` | no |
 | cpu\_utilization\_threshold\_critical | CPU Utilization in percentage (critical threshold) | `string` | `90` | no |
 | cpu\_utilization\_threshold\_warning | CPU Utilization in percentage (warning threshold) | `string` | `80` | no |
 | cpu\_utilization\_time\_aggregator | Time aggregator for the CPU Utilization monitor | `string` | `"avg"` | no |

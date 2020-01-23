@@ -45,6 +45,7 @@ Creates DataDog monitors with the following checks:
 | es\_cluster\_status\_enabled | Flag to enable ES cluster status monitor | `string` | `"true"` | no |
 | es\_cluster\_status\_extra\_tags | Extra tags for ES cluster status monitor | `list(string)` | `[]` | no |
 | es\_cluster\_status\_message | Custom message for ES cluster status monitor | `string` | `""` | no |
+| es\_cluster\_status\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `60` | no |
 | es\_cluster\_status\_timeframe | Monitor timeframe for ES cluster status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_30m"` | no |
 | es\_cluster\_volume\_size | ElasticSearch Domain volume size (in GB) | `any` | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `900` | no |
