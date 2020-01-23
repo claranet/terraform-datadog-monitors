@@ -1,4 +1,26 @@
 
+# v3.3.0 (January 23, 2020)
+
+## Bug
+
+*   [[MON-556](https://claranet-morea.atlassian.net/browse/MON-556)] - Some monitors doesn't have customizable no_data_timeframe
+*   [[MON-558](https://claranet-morea.atlassian.net/browse/MON-558)] - AZure Application gateway monitoring healthy host check has no  data
+*   [[MON-562](https://claranet-morea.atlassian.net/browse/MON-562)] - Fix perpetual diff on no_data_timeframe
+
+## Improvement
+
+*   [[MON-527](https://claranet-morea.atlassian.net/browse/MON-527)] - Disable memory forecast monitor for gcp cloudsql
+*   [[MON-547](https://claranet-morea.atlassian.net/browse/MON-547)] - Add monitor for MySQL lag and replication
+*   [[MON-559](https://claranet-morea.atlassian.net/browse/MON-559)] - Remove awk hack and use terraform-docs 0.8.0
+*   [[MON-561](https://claranet-morea.atlassian.net/browse/MON-561)] - Add targetgroup in group by for ALB monitors
+
+## New Feature
+
+*   [[MON-521](https://claranet-morea.atlassian.net/browse/MON-521)] - Monitors for AWS ECS Fargate
+*   [[MON-554](https://claranet-morea.atlassian.net/browse/MON-554)] - Monitors for K8S Velero
+*   [[MON-557](https://claranet-morea.atlassian.net/browse/MON-557)] - SQL Server monitors
+*   [[MON-560](https://claranet-morea.atlassian.net/browse/MON-560)] - Monitors for solr
+
 # v3.2.0 (December 13, 2019)
 
 ## Bug
