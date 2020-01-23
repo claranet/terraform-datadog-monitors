@@ -141,6 +141,7 @@ module "datadog-monitors-system-generic" {
 		- [ecs](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/ecs/)
 			- [common](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/ecs/common/)
 			- [ec2-cluster](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/ecs/ec2-cluster/)
+			- [fargate](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/ecs/fargate/)
 		- [elasticache](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/elasticache/)
 			- [common](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/elasticache/common/)
 			- [memcached](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/elasticache/memcached/)
