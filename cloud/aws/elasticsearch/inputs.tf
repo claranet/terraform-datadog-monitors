@@ -28,7 +28,7 @@ variable "notify_no_data" {
 variable "es_cluster_status_no_data_timeframe" {
   description = "Number of minutes before reporting no data"
   type        = string
-  default     = 10
+  default     = 60
 }
 
 variable "message" {
