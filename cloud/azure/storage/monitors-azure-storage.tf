@@ -15,6 +15,7 @@ EOQ
   silenced            = var.status_silenced
   type                = "metric alert"
   notify_no_data      = var.notify_no_data
+  no_data_timeframe   = var.storage_status_no_data_timeframe
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true

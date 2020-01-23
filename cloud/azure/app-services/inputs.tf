@@ -42,6 +42,12 @@ variable "notify_no_data" {
   default     = true
 }
 
+variable "appservices_status_no_data_timeframe" {
+  description = "Number of minutes before reporting no data"
+  type        = string
+  default     = 10
+}
+
 # Azure App Services specific variables
 
 variable "response_time_enabled" {
