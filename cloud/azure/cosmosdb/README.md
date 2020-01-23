@@ -47,6 +47,7 @@ Creates DataDog monitors with the following checks:
 | cosmos\_db\_scaling\_message | Custom message for Cosmos DB scaling monitor | `string` | `""` | no |
 | cosmos\_db\_scaling\_time\_aggregator | Monitor aggregator for Cosmos DB scaling [available values: min, max or avg] | `string` | `"min"` | no |
 | cosmos\_db\_scaling\_timeframe | Monitor timeframe for Cosmos DB scaling [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| cosmos\_db\_status\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | environment | Architecture environment | `string` | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | filter\_tags\_custom | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |

@@ -73,6 +73,7 @@ Creates DataDog monitors with the following checks:
 | appgateway\_http\_5xx\_errors\_threshold\_warning | Warning regarding acceptable percent of 5xx error | `number` | `80` | no |
 | appgateway\_http\_5xx\_errors\_time\_aggregator | Monitor aggregator for App Gateway http 5xx errors [available values: min, max or avg] | `string` | `"max"` | no |
 | appgateway\_http\_5xx\_errors\_timeframe | Monitor timeframe for App Gateway http 5xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| appgateway\_status\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | appgateway\_unhealthy\_host\_ratio\_enabled | Flag to enable App Gateway unhealthy host ratio monitor | `string` | `"true"` | no |
 | appgateway\_unhealthy\_host\_ratio\_extra\_tags | Extra tags for App Gateway unhealthy host ratio monitor | `list(string)` | `[]` | no |
 | appgateway\_unhealthy\_host\_ratio\_message | Custom message for App Gateway unhealthy host ratio monitor | `string` | `""` | no |

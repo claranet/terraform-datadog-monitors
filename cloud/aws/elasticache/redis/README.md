@@ -53,7 +53,7 @@ Creates DataDog monitors with the following checks:
 | new\_host\_delay | Delay in seconds before monitor new resource | `number` | `300` | no |
 | notify\_no\_data | Will raise no data alert if set to true | `bool` | `true` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
-| redis\_cpu\_high\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
+| redis\_cpu\_high\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `30` | no |
 | replication\_lag\_enabled | Flag to enable Elasticache redis replication lag monitor | `string` | `"true"` | no |
 | replication\_lag\_extra\_tags | Extra tags for Elasticache redis replication lag monitor | `list(string)` | `[]` | no |
 | replication\_lag\_message | Custom message for Elasticache redis replication lag monitor | `string` | `""` | no |

@@ -28,6 +28,7 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_custom | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | filter\_tags\_custom\_excluded | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | filter\_tags\_use\_defaults | Use default filter tags convention | `string` | `"true"` | no |
+| loadbalancer\_status\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | message | Message sent when a monitor is triggered | `any` | n/a | yes |
 | new\_host\_delay | Delay in seconds before monitor new resource | `number` | `300` | no |
 | notify\_no\_data | Will raise no data alert if set to true | `bool` | `true` | no |

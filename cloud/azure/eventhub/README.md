@@ -34,6 +34,7 @@ Creates DataDog monitors with the following checks:
 | errors\_rate\_time\_aggregator | Monitor aggregator for Event Hub errors [available values: min, max or avg] | `string` | `"min"` | no |
 | errors\_rate\_timeframe | Monitor timeframe for Event Hub errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `900` | no |
+| eventhub\_status\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | failed\_requests\_rate\_enabled | Flag to enable Event Hub failed requests monitor | `string` | `"true"` | no |
 | failed\_requests\_rate\_extra\_tags | Extra tags for Event Hub failed requests monitor | `list(string)` | `[]` | no |
 | failed\_requests\_rate\_message | Custom message for Event Hub failed requests monitor | `string` | `""` | no |

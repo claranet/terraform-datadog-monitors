@@ -51,6 +51,7 @@ Creates DataDog monitors with the following checks:
 | disk\_utilization\_forecast\_time\_aggregator | Time aggregator for the Disk Utilization Forecast monitor | `string` | `"max"` | no |
 | disk\_utilization\_forecast\_timeframe | Timeframe for the Disk Utilization Forecast monitor | `string` | `"next_1w"` | no |
 | disk\_utilization\_message | Custom message for the Disk Utilization monitor | `string` | `""` | no |
+| disk\_utilization\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | disk\_utilization\_threshold\_critical | Disk Utilization in percentage (critical threshold) | `string` | `90` | no |
 | disk\_utilization\_threshold\_warning | Disk Utilization in percentage (warning threshold) | `string` | `80` | no |
 | disk\_utilization\_time\_aggregator | Time aggregator for the Disk Utilization monitor | `string` | `"avg"` | no |

@@ -125,6 +125,7 @@ Creates DataDog monitors with the following checks:
 | status\_enabled | Flag to enable IoT Hub status monitor | `string` | `"true"` | no |
 | status\_extra\_tags | Extra tags for IoT Hub status monitor | `list(string)` | `[]` | no |
 | status\_message | Custom message for IoT Hub status monitor | `string` | `""` | no |
+| status\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | status\_time\_aggregator | Monitor aggregator for IoT Hub status [available values: min, max, sum or avg] | `string` | `"max"` | no |
 | status\_timeframe | Monitor timeframe for IoT Hub status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | too\_many\_d2c\_telemetry\_ingress\_nosent\_enabled | Flag to enable IoT Hub unsent d2c telemetry monitor | `string` | `"true"` | no |
