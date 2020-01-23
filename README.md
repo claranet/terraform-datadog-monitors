@@ -201,6 +201,7 @@ module "datadog-monitors-system-generic" {
 	- [mysql](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/mysql/)
 	- [postgresql](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/postgresql/)
 	- [redis](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/redis/)
+	- [solr](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/solr/)
 	- [sqlserver](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/sqlserver/)
 - [middleware](https://github.com/claranet/terraform-datadog-monitors/tree/master/middleware/)
 	- [apache](https://github.com/claranet/terraform-datadog-monitors/tree/master/middleware/apache/)
