@@ -5,7 +5,7 @@ resource "datadog_monitor" "sqlserver_availability" {
   type    = "service check"
 
   query = <<EOQ
-    "sqlserver.can_connect"${module.filter-tags.service_check}.by("port","server").last(6).count_by_status()
+    "sqlserver.can_connect"${module.filter-tags.service_check}.by("db","server").last(6).count_by_status()
 EOQ
 
   thresholds = {
