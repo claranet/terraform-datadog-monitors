@@ -28,7 +28,7 @@ variable "notify_no_data" {
 variable "redis_cpu_high_no_data_timeframe" {
   description = "Number of minutes before reporting no data"
   type        = string
-  default     = 10
+  default     = 30
 }
 
 variable "message" {
