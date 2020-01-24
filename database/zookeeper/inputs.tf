@@ -40,43 +40,93 @@ variable "prefix_slug" {
   default     = ""
 }
 
+#
 # Service Check
-variable "zookeeper_process_enabled" {
+#
+variable "not_responding_notify_no_data" {
+  default     = true
+  type        = bool
+  description = "Send notification if not_responding monitor does not retrieve data"
+}
+variable "not_responding_no_data_timeframe" {
+  default     = 10
+  description = "Zookeeper monitor no_data_timeframe"
+  type        = number
+}
+
+variable "not_responding_group_by" {
+  default     = ["host", "server"]
+  type        = list(string)
+  description = "List of tags to use to group data"
+}
+
+variable "zookeeper_not_responding_enabled" {
   description = "Flag to enable Zookeeper does not respond monitor"
   type        = string
   default     = "true"
 }
 
-variable "zookeeper_process_message" {
+variable "zookeeper_not_responding_message" {
   description = "Custom message for Zookeeper does not respond monitor"
   type        = string
   default     = ""
 }
 
-variable "zookeeper_process_time_aggregator" {
+variable "zookeeper_not_responding_time_aggregator" {
   description = "Time aggregator for the Zookeeper does not respond monitor"
   type        = string
   default     = "avg"
 }
 
-variable "zookeeper_process_timeframe" {
+variable "zookeeper_not_responding_timeframe" {
   description = "Timeframe for the does not respond monitor"
   type        = string
-  default     = "last_10m"
+  default     = "last_5m"
 }
 
-variable "zookeeper_process_extra_tags" {
+variable "zookeeper_not_responding_extra_tags" {
   description = "Extra tags for Zookeeper does not respond monitor"
   type        = list(string)
   default     = []
 }
 
+variable "not_responding_threshold_warning" {
+  default     = 3
+  type        = number
+  description = "Zookeeper not responding limit (warning threshold)"
+}
 
-## Check read latency monitor
+variable "not_responding_notify_audit" {
+  description = "Enable or not notify audit on Zookeeper not responding monitor"
+  type        = bool
+  default     = false
+}
+
+variable "not_responding_locked" {
+  description = "Lock Zookeeper not responding monitor"
+  type        = bool
+  default     = false
+}
+
+variable "not_responding_timeout_h" {
+  description = "Number of hour of Zookeeper not responding monitor not reporting data before it will automatically resolve from a triggered state"
+  type        = number
+  default     = 0
+}
+
+#
+# Check read latency monitor
+#
 variable "zookeeper_latency_enabled" {
   description = "Flag to enable Zookeeper read latency monitor"
   type        = string
   default     = "true"
+}
+
+variable "zookeeper_latency_group_by" {
+  description = "Tags to use to group datas"
+  type        = list(string)
+  default     = ["host"]
 }
 
 variable "zookeeper_latency_status_message" {
@@ -111,4 +161,16 @@ variable "zookeeper_latency_availability_extra_tags" {
   description = "Extra tags for zookeeper read latency monitor"
   type        = list(string)
   default     = []
+}
+
+variable "zookeeper_latency_notify_audit" {
+  description = "Enable or not notify audit on Zookeeper latency monitor"
+  type        = bool
+  default     = false
+}
+
+variable "zookeeper_latency_timeout_h" {
+  description = "Number of hour of Zookeeper latency monitor not reporting data before it will automatically resolve from a triggered state"
+  type        = number
+  default     = 0
 }

@@ -203,6 +203,7 @@ module "datadog-monitors-system-generic" {
 	- [redis](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/redis/)
 	- [solr](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/solr/)
 	- [sqlserver](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/sqlserver/)
+	- [zookeeper](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/zookeeper/)
 - [middleware](https://github.com/claranet/terraform-datadog-monitors/tree/master/middleware/)
 	- [apache](https://github.com/claranet/terraform-datadog-monitors/tree/master/middleware/apache/)
 	- [kong](https://github.com/claranet/terraform-datadog-monitors/tree/master/middleware/kong/)
@@ -219,4 +220,3 @@ module "datadog-monitors-system-generic" {
 - [system](https://github.com/claranet/terraform-datadog-monitors/tree/master/system/)
 	- [generic](https://github.com/claranet/terraform-datadog-monitors/tree/master/system/generic/)
 	- [unreachable](https://github.com/claranet/terraform-datadog-monitors/tree/master/system/unreachable/)
-

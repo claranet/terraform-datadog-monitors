@@ -3,8 +3,8 @@ output "datadog_monitor_zookeeper_latency_id" {
   value       = datadog_monitor.datadog_monitor_zookeeper_latency.*.id
 }
 
-output "datadog_zookeeper_process_down_id" {
-  description = "id for monitor datadog_zookeeper_process_down"
-  value       = datadog_monitor.datadog_zookeeper_process_down.*.id
+output "not_responding_id" {
+  description = "id for monitor not_responding"
+  value       = datadog_monitor.not_responding.*.id
 }
 
