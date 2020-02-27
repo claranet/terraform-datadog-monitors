@@ -33,6 +33,7 @@ Creates DataDog monitors with the following checks:
 | new\_host\_delay | Delay in seconds before monitor new resource | `number` | `300` | no |
 | notify\_no\_data | Will raise no data alert if set to true | `bool` | `true` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| vpngw\_connexion\_status\_enabled | Enable VPN Gateways connexions status monitor | `bool` | `true` | no |
 | vpngw\_connexion\_status\_extra\_tags | Extra tags for VPN Gateways connexions monitor | `list(string)` | `[]` | no |
 | vpngw\_connexion\_status\_no\_data\_timeframe | VPN Gateways connexions monitor no data timeframe | `number` | `10` | no |
 | vpngw\_connexion\_status\_status\_message | Custom message for VPN Gateway connexions status monitor | `string` | `""` | no |

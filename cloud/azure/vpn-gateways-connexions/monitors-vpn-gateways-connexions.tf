@@ -1,5 +1,6 @@
 # Monitoring VPN Gateway Connexion status
 resource "datadog_monitor" "vpngw_connexion_status" {
+  count   = var.vpngw_connexion_status_enabled ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] VPN Gateway Connexion status {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = coalesce(var.vpngw_connexion_status_status_message, var.message)
   type    = "service check"
