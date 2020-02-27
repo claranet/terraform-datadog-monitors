@@ -6,7 +6,7 @@ resource "datadog_monitor" "vpngw_connexion_status" {
   type    = "service check"
 
   query = <<EOQ
-    "virtual_network_gateway.connected"${module.filter-tags.service_check}.by("conn_status", "host").last(6).count_by_status()
+    "virtual_network_gateway.connected"${module.filter-tags.service_check}.by("conn_name", "host").last(6).count_by_status()
 EOQ
 
   thresholds = {
