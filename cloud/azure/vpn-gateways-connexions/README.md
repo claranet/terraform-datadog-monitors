@@ -45,3 +45,5 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | vpngw\_connexion\_status\_id | id for monitor vpngw\_connexion\_status |
 
+## Related documentation
+

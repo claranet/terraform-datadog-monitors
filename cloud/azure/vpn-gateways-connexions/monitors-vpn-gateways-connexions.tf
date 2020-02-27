@@ -25,5 +25,5 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:vpn-gateway-connexion",
-    "team:claranet", "created-by:terraform"], var.vpngw_connexion_status_extra_tags)
+  "team:claranet", "created-by:terraform"], var.vpngw_connexion_status_extra_tags)
 }

@@ -52,8 +52,8 @@ variable "appservices_status_no_data_timeframe" {
 
 variable "vpngw_connexion_status_enabled" {
   description = "Enable VPN Gateways connexions status monitor"
-  type = bool
-  default = true
+  type        = bool
+  default     = true
 }
 
 variable "vpngw_connexion_status_status_message" {
