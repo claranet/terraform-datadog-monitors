@@ -181,6 +181,7 @@ module "datadog-monitors-system-generic" {
 		- [storage](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/storage/)
 		- [stream-analytics](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/stream-analytics/)
 		- [virtual-machine](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/virtual-machine/)
+		- [vpn-gateways-connexions](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/vpn-gateways-connexions/)
 	- [gcp](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/)
 		- [big-query](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/big-query/)
 		- [cloud-sql](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/cloud-sql/)
