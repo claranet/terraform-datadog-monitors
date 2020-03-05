@@ -38,7 +38,7 @@ resource "datadog_monitor" "provisioned_read_capacity_utilization" {
 # Write capacity utilization
 resource "datadog_monitor" "provisioned_write_capacity_utilization" {
   count   = var.provisioned_write_capacity_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] DynamoDB read capacity utilization has reached {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] DynamoDB write capacity utilization has reached {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
   type    = "metric alert"
   message = coalesce(var.provisioned_write_capacity_message, var.message)
 
