@@ -68,7 +68,7 @@ variable "provisioned_read_capacity_message" {
 variable "provisioned_read_capacity_time_aggregator" {
   description = "Monitor aggregator for Errors [available values: min, max or avg]"
   type        = string
-  default     = "sum"
+  default     = "avg"
 }
 
 variable "provisioned_read_capacity_timeframe" {
@@ -109,7 +109,7 @@ variable "provisioned_write_capacity_message" {
 variable "provisioned_write_capacity_time_aggregator" {
   description = "Monitor aggregator for Errors [available values: min, max or avg]"
   type        = string
-  default     = "sum"
+  default     = "avg"
 }
 
 variable "provisioned_write_capacity_timeframe" {
