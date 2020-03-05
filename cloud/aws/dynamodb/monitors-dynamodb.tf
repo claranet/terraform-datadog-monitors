@@ -6,8 +6,9 @@ resource "datadog_monitor" "provisioned_read_capacity_utilization" {
   message = coalesce(var.provisioned_read_capacity_message, var.message)
 
   query = <<EOQ
+
     ${var.provisioned_read_capacity_time_aggregator}(${var.provisioned_read_capacity_timeframe}):
-      default(sum:aws.dynamodb.account_provisioned_read_capacity_utilization${module.filter-tags.query_alert} by {region,tablename}.as_count(),0)
+      default(avg:aws.dynamodb.account_provisioned_read_capacity_utilization${module.filter-tags.query_alert} by {region,tablename}.as_count(),0) * 100
       > ${var.provisioned_read_capacity_threshold_critical}
   EOQ
 
@@ -43,7 +44,7 @@ resource "datadog_monitor" "provisioned_write_capacity_utilization" {
 
   query = <<EOQ
     ${var.provisioned_write_capacity_time_aggregator}(${var.provisioned_write_capacity_timeframe}):
-      default(sum:aws.dynamodb.account_provisioned_write_capacity_utilization${module.filter-tags.query_alert} by {region,tablename}.as_count(),0)
+      default(avg:aws.dynamodb.account_provisioned_write_capacity_utilization${module.filter-tags.query_alert} by {region,tablename}.as_count(),0) * 100
       > ${var.provisioned_write_capacity_threshold_critical}
   EOQ
 
