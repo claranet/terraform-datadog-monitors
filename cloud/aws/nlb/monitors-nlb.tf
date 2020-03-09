@@ -5,9 +5,9 @@ resource "datadog_monitor" "NLB_no_healthy_instances" {
 
   query = <<EOQ
     ${var.nlb_no_healthy_instance_time_aggregator}(${var.nlb_no_healthy_instance_timeframe}): (
-      sum:aws.networkelb.healthy_host_count.maximum${module.filter-tags.query_alert} by {region,loadbalancer} / (
-      sum:aws.networkelb.healthy_host_count.maximum${module.filter-tags.query_alert} by {region,loadbalancer} +
-      sum:aws.networkelb.un_healthy_host_count.maximum${module.filter-tags.query_alert} by {region,loadbalancer} )
+      sum:aws.networkelb.healthy_host_count.maximum${module.filter-tags.query_alert} by {region,loadbalancer,targetgroup} / (
+      sum:aws.networkelb.healthy_host_count.maximum${module.filter-tags.query_alert} by {region,loadbalancer,targetgroup} +
+      sum:aws.networkelb.un_healthy_host_count.maximum${module.filter-tags.query_alert} by {region,loadbalancer,targetgroup} )
     ) * 100 < 1
   EOQ
 
@@ -40,8 +40,8 @@ resource "datadog_monitor" "NLB_too_much_reset" {
 
   query = <<EOQ
     sum(${var.nlb_reset_timeframe}):
-      default(avg:aws.networkelb.tcptarget_reset_count${module.filter-tags.query_alert} by {region,loadbalancer}, 0) / (
-      default(avg:aws.networkelb.active_flow_count${module.filter-tags.query_alert} by {region,loadbalancer}, 1))
+      default(avg:aws.networkelb.tcptarget_reset_count${module.filter-tags.query_alert} by {region,loadbalancer,targetgroup}, 0) / (
+      default(avg:aws.networkelb.active_flow_count${module.filter-tags.query_alert} by {region,loadbalancer,targetgroup}, 1))
       * 100 > ${var.nlb_reset_threshold_critical}
   EOQ
 
