@@ -46,7 +46,7 @@ resource "datadog_monitor" "provisioned_write_capacity_utilization" {
   query = <<EOQ
     ${var.provisioned_write_capacity_time_aggregator}(${var.provisioned_write_capacity_timeframe}):
       default(avg:aws.dynamodb.consumed_write_capacity_units${module.filter-tags.query_alert} by {region,tablename},0) /
-      avg:ws.dynamodb.provisioned_write_capacity_units${module.filter-tags.query_alert} by {region,tablename} * 100
+      avg:aws.dynamodb.provisioned_write_capacity_units${module.filter-tags.query_alert} by {region,tablename} * 100
       > ${var.provisioned_write_capacity_threshold_critical}
   EOQ
 
