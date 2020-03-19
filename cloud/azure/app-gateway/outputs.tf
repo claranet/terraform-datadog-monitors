@@ -38,8 +38,8 @@ output "appgateway_status_id" {
   value       = datadog_monitor.appgateway_status.*.id
 }
 
-output "current_connection_id" {
-  description = "id for monitor current_connection"
-  value       = datadog_monitor.current_connection.*.id
+output "total_requests_id" {
+  description = "id for monitor total_requests"
+  value       = datadog_monitor.total_requests.*.id
 }
 
