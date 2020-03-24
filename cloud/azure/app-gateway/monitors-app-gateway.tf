@@ -32,7 +32,7 @@ EOQ
 # Monitoring App Gateway total_requests
 resource "datadog_monitor" "total_requests" {
   count   = var.total_requests_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway has no successful requests"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway has no requests"
   message = coalesce(var.total_requests_message, var.message)
   type    = "query alert"
 

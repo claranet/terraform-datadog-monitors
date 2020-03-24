@@ -22,7 +22,7 @@ Creates DataDog monitors with the following checks:
 - App Gateway backend HTTP 5xx errors rate is too high
 - App Gateway backend unhealthy host ratio is too high
 - App Gateway failed requests
-- App Gateway has no successful requests
+- App Gateway has no requests
 - App Gateway HTTP 4xx errors rate is too high
 - App Gateway HTTP 5xx errors rate is too high
 - App Gateway is down
