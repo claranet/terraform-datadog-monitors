@@ -6,7 +6,7 @@ resource "datadog_monitor" "pod_phase_status" {
 
   query = <<EOQ
     ${var.pod_phase_status_time_aggregator}(${var.pod_phase_status_timeframe}):
-      sum:kubernetes_state.pod.status_phase${module.filter-tags-phase.query_alert} by {namespace} > 0
+      default(sum:kubernetes_state.pod.status_phase${module.filter-tags-phase.query_alert} by {namespace}, 0) > 0
 EOQ
 
   thresholds = {
