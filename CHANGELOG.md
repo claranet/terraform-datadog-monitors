@@ -1,4 +1,20 @@
 
+# v3.4.0 (March 30, 2020)
+
+## Bug
+
+*   [[MON-574](https://claranet-morea.atlassian.net/browse/MON-574)] - Fix k8s pod phases status
+
+## Improvement
+
+*   [[MON-563](https://claranet-morea.atlassian.net/browse/MON-563)] - TFenv support
+*   [[MON-571](https://claranet-morea.atlassian.net/browse/MON-571)] - Azure AppGateway change metric
+
+## New Feature
+
+*   [[MON-221](https://claranet-morea.atlassian.net/browse/MON-221)] - Monitors for Zookeeper
+*   [[MON-496](https://claranet-morea.atlassian.net/browse/MON-496)] - Customize the group by on the monitors
+
 # v3.3.0 (January 23, 2020)
 
 ## Bug
