@@ -9,7 +9,7 @@ resource "datadog_monitor" "not_responding" {
   type    = "service check"
 
   query = <<EOQ
-    "solr.can_connect"${module.filter-tags.service_check}.by("instance").last(6).count_by_status()
+    "solr.can_connect"${module.filter-tags.service_check}.by(${join(",", formatlist("\"%s\"", var.not_responding_group_by))}).last(6).count_by_status()
 
 EOQ
 
@@ -48,7 +48,7 @@ resource "datadog_monitor" "search_handler_errors" {
 
   query = <<EOQ
   ${var.search_handler_errors_time_aggregator}(${var.search_handler_errors_timeframe}):
-    default(sum:solr.search_handler.errors${module.filter-tags.query_alert} by {instance}.as_rate(), 0) / default(sum:solr.search_handler.requests${module.filter-tags.query_alert} by {instance}.as_rate(), 1) * 100
+    default(sum:solr.search_handler.errors${module.filter-tags.query_alert} by {${join(",", var.search_handler_errors_group_by)}}.as_rate(), 0) / default(sum:solr.search_handler.requests${module.filter-tags.query_alert} by {${join(",", var.search_handler_errors_group_by)}}.as_rate(), 1) * 100
     > ${var.search_handler_errors_rate_threshold_critical}
 EOQ
 
@@ -81,7 +81,7 @@ resource "datadog_monitor" "searcher_warmup_time" {
   type    = "metric alert"
   query   = <<EOQ
   ${var.searcher_warmup_time_aggregator}(${var.searcher_warmup_time_timeframe}):
-    min:solr.searcher.warmup${module.filter-tags.query_alert} by {instance}
+    min:solr.searcher.warmup${module.filter-tags.query_alert} by {${join(",", var.searcher_warmup_time_group_by)}}
     >= ${var.searcher_warmup_time_threshold_critical}
 EOQ
 

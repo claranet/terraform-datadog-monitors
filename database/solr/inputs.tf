@@ -55,6 +55,12 @@ variable "not_responding_enabled" {
   default     = true
 }
 
+variable "not_responding_group_by" {
+  type        = list(string)
+  description = "Not responding tags to group data"
+  default     = ["instance"]
+}
+
 variable "not_responding_message" {
   description = "Custom message for Solr does not respond monitor"
   type        = string
@@ -86,6 +92,12 @@ variable "search_handler_errors_enabled" {
   description = "Flag to enable Solr search handler errors monitor"
   type        = bool
   default     = true
+}
+
+variable "search_handler_errors_group_by" {
+  description = "Search handler errors tags to group datas"
+  type        = list(string)
+  default     = ["instance"]
 }
 
 variable "search_handler_errors_message" {
@@ -130,6 +142,12 @@ variable "searcher_warmup_time_enabled" {
   default     = true
   description = "Flag to enable Solr searcher warmup time monitor"
   type        = bool
+}
+
+variable "searcher_warmup_time_group_by" {
+  default     = ["instance"]
+  description = "Search warmup time tags to group datas"
+  type        = list(string)
 }
 
 variable "searcher_warmup_time_message" {
