@@ -96,24 +96,6 @@ variable "not_responding_threshold_warning" {
   description = "Zookeeper not responding limit (warning threshold)"
 }
 
-variable "not_responding_notify_audit" {
-  description = "Enable or not notify audit on Zookeeper not responding monitor"
-  type        = bool
-  default     = false
-}
-
-variable "not_responding_locked" {
-  description = "Lock Zookeeper not responding monitor"
-  type        = bool
-  default     = false
-}
-
-variable "not_responding_timeout_h" {
-  description = "Number of hour of Zookeeper not responding monitor not reporting data before it will automatically resolve from a triggered state"
-  type        = number
-  default     = 0
-}
-
 #
 # Check read latency monitor
 #
@@ -163,14 +145,3 @@ variable "zookeeper_latency_availability_extra_tags" {
   default     = []
 }
 
-variable "zookeeper_latency_notify_audit" {
-  description = "Enable or not notify audit on Zookeeper latency monitor"
-  type        = bool
-  default     = false
-}
-
-variable "zookeeper_latency_timeout_h" {
-  description = "Number of hour of Zookeeper latency monitor not reporting data before it will automatically resolve from a triggered state"
-  type        = number
-  default     = 0
-}

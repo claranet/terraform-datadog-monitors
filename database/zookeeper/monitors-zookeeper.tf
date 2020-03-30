@@ -16,9 +16,9 @@ EOQ
   no_data_timeframe   = var.not_responding_no_data_timeframe
   new_host_delay      = var.new_host_delay
   notify_no_data      = var.not_responding_notify_no_data
-  notify_audit        = var.not_responding_notify_audit
-  locked              = var.not_responding_locked
-  timeout_h           = var.not_responding_timeout_h
+  notify_audit        = false
+  locked              = false
+  timeout_h           = 0
   include_tags        = true
   require_full_window = true
   renotify_interval   = 0
@@ -50,8 +50,8 @@ EOQ
   notify_no_data      = false
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
-  notify_audit        = var.zookeeper_latency_notify_audit
-  timeout_h           = var.zookeeper_latency_timeout_h
+  notify_audit        = false
+  timeout_h           = 0
   include_tags        = true
   locked              = false
   require_full_window = true
