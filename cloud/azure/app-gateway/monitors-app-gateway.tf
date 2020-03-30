@@ -29,16 +29,16 @@ EOQ
   }
 }
 
-# Monitoring App Gateway current_connections
-resource "datadog_monitor" "current_connection" {
-  count   = var.current_connection_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway has no connection"
-  message = coalesce(var.current_connection_message, var.message)
+# Monitoring App Gateway total_requests
+resource "datadog_monitor" "total_requests" {
+  count   = var.total_requests_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] App Gateway has no requests"
+  message = coalesce(var.total_requests_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
-    ${var.current_connection_time_aggregator}(${var.current_connection_timeframe}):
-    azure.network_applicationgateways.current_connections${module.filter-tags.query_alert} by {resource_group,region,name} < 1
+    ${var.total_requests_time_aggregator}(${var.total_requests_timeframe}):
+    azure.network_applicationgateways.total_requests${module.filter-tags.query_alert} by {resource_group,region,name} < 1
 EOQ
 
   evaluation_delay    = var.evaluation_delay
@@ -51,7 +51,7 @@ EOQ
   locked              = false
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.current_connection_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.total_requests_extra_tags)
 
   lifecycle {
     ignore_changes = [silenced]

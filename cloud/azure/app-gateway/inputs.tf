@@ -81,35 +81,35 @@ variable "status_timeframe" {
   default     = "last_5m"
 }
 
-# Monitoring App Gateway current_connections
-variable "current_connection_enabled" {
+# Monitoring App Gateway total_requests
+variable "total_requests_enabled" {
   description = "Flag to enable App Gateway current connections monitor"
   type        = string
   default     = "true"
 }
 
-variable "current_connection_extra_tags" {
+variable "total_requests_extra_tags" {
   description = "Extra tags for App Gateway current connections monitor"
   type        = list(string)
   default     = []
 }
 
-variable "current_connection_message" {
+variable "total_requests_message" {
   description = "Custom message for App Gateway current connections monitor"
   type        = string
   default     = ""
 }
 
-variable "current_connection_time_aggregator" {
+variable "total_requests_time_aggregator" {
   description = "Monitor aggregator for App Gateway current connections [available values: min, max or avg]"
   type        = string
   default     = "max"
 }
 
-variable "current_connection_timeframe" {
+variable "total_requests_timeframe" {
   description = "Monitor timeframe for App Gateway current connections [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
-  default     = "last_5m"
+  default     = "last_15m"
 }
 
 # Monitoring App Gateway failed_requests
