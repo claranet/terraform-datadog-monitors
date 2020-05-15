@@ -56,6 +56,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   notify_no_data      = false
+  no_data_timeframe   = var.elb_4xx_no_data_timeframe
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
@@ -91,6 +92,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   notify_no_data      = false
+  no_data_timeframe   = var.elb_5xx_no_data_timeframe
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
@@ -126,6 +128,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   notify_no_data      = false
+  no_data_timeframe   = var.elb_backend_4xx_no_data_timeframe
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
@@ -161,6 +164,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   notify_no_data      = false
+  no_data_timeframe   = var.elb_backend_5xx_no_data_timeframe
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0
@@ -195,6 +199,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   notify_no_data      = false
+  no_data_timeframe   = var.elb_backend_latency_no_data_timeframe
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = 0

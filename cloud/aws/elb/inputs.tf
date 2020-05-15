@@ -121,6 +121,12 @@ variable "elb_4xx_threshold_critical" {
   default     = 10
 }
 
+variable "elb_4xx_no_data_timeframe" {
+  description = "Number of minutes before reporting no data"
+  type        = string
+  default     = 10
+}
+
 variable "elb_5xx_enabled" {
   description = "Flag to enable ELB 5xx errors monitor"
   type        = string
@@ -152,6 +158,12 @@ variable "elb_5xx_threshold_warning" {
 
 variable "elb_5xx_threshold_critical" {
   description = "loadbalancer 5xx critical threshold in percentage"
+  default     = 10
+}
+
+variable "elb_5xx_no_data_timeframe" {
+  description = "Number of minutes before reporting no data"
+  type        = string
   default     = 10
 }
 
@@ -189,6 +201,12 @@ variable "elb_backend_4xx_threshold_critical" {
   default     = 10
 }
 
+variable "elb_backend_4xx_no_data_timeframe" {
+  description = "Number of minutes before reporting no data"
+  type        = string
+  default     = 10
+}
+
 variable "elb_backend_5xx_enabled" {
   description = "Flag to enable ELB backend 5xx errors monitor"
   type        = string
@@ -220,6 +238,12 @@ variable "elb_backend_5xx_threshold_warning" {
 
 variable "elb_backend_5xx_threshold_critical" {
   description = "loadbalancer backend 5xx critical threshold in percentage"
+  default     = 10
+}
+
+variable "elb_backend_5xx_no_data_timeframe" {
+  description = "Number of minutes before reporting no data"
+  type        = string
   default     = 10
 }
 
@@ -261,6 +285,12 @@ variable "elb_backend_latency_warning" {
 variable "elb_backend_latency_critical" {
   description = "latency critical threshold in seconds"
   default     = 3
+}
+
+variable "elb_backend_latency_no_data_timeframe" {
+  description = "Number of minutes before reporting no data"
+  type        = string
+  default     = 10
 }
 
 variable "artificial_requests_count" {
