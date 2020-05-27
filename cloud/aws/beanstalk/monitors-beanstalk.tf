@@ -6,7 +6,7 @@ resource "datadog_monitor" "health" {
   type    = "metric alert"
 
   query = <<EOQ
-    ${var.health_time_aggregator}(${var.health_timeframe}):min:aws.elasticbeanstalk.environment_health${module.filter-tags.query_alert} by {region,elasticbeanstalk_environment-name} >= ${var.health_threshold_critical}
+    ${var.health_time_aggregator}(${var.health_timeframe}):min:aws.elasticbeanstalk.environment_health${module.filter-tags.query_alert} by {region,environmentname} >= ${var.health_threshold_critical}
 EOQ
 
   thresholds = {
@@ -38,7 +38,7 @@ resource "datadog_monitor" "application_latency_p90" {
   type    = "metric alert"
 
   query = <<EOQ
-    ${var.application_latency_p90_time_aggregator}(${var.application_latency_p90_timeframe}):min:aws.elasticbeanstalk.application_latency_p_9_0${module.filter-tags-no-host.query_alert} by {region,elasticbeanstalk_environment-name} >= ${var.application_latency_p90_threshold_critical}
+    ${var.application_latency_p90_time_aggregator}(${var.application_latency_p90_timeframe}):min:aws.elasticbeanstalk.application_latency_p_9_0${module.filter-tags-no-host.query_alert} by {region,environmentname} >= ${var.application_latency_p90_threshold_critical}
 EOQ
 
   thresholds = {
@@ -69,7 +69,7 @@ resource "datadog_monitor" "application_5xx_error_rate" {
   type    = "query alert"
 
   query = <<EOQ
-    ${var.application_5xx_error_rate_time_aggregator}(${var.application_5xx_error_rate_timeframe}):sum:aws.elasticbeanstalk.application_requests_5xx${module.filter-tags-no-host.query_alert} by {region,elasticbeanstalk_environment-name}.as_rate() / sum:aws.elasticbeanstalk.application_requests_total${module.filter-tags-no-host.query_alert} by {region,elasticbeanstalk_environment-name}.as_rate() * 100 > ${var.application_5xx_error_rate_threshold_critical}
+    ${var.application_5xx_error_rate_time_aggregator}(${var.application_5xx_error_rate_timeframe}):sum:aws.elasticbeanstalk.application_requests_5xx${module.filter-tags-no-host.query_alert} by {region,environmentname}.as_rate() / sum:aws.elasticbeanstalk.application_requests_total${module.filter-tags-no-host.query_alert} by {region,environmentname}.as_rate() * 100 > ${var.application_5xx_error_rate_threshold_critical}
 EOQ
 
   thresholds = {
@@ -100,7 +100,7 @@ resource "datadog_monitor" "root_filesystem_usage" {
   type    = "metric alert"
 
   query = <<EOQ
-    ${var.root_filesystem_usage_aggregator}(${var.root_filesystem_usage_timeframe}):min:aws.elasticbeanstalk.root_filesystem_util${module.filter-tags.query_alert} by {region,elasticbeanstalk_environment-name,host} > ${var.root_filesystem_usage_threshold_critical}
+    ${var.root_filesystem_usage_aggregator}(${var.root_filesystem_usage_timeframe}):min:aws.elasticbeanstalk.root_filesystem_util${module.filter-tags.query_alert} by {region,environmentname,host} > ${var.root_filesystem_usage_threshold_critical}
 EOQ
 
   thresholds = {
