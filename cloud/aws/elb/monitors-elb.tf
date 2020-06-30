@@ -42,7 +42,7 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
   type    = "query alert"
 
   query = <<EOQ
-    ${var.elb_4xx_time_aggregator}(${var.elb_4xx_timeframe}):
+    sum(${var.elb_4xx_timeframe}):
       default(avg:aws.elb.httpcode_elb_4xx${module.filter-tags.query_alert} by {region,loadbalancername}.as_rate(), 0) / (
       default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_rate() + ${var.artificial_requests_count}, 1))
       * 100 > ${var.elb_4xx_threshold_critical}
@@ -78,7 +78,7 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
   type    = "query alert"
 
   query = <<EOQ
-    ${var.elb_5xx_time_aggregator}(${var.elb_5xx_timeframe}):
+    sum(${var.elb_5xx_timeframe}):
       default(avg:aws.elb.httpcode_elb_5xx${module.filter-tags.query_alert} by {region,loadbalancername}.as_rate(), 0) / (
       default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_rate() + ${var.artificial_requests_count}, 1))
       * 100 > ${var.elb_5xx_threshold_critical}
@@ -114,7 +114,7 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
   type    = "query alert"
 
   query = <<EOQ
-    sum(${var.elb_backend_4xx_timeframe}):
+    ${var.elb_4xx_time_aggregator}${var.elb_backend_4xx_timeframe}):
       default(avg:aws.elb.httpcode_backend_4xx${module.filter-tags.query_alert} by {region,loadbalancername}.as_rate(), 0) / (
       default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_rate() + ${var.artificial_requests_count}, 1))
       * 100 > ${var.elb_backend_4xx_threshold_critical}
@@ -150,7 +150,7 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
   type    = "query alert"
 
   query = <<EOQ
-    sum(${var.elb_backend_5xx_timeframe}):
+    ${var.elb_4xx_time_aggregator}${var.elb_backend_5xx_timeframe}):
       default(avg:aws.elb.httpcode_backend_5xx${module.filter-tags.query_alert} by {region,loadbalancername}.as_rate(), 0) / (
       default(avg:aws.elb.request_count${module.filter-tags.query_alert} by {region,loadbalancername}.as_rate() + ${var.artificial_requests_count}, 1))
       * 100 > ${var.elb_backend_5xx_threshold_critical}
