@@ -93,6 +93,12 @@ variable "elb_4xx_enabled" {
   default     = "true"
 }
 
+variable "elb_4xx_time_aggregator" {
+  description = "Monitor aggregator for elb httpcode 4xx [available values: min, max, avg or sum]"
+  type        = string
+  default     = "sum"
+}
+
 variable "elb_4xx_extra_tags" {
   description = "Extra tags for ELB 4xx errors monitor"
   type        = list(string)
@@ -132,6 +138,13 @@ variable "elb_5xx_enabled" {
   type        = string
   default     = "true"
 }
+
+variable "elb_5xx_time_aggregator" {
+  description = "Monitor aggregator for elb httpcode 5xx [available values: min, max, avg or sum]"
+  type        = string
+  default     = "sum"
+}
+
 
 variable "elb_5xx_extra_tags" {
   description = "Extra tags for ELB 5xx errors monitor"
