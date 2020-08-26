@@ -23,10 +23,14 @@ Creates DataDog monitors with the following checks:
 - SQL Database high disk usage
 - SQL Database is down
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cpu\_enabled | Flag to enable SQL CPU monitor | `string` | `"true"` | no |
 | cpu\_extra\_tags | Extra tags for SQL CPU monitor | `list(string)` | `[]` | no |
 | cpu\_message | Custom message for SQL CPU monitor | `string` | `""` | no |

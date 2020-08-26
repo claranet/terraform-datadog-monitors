@@ -32,10 +32,14 @@ Creates DataDog monitors with the following checks:
 - IOT Hub Too many query_jobs failed
 - IOT Hub Total devices is wrong
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | dropped\_d2c\_telemetry\_egress\_enabled | Flag to enable IoT Hub dropped d2c telemetry monitor | `string` | `"true"` | no |
 | dropped\_d2c\_telemetry\_egress\_extra\_tags | Extra tags for IoT Hub dropped d2c telemetry monitor | `list(string)` | `[]` | no |
 | dropped\_d2c\_telemetry\_egress\_message | Custom message for IoT Hub dropped d2c telemetry monitor | `string` | `""` | no |

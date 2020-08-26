@@ -19,10 +19,14 @@ Creates DataDog monitors with the following checks:
 
 - NLB healthy instances
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | environment | Architecture environment | `string` | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | filter\_tags\_custom | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |

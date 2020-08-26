@@ -19,10 +19,14 @@ Creates DataDog monitors with the following checks:
 
 - Kubernetes API server does not respond
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | apiserver\_enabled | Flag to enable API server monitor | `string` | `"true"` | no |
 | apiserver\_extra\_tags | Extra tags for API server monitor | `list(string)` | `[]` | no |
 | apiserver\_message | Custom message for API server monitor | `string` | `""` | no |

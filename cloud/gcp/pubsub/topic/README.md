@@ -21,10 +21,14 @@ Creates DataDog monitors with the following checks:
 - Pub/Sub Topic sending messages operations
 - Pub/Sub Topic sending messages with result unavailable (disabled by default)
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | environment | Architecture environment | `string` | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | filter\_tags | Tags used for filtering | `string` | `"*"` | no |

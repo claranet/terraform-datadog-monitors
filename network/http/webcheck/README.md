@@ -19,10 +19,14 @@ Creates DataDog monitors with the following checks:
 
 - HTTP cannot connect
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cannot\_connect\_enabled | Flag to enable HTTP cannot connect monitor | `string` | `"true"` | no |
 | cannot\_connect\_extra\_tags | Extra tags for HTTP cannot connect monitor | `list(string)` | `[]` | no |
 | cannot\_connect\_message | Custom message for HTTP cannot connect monitor | `string` | `""` | no |

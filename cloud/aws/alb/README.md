@@ -24,10 +24,14 @@ Creates DataDog monitors with the following checks:
 - ALB target HTTP code 4xx
 - ALB target HTTP code 5xx
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | alb\_no\_healthy\_instances\_enabled | Flag to enable ALB no healthy instances monitor | `string` | `"true"` | no |
 | alb\_no\_healthy\_instances\_extra\_tags | Extra tags for ALB no healthy instances monitor | `list(string)` | `[]` | no |
 | alb\_no\_healthy\_instances\_message | Custom message for ALB no healthy instances monitor | `string` | `""` | no |

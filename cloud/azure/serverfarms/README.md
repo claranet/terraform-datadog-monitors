@@ -21,10 +21,14 @@ Creates DataDog monitors with the following checks:
 - Serverfarm is down
 - Serverfarm memory percentage is too high
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cpu\_percentage\_enabled | Flag to enable the serverfarms cpu\_percentage monitor | `string` | `"true"` | no |
 | cpu\_percentage\_extra\_tags | Extra tags for serverfarms cpu\_percentage monitor | `list(string)` | `[]` | no |
 | cpu\_percentage\_message | Custom message for serverfarm cpu\_percentage monitor | `string` | `""` | no |

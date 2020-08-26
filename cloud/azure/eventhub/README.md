@@ -21,10 +21,14 @@ Creates DataDog monitors with the following checks:
 - Event Hub too many errors
 - Event Hub too many failed requests
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | environment | Architecture environment | `string` | n/a | yes |
 | errors\_rate\_enabled | Flag to enable Event Hub errors monitor | `string` | `"true"` | no |
 | errors\_rate\_extra\_tags | Extra tags for Event Hub errors monitor | `list(string)` | `[]` | no |

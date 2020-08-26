@@ -24,10 +24,14 @@ Creates DataDog monitors with the following checks:
 - ELB healthy instances
 - ELB latency too high
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | artificial\_requests\_count | Number of false requests used to mitigate false positive in case of low trafic | `number` | `5` | no |
 | elb\_4xx\_enabled | Flag to enable ELB 4xx errors monitor | `string` | `"true"` | no |
 | elb\_4xx\_extra\_tags | Extra tags for ELB 4xx errors monitor | `list(string)` | `[]` | no |

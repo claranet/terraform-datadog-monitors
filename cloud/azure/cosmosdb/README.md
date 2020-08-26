@@ -22,10 +22,14 @@ Creates DataDog monitors with the following checks:
 - Cosmos DB is down
 - Cosmos DB max scaling reached for collection
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cosmos\_db\_4xx\_request\_extra\_tags | Extra tags for Cosmos DB 4xx requests monitor | `list(string)` | `[]` | no |
 | cosmos\_db\_4xx\_request\_rate\_threshold\_critical | Critical threshold for Cosmos DB 4xx requests monitor | `number` | `80` | no |
 | cosmos\_db\_4xx\_request\_rate\_threshold\_warning | Warning threshold for Cosmos DB 4xx requests monitor | `number` | `50` | no |

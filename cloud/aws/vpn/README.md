@@ -19,10 +19,14 @@ Creates DataDog monitors with the following checks:
 
 - VPN tunnel down
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | environment | Architecture Environment | `string` | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | filter\_tags | Tags used for metrics filtering | `string` | `"*"` | no |

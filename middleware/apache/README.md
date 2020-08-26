@@ -19,10 +19,14 @@ Creates DataDog monitors with the following checks:
 
 - Apache vhost status does not respond
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | apache\_connect\_enabled | Flag to enable Apache status monitor | `string` | `"true"` | no |
 | apache\_connect\_extra\_tags | Extra tags for Apache process monitor | `list(string)` | `[]` | no |
 | apache\_connect\_message | Custom message for Apache status monitor | `string` | `""` | no |

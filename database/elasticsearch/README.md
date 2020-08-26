@@ -40,10 +40,14 @@ Creates DataDog monitors with the following checks:
 - Elasticsearch JVM memory Young usage
 - Elasticsearch number of current open HTTP connections anomaly detected
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cluster\_initializing\_shards\_enabled | Flag to enable Cluster Status monitor | `string` | `"true"` | no |
 | cluster\_initializing\_shards\_extra\_tags | Extra tags for Cluster Status monitor | `list(string)` | `[]` | no |
 | cluster\_initializing\_shards\_message | Custom message for the Cluster Status monitor | `string` | `""` | no |

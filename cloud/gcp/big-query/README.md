@@ -27,10 +27,14 @@ Creates DataDog monitors with the following checks:
 - GCP Big Query Uploaded Bytes
 - GCP Big Query Uploaded Bytes Billed
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | available\_slots\_enabled | Flag to enable GCP Big Query Available Slots monitor | `string` | `"true"` | no |
 | available\_slots\_extra\_tags | Extra tags for GCP Big Query Available Slots monitor | `list(string)` | `[]` | no |
 | available\_slots\_message | Custom message for the Available Slots monitor | `string` | `""` | no |

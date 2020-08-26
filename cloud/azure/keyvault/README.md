@@ -21,10 +21,14 @@ Creates DataDog monitors with the following checks:
 - Key Vault API result rate is low
 - Key Vault is down
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | api\_latency\_enabled | Flag to enable Key Vault API latency monitor | `string` | `"true"` | no |
 | api\_latency\_extra\_tags | Extra tags for Key Vault API latency monitor | `list(string)` | `[]` | no |
 | api\_latency\_message | Custom message for Key Vault API latency monitor | `string` | `""` | no |

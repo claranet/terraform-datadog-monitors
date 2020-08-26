@@ -22,10 +22,14 @@ Creates DataDog monitors with the following checks:
 - Mysql Server memory usage
 - Mysql Server storage
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cpu\_usage\_enabled | Flag to enable Mysql status monitor | `string` | `"true"` | no |
 | cpu\_usage\_extra\_tags | Extra tags for Mysql status monitor | `list(string)` | `[]` | no |
 | cpu\_usage\_message | Custom message for Mysql CPU monitor | `string` | `""` | no |

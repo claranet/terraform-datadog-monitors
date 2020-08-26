@@ -21,10 +21,14 @@ Creates DataDog monitors with the following checks:
 - Compute Engine instance Disk Throttled Bps
 - Compute Engine instance Disk Throttled OPS
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cpu\_utilization\_enabled | Flag to enable CPU Utilization monitor | `string` | `"true"` | no |
 | cpu\_utilization\_extra\_tags | Extra tags for CPU Utilization monitor | `list(string)` | `[]` | no |
 | cpu\_utilization\_message | Custom message for the CPU Utilization monitor | `string` | `""` | no |

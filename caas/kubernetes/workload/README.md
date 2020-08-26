@@ -23,10 +23,14 @@ Creates DataDog monitors with the following checks:
 - Kubernetes job failed
 - Kubernetes Ready replicas
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cronjob\_enabled | Flag to enable Cronjob monitor | `string` | `"true"` | no |
 | cronjob\_extra\_tags | Extra tags for Cronjob monitor | `list(string)` | `[]` | no |
 | cronjob\_message | Custom message for Cronjob monitor | `string` | `""` | no |

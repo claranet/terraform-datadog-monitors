@@ -26,10 +26,14 @@ Creates DataDog monitors with the following checks:
 - Disk Space usage forecast
 - Usable Memory
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cpu\_enabled | Flag to enable CPU high monitor | `string` | `"true"` | no |
 | cpu\_extra\_tags | Extra tags for CPU high monitor | `list(string)` | `[]` | no |
 | cpu\_message | Custom message for CPU high monitor | `string` | `""` | no |

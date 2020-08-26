@@ -20,10 +20,14 @@ Creates DataDog monitors with the following checks:
 - SQS Age of the oldest message
 - SQS Visible messages (disabled by default)
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | age\_of\_oldest\_message\_enabled | Flag to enable Age of Oldest Message monitor | `string` | `"true"` | no |
 | age\_of\_oldest\_message\_extra\_tags | Extra tags for Age of Oldest Message monitor | `list(string)` | `[]` | no |
 | age\_of\_oldest\_message\_message | Custom message for Age of Oldest Message monitor | `string` | `""` | no |

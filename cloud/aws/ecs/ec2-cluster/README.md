@@ -21,10 +21,14 @@ Creates DataDog monitors with the following checks:
 - ECS Cluster CPU Utilization High (disabled by default)
 - ECS Cluster Memory Reservation High (disabled by default)
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | agent\_status\_enabled | Flag to enable Agent Status monitor | `string` | `"true"` | no |
 | agent\_status\_extra\_tags | Extra tags for Agent Status monitor | `list(string)` | `[]` | no |
 | agent\_status\_message | Custom message for the Agent Status monitor | `string` | `""` | no |

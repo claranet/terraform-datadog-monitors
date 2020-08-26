@@ -20,10 +20,14 @@ Creates DataDog monitors with the following checks:
 - Zookeeper latency
 - Zookeeper service does not respond
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | environment | Architecture environment | `string` | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `15` | no |
 | filter\_tags\_custom | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
@@ -31,14 +35,14 @@ Creates DataDog monitors with the following checks:
 | filter\_tags\_use\_defaults | Use default filter tags convention | `string` | `"true"` | no |
 | message | Message sent when a monitor is triggered | `any` | n/a | yes |
 | new\_host\_delay | Delay in seconds before begin to monitor new host | `number` | `300` | no |
-| not\_responding\_group\_by | List of tags to use to group data | `list(string)` | <pre>[<br>  "host",<br>  "server"<br>]<br></pre> | no |
+| not\_responding\_group\_by | List of tags to use to group data | `list(string)` | <pre>[<br>  "host",<br>  "server"<br>]</pre> | no |
 | not\_responding\_no\_data\_timeframe | Zookeeper monitor no\_data\_timeframe | `number` | `10` | no |
 | not\_responding\_notify\_no\_data | Send notification if not\_responding monitor does not retrieve data | `bool` | `true` | no |
 | not\_responding\_threshold\_warning | Zookeeper not responding limit (warning threshold) | `number` | `3` | no |
 | prefix\_slug | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
 | zookeeper\_latency\_availability\_extra\_tags | Extra tags for zookeeper read latency monitor | `list(string)` | `[]` | no |
 | zookeeper\_latency\_enabled | Flag to enable Zookeeper read latency monitor | `string` | `"true"` | no |
-| zookeeper\_latency\_group\_by | Tags to use to group datas | `list(string)` | <pre>[<br>  "host"<br>]<br></pre> | no |
+| zookeeper\_latency\_group\_by | Tags to use to group datas | `list(string)` | <pre>[<br>  "host"<br>]</pre> | no |
 | zookeeper\_latency\_status\_message | Custom message for Zookeeper read latency monitor | `string` | `""` | no |
 | zookeeper\_latency\_threshold\_critical | Maximum critical acceptable ms of zookeeper latency monitor | `number` | `300000` | no |
 | zookeeper\_latency\_threshold\_warning | Maximum warning acceptable ms of zookeeper latency monitor | `number` | `250000` | no |

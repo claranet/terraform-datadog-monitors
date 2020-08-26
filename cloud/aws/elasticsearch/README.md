@@ -23,10 +23,14 @@ Creates DataDog monitors with the following checks:
 - ElasticSearch cluster free storage space
 - ElasticSearch cluster status is not green
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cpu\_enabled | Flag to enable ES cluster cpu monitor | `string` | `"true"` | no |
 | cpu\_extra\_tags | Extra tags for ES cluster cpu monitor | `list(string)` | `[]` | no |
 | cpu\_message | Custom message for ES cluster cpu monitor | `string` | `""` | no |

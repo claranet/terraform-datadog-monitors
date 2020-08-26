@@ -21,10 +21,14 @@ Creates DataDog monitors with the following checks:
 - SQL Elastic Pool DTU Consumption too high
 - SQL Elastic Pool high disk usage
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cpu\_enabled | Flag to enable SQL Elastic Pool CPU monitor | `string` | `"true"` | no |
 | cpu\_extra\_tags | Extra tags for SQL Elastic Pool CPU monitor | `list(string)` | `[]` | no |
 | cpu\_message | Custom message for SQL Elastic Pool CPU monitor | `string` | `""` | no |

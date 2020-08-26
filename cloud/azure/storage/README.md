@@ -51,10 +51,14 @@ Creates DataDog monitors with the following checks:
 - Azure Table Storage too many throttling errors
 - Azure Table Storage too many timeout errors
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | authorization\_error\_requests\_enabled | Flag to enable Storage authorization errors monitor | `string` | `"true"` | no |
 | authorization\_error\_requests\_extra\_tags | Extra tags for Storage authorization errors monitor | `list(string)` | `[]` | no |
 | authorization\_error\_requests\_message | Custom message for Storage authorization errors monitor | `string` | `""` | no |

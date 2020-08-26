@@ -21,10 +21,14 @@ Creates DataDog monitors with the following checks:
 - Event Grid too many failed messages
 - Event Grid too many unmatched events
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | environment | Architecture environment | `string` | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | eventgrid\_no\_successful\_message\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |

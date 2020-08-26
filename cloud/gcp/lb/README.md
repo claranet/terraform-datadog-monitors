@@ -23,10 +23,14 @@ Creates DataDog monitors with the following checks:
 - GCP LB Requests count increased abruptly
 - GCP LB service backend latency
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | backend\_latency\_bucket\_enabled | Flag to enable GCP LB Backend Latency monitor | `string` | `"true"` | no |
 | backend\_latency\_bucket\_extra\_tags | Extra tags for GCP LB Backend Latency monitor | `list(string)` | `[]` | no |
 | backend\_latency\_bucket\_message | Custom message for the GCP LB Backend Latency monitor | `string` | `""` | no |

@@ -22,10 +22,14 @@ Creates DataDog monitors with the following checks:
 - Lambda Number of invocations (disabled by default)
 - Lambda Percentage of errors
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | environment | Architecture environment | `string` | n/a | yes |
 | errors\_enabled | Flag to enable Errors monitor | `string` | `"false"` | no |
 | errors\_extra\_tags | Extra tags for Errors monitor | `list(string)` | `[]` | no |

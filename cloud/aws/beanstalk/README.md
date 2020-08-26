@@ -22,10 +22,14 @@ Creates DataDog monitors with the following checks:
 - Beanstalk Environment health
 - Beanstalk Instance root file system usage
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | application\_5xx\_error\_rate\_enabled | Flag to enable Beanstalk application 5xx error ratemonitor | `string` | `"true"` | no |
 | application\_5xx\_error\_rate\_extra\_tags | Extra tags for application 5xx error rate monitor | `list(string)` | `[]` | no |
 | application\_5xx\_error\_rate\_message | Custom message for application 5xx error rate | `string` | `""` | no |
