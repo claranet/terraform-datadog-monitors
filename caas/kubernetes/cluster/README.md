@@ -21,7 +21,9 @@ Creates DataDog monitors with the following checks:
 
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12.26 |
 
 ## Inputs
 
