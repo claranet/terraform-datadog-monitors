@@ -1,4 +1,14 @@
 
+# v3.5.0 (August 27, 2020)
+
+## Bug
+
+*   [[MON-581](https://claranet-morea.atlassian.net/browse/MON-581)] - repair CI now pt-monitoring is dead
+
+## Improvement
+
+*   [[MON-580](https://claranet-morea.atlassian.net/browse/MON-580)] - Terraform 0.13 compatibility for datadog modules
+
 # v3.4.0 (March 30, 2020)
 
 ## Bug
