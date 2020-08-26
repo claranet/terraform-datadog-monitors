@@ -9,7 +9,7 @@ stages:
   - deploy
 
 auto_update:
-  image: claranet/terraform-ci:0.13.0
+  image: claranet/terraform-ci:0.13.1
   stage: test
   script:
     - ./scripts/auto_update.sh
