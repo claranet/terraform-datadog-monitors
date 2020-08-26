@@ -19,10 +19,14 @@ Creates DataDog monitors with the following checks:
 
 - DNS cannot resolve
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cannot\_resolve\_enabled | Flag to enable DNS cannot resolve monitor | `string` | `"true"` | no |
 | cannot\_resolve\_extra\_tags | Extra tags for DNS cannot resolve monitor | `list(string)` | `[]` | no |
 | cannot\_resolve\_message | Custom message for DNS cannot resolve monitor | `string` | `""` | no |

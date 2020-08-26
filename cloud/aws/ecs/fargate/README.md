@@ -21,10 +21,14 @@ Creates DataDog monitors with the following checks:
 - Fargate memory Utilization High (disabled by default)
 - Fargate service does not respond.
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cpu\_utilization\_enabled | Flag to enable monitor | `string` | `"false"` | no |
 | cpu\_utilization\_extra\_tags | Extra tags for the monitor | `list(string)` | `[]` | no |
 | cpu\_utilization\_message | Custom message for the monitor | `string` | `""` | no |

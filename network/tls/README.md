@@ -22,10 +22,14 @@ Creates DataDog monitors with the following checks:
 - TLS certificate expiring
 - TLS invalid certificate
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cannot\_connect\_enabled | Flag to enable TLS cannot connect monitor | `string` | `"true"` | no |
 | cannot\_connect\_extra\_tags | Extra tags for TLS cannot connect monitor | `list(string)` | `[]` | no |
 | cannot\_connect\_message | Custom message for TLS cannot connect monitor | `string` | `""` | no |

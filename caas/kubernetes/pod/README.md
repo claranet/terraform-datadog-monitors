@@ -21,10 +21,14 @@ Creates DataDog monitors with the following checks:
 - Kubernetes Pod terminated abnormally
 - Kubernetes Pod waiting errors
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | environment | Architecture environment | `any` | n/a | yes |
 | error\_enabled | Flag to enable Pod errors monitor | `string` | `"true"` | no |
 | error\_extra\_tags | Extra tags for Pod errors monitor | `list(string)` | `[]` | no |

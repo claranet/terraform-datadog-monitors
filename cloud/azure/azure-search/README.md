@@ -20,10 +20,14 @@ Creates DataDog monitors with the following checks:
 - Azure Search latency too high
 - Azure Search throttled queries rate is too high
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | azure\_search\_latency\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | environment | Architecture environment | `string` | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `900` | no |

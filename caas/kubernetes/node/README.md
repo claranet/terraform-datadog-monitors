@@ -28,10 +28,14 @@ Creates DataDog monitors with the following checks:
 - Kubernetes Node volume inodes usage
 - Kubernetes Node volume space usage
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | disk\_out\_enabled | Flag to enable Out of disk monitor | `string` | `"true"` | no |
 | disk\_out\_extra\_tags | Extra tags for Out of disk monitor | `list(string)` | `[]` | no |
 | disk\_out\_message | Custom message for Out of disk monitor | `string` | `""` | no |

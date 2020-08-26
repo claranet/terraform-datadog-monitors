@@ -24,10 +24,14 @@ Creates DataDog monitors with the following checks:
 - Cloud SQL Memory Utilization
 - Cloud SQL Memory Utilization forecast (disabled by default)
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cpu\_utilization\_enabled | Flag to enable GCP Cloud SQL CPU Utilization monitor | `string` | `"true"` | no |
 | cpu\_utilization\_extra\_tags | Extra tags for GCP Cloud SQL CPU Utilization monitor | `list(string)` | `[]` | no |
 | cpu\_utilization\_message | Custom message for the CPU Utilization monitor | `string` | `""` | no |

@@ -20,10 +20,14 @@ Creates DataDog monitors with the following checks:
 - New Relic Apdex score ratio
 - New Relic Error rate
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | app\_apdex\_score\_enabled | Flag to enable APP Apdex Score monitor | `string` | `"true"` | no |
 | app\_apdex\_score\_extra\_tags | Extra tags for New Relic APP Apdex Score monitor | `list(string)` | `[]` | no |
 | app\_apdex\_score\_message | Custom message for the APP Apdex Score monitor | `string` | `""` | no |

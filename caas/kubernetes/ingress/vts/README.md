@@ -20,10 +20,14 @@ Creates DataDog monitors with the following checks:
 - Nginx Ingress 4xx errors
 - Nginx Ingress 5xx errors
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | artificial\_requests\_count | Number of false requests used to mitigate false positive in case of low trafic | `number` | `5` | no |
 | environment | Architecture Environment | `string` | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `15` | no |

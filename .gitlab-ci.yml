@@ -9,16 +9,14 @@ stages:
   - deploy
 
 auto_update:
-  image: claranet/datadog-terraform:latest
+  image: claranet/terraform-ci:0.13.0
   stage: test
   script:
     - ./scripts/auto_update.sh
     - git status
     - git diff --exit-code
   tags:
-    - product-teams
-    - kubernetes
-    - gke
+    - ops4ops-claranet
 
 deploy_terraform:
   stage: deploy
@@ -29,9 +27,7 @@ deploy_terraform:
   only:
     - master
   tags:
-    - product-teams
-    - kubernetes
-    - gke
+    - ops4ops-claranet
 
 build_template:
   stage: build
@@ -44,6 +40,5 @@ build_template:
   except:
     - branches
   tags:
-    - product-teams
-    - kubernetes
-    - gke
+    - ops4ops-claranet
+

@@ -20,10 +20,14 @@ Creates DataDog monitors with the following checks:
 - Elasticache memcached cache hit ratio
 - Elasticache memcached CPU
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cpu\_high\_enabled | Flag to enable Elasticache memcached cpu high monitor | `string` | `"true"` | no |
 | cpu\_high\_extra\_tags | Extra tags for Elasticache memcached cpu high monitor | `list(string)` | `[]` | no |
 | cpu\_high\_message | Custom message for Elasticache memcached cpu high monitor | `string` | `""` | no |

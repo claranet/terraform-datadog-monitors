@@ -22,10 +22,14 @@ Creates DataDog monitors with the following checks:
 - Elasticache redis is receiving no commands
 - Elasticache redis replication lag
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cache\_hits\_enabled | Flag to enable Elasticache redis cache hits monitor | `string` | `"true"` | no |
 | cache\_hits\_extra\_tags | Extra tags for Elasticache redis cache hits monitor | `list(string)` | `[]` | no |
 | cache\_hits\_message | Custom message for Elasticache redis cache hits monitor | `string` | `""` | no |

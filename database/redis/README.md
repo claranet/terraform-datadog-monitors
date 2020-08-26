@@ -28,10 +28,14 @@ Creates DataDog monitors with the following checks:
 - Redis memory used
 - Redis rejected connections
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | blocked\_clients\_enabled | Flag to enable Redis Blocked clients monitor | `string` | `"true"` | no |
 | blocked\_clients\_extra\_tags | Extra tags for Redis Blocked clients monitor | `list(string)` | `[]` | no |
 | blocked\_clients\_message | Custom message for Redis Blocked clients monitor | `string` | `""` | no |

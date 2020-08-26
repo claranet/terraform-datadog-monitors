@@ -21,10 +21,14 @@ Creates DataDog monitors with the following checks:
 - Pub/Sub Subscription latency on push endpoint changed abnormally (disabled by default)
 - Pub/Sub Subscription oldest unacknowledged message
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | environment | Architecture environment | `string` | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | filter\_tags | Tags used for filtering | `string` | `"*"` | no |

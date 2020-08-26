@@ -24,10 +24,14 @@ Creates DataDog monitors with the following checks:
 - App Services memory usage
 - App Services response time too high
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | appservices\_status\_no\_data\_timeframe | Number of minutes before reporting no data | `string` | `10` | no |
 | environment | Architecture environment | `string` | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `900` | no |

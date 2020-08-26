@@ -19,10 +19,14 @@ Creates DataDog monitors with the following checks:
 
 - Ark backup failed
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | ark\_schedules\_enabled | Flag to enable Ark schedules monitor | `string` | `"true"` | no |
 | ark\_schedules\_extra\_tags | Extra tags for Ark schedules monitor | `list(string)` | `[]` | no |
 | ark\_schedules\_monitor\_message | Custom message for Ark schedules monitor | `string` | `""` | no |

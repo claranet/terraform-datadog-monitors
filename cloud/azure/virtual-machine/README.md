@@ -24,10 +24,14 @@ Creates DataDog monitors with the following checks:
 - Virtual Machine RAM reserved
 - Virtual Machine requests failed
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cpu\_remaining\_rate\_enabled | Flag to enable Virtual Machine CPU remaining monitor | `string` | `"true"` | no |
 | cpu\_remaining\_rate\_extra\_tags | Extra tags for Virtual Machine CPU remaining monitor | `list(string)` | `[]` | no |
 | cpu\_remaining\_rate\_message | Custom message for Virtual Machine CPU remaining monitor | `string` | `""` | no |

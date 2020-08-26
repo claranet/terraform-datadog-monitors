@@ -23,10 +23,14 @@ Creates DataDog monitors with the following checks:
 - Postgresql Server memory usage
 - Postgresql Server storage
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cpu\_usage\_enabled | Flag to enable PostgreSQL status monitor | `string` | `"true"` | no |
 | cpu\_usage\_extra\_tags | Extra tags for PostgreSQL status monitor | `list(string)` | `[]` | no |
 | cpu\_usage\_message | Custom message for PostgreSQL CPU monitor | `string` | `""` | no |

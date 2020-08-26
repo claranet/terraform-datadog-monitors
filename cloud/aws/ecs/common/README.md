@@ -21,10 +21,14 @@ Creates DataDog monitors with the following checks:
 - ECS Service Memory Utilization High (disabled by default)
 - ECS Service not healthy enough
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | environment | Architecture environment | `string` | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | filter\_tags | Tags used for filtering | `string` | `"*"` | no |

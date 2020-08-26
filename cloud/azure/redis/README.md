@@ -22,10 +22,14 @@ Creates DataDog monitors with the following checks:
 - Redis server load too high
 - Redis too many evictedkeys
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | environment | Architecture environment | `string` | n/a | yes |
 | evaluation\_delay | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | evictedkeys\_limit\_enabled | Flag to enable Redis evicted keys monitor | `string` | `"true"` | no |

@@ -120,6 +120,18 @@ module "datadog-monitors-system-generic" {
 * The `//` is very important, it's a terraform specific syntax used to separate git url and folder path.
 * `my/monitors/set` represents the path to a monitors set sub directory listed below.
 
+## Contributions
+
+Contributions are always welcome.
+
+The easiest way is to fork the repository, duplicate a module as "template" and work on it.
+
+An internal CI will run the `auto_update.sh` script to compare with proposed changes and check if everything is up to date.
+
+So, when PR is ready you will need to run this script and push its changes to pass the CI, see [scripts repository](https://github.com/claranet/terraform-datadog-scripts/) for more information.
+
+For example, this will regenerate every READMEs thanks to [terraform-docs](https://github.com/segmentio/terraform-docs) currently in v0.9.1.
+
 ## Monitors summary
 
 - [caas](https://github.com/claranet/terraform-datadog-monitors/tree/master/caas/)

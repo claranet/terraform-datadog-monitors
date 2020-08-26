@@ -21,10 +21,14 @@ Creates DataDog monitors with the following checks:
 - RDS instance free space
 - RDS replica lag
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cpu\_enabled | Flag to enable RDS CPU usage monitor | `string` | `"true"` | no |
 | cpu\_extra\_tags | Extra tags for RDS CPU usage monitor | `list(string)` | `[]` | no |
 | cpu\_message | Custom message for RDS CPU usage monitor | `string` | `""` | no |

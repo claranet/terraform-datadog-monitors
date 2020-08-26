@@ -27,10 +27,14 @@ Creates DataDog monitors with the following checks:
 - App Gateway HTTP 5xx errors rate is too high
 - App Gateway is down
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | appgateway\_backend\_connect\_time\_enabled | Flag to enable App Gateway backend\_connect\_time monitor | `string` | `"true"` | no |
 | appgateway\_backend\_connect\_time\_extra\_tags | Extra tags for App Gateway backend\_connect\_time monitor | `list(string)` | `[]` | no |
 | appgateway\_backend\_connect\_time\_message | Custom message for App Gateway backend\_connect\_time monitor | `string` | `""` | no |

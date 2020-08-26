@@ -23,10 +23,14 @@ Creates DataDog monitors with the following checks:
 - Stream Analytics too many failed requests
 - Stream Analytics too many runtime errors
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | conversion\_errors\_enabled | Flag to enable Stream Analytics conversion errors monitor | `string` | `"true"` | no |
 | conversion\_errors\_extra\_tags | Extra tags for Stream Analytics conversion errors monitor | `list(string)` | `[]` | no |
 | conversion\_errors\_message | Custom message for Stream Analytics conversion errors monitor | `string` | `""` | no |

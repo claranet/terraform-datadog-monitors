@@ -19,10 +19,14 @@ Creates DataDog monitors with the following checks:
 
 - RDS Aurora Mysql replica lag
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | aurora\_replicalag\_enabled | Flag to enable RDS Aurora replica lag monitor | `string` | `"true"` | no |
 | aurora\_replicalag\_extra\_tags | Extra tags for RDS Aurora replica lag monitor | `list(string)` | `[]` | no |
 | aurora\_replicalag\_message | Custom message for RDS Aurora replica lag monitor | `string` | `""` | no |

@@ -20,10 +20,14 @@ Creates DataDog monitors with the following checks:
 - SSL certificate expiration (disabled by default)
 - SSL invalid certificate
 
+## Requirements
+
+No requirements.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | certificate\_expiration\_date\_enabled | Flag to enable Certificate Expiration Date monitor | `string` | `"false"` | no |
 | certificate\_expiration\_date\_extra\_tags | Extra tags for Certificate Expiration Date monitor | `list(string)` | `[]` | no |
 | certificate\_expiration\_date\_message | Custom message for the Certificate Expiration Date monitor | `string` | `""` | no |
