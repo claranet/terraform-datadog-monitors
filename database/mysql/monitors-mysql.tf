@@ -212,7 +212,7 @@ resource "datadog_monitor" "mysql_threads_anomaly" {
         alert_window='${var.mysql_threads_alert_window}',
         interval=${var.mysql_threads_interval},
         count_default_zero='${var.mysql_threads_count_default_zero}'
-        ${var.mysql_threads_seasonality == "agile" ? format(",seasonality='%s'", var.mysql_threads_seasonality) : ""}
+        ${var.mysql_threads_detection_algorithm == "agile" ? format(",seasonality='%s'", var.mysql_threads_seasonality) : ""}
       )
     >= ${var.mysql_threads_threshold_critical}
 EOQ
