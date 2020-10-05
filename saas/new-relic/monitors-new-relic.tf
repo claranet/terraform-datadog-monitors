@@ -1,5 +1,5 @@
 resource "datadog_monitor" "app_error_rate" {
-  count   = var.app_error_rate_enabled == "true" ? 1 : 0
+  count   = "${var.app_error_rate_enabled == true && var.newrelic_direct == false}" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] New Relic Error rate {{#is_alert}}{{{comparator}}} {{threshold}}errs/min ({{value}}errs/min){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}errs/min ({{value}}errs/min){{/is_warning}}"
   message = coalesce(var.app_error_rate_message, var.message)
   type    = "query alert"
@@ -33,7 +33,7 @@ EOQ
 }
 
 resource "datadog_monitor" "app_apdex_score" {
-  count   = var.app_apdex_score_enabled == "true" ? 1 : 0
+  count   = "${var.app_apdex_score_enabled == true && var.newrelic_direct == false}" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] New Relic Apdex score ratio {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.app_apdex_score_message, var.message)
   type    = "query alert"
@@ -65,3 +65,42 @@ EOQ
     ignore_changes = [silenced]
   }
 }
+
+resource "newrelic_alert_policy" "production_down" {
+  count = var.newrelic_direct == true ? 1 : 0
+  name  = "Production is Down"
+}
+
+
+resource "newrelic_nrql_alert_condition" "app_apdex_score_direct" {
+  count       = "${var.app_apdex_score_enabled == true && var.newrelic_direct == true}" ? 1 : 0
+  name        = "Apdex is low"
+  runbook_url = var.newrelic_runbook_url
+
+  type                 = "static"
+  policy_id            = newrelic_alert_policy.production_down.id
+  violation_time_limit = "one_hour"
+  value_function       = "single_value"
+
+  nrql {
+    query             = <<EOQ
+      SELECT apdex(duration, t:0.5) FROM Transaction WHERE appName like ${var.appname_like}
+EOQ
+    evaluation_offset = 3
+  }
+
+  critical {
+    operator              = "below"
+    threshold             = var.app_apdex_score_threshold_critical
+    threshold_duration    = 300
+    threshold_occurrences = "ALL"
+  }
+
+  warning {
+    operator              = "below"
+    threshold             = var.app_apdex_score_threshold_warning
+    threshold_duration    = 600
+    threshold_occurrences = "ALL"
+  }
+}
+

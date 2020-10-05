@@ -4,6 +4,25 @@ variable "environment" {
   type        = string
 }
 
+# Global NewRelic
+variable "newrelic_direct" {
+  description = "Enable alerting via NewRelic directly"
+  type        = bool
+  default     = false
+}
+
+variable "newrelic_appname_like" {
+  description = "Query match appname"
+  type        = string
+  default     = "'%prod%'"
+}
+
+variable "newrelic_runbook_url" {
+  description = "Runbook URL associated to alert"
+  type        = string
+  default     = ""
+}
+
 # Global DataDog
 variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
