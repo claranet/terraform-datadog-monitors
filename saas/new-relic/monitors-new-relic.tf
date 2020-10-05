@@ -85,7 +85,7 @@ resource "newrelic_nrql_alert_condition" "app_apdex_score_direct" {
 
   nrql {
     query             = <<EOQ
-      SELECT apdex(duration, t:0.5) FROM Transaction WHERE appName like ${var.appname_like}
+      SELECT apdex(duration, t:0.5) FROM Transaction WHERE appName like ${var.newrelic_appname_like}
 EOQ
     evaluation_offset = 3
   }
