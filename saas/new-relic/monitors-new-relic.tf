@@ -75,6 +75,7 @@ resource "newrelic_alert_policy" "production_down" {
 resource "newrelic_nrql_alert_condition" "app_apdex_score_direct" {
   count       = "${var.app_apdex_score_enabled == true && var.newrelic_direct == true}" ? 1 : 0
   name        = "Apdex is low"
+  description = var.message
   runbook_url = var.newrelic_runbook_url
 
   type                 = "static"
