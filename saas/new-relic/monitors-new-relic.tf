@@ -79,7 +79,7 @@ resource "newrelic_nrql_alert_condition" "app_apdex_score_direct" {
   runbook_url = var.newrelic_runbook_url
 
   type                 = "static"
-  policy_id            = newrelic_alert_policy.production_down.id
+  policy_id            = newrelic_alert_policy.production_down[0].id
   violation_time_limit = "one_hour"
   value_function       = "single_value"
 
