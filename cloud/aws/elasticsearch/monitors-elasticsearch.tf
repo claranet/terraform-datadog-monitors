@@ -110,3 +110,38 @@ EOQ
   }
 }
 
+### Elasticsearch cluster 5xx monitor ###
+resource "datadog_monitor" "es_error_5xx" {
+  count   = var.es_5xx_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ElasticSearch cluster 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.es_5xx_message, var.message)
+  type    = "query alert"
+
+  query = <<EOQ
+  query = <<EOQ
+    sum(${var.es_5xx_timeframe}):
+      default(avg:aws.es.5xx.average${module.filter-tags.query_alert} by {region,name}.as_rate(), 0) > ${var.es_5xx_threshold_critical}
+EOQ
+
+  thresholds = {
+    warning  = var.es_5xx_threshold_warning
+    critical = var.es_5xx_threshold_critical
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
+
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.es_5xx_extra_tags)
+
+  lifecycle {
+    ignore_changes = [silenced]
+  }
+}
+

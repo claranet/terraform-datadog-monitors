@@ -160,3 +160,42 @@ variable "cpu_threshold_critical" {
   default     = "90"
 }
 
+variable "es_5xx_enabled" {
+  description = "Flag to enable ES cluster 5xx monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "es_5xx_extra_tags" {
+  description = "Extra tags for ES cluster 5xx monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "es_5xx_message" {
+  description = "Custom message for ES cluster 5xx monitor"
+  type        = string
+  default     = ""
+}
+
+variable "es_5xx_time_aggregator" {
+  description = "Monitor aggregator for ES cluster 5xx [available values: min, max or avg]"
+  type        = string
+  default     = "min"
+}
+
+variable "es_5xx_timeframe" {
+  description = "Monitor timeframe for ES cluster 5xx [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_15m"
+}
+
+variable "es_5xx_threshold_warning" {
+  description = "ElasticSearch warning threshold in percentage"
+  default     = "1"
+}
+
+variable "es_5xx_threshold_critical" {
+  description = "ElasticSearch critical threshold in percentage"
+  default     = "4"
+}
