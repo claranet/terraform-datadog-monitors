@@ -11,6 +11,11 @@ variable "filter_tags" {
   default     = "*"
 }
 
+variable "filter_tags_failover_unavailable" {
+  description = "Tags used for filtering specific to the failover unavailable monitor which is only useful for master instances"
+  default     = ""
+}
+
 variable "message" {
   description = "Message sent when a monitor is triggered"
 }
