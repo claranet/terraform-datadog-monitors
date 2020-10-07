@@ -116,8 +116,7 @@ resource "datadog_monitor" "es_error_5xx" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ElasticSearch cluster 5xx errors too high {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.es_5xx_message, var.message)
   type    = "query alert"
-
-  query = <<EOQ
+  
   query = <<EOQ
     sum(${var.es_5xx_timeframe}):
       default(avg:aws.es.5xx.average${module.filter-tags.query_alert} by {region,name}.as_rate(), 0) > ${var.es_5xx_threshold_critical}
