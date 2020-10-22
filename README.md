@@ -214,6 +214,7 @@ For example, this will regenerate every READMEs thanks to [terraform-docs](https
 	- [mongodb](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/mongodb/)
 	- [mysql](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/mysql/)
 	- [postgresql](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/postgresql/)
+	- [proxysql](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/proxysql/)
 	- [redis](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/redis/)
 	- [solr](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/solr/)
 	- [sqlserver](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/sqlserver/)
