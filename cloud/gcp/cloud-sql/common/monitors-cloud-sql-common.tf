@@ -209,7 +209,7 @@ resource "datadog_monitor" "failover_unavailable" {
 
   query = <<EOQ
   ${var.failover_unavailable_time_aggregator}(${var.failover_unavailable_timeframe}):
-    avg:gcp.cloudsql.database.available_for_failover{${var.filter_tags}}
+    avg:gcp.cloudsql.database.available_for_failover{${join(", ", compact([var.filter_tags_failover_unavailable, var.filter_tags_failover_unavailable != "" && var.filter_tags == "*" ? "" : var.filter_tags]))}}
     by {database_id}
   <= ${var.failover_unavailable_threshold_critical}
 EOQ

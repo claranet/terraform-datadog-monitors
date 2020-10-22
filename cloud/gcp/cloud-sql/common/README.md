@@ -71,6 +71,7 @@ Creates DataDog monitors with the following checks:
 | failover\_unavailable\_time\_aggregator | Time aggreggator for the Failover Unavailable monitor | `string` | `"max"` | no |
 | failover\_unavailable\_timeframe | Timeframe for the Failover Unavailable monitor | `string` | `"last_10m"` | no |
 | filter\_tags | Tags used for filtering | `string` | `"*"` | no |
+| filter\_tags\_failover\_unavailable | Tags used for filtering specific to the failover unavailable monitor which is only useful for master instances | `string` | `""` | no |
 | memory\_utilization\_enabled | Flag to enable GCP Cloud SQL Memory Utilization monitor | `string` | `"true"` | no |
 | memory\_utilization\_extra\_tags | Extra tags for GCP Cloud SQL Memory Utilization monitor | `list(string)` | `[]` | no |
 | memory\_utilization\_forecast\_algorithm | Algorithm for the Memory Utilization Forecast monitor | `string` | `"linear"` | no |
