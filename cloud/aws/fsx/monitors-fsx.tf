@@ -43,7 +43,7 @@ resource "datadog_monitor" "fsx_windows_throughput" {
       ( avg:aws.fsx_windows.data_read_bytes${module.filter-tags.query_alert} by {region,filesystemid} +
         avg:aws.fsx_windows.data_write_bytes${module.filter-tags.query_alert} by {region,filesystemid} ) /
         ( 1024 * 1024 )
-      ) > ${var.fsx_windows_throughput_threshold_critical}
+      ) < ${var.fsx_windows_throughput_threshold_critical}
 EOQ
 
   thresholds = {
