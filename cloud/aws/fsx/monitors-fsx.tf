@@ -1,6 +1,6 @@
 resource "datadog_monitor" "fsx_windows_free_storage_capacity" {
   count   = var.fsx_windows_free_storage_capacity_enabled ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] FSX Free Storage Capacity {{#is_alert}}is at 0{{/is_alert}}{{#is_warning}}is at {{value}}%%{{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] FSX for Windows Free Storage Capacity {{#is_alert}}is at 0{{/is_alert}}{{#is_warning}}is at {{value}}%%{{/is_warning}}"
   message = coalesce(var.fsx_windows_free_storage_capacity_message, var.message)
   type    = "query alert"
 
@@ -25,7 +25,7 @@ EOQ
   timeout_h           = 0
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.fsx_windows_free_storage_capacity_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:fsx", "team:claranet", "created-by:terraform"], var.fsx_windows_free_storage_capacity_extra_tags)
 
   lifecycle {
     ignore_changes = [silenced]
@@ -34,7 +34,7 @@ EOQ
 
 resource "datadog_monitor" "fsx_windows_throughput" {
   count   = var.fsx_windows_throughput_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ALB latency {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] FSX for Windows througput {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = coalesce(var.fsx_windows_throughput_message, var.message)
   type    = "query alert"
 
@@ -59,7 +59,7 @@ EOQ
   timeout_h           = 0
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.fsx_windows_throughput_extra_tags)
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:fsx", "team:claranet", "created-by:terraform"], var.fsx_windows_throughput_extra_tags)
 
   lifecycle {
     ignore_changes = [silenced]

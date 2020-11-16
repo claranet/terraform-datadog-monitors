@@ -1,4 +1,4 @@
-# CLOUD AWS ALB DataDog monitors
+# CLOUD AWS FSX DataDog monitors
 
 ## How to use this module
 
@@ -67,6 +67,4 @@ Creates DataDog monitors with the following checks:
 
 ## Related documentation
 
-DataDog blog: [https://www.datadoghq.com/blog/monitor-application-load-balancer/](https://www.datadoghq.com/blog/monitor-application-load-balancer/)
-
-AWS ALB metrics documentation: [https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-cloudwatch-metrics.html](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-cloudwatch-metrics.html)
+[AWS FSX metrics documentation](https://aws.amazon.com/blogs/storage/monitor-performance-of-amazon-fsx-for-windows-file-server-with-amazon-cloudwatch/)
