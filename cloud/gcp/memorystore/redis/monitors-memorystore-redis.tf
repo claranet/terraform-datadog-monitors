@@ -9,7 +9,7 @@ resource "datadog_monitor" "system_memory_usage_ratio" {
 
   query = <<EOQ
     ${var.system_memory_usage_ratio_time_aggregator}(${var.system_memory_usage_ratio_timeframe}):
-      avg:gcp.redis.stats.memory.system_memory_usage_ratio{${var.filter_tags}} by {instance_id,node_id,role}
+      avg:gcp.redis.stats.memory.system_memory_usage_ratio{${var.filter_tags}} by {instance_id,role}
     > ${var.system_memory_usage_ratio_threshold_critical}
 EOQ
 
