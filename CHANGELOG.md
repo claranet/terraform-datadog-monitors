@@ -1,7 +1,8 @@
-# v3.6.0 (unreleased)
+# v3.6.0 (January 27, 2021)
 
 ## Improvement
 
+*   Add monitor for Google Cloud Platform Memorystore Redis system memory usage ratio
 *   [[MN-587](https://onejira.atlassian.net/browse/MN-587)] - MN-587 Add ProxySQL monitors
 
 # v3.5.0 (August 27, 2020)
