@@ -203,6 +203,8 @@ For example, this will regenerate every READMEs thanks to [terraform-docs](https
 		- [gce](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/gce/)
 			- [instance](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/gce/instance/)
 		- [lb](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/lb/)
+		- [memorystore](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/memorystore/)
+			- [redis](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/memorystore/redis/)
 		- [pubsub](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/pubsub/)
 			- [subscription](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/pubsub/subscription/)
 			- [topic](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/gcp/pubsub/topic/)
