@@ -76,4 +76,4 @@ Creates DataDog monitors with the following checks:
 
 ## Requirements
 
-* Datadog Agent > v6.6
+* Datadog Agent > v7.2
