@@ -6,7 +6,7 @@ resource "datadog_monitor" "pod_phase_status" {
 
   query = <<EOQ
     ${var.pod_phase_status_time_aggregator}(${var.pod_phase_status_timeframe}):
-      default(sum:kubernetes_state.pod.status_phase${module.filter-tags-phase.query_alert} by {namespace}, 0) > 0
+      default(sum:kubernetes_state.pod.status_phase${module.filter-tags-phase.query_alert} by {namespace,kube_cluster_name}, 0) > 0
 EOQ
 
   thresholds = {
@@ -39,7 +39,7 @@ resource "datadog_monitor" "error" {
 
   query = <<EOQ
     ${var.error_time_aggregator}(${var.error_timeframe}):
-      sum:kubernetes_state.container.status_report.count.waiting${module.filter-tags-nocontainercreating.query_alert} by {namespace,pod,reason}
+      sum:kubernetes_state.container.status_report.count.waiting${module.filter-tags-nocontainercreating.query_alert} by {namespace,pod,reason,kube_cluster_name}
     > ${var.error_threshold_critical}
 EOQ
 
@@ -73,7 +73,7 @@ resource "datadog_monitor" "terminated" {
 
   query = <<EOQ
     ${var.terminated_time_aggregator}(${var.terminated_timeframe}):
-      sum:kubernetes_state.container.status_report.count.terminated${module.filter-tags-nocontainercreating.query_alert} by {namespace,pod,reason}
+      sum:kubernetes_state.container.status_report.count.terminated${module.filter-tags-nocontainercreating.query_alert} by {namespace,pod,reason,kube_cluster_name}
     > ${var.terminated_threshold_critical}
 EOQ
 
