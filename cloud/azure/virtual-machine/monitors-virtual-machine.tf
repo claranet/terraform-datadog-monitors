@@ -40,7 +40,7 @@ resource "datadog_monitor" "virtualmachine_cpu_usage" {
     ) > ${var.cpu_usage_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.cpu_usage_threshold_critical
     warning  = var.cpu_usage_threshold_warning
   }
@@ -77,7 +77,7 @@ resource "datadog_monitor" "virtualmachine_credit_cpu_remaining_too_low" {
       * 100 , 100) < ${var.cpu_remaining_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cpu_remaining_rate_threshold_warning
     critical = var.cpu_remaining_rate_threshold_critical
   }
@@ -113,7 +113,7 @@ resource "datadog_monitor" "virtualmachine_ram_reserved" {
       > ${var.ram_reserved_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.ram_reserved_threshold_critical
     warning  = var.ram_reserved_threshold_warning
   }
@@ -147,7 +147,7 @@ resource "datadog_monitor" "virtualmachine_disk_space" {
     > ${var.disk_space_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.disk_space_threshold_warning
     critical = var.disk_space_threshold_critical
   }
@@ -184,7 +184,7 @@ resource "datadog_monitor" "virtualmachine_requests_failed" {
       > ${var.requests_failed_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.requests_failed_threshold_critical
     warning  = var.requests_failed_threshold_warning
   }

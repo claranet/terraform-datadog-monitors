@@ -18,7 +18,7 @@ resource "datadog_monitor" "pct_errors" {
   evaluation_delay = var.evaluation_delay
   new_host_delay   = var.new_host_delay
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.pct_errors_threshold_critical
     warning  = var.pct_errors_threshold_warning
   }
@@ -54,7 +54,7 @@ resource "datadog_monitor" "errors" {
   evaluation_delay = var.evaluation_delay
   new_host_delay   = var.new_host_delay
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.errors_threshold_critical
     warning  = var.errors_threshold_warning
   }
@@ -90,7 +90,7 @@ resource "datadog_monitor" "throttles" {
   evaluation_delay = var.evaluation_delay
   new_host_delay   = var.new_host_delay
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.throttles_threshold_critical
     warning  = var.throttles_threshold_warning
   }
@@ -126,7 +126,7 @@ resource "datadog_monitor" "invocations" {
   evaluation_delay = var.evaluation_delay
   new_host_delay   = var.new_host_delay
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.invocations_threshold_critical
     warning  = var.invocations_threshold_warning
   }

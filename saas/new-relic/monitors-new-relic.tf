@@ -10,7 +10,7 @@ resource "datadog_monitor" "app_error_rate" {
     > ${var.app_error_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.app_error_rate_threshold_warning
     critical = var.app_error_rate_threshold_critical
   }
@@ -44,7 +44,7 @@ resource "datadog_monitor" "app_apdex_score" {
     < ${var.app_apdex_score_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.app_apdex_score_threshold_warning
     critical = var.app_apdex_score_threshold_critical
   }

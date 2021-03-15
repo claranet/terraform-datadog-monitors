@@ -11,7 +11,7 @@ resource "datadog_monitor" "cannot_connect" {
     "http.can_connect"${module.filter-tags.service_check}.by("instance","url").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cannot_connect_threshold_warning
     critical = 5
   }

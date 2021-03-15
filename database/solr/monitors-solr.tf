@@ -13,7 +13,7 @@ resource "datadog_monitor" "not_responding" {
 
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.not_responding_threshold_warning
     critical = 5
   }
@@ -52,7 +52,7 @@ resource "datadog_monitor" "search_handler_errors" {
     > ${var.search_handler_errors_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.search_handler_errors_rate_threshold_warning
     critical = var.search_handler_errors_rate_threshold_critical
   }
@@ -85,7 +85,7 @@ resource "datadog_monitor" "searcher_warmup_time" {
     >= ${var.searcher_warmup_time_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.searcher_warmup_time_threshold_warning
     critical = var.searcher_warmup_time_threshold_critical
   }

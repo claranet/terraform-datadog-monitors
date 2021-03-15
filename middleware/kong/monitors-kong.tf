@@ -11,7 +11,7 @@ resource "datadog_monitor" "not_responding" {
     "kong.can_connect"${module.filter-tags.service_check}.by("kong_host","kong_port").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.not_responding_threshold_warning
     critical = 5
   }
@@ -46,7 +46,7 @@ resource "datadog_monitor" "treatment_limit" {
     > ${var.treatment_limit_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.treatment_limit_threshold_warning
     critical = var.treatment_limit_threshold_critical
   }

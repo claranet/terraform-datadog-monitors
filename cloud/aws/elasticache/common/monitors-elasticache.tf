@@ -10,7 +10,7 @@ resource "datadog_monitor" "elasticache_eviction" {
     ) > ${var.eviction_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.eviction_threshold_warning
     critical = var.eviction_threshold_critical
   }
@@ -103,7 +103,7 @@ resource "datadog_monitor" "elasticache_swap" {
     ) > ${var.swap_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.swap_threshold_warning
     critical = var.swap_threshold_critical
   }
@@ -137,7 +137,7 @@ resource "datadog_monitor" "elasticache_free_memory" {
     < ${var.free_memory_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.free_memory_threshold_warning
     critical = var.free_memory_threshold_critical
   }
@@ -171,7 +171,7 @@ resource "datadog_monitor" "elasticache_eviction_growing" {
     > ${var.eviction_growing_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.eviction_growing_threshold_warning
     critical = var.eviction_growing_threshold_critical
   }
