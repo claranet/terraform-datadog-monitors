@@ -50,6 +50,12 @@ variable "filter_tags_custom_excluded" {
   default     = ""
 }
 
+variable "default_monitor_priority" {
+  type        = number
+  description = "Default priority to apply to monitor"
+  default     = 1
+}
+
 #
 # Service CPU Utilization
 #
@@ -93,6 +99,12 @@ variable "service_cpu_utilization_threshold_warning" {
   description = "Warning threshold for the Service CPU Utilization monitor"
   type        = string
   default     = "80"
+}
+
+variable "service_cpu_utilization_priority" {
+  description = "Priority of Service CPU Utilization monitor"
+  type        = number
+  default     = 0
 }
 
 #
@@ -140,6 +152,12 @@ variable "service_memory_utilization_threshold_warning" {
   default     = 85
 }
 
+variable "service_memory_utilization_priority" {
+  description = "Priority of Service Memory Utilization monitor"
+  type        = number
+  default     = 0
+}
+
 #
 # Service Missing tasks
 #
@@ -183,4 +201,10 @@ variable "service_missing_tasks_threshold_warning" {
   description = "Warning threshold for the Service Missing Tasks monitor"
   type        = string
   default     = 80
+}
+
+variable "service_missing_tasks_priority" {
+  description = "Priority of Service Missing Tasks monitor"
+  type        = number
+  default     = 0
 }

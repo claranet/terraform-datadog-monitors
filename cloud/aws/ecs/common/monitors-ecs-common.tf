@@ -4,6 +4,7 @@ resource "datadog_monitor" "service_cpu_utilization" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ECS Service CPU Utilization High {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.service_cpu_utilization_message, var.message)
   type    = "metric alert"
+  priority = var.service_cpu_utilization_priority != 0 ? var.service_cpu_utilization_priority : var.default_monitor_priority
 
   query = <<EOQ
     ${var.service_cpu_utilization_time_aggregator}(${var.service_cpu_utilization_timeframe}):
@@ -39,6 +40,7 @@ resource "datadog_monitor" "service_memory_utilization" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ECS Service Memory Utilization High {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.service_memory_utilization_message, var.message)
   type    = "metric alert"
+  priority = var.service_memory_utilization_priority != 0 ? var.service_memory_utilization_priority : var.default_monitor_priority
 
   query = <<EOQ
     ${var.service_memory_utilization_time_aggregator}(${var.service_memory_utilization_timeframe}):
@@ -73,6 +75,7 @@ resource "datadog_monitor" "service_missing_tasks" {
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ECS Service not healthy enough {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.service_missing_tasks_message, var.message)
   type    = "metric alert"
+  priority = var.service_missing_tasks_priority != 0 ? var.service_missing_tasks_priority : var.default_monitor_priority
 
   query = <<EOQ
   ${var.service_missing_tasks_time_aggregator}(${var.service_missing_tasks_timeframe}):
