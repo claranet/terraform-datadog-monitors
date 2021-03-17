@@ -8,7 +8,7 @@ resource "datadog_monitor" "postgresql_availability" {
     "postgres.can_connect"${module.filter-tags.service_check}.by("port","server").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.postgresql_availability_threshold_warning
     critical = 5
   }
@@ -42,7 +42,7 @@ resource "datadog_monitor" "postgresql_connection_too_high" {
     * 100 > ${var.postgresql_connection_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.postgresql_connection_threshold_warning
     critical = var.postgresql_connection_threshold_critical
   }
@@ -74,7 +74,7 @@ resource "datadog_monitor" "postgresql_too_many_locks" {
     > ${var.postgresql_lock_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.postgresql_lock_threshold_warning
     critical = var.postgresql_lock_threshold_critical
   }

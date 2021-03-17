@@ -11,7 +11,7 @@ resource "datadog_monitor" "cannot_resolve" {
     "dns.can_resolve"${module.filter-tags.service_check}.by("nameserver","resolved_hostname").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.cannot_resolve_threshold_warning
     critical = 5
   }

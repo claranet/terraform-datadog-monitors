@@ -8,7 +8,7 @@ resource "datadog_monitor" "not_responding" {
     "zookeeper.ruok"${module.filter-tags.service_check}.by(${join(",", formatlist("\"%s\"", var.not_responding_group_by))}).last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.not_responding_threshold_warning
     critical = 5
   }
@@ -42,7 +42,7 @@ resource "datadog_monitor" "datadog_monitor_zookeeper_latency" {
      zookeeper.avg_latency${module.filter-tags.query_alert} by {${join(",", var.zookeeper_latency_group_by)}}) > ${var.zookeeper_latency_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.zookeeper_latency_threshold_warning
     critical = var.zookeeper_latency_threshold_critical
   }

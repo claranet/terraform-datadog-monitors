@@ -11,7 +11,7 @@ resource "datadog_monitor" "API_Gateway_latency" {
     > ${var.latency_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.latency_threshold_warning
     critical = var.latency_threshold_critical
   }
@@ -45,7 +45,7 @@ resource "datadog_monitor" "API_http_5xx_errors_count" {
       * 100 > ${var.http_5xx_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.http_5xx_requests_threshold_warning
     critical = var.http_5xx_requests_threshold_critical
   }
@@ -79,7 +79,7 @@ resource "datadog_monitor" "API_http_4xx_errors_count" {
       * 100 > ${var.http_4xx_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.http_4xx_requests_threshold_warning
     critical = var.http_4xx_requests_threshold_critical
   }

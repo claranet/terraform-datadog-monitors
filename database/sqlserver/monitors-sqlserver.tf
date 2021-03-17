@@ -8,7 +8,7 @@ resource "datadog_monitor" "sqlserver_availability" {
     "sqlserver.can_connect"${module.filter-tags.service_check}.by("db","server").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.sqlserver_availability_threshold_warning
     critical = 5
   }

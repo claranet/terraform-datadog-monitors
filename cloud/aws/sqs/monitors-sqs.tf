@@ -11,7 +11,7 @@ resource "datadog_monitor" "visible_messages" {
     > ${var.visible_messages_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = var.visible_messages_threshold_critical
     warning  = var.visible_messages_threshold_warning
   }
@@ -46,7 +46,7 @@ resource "datadog_monitor" "age_of_oldest_message" {
     > ${var.age_of_oldest_message_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = var.age_of_oldest_message_threshold_critical
     warning  = var.age_of_oldest_message_threshold_warning
   }

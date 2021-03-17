@@ -13,7 +13,7 @@ resource "datadog_monitor" "concurrent_queries" {
     > ${var.concurrent_queries_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.concurrent_queries_threshold_warning
     critical = var.concurrent_queries_threshold_critical
   }
@@ -50,7 +50,7 @@ resource "datadog_monitor" "execution_time" {
     > ${var.execution_time_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.execution_time_threshold_warning
     critical = var.execution_time_threshold_critical
   }
@@ -87,7 +87,7 @@ resource "datadog_monitor" "scanned_bytes" {
   > ${var.scanned_bytes_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.scanned_bytes_threshold_warning
     critical = var.scanned_bytes_threshold_critical
   }
@@ -124,7 +124,7 @@ resource "datadog_monitor" "scanned_bytes_billed" {
   > ${var.scanned_bytes_billed_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.scanned_bytes_billed_threshold_warning
     critical = var.scanned_bytes_billed_threshold_critical
   }
@@ -161,7 +161,7 @@ resource "datadog_monitor" "available_slots" {
     < ${var.available_slots_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.available_slots_threshold_warning
     critical = var.available_slots_threshold_critical
   }
@@ -198,7 +198,7 @@ resource "datadog_monitor" "stored_bytes" {
     > ${var.stored_bytes_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.stored_bytes_threshold_warning
     critical = var.stored_bytes_threshold_critical
   }
@@ -235,7 +235,7 @@ resource "datadog_monitor" "table_count" {
   > ${var.table_count_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.table_count_threshold_warning
     critical = var.table_count_threshold_critical
   }
@@ -272,7 +272,7 @@ resource "datadog_monitor" "uploaded_bytes" {
   > ${var.uploaded_bytes_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.uploaded_bytes_threshold_warning
     critical = var.uploaded_bytes_threshold_critical
   }
@@ -309,7 +309,7 @@ resource "datadog_monitor" "uploaded_bytes_billed" {
     > ${var.uploaded_bytes_billed_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.uploaded_bytes_billed_threshold_warning
     critical = var.uploaded_bytes_billed_threshold_critical
   }

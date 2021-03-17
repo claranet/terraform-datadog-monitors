@@ -9,7 +9,7 @@ resource "datadog_monitor" "apiserver" {
     "kube_apiserver_controlplane.up"${module.filter-tags.service_check}.last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.apiserver_threshold_warning
     critical = 5
   }

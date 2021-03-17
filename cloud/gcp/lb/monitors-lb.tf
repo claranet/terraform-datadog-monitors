@@ -14,7 +14,7 @@ resource "datadog_monitor" "error_rate_4xx" {
   * 100 > ${var.error_rate_4xx_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.error_rate_4xx_threshold_warning
     critical = var.error_rate_4xx_threshold_critical
   }
@@ -52,7 +52,7 @@ resource "datadog_monitor" "error_rate_5xx" {
   * 100 > ${var.error_rate_5xx_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.error_rate_5xx_threshold_warning
     critical = var.error_rate_5xx_threshold_critical
   }
@@ -89,7 +89,7 @@ resource "datadog_monitor" "backend_latency_service" {
   > ${var.backend_latency_service_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.backend_latency_service_threshold_warning
     critical = var.backend_latency_service_threshold_critical
   }
@@ -126,7 +126,7 @@ resource "datadog_monitor" "backend_latency_bucket" {
   > ${var.backend_latency_bucket_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.backend_latency_bucket_threshold_warning
     critical = var.backend_latency_bucket_threshold_critical
   }
@@ -163,7 +163,7 @@ resource "datadog_monitor" "request_count" {
   > ${var.request_count_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.request_count_threshold_warning
     critical = var.request_count_threshold_critical
   }

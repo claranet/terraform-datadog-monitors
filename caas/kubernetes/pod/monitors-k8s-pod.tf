@@ -9,7 +9,7 @@ resource "datadog_monitor" "pod_phase_status" {
       default(sum:kubernetes_state.pod.status_phase${module.filter-tags-phase.query_alert} by {namespace,kube_cluster_name}, 0) > 0
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = 0
   }
 
@@ -43,7 +43,7 @@ resource "datadog_monitor" "error" {
     > ${var.error_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = var.error_threshold_critical
     warning  = var.error_threshold_warning
   }
@@ -77,7 +77,7 @@ resource "datadog_monitor" "terminated" {
     > ${var.terminated_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = var.terminated_threshold_critical
     warning  = var.terminated_threshold_warning
   }

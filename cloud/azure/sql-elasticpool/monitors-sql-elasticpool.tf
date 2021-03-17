@@ -10,7 +10,7 @@ resource "datadog_monitor" "sql_elasticpool_cpu" {
     ) > ${var.cpu_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = var.cpu_threshold_critical
     warning  = var.cpu_threshold_warning
   }
@@ -45,7 +45,7 @@ resource "datadog_monitor" "sql_elasticpool_free_space_low" {
     ) > ${var.diskspace_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.diskspace_threshold_warning
     critical = var.diskspace_threshold_critical
   }
@@ -79,7 +79,7 @@ resource "datadog_monitor" "sql_elasticpool_dtu_consumption_high" {
     ) > ${var.dtu_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.dtu_threshold_warning
     critical = var.dtu_threshold_critical
   }

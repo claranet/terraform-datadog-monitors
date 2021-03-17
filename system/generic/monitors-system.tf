@@ -10,7 +10,7 @@ resource "datadog_monitor" "cpu" {
     ) > ${var.cpu_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.cpu_threshold_warning
     critical = var.cpu_threshold_critical
   }
@@ -43,7 +43,7 @@ resource "datadog_monitor" "load" {
     ) > ${var.load_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.load_threshold_warning
     critical = var.load_threshold_critical
   }
@@ -76,7 +76,7 @@ resource "datadog_monitor" "disk_space" {
     * 100 > ${var.disk_space_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.disk_space_threshold_warning
     critical = var.disk_space_threshold_critical
   }
@@ -115,7 +115,7 @@ resource "datadog_monitor" "disk_space_forecast" {
     >= ${var.disk_space_forecast_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical_recovery = var.disk_space_forecast_threshold_critical_recovery
     critical          = var.disk_space_forecast_threshold_critical
   }
@@ -149,7 +149,7 @@ resource "datadog_monitor" "disk_inodes" {
     * 100 > ${var.disk_inodes_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.disk_inodes_threshold_warning
     critical = var.disk_inodes_threshold_critical
   }
@@ -183,7 +183,7 @@ resource "datadog_monitor" "memory" {
     < ${var.memory_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.memory_threshold_warning
     critical = var.memory_threshold_critical
   }

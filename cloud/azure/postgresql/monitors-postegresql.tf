@@ -10,7 +10,7 @@ resource "datadog_monitor" "postgresql_cpu_usage" {
     ) > ${var.cpu_usage_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = var.cpu_usage_threshold_critical
     warning  = var.cpu_usage_threshold_warning
   }
@@ -74,7 +74,7 @@ resource "datadog_monitor" "postgresql_free_storage" {
     ) < ${var.free_storage_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = var.free_storage_threshold_critical
     warning  = var.free_storage_threshold_warning
   }
@@ -108,7 +108,7 @@ resource "datadog_monitor" "postgresql_io_consumption" {
     ) > ${var.io_consumption_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = var.io_consumption_threshold_critical
     warning  = var.io_consumption_threshold_warning
   }
@@ -142,7 +142,7 @@ resource "datadog_monitor" "postgresql_memory_usage" {
     ) > ${var.memory_usage_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = var.memory_usage_threshold_critical
     warning  = var.memory_usage_threshold_warning
   }

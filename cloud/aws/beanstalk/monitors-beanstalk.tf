@@ -9,7 +9,7 @@ resource "datadog_monitor" "health" {
     ${var.health_time_aggregator}(${var.health_timeframe}):min:aws.elasticbeanstalk.environment_health${module.filter-tags.query_alert} by {region,environmentname} >= ${var.health_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = var.health_threshold_critical
     warning  = var.health_threshold_warning
   }
@@ -41,7 +41,7 @@ resource "datadog_monitor" "application_latency_p90" {
     ${var.application_latency_p90_time_aggregator}(${var.application_latency_p90_timeframe}):min:aws.elasticbeanstalk.application_latency_p_9_0${module.filter-tags-no-host.query_alert} by {region,environmentname} >= ${var.application_latency_p90_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = var.application_latency_p90_threshold_critical
     warning  = var.application_latency_p90_threshold_warning
   }
@@ -72,7 +72,7 @@ resource "datadog_monitor" "application_5xx_error_rate" {
     ${var.application_5xx_error_rate_time_aggregator}(${var.application_5xx_error_rate_timeframe}):sum:aws.elasticbeanstalk.application_requests_5xx${module.filter-tags-no-host.query_alert} by {region,environmentname}.as_rate() / sum:aws.elasticbeanstalk.application_requests_total${module.filter-tags-no-host.query_alert} by {region,environmentname}.as_rate() * 100 > ${var.application_5xx_error_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = var.application_5xx_error_rate_threshold_critical
     warning  = var.application_5xx_error_rate_threshold_warning
   }
@@ -103,7 +103,7 @@ resource "datadog_monitor" "root_filesystem_usage" {
     ${var.root_filesystem_usage_aggregator}(${var.root_filesystem_usage_timeframe}):min:aws.elasticbeanstalk.root_filesystem_util${module.filter-tags.query_alert} by {region,environmentname,host} > ${var.root_filesystem_usage_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = var.root_filesystem_usage_threshold_critical
     warning  = var.root_filesystem_usage_threshold_warning
   }

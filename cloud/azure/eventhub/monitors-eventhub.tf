@@ -41,7 +41,7 @@ resource "datadog_monitor" "eventhub_failed_requests" {
     ) * 100 > ${var.failed_requests_rate_thresold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = var.failed_requests_rate_thresold_critical
     warning  = var.failed_requests_rate_thresold_warning
   }
@@ -78,7 +78,7 @@ resource "datadog_monitor" "eventhub_errors" {
     ) * 100 > ${var.errors_rate_thresold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = var.errors_rate_thresold_critical
     warning  = var.errors_rate_thresold_warning
   }

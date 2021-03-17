@@ -11,7 +11,7 @@ resource "datadog_monitor" "nginx_ingress_too_many_5xx" {
       * 100, 0) > ${var.ingress_5xx_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.ingress_5xx_threshold_warning
     critical = var.ingress_5xx_threshold_critical
   }
@@ -46,7 +46,7 @@ resource "datadog_monitor" "nginx_ingress_too_many_4xx" {
     * 100, 0) > ${var.ingress_4xx_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.ingress_4xx_threshold_warning
     critical = var.ingress_4xx_threshold_critical
   }

@@ -39,7 +39,7 @@ resource "datadog_monitor" "mongodb_secondary" {
       > 1
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = 1
     warning  = 0
   }
@@ -72,7 +72,7 @@ resource "datadog_monitor" "mongodb_server_count" {
       > 99
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = 99
     warning  = var.mongodb_desired_servers_count
   }
@@ -104,7 +104,7 @@ resource "datadog_monitor" "mongodb_replication" {
       avg:mongodb.replset.replicationlag${module.filter-tags-secondary.query_alert} by {server} > ${var.mongodb_lag_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = var.mongodb_lag_critical
     warning  = var.mongodb_lag_warning
   }

@@ -13,7 +13,7 @@ resource "datadog_monitor" "cpu_utilization" {
     > ${var.cpu_utilization_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.cpu_utilization_threshold_warning
     critical = var.cpu_utilization_threshold_critical
   }
@@ -50,7 +50,7 @@ resource "datadog_monitor" "disk_utilization" {
     > ${var.disk_utilization_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.disk_utilization_threshold_warning
     critical = var.disk_utilization_threshold_critical
   }
@@ -95,7 +95,7 @@ resource "datadog_monitor" "disk_utilization_forecast" {
   >= ${var.disk_utilization_forecast_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical          = var.disk_utilization_forecast_threshold_critical
     critical_recovery = var.disk_utilization_forecast_threshold_critical_recovery
   }
@@ -132,7 +132,7 @@ resource "datadog_monitor" "memory_utilization" {
     > ${var.memory_utilization_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.memory_utilization_threshold_warning
     critical = var.memory_utilization_threshold_critical
   }
@@ -176,7 +176,7 @@ resource "datadog_monitor" "memory_utilization_forecast" {
     >= ${var.memory_utilization_forecast_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical          = var.memory_utilization_forecast_threshold_critical
     critical_recovery = var.memory_utilization_forecast_threshold_critical_recovery
   }
@@ -214,7 +214,7 @@ resource "datadog_monitor" "failover_unavailable" {
   <= ${var.failover_unavailable_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     critical = var.failover_unavailable_threshold_critical
   }
 

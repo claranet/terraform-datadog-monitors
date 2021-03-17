@@ -11,7 +11,7 @@ resource "datadog_monitor" "invalid_ssl_certificate" {
     "http.ssl_cert"${module.filter-tags.service_check}.by("instance","url").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.invalid_ssl_certificate_threshold_warning
     critical = 5
   }
@@ -48,7 +48,7 @@ resource "datadog_monitor" "certificate_expiration_date" {
     < ${var.certificate_expiration_date_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     warning  = var.certificate_expiration_date_threshold_warning
     critical = var.certificate_expiration_date_threshold_critical
   }

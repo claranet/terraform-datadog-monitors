@@ -8,7 +8,7 @@ resource "datadog_monitor" "host_unreachable" {
     "datadog.agent.up"${module.filter-tags.service_check}.last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds = {
     ok       = 1
     warning  = 1
     critical = 5
