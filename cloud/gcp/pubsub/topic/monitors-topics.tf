@@ -13,7 +13,7 @@ resource "datadog_monitor" "sending_operations_count" {
     <= ${var.sending_operations_count_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     critical = var.sending_operations_count_threshold_critical
   }
 
@@ -49,7 +49,7 @@ resource "datadog_monitor" "unavailable_sending_operations_count" {
     >= ${var.unavailable_sending_operations_count_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.unavailable_sending_operations_count_threshold_warning
     critical = var.unavailable_sending_operations_count_threshold_critical
   }
@@ -88,7 +88,7 @@ resource "datadog_monitor" "unavailable_sending_operations_ratio" {
     >= ${var.unavailable_sending_operations_ratio_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.unavailable_sending_operations_ratio_threshold_warning
     critical = var.unavailable_sending_operations_ratio_threshold_critical
   }

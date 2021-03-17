@@ -12,7 +12,7 @@ resource "datadog_monitor" "memcached_get_hits" {
     ) * 100 < ${var.get_hits_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.get_hits_threshold_warning
     critical = var.get_hits_threshold_critical
   }
@@ -46,7 +46,7 @@ resource "datadog_monitor" "memcached_cpu_high" {
     ) > ${var.cpu_high_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.cpu_high_threshold_warning
     critical = var.cpu_high_threshold_critical
   }

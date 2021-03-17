@@ -8,7 +8,7 @@ resource "datadog_monitor" "datadog_apache_process" {
     "apache.can_connect"${module.filter-tags.service_check}.by("port","server").last(6).count_by_status()
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.apache_connect_threshold_warning
     critical = 5
   }

@@ -43,7 +43,7 @@ resource "datadog_monitor" "keyvault_api_result" {
       , 100) < ${var.api_result_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     critical = var.api_result_threshold_critical
     warning  = var.api_result_threshold_warning
   }
@@ -77,7 +77,7 @@ resource "datadog_monitor" "keyvault_api_latency" {
         > ${var.api_latency_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     critical = var.api_latency_threshold_critical
     warning  = var.api_latency_threshold_warning
   }

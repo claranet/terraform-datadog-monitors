@@ -11,7 +11,7 @@ resource "datadog_monitor" "rds_aurora_postgresql_replica_lag" {
   ) > ${var.aurora_replicalag_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.aurora_replicalag_threshold_warning
     critical = var.aurora_replicalag_threshold_critical
   }

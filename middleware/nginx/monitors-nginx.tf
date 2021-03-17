@@ -8,7 +8,7 @@ resource "datadog_monitor" "datadog_nginx_process" {
     "nginx.can_connect"${module.filter-tags.service_check}.by("server","port").last(6).count_by_status()
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.nginx_connect_threshold_warning
     critical = 5
   }
@@ -42,7 +42,7 @@ resource "datadog_monitor" "datadog_nginx_dropped_connections" {
     > ${var.nginx_dropped_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     critical = var.nginx_dropped_threshold_critical
   }
 

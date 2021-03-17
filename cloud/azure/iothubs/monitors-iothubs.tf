@@ -13,7 +13,7 @@ resource "datadog_monitor" "too_many_jobs_failed" {
       * 100 , 0) > ${var.failed_jobs_rate_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.failed_jobs_rate_threshold_warning
     critical = var.failed_jobs_rate_threshold_critical
   }
@@ -50,7 +50,7 @@ resource "datadog_monitor" "too_many_list_jobs_failed" {
       * 100, 0) > ${var.failed_listjobs_rate_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.failed_listjobs_rate_threshold_warning
     critical = var.failed_listjobs_rate_threshold_critical
   }
@@ -87,7 +87,7 @@ resource "datadog_monitor" "too_many_query_jobs_failed" {
       * 100, 0) > ${var.failed_queryjobs_rate_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.failed_queryjobs_rate_threshold_warning
     critical = var.failed_queryjobs_rate_threshold_critical
   }
@@ -183,7 +183,7 @@ resource "datadog_monitor" "too_many_c2d_methods_failed" {
       * 100, 0) > ${var.failed_c2d_methods_rate_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.failed_c2d_methods_rate_threshold_warning
     critical = var.failed_c2d_methods_rate_threshold_critical
   }
@@ -220,7 +220,7 @@ resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
       * 100, 0) > ${var.failed_c2d_twin_read_rate_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.failed_c2d_twin_read_rate_threshold_warning
     critical = var.failed_c2d_twin_read_rate_threshold_critical
   }
@@ -257,7 +257,7 @@ resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
       * 100, 0) > ${var.failed_c2d_twin_update_rate_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.failed_c2d_twin_update_rate_threshold_warning
     critical = var.failed_c2d_twin_update_rate_threshold_critical
   }
@@ -294,7 +294,7 @@ resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
       * 100, 0) > ${var.failed_d2c_twin_read_rate_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.failed_d2c_twin_read_rate_threshold_warning
     critical = var.failed_d2c_twin_read_rate_threshold_critical
   }
@@ -331,7 +331,7 @@ resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
       * 100, 0) > ${var.failed_d2c_twin_update_rate_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.failed_d2c_twin_update_rate_threshold_warning
     critical = var.failed_d2c_twin_update_rate_threshold_critical
   }
@@ -370,7 +370,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
       * 100, 0) > ${var.dropped_d2c_telemetry_egress_rate_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.dropped_d2c_telemetry_egress_rate_threshold_warning
     critical = var.dropped_d2c_telemetry_egress_rate_threshold_critical
   }
@@ -409,7 +409,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
       * 100, 0) > ${var.orphaned_d2c_telemetry_egress_rate_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.orphaned_d2c_telemetry_egress_rate_threshold_warning
     critical = var.orphaned_d2c_telemetry_egress_rate_threshold_critical
   }
@@ -448,7 +448,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
       * 100, 0) > ${var.invalid_d2c_telemetry_egress_rate_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.invalid_d2c_telemetry_egress_rate_threshold_warning
     critical = var.invalid_d2c_telemetry_egress_rate_threshold_critical
   }
@@ -484,7 +484,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
       * 100) > ${var.too_many_d2c_telemetry_ingress_nosent_rate_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.too_many_d2c_telemetry_ingress_nosent_rate_threshold_warning
     critical = var.too_many_d2c_telemetry_ingress_nosent_rate_threshold_critical
   }

@@ -10,7 +10,7 @@ resource "datadog_monitor" "ecs_agent_status" {
 EOQ
 
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.agent_status_threshold_warning
     critical = 5
   }
@@ -46,7 +46,7 @@ resource "datadog_monitor" "cluster_cpu_utilization" {
 EOQ
 
 
-  monitor_thresholds = {
+  monitor_thresholds {
     critical = var.cluster_cpu_utilization_threshold_critical
     warning  = var.cluster_cpu_utilization_threshold_warning
   }
@@ -82,7 +82,7 @@ resource "datadog_monitor" "cluster_memory_reservation" {
 EOQ
 
 
-  monitor_thresholds = {
+  monitor_thresholds {
     critical = var.cluster_memory_reservation_threshold_critical
     warning  = var.cluster_memory_reservation_threshold_warning
   }

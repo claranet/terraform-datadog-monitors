@@ -11,7 +11,7 @@ resource "datadog_monitor" "not_responding" {
     "redis.can_connect"${module.filter-tags.service_check}.by("redis_host","redis_port").last(6).count_by_status()
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.not_responding_threshold_warning
     critical = 5
   }
@@ -45,7 +45,7 @@ resource "datadog_monitor" "evicted_keys" {
      ) > ${var.evictedkeys_change_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.evictedkeys_change_threshold_warning
     critical = var.evictedkeys_change_threshold_critical
   }
@@ -79,7 +79,7 @@ resource "datadog_monitor" "expirations" {
      ) > ${var.expirations_rate_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.expirations_rate_threshold_warning
     critical = var.expirations_rate_threshold_critical
   }
@@ -114,7 +114,7 @@ resource "datadog_monitor" "blocked_clients" {
      ) * 100 > ${var.blocked_clients_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.blocked_clients_threshold_warning
     critical = var.blocked_clients_threshold_critical
   }
@@ -148,7 +148,7 @@ resource "datadog_monitor" "keyspace_full" {
      ) == ${var.keyspace_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.keyspace_threshold_warning
     critical = var.keyspace_threshold_critical
   }
@@ -183,7 +183,7 @@ resource "datadog_monitor" "memory_used" {
      ) * 100 > ${var.mem_used_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.mem_used_threshold_warning
     critical = var.mem_used_threshold_critical
   }
@@ -217,7 +217,7 @@ resource "datadog_monitor" "memory_frag" {
      * 100 > ${var.mem_frag_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.mem_frag_threshold_warning
     critical = var.mem_frag_threshold_critical
   }
@@ -251,7 +251,7 @@ resource "datadog_monitor" "rejected_connections" {
      ) > ${var.rejected_con_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.rejected_con_threshold_warning
     critical = var.rejected_con_threshold_critical
   }
@@ -285,7 +285,7 @@ resource "datadog_monitor" "latency" {
      ) > ${var.latency_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.latency_threshold_warning
     critical = var.latency_threshold_critical
   }
@@ -321,7 +321,7 @@ resource "datadog_monitor" "hitrate" {
      ) * 100 < ${var.hitrate_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.hitrate_threshold_warning
     critical = var.hitrate_threshold_critical
   }

@@ -11,7 +11,7 @@ resource "datadog_monitor" "azure_search_latency" {
     ) > ${var.latency_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.latency_threshold_warning
     critical = var.latency_threshold_critical
   }
@@ -45,7 +45,7 @@ resource "datadog_monitor" "azure_search_throttled_queries_rate" {
     ) > ${var.throttled_queries_rate_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.throttled_queries_rate_threshold_warning
     critical = var.throttled_queries_rate_threshold_critical
   }

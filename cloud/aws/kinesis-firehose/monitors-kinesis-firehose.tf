@@ -11,7 +11,7 @@ resource "datadog_monitor" "firehose_incoming_records" {
     ) <= 0
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     critical = 0
   }
 

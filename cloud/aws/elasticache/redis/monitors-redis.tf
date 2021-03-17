@@ -12,7 +12,7 @@ resource "datadog_monitor" "redis_cache_hits" {
     * 100, 100) < ${var.cache_hits_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.cache_hits_threshold_warning
     critical = var.cache_hits_threshold_critical
   }
@@ -76,7 +76,7 @@ resource "datadog_monitor" "redis_replication_lag" {
     ) > ${var.replication_lag_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.replication_lag_threshold_warning
     critical = var.replication_lag_threshold_critical
   }

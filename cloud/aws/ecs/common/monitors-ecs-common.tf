@@ -12,7 +12,7 @@ resource "datadog_monitor" "service_cpu_utilization" {
 EOQ
 
 
-  monitor_thresholds = {
+  monitor_thresholds {
     critical = var.service_cpu_utilization_threshold_critical
     warning  = var.service_cpu_utilization_threshold_warning
   }
@@ -46,7 +46,7 @@ resource "datadog_monitor" "service_memory_utilization" {
     > ${var.service_memory_utilization_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     critical = var.service_memory_utilization_threshold_critical
     warning  = var.service_memory_utilization_threshold_warning
   }
@@ -81,7 +81,7 @@ resource "datadog_monitor" "service_missing_tasks" {
 EOQ
 
 
-  monitor_thresholds = {
+  monitor_thresholds {
     critical = var.service_missing_tasks_threshold_critical
     warning  = var.service_missing_tasks_threshold_warning
   }

@@ -17,7 +17,7 @@ resource "datadog_monitor" "oldest_unacked_message_age" {
     >= ${var.oldest_unacked_message_age_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.oldest_unacked_message_age_threshold_warning
     critical = var.oldest_unacked_message_age_threshold_critical
   }
@@ -58,7 +58,7 @@ resource "datadog_monitor" "subscription_push_latency" {
     >= ${var.subscription_push_latency_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.subscription_push_latency_threshold_warning
     critical = var.subscription_push_latency_threshold_critical
   }
@@ -105,7 +105,7 @@ resource "datadog_monitor" "subscription_push_latency_anomaly" {
     >= ${var.subscription_push_latency_anomaly_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.subscription_push_latency_anomaly_threshold_warning
     critical = var.subscription_push_latency_anomaly_threshold_critical
   }

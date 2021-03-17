@@ -12,7 +12,7 @@ resource "datadog_monitor" "NLB_no_healthy_instances" {
     ) * 100 < 1
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     critical = 1
     warning  = var.nlb_no_healthy_instances_threshold_warning
   }

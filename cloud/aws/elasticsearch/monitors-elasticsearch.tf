@@ -16,7 +16,7 @@ resource "datadog_monitor" "es_cluster_status" {
   ) >= 2
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = 1
     critical = 2
   }
@@ -53,7 +53,7 @@ resource "datadog_monitor" "es_free_space_low" {
   ) < ${var.diskspace_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.diskspace_threshold_warning
     critical = var.diskspace_threshold_critical
   }
@@ -88,7 +88,7 @@ resource "datadog_monitor" "es_cpu_90_15min" {
   ) > ${var.cpu_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.cpu_threshold_warning
     critical = var.cpu_threshold_critical
   }

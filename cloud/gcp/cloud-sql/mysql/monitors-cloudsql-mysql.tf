@@ -13,7 +13,7 @@ resource "datadog_monitor" "replication_lag" {
     > ${var.replication_lag_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     critical = var.replication_lag_threshold_critical
     warning  = var.replication_lag_threshold_warning
   }

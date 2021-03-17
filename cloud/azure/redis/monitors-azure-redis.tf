@@ -40,7 +40,7 @@ resource "datadog_monitor" "evictedkeys" {
      ) > ${var.evictedkeys_limit_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.evictedkeys_limit_threshold_warning
     critical = var.evictedkeys_limit_threshold_critical
   }
@@ -74,7 +74,7 @@ resource "datadog_monitor" "percent_processor_time" {
     ) > ${var.percent_processor_time_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.percent_processor_time_threshold_warning
     critical = var.percent_processor_time_threshold_critical
   }
@@ -108,7 +108,7 @@ resource "datadog_monitor" "server_load" {
     ) > ${var.server_load_rate_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.server_load_rate_threshold_warning
     critical = var.server_load_rate_threshold_critical
   }

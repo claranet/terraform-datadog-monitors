@@ -8,7 +8,7 @@ resource "datadog_monitor" "mysql_availability" {
     "mysql.can_connect"${module.filter-tags.service_check}.by("port","server").last(6).count_by_status()
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.mysql_availability_threshold_warning
     critical = 5
   }
@@ -43,7 +43,7 @@ resource "datadog_monitor" "mysql_connection" {
     ) * 100 > ${var.mysql_connection_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.mysql_connection_threshold_warning
     critical = var.mysql_connection_threshold_critical
   }
@@ -76,7 +76,7 @@ resource "datadog_monitor" "mysql_aborted" {
     ) * 100 > ${var.mysql_aborted_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.mysql_aborted_threshold_warning
     critical = var.mysql_aborted_threshold_critical
   }
@@ -109,7 +109,7 @@ resource "datadog_monitor" "mysql_slow" {
     ) * 100 > ${var.mysql_slow_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.mysql_slow_threshold_warning
     critical = var.mysql_slow_threshold_critical
   }
@@ -142,7 +142,7 @@ resource "datadog_monitor" "mysql_pool_efficiency" {
     ) * 100 > ${var.mysql_pool_efficiency_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.mysql_pool_efficiency_threshold_warning
     critical = var.mysql_pool_efficiency_threshold_critical
   }
@@ -176,7 +176,7 @@ resource "datadog_monitor" "mysql_pool_utilization" {
     * 100 > ${var.mysql_pool_utilization_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.mysql_pool_utilization_threshold_warning
     critical = var.mysql_pool_utilization_threshold_critical
   }
@@ -217,12 +217,12 @@ resource "datadog_monitor" "mysql_threads_anomaly" {
     >= ${var.mysql_threads_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     critical          = var.mysql_threads_threshold_critical
     critical_recovery = 0
   }
 
-  monitor_threshold_windows = {
+  monitor_threshold_windows {
     trigger_window  = var.mysql_threads_alert_window
     recovery_window = var.mysql_threads_alert_window
   }
@@ -263,12 +263,12 @@ resource "datadog_monitor" "mysql_questions_anomaly" {
     >= ${var.mysql_questions_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     critical          = var.mysql_questions_threshold_critical
     critical_recovery = 0
   }
 
-  monitor_threshold_windows = {
+  monitor_threshold_windows {
     trigger_window  = var.mysql_questions_alert_window
     recovery_window = var.mysql_questions_alert_window
   }
@@ -298,7 +298,7 @@ resource "datadog_monitor" "mysql_replication_lag" {
     ${var.mysql_replication_lag_time_aggregator}(${var.mysql_replication_lag_timeframe}):avg:mysql.replication.seconds_behind_master${module.filter-tags.query_alert} by {server} > ${var.mysql_replication_lag_threshold_critical}
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     warning  = var.mysql_replication_lag_threshold_warning
     critical = var.mysql_replication_lag_threshold_critical
   }
@@ -328,7 +328,7 @@ resource "datadog_monitor" "mysql_replication_status" {
     ${var.mysql_replication_status_time_aggregator}(${var.mysql_replication_status_timeframe}):avg:mysql.replication.slave_running${module.filter-tags.query_alert} by {server} < 1
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     critical = 1
   }
 

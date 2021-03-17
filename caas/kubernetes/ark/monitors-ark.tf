@@ -8,7 +8,7 @@ resource "datadog_monitor" "ark_schedules_monitor" {
     sum(${var.ark_schedules_monitor_timeframe}):min:ark.ark_backup_failure_total${module.filter-tags.query_alert} by {schedule}.as_count() > 1
 EOQ
 
-  monitor_thresholds = {
+  monitor_thresholds {
     critical = 1
     warning  = 0
   }
