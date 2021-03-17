@@ -87,6 +87,12 @@ variable "alb_no_healthy_instances_threshold_warning" {
   default     = 100
 }
 
+variable "alb_no_healthy_instances_priority" {
+  description = "Priority of ALB no healthy instances monitor"
+  type        = number
+  default     = 1
+}
+
 variable "latency_enabled" {
   description = "Flag to enable ALB latency monitor"
   type        = string
@@ -125,6 +131,12 @@ variable "latency_threshold_critical" {
 variable "latency_threshold_warning" {
   default     = 1
   description = "latency warning threshold in seconds"
+}
+
+variable "latency_priority" {
+  description = "Priority of ALB latency monitor"
+  type        = number
+  default     = 1
 }
 
 variable "httpcode_alb_4xx_enabled" {
@@ -167,6 +179,12 @@ variable "httpcode_alb_4xx_threshold_warning" {
   description = "loadbalancer 4xx warning threshold in percentage"
 }
 
+variable "httpcode_alb_4xx_priority" {
+  description = "Priority of LB 4xx monitor"
+  type        = number
+  default     = 1
+}
+
 variable "httpcode_target_4xx_enabled" {
   description = "Flag to enable ALB target httpcode 4xx monitor"
   type        = string
@@ -205,6 +223,12 @@ variable "httpcode_target_4xx_threshold_critical" {
 variable "httpcode_target_4xx_threshold_warning" {
   default     = 60
   description = "target 4xx warning threshold in percentage"
+}
+
+variable "httpcode_target_4xx_priority" {
+  description = "Priority of target 4xx monitor"
+  type        = number
+  default     = 1
 }
 
 variable "httpcode_alb_5xx_enabled" {
@@ -247,6 +271,12 @@ variable "httpcode_alb_5xx_threshold_warning" {
   description = "loadbalancer 5xx warning threshold in percentage"
 }
 
+variable "httpcode_alb_5xx_priority" {
+  description = "Priority of LB 5xx monitor"
+  type        = number
+  default     = 1
+}
+
 variable "httpcode_target_5xx_enabled" {
   description = "Flag to enable ALB target httpcode 5xx monitor"
   type        = string
@@ -285,6 +315,12 @@ variable "httpcode_target_5xx_threshold_critical" {
 variable "httpcode_target_5xx_threshold_warning" {
   default     = 60
   description = "target 5xx warning threshold in percentage"
+}
+
+variable "httpcode_target_5xx_priority" {
+  description = "Priority of target 5xx monitor"
+  type        = number
+  default     = 1
 }
 
 variable "artificial_requests_count" {
