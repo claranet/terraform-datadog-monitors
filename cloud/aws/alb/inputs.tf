@@ -44,6 +44,12 @@ variable "notify_no_data" {
   default     = true
 }
 
+variable "default_monitor_priority" {
+  type        = number
+  description = "Default priority to apply to monitor"
+  default     = 1
+}
+
 variable "alb_no_healthy_instances_no_data_timeframe" {
   description = "Number of minutes before reporting no data"
   type        = string
@@ -90,7 +96,7 @@ variable "alb_no_healthy_instances_threshold_warning" {
 variable "alb_no_healthy_instances_priority" {
   description = "Priority of ALB no healthy instances monitor"
   type        = number
-  default     = 1
+  default     = 0
 }
 
 variable "latency_enabled" {
@@ -136,7 +142,7 @@ variable "latency_threshold_warning" {
 variable "latency_priority" {
   description = "Priority of ALB latency monitor"
   type        = number
-  default     = 1
+  default     = 0
 }
 
 variable "httpcode_alb_4xx_enabled" {
@@ -182,7 +188,7 @@ variable "httpcode_alb_4xx_threshold_warning" {
 variable "httpcode_alb_4xx_priority" {
   description = "Priority of LB 4xx monitor"
   type        = number
-  default     = 1
+  default     = 0
 }
 
 variable "httpcode_target_4xx_enabled" {
@@ -228,7 +234,7 @@ variable "httpcode_target_4xx_threshold_warning" {
 variable "httpcode_target_4xx_priority" {
   description = "Priority of target 4xx monitor"
   type        = number
-  default     = 1
+  default     = 0
 }
 
 variable "httpcode_alb_5xx_enabled" {
@@ -274,7 +280,7 @@ variable "httpcode_alb_5xx_threshold_warning" {
 variable "httpcode_alb_5xx_priority" {
   description = "Priority of LB 5xx monitor"
   type        = number
-  default     = 1
+  default     = 0
 }
 
 variable "httpcode_target_5xx_enabled" {
@@ -320,7 +326,7 @@ variable "httpcode_target_5xx_threshold_warning" {
 variable "httpcode_target_5xx_priority" {
   description = "Priority of target 5xx monitor"
   type        = number
-  default     = 1
+  default     = 0
 }
 
 variable "artificial_requests_count" {
