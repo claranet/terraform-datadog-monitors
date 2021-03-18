@@ -26,6 +26,24 @@ Creates DataDog monitors with the following checks:
 |------|---------|
 | terraform | >= 0.12.26 |
 
+## Providers
+
+| Name | Version |
+|------|---------|
+| datadog | n/a |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| filter-tags | ../../common/filter-tags |  |
+
+## Resources
+
+| Name |
+|------|
+| [datadog_monitor](https://registry.terraform.io/providers/datadog/datadog/latest/docs/resources/monitor) |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -58,7 +76,6 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | memory\_used\_id | id for monitor memory\_used |
 | not\_responding\_id | id for monitor not\_responding |
-
 ## Related documentation
 
 * [Datadog Docker integration](https://docs.datadoghq.com/integrations/docker_daemon/)
