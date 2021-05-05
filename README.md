@@ -33,7 +33,7 @@ Here is the last tester terraform provider version for datadog but next versions
 
 ```
 provider "datadog" {
-  version = "2.6.0" # last tested working version
+  version = "2.23.0" # last tested working version
 
   api_key = var.datadog_api_key
   app_key = var.datadog_app_key
