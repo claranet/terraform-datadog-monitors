@@ -22,10 +22,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_thread_worker_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "proxysql_slow" {
@@ -55,10 +51,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_slow_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "proxysql_client_conn_aborted" {
@@ -85,10 +77,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_client_conn_aborted_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "proxysql_server_conn_aborted" {
@@ -115,10 +103,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_server_conn_aborted_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "proxysql_pool_conn_failure" {
@@ -147,8 +131,4 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_pool_conn_failure_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

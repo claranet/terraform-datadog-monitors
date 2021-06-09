@@ -25,10 +25,6 @@ EOQ
 
   tags = concat(["env:${var.environment}", "type:database", "provider:zookeeper", "resource:zookeeper", "team:claranet",
   "created-by:terraform"], var.zookeeper_not_responding_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "datadog_monitor_zookeeper_latency" {
@@ -58,8 +54,4 @@ EOQ
 
   tags = concat(["env:${var.environment}", "type:database", "provider:zookeeper", "resource:zookeeper", "team:claranet",
   "created-by:terraform"], var.zookeeper_latency_availability_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

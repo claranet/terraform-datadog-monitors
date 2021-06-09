@@ -30,10 +30,6 @@ EOQ
 
   tags = concat(["env:${var.environment}", "type:database", "provider:solr", "resource:solr", "team:claranet",
   "created-by:terraform"], var.not_responding_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
