@@ -32,6 +32,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| artificial\_requests\_count | Number of false requests used to mitigate false positive in case of low trafic | `number` | `5` | no |
 | environment | Architecture environment | `string` | n/a | yes |
 | errors\_enabled | Flag to enable Errors monitor | `string` | `"false"` | no |
 | errors\_extra\_tags | Extra tags for Errors monitor | `list(string)` | `[]` | no |

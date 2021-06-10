@@ -10,7 +10,7 @@ resource "datadog_monitor" "pct_errors" {
       default(
         (default(sum:aws.lambda.errors${module.filter-tags.query_alert} by {region,functionname}.as_count(),0)
         /
-        default(sum:aws.lambda.invocations${module.filter-tags.query_alert} by {region,functionname}.as_count(),1))
+        default(sum:aws.lambda.invocations${module.filter-tags.query_alert} by {region,functionname}.as_count() + ${var.artificial_requests_count},1))
         * 100,0)
       > ${var.pct_errors_threshold_critical}
   EOQ
