@@ -448,7 +448,7 @@ EOQ
     critical = var.http_connections_anomaly_threshold_critical
   }
 
-  threshold_windows = {
+  monitor_threshold_windows {
     trigger_window  = var.http_connections_anomaly_alert_window
     recovery_window = var.http_connections_anomaly_alert_window
   }

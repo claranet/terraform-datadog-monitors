@@ -198,7 +198,7 @@ EOQ
     critical_recovery = 0
   }
 
-  threshold_windows = {
+  monitor_threshold_windows {
     trigger_window  = var.mysql_threads_alert_window
     recovery_window = var.mysql_threads_alert_window
   }
@@ -240,7 +240,7 @@ EOQ
     critical_recovery = 0
   }
 
-  threshold_windows = {
+  monitor_threshold_windows {
     trigger_window  = var.mysql_questions_alert_window
     recovery_window = var.mysql_questions_alert_window
   }
