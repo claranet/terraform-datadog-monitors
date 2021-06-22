@@ -31,7 +31,7 @@ terraform {
 
 ```
 
-_Note_: if you want to use Datadog provider v2 so you need to use version 3 of this repository.
+_Note_: if you want to use Datadog provider v2, you need to use version 3 of the modules in this repository.
 
 ### DataDog provider
 
