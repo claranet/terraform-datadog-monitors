@@ -70,7 +70,7 @@ resource "datadog_monitor" "service_bus_user_errors" {
       ) * 100 > ${var.user_errors_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.user_errors_threshold_critical
     warning  = var.user_errors_threshold_warning
   }
@@ -105,7 +105,7 @@ resource "datadog_monitor" "service_bus_server_errors" {
       ) * 100 > ${var.server_errors_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.server_errors_threshold_critical
     warning  = var.server_errors_threshold_warning
   }

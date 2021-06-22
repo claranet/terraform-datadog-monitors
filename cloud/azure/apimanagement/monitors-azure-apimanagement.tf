@@ -8,7 +8,7 @@ resource "datadog_monitor" "apimgt_status" {
       ${var.status_time_aggregator}(${var.status_timeframe}):avg:azure.apimanagement_service.status${module.filter-tags.query_alert} by {resource_group,region,name} < 1
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = 1
   }
 
@@ -43,7 +43,7 @@ resource "datadog_monitor" "apimgt_failed_requests" {
     ) * 100 > ${var.failed_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.failed_requests_threshold_critical
     warning  = var.failed_requests_threshold_warning
   }
@@ -78,7 +78,7 @@ resource "datadog_monitor" "apimgt_other_requests" {
     ) * 100 > ${var.other_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.other_requests_threshold_critical
     warning  = var.other_requests_threshold_warning
   }
@@ -113,7 +113,7 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
     ) * 100 > ${var.unauthorized_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.unauthorized_requests_threshold_critical
     warning  = var.unauthorized_requests_threshold_warning
   }
@@ -150,7 +150,7 @@ resource "datadog_monitor" "apimgt_successful_requests" {
     , 100) < ${var.successful_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.successful_requests_threshold_critical
     warning  = var.successful_requests_threshold_warning
   }

@@ -70,7 +70,7 @@ resource "datadog_monitor" "appgateway_backend_connect_time" {
       sum:azure.network_applicationgateways.backend_connect_time${module.filter-tags.query_alert} by {resource_group,region,name,backendhttpsetting,backendpool,backendserver} > ${var.appgateway_backend_connect_time_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.appgateway_backend_connect_time_threshold_critical
     warning  = var.appgateway_backend_connect_time_threshold_warning
   }
@@ -106,7 +106,7 @@ resource "datadog_monitor" "appgateway_failed_requests" {
       * 100),0) > ${var.appgateway_failed_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.appgateway_failed_requests_threshold_critical
     warning  = var.appgateway_failed_requests_threshold_warning
   }
@@ -143,7 +143,7 @@ resource "datadog_monitor" "appgateway_healthy_host_ratio" {
       * 100 > ${var.appgateway_unhealthy_host_ratio_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.appgateway_unhealthy_host_ratio_threshold_critical
     warning  = var.appgateway_unhealthy_host_ratio_threshold_warning
   }
@@ -179,7 +179,7 @@ resource "datadog_monitor" "appgateway_http_4xx_errors" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.appgateway_http_4xx_errors_threshold_warning
     critical = var.appgateway_http_4xx_errors_threshold_critical
   }
@@ -213,7 +213,7 @@ resource "datadog_monitor" "appgateway_http_5xx_errors" {
       * 100),0) > ${var.appgateway_http_5xx_errors_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.appgateway_http_5xx_errors_threshold_warning
     critical = var.appgateway_http_5xx_errors_threshold_critical
   }
@@ -248,7 +248,7 @@ resource "datadog_monitor" "appgateway_backend_http_4xx_errors" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.appgateway_backend_http_4xx_errors_threshold_warning
     critical = var.appgateway_backend_http_4xx_errors_threshold_critical
   }
@@ -282,7 +282,7 @@ resource "datadog_monitor" "appgateway_backend_http_5xx_errors" {
       * 100),0) > ${var.appgateway_backend_http_5xx_errors_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.appgateway_backend_http_5xx_errors_threshold_warning
     critical = var.appgateway_backend_http_5xx_errors_threshold_critical
   }

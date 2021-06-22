@@ -8,7 +8,7 @@ resource "datadog_monitor" "storage_status" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = 1
   }
 
@@ -46,7 +46,7 @@ resource "datadog_monitor" "blobservices_requests_error" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.successful_storage_requests_threshold_critical
     warning  = var.successful_storage_requests_threshold_warning
   }
@@ -83,7 +83,7 @@ resource "datadog_monitor" "fileservices_requests_error" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.successful_storage_requests_threshold_critical
     warning  = var.successful_storage_requests_threshold_warning
   }
@@ -121,7 +121,7 @@ resource "datadog_monitor" "queueservices_requests_error" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.successful_storage_requests_threshold_critical
     warning  = var.successful_storage_requests_threshold_warning
   }
@@ -159,7 +159,7 @@ resource "datadog_monitor" "tableservices_requests_error" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.successful_storage_requests_threshold_critical
     warning  = var.successful_storage_requests_threshold_warning
   }
@@ -196,7 +196,7 @@ resource "datadog_monitor" "blobservices_latency" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.latency_threshold_critical
     warning  = var.latency_threshold_warning
   }
@@ -233,7 +233,7 @@ resource "datadog_monitor" "fileservices_latency" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.latency_threshold_critical
     warning  = var.latency_threshold_warning
   }
@@ -270,7 +270,7 @@ resource "datadog_monitor" "queueservices_latency" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.latency_threshold_critical
     warning  = var.latency_threshold_warning
   }
@@ -307,7 +307,7 @@ resource "datadog_monitor" "tableservices_latency" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.latency_threshold_critical
     warning  = var.latency_threshold_warning
   }
@@ -344,7 +344,7 @@ resource "datadog_monitor" "blob_timeout_error_requests" {
     * 100),0) > ${var.timeout_error_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.timeout_error_requests_threshold_critical
     warning  = var.timeout_error_requests_threshold_warning
   }
@@ -381,7 +381,7 @@ resource "datadog_monitor" "file_timeout_error_requests" {
     * 100),0) > ${var.timeout_error_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.timeout_error_requests_threshold_critical
     warning  = var.timeout_error_requests_threshold_warning
   }
@@ -419,7 +419,7 @@ resource "datadog_monitor" "queue_timeout_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.timeout_error_requests_threshold_critical
     warning  = var.timeout_error_requests_threshold_warning
   }
@@ -457,7 +457,7 @@ resource "datadog_monitor" "table_timeout_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.timeout_error_requests_threshold_critical
     warning  = var.timeout_error_requests_threshold_warning
   }
@@ -495,7 +495,7 @@ resource "datadog_monitor" "blob_network_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.network_error_requests_threshold_critical
     warning  = var.network_error_requests_threshold_warning
   }
@@ -533,7 +533,7 @@ resource "datadog_monitor" "file_network_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.network_error_requests_threshold_critical
     warning  = var.network_error_requests_threshold_warning
   }
@@ -571,7 +571,7 @@ resource "datadog_monitor" "queue_network_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.network_error_requests_threshold_critical
     warning  = var.network_error_requests_threshold_warning
   }
@@ -609,7 +609,7 @@ resource "datadog_monitor" "table_network_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.network_error_requests_threshold_critical
     warning  = var.network_error_requests_threshold_warning
   }
@@ -647,7 +647,7 @@ resource "datadog_monitor" "blob_throttling_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.throttling_error_requests_threshold_critical
     warning  = var.throttling_error_requests_threshold_warning
   }
@@ -685,7 +685,7 @@ resource "datadog_monitor" "file_throttling_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.throttling_error_requests_threshold_critical
     warning  = var.throttling_error_requests_threshold_warning
   }
@@ -719,7 +719,7 @@ resource "datadog_monitor" "queue_throttling_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.throttling_error_requests_threshold_critical
     warning  = var.throttling_error_requests_threshold_warning
   }
@@ -757,7 +757,7 @@ resource "datadog_monitor" "table_throttling_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.throttling_error_requests_threshold_critical
     warning  = var.throttling_error_requests_threshold_warning
   }
@@ -797,7 +797,7 @@ resource "datadog_monitor" "blob_server_other_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.server_other_error_requests_threshold_critical
     warning  = var.server_other_error_requests_threshold_warning
   }
@@ -835,7 +835,7 @@ resource "datadog_monitor" "file_server_other_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.server_other_error_requests_threshold_critical
     warning  = var.server_other_error_requests_threshold_warning
   }
@@ -873,7 +873,7 @@ resource "datadog_monitor" "queue_server_other_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.server_other_error_requests_threshold_critical
     warning  = var.server_other_error_requests_threshold_warning
   }
@@ -911,7 +911,7 @@ resource "datadog_monitor" "table_server_other_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.server_other_error_requests_threshold_critical
     warning  = var.server_other_error_requests_threshold_warning
   }
@@ -948,7 +948,7 @@ resource "datadog_monitor" "blob_client_other_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.client_other_error_requests_threshold_critical
     warning  = var.client_other_error_requests_threshold_warning
   }
@@ -986,7 +986,7 @@ resource "datadog_monitor" "file_client_other_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.client_other_error_requests_threshold_critical
     warning  = var.client_other_error_requests_threshold_warning
   }
@@ -1024,7 +1024,7 @@ resource "datadog_monitor" "queue_client_other_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.client_other_error_requests_threshold_critical
     warning  = var.client_other_error_requests_threshold_warning
   }
@@ -1062,7 +1062,7 @@ resource "datadog_monitor" "table_client_other_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.client_other_error_requests_threshold_critical
     warning  = var.client_other_error_requests_threshold_warning
   }
@@ -1100,7 +1100,7 @@ resource "datadog_monitor" "blob_authorization_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.authorization_error_requests_threshold_critical
     warning  = var.authorization_error_requests_threshold_warning
   }
@@ -1138,7 +1138,7 @@ resource "datadog_monitor" "file_authorization_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.authorization_error_requests_threshold_critical
     warning  = var.authorization_error_requests_threshold_warning
   }
@@ -1176,7 +1176,7 @@ resource "datadog_monitor" "queue_authorization_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.authorization_error_requests_threshold_critical
     warning  = var.authorization_error_requests_threshold_warning
   }
@@ -1214,7 +1214,7 @@ resource "datadog_monitor" "table_authorization_error_requests" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.authorization_error_requests_threshold_critical
     warning  = var.authorization_error_requests_threshold_warning
   }

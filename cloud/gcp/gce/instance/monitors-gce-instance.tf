@@ -13,7 +13,7 @@ resource "datadog_monitor" "cpu_utilization" {
   > ${var.cpu_utilization_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cpu_utilization_threshold_warning
     critical = var.cpu_utilization_threshold_critical
   }
@@ -57,7 +57,7 @@ resource "datadog_monitor" "disk_throttled_bps" {
     > ${var.disk_throttled_bps_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.disk_throttled_bps_threshold_warning
     critical = var.disk_throttled_bps_threshold_critical
   }
@@ -100,7 +100,7 @@ resource "datadog_monitor" "disk_throttled_ops" {
     > ${var.disk_throttled_ops_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.disk_throttled_ops_threshold_warning
     critical = var.disk_throttled_ops_threshold_critical
   }

@@ -40,7 +40,7 @@ resource "datadog_monitor" "cpu_percentage" {
     ) > ${var.cpu_percentage_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cpu_percentage_threshold_warning
     critical = var.cpu_percentage_threshold_critical
   }
@@ -74,7 +74,7 @@ resource "datadog_monitor" "memory_percentage" {
     ) > ${var.memory_percentage_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.memory_percentage_threshold_warning
     critical = var.memory_percentage_threshold_critical
   }

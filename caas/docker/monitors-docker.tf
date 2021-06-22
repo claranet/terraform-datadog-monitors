@@ -11,7 +11,7 @@ resource "datadog_monitor" "not_responding" {
     "docker.service_up"${module.filter-tags.service_check}.by("host").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.not_responding_threshold_warning
     critical = 5
   }
@@ -45,7 +45,7 @@ resource "datadog_monitor" "memory_used" {
     > ${var.memory_used_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.memory_used_threshold_warning
     critical = var.memory_used_threshold_critical
   }

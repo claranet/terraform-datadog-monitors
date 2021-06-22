@@ -11,7 +11,7 @@ resource "datadog_monitor" "appservices_response_time" {
     ) > ${var.response_time_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.response_time_threshold_warning
     critical = var.response_time_threshold_critical
   }
@@ -44,7 +44,7 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
     ) > ${var.memory_usage_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.memory_usage_threshold_warning
     critical = var.memory_usage_threshold_critical
   }
@@ -78,7 +78,7 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
     ) * 100 > ${var.http_5xx_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.http_5xx_requests_threshold_warning
     critical = var.http_5xx_requests_threshold_critical
   }
@@ -112,7 +112,7 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
     ) * 100 > ${var.http_4xx_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.http_4xx_requests_threshold_warning
     critical = var.http_4xx_requests_threshold_critical
   }
@@ -148,7 +148,7 @@ resource "datadog_monitor" "appservices_http_success_status_rate" {
     ) * 100, 100) < ${var.http_successful_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.http_successful_requests_threshold_warning
     critical = var.http_successful_requests_threshold_critical
   }
@@ -179,7 +179,7 @@ resource "datadog_monitor" "appservices_status" {
       ${var.status_time_aggregator}(${var.status_timeframe}):avg:azure.app_services.status${module.filter-tags.query_alert} by {resource_group,region,name} < 1
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = 1
   }
 
