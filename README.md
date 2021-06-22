@@ -16,7 +16,7 @@ This repository aims to provide a base of generic and pre configured monitors fo
 
 ### Versions
 
-Here is the minimum versions required to use these modules of integrations.
+Here are the minimum versions required to use these modules of integrations.
 
 ```hcl
 terraform {
