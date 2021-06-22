@@ -1,7 +1,7 @@
 terraform {
   required_providers {
-    template = {
-      source = "hashicorp/template"
+    datadog = {
+      source = "DataDog/datadog"
       version = ">= 3.1.0"
     }
   }
