@@ -22,10 +22,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventhub", "team:claranet", "created-by:terraform"], var.status_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "eventhub_failed_requests" {
@@ -41,7 +37,7 @@ resource "datadog_monitor" "eventhub_failed_requests" {
     ) * 100 > ${var.failed_requests_rate_thresold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.failed_requests_rate_thresold_critical
     warning  = var.failed_requests_rate_thresold_warning
   }
@@ -57,10 +53,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventhub", "team:claranet", "created-by:terraform"], var.failed_requests_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "eventhub_errors" {
@@ -78,7 +70,7 @@ resource "datadog_monitor" "eventhub_errors" {
     ) * 100 > ${var.errors_rate_thresold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.errors_rate_thresold_critical
     warning  = var.errors_rate_thresold_warning
   }
@@ -94,9 +86,5 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventhub", "team:claranet", "created-by:terraform"], var.errors_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

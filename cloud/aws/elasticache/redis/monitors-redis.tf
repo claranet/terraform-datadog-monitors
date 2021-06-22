@@ -12,7 +12,7 @@ resource "datadog_monitor" "redis_cache_hits" {
     * 100, 100) < ${var.cache_hits_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cache_hits_threshold_warning
     critical = var.cache_hits_threshold_critical
   }
@@ -28,10 +28,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis"], var.cache_hits_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "redis_cpu_high" {
@@ -58,10 +54,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis"], var.cpu_high_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "redis_replication_lag" {
@@ -76,7 +68,7 @@ resource "datadog_monitor" "redis_replication_lag" {
     ) > ${var.replication_lag_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.replication_lag_threshold_warning
     critical = var.replication_lag_threshold_critical
   }
@@ -92,10 +84,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis"], var.replication_lag_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "redis_commands" {
@@ -122,9 +110,5 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-redis", "team:claranet", "created-by:terraform", "engine:redis"], var.commands_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

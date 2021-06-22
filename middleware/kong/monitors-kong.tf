@@ -11,7 +11,7 @@ resource "datadog_monitor" "not_responding" {
     "kong.can_connect"${module.filter-tags.service_check}.by("kong_host","kong_port").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.not_responding_threshold_warning
     critical = 5
   }
@@ -27,10 +27,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:middleware", "provider:kong", "resource:kong", "team:claranet", "created-by:terraform"], var.not_responding_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "treatment_limit" {
@@ -46,7 +42,7 @@ resource "datadog_monitor" "treatment_limit" {
     > ${var.treatment_limit_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.treatment_limit_threshold_warning
     critical = var.treatment_limit_threshold_critical
   }
@@ -62,9 +58,5 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:middleware", "provider:kong", "resource:kong", "team:claranet", "created-by:terraform"], var.treatment_limit_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

@@ -22,10 +22,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.status_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "su_utilization" {
@@ -50,16 +46,12 @@ EOQ
   locked              = false
   require_full_window = false
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.su_utilization_threshold_warning
     critical = var.su_utilization_threshold_critical
   }
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.su_utilization_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "failed_function_requests" {
@@ -75,7 +67,7 @@ resource "datadog_monitor" "failed_function_requests" {
     ) * 100 > ${var.failed_function_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.failed_function_requests_threshold_warning
     critical = var.failed_function_requests_threshold_critical
   }
@@ -91,10 +83,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.failed_function_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "conversion_errors" {
@@ -109,7 +97,7 @@ resource "datadog_monitor" "conversion_errors" {
     ) > ${var.conversion_errors_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.conversion_errors_threshold_warning
     critical = var.conversion_errors_threshold_critical
   }
@@ -125,10 +113,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.conversion_errors_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "runtime_errors" {
@@ -143,7 +127,7 @@ resource "datadog_monitor" "runtime_errors" {
     ) > ${var.runtime_errors_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.runtime_errors_threshold_warning
     critical = var.runtime_errors_threshold_critical
   }
@@ -159,9 +143,5 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.runtime_errors_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

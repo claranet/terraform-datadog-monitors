@@ -20,10 +20,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform"], var.mongodb_primary_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "mongodb_secondary" {
@@ -39,7 +35,7 @@ resource "datadog_monitor" "mongodb_secondary" {
       > 1
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = 1
     warning  = 0
   }
@@ -54,10 +50,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform"], var.mongodb_secondary_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "mongodb_server_count" {
@@ -72,7 +64,7 @@ resource "datadog_monitor" "mongodb_server_count" {
       > 99
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = 99
     warning  = var.mongodb_desired_servers_count
   }
@@ -87,10 +79,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform"], var.mongodb_secondary_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "mongodb_replication" {
@@ -104,7 +92,7 @@ resource "datadog_monitor" "mongodb_replication" {
       avg:mongodb.replset.replicationlag${module.filter-tags-secondary.query_alert} by {server} > ${var.mongodb_lag_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.mongodb_lag_critical
     warning  = var.mongodb_lag_warning
   }
@@ -119,9 +107,5 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mongo", "resource:mongodb", "team:claranet", "created-by:terraform"], var.mongodb_replication_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

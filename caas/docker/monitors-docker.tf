@@ -11,7 +11,7 @@ resource "datadog_monitor" "not_responding" {
     "docker.service_up"${module.filter-tags.service_check}.by("host").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.not_responding_threshold_warning
     critical = 5
   }
@@ -27,10 +27,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:docker", "provider:docker", "resource:docker", "team:claranet", "created-by:terraform"], var.not_responding_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "memory_used" {
@@ -45,7 +41,7 @@ resource "datadog_monitor" "memory_used" {
     > ${var.memory_used_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.memory_used_threshold_warning
     critical = var.memory_used_threshold_critical
   }
@@ -61,9 +57,5 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:docker", "provider:docker", "resource:docker", "team:claranet", "created-by:terraform"], var.memory_used_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

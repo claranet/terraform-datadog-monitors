@@ -11,7 +11,7 @@ resource "datadog_monitor" "invalid_ssl_certificate" {
     "http.ssl_cert"${module.filter-tags.service_check}.by("instance","url").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.invalid_ssl_certificate_threshold_warning
     critical = 5
   }
@@ -27,10 +27,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:network", "provider:http_check", "resource:ssl-certificate", "team:claranet", "created-by:terraform"], var.invalid_ssl_certificate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -48,7 +44,7 @@ resource "datadog_monitor" "certificate_expiration_date" {
     < ${var.certificate_expiration_date_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.certificate_expiration_date_threshold_warning
     critical = var.certificate_expiration_date_threshold_critical
   }
@@ -64,8 +60,4 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:network", "provider:http_check", "resource:ssl-certificate", "team:claranet", "created-by:terraform"], var.certificate_expiration_date_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

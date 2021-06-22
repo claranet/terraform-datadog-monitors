@@ -22,10 +22,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform"], var.status_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "service_bus_no_active_connections" {
@@ -51,10 +47,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform"], var.no_active_connections_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "service_bus_user_errors" {
@@ -70,7 +62,7 @@ resource "datadog_monitor" "service_bus_user_errors" {
       ) * 100 > ${var.user_errors_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.user_errors_threshold_critical
     warning  = var.user_errors_threshold_warning
   }
@@ -86,10 +78,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform"], var.user_errors_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "service_bus_server_errors" {
@@ -105,7 +93,7 @@ resource "datadog_monitor" "service_bus_server_errors" {
       ) * 100 > ${var.server_errors_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.server_errors_threshold_critical
     warning  = var.server_errors_threshold_warning
   }
@@ -121,9 +109,5 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform"], var.server_errors_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

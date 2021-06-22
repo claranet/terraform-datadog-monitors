@@ -8,7 +8,7 @@ resource "datadog_monitor" "job" {
     "kubernetes_state.job.complete"${module.filter-tags.service_check}.by("job_name").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.job_threshold_warning
     critical = 5
   }
@@ -23,10 +23,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.job_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "cronjob" {
@@ -39,7 +35,7 @@ resource "datadog_monitor" "cronjob" {
     "kubernetes_state.cronjob.on_schedule_check"${module.filter-tags.service_check}.by("cronjob").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cronjob_threshold_warning
     critical = 5
   }
@@ -54,10 +50,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.cronjob_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "replica_available" {
@@ -73,7 +65,7 @@ resource "datadog_monitor" "replica_available" {
     + 1 < ${var.replica_available_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.replica_available_threshold_critical
   }
 
@@ -88,10 +80,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.replica_available_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "replica_ready" {
@@ -107,7 +95,7 @@ resource "datadog_monitor" "replica_ready" {
     + 1 < ${var.replica_available_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.replica_ready_threshold_critical
   }
 
@@ -122,10 +110,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.replica_ready_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "replica_current" {
@@ -141,7 +125,7 @@ resource "datadog_monitor" "replica_current" {
     + 1 < ${var.replica_available_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.replica_current_threshold_critical
   }
 
@@ -156,9 +140,5 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.replica_current_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

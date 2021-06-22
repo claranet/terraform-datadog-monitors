@@ -13,7 +13,7 @@ resource "datadog_monitor" "cpu_utilization" {
   > ${var.cpu_utilization_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cpu_utilization_threshold_warning
     critical = var.cpu_utilization_threshold_critical
   }
@@ -30,10 +30,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform"], var.cpu_utilization_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -57,7 +53,7 @@ resource "datadog_monitor" "disk_throttled_bps" {
     > ${var.disk_throttled_bps_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.disk_throttled_bps_threshold_warning
     critical = var.disk_throttled_bps_threshold_critical
   }
@@ -73,10 +69,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform"], var.disk_throttled_bps_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -100,7 +92,7 @@ resource "datadog_monitor" "disk_throttled_ops" {
     > ${var.disk_throttled_ops_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.disk_throttled_ops_threshold_warning
     critical = var.disk_throttled_ops_threshold_critical
   }
@@ -116,9 +108,5 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform"], var.disk_throttled_ops_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

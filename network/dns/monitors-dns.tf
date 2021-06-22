@@ -11,7 +11,7 @@ resource "datadog_monitor" "cannot_resolve" {
     "dns.can_resolve"${module.filter-tags.service_check}.by("nameserver","resolved_hostname").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cannot_resolve_threshold_warning
     critical = 5
   }
@@ -27,8 +27,4 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:network", "provider:dns_check", "resource:dns", "team:claranet", "created-by:terraform"], var.cannot_resolve_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

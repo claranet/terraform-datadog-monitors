@@ -8,7 +8,7 @@ resource "datadog_monitor" "velero_scheduled_backup_missing" {
     sum(${var.velero_scheduled_backup_missing_monitor_timeframe}):sum:velero.velero_backup_success_total${module.filter-tags-scheduled-backup.query_alert} by {cluster-name,schedule}.as_count() < 1
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = 1
   }
 
@@ -25,10 +25,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_scheduled_backup_missing_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "velero_backup_failure" {
@@ -41,7 +37,7 @@ resource "datadog_monitor" "velero_backup_failure" {
     sum(${var.velero_backup_failure_monitor_timeframe}):min:velero.velero_backup_failure_total${module.filter-tags.query_alert} by {schedule}.as_count() > 1
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = 1
     warning  = 0
   }
@@ -58,10 +54,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_backup_failure_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "velero_backup_partial_failure" {
@@ -74,7 +66,7 @@ resource "datadog_monitor" "velero_backup_partial_failure" {
     sum(${var.velero_backup_partial_failure_monitor_timeframe}):min:velero.velero_backup_partial_failure_total${module.filter-tags.query_alert} by {schedule}.as_count() > 1
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = 1
     warning  = 0
   }
@@ -91,10 +83,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_backup_partial_failure_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "velero_backup_deletion_failure" {
@@ -107,7 +95,7 @@ resource "datadog_monitor" "velero_backup_deletion_failure" {
     sum(${var.velero_backup_deletion_failure_monitor_timeframe}):min:velero.velero_backup_deletion_failure_total${module.filter-tags.query_alert} by {schedule}.as_count() > 1
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = 1
     warning  = 0
   }
@@ -124,10 +112,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_backup_deletion_failure_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "velero_volume_snapshot_failure" {
@@ -140,7 +124,7 @@ resource "datadog_monitor" "velero_volume_snapshot_failure" {
     sum(${var.velero_volume_snapshot_failure_monitor_timeframe}):min:velero.velero_volume_snapshot_failure_total${module.filter-tags.query_alert} by {schedule}.as_count() > 1
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = 1
     warning  = 0
   }
@@ -157,9 +141,5 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_volume_snapshot_failure_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

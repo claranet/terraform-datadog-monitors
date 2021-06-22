@@ -8,7 +8,7 @@ resource "datadog_monitor" "postgresql_availability" {
     "postgres.can_connect"${module.filter-tags.service_check}.by("port","server").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.postgresql_availability_threshold_warning
     critical = 5
   }
@@ -24,10 +24,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform"], var.postgresql_availability_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "postgresql_connection_too_high" {
@@ -42,7 +38,7 @@ resource "datadog_monitor" "postgresql_connection_too_high" {
     * 100 > ${var.postgresql_connection_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.postgresql_connection_threshold_warning
     critical = var.postgresql_connection_threshold_critical
   }
@@ -56,10 +52,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform"], var.postgresql_connection_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "postgresql_too_many_locks" {
@@ -74,7 +66,7 @@ resource "datadog_monitor" "postgresql_too_many_locks" {
     > ${var.postgresql_lock_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.postgresql_lock_threshold_warning
     critical = var.postgresql_lock_threshold_critical
   }
@@ -88,9 +80,5 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform"], var.postgresql_lock_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

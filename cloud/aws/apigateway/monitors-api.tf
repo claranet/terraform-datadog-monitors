@@ -11,7 +11,7 @@ resource "datadog_monitor" "API_Gateway_latency" {
     > ${var.latency_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.latency_threshold_warning
     critical = var.latency_threshold_critical
   }
@@ -25,10 +25,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring API Gateway 5xx errors percent
@@ -45,7 +41,7 @@ resource "datadog_monitor" "API_http_5xx_errors_count" {
       * 100 > ${var.http_5xx_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.http_5xx_requests_threshold_warning
     critical = var.http_5xx_requests_threshold_critical
   }
@@ -59,10 +55,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"], var.http_5xx_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring API Gateway 4xx errors percent
@@ -79,7 +71,7 @@ resource "datadog_monitor" "API_http_4xx_errors_count" {
       * 100 > ${var.http_4xx_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.http_4xx_requests_threshold_warning
     critical = var.http_4xx_requests_threshold_critical
   }
@@ -93,9 +85,5 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"], var.http_4xx_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

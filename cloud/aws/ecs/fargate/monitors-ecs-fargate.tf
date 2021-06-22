@@ -10,7 +10,7 @@ resource "datadog_monitor" "service_check" {
 "fargate_check"${module.filter-tags.service_check}.last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.service_check_threshold_warning
     critical = 5
   }
@@ -27,12 +27,7 @@ EOQ
 
 
   include_tags = true
-
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs_fargate", "team:claranet", "created-by:terraform", "category:service"], var.service_check_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "cpu_utilization" {
@@ -48,7 +43,7 @@ ${var.cpu_utilization_time_aggregator}(${var.cpu_utilization_timeframe}):
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.cpu_utilization_threshold_critical
     warning  = var.cpu_utilization_threshold_warning
   }
@@ -64,10 +59,6 @@ EOQ
   locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs_fargate", "team:claranet", "created-by:terraform"], var.cpu_utilization_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 
 }
 
@@ -86,7 +77,7 @@ ${var.memory_utilization_time_aggregator}(${var.memory_utilization_timeframe}):
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.memory_utilization_threshold_critical
     warning  = var.memory_utilization_threshold_warning
   }
@@ -102,9 +93,5 @@ EOQ
   locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs_fargate", "team:claranet", "created-by:terraform"], var.memory_utilization_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 
 }

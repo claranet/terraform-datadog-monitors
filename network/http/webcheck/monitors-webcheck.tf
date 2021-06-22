@@ -11,7 +11,7 @@ resource "datadog_monitor" "cannot_connect" {
     "http.can_connect"${module.filter-tags.service_check}.by("instance","url").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cannot_connect_threshold_warning
     critical = 5
   }
@@ -27,8 +27,4 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:network", "provider:http_check", "resource:webcheck", "team:claranet", "created-by:terraform"], var.cannot_connect_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

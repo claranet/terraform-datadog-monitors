@@ -13,7 +13,7 @@ resource "datadog_monitor" "not_responding" {
 
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.not_responding_threshold_warning
     critical = 5
   }
@@ -29,11 +29,7 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:database", "provider:solr", "resource:solr", "team:claranet",
-  "created-by:terraform"], var.not_responding_extra_tags)
 
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -52,7 +48,7 @@ resource "datadog_monitor" "search_handler_errors" {
     > ${var.search_handler_errors_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.search_handler_errors_rate_threshold_warning
     critical = var.search_handler_errors_rate_threshold_critical
   }
@@ -66,7 +62,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:solr", "resource:solr", "team:claranet",
-  "created-by:terraform"], var.search_handler_errors_extra_tags)
 
 }
 
@@ -85,7 +80,7 @@ resource "datadog_monitor" "searcher_warmup_time" {
     >= ${var.searcher_warmup_time_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.searcher_warmup_time_threshold_warning
     critical = var.searcher_warmup_time_threshold_critical
   }
@@ -99,5 +94,4 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:solr", "resource:solr", "team:claranet",
-  "created-by:terraform"], var.searcher_warmup_time_extra_tags)
 }

@@ -12,7 +12,7 @@ resource "datadog_monitor" "ALB_no_healthy_instances" {
     ) * 100 < 1
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = 1
     warning  = var.alb_no_healthy_instances_threshold_warning
   }
@@ -27,10 +27,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.alb_no_healthy_instances_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "ALB_latency" {
@@ -45,7 +41,7 @@ resource "datadog_monitor" "ALB_latency" {
     > ${var.latency_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.latency_threshold_critical
     warning  = var.latency_threshold_warning
   }
@@ -59,10 +55,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "ALB_httpcode_5xx" {
@@ -78,7 +70,7 @@ resource "datadog_monitor" "ALB_httpcode_5xx" {
       * 100 > ${var.httpcode_alb_5xx_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.httpcode_alb_5xx_threshold_critical
     warning  = var.httpcode_alb_5xx_threshold_warning
   }
@@ -92,10 +84,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.httpcode_alb_5xx_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "ALB_httpcode_4xx" {
@@ -111,7 +99,7 @@ resource "datadog_monitor" "ALB_httpcode_4xx" {
       * 100 > ${var.httpcode_alb_4xx_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.httpcode_alb_4xx_threshold_critical
     warning  = var.httpcode_alb_4xx_threshold_warning
   }
@@ -125,10 +113,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.httpcode_alb_4xx_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "ALB_httpcode_target_5xx" {
@@ -144,7 +128,7 @@ resource "datadog_monitor" "ALB_httpcode_target_5xx" {
       * 100 > ${var.httpcode_target_5xx_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.httpcode_target_5xx_threshold_critical
     warning  = var.httpcode_target_5xx_threshold_warning
   }
@@ -158,10 +142,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.httpcode_target_5xx_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "ALB_httpcode_target_4xx" {
@@ -177,7 +157,7 @@ resource "datadog_monitor" "ALB_httpcode_target_4xx" {
       * 100 > ${var.httpcode_target_4xx_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.httpcode_target_4xx_threshold_critical
     warning  = var.httpcode_target_4xx_threshold_warning
   }
@@ -191,9 +171,5 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.httpcode_target_4xx_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

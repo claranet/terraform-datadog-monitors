@@ -21,9 +21,5 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:vpn", "team:claranet", "created-by:terraform"], var.vpn_status_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

@@ -8,7 +8,7 @@ resource "datadog_monitor" "disk_pressure" {
     "kubernetes_state.node.disk_pressure"${module.filter-tags.service_check}.by("node").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.disk_pressure_threshold_warning
     critical = 5
   }
@@ -23,10 +23,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.disk_pressure_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "disk_out" {
@@ -39,7 +35,7 @@ resource "datadog_monitor" "disk_out" {
     "kubernetes_state.node.out_of_disk"${module.filter-tags.service_check}.by("node").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.disk_out_threshold_warning
     critical = 5
   }
@@ -54,10 +50,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.disk_out_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "memory_pressure" {
@@ -70,7 +62,7 @@ resource "datadog_monitor" "memory_pressure" {
     "kubernetes_state.node.memory_pressure"${module.filter-tags.service_check}.by("node").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.memory_pressure_threshold_warning
     critical = 5
   }
@@ -85,10 +77,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.memory_pressure_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "ready" {
@@ -101,7 +89,7 @@ resource "datadog_monitor" "ready" {
     "kubernetes_state.node.ready"${module.filter-tags.service_check}.by("node").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.ready_threshold_warning
     critical = 5
   }
@@ -116,10 +104,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.ready_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "kubelet_ping" {
@@ -132,7 +116,7 @@ resource "datadog_monitor" "kubelet_ping" {
     "kubernetes.kubelet.check.ping"${module.filter-tags.service_check}.by("name").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.kubelet_ping_threshold_warning
     critical = 5
   }
@@ -148,10 +132,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.kubelet_ping_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "kubelet_syncloop" {
@@ -164,7 +144,7 @@ resource "datadog_monitor" "kubelet_syncloop" {
     "kubernetes.kubelet.check.syncloop"${module.filter-tags.service_check}.by("name").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.kubelet_syncloop_threshold_warning
     critical = 5
   }
@@ -179,10 +159,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.kubelet_syncloop_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "unregister_net_device" {
@@ -204,10 +180,6 @@ EOQ
   locked            = false
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.unregister_net_device_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "node_unschedulable" {
@@ -222,7 +194,7 @@ resource "datadog_monitor" "node_unschedulable" {
     > 0
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = 0
   }
 
@@ -237,10 +209,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.node_unschedulable_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "volume_space" {
@@ -256,7 +224,7 @@ resource "datadog_monitor" "volume_space" {
     * 100 > ${var.volume_space_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.volume_space_threshold_critical
     warning  = var.volume_space_threshold_warning
   }
@@ -272,10 +240,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.volume_space_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "volume_inodes" {
@@ -291,7 +255,7 @@ resource "datadog_monitor" "volume_inodes" {
     * 100 > ${var.volume_inodes_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.volume_inodes_threshold_critical
     warning  = var.volume_inodes_threshold_warning
   }
@@ -307,9 +271,5 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.volume_inodes_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

@@ -8,7 +8,7 @@ resource "datadog_monitor" "apimgt_status" {
       ${var.status_time_aggregator}(${var.status_timeframe}):avg:azure.apimanagement_service.status${module.filter-tags.query_alert} by {resource_group,region,name} < 1
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = 1
   }
 
@@ -24,10 +24,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.status_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "apimgt_failed_requests" {
@@ -43,7 +39,7 @@ resource "datadog_monitor" "apimgt_failed_requests" {
     ) * 100 > ${var.failed_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.failed_requests_threshold_critical
     warning  = var.failed_requests_threshold_warning
   }
@@ -59,10 +55,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.failed_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "apimgt_other_requests" {
@@ -78,7 +70,7 @@ resource "datadog_monitor" "apimgt_other_requests" {
     ) * 100 > ${var.other_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.other_requests_threshold_critical
     warning  = var.other_requests_threshold_warning
   }
@@ -94,10 +86,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.other_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "apimgt_unauthorized_requests" {
@@ -113,7 +101,7 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
     ) * 100 > ${var.unauthorized_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.unauthorized_requests_threshold_critical
     warning  = var.unauthorized_requests_threshold_warning
   }
@@ -129,10 +117,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.unauthorized_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "apimgt_successful_requests" {
@@ -150,7 +134,7 @@ resource "datadog_monitor" "apimgt_successful_requests" {
     , 100) < ${var.successful_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.successful_requests_threshold_critical
     warning  = var.successful_requests_threshold_warning
   }
@@ -166,9 +150,5 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.successful_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

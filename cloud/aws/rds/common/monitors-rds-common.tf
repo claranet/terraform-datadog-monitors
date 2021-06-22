@@ -11,7 +11,7 @@ resource "datadog_monitor" "rds_cpu_90_15min" {
     ) > ${var.cpu_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cpu_threshold_warning
     critical = var.cpu_threshold_critical
   }
@@ -26,10 +26,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform"], var.cpu_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 ### RDS instance free space monitor ###
@@ -46,7 +42,7 @@ resource "datadog_monitor" "rds_free_space_low" {
   ) < ${var.diskspace_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.diskspace_threshold_warning
     critical = var.diskspace_threshold_critical
   }
@@ -62,10 +58,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform"], var.diskspace_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 ### RDS Replica Lag monitor ###
@@ -81,7 +73,7 @@ resource "datadog_monitor" "rds_replica_lag" {
   ) > ${var.replicalag_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.replicalag_threshold_warning
     critical = var.replicalag_threshold_critical
   }
@@ -96,8 +88,4 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform"], var.replicalag_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

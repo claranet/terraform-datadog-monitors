@@ -11,7 +11,7 @@ resource "datadog_monitor" "function_http_5xx_errors_rate" {
     , 0) * 100 > ${var.http_5xx_errors_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.http_5xx_errors_rate_threshold_warning
     critical = var.http_5xx_errors_rate_threshold_critical
   }
@@ -25,10 +25,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure_functions", "team:claranet", "created-by:terraform"], var.http_5xx_errors_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "function_high_connections_count" {
@@ -43,7 +39,7 @@ resource "datadog_monitor" "function_high_connections_count" {
     > ${var.high_connections_count_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.high_connections_count_threshold_warning
     critical = var.high_connections_count_threshold_critical
   }
@@ -57,10 +53,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure_functions", "team:claranet", "created-by:terraform"], var.high_connections_count_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "function_high_threads_count" {
@@ -75,7 +67,7 @@ resource "datadog_monitor" "function_high_threads_count" {
     > ${var.high_threads_count_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.high_threads_count_threshold_warning
     critical = var.high_threads_count_threshold_critical
   }
@@ -89,9 +81,5 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure_functions", "team:claranet", "created-by:terraform"], var.high_threads_count_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

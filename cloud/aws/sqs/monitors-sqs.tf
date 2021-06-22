@@ -11,7 +11,7 @@ resource "datadog_monitor" "visible_messages" {
     > ${var.visible_messages_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.visible_messages_threshold_critical
     warning  = var.visible_messages_threshold_warning
   }
@@ -27,10 +27,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:sqs", "team:claranet", "created-by:terraform"], var.visible_messages_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Age of the Oldest Message
@@ -46,7 +42,7 @@ resource "datadog_monitor" "age_of_oldest_message" {
     > ${var.age_of_oldest_message_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.age_of_oldest_message_threshold_critical
     warning  = var.age_of_oldest_message_threshold_warning
   }
@@ -62,8 +58,4 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:sqs", "team:claranet", "created-by:terraform"], var.age_of_oldest_message_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

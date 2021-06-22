@@ -11,7 +11,7 @@ resource "datadog_monitor" "firehose_incoming_records" {
     ) <= 0
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = 0
   }
 
@@ -27,9 +27,5 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:kinesis-firehose", "team:claranet", "created-by:terraform"], var.incoming_records_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

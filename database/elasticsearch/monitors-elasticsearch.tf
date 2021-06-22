@@ -11,7 +11,7 @@ resource "datadog_monitor" "not_responding" {
     "elasticsearch.can_connect"${module.filter-tags.service_check}.by("server","port").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.not_responding_threshold_warning
     critical = 5
   }
@@ -27,10 +27,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.not_responding_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -48,7 +44,7 @@ resource "datadog_monitor" "cluster_status_not_green" {
   <= ${var.cluster_status_not_green_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     # ok = 2
     warning  = var.cluster_status_not_green_threshold_warning  # Yellow
     critical = var.cluster_status_not_green_threshold_critical # Red
@@ -63,10 +59,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.cluster_status_not_green_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -84,7 +76,7 @@ resource "datadog_monitor" "cluster_initializing_shards" {
   > ${var.cluster_initializing_shards_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cluster_initializing_shards_threshold_warning
     critical = var.cluster_initializing_shards_threshold_critical
   }
@@ -98,10 +90,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.cluster_initializing_shards_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -119,7 +107,7 @@ resource "datadog_monitor" "cluster_relocating_shards" {
   > ${var.cluster_relocating_shards_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cluster_relocating_shards_threshold_warning
     critical = var.cluster_relocating_shards_threshold_critical
   }
@@ -133,10 +121,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.cluster_relocating_shards_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -154,7 +138,7 @@ resource "datadog_monitor" "cluster_unassigned_shards" {
   > ${var.cluster_unassigned_shards_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cluster_unassigned_shards_threshold_warning
     critical = var.cluster_unassigned_shards_threshold_critical
   }
@@ -168,10 +152,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.cluster_unassigned_shards_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -193,7 +173,7 @@ resource "datadog_monitor" "node_free_space" {
   < ${var.node_free_space_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.node_free_space_threshold_warning
     critical = var.node_free_space_threshold_critical
   }
@@ -207,10 +187,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.node_free_space_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -228,7 +204,7 @@ resource "datadog_monitor" "jvm_heap_memory_usage" {
   > ${var.jvm_heap_memory_usage_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.jvm_heap_memory_usage_threshold_warning
     critical = var.jvm_heap_memory_usage_threshold_critical
   }
@@ -242,10 +218,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.jvm_heap_memory_usage_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -263,7 +235,7 @@ resource "datadog_monitor" "jvm_memory_young_usage" {
   > ${var.jvm_memory_young_usage_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.jvm_memory_young_usage_threshold_warning
     critical = var.jvm_memory_young_usage_threshold_critical
   }
@@ -277,10 +249,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.jvm_memory_young_usage_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -298,7 +266,7 @@ resource "datadog_monitor" "jvm_memory_old_usage" {
   > ${var.jvm_memory_old_usage_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.jvm_memory_old_usage_threshold_warning
     critical = var.jvm_memory_old_usage_threshold_critical
   }
@@ -312,10 +280,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.jvm_memory_old_usage_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -336,7 +300,7 @@ resource "datadog_monitor" "jvm_gc_old_collection_latency" {
   > ${var.jvm_gc_old_collection_latency_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.jvm_gc_old_collection_latency_threshold_warning
     critical = var.jvm_gc_old_collection_latency_threshold_critical
   }
@@ -350,10 +314,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.jvm_gc_old_collection_latency_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -374,7 +334,7 @@ resource "datadog_monitor" "jvm_gc_young_collection_latency" {
   > ${var.jvm_gc_young_collection_latency_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.jvm_gc_young_collection_latency_threshold_warning
     critical = var.jvm_gc_young_collection_latency_threshold_critical
   }
@@ -388,10 +348,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.jvm_gc_young_collection_latency_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -413,7 +369,7 @@ resource "datadog_monitor" "indexing_latency" {
    > ${var.indexing_latency_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.indexing_latency_threshold_warning
     critical = var.indexing_latency_threshold_critical
   }
@@ -427,10 +383,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.indexing_latency_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -452,7 +404,7 @@ resource "datadog_monitor" "flush_latency" {
   > ${var.flush_latency_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.flush_latency_threshold_warning
     critical = var.flush_latency_threshold_critical
   }
@@ -466,10 +418,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.flush_latency_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -495,12 +443,12 @@ resource "datadog_monitor" "http_connections_anomaly" {
   >= ${var.http_connections_anomaly_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.http_connections_anomaly_threshold_warning
     critical = var.http_connections_anomaly_threshold_critical
   }
 
-  threshold_windows = {
+  monitor_threshold_windows {
     trigger_window  = var.http_connections_anomaly_alert_window
     recovery_window = var.http_connections_anomaly_alert_window
   }
@@ -514,10 +462,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.http_connections_anomaly_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -539,7 +483,7 @@ resource "datadog_monitor" "search_query_latency" {
   > ${var.search_query_latency_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.search_query_latency_threshold_warning
     critical = var.search_query_latency_threshold_critical
   }
@@ -553,10 +497,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.search_query_latency_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -578,7 +518,7 @@ resource "datadog_monitor" "fetch_latency" {
   > ${var.fetch_latency_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.fetch_latency_threshold_warning
     critical = var.fetch_latency_threshold_critical
   }
@@ -592,10 +532,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.fetch_latency_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -613,7 +549,7 @@ resource "datadog_monitor" "search_query_change" {
   >= ${var.search_query_change_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.search_query_change_threshold_warning
     critical = var.search_query_change_threshold_critical
   }
@@ -627,10 +563,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.search_query_change_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -648,7 +580,7 @@ resource "datadog_monitor" "fetch_change" {
   >= ${var.fetch_change_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.fetch_change_threshold_warning
     critical = var.fetch_change_threshold_critical
   }
@@ -662,10 +594,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.fetch_change_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -684,7 +612,7 @@ resource "datadog_monitor" "field_data_evictions_change" {
   > ${var.field_data_evictions_change_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.field_data_evictions_change_threshold_warning
     critical = var.field_data_evictions_change_threshold_critical
   }
@@ -698,10 +626,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.field_data_evictions_change_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -720,7 +644,7 @@ resource "datadog_monitor" "query_cache_evictions_change" {
   > ${var.query_cache_evictions_change_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.query_cache_evictions_change_threshold_warning
     critical = var.query_cache_evictions_change_threshold_critical
   }
@@ -734,10 +658,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.query_cache_evictions_change_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -756,7 +676,7 @@ resource "datadog_monitor" "request_cache_evictions_change" {
   > ${var.request_cache_evictions_change_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.request_cache_evictions_change_threshold_warning
     critical = var.request_cache_evictions_change_threshold_critical
   }
@@ -770,10 +690,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.request_cache_evictions_change_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -791,7 +707,7 @@ resource "datadog_monitor" "task_time_in_queue_change" {
   > ${var.task_time_in_queue_change_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.task_time_in_queue_change_threshold_warning
     critical = var.task_time_in_queue_change_threshold_critical
   }
@@ -805,9 +721,5 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:elasticsearch", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.task_time_in_queue_change_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

@@ -12,7 +12,7 @@ resource "datadog_monitor" "service_cpu_utilization" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.service_cpu_utilization_threshold_critical
     warning  = var.service_cpu_utilization_threshold_warning
   }
@@ -28,10 +28,6 @@ EOQ
   locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:service"], var.service_cpu_utilization_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "service_memory_utilization" {
@@ -46,7 +42,7 @@ resource "datadog_monitor" "service_memory_utilization" {
     > ${var.service_memory_utilization_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.service_memory_utilization_threshold_critical
     warning  = var.service_memory_utilization_threshold_warning
   }
@@ -62,10 +58,6 @@ EOQ
   locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:service"], var.service_memory_utilization_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "service_missing_tasks" {
@@ -81,7 +73,7 @@ resource "datadog_monitor" "service_missing_tasks" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.service_missing_tasks_threshold_critical
     warning  = var.service_missing_tasks_threshold_warning
   }
@@ -97,8 +89,4 @@ EOQ
   locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:service"], var.service_missing_tasks_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

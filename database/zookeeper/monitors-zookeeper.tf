@@ -8,7 +8,7 @@ resource "datadog_monitor" "not_responding" {
     "zookeeper.ruok"${module.filter-tags.service_check}.by(${join(",", formatlist("\"%s\"", var.not_responding_group_by))}).last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.not_responding_threshold_warning
     critical = 5
   }
@@ -24,11 +24,7 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:database", "provider:zookeeper", "resource:zookeeper", "team:claranet",
-  "created-by:terraform"], var.zookeeper_not_responding_extra_tags)
 
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "datadog_monitor_zookeeper_latency" {
@@ -42,7 +38,7 @@ resource "datadog_monitor" "datadog_monitor_zookeeper_latency" {
      zookeeper.avg_latency${module.filter-tags.query_alert} by {${join(",", var.zookeeper_latency_group_by)}}) > ${var.zookeeper_latency_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.zookeeper_latency_threshold_warning
     critical = var.zookeeper_latency_threshold_critical
   }
@@ -57,9 +53,5 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:zookeeper", "resource:zookeeper", "team:claranet",
-  "created-by:terraform"], var.zookeeper_latency_availability_extra_tags)
 
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

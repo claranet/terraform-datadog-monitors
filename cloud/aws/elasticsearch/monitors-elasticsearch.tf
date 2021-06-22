@@ -16,7 +16,7 @@ resource "datadog_monitor" "es_cluster_status" {
   ) >= 2
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = 1
     critical = 2
   }
@@ -33,10 +33,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.es_cluster_status_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 ### Elasticsearch cluster free storage space monitor ###
@@ -53,7 +49,7 @@ resource "datadog_monitor" "es_free_space_low" {
   ) < ${var.diskspace_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.diskspace_threshold_warning
     critical = var.diskspace_threshold_critical
   }
@@ -69,10 +65,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.diskspace_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 ### Elasticsearch cluster CPU monitor ###
@@ -88,7 +80,7 @@ resource "datadog_monitor" "es_cpu_90_15min" {
   ) > ${var.cpu_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cpu_threshold_warning
     critical = var.cpu_threshold_critical
   }
@@ -104,9 +96,5 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticsearch", "team:claranet", "created-by:terraform"], var.cpu_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

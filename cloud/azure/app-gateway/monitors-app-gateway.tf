@@ -23,10 +23,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.status_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Gateway total_requests
@@ -52,10 +48,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.total_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Gateway backend_connect_time
@@ -70,7 +62,7 @@ resource "datadog_monitor" "appgateway_backend_connect_time" {
       sum:azure.network_applicationgateways.backend_connect_time${module.filter-tags.query_alert} by {resource_group,region,name,backendhttpsetting,backendpool,backendserver} > ${var.appgateway_backend_connect_time_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.appgateway_backend_connect_time_threshold_critical
     warning  = var.appgateway_backend_connect_time_threshold_warning
   }
@@ -86,10 +78,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_backend_connect_time_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Gateway failed_requests
@@ -106,7 +94,7 @@ resource "datadog_monitor" "appgateway_failed_requests" {
       * 100),0) > ${var.appgateway_failed_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.appgateway_failed_requests_threshold_critical
     warning  = var.appgateway_failed_requests_threshold_warning
   }
@@ -122,10 +110,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_failed_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Gateway unhealthy_host_ratio
@@ -143,7 +127,7 @@ resource "datadog_monitor" "appgateway_healthy_host_ratio" {
       * 100 > ${var.appgateway_unhealthy_host_ratio_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.appgateway_unhealthy_host_ratio_threshold_critical
     warning  = var.appgateway_unhealthy_host_ratio_threshold_warning
   }
@@ -158,10 +142,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_unhealthy_host_ratio_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Gateway response_status 4xx
@@ -179,7 +159,7 @@ resource "datadog_monitor" "appgateway_http_4xx_errors" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.appgateway_http_4xx_errors_threshold_warning
     critical = var.appgateway_http_4xx_errors_threshold_critical
   }
@@ -193,10 +173,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_http_4xx_errors_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Gateway response_status 5xx
@@ -213,7 +189,7 @@ resource "datadog_monitor" "appgateway_http_5xx_errors" {
       * 100),0) > ${var.appgateway_http_5xx_errors_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.appgateway_http_5xx_errors_threshold_warning
     critical = var.appgateway_http_5xx_errors_threshold_critical
   }
@@ -227,10 +203,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_http_5xx_errors_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Gateway Backend response_status 4xx
@@ -248,7 +220,7 @@ resource "datadog_monitor" "appgateway_backend_http_4xx_errors" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.appgateway_backend_http_4xx_errors_threshold_warning
     critical = var.appgateway_backend_http_4xx_errors_threshold_critical
   }
@@ -262,10 +234,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_backend_http_4xx_errors_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Gateway Backend response_status 5xx
@@ -282,7 +250,7 @@ resource "datadog_monitor" "appgateway_backend_http_5xx_errors" {
       * 100),0) > ${var.appgateway_backend_http_5xx_errors_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.appgateway_backend_http_5xx_errors_threshold_warning
     critical = var.appgateway_backend_http_5xx_errors_threshold_critical
   }
@@ -296,8 +264,4 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_backend_http_5xx_errors_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

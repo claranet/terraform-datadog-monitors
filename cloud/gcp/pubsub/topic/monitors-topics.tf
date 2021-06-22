@@ -13,7 +13,7 @@ resource "datadog_monitor" "sending_operations_count" {
     <= ${var.sending_operations_count_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.sending_operations_count_threshold_critical
   }
 
@@ -28,10 +28,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "category:topic", "team:claranet", "created-by:terraform"], var.sending_operations_count_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -49,7 +45,7 @@ resource "datadog_monitor" "unavailable_sending_operations_count" {
     >= ${var.unavailable_sending_operations_count_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.unavailable_sending_operations_count_threshold_warning
     critical = var.unavailable_sending_operations_count_threshold_critical
   }
@@ -65,10 +61,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "category:topic", "team:claranet", "created-by:terraform"], var.unavailable_sending_operations_count_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -88,7 +80,7 @@ resource "datadog_monitor" "unavailable_sending_operations_ratio" {
     >= ${var.unavailable_sending_operations_ratio_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.unavailable_sending_operations_ratio_threshold_warning
     critical = var.unavailable_sending_operations_ratio_threshold_critical
   }
@@ -104,8 +96,4 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "category:topic", "team:claranet", "created-by:terraform"], var.unavailable_sending_operations_ratio_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

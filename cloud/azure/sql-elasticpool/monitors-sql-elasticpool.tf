@@ -10,7 +10,7 @@ resource "datadog_monitor" "sql_elasticpool_cpu" {
     ) > ${var.cpu_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.cpu_threshold_critical
     warning  = var.cpu_threshold_warning
   }
@@ -27,10 +27,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-elasticpool", "team:claranet", "created-by:terraform"], var.cpu_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "sql_elasticpool_free_space_low" {
@@ -45,7 +41,7 @@ resource "datadog_monitor" "sql_elasticpool_free_space_low" {
     ) > ${var.diskspace_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.diskspace_threshold_warning
     critical = var.diskspace_threshold_critical
   }
@@ -61,10 +57,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-elasticpool", "team:claranet", "created-by:terraform"], var.diskspace_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "sql_elasticpool_dtu_consumption_high" {
@@ -79,7 +71,7 @@ resource "datadog_monitor" "sql_elasticpool_dtu_consumption_high" {
     ) > ${var.dtu_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.dtu_threshold_warning
     critical = var.dtu_threshold_critical
   }
@@ -95,9 +87,5 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-elasticpool", "team:claranet", "created-by:terraform"], var.dtu_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

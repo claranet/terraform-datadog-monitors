@@ -26,7 +26,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.26 |
+| terraform | >= 0.12.31 |
 
 ## Inputs
 

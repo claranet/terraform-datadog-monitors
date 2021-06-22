@@ -10,7 +10,7 @@ resource "datadog_monitor" "elasticache_eviction" {
     ) > ${var.eviction_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.eviction_threshold_warning
     critical = var.eviction_threshold_critical
   }
@@ -26,10 +26,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.eviction_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "elasticache_max_connection" {
@@ -56,10 +52,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.max_connection_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "elasticache_no_connection" {
@@ -85,10 +77,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.no_connection_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "elasticache_swap" {
@@ -103,7 +91,7 @@ resource "datadog_monitor" "elasticache_swap" {
     ) > ${var.swap_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.swap_threshold_warning
     critical = var.swap_threshold_critical
   }
@@ -119,10 +107,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.swap_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "elasticache_free_memory" {
@@ -137,7 +121,7 @@ resource "datadog_monitor" "elasticache_free_memory" {
     < ${var.free_memory_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.free_memory_threshold_warning
     critical = var.free_memory_threshold_critical
   }
@@ -153,10 +137,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.free_memory_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "elasticache_eviction_growing" {
@@ -171,7 +151,7 @@ resource "datadog_monitor" "elasticache_eviction_growing" {
     > ${var.eviction_growing_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.eviction_growing_threshold_warning
     critical = var.eviction_growing_threshold_critical
   }
@@ -187,9 +167,5 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.eviction_growing_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

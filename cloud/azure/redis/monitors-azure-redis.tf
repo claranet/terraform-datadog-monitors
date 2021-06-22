@@ -22,10 +22,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform"], var.status_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "evictedkeys" {
@@ -40,7 +36,7 @@ resource "datadog_monitor" "evictedkeys" {
      ) > ${var.evictedkeys_limit_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.evictedkeys_limit_threshold_warning
     critical = var.evictedkeys_limit_threshold_critical
   }
@@ -56,10 +52,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform"], var.evictedkeys_limit_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "percent_processor_time" {
@@ -74,7 +66,7 @@ resource "datadog_monitor" "percent_processor_time" {
     ) > ${var.percent_processor_time_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.percent_processor_time_threshold_warning
     critical = var.percent_processor_time_threshold_critical
   }
@@ -90,10 +82,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform"], var.percent_processor_time_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "server_load" {
@@ -108,7 +96,7 @@ resource "datadog_monitor" "server_load" {
     ) > ${var.server_load_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.server_load_rate_threshold_warning
     critical = var.server_load_rate_threshold_critical
   }
@@ -124,9 +112,5 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform"], var.server_load_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

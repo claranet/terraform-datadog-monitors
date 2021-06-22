@@ -13,7 +13,7 @@ resource "datadog_monitor" "cpu_utilization" {
     > ${var.cpu_utilization_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cpu_utilization_threshold_warning
     critical = var.cpu_utilization_threshold_critical
   }
@@ -29,10 +29,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.cpu_utilization_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -50,7 +46,7 @@ resource "datadog_monitor" "disk_utilization" {
     > ${var.disk_utilization_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.disk_utilization_threshold_warning
     critical = var.disk_utilization_threshold_critical
   }
@@ -67,10 +63,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.disk_utilization_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -95,7 +87,7 @@ resource "datadog_monitor" "disk_utilization_forecast" {
   >= ${var.disk_utilization_forecast_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical          = var.disk_utilization_forecast_threshold_critical
     critical_recovery = var.disk_utilization_forecast_threshold_critical_recovery
   }
@@ -111,10 +103,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.disk_utilization_forecast_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -132,7 +120,7 @@ resource "datadog_monitor" "memory_utilization" {
     > ${var.memory_utilization_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.memory_utilization_threshold_warning
     critical = var.memory_utilization_threshold_critical
   }
@@ -148,10 +136,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.memory_utilization_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -176,7 +160,7 @@ resource "datadog_monitor" "memory_utilization_forecast" {
     >= ${var.memory_utilization_forecast_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical          = var.memory_utilization_forecast_threshold_critical
     critical_recovery = var.memory_utilization_forecast_threshold_critical_recovery
   }
@@ -192,10 +176,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.memory_utilization_forecast_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -210,11 +190,10 @@ resource "datadog_monitor" "failover_unavailable" {
   query = <<EOQ
   ${var.failover_unavailable_time_aggregator}(${var.failover_unavailable_timeframe}):
     avg:gcp.cloudsql.database.available_for_failover{${join(", ", compact([var.filter_tags_failover_unavailable, var.filter_tags_failover_unavailable != "" && var.filter_tags == "*" ? "" : var.filter_tags]))}}
-    by {database_id}
   <= ${var.failover_unavailable_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.failover_unavailable_threshold_critical
   }
 
@@ -229,9 +208,5 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.failover_unavailable_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

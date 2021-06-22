@@ -22,10 +22,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventgrid", "team:claranet", "created-by:terraform"], var.no_successful_message_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "eventgrid_failed_messages" {
@@ -44,7 +40,7 @@ resource "datadog_monitor" "eventgrid_failed_messages" {
     ) > ${var.failed_messages_rate_thresold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.failed_messages_rate_thresold_critical
     warning  = var.failed_messages_rate_thresold_warning
   }
@@ -60,10 +56,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventgrid", "team:claranet", "created-by:terraform"], var.failed_messages_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "eventgrid_unmatched_events" {
@@ -82,7 +74,7 @@ resource "datadog_monitor" "eventgrid_unmatched_events" {
     ) > ${var.unmatched_events_rate_thresold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.unmatched_events_rate_thresold_critical
     warning  = var.unmatched_events_rate_thresold_warning
   }
@@ -98,9 +90,5 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventgrid", "team:claranet", "created-by:terraform"], var.unmatched_events_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

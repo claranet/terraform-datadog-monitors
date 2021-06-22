@@ -10,7 +10,7 @@ resource "datadog_monitor" "ecs_agent_status" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.agent_status_threshold_warning
     critical = 5
   }
@@ -27,10 +27,6 @@ EOQ
   locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:agent"], var.agent_status_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "cluster_cpu_utilization" {
@@ -46,7 +42,7 @@ resource "datadog_monitor" "cluster_cpu_utilization" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.cluster_cpu_utilization_threshold_critical
     warning  = var.cluster_cpu_utilization_threshold_warning
   }
@@ -63,10 +59,6 @@ EOQ
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:cluster"], var.cluster_cpu_utilization_extra_tags)
 
-  lifecycle {
-    ignore_changes = [silenced]
-  }
-
 }
 
 resource "datadog_monitor" "cluster_memory_reservation" {
@@ -82,7 +74,7 @@ resource "datadog_monitor" "cluster_memory_reservation" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.cluster_memory_reservation_threshold_critical
     warning  = var.cluster_memory_reservation_threshold_warning
   }
@@ -98,8 +90,4 @@ EOQ
   locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:cluster"], var.cluster_memory_reservation_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

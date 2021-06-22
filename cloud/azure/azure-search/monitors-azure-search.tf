@@ -11,7 +11,7 @@ resource "datadog_monitor" "azure_search_latency" {
     ) > ${var.latency_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.latency_threshold_warning
     critical = var.latency_threshold_critical
   }
@@ -26,10 +26,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure-search", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring Azure Search throttled queries
@@ -45,7 +41,7 @@ resource "datadog_monitor" "azure_search_throttled_queries_rate" {
     ) > ${var.throttled_queries_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.throttled_queries_rate_threshold_warning
     critical = var.throttled_queries_rate_threshold_critical
   }
@@ -59,9 +55,5 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure-search", "team:claranet", "created-by:terraform"], var.throttled_queries_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

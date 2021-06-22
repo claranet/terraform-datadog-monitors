@@ -10,7 +10,7 @@ resource "datadog_monitor" "mysql_cpu_usage" {
     ) > ${var.cpu_usage_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.cpu_usage_threshold_critical
     warning  = var.cpu_usage_threshold_warning
   }
@@ -26,10 +26,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:mysql", "team:claranet", "created-by:terraform"], var.cpu_usage_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "mysql_free_storage" {
@@ -44,7 +40,7 @@ resource "datadog_monitor" "mysql_free_storage" {
     ) < ${var.free_storage_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.free_storage_threshold_critical
     warning  = var.free_storage_threshold_warning
   }
@@ -60,10 +56,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:mysql", "team:claranet", "created-by:terraform"], var.free_storage_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "mysql_io_consumption" {
@@ -78,7 +70,7 @@ resource "datadog_monitor" "mysql_io_consumption" {
     ) > ${var.io_consumption_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.io_consumption_threshold_critical
     warning  = var.io_consumption_threshold_warning
   }
@@ -94,10 +86,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:mysql", "team:claranet", "created-by:terraform"], var.io_consumption_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "mysql_memory_usage" {
@@ -112,7 +100,7 @@ resource "datadog_monitor" "mysql_memory_usage" {
     ) > ${var.memory_usage_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.memory_usage_threshold_critical
     warning  = var.memory_usage_threshold_warning
   }
@@ -128,9 +116,5 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:mysql", "team:claranet", "created-by:terraform"], var.memory_usage_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

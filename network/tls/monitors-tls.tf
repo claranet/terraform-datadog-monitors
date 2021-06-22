@@ -11,7 +11,7 @@ resource "datadog_monitor" "cannot_connect" {
     "tls.can_connect"${module.filter-tags.service_check}.by("name","server","port","server_hostname").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cannot_connect_threshold_warning
     critical = 5
   }
@@ -27,10 +27,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:network", "provider:tls", "resource:webcheck", "team:claranet", "created-by:terraform"], var.cannot_connect_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -46,7 +42,7 @@ resource "datadog_monitor" "invalid_tls_certificate" {
     "tls.cert_validation"${module.filter-tags.service_check}.by("name","server","port","server_hostname").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.invalid_tls_certificate_threshold_warning
     critical = 5
   }
@@ -61,10 +57,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:network", "provider:tls", "resource:tls-certificate", "team:claranet", "created-by:terraform"], var.invalid_tls_certificate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -80,7 +72,7 @@ resource "datadog_monitor" "tls_certificate_expiration" {
     "tls.cert_expiration"${module.filter-tags.service_check}.by("name","server","port","server_hostname").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.tls_certificate_expiration_threshold_warning
     critical = 5
   }
@@ -95,10 +87,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:network", "provider:tls", "resource:tls-certificate", "team:claranet", "created-by:terraform"], var.tls_certificate_expiration_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -117,7 +105,7 @@ resource "datadog_monitor" "certificate_expiration_date" {
 EOQ
 
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.certificate_expiration_date_threshold_warning
     critical = var.certificate_expiration_date_threshold_critical
   }
@@ -133,8 +121,4 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:network", "provider:tls", "resource:tls-certificate", "team:claranet", "created-by:terraform"], var.certificate_expiration_date_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

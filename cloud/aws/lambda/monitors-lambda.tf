@@ -18,7 +18,7 @@ resource "datadog_monitor" "pct_errors" {
   evaluation_delay = var.evaluation_delay
   new_host_delay   = var.new_host_delay
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.pct_errors_threshold_critical
     warning  = var.pct_errors_threshold_warning
   }
@@ -32,10 +32,6 @@ resource "datadog_monitor" "pct_errors" {
   locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:lambda", "team:claranet", "created-by:terraform"], var.pct_errors_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Errors Absolute Value
@@ -54,7 +50,7 @@ resource "datadog_monitor" "errors" {
   evaluation_delay = var.evaluation_delay
   new_host_delay   = var.new_host_delay
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.errors_threshold_critical
     warning  = var.errors_threshold_warning
   }
@@ -68,10 +64,6 @@ resource "datadog_monitor" "errors" {
   locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:lambda", "team:claranet", "created-by:terraform"], var.errors_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Throttles
@@ -90,7 +82,7 @@ resource "datadog_monitor" "throttles" {
   evaluation_delay = var.evaluation_delay
   new_host_delay   = var.new_host_delay
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.throttles_threshold_critical
     warning  = var.throttles_threshold_warning
   }
@@ -104,10 +96,6 @@ resource "datadog_monitor" "throttles" {
   locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:lambda", "team:claranet", "created-by:terraform"], var.throttles_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # INVOCATIONS
@@ -126,7 +114,7 @@ resource "datadog_monitor" "invocations" {
   evaluation_delay = var.evaluation_delay
   new_host_delay   = var.new_host_delay
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.invocations_threshold_critical
     warning  = var.invocations_threshold_warning
   }
@@ -143,8 +131,4 @@ resource "datadog_monitor" "invocations" {
 
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:lambda", "team:claranet", "created-by:terraform"], var.invocations_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

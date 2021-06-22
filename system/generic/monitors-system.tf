@@ -10,7 +10,7 @@ resource "datadog_monitor" "cpu" {
     ) > ${var.cpu_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cpu_threshold_warning
     critical = var.cpu_threshold_critical
   }
@@ -25,10 +25,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform"], var.cpu_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "load" {
@@ -43,7 +39,7 @@ resource "datadog_monitor" "load" {
     ) > ${var.load_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.load_threshold_warning
     critical = var.load_threshold_critical
   }
@@ -58,10 +54,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:system-core", "resource:generic", "team:claranet", "created-by:terraform"], var.load_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "disk_space" {
@@ -76,7 +68,7 @@ resource "datadog_monitor" "disk_space" {
     * 100 > ${var.disk_space_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.disk_space_threshold_warning
     critical = var.disk_space_threshold_critical
   }
@@ -91,10 +83,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"], var.disk_space_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "disk_space_forecast" {
@@ -115,7 +103,7 @@ resource "datadog_monitor" "disk_space_forecast" {
     >= ${var.disk_space_forecast_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical_recovery = var.disk_space_forecast_threshold_critical_recovery
     critical          = var.disk_space_forecast_threshold_critical
   }
@@ -131,10 +119,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"], var.disk_space_forecast_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "disk_inodes" {
@@ -149,7 +133,7 @@ resource "datadog_monitor" "disk_inodes" {
     * 100 > ${var.disk_inodes_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.disk_inodes_threshold_warning
     critical = var.disk_inodes_threshold_critical
   }
@@ -164,10 +148,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"], var.disk_inodes_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "memory" {
@@ -183,7 +163,7 @@ resource "datadog_monitor" "memory" {
     < ${var.memory_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.memory_threshold_warning
     critical = var.memory_threshold_critical
   }
@@ -199,9 +179,5 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform"], var.memory_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

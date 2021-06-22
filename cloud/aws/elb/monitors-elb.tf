@@ -12,7 +12,7 @@ resource "datadog_monitor" "ELB_no_healthy_instances" {
     ) * 100 < 1
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = 1
     warning  = var.elb_no_healthy_instance_threshold_warning
   }
@@ -29,10 +29,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"], var.elb_no_healthy_instance_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "ELB_too_much_4xx" {
@@ -48,7 +44,7 @@ resource "datadog_monitor" "ELB_too_much_4xx" {
       * 100 > ${var.elb_4xx_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.elb_4xx_threshold_warning
     critical = var.elb_4xx_threshold_critical
   }
@@ -64,10 +60,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"], var.elb_4xx_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "ELB_too_much_5xx" {
@@ -83,7 +75,7 @@ resource "datadog_monitor" "ELB_too_much_5xx" {
       * 100 > ${var.elb_5xx_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.elb_5xx_threshold_warning
     critical = var.elb_5xx_threshold_critical
   }
@@ -99,10 +91,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"], var.elb_5xx_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "ELB_too_much_4xx_backend" {
@@ -118,7 +106,7 @@ resource "datadog_monitor" "ELB_too_much_4xx_backend" {
       * 100 > ${var.elb_backend_4xx_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.elb_backend_4xx_threshold_warning
     critical = var.elb_backend_4xx_threshold_critical
   }
@@ -134,10 +122,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"], var.elb_backend_4xx_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "ELB_too_much_5xx_backend" {
@@ -153,7 +137,7 @@ resource "datadog_monitor" "ELB_too_much_5xx_backend" {
       * 100 > ${var.elb_backend_5xx_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.elb_backend_5xx_threshold_warning
     critical = var.elb_backend_5xx_threshold_critical
   }
@@ -169,10 +153,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"], var.elb_backend_5xx_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "ELB_backend_latency" {
@@ -187,7 +167,7 @@ resource "datadog_monitor" "ELB_backend_latency" {
     > ${var.elb_backend_latency_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.elb_backend_latency_warning
     critical = var.elb_backend_latency_critical
   }
@@ -203,9 +183,5 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elb", "team:claranet", "created-by:terraform"], var.elb_backend_latency_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

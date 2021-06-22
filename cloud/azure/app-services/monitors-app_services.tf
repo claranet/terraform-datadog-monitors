@@ -11,7 +11,7 @@ resource "datadog_monitor" "appservices_response_time" {
     ) > ${var.response_time_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.response_time_threshold_warning
     critical = var.response_time_threshold_critical
   }
@@ -25,10 +25,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.response_time_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Services memory usage
@@ -44,7 +40,7 @@ resource "datadog_monitor" "appservices_memory_usage_count" {
     ) > ${var.memory_usage_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.memory_usage_threshold_warning
     critical = var.memory_usage_threshold_critical
   }
@@ -58,10 +54,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.memory_usage_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Services 5xx errors percent
@@ -78,7 +70,7 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
     ) * 100 > ${var.http_5xx_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.http_5xx_requests_threshold_warning
     critical = var.http_5xx_requests_threshold_critical
   }
@@ -92,10 +84,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.http_5xx_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Services 4xx errors percent
@@ -112,7 +100,7 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
     ) * 100 > ${var.http_4xx_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.http_4xx_requests_threshold_warning
     critical = var.http_4xx_requests_threshold_critical
   }
@@ -126,10 +114,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.http_4xx_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Services HTTP 2xx & 3xx status pages percent
@@ -148,7 +132,7 @@ resource "datadog_monitor" "appservices_http_success_status_rate" {
     ) * 100, 100) < ${var.http_successful_requests_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.http_successful_requests_threshold_warning
     critical = var.http_successful_requests_threshold_critical
   }
@@ -162,10 +146,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.http_successful_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Services status
@@ -179,7 +159,7 @@ resource "datadog_monitor" "appservices_status" {
       ${var.status_time_aggregator}(${var.status_timeframe}):avg:azure.app_services.status${module.filter-tags.query_alert} by {resource_group,region,name} < 1
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = 1
   }
 
@@ -193,8 +173,5 @@ EOQ
   include_tags        = true
   tags                = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.status_extra_tags)
 
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

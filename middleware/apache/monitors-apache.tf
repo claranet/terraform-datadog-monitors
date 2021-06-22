@@ -8,7 +8,7 @@ resource "datadog_monitor" "datadog_apache_process" {
     "apache.can_connect"${module.filter-tags.service_check}.by("port","server").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.apache_connect_threshold_warning
     critical = 5
   }
@@ -24,9 +24,5 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:middleware", "provider:apache", "resource:apache", "team:claranet", "created-by:terraform"], var.apache_connect_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

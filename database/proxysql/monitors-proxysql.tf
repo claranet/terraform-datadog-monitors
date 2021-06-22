@@ -8,7 +8,7 @@ resource "datadog_monitor" "proxysql_thread_worker" {
     ${var.proxysql_thread_worker_time_aggregator}(${var.proxysql_thread_worker_timeframe}):avg:proxysql.mysql.thread_workers${module.filter-tags.query_alert} by {proxysql_server,proxysql_port} < ${var.proxysql_thread_worker_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.proxysql_thread_worker_threshold_warning
     critical = var.proxysql_thread_worker_threshold_critical
   }
@@ -22,10 +22,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_thread_worker_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "proxysql_slow" {
@@ -41,7 +37,7 @@ resource "datadog_monitor" "proxysql_slow" {
     ) * 100 > ${var.proxysql_slow_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.proxysql_slow_threshold_warning
     critical = var.proxysql_slow_threshold_critical
   }
@@ -55,10 +51,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_slow_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "proxysql_client_conn_aborted" {
@@ -71,7 +63,7 @@ resource "datadog_monitor" "proxysql_client_conn_aborted" {
     ${var.proxysql_client_conn_aborted_time_aggregator}(${var.proxysql_client_conn_aborted_timeframe}):avg:proxysql.client.connections_aborted${module.filter-tags.query_alert} by {proxysql_server,proxysql_port} > ${var.proxysql_client_conn_aborted_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.proxysql_client_conn_aborted_threshold_warning
     critical = var.proxysql_client_conn_aborted_threshold_critical
   }
@@ -85,10 +77,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_client_conn_aborted_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "proxysql_server_conn_aborted" {
@@ -101,7 +89,7 @@ resource "datadog_monitor" "proxysql_server_conn_aborted" {
     ${var.proxysql_server_conn_aborted_time_aggregator}(${var.proxysql_server_conn_aborted_timeframe}):avg:proxysql.server.connections_aborted${module.filter-tags.query_alert} by {proxysql_server,proxysql_port} > ${var.proxysql_server_conn_aborted_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.proxysql_server_conn_aborted_threshold_warning
     critical = var.proxysql_server_conn_aborted_threshold_critical
   }
@@ -115,10 +103,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_server_conn_aborted_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "proxysql_pool_conn_failure" {
@@ -133,7 +117,7 @@ resource "datadog_monitor" "proxysql_pool_conn_failure" {
       > ${var.proxysql_pool_conn_failure_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.proxysql_pool_conn_failure_threshold_warning
     critical = var.proxysql_pool_conn_failure_threshold_critical
   }
@@ -147,8 +131,4 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_pool_conn_failure_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

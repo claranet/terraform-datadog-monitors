@@ -13,7 +13,7 @@ resource "datadog_monitor" "too_many_jobs_failed" {
       * 100 , 0) > ${var.failed_jobs_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.failed_jobs_rate_threshold_warning
     critical = var.failed_jobs_rate_threshold_critical
   }
@@ -29,10 +29,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_jobs_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "too_many_list_jobs_failed" {
@@ -50,7 +46,7 @@ resource "datadog_monitor" "too_many_list_jobs_failed" {
       * 100, 0) > ${var.failed_listjobs_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.failed_listjobs_rate_threshold_warning
     critical = var.failed_listjobs_rate_threshold_critical
   }
@@ -66,10 +62,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_listjobs_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "too_many_query_jobs_failed" {
@@ -87,7 +79,7 @@ resource "datadog_monitor" "too_many_query_jobs_failed" {
       * 100, 0) > ${var.failed_queryjobs_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.failed_queryjobs_rate_threshold_warning
     critical = var.failed_queryjobs_rate_threshold_critical
   }
@@ -103,10 +95,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_queryjobs_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "status" {
@@ -133,10 +121,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.status_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "total_devices" {
@@ -162,10 +146,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.total_devices_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "too_many_c2d_methods_failed" {
@@ -183,7 +163,7 @@ resource "datadog_monitor" "too_many_c2d_methods_failed" {
       * 100, 0) > ${var.failed_c2d_methods_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.failed_c2d_methods_rate_threshold_warning
     critical = var.failed_c2d_methods_rate_threshold_critical
   }
@@ -199,10 +179,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_c2d_methods_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
@@ -220,7 +196,7 @@ resource "datadog_monitor" "too_many_c2d_twin_read_failed" {
       * 100, 0) > ${var.failed_c2d_twin_read_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.failed_c2d_twin_read_rate_threshold_warning
     critical = var.failed_c2d_twin_read_rate_threshold_critical
   }
@@ -236,10 +212,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_c2d_twin_read_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
@@ -257,7 +229,7 @@ resource "datadog_monitor" "too_many_c2d_twin_update_failed" {
       * 100, 0) > ${var.failed_c2d_twin_update_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.failed_c2d_twin_update_rate_threshold_warning
     critical = var.failed_c2d_twin_update_rate_threshold_critical
   }
@@ -273,10 +245,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_c2d_twin_update_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
@@ -294,7 +262,7 @@ resource "datadog_monitor" "too_many_d2c_twin_read_failed" {
       * 100, 0) > ${var.failed_d2c_twin_read_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.failed_d2c_twin_read_rate_threshold_warning
     critical = var.failed_d2c_twin_read_rate_threshold_critical
   }
@@ -310,10 +278,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_d2c_twin_read_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
@@ -331,7 +295,7 @@ resource "datadog_monitor" "too_many_d2c_twin_update_failed" {
       * 100, 0) > ${var.failed_d2c_twin_update_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.failed_d2c_twin_update_rate_threshold_warning
     critical = var.failed_d2c_twin_update_rate_threshold_critical
   }
@@ -347,10 +311,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_d2c_twin_update_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
@@ -370,7 +330,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_dropped" {
       * 100, 0) > ${var.dropped_d2c_telemetry_egress_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.dropped_d2c_telemetry_egress_rate_threshold_warning
     critical = var.dropped_d2c_telemetry_egress_rate_threshold_critical
   }
@@ -386,10 +346,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.dropped_d2c_telemetry_egress_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
@@ -409,7 +365,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_orphaned" {
       * 100, 0) > ${var.orphaned_d2c_telemetry_egress_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.orphaned_d2c_telemetry_egress_rate_threshold_warning
     critical = var.orphaned_d2c_telemetry_egress_rate_threshold_critical
   }
@@ -425,10 +381,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.orphaned_d2c_telemetry_egress_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
@@ -448,7 +400,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_egress_invalid" {
       * 100, 0) > ${var.invalid_d2c_telemetry_egress_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.invalid_d2c_telemetry_egress_rate_threshold_warning
     critical = var.invalid_d2c_telemetry_egress_rate_threshold_critical
   }
@@ -464,10 +416,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.invalid_d2c_telemetry_egress_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
@@ -484,7 +432,7 @@ resource "datadog_monitor" "too_many_d2c_telemetry_ingress_nosent" {
       * 100) > ${var.too_many_d2c_telemetry_ingress_nosent_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.too_many_d2c_telemetry_ingress_nosent_rate_threshold_warning
     critical = var.too_many_d2c_telemetry_ingress_nosent_rate_threshold_critical
   }
@@ -500,8 +448,4 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.too_many_d2c_telemetry_ingress_nosent_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

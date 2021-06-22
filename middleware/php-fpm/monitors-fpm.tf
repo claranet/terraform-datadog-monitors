@@ -8,7 +8,7 @@ resource "datadog_monitor" "php_fpm_connect" {
     "php_fpm.can_ping"${module.filter-tags.service_check}.by("ping_url").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.php_fpm_connect_threshold_warning
     critical = 5
   }
@@ -24,10 +24,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:middleware", "provider:php-fpm", "resource:php-fpm", "team:claranet", "created-by:terraform"], var.php_fpm_connect_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "php_fpm_connect_idle" {
@@ -44,7 +40,7 @@ resource "datadog_monitor" "php_fpm_connect_idle" {
     ) * 100 > ${var.php_fpm_busy_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.php_fpm_busy_threshold_warning
     critical = var.php_fpm_busy_threshold_critical
   }
@@ -59,9 +55,5 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:middleware", "provider:php-fpm", "resource:php-fpm", "team:claranet", "created-by:terraform"], var.php_fpm_busy_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

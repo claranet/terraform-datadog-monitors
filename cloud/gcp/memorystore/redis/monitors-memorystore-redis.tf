@@ -13,7 +13,7 @@ resource "datadog_monitor" "system_memory_usage_ratio" {
     * 100 > ${var.system_memory_usage_ratio_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.system_memory_usage_ratio_threshold_critical
     warning  = var.system_memory_usage_ratio_threshold_warning
   }
@@ -30,8 +30,4 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:memorystore", "team:claranet", "created-by:terraform", "engine:redis"], var.system_memory_usage_ratio_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

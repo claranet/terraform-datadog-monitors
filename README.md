@@ -14,18 +14,24 @@ This repository aims to provide a base of generic and pre configured monitors fo
 
 ## Getting started
 
-### Terraform
+### Versions
 
-Here is the minimum version required to use these modules of integrations.
+Here are the minimum versions required to use these modules of integrations.
 
-```
+```hcl
 terraform {
-  required_version = ">= 0.12.26"
+  required_providers {
+    datadog = {
+      source = "DataDog/datadog"
+      version = ">= 3.1.0"
+    }
+  }
+  required_version = ">= 0.12.31"
 }
 
 ```
 
-Note: terraform 0.12.26+ is required as it the first version compatible with, but ignoring, the `source` argument for provider requirements introduced in terraform 0.13.0.
+_Note_: if you want to use Datadog provider v2, you need to use version 3 of the modules in this repository.
 
 ### DataDog provider
 
@@ -33,8 +39,6 @@ Here is the last tester terraform provider version for datadog but next versions
 
 ```
 provider "datadog" {
-  version = "2.6.0" # last tested working version
-
   api_key = var.datadog_api_key
   app_key = var.datadog_app_key
 }

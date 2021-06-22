@@ -22,10 +22,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:serverfarms", "team:claranet", "created-by:terraform"], var.status_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "cpu_percentage" {
@@ -40,7 +36,7 @@ resource "datadog_monitor" "cpu_percentage" {
     ) > ${var.cpu_percentage_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.cpu_percentage_threshold_warning
     critical = var.cpu_percentage_threshold_critical
   }
@@ -56,10 +52,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:serverfarms", "team:claranet", "created-by:terraform"], var.cpu_percentage_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "memory_percentage" {
@@ -74,7 +66,7 @@ resource "datadog_monitor" "memory_percentage" {
     ) > ${var.memory_percentage_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.memory_percentage_threshold_warning
     critical = var.memory_percentage_threshold_critical
   }
@@ -90,9 +82,5 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:serverfarms", "team:claranet", "created-by:terraform"], var.memory_percentage_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

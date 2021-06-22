@@ -8,7 +8,7 @@ resource "datadog_monitor" "datadog_nginx_process" {
     "nginx.can_connect"${module.filter-tags.service_check}.by("server","port").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.nginx_connect_threshold_warning
     critical = 5
   }
@@ -24,10 +24,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:middleware", "provider:nginx", "resource:nginx", "team:claranet", "created-by:terraform"], var.nginx_connect_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "datadog_nginx_dropped_connections" {
@@ -42,7 +38,7 @@ resource "datadog_monitor" "datadog_nginx_dropped_connections" {
     > ${var.nginx_dropped_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = var.nginx_dropped_threshold_critical
   }
 
@@ -56,9 +52,5 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:middleware", "provider:nginx", "resource:nginx", "team:claranet", "created-by:terraform"], var.nginx_dropped_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

@@ -12,7 +12,7 @@ resource "datadog_monitor" "NLB_no_healthy_instances" {
     ) * 100 < 1
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     critical = 1
     warning  = var.nlb_no_healthy_instances_threshold_warning
   }
@@ -27,9 +27,5 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:nlb", "team:claranet", "created-by:terraform"], var.nlb_no_healthy_instances_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

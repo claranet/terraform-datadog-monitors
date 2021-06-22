@@ -11,7 +11,7 @@ resource "datadog_monitor" "not_responding" {
     "redis.can_connect"${module.filter-tags.service_check}.by("redis_host","redis_port").last(6).count_by_status()
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.not_responding_threshold_warning
     critical = 5
   }
@@ -27,10 +27,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.not_responding_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "evicted_keys" {
@@ -45,7 +41,7 @@ resource "datadog_monitor" "evicted_keys" {
      ) > ${var.evictedkeys_change_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.evictedkeys_change_threshold_warning
     critical = var.evictedkeys_change_threshold_critical
   }
@@ -61,10 +57,6 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.evictedkeys_change_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "expirations" {
@@ -79,7 +71,7 @@ resource "datadog_monitor" "expirations" {
      ) > ${var.expirations_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.expirations_rate_threshold_warning
     critical = var.expirations_rate_threshold_critical
   }
@@ -95,10 +87,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.expirations_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "blocked_clients" {
@@ -114,7 +102,7 @@ resource "datadog_monitor" "blocked_clients" {
      ) * 100 > ${var.blocked_clients_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.blocked_clients_threshold_warning
     critical = var.blocked_clients_threshold_critical
   }
@@ -130,10 +118,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.blocked_clients_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "keyspace_full" {
@@ -148,7 +132,7 @@ resource "datadog_monitor" "keyspace_full" {
      ) == ${var.keyspace_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.keyspace_threshold_warning
     critical = var.keyspace_threshold_critical
   }
@@ -164,10 +148,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.keyspace_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "memory_used" {
@@ -183,7 +163,7 @@ resource "datadog_monitor" "memory_used" {
      ) * 100 > ${var.mem_used_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.mem_used_threshold_warning
     critical = var.mem_used_threshold_critical
   }
@@ -199,10 +179,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.mem_used_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "memory_frag" {
@@ -217,7 +193,7 @@ resource "datadog_monitor" "memory_frag" {
      * 100 > ${var.mem_frag_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.mem_frag_threshold_warning
     critical = var.mem_frag_threshold_critical
   }
@@ -233,10 +209,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.mem_frag_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "rejected_connections" {
@@ -251,7 +223,7 @@ resource "datadog_monitor" "rejected_connections" {
      ) > ${var.rejected_con_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.rejected_con_threshold_warning
     critical = var.rejected_con_threshold_critical
   }
@@ -267,10 +239,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.rejected_con_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "latency" {
@@ -285,7 +253,7 @@ resource "datadog_monitor" "latency" {
      ) > ${var.latency_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.latency_threshold_warning
     critical = var.latency_threshold_critical
   }
@@ -301,10 +269,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "hitrate" {
@@ -321,7 +285,7 @@ resource "datadog_monitor" "hitrate" {
      ) * 100 < ${var.hitrate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.hitrate_threshold_warning
     critical = var.hitrate_threshold_critical
   }
@@ -337,9 +301,5 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:redisdb", "resource:redis", "team:claranet", "created-by:terraform"], var.hitrate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

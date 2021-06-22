@@ -10,7 +10,7 @@ resource "datadog_monitor" "app_error_rate" {
     > ${var.app_error_rate_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.app_error_rate_threshold_warning
     critical = var.app_error_rate_threshold_critical
   }
@@ -26,10 +26,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:saas", "provider:new-relic", "resource:new-relic", "team:claranet", "created-by:terraform"], var.app_error_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "app_apdex_score" {
@@ -44,7 +40,7 @@ resource "datadog_monitor" "app_apdex_score" {
     < ${var.app_apdex_score_threshold_critical}
 EOQ
 
-  thresholds = {
+  monitor_thresholds {
     warning  = var.app_apdex_score_threshold_warning
     critical = var.app_apdex_score_threshold_critical
   }
@@ -60,8 +56,4 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:saas", "provider:new-relic", "resource:new-relic", "team:claranet", "created-by:terraform"], var.app_apdex_score_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
