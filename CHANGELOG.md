@@ -1,3 +1,9 @@
+# v4.0.0 (Jun 22, 2021)
+
+## New Feature
+
+*   Support for Datadog provider v3 (#3)
+
 # v3.6.0 (January 27, 2021)
 
 ## Improvement
