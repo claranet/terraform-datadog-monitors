@@ -32,10 +32,6 @@ resource "datadog_monitor" "pct_errors" {
   locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:lambda", "team:claranet", "created-by:terraform"], var.pct_errors_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Errors Absolute Value
@@ -68,10 +64,6 @@ resource "datadog_monitor" "errors" {
   locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:lambda", "team:claranet", "created-by:terraform"], var.errors_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Throttles
@@ -104,10 +96,6 @@ resource "datadog_monitor" "throttles" {
   locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:lambda", "team:claranet", "created-by:terraform"], var.throttles_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # INVOCATIONS
@@ -143,8 +131,4 @@ resource "datadog_monitor" "invocations" {
 
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:lambda", "team:claranet", "created-by:terraform"], var.invocations_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

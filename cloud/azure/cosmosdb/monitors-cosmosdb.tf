@@ -26,10 +26,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:cosmos_db", "team:claranet", "created-by:terraform"], var.status_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "cosmos_db_4xx_requests" {
@@ -71,10 +67,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:cosmos_db", "team:claranet", "created-by:terraform"], var.cosmos_db_4xx_request_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "cosmos_db_5xx_requests" {
@@ -107,10 +99,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:cosmos_db", "team:claranet", "created-by:terraform"], var.cosmos_db_5xx_request_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "cosmos_db_scaling" {
@@ -143,9 +131,5 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:cosmos_db", "team:claranet", "created-by:terraform"], var.cosmos_db_scaling_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

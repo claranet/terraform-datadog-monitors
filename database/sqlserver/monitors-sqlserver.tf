@@ -24,8 +24,4 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:sqlserver", "resource:sqlserver", "team:claranet", "created-by:terraform"], var.sqlserver_availability_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

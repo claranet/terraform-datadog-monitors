@@ -23,10 +23,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.status_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Gateway total_requests
@@ -52,10 +48,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.total_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Gateway backend_connect_time
@@ -86,10 +78,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_backend_connect_time_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Gateway failed_requests
@@ -122,10 +110,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_failed_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Gateway unhealthy_host_ratio
@@ -158,10 +142,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_unhealthy_host_ratio_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Gateway response_status 4xx
@@ -193,10 +173,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_http_4xx_errors_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Gateway response_status 5xx
@@ -227,10 +203,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_http_5xx_errors_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Gateway Backend response_status 4xx
@@ -262,10 +234,6 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_backend_http_4xx_errors_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 # Monitoring App Gateway Backend response_status 5xx
@@ -296,8 +264,4 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_backend_http_5xx_errors_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

@@ -25,9 +25,5 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.apiserver_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

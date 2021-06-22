@@ -26,10 +26,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:saas", "provider:new-relic", "resource:new-relic", "team:claranet", "created-by:terraform"], var.app_error_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "app_apdex_score" {
@@ -60,8 +56,4 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:saas", "provider:new-relic", "resource:new-relic", "team:claranet", "created-by:terraform"], var.app_apdex_score_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

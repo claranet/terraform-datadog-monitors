@@ -24,10 +24,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.status_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "apimgt_failed_requests" {
@@ -59,10 +55,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.failed_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "apimgt_other_requests" {
@@ -94,10 +86,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.other_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "apimgt_unauthorized_requests" {
@@ -129,10 +117,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.unauthorized_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "apimgt_successful_requests" {
@@ -166,9 +150,5 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.successful_requests_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

@@ -26,10 +26,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform"], var.cpu_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 ### RDS instance free space monitor ###
@@ -62,10 +58,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform"], var.diskspace_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 ### RDS Replica Lag monitor ###
@@ -96,8 +88,4 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform"], var.replicalag_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

@@ -29,11 +29,7 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:database", "provider:solr", "resource:solr", "team:claranet",
-  "created-by:terraform"], var.not_responding_extra_tags)
 
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -66,7 +62,6 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:solr", "resource:solr", "team:claranet",
-  "created-by:terraform"], var.search_handler_errors_extra_tags)
 
 }
 
@@ -99,5 +94,4 @@ EOQ
   notify_no_data      = false
 
   tags = concat(["env:${var.environment}", "type:database", "provider:solr", "resource:solr", "team:claranet",
-  "created-by:terraform"], var.searcher_warmup_time_extra_tags)
 }

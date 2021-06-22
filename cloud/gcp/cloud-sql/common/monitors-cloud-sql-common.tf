@@ -29,10 +29,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.cpu_utilization_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -67,10 +63,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.disk_utilization_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -111,10 +103,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.disk_utilization_forecast_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -148,10 +136,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.memory_utilization_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -192,10 +176,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.memory_utilization_forecast_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -210,7 +190,6 @@ resource "datadog_monitor" "failover_unavailable" {
   query = <<EOQ
   ${var.failover_unavailable_time_aggregator}(${var.failover_unavailable_timeframe}):
     avg:gcp.cloudsql.database.available_for_failover{${join(", ", compact([var.filter_tags_failover_unavailable, var.filter_tags_failover_unavailable != "" && var.filter_tags == "*" ? "" : var.filter_tags]))}}
-    by {database_id}
   <= ${var.failover_unavailable_threshold_critical}
 EOQ
 
@@ -229,9 +208,5 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.failover_unavailable_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

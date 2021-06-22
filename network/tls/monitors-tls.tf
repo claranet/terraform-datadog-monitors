@@ -27,10 +27,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:network", "provider:tls", "resource:webcheck", "team:claranet", "created-by:terraform"], var.cannot_connect_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -61,10 +57,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:network", "provider:tls", "resource:tls-certificate", "team:claranet", "created-by:terraform"], var.invalid_tls_certificate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -95,10 +87,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:network", "provider:tls", "resource:tls-certificate", "team:claranet", "created-by:terraform"], var.tls_certificate_expiration_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -133,8 +121,4 @@ EOQ
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:network", "provider:tls", "resource:tls-certificate", "team:claranet", "created-by:terraform"], var.certificate_expiration_date_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }

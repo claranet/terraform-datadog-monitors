@@ -27,9 +27,5 @@ EOQ
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:nlb", "team:claranet", "created-by:terraform"], var.nlb_no_healthy_instances_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

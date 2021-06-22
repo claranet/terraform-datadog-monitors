@@ -25,10 +25,6 @@ EOQ
   locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:beanstalk", "team:claranet", "created-by:terraform"], var.health_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "application_latency_p90" {
@@ -56,10 +52,6 @@ EOQ
   locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:beanstalk", "team:claranet", "created-by:terraform"], var.application_latency_p90_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "application_5xx_error_rate" {
@@ -87,10 +79,6 @@ EOQ
   locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:beanstalk", "team:claranet", "created-by:terraform"], var.application_5xx_error_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "root_filesystem_usage" {
@@ -118,9 +106,5 @@ EOQ
   locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:beanstalk", "team:claranet", "created-by:terraform"], var.root_filesystem_usage_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

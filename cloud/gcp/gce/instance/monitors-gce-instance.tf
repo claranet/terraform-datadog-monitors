@@ -30,10 +30,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform"], var.cpu_utilization_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -73,10 +69,6 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform"], var.disk_throttled_bps_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 #
@@ -116,9 +108,5 @@ EOQ
   renotify_interval   = 0
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform"], var.disk_throttled_ops_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 

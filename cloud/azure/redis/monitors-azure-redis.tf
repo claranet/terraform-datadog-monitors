@@ -22,10 +22,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform"], var.status_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "evictedkeys" {
@@ -56,10 +52,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform"], var.evictedkeys_limit_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "percent_processor_time" {
@@ -90,10 +82,6 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform"], var.percent_processor_time_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
 resource "datadog_monitor" "server_load" {
@@ -124,9 +112,5 @@ EOQ
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform"], var.server_load_rate_extra_tags)
-
-  lifecycle {
-    ignore_changes = [silenced]
-  }
 }
 
