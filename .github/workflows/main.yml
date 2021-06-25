@@ -30,7 +30,7 @@ jobs:
     #runs-on: hashicorp/terraform:full
     runs-on: ubuntu-latest
     container:
-      image: "claranet/terraform-ci:latest"
+      image: "claranet/terraform-ci:1.0.1"
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -41,9 +41,9 @@ jobs:
         submodules: recursive
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1.2.1
+      uses: hashicorp/setup-terraform@v1
       with:
-        terraform_version: 0.13.5
+        terraform_version: 0.1.1
         terraform_wrapper: false
 
     - name: Run auto update
