@@ -1,8 +1,6 @@
-# v4.0.0 (Jun 22, 2021)
+# v4+
 
-## New Feature
-
-*   Support for Datadog provider v3 (#3)
+See [Github releases](https://github.com/claranet/terraform-datadog-monitors/releases) for versions `>= v4.0.0`.
 
 # v3.6.0 (January 27, 2021)
 
