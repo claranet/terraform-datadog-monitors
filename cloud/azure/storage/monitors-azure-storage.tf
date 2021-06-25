@@ -12,7 +12,6 @@ EOQ
     critical = 1
   }
 
-  silenced            = var.status_silenced
   type                = "metric alert"
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.storage_status_no_data_timeframe
@@ -46,8 +45,6 @@ EOQ
     warning  = var.successful_storage_requests_threshold_warning
   }
 
-  silenced = var.successful_requests_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -78,8 +75,6 @@ EOQ
     critical = var.successful_storage_requests_threshold_critical
     warning  = var.successful_storage_requests_threshold_warning
   }
-
-  silenced = var.successful_requests_silenced
 
   type                = "metric alert"
   notify_no_data      = false
@@ -113,8 +108,6 @@ EOQ
     warning  = var.successful_storage_requests_threshold_warning
   }
 
-  silenced = var.successful_requests_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -147,8 +140,6 @@ EOQ
     warning  = var.successful_storage_requests_threshold_warning
   }
 
-  silenced = var.successful_requests_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -179,8 +170,6 @@ EOQ
     critical = var.latency_threshold_critical
     warning  = var.latency_threshold_warning
   }
-
-  silenced = var.latency_silenced
 
   type                = "metric alert"
   notify_no_data      = false
@@ -213,8 +202,6 @@ EOQ
     warning  = var.latency_threshold_warning
   }
 
-  silenced = var.latency_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -245,8 +232,6 @@ EOQ
     critical = var.latency_threshold_critical
     warning  = var.latency_threshold_warning
   }
-
-  silenced = var.latency_silenced
 
   type                = "metric alert"
   notify_no_data      = false
@@ -279,8 +264,6 @@ EOQ
     warning  = var.latency_threshold_warning
   }
 
-  silenced = var.latency_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -312,8 +295,6 @@ EOQ
     warning  = var.timeout_error_requests_threshold_warning
   }
 
-  silenced = var.timeout_error_requests_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -344,8 +325,6 @@ EOQ
     critical = var.timeout_error_requests_threshold_critical
     warning  = var.timeout_error_requests_threshold_warning
   }
-
-  silenced = var.timeout_error_requests_silenced
 
   type                = "metric alert"
   notify_no_data      = false
@@ -379,8 +358,6 @@ EOQ
     warning  = var.timeout_error_requests_threshold_warning
   }
 
-  silenced = var.timeout_error_requests_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -412,8 +389,6 @@ EOQ
     critical = var.timeout_error_requests_threshold_critical
     warning  = var.timeout_error_requests_threshold_warning
   }
-
-  silenced = var.timeout_error_requests_silenced
 
   type                = "metric alert"
   notify_no_data      = false
@@ -447,8 +422,6 @@ EOQ
     warning  = var.network_error_requests_threshold_warning
   }
 
-  silenced = var.network_error_requests_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -480,8 +453,6 @@ EOQ
     critical = var.network_error_requests_threshold_critical
     warning  = var.network_error_requests_threshold_warning
   }
-
-  silenced = var.network_error_requests_silenced
 
   type                = "metric alert"
   notify_no_data      = false
@@ -515,8 +486,6 @@ EOQ
     warning  = var.network_error_requests_threshold_warning
   }
 
-  silenced = var.network_error_requests_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -548,8 +517,6 @@ EOQ
     critical = var.network_error_requests_threshold_critical
     warning  = var.network_error_requests_threshold_warning
   }
-
-  silenced = var.network_error_requests_silenced
 
   type                = "metric alert"
   notify_no_data      = false
@@ -583,8 +550,6 @@ EOQ
     warning  = var.throttling_error_requests_threshold_warning
   }
 
-  silenced = var.throttling_error_requests_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -616,8 +581,6 @@ EOQ
     critical = var.throttling_error_requests_threshold_critical
     warning  = var.throttling_error_requests_threshold_warning
   }
-
-  silenced = var.throttling_error_requests_silenced
 
   type                = "metric alert"
   notify_no_data      = false
@@ -651,8 +614,6 @@ EOQ
     warning  = var.throttling_error_requests_threshold_warning
   }
 
-  silenced = var.throttling_error_requests_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -684,8 +645,6 @@ EOQ
     critical = var.throttling_error_requests_threshold_critical
     warning  = var.throttling_error_requests_threshold_warning
   }
-
-  silenced = var.throttling_error_requests_silenced
 
   type                = "metric alert"
   notify_no_data      = false
@@ -719,8 +678,6 @@ EOQ
     warning  = var.server_other_error_requests_threshold_warning
   }
 
-  silenced = var.server_other_error_requests_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -752,8 +709,6 @@ EOQ
     critical = var.server_other_error_requests_threshold_critical
     warning  = var.server_other_error_requests_threshold_warning
   }
-
-  silenced = var.server_other_error_requests_silenced
 
   type                = "metric alert"
   notify_no_data      = false
@@ -787,8 +742,6 @@ EOQ
     warning  = var.server_other_error_requests_threshold_warning
   }
 
-  silenced = var.server_other_error_requests_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -821,8 +774,6 @@ EOQ
     warning  = var.server_other_error_requests_threshold_warning
   }
 
-  silenced = var.server_other_error_requests_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -853,8 +804,6 @@ EOQ
     critical = var.client_other_error_requests_threshold_critical
     warning  = var.client_other_error_requests_threshold_warning
   }
-
-  silenced = var.client_other_error_requests_silenced
 
   type                = "metric alert"
   notify_no_data      = false
@@ -888,8 +837,6 @@ EOQ
     warning  = var.client_other_error_requests_threshold_warning
   }
 
-  silenced = var.client_other_error_requests_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -921,8 +868,6 @@ EOQ
     critical = var.client_other_error_requests_threshold_critical
     warning  = var.client_other_error_requests_threshold_warning
   }
-
-  silenced = var.client_other_error_requests_silenced
 
   type                = "metric alert"
   notify_no_data      = false
@@ -956,8 +901,6 @@ EOQ
     warning  = var.client_other_error_requests_threshold_warning
   }
 
-  silenced = var.client_other_error_requests_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -989,8 +932,6 @@ EOQ
     critical = var.authorization_error_requests_threshold_critical
     warning  = var.authorization_error_requests_threshold_warning
   }
-
-  silenced = var.authorization_error_requests_silenced
 
   type                = "metric alert"
   notify_no_data      = false
@@ -1024,8 +965,6 @@ EOQ
     warning  = var.authorization_error_requests_threshold_warning
   }
 
-  silenced = var.authorization_error_requests_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -1058,8 +997,6 @@ EOQ
     warning  = var.authorization_error_requests_threshold_warning
   }
 
-  silenced = var.authorization_error_requests_silenced
-
   type                = "metric alert"
   notify_no_data      = false
   notify_audit        = false
@@ -1091,8 +1028,6 @@ EOQ
     critical = var.authorization_error_requests_threshold_critical
     warning  = var.authorization_error_requests_threshold_warning
   }
-
-  silenced = var.authorization_error_requests_silenced
 
   type                = "metric alert"
   notify_no_data      = false

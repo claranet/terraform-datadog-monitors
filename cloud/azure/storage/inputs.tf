@@ -51,12 +51,6 @@ variable "filter_tags_custom_excluded" {
 }
 
 # Azure Storage specific variables
-variable "availability_silenced" {
-  description = "Groups to mute for Storage availability monitor"
-  type        = map(string)
-  default     = {}
-}
-
 variable "availability_enabled" {
   description = "Flag to enable Storage availability monitor"
   type        = string
@@ -95,12 +89,6 @@ variable "availability_threshold_critical" {
 variable "availability_threshold_warning" {
   description = "Warning regarding acceptable percent of availability for a storage"
   default     = 90
-}
-
-variable "successful_requests_silenced" {
-  description = "Groups to mute for Storage sucessful requests monitor"
-  type        = map(string)
-  default     = {}
 }
 
 variable "successful_requests_enabled" {
@@ -143,12 +131,6 @@ variable "successful_storage_requests_threshold_warning" {
   default     = 70
 }
 
-variable "latency_silenced" {
-  description = "Groups to mute for Storage latency monitor"
-  type        = map(string)
-  default     = {}
-}
-
 variable "latency_enabled" {
   description = "Flag to enable Storage latency monitor"
   type        = string
@@ -187,12 +169,6 @@ variable "latency_threshold_critical" {
 variable "latency_threshold_warning" {
   description = "Warning regarding acceptable end to end latency (ms) for a storage"
   default     = 1000
-}
-
-variable "timeout_error_requests_silenced" {
-  description = "Groups to mute for Storage timeout monitor"
-  type        = map(string)
-  default     = {}
 }
 
 variable "timeout_error_requests_enabled" {
@@ -235,12 +211,6 @@ variable "timeout_error_requests_threshold_warning" {
   default     = 50
 }
 
-variable "network_error_requests_silenced" {
-  description = "Groups to mute for Storage network errors monitor"
-  type        = map(string)
-  default     = {}
-}
-
 variable "network_error_requests_enabled" {
   description = "Flag to enable Storage network errors monitor"
   type        = string
@@ -279,12 +249,6 @@ variable "network_error_requests_threshold_critical" {
 variable "network_error_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of network error requests for a storage"
   default     = 50
-}
-
-variable "throttling_error_requests_silenced" {
-  description = "Groups to mute for Storage throttling error monitor"
-  type        = map(string)
-  default     = {}
 }
 
 variable "throttling_error_requests_enabled" {
@@ -327,12 +291,6 @@ variable "throttling_error_requests_threshold_warning" {
   default     = 50
 }
 
-variable "server_other_error_requests_silenced" {
-  description = "Groups to mute for Storage server other errors monitor"
-  type        = map(string)
-  default     = {}
-}
-
 variable "server_other_error_requests_enabled" {
   description = "Flag to enable Storage server other errors monitor"
   type        = string
@@ -373,12 +331,6 @@ variable "server_other_error_requests_threshold_warning" {
   default     = 50
 }
 
-variable "client_other_error_requests_silenced" {
-  description = "Groups to mute for Storage other errors monitor"
-  type        = map(string)
-  default     = {}
-}
-
 variable "client_other_error_requests_enabled" {
   description = "Flag to enable Storage other errors monitor"
   type        = string
@@ -417,12 +369,6 @@ variable "client_other_error_requests_threshold_critical" {
 variable "client_other_error_requests_threshold_warning" {
   description = "Warning regarding acceptable percent of client other error requests for a storage"
   default     = 50
-}
-
-variable "authorization_error_requests_silenced" {
-  description = "Groups to mute for Storage authorization errors monitor"
-  type        = map(string)
-  default     = {}
 }
 
 variable "authorization_error_requests_enabled" {
@@ -487,12 +433,6 @@ variable "status_message" {
   description = "Custom message for storage Services status monitor"
   type        = string
   default     = ""
-}
-
-variable "status_silenced" {
-  description = "Groups to mute for App Services status monitor"
-  type        = map(string)
-  default     = {}
 }
 
 variable "status_extra_tags" {
