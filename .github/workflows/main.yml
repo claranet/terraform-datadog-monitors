@@ -37,6 +37,8 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Checkout
       uses: actions/checkout@v2
+      with:
+        submodules: recursive
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1.2.1
