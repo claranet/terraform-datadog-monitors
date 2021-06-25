@@ -21,7 +21,6 @@ jobs:
       with:
         concurrent_skipping: 'same_content'
         do_not_skip: '["pull_request", "workflow_dispatch", "schedule"]'
-        paths: '["modules/**.tf", "modules/**/conf/detector-*.yaml", "scripts/**", "Makefile", ".github/workflows/main.yml"]'
 
   check:
     # The type of runner that the job will run on
