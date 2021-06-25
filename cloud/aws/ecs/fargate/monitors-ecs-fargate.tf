@@ -27,7 +27,7 @@ EOQ
 
 
   include_tags = true
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs_fargate", "team:claranet", "created-by:terraform", "category:service"], var.service_check_extra_tags)
+  tags         = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs_fargate", "team:claranet", "created-by:terraform", "category:service"], var.service_check_extra_tags)
 }
 
 resource "datadog_monitor" "cpu_utilization" {
