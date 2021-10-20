@@ -39,7 +39,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Version |
 |------|---------|
-| <a name="provider_datadog"></a> [datadog](#provider\_datadog) | 3.1.2 |
+| <a name="provider_datadog"></a> [datadog](#provider\_datadog) | 3.4.0 |
 
 ## Modules
 
