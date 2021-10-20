@@ -5,7 +5,7 @@ resource "datadog_monitor" "job" {
   type    = "service check"
 
   query = <<EOQ
-    "kubernetes_state.job.complete"${module.filter-tags.service_check}.by("job_name").last(6).count_by_status()
+    "kubernetes_state.job.complete"${module.filter-tags.service_check}.by("job_name","kube_cluster_name").last(6).count_by_status()
 EOQ
 
   monitor_thresholds {
@@ -32,7 +32,7 @@ resource "datadog_monitor" "cronjob" {
   type    = "service check"
 
   query = <<EOQ
-    "kubernetes_state.cronjob.on_schedule_check"${module.filter-tags.service_check}.by("cronjob").last(6).count_by_status()
+    "kubernetes_state.cronjob.on_schedule_check"${module.filter-tags.service_check}.by("cronjob","kube_cluster_name").last(6).count_by_status()
 EOQ
 
   monitor_thresholds {
@@ -60,8 +60,8 @@ resource "datadog_monitor" "replica_available" {
 
   query = <<EOQ
     ${var.replica_available_time_aggregator}(${var.replica_available_timeframe}):
-      max:kubernetes_state.deployment.replicas_desired${module.filter-tags.query_alert} by {namespace, deployment} -
-      max:kubernetes_state.deployment.replicas_available${module.filter-tags.query_alert} by {namespace, deployment}
+      max:kubernetes_state.deployment.replicas_desired${module.filter-tags.query_alert} by {namespace, deployment, kube_cluster_name} -
+      max:kubernetes_state.deployment.replicas_available${module.filter-tags.query_alert} by {namespace, deployment, kube_cluster_name}
     + 1 < ${var.replica_available_threshold_critical}
 EOQ
 
@@ -90,8 +90,8 @@ resource "datadog_monitor" "replica_ready" {
 
   query = <<EOQ
     ${var.replica_available_time_aggregator}(${var.replica_available_timeframe}):
-      max:kubernetes_state.replicaset.replicas_desired${module.filter-tags.query_alert} by {namespace, replicaset} -
-      max:kubernetes_state.replicaset.replicas_ready${module.filter-tags.query_alert} by {namespace, replicaset}
+      max:kubernetes_state.replicaset.replicas_desired${module.filter-tags.query_alert} by {namespace, replicaset, kube_cluster_name} -
+      max:kubernetes_state.replicaset.replicas_ready${module.filter-tags.query_alert} by {namespace, replicaset, kube_cluster_name}
     + 1 < ${var.replica_available_threshold_critical}
 EOQ
 
@@ -120,8 +120,8 @@ resource "datadog_monitor" "replica_current" {
 
   query = <<EOQ
     ${var.replica_available_time_aggregator}(${var.replica_available_timeframe}):
-      max:kubernetes_state.replicaset.replicas_desired${module.filter-tags.query_alert} by {namespace, replicaset} -
-      max:kubernetes_state.replicaset.replicas${module.filter-tags.query_alert} by {namespace, replicaset}
+      max:kubernetes_state.replicaset.replicas_desired${module.filter-tags.query_alert} by {namespace, replicaset, kube_cluster_name} -
+      max:kubernetes_state.replicaset.replicas${module.filter-tags.query_alert} by {namespace, replicaset, kube_cluster_name}
     + 1 < ${var.replica_available_threshold_critical}
 EOQ
 
