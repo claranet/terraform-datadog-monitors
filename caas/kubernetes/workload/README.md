@@ -70,7 +70,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_job_message"></a> [job\_message](#input\_job\_message) | Custom message for Job monitor | `string` | `""` | no |
 | <a name="input_job_threshold_warning"></a> [job\_threshold\_warning](#input\_job\_threshold\_warning) | Job monitor (warning threshold) | `string` | `3` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
-| <a name="input_new_group_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
 | <a name="input_replica_available_enabled"></a> [replica\_available\_enabled](#input\_replica\_available\_enabled) | Flag to enable Available replica monitor | `string` | `"true"` | no |

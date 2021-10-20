@@ -90,7 +90,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_max_connection_time_aggregator"></a> [max\_connection\_time\_aggregator](#input\_max\_connection\_time\_aggregator) | Monitor aggregator for Elasticache max connection [available values: min, max or avg] | `string` | `"max"` | no |
 | <a name="input_max_connection_timeframe"></a> [max\_connection\_timeframe](#input\_max\_connection\_timeframe) | Monitor timeframe for Elasticache max connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
-| <a name="input_new_group_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_no_connection_enabled"></a> [no\_connection\_enabled](#input\_no\_connection\_enabled) | Flag to enable Elasticache no connection monitor | `string` | `"true"` | no |
 | <a name="input_no_connection_extra_tags"></a> [no\_connection\_extra\_tags](#input\_no\_connection\_extra\_tags) | Extra tags for Elasticache no connection monitor | `list(string)` | `[]` | no |
 | <a name="input_no_connection_message"></a> [no\_connection\_message](#input\_no\_connection\_message) | Custom message for Elasticache no connection monitor | `string` | `""` | no |

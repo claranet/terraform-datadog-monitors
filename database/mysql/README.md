@@ -150,7 +150,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_mysql_threads_threshold_critical"></a> [mysql\_threads\_threshold\_critical](#input\_mysql\_threads\_threshold\_critical) | Maximum critical acceptable number of threads | `number` | `1` | no |
 | <a name="input_mysql_threads_time_aggregator"></a> [mysql\_threads\_time\_aggregator](#input\_mysql\_threads\_time\_aggregator) | Monitor time aggregator for MySQL threads monitor [available values: min, max or avg] | `string` | `"avg"` | no |
 | <a name="input_mysql_threads_timeframe"></a> [mysql\_threads\_timeframe](#input\_mysql\_threads\_timeframe) | Monitor timeframe for MySQL threads monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_4h"` | no |
-| <a name="input_new_group_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds for the metric evaluation | `number` | `300` | no |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds for the metric evaluation | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
 

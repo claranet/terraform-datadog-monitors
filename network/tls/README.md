@@ -76,7 +76,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_invalid_tls_certificate_message"></a> [invalid\_tls\_certificate\_message](#input\_invalid\_tls\_certificate\_message) | Custom message for TLS certificate expiration monitor | `string` | `""` | no |
 | <a name="input_invalid_tls_certificate_threshold_warning"></a> [invalid\_tls\_certificate\_threshold\_warning](#input\_invalid\_tls\_certificate\_threshold\_warning) | TLS certificate expiration monitor (warning threshold) | `string` | `3` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
-| <a name="input_new_group_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
 | <a name="input_tls_certificate_expiration_enabled"></a> [tls\_certificate\_expiration\_enabled](#input\_tls\_certificate\_expiration\_enabled) | Flag to enable TLS certificate expiration monitor | `string` | `"true"` | no |

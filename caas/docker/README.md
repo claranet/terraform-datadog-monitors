@@ -63,7 +63,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_memory_used_time_aggregator"></a> [memory\_used\_time\_aggregator](#input\_memory\_used\_time\_aggregator) | Time aggregator for the Container Memory Usage monitor | `string` | `"min"` | no |
 | <a name="input_memory_used_timeframe"></a> [memory\_used\_timeframe](#input\_memory\_used\_timeframe) | Timeframe for the Container Memory Usage monitor | `string` | `"last_5m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
-| <a name="input_new_group_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_not_responding_enabled"></a> [not\_responding\_enabled](#input\_not\_responding\_enabled) | Flag to enable Docker does not respond monitor | `string` | `"true"` | no |
 | <a name="input_not_responding_extra_tags"></a> [not\_responding\_extra\_tags](#input\_not\_responding\_extra\_tags) | Extra tags for Docker does not respond monitor | `list(string)` | `[]` | no |
 | <a name="input_not_responding_message"></a> [not\_responding\_message](#input\_not\_responding\_message) | Custom message for Docker does not respond monitor | `string` | `""` | no |
