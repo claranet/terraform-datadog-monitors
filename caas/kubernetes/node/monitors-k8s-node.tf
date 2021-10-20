@@ -171,7 +171,6 @@ resource "datadog_monitor" "unregister_net_device" {
     events('sources:kubernetes priority:all ${module.filter-tags.event_alert} \"UnregisterNetDevice\"').rollup('count').last('${var.unregister_net_device_timeframe}') > ${var.unregister_net_device_threshold_critical}
 EOQ
 
-  new_group_delay   = var.new_group_delay
   notify_no_data    = false
   renotify_interval = 0
   notify_audit      = false
