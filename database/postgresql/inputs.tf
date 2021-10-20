@@ -9,7 +9,7 @@ variable "evaluation_delay" {
   default     = 15
 }
 
-variable "new_host_delay" {
+variable "new_group_delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 300
 }

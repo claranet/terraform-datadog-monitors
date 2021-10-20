@@ -29,7 +29,7 @@ variable "evaluation_delay" {
   default     = 900
 }
 
-variable "new_host_delay" {
+variable "new_group_delay" {
   description = "Delay in seconds before monitor new resource"
   default     = 300
 }

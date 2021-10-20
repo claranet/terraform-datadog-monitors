@@ -14,7 +14,7 @@ EOQ
   }
 
   evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
+  new_group_delay  = var.new_group_delay
 
   notify_no_data      = false
   renotify_interval   = 0
@@ -45,7 +45,7 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
@@ -75,7 +75,7 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false

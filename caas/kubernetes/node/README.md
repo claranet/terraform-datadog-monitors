@@ -94,7 +94,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_memory_pressure_message"></a> [memory\_pressure\_message](#input\_memory\_pressure\_message) | Custom message for Memory pressure monitor | `string` | `""` | no |
 | <a name="input_memory_pressure_threshold_warning"></a> [memory\_pressure\_threshold\_warning](#input\_memory\_pressure\_threshold\_warning) | Memory pressure monitor (warning threshold) | `string` | `3` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
-| <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
+| <a name="input_new_group_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_node_unschedulable_enabled"></a> [node\_unschedulable\_enabled](#input\_node\_unschedulable\_enabled) | Flag to enable node unschedulable monitor | `string` | `"true"` | no |
 | <a name="input_node_unschedulable_extra_tags"></a> [node\_unschedulable\_extra\_tags](#input\_node\_unschedulable\_extra\_tags) | Extra tags for node unschedulable monitor | `list(string)` | `[]` | no |
 | <a name="input_node_unschedulable_message"></a> [node\_unschedulable\_message](#input\_node\_unschedulable\_message) | Custom message for node unschedulable monitor | `string` | `""` | no |

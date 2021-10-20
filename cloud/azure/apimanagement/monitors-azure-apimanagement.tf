@@ -13,7 +13,7 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.apimgt_status_no_data_timeframe
   renotify_interval   = 0
@@ -44,7 +44,7 @@ EOQ
     warning  = var.failed_requests_threshold_warning
   }
 
-  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   notify_no_data      = false
   notify_audit        = false
@@ -75,7 +75,7 @@ EOQ
     warning  = var.other_requests_threshold_warning
   }
 
-  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   notify_no_data      = false
   notify_audit        = false
@@ -106,7 +106,7 @@ EOQ
     warning  = var.unauthorized_requests_threshold_warning
   }
 
-  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   notify_no_data      = false
   notify_audit        = false
@@ -139,7 +139,7 @@ EOQ
     warning  = var.successful_requests_threshold_warning
   }
 
-  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   notify_no_data      = false
   notify_audit        = false

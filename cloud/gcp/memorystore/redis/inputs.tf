@@ -20,7 +20,7 @@ variable "evaluation_delay" {
   default     = 900
 }
 
-variable "new_host_delay" {
+variable "new_group_delay" {
   description = "Delay in seconds for the new host evaluation"
   default     = 300
 }

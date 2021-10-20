@@ -13,7 +13,7 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
@@ -40,7 +40,7 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
@@ -67,7 +67,7 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
@@ -94,7 +94,7 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
@@ -121,7 +121,7 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.kubelet_ping_no_data_timeframe
   renotify_interval   = 0
@@ -149,7 +149,7 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
@@ -171,7 +171,7 @@ resource "datadog_monitor" "unregister_net_device" {
     events('sources:kubernetes priority:all ${module.filter-tags.event_alert} \"UnregisterNetDevice\"').rollup('count').last('${var.unregister_net_device_timeframe}') > ${var.unregister_net_device_threshold_critical}
 EOQ
 
-  new_host_delay    = var.new_host_delay
+  new_group_delay   = var.new_group_delay
   notify_no_data    = false
   renotify_interval = 0
   notify_audit      = false
@@ -199,7 +199,7 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
@@ -230,7 +230,7 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
@@ -261,7 +261,7 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false

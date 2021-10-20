@@ -13,7 +13,7 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.datadog_apache_process_no_data_timeframe
   renotify_interval   = 0

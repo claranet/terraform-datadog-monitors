@@ -16,7 +16,7 @@ resource "datadog_monitor" "pct_errors" {
   EOQ
 
   evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
+  new_group_delay  = var.new_group_delay
 
   monitor_thresholds {
     critical = var.pct_errors_threshold_critical
@@ -48,7 +48,7 @@ resource "datadog_monitor" "errors" {
   EOQ
 
   evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
+  new_group_delay  = var.new_group_delay
 
   monitor_thresholds {
     critical = var.errors_threshold_critical
@@ -80,7 +80,7 @@ resource "datadog_monitor" "throttles" {
   EOQ
 
   evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
+  new_group_delay  = var.new_group_delay
 
   monitor_thresholds {
     critical = var.throttles_threshold_critical
@@ -112,7 +112,7 @@ resource "datadog_monitor" "invocations" {
   EOQ
 
   evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
+  new_group_delay  = var.new_group_delay
 
   monitor_thresholds {
     critical = var.invocations_threshold_critical

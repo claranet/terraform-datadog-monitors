@@ -210,7 +210,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_jvm_memory_young_usage_time_aggregator"></a> [jvm\_memory\_young\_usage\_time\_aggregator](#input\_jvm\_memory\_young\_usage\_time\_aggregator) | Time aggregator for the Cluster Status monitor | `string` | `"avg"` | no |
 | <a name="input_jvm_memory_young_usage_timeframe"></a> [jvm\_memory\_young\_usage\_timeframe](#input\_jvm\_memory\_young\_usage\_timeframe) | Timeframe for the Cluster Status monitor | `string` | `"last_10m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
-| <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before begin to monitor new host | `number` | `300` | no |
+| <a name="input_new_group_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before begin to monitor new host | `number` | `300` | no |
 | <a name="input_node_free_space_enabled"></a> [node\_free\_space\_enabled](#input\_node\_free\_space\_enabled) | Flag to enable Cluster Status monitor | `string` | `"true"` | no |
 | <a name="input_node_free_space_extra_tags"></a> [node\_free\_space\_extra\_tags](#input\_node\_free\_space\_extra\_tags) | Extra tags for Cluster Status monitor | `list(string)` | `[]` | no |
 | <a name="input_node_free_space_message"></a> [node\_free\_space\_message](#input\_node\_free\_space\_message) | Custom message for the Cluster Status monitor | `string` | `""` | no |
