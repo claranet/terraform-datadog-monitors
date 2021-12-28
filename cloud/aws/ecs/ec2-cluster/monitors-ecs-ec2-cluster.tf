@@ -1,3 +1,13 @@
+locals {
+  common_tags = [
+    "env:${var.environment}",
+    "type:cloud",
+    "provider:aws",
+    "resource:ecs",
+    "team:${var.team}",
+    "created-by:terraform"
+  ]
+}
 # Monitors related to ECS Cluster
 resource "datadog_monitor" "ecs_agent_status" {
   count   = var.agent_status_enabled == "true" ? 1 : 0
@@ -26,7 +36,7 @@ EOQ
   include_tags        = true
   locked              = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:agent"], var.agent_status_extra_tags)
+  tags = concat(["category:service"], local.common_tags, var.agent_status_extra_tags)
 }
 
 resource "datadog_monitor" "cluster_cpu_utilization" {
@@ -57,7 +67,7 @@ EOQ
   include_tags        = true
   locked              = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:cluster"], var.cluster_cpu_utilization_extra_tags)
+  tags = concat(["category:cluster"], local.common_tags, var.cluster_cpu_utilization_extra_tags)
 
 }
 
@@ -89,5 +99,5 @@ EOQ
   include_tags        = true
   locked              = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:cluster"], var.cluster_memory_reservation_extra_tags)
+  tags = concat(["category:cluster"], local.common_tags, var.cluster_memory_reservation_extra_tags)
 }

@@ -1,4 +1,9 @@
 # Generics
+variable "team" {
+  description = "Team responsible for the service"
+  type        = string
+  default     = "devops"
+}
 
 variable "environment" {
   description = "Architecture environment"

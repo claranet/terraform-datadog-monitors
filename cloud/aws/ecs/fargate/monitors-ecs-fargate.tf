@@ -1,4 +1,14 @@
 # Service check
+locals {
+  common_tags = [
+    "env:${var.environment}",
+    "type:cloud",
+    "provider:aws",
+    "resource:ecs",
+    "team:${var.team}",
+    "created-by:terraform"
+  ]
+}
 
 resource "datadog_monitor" "service_check" {
   count   = var.service_check_enabled ? 1 : 0
@@ -27,7 +37,7 @@ EOQ
 
 
   include_tags = true
-  tags         = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs_fargate", "team:claranet", "created-by:terraform", "category:service"], var.service_check_extra_tags)
+  tags         = concat(["category:service"], local.common_tags, var.service_check_extra_tags)
 }
 
 resource "datadog_monitor" "cpu_utilization" {
@@ -58,7 +68,7 @@ EOQ
   include_tags        = true
   locked              = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs_fargate", "team:claranet", "created-by:terraform"], var.cpu_utilization_extra_tags)
+  tags = concat(["category:service"], local.common_tags, var.cpu_utilization_extra_tags)
 
 }
 
@@ -92,6 +102,6 @@ EOQ
   include_tags        = true
   locked              = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs_fargate", "team:claranet", "created-by:terraform"], var.memory_utilization_extra_tags)
+  tags = concat(["category:service"], local.common_tags, var.memory_utilization_extra_tags)
 
 }

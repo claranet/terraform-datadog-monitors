@@ -1,3 +1,14 @@
+locals {
+  common_tags = [
+    "env:${var.environment}",
+    "type:cloud",
+    "provider:aws",
+    "resource:ecs",
+    "team:${var.team}",
+    "created-by:terraform"
+  ]
+}
+
 # Monitors related to services
 resource "datadog_monitor" "service_cpu_utilization" {
   count   = var.service_cpu_utilization_enabled == "true" ? 1 : 0
@@ -27,7 +38,7 @@ EOQ
   include_tags        = true
   locked              = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:service"], var.service_cpu_utilization_extra_tags)
+  tags = concat(["category:service"], local.common_tags, var.service_cpu_utilization_extra_tags)
 }
 
 resource "datadog_monitor" "service_memory_utilization" {
@@ -57,7 +68,7 @@ EOQ
   include_tags        = true
   locked              = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:service"], var.service_memory_utilization_extra_tags)
+  tags = concat(["category:service"], local.common_tags, var.service_memory_utilization_extra_tags)
 }
 
 resource "datadog_monitor" "service_missing_tasks" {
@@ -88,5 +99,5 @@ EOQ
   include_tags        = true
   locked              = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:service"], var.service_missing_tasks_extra_tags)
+  tags = concat(["category:service"], local.common_tags, var.service_missing_tasks_extra_tags)
 }
