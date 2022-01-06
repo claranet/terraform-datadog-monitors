@@ -5,7 +5,7 @@ locals {
     "type:cloud",
     "provider:aws",
     "resource:ecs",
-    "team:${var.team}",
+    "domain:${var.domain}",
     "created-by:terraform"
   ]
 }

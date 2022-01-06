@@ -1,8 +1,8 @@
 #
 # Datadog global variables
 #
-variable "team" {
-  description = "Team responsible for the service"
+variable "domain" {
+  description = "Domain of the service"
   type        = string
   default     = "devops"
 }
