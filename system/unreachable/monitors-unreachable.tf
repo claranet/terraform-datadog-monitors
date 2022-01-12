@@ -5,7 +5,7 @@ resource "datadog_monitor" "host_unreachable" {
   type    = "service check"
 
   query = <<EOQ
-    "datadog.agent.up"${module.filter-tags.service_check}.last(6).count_by_status()
+    "datadog.agent.up"${module.filter-tags.service_check}.by("*").last(6).count_by_status()
 EOQ
 
   monitor_thresholds {
