@@ -6,7 +6,7 @@ resource "datadog_monitor" "keyvault_status" {
 
   query = <<EOQ
       ${var.status_time_aggregator}(${var.status_timeframe}): (
-        avg:azure.keyvault_vaults.status${module.filter-tags.query_alert} by {resource_group,region,name}
+        avg:azure.keyvault_vaults.count${module.filter-tags.query_alert} by {resource_group,region,name}
       ) < 1
 EOQ
 

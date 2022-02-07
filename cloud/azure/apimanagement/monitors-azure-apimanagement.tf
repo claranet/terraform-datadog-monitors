@@ -5,7 +5,7 @@ resource "datadog_monitor" "apimgt_status" {
   type    = "metric alert"
 
   query = <<EOQ
-      ${var.status_time_aggregator}(${var.status_timeframe}):avg:azure.apimanagement_service.status${module.filter-tags.query_alert} by {resource_group,region,name} < 1
+      ${var.status_time_aggregator}(${var.status_timeframe}):avg:azure.apimanagement_service.count${module.filter-tags.query_alert} by {resource_group,region,name} < 1
 EOQ
 
   monitor_thresholds {
