@@ -156,7 +156,7 @@ resource "datadog_monitor" "appservices_status" {
   message = coalesce(var.status_message, var.message)
 
   query = <<EOQ
-      ${var.status_time_aggregator}(${var.status_timeframe}):avg:azure.app_services.status${module.filter-tags.query_alert} by {resource_group,region,name} < 1
+      ${var.status_time_aggregator}(${var.status_timeframe}):avg:azure.app_services.count${module.filter-tags.query_alert} by {resource_group,region,name} < 1
 EOQ
 
   monitor_thresholds {
