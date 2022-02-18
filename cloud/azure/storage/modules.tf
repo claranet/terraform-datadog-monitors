@@ -9,6 +9,18 @@ module "filter-tags" {
   extra_tags                  = []
 }
 
+module "filter-tags-status" {
+  source = "../../../common/filter-tags"
+
+  environment                 = var.environment
+  resource                    = "azure_storage"
+  filter_tags_use_defaults    = var.filter_tags_use_defaults
+  filter_tags_custom          = var.filter_tags_custom
+  filter_tags_custom_excluded = var.filter_tags_custom_excluded
+  extra_tags                  = []
+  extra_tags_excluded         = ["status:running"]
+}
+
 module "filter-tags-blob" {
   source = "../../../common/filter-tags"
 
