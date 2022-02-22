@@ -6,7 +6,7 @@ resource "datadog_monitor" "virtualmachine_status" {
 
   query = <<EOQ
       ${var.status_time_aggregator}(${var.status_timeframe}): (
-        avg:azure.vm.status${module.filter-tags.query_alert} by {resource_group,region,name}
+        avg:azure.vm.count${module.filter-tags.query_alert} by {resource_group,region,name}
       ) < 1
 EOQ
 
