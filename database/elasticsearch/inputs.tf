@@ -69,13 +69,13 @@ variable "cluster_status_not_green_timeframe" {
 variable "cluster_status_not_green_threshold_warning" {
   description = "Cluster Status warning threshold"
   type        = string
-  default     = 1
+  default     = 2
 }
 
 variable "cluster_status_not_green_threshold_critical" {
   description = "Cluster Status  critical threshold"
   type        = string
-  default     = 0
+  default     = 1
 }
 
 variable "cluster_status_not_green_enabled" {

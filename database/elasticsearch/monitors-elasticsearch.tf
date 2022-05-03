@@ -41,7 +41,7 @@ resource "datadog_monitor" "cluster_status_not_green" {
   query = <<EOQ
   ${var.cluster_status_not_green_time_aggregator}(${var.cluster_status_not_green_timeframe}):
     min:elasticsearch.cluster_status${module.filter-tags.query_alert} by {cluster_name}
-  <= ${var.cluster_status_not_green_threshold_critical}
+  < ${var.cluster_status_not_green_threshold_critical}
 EOQ
 
   monitor_thresholds {
