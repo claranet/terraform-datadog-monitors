@@ -57,7 +57,7 @@ variable "cluster_status_not_green_message" {
 variable "cluster_status_not_green_time_aggregator" {
   description = "Time aggregator for the Cluster Status monitor"
   type        = string
-  default     = "avg"
+  default     = "max"
 }
 
 variable "cluster_status_not_green_timeframe" {
