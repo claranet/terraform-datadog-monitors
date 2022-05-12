@@ -60,8 +60,8 @@ resource "datadog_monitor" "replica_available" {
 
   query = <<EOQ
     ${var.replica_available_time_aggregator}(${var.replica_available_timeframe}):
-      max:kubernetes_state.deployment.replicas_desired${module.filter-tags.query_alert} by {namespace, deployment} -
-      max:kubernetes_state.deployment.replicas_available${module.filter-tags.query_alert} by {namespace, deployment}
+      max:kubernetes_state.deployment.replicas_desired${module.filter-tags.query_alert} by {${local.replica_group_by}} -
+      max:kubernetes_state.deployment.replicas_available${module.filter-tags.query_alert} by {${local.replica_group_by}}
     + 1 < ${var.replica_available_threshold_critical}
 EOQ
 
@@ -90,8 +90,8 @@ resource "datadog_monitor" "replica_ready" {
 
   query = <<EOQ
     ${var.replica_available_time_aggregator}(${var.replica_available_timeframe}):
-      max:kubernetes_state.replicaset.replicas_desired${module.filter-tags.query_alert} by {namespace, replicaset} -
-      max:kubernetes_state.replicaset.replicas_ready${module.filter-tags.query_alert} by {namespace, replicaset}
+      max:kubernetes_state.replicaset.replicas_desired${module.filter-tags.query_alert} by {${local.replica_group_by}} -
+      max:kubernetes_state.replicaset.replicas_ready${module.filter-tags.query_alert} by {${local.replica_group_by}}
     + 1 < ${var.replica_available_threshold_critical}
 EOQ
 
@@ -120,8 +120,8 @@ resource "datadog_monitor" "replica_current" {
 
   query = <<EOQ
     ${var.replica_available_time_aggregator}(${var.replica_available_timeframe}):
-      max:kubernetes_state.replicaset.replicas_desired${module.filter-tags.query_alert} by {namespace, replicaset} -
-      max:kubernetes_state.replicaset.replicas${module.filter-tags.query_alert} by {namespace, replicaset}
+      max:kubernetes_state.replicaset.replicas_desired${module.filter-tags.query_alert} by {${local.replica_group_by}} -
+      max:kubernetes_state.replicaset.replicas${module.filter-tags.query_alert} by {${local.replica_group_by}}
     + 1 < ${var.replica_available_threshold_critical}
 EOQ
 
