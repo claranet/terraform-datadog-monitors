@@ -1,10 +1,10 @@
-#  CAAS KUBERNETES WORKLOAD DataDog monitors
+# CAAS KUBERNETES WORKLOAD DataDog monitors
 
 ## How to use this module
 
 ```hcl
-module "datadog-monitors--caas-kubernetes-workload" {
-  source      = "claranet/monitors/datadog///caas/kubernetes/workload"
+module "datadog-monitors-caas-kubernetes-workload" {
+  source      = "claranet/monitors/datadog//caas/kubernetes/workload"
   version     = "{revision}"
 
   environment = var.environment

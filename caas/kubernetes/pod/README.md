@@ -1,10 +1,10 @@
-#  CAAS KUBERNETES POD DataDog monitors
+# CAAS KUBERNETES POD DataDog monitors
 
 ## How to use this module
 
 ```hcl
-module "datadog-monitors--caas-kubernetes-pod" {
-  source      = "claranet/monitors/datadog///caas/kubernetes/pod"
+module "datadog-monitors-caas-kubernetes-pod" {
+  source      = "claranet/monitors/datadog//caas/kubernetes/pod"
   version     = "{revision}"
 
   environment = var.environment
