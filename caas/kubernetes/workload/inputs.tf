@@ -198,3 +198,8 @@ variable "replica_current_threshold_critical" {
   description = "Current replica critical threshold"
 }
 
+variable "replica_group_by" {
+  default     = ["namespace", "replicaset"]
+  description = "Select group by element on monitors"
+}
+

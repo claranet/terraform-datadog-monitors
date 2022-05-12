@@ -155,3 +155,12 @@ variable "terminated_threshold_warning" {
   description = "terminated warning threshold"
 }
 
+variable "pod_group_by" {
+  default     = ["namespace", "pod", "reason", "kube_cluster_name"]
+  description = "Select group by element on monitors (error and terminated)"
+}
+
+variable "pod_status_group_by" {
+  default     = ["namespace", "kube_cluster_name"]
+  description = "Select group by element on monitors (phase status)"
+}
