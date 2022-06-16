@@ -257,7 +257,7 @@ variable "node_unschedulable_time_aggregator" {
 variable "node_unschedulable_timeframe" {
   description = "Monitor timeframe for node unschedulable [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
-  default     = "last_1h"
+  default     = "last_30m"
 }
 
 variable "volume_space_enabled" {

@@ -190,11 +190,11 @@ resource "datadog_monitor" "node_unschedulable" {
   query = <<EOQ
     ${var.node_unschedulable_time_aggregator}(${var.node_unschedulable_timeframe}):
       sum:kubernetes_state.node.status${module.filter-tags-unschedulable.query_alert} by {node,kube_cluster_name}
-    > 1
+    > 0
 EOQ
 
   monitor_thresholds {
-    critical = 1
+    critical = 0
   }
 
   evaluation_delay    = var.evaluation_delay
