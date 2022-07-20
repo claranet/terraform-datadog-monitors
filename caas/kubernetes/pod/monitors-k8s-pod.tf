@@ -35,7 +35,7 @@ resource "datadog_monitor" "error" {
 
   query = <<EOQ
     ${var.error_time_aggregator}(${var.error_timeframe}):
-      sum:kubernetes_state.container.status_report.count.waiting${module.filter-tags-nocontainercreating.query_alert} by {${local.pod_group_by}}
+      sum:kubernetes_state.container.waiting${module.filter-tags-nocontainercreating.query_alert} by {${local.pod_group_by}}
     > ${var.error_threshold_critical}
 EOQ
 
