@@ -2,9 +2,9 @@ locals {
   including_default_list = compact(
     concat(
       split(
-        ",",
+        local.filter_tags_separator,
         format(
-          "dd_monitoring:enabled,dd_%s:enabled,env:%s",
+          "dd_monitoring:enabled ${local.filter_tags_separator} dd_%s:enabled,env:%s",
           var.resource,
           var.environment,
         ),
@@ -13,22 +13,33 @@ locals {
     ),
   )
   including_custom_list = compact(
-    concat(split(",", var.filter_tags_custom), compact(var.extra_tags)),
+    concat(split("${local.filter_tags_separator}", var.filter_tags_custom), compact(var.extra_tags)),
   )
+
   excluding_list = compact(
     split(
-      ",",
-      var.filter_tags_use_defaults == "true" ? join(",", compact(var.extra_tags_excluded)) : join(
-        ",",
+      local.filter_tags_separator,
+      var.filter_tags_use_defaults == "true" ? join(local.filter_tags_separator, compact(var.extra_tags_excluded)) : join(
+        local.filter_tags_separator,
         concat(
-          split(",", var.filter_tags_custom_excluded),
+          split(local.filter_tags_separator, var.filter_tags_custom_excluded),
           compact(var.extra_tags_excluded),
         ),
       ),
     ),
   )
 
-  including_string = var.filter_tags_use_defaults == "true" ? join(",", local.including_default_list) : join(",", local.including_custom_list)
-  excluding_string = join(",", local.excluding_list)
+  std_including_string = replace("${replace(local.including_string, "${var.filter_tags_separator}", "${local.filter_tags_separator}")}", "/ +/", " ")
+  std_excluding_string = replace("${replace(local.including_string, "${var.filter_tags_separator}", "${local.filter_tags_separator}")}", "/ +/", " ")
+
+  including_string = var.filter_tags_use_defaults == "true" ? join(local.filter_tags_separator, local.including_default_list) : join(local.filter_tags_separator, local.including_custom_list)
+  excluding_string = join(local.filter_tags_separator, local.excluding_list)
+
+  filter_tags_not_operator = var.filter_tags_separator == "AND" ? "NOT " : "!"
+  filter_tags_separator    = var.filter_tags_separator == "AND" ? " AND " : " , "
+
+
+  service_check           = ".over(\"${replace(local.std_including_string, "${local.filter_tags_separator}", "\"${local.filter_tags_separator}\"")}\")${local.std_excluding_string == "" ? "" : ".exclude(\"${replace(local.std_excluding_string, "${local.filter_tags_separator}", "\"${local.filter_tags_separator}\"")}\")"}"
+  service_check_sanitized = replace(replace(replace(local.service_check, "\"(", "(\""), ")\"", "\")"), " OR ", "\" OR \"")
 }
 

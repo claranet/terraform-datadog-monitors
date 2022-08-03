@@ -23,6 +23,12 @@ variable "filter_tags_custom_excluded" {
   default     = ""
 }
 
+variable "filter_tags_separator" {
+  description = "Set the query separator (, or AND)"
+  type        = string
+  default     = ","
+}
+
 variable "extra_tags" {
   description = "Extra optional tags added to include filtering in any case (i.e. [\"tag1:val1\", \"tag2:val2\"])"
   type        = list(string)
@@ -34,4 +40,3 @@ variable "extra_tags_excluded" {
   type        = list(string)
   default     = []
 }
-
