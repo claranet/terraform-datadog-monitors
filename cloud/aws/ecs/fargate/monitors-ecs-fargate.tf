@@ -7,7 +7,7 @@ resource "datadog_monitor" "service_check" {
   type    = "service check"
 
   query = <<EOQ
-"fargate_check"${module.filter-tags.service_check}.last(6).count_by_status()
+"fargate_check"${module.filter-tags.service_check}.by("${var.service_group_by}").last(6).count_by_status()
 EOQ
 
   monitor_thresholds {

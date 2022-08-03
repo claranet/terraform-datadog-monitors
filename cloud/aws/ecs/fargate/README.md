@@ -63,6 +63,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `15` | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
+| <a name="input_filter_tags_separator"></a> [filter\_tags\_separator](#input\_filter\_tags\_separator) | Set the filter tags separator (, or AND) | `string` | `","` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `bool` | `true` | no |
 | <a name="input_memory_utilization_enabled"></a> [memory\_utilization\_enabled](#input\_memory\_utilization\_enabled) | Flag to enable Fargate Memory utilization monitor | `string` | `"false"` | no |
 | <a name="input_memory_utilization_extra_tags"></a> [memory\_utilization\_extra\_tags](#input\_memory\_utilization\_extra\_tags) | Extra tags for Fargate Memory utilization monitor | `list(string)` | `[]` | no |
@@ -80,6 +81,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_service_check_message"></a> [service\_check\_message](#input\_service\_check\_message) | Custom message for the monitor | `string` | `""` | no |
 | <a name="input_service_check_no_data_timeframe"></a> [service\_check\_no\_data\_timeframe](#input\_service\_check\_no\_data\_timeframe) | No data timeframe in minutes | `number` | `10` | no |
 | <a name="input_service_check_threshold_warning"></a> [service\_check\_threshold\_warning](#input\_service\_check\_threshold\_warning) | Warning threshold | `number` | `3` | no |
+| <a name="input_service_group_by"></a> [service\_group\_by](#input\_service\_group\_by) | Service check grouping by | `string` | `"*"` | no |
 
 ## Outputs
 
