@@ -4,7 +4,7 @@ locals {
       split(
         local.filter_tags_separator,
         format(
-          "dd_monitoring:enabled ${local.filter_tags_separator} dd_%s:enabled,env:%s",
+          "dd_monitoring:enabled${local.filter_tags_separator}dd_%s:enabled${local.filter_tags_separator}env:%s",
           var.resource,
           var.environment,
         ),
