@@ -70,6 +70,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
+| <a name="input_filter_tags_separator"></a> [filter\_tags\_separator](#input\_filter\_tags\_separator) | Set the filter tags separator (, or AND) | `string` | `","` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_httpcode_alb_4xx_enabled"></a> [httpcode\_alb\_4xx\_enabled](#input\_httpcode\_alb\_4xx\_enabled) | Flag to enable ALB httpcode 4xx monitor | `string` | `"true"` | no |
 | <a name="input_httpcode_alb_4xx_extra_tags"></a> [httpcode\_alb\_4xx\_extra\_tags](#input\_httpcode\_alb\_4xx\_extra\_tags) | Extra tags for ALB httpcode 4xx monitor | `list(string)` | `[]` | no |
