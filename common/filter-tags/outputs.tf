@@ -5,11 +5,11 @@
 output "query_alert" {
   description = "The full filtering pattern including parentheses for service check monitor type"
   value = "{${join(
-    ",",
+    local.filter_tags_separator,
     compact(
       concat(
-        [local.including_string],
-        formatlist("!%s", local.excluding_list),
+        formatlist("${local.filter_tags_not_operator}(%s)", local.excluding_list),
+        [local.std_including_string],
       ),
     ),
   )}}"
@@ -18,12 +18,12 @@ output "query_alert" {
 # service_check = .over("tag:val","tag2:val2").exclude("excludedtag:value","exludedtag2:value2")
 output "service_check" {
   description = "The full filtering pattern including braces for query alert monitor type"
-  value       = ".over(\"${replace(local.including_string, ",", "\",\"")}\")${local.excluding_string == "" ? "" : ".exclude(\"${replace(local.excluding_string, ",", "\",\"")}\")"}"
+  value       = local.service_check_sanitized
 }
 
 # event_alert = tags:tag:val,tag2:val2 excluded_tags:excludedtag:value,exludedtag2:value2
 output "event_alert" {
   description = "The full filtering pattern for event alert monitor type"
-  value       = "tags:${local.including_string}${local.excluding_string == "" ? "" : " excluded_tags:${local.excluding_string}"}"
+  value       = "tags:(${local.std_including_string})${local.std_excluding_string == "" ? "" : " excluded_tags:(${local.std_excluding_string})"}"
 }
 
