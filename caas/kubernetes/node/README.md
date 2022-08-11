@@ -47,6 +47,7 @@ Creates DataDog monitors with the following checks:
 |------|--------|---------|
 | <a name="module_filter-tags"></a> [filter-tags](#module\_filter-tags) | ../../../common/filter-tags | n/a |
 | <a name="module_filter-tags-unschedulable"></a> [filter-tags-unschedulable](#module\_filter-tags-unschedulable) | ../../../common/filter-tags | n/a |
+| <a name="module_monitor-tags"></a> [monitor-tags](#module\_monitor-tags) | ../../../common/monitor-tags | n/a |
 
 ## Resources
 
@@ -67,6 +68,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_default_tags"></a> [default\_tags](#input\_default\_tags) | Default list of tags that will be associate to all monitor | `list(string)` | <pre>[<br>  "type:caas",<br>  "provider:kubernetes",<br>  "resource:kubernetes-node"<br>]</pre> | no |
 | <a name="input_disk_out_enabled"></a> [disk\_out\_enabled](#input\_disk\_out\_enabled) | Flag to enable Out of disk monitor | `string` | `"true"` | no |
 | <a name="input_disk_out_extra_tags"></a> [disk\_out\_extra\_tags](#input\_disk\_out\_extra\_tags) | Extra tags for Out of disk monitor | `list(string)` | `[]` | no |
 | <a name="input_disk_out_message"></a> [disk\_out\_message](#input\_disk\_out\_message) | Custom message for Out of disk monitor | `string` | `""` | no |
@@ -77,6 +79,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_disk_pressure_threshold_warning"></a> [disk\_pressure\_threshold\_warning](#input\_disk\_pressure\_threshold\_warning) | Disk pressure monitor (warning threshold) | `string` | `3` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `any` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `15` | no |
+| <a name="input_extra_tags"></a> [extra\_tags](#input\_extra\_tags) | Extra optional list of tags to associate to all monitor | `list(string)` | <pre>[<br>  "team:claranet"<br>]</pre> | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |

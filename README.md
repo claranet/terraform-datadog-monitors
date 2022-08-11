@@ -215,6 +215,7 @@ For example, this will regenerate every READMEs thanks to [terraform-docs](https
 - [common](https://github.com/claranet/terraform-datadog-monitors/tree/master/common/)
 	- [alerting-message](https://github.com/claranet/terraform-datadog-monitors/tree/master/common/alerting-message/)
 	- [filter-tags](https://github.com/claranet/terraform-datadog-monitors/tree/master/common/filter-tags/)
+	- [monitor-tags](https://github.com/claranet/terraform-datadog-monitors/tree/master/common/monitor-tags/)
 - [database](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/)
 	- [elasticsearch](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/elasticsearch/)
 	- [mongodb](https://github.com/claranet/terraform-datadog-monitors/tree/master/database/mongodb/)

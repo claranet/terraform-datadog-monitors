@@ -22,7 +22,7 @@ EOQ
   locked              = false
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.job_extra_tags)
+  tags = concat(module.monitor-tags.tags, var.job_extra_tags)
 }
 
 resource "datadog_monitor" "cronjob" {
@@ -49,7 +49,7 @@ EOQ
   locked              = false
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.cronjob_extra_tags)
+  tags = concat(module.monitor-tags.tags, var.cronjob_extra_tags)
 }
 
 resource "datadog_monitor" "replica_available" {
@@ -79,7 +79,7 @@ EOQ
   locked              = false
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.replica_available_extra_tags)
+  tags = concat(module.monitor-tags.tags, var.replica_available_extra_tags)
 }
 
 resource "datadog_monitor" "replica_ready" {
@@ -109,7 +109,7 @@ EOQ
   locked              = false
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.replica_ready_extra_tags)
+  tags = concat(module.monitor-tags.tags, var.replica_ready_extra_tags)
 }
 
 resource "datadog_monitor" "replica_current" {
@@ -139,6 +139,6 @@ EOQ
   locked              = false
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-workload", "team:claranet", "created-by:terraform"], var.replica_current_extra_tags)
+  tags = concat(module.monitor-tags.tags, var.replica_current_extra_tags)
 }
 

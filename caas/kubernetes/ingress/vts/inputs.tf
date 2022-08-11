@@ -5,6 +5,18 @@ variable "environment" {
 }
 
 # Global DataDog
+
+variable "default_tags" {
+  description = "Default list of tags that will be associate to all monitor"
+  type        = list(string)
+  default     = ["type:caas", "provider:prometheus", "resource:nginx-ingress-controller"]
+}
+
+variable "extra_tags" {
+  description = "Extra optional list of tags to associate to all monitor"
+  type        = list(string)
+  default     = ["team:claranet"]
+}
 variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 15

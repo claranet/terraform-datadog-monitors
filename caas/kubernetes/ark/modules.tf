@@ -8,3 +8,9 @@ module "filter-tags" {
   filter_tags_custom_excluded = var.filter_tags_custom_excluded
 }
 
+module "monitor-tags" {
+  source = "../../../common/monitor-tags"
+
+  environment = var.environment
+  extra_tags  = var.extra_tags
+}

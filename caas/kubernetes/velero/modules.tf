@@ -18,3 +18,10 @@ module "filter-tags-scheduled-backup" {
   filter_tags_custom_excluded = var.filter_tags_custom_excluded
   extra_tags_excluded         = ["schedule:"]
 }
+
+module "monitor-tags" {
+  source = "../../../common/monitor-tags"
+
+  environment = var.environment
+  extra_tags  = var.extra_tags
+}

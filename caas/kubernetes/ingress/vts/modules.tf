@@ -33,3 +33,9 @@ module "filter-tags-4xx" {
   extra_tags_excluded         = ["upstream:upstream-default-backend"]
 }
 
+module "monitor-tags" {
+  source = "../../../../common/monitor-tags"
+
+  environment = var.environment
+  extra_tags  = var.extra_tags
+}

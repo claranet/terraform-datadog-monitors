@@ -41,6 +41,7 @@ Creates DataDog monitors with the following checks:
 | <a name="module_filter-tags"></a> [filter-tags](#module\_filter-tags) | ../../../common/filter-tags | n/a |
 | <a name="module_filter-tags-nocontainercreating"></a> [filter-tags-nocontainercreating](#module\_filter-tags-nocontainercreating) | ../../../common/filter-tags | n/a |
 | <a name="module_filter-tags-phase"></a> [filter-tags-phase](#module\_filter-tags-phase) | ../../../common/filter-tags | n/a |
+| <a name="module_monitor-tags"></a> [monitor-tags](#module\_monitor-tags) | ../../../common/monitor-tags | n/a |
 
 ## Resources
 
@@ -54,6 +55,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_default_tags"></a> [default\_tags](#input\_default\_tags) | Default list of tags that will be associate to all monitor | `list(string)` | <pre>[<br>  "type:caas",<br>  "provider:kubernetes",<br>  "resource:kubernetes-pod"<br>]</pre> | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `any` | n/a | yes |
 | <a name="input_error_enabled"></a> [error\_enabled](#input\_error\_enabled) | Flag to enable Pod errors monitor | `string` | `"true"` | no |
 | <a name="input_error_extra_tags"></a> [error\_extra\_tags](#input\_error\_extra\_tags) | Extra tags for Pod errors monitor | `list(string)` | `[]` | no |
@@ -63,6 +65,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_error_time_aggregator"></a> [error\_time\_aggregator](#input\_error\_time\_aggregator) | Monitor aggregator for Pod errors [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_error_timeframe"></a> [error\_timeframe](#input\_error\_timeframe) | Monitor timeframe for Pod errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_15m"` | no |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `15` | no |
+| <a name="input_extra_tags"></a> [extra\_tags](#input\_extra\_tags) | Extra optional list of tags to associate to all monitor | `list(string)` | <pre>[<br>  "team:claranet"<br>]</pre> | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
