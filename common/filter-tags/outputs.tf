@@ -4,15 +4,7 @@
 # query_alert = {tag:val,tag2:val2,!excludedtag:value,!exludedtag2:value2}
 output "query_alert" {
   description = "The full filtering pattern including parentheses for service check monitor type"
-  value = "{${join(
-    local.filter_tags_separator,
-    compact(
-      concat(
-        formatlist("${local.filter_tags_not_operator}(%s)", local.excluding_list),
-        [local.std_including_string],
-      ),
-    ),
-  )}}"
+  value = "{${local.query_alert}}"
 }
 
 # service_check = .over("tag:val","tag2:val2").exclude("excludedtag:value","exludedtag2:value2")
@@ -26,4 +18,3 @@ output "event_alert" {
   description = "The full filtering pattern for event alert monitor type"
   value       = "tags:(${local.std_including_string})${local.std_excluding_string == "" ? "" : " excluded_tags:(${local.std_excluding_string})"}"
 }
-
