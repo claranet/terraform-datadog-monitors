@@ -1,6 +1,5 @@
 module "filter-tags" {
-  #source = "../../common/filter-tags"
-  source = "/Users/dj/Documents/code/kering/datadog/terraform-datadog-monitors/common/filter-tags"
+  source = "../../common/filter-tags"
 
   environment                 = var.environment
   resource                    = "mongodb"
@@ -11,9 +10,7 @@ module "filter-tags" {
 }
 
 module "filter-tags-secondary" {
-  #source = "../../common/filter-tags"
-
-  source = "/Users/dj/Documents/code/kering/datadog/terraform-datadog-monitors/common/filter-tags"
+  source = "../../common/filter-tags"
 
   environment                 = var.environment
   resource                    = "mongodb"
