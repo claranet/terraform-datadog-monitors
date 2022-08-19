@@ -36,8 +36,17 @@ locals {
   excluding_string = join(local.filter_tags_separator, local.excluding_list)
 
   filter_tags_not_operator = var.filter_tags_separator == "AND" ? "NOT " : "!"
-  filter_tags_separator    = var.filter_tags_separator == "AND" ? " AND " : " , "
+  filter_tags_separator    = var.filter_tags_separator == "AND" ? " AND " : ","
 
+  query_alert = join(
+    local.filter_tags_separator,
+    compact(
+      concat(
+        formatlist("${local.filter_tags_not_operator}%s", local.excluding_list),
+        [local.std_including_string],
+      ),
+    ),
+  )
 
   service_check           = ".over(\"${replace(local.std_including_string, "${local.filter_tags_separator}", "\"${local.filter_tags_separator}\"")}\")${local.std_excluding_string == "" ? "" : ".exclude(\"${replace(local.std_excluding_string, "${local.filter_tags_separator}", "\"${local.filter_tags_separator}\"")}\")"}"
   service_check_sanitized = replace(replace(replace(local.service_check, "\"(", "(\""), ")\"", "\")"), " OR ", "\" OR \"")
