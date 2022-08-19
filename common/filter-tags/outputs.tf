@@ -4,7 +4,7 @@
 # query_alert = {tag:val,tag2:val2,!excludedtag:value,!exludedtag2:value2}
 output "query_alert" {
   description = "The full filtering pattern including parentheses for service check monitor type"
-  value = "{${local.query_alert}}"
+  value       = "{${local.query_alert}}"
 }
 
 # service_check = .over("tag:val","tag2:val2").exclude("excludedtag:value","exludedtag2:value2")
