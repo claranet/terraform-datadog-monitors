@@ -42,6 +42,7 @@ Creates DataDog monitors with the following checks:
 |------|--------|---------|
 | <a name="module_filter-tags"></a> [filter-tags](#module\_filter-tags) | ../../../common/filter-tags | n/a |
 | <a name="module_filter-tags-scheduled-backup"></a> [filter-tags-scheduled-backup](#module\_filter-tags-scheduled-backup) | ../../../common/filter-tags | n/a |
+| <a name="module_monitor-tags"></a> [monitor-tags](#module\_monitor-tags) | ../../../common/monitor-tags | n/a |
 
 ## Resources
 
@@ -57,8 +58,10 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_default_tags"></a> [default\_tags](#input\_default\_tags) | Default list of tags that will be associate to all monitor | `list(string)` | <pre>[<br>  "type:caas",<br>  "provider:openmetrics",<br>  "resource:velero"<br>]</pre> | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `any` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `15` | no |
+| <a name="input_extra_tags"></a> [extra\_tags](#input\_extra\_tags) | Extra optional list of tags to associate to all monitor | `list(string)` | <pre>[<br>  "team:claranet"<br>]</pre> | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |

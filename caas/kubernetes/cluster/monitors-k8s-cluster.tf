@@ -24,6 +24,6 @@ EOQ
   locked              = false
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.apiserver_extra_tags)
+  tags = concat(module.monitor-tags.tags, var.apiserver_extra_tags)
 }
 

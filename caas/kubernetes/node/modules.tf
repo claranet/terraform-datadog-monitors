@@ -19,3 +19,9 @@ module "filter-tags-unschedulable" {
   extra_tags                  = ["status:unschedulable"]
 }
 
+module "monitor-tags" {
+  source = "../../../common/monitor-tags"
+
+  environment = var.environment
+  extra_tags  = var.extra_tags
+}

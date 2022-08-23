@@ -30,3 +30,9 @@ module "filter-tags-nocontainercreating" {
   extra_tags_excluded         = ["reason:containercreating"]
 }
 
+module "monitor-tags" {
+  source = "../../../common/monitor-tags"
+
+  environment = var.environment
+  extra_tags  = var.extra_tags
+}
