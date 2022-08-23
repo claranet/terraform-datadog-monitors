@@ -50,6 +50,11 @@ variable "filter_tags_custom_excluded" {
   default     = ""
 }
 
+variable "filter_tags_separator" {
+  description = "Set the filter tags separator (, or AND)"
+  default     = ","
+}
+
 variable "mongodb_desired_servers_count" {
   description = "Number of servers that should be instanciated for this cluster"
   default     = 3
