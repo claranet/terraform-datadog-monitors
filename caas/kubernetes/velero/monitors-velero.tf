@@ -1,6 +1,6 @@
 resource "datadog_monitor" "velero_scheduled_backup_missing" {
   count   = var.velero_scheduled_backup_missing_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Velero scheduled backup missing"
+  name    = "${coalesce(var.name_prefix, "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}]")} Velero scheduled backup missing"
   type    = "query alert"
   message = coalesce(var.velero_scheduled_backup_missing_monitor_message, var.message)
 
@@ -29,7 +29,7 @@ EOQ
 
 resource "datadog_monitor" "velero_backup_failure" {
   count   = var.velero_backup_failure_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Velero backup failure"
+  name    = "${coalesce(var.name_prefix, "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}]")} Velero backup failure"
   type    = "query alert"
   message = coalesce(var.velero_backup_failure_monitor_message, var.message)
 
@@ -58,7 +58,7 @@ EOQ
 
 resource "datadog_monitor" "velero_backup_partial_failure" {
   count   = var.velero_backup_partial_failure_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Velero backup partial failure"
+  name    = "${coalesce(var.name_prefix, "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}]")} Velero backup partial failure"
   type    = "query alert"
   message = coalesce(var.velero_backup_partial_failure_monitor_message, var.message)
 
@@ -87,7 +87,7 @@ EOQ
 
 resource "datadog_monitor" "velero_backup_deletion_failure" {
   count   = var.velero_backup_deletion_failure_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Velero backup deletion failure"
+  name    = "${coalesce(var.name_prefix, "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}]")} Velero backup deletion failure"
   type    = "query alert"
   message = coalesce(var.velero_backup_deletion_failure_monitor_message, var.message)
 
@@ -116,7 +116,7 @@ EOQ
 
 resource "datadog_monitor" "velero_volume_snapshot_failure" {
   count   = var.velero_volume_snapshot_failure_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Velero volume snapshot failure"
+  name    = "${coalesce(var.name_prefix, "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}]")} Velero volume snapshot failure"
   type    = "query alert"
   message = coalesce(var.velero_volume_snapshot_failure_monitor_message, var.message)
 

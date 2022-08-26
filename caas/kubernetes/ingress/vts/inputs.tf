@@ -32,6 +32,11 @@ variable "prefix_slug" {
   default     = ""
 }
 
+variable "name_prefix" {
+  description = "Prefix string to prepend before every monitors names. Sustitute to the prefix_slug variable"
+  default     = ""
+}
+
 variable "notify_no_data" {
   description = "Will raise no data alert if set to true"
   default     = true

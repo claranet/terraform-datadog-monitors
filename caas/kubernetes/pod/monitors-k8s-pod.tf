@@ -1,6 +1,6 @@
 resource "datadog_monitor" "pod_phase_status" {
   count   = var.pod_phase_status_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Pod phase status failed"
+  name    = "${coalesce(var.name_prefix, "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}]")} Kubernetes Pod phase status failed"
   message = coalesce(var.pod_phase_status_message, var.message)
   type    = "metric alert"
 
@@ -29,7 +29,7 @@ EOQ
 
 resource "datadog_monitor" "error" {
   count   = var.error_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Pod waiting errors"
+  name    = "${coalesce(var.name_prefix, "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}]")} Kubernetes Pod waiting errors"
   message = coalesce(var.error_message, var.message)
   type    = "query alert"
 
@@ -59,7 +59,7 @@ EOQ
 
 resource "datadog_monitor" "terminated" {
   count   = var.terminated_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Pod terminated abnormally"
+  name    = "${coalesce(var.name_prefix, "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}]")} Kubernetes Pod terminated abnormally"
   message = coalesce(var.terminated_message, var.message)
   type    = "query alert"
 
