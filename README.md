@@ -185,6 +185,7 @@ For example, this will regenerate every READMEs thanks to [terraform-docs](https
 		- [datalakestore](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/datalakestore/)
 		- [eventgrid](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/eventgrid/)
 		- [eventhub](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/eventhub/)
+		- [frontdoor](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/frontdoor/)
 		- [functions](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/functions/)
 		- [iothubs](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/iothubs/)
 		- [keyvault](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/azure/keyvault/)
