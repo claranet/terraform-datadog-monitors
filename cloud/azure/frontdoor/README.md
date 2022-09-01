@@ -113,4 +113,3 @@ Creates DataDog monitors with the following checks:
 | <a name="output_frontdoor_total_latency_id"></a> [frontdoor\_total\_latency\_id](#output\_frontdoor\_total\_latency\_id) | id for monitor frontdoor\_total\_latency |
 ## Related documentation
 
-Datadog documentation : [https://docs.datadoghq.com/fr/integrations/azure_frontdoor/](https://docs.datadoghq.com/fr/integrations/azure_frontdoor/)
