@@ -50,6 +50,11 @@ variable "filter_tags_custom_excluded" {
   default     = ""
 }
 
+variable "filter_tags_separator" {
+  description = "Set the filter tags separator (, or AND)"
+  default     = ","
+}
+
 # Elasticache specific
 
 variable "eviction_enabled" {
