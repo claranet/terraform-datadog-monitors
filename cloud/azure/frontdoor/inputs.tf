@@ -152,13 +152,13 @@ variable "frontdoor_total_latency_time_aggregator" {
 variable "frontdoor_total_latency_threshold_critical" {
   description = "Maximum acceptable end to end total latency (ms) for Front Door"
   type        = number
-  default     = 20
+  default     = 100
 }
 
 variable "frontdoor_total_latency_threshold_warning" {
   description = "Warning threshold for Front Door total lantency"
   type        = number
-  default     = 15
+  default     = 80
 }
 
 variable "frontdoor_total_latency_timeframe" {
