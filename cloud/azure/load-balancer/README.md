@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 
 - Load Balancer is unreachable
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -69,6 +70,7 @@ Creates DataDog monitors with the following checks:
 | Name | Description |
 |------|-------------|
 | <a name="output_loadbalancer_status_id"></a> [loadbalancer\_status\_id](#output\_loadbalancer\_status\_id) | id for monitor loadbalancer\_status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure/?tab=azurecliv20](https://docs.datadoghq.com/integrations/azure/?tab=azurecliv20)

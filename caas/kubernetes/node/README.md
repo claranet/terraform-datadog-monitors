@@ -28,6 +28,7 @@ Creates DataDog monitors with the following checks:
 - Kubernetes Node volume inodes usage
 - Kubernetes Node volume space usage
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -94,6 +95,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_memory_pressure_message"></a> [memory\_pressure\_message](#input\_memory\_pressure\_message) | Custom message for Memory pressure monitor | `string` | `""` | no |
 | <a name="input_memory_pressure_threshold_warning"></a> [memory\_pressure\_threshold\_warning](#input\_memory\_pressure\_threshold\_warning) | Memory pressure monitor (warning threshold) | `string` | `3` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_node_unschedulable_enabled"></a> [node\_unschedulable\_enabled](#input\_node\_unschedulable\_enabled) | Flag to enable node unschedulable monitor | `string` | `"true"` | no |
 | <a name="input_node_unschedulable_extra_tags"></a> [node\_unschedulable\_extra\_tags](#input\_node\_unschedulable\_extra\_tags) | Extra tags for node unschedulable monitor | `list(string)` | `[]` | no |
@@ -141,6 +143,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_unregister_net_device_id"></a> [unregister\_net\_device\_id](#output\_unregister\_net\_device\_id) | id for monitor unregister\_net\_device |
 | <a name="output_volume_inodes_id"></a> [volume\_inodes\_id](#output\_volume\_inodes\_id) | id for monitor volume\_inodes |
 | <a name="output_volume_space_id"></a> [volume\_space\_id](#output\_volume\_space\_id) | id for monitor volume\_space |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [Datadog metrics](https://docs.datadoghq.com/agent/kubernetes/metrics/)

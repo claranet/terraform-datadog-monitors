@@ -20,6 +20,7 @@ Creates DataDog monitors with the following checks:
 - Elasticache memcached cache hit ratio
 - Elasticache memcached CPU
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -81,6 +82,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | <a name="output_memcached_cpu_high_id"></a> [memcached\_cpu\_high\_id](#output\_memcached\_cpu\_high\_id) | id for monitor memcached\_cpu\_high |
 | <a name="output_memcached_get_hits_id"></a> [memcached\_get\_hits\_id](#output\_memcached\_get\_hits\_id) | id for monitor memcached\_get\_hits |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation:

@@ -23,6 +23,7 @@ Creates DataDog monitors with the following checks:
 - SQL Database high disk usage
 - SQL Database is down
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -107,6 +108,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_sql-database_dtu_consumption_high_id"></a> [sql-database\_dtu\_consumption\_high\_id](#output\_sql-database\_dtu\_consumption\_high\_id) | id for monitor sql-database\_dtu\_consumption\_high |
 | <a name="output_sql-database_free_space_low_id"></a> [sql-database\_free\_space\_low\_id](#output\_sql-database\_free\_space\_low\_id) | id for monitor sql-database\_free\_space\_low |
 | <a name="output_status_id"></a> [status\_id](#output\_status\_id) | id for monitor status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_sql_database/](https://docs.datadoghq.com/integrations/azure_sql_database/)

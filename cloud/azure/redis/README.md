@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - Redis server load too high
 - Redis too many evictedkeys
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -99,6 +100,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_percent_processor_time_id"></a> [percent\_processor\_time\_id](#output\_percent\_processor\_time\_id) | id for monitor percent\_processor\_time |
 | <a name="output_server_load_id"></a> [server\_load\_id](#output\_server\_load\_id) | id for monitor server\_load |
 | <a name="output_status_id"></a> [status\_id](#output\_status\_id) | id for monitor status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_redis_cache/](https://docs.datadoghq.com/integrations/azure_redis_cache/)

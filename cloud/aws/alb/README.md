@@ -24,6 +24,7 @@ Creates DataDog monitors with the following checks:
 - ALB target HTTP code 4xx
 - ALB target HTTP code 5xx
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -122,6 +123,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_ALB_httpcode_target_5xx_id"></a> [ALB\_httpcode\_target\_5xx\_id](#output\_ALB\_httpcode\_target\_5xx\_id) | id for monitor ALB\_httpcode\_target\_5xx |
 | <a name="output_ALB_latency_id"></a> [ALB\_latency\_id](#output\_ALB\_latency\_id) | id for monitor ALB\_latency |
 | <a name="output_ALB_no_healthy_instances_id"></a> [ALB\_no\_healthy\_instances\_id](#output\_ALB\_no\_healthy\_instances\_id) | id for monitor ALB\_no\_healthy\_instances |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog blog: [https://www.datadoghq.com/blog/monitor-application-load-balancer/](https://www.datadoghq.com/blog/monitor-application-load-balancer/)

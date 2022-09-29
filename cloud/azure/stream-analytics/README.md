@@ -23,6 +23,7 @@ Creates DataDog monitors with the following checks:
 - Stream Analytics too many failed requests
 - Stream Analytics too many runtime errors
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -109,6 +110,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_runtime_errors_id"></a> [runtime\_errors\_id](#output\_runtime\_errors\_id) | id for monitor runtime\_errors |
 | <a name="output_status_id"></a> [status\_id](#output\_status\_id) | id for monitor status |
 | <a name="output_su_utilization_id"></a> [su\_utilization\_id](#output\_su\_utilization\_id) | id for monitor su\_utilization |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)

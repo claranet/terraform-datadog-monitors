@@ -27,6 +27,7 @@ Creates DataDog monitors with the following checks:
 - App Gateway HTTP 5xx errors rate is too high
 - App Gateway is down
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -151,5 +152,6 @@ Creates DataDog monitors with the following checks:
 | <a name="output_appgateway_http_5xx_errors_id"></a> [appgateway\_http\_5xx\_errors\_id](#output\_appgateway\_http\_5xx\_errors\_id) | id for monitor appgateway\_http\_5xx\_errors |
 | <a name="output_appgateway_status_id"></a> [appgateway\_status\_id](#output\_appgateway\_status\_id) | id for monitor appgateway\_status |
 | <a name="output_total_requests_id"></a> [total\_requests\_id](#output\_total\_requests\_id) | id for monitor total\_requests |
+<!-- END_TF_DOCS -->
 ## Related documentation
 

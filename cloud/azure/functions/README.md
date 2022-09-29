@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Function App HTTP 5xx errors too high
 - Function App threads count too high
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -90,6 +91,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_function_high_connections_count_id"></a> [function\_high\_connections\_count\_id](#output\_function\_high\_connections\_count\_id) | id for monitor function\_high\_connections\_count |
 | <a name="output_function_high_threads_count_id"></a> [function\_high\_threads\_count\_id](#output\_function\_high\_threads\_count\_id) | id for monitor function\_high\_threads\_count |
 | <a name="output_function_http_5xx_errors_rate_id"></a> [function\_http\_5xx\_errors\_rate\_id](#output\_function\_http\_5xx\_errors\_rate\_id) | id for monitor function\_http\_5xx\_errors\_rate |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 Datadog Azure documentation: [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)

@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Pub/Sub Subscription latency on push endpoint changed abnormally (disabled by default)
 - Pub/Sub Subscription oldest unacknowledged message
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -92,6 +93,7 @@ No modules.
 | <a name="output_oldest_unacked_message_age_id"></a> [oldest\_unacked\_message\_age\_id](#output\_oldest\_unacked\_message\_age\_id) | id for monitor oldest\_unacked\_message\_age |
 | <a name="output_subscription_push_latency_anomaly_id"></a> [subscription\_push\_latency\_anomaly\_id](#output\_subscription\_push\_latency\_anomaly\_id) | id for monitor subscription\_push\_latency\_anomaly |
 | <a name="output_subscription_push_latency_id"></a> [subscription\_push\_latency\_id](#output\_subscription\_push\_latency\_id) | id for monitor subscription\_push\_latency |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [GCP Pub/Sub Metrics](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-pubsub)

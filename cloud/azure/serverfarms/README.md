@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Serverfarm is down
 - Serverfarm memory percentage is too high
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -88,5 +89,6 @@ Creates DataDog monitors with the following checks:
 | <a name="output_cpu_percentage_id"></a> [cpu\_percentage\_id](#output\_cpu\_percentage\_id) | id for monitor cpu\_percentage |
 | <a name="output_memory_percentage_id"></a> [memory\_percentage\_id](#output\_memory\_percentage\_id) | id for monitor memory\_percentage |
 | <a name="output_status_id"></a> [status\_id](#output\_status\_id) | id for monitor status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 

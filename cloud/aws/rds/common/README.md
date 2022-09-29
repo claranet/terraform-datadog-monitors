@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - RDS instance free space
 - RDS replica lag
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -92,6 +93,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_rds_cpu_90_15min_id"></a> [rds\_cpu\_90\_15min\_id](#output\_rds\_cpu\_90\_15min\_id) | id for monitor rds\_cpu\_90\_15min |
 | <a name="output_rds_free_space_low_id"></a> [rds\_free\_space\_low\_id](#output\_rds\_free\_space\_low\_id) | id for monitor rds\_free\_space\_low |
 | <a name="output_rds_replica_lag_id"></a> [rds\_replica\_lag\_id](#output\_rds\_replica\_lag\_id) | id for monitor rds\_replica\_lag |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_rds/](https://docs.datadoghq.com/integrations/amazon_rds/)

@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - TLS certificate expiring
 - TLS invalid certificate
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -76,6 +77,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_invalid_tls_certificate_message"></a> [invalid\_tls\_certificate\_message](#input\_invalid\_tls\_certificate\_message) | Custom message for TLS certificate expiration monitor | `string` | `""` | no |
 | <a name="input_invalid_tls_certificate_threshold_warning"></a> [invalid\_tls\_certificate\_threshold\_warning](#input\_invalid\_tls\_certificate\_threshold\_warning) | TLS certificate expiration monitor (warning threshold) | `string` | `3` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
@@ -92,6 +94,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_certificate_expiration_date_id"></a> [certificate\_expiration\_date\_id](#output\_certificate\_expiration\_date\_id) | id for monitor certificate\_expiration\_date |
 | <a name="output_invalid_tls_certificate_id"></a> [invalid\_tls\_certificate\_id](#output\_invalid\_tls\_certificate\_id) | id for monitor invalid\_tls\_certificate |
 | <a name="output_tls_certificate_expiration_id"></a> [tls\_certificate\_expiration\_id](#output\_tls\_certificate\_expiration\_id) | id for monitor tls\_certificate\_expiration |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 - [Datadog TLS integration](https://docs.datadoghq.com/integrations/tls/)

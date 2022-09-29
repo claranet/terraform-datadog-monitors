@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 
 - Kinesis Firehose No incoming records
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -68,6 +69,7 @@ Creates DataDog monitors with the following checks:
 | Name | Description |
 |------|-------------|
 | <a name="output_firehose_incoming_records_id"></a> [firehose\_incoming\_records\_id](#output\_firehose\_incoming\_records\_id) | id for monitor firehose\_incoming\_records |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_firehose/](https://docs.datadoghq.com/integrations/amazon_firehose/)

@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - Elasticache redis is receiving no commands
 - Elasticache redis replication lag
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -99,6 +100,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_redis_commands_id"></a> [redis\_commands\_id](#output\_redis\_commands\_id) | id for monitor redis\_commands |
 | <a name="output_redis_cpu_high_id"></a> [redis\_cpu\_high\_id](#output\_redis\_cpu\_high\_id) | id for monitor redis\_cpu\_high |
 | <a name="output_redis_replication_lag_id"></a> [redis\_replication\_lag\_id](#output\_redis\_replication\_lag\_id) | id for monitor redis\_replication\_lag |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [https://docs.datadoghq.com/integrations/amazon_elasticache/](https://docs.datadoghq.com/integrations/amazon_elasticache/)

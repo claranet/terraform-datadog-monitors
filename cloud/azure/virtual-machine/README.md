@@ -24,6 +24,7 @@ Creates DataDog monitors with the following checks:
 - Virtual Machine RAM reserved
 - Virtual Machine requests failed
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -119,6 +120,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_virtualmachine_ram_reserved_id"></a> [virtualmachine\_ram\_reserved\_id](#output\_virtualmachine\_ram\_reserved\_id) | id for monitor virtualmachine\_ram\_reserved |
 | <a name="output_virtualmachine_requests_failed_id"></a> [virtualmachine\_requests\_failed\_id](#output\_virtualmachine\_requests\_failed\_id) | id for monitor virtualmachine\_requests\_failed |
 | <a name="output_virtualmachine_status_id"></a> [virtualmachine\_status\_id](#output\_virtualmachine\_status\_id) | id for monitor virtualmachine\_status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_vm/](https://docs.datadoghq.com/integrations/azure_vm/)

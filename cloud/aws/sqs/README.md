@@ -20,6 +20,7 @@ Creates DataDog monitors with the following checks:
 - SQS Age of the oldest message
 - SQS Visible messages (disabled by default)
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -81,6 +82,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | <a name="output_age_of_oldest_message_id"></a> [age\_of\_oldest\_message\_id](#output\_age\_of\_oldest\_message\_id) | id for monitor age\_of\_oldest\_message |
 | <a name="output_visible_messages_id"></a> [visible\_messages\_id](#output\_visible\_messages\_id) | id for monitor visible\_messages |
+<!-- END_TF_DOCS -->
 ## Related documentation
 * [Datadog Documentation](https://docs.datadoghq.com/integrations/amazon_sqs/)
 * [Service Documentation](https://docs.aws.amazon.com/sqs/index.html)

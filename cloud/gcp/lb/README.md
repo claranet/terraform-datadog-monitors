@@ -23,6 +23,7 @@ Creates DataDog monitors with the following checks:
 - GCP LB Requests count increased abruptly
 - GCP LB service backend latency
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -109,6 +110,7 @@ No modules.
 | <a name="output_error_rate_4xx_id"></a> [error\_rate\_4xx\_id](#output\_error\_rate\_4xx\_id) | id for monitor error\_rate\_4xx |
 | <a name="output_error_rate_5xx_id"></a> [error\_rate\_5xx\_id](#output\_error\_rate\_5xx\_id) | id for monitor error\_rate\_5xx |
 | <a name="output_request_count_id"></a> [request\_count\_id](#output\_request\_count\_id) | id for monitor request\_count |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [GCP LB Metrics](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-loadbalancing)

@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 
 - NLB healthy instances
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -70,6 +71,7 @@ Creates DataDog monitors with the following checks:
 | Name | Description |
 |------|-------------|
 | <a name="output_NLB_no_healthy_instances_id"></a> [NLB\_no\_healthy\_instances\_id](#output\_NLB\_no\_healthy\_instances\_id) | id for monitor NLB\_no\_healthy\_instances |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog blog: [https://www.datadoghq.com/blog/monitor-aws-network-load-balancer/](https://www.datadoghq.com/blog/monitor-aws-network-load-balancer/)

@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - ECS Service Memory Utilization High (disabled by default)
 - ECS Service not healthy enough
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -92,5 +93,6 @@ Creates DataDog monitors with the following checks:
 | <a name="output_service_cpu_utilization_id"></a> [service\_cpu\_utilization\_id](#output\_service\_cpu\_utilization\_id) | id for monitor service\_cpu\_utilization |
 | <a name="output_service_memory_utilization_id"></a> [service\_memory\_utilization\_id](#output\_service\_memory\_utilization\_id) | id for monitor service\_memory\_utilization |
 | <a name="output_service_missing_tasks_id"></a> [service\_missing\_tasks\_id](#output\_service\_missing\_tasks\_id) | id for monitor service\_missing\_tasks |
+<!-- END_TF_DOCS -->
 ## Related documentation
 

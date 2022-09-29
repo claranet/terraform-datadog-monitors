@@ -20,6 +20,7 @@ Creates DataDog monitors with the following checks:
 - Kong does not respond
 - Kong exceeded its treatment limit
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -56,6 +57,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_not_responding_enabled"></a> [not\_responding\_enabled](#input\_not\_responding\_enabled) | Flag to enable Kong does not respond monitor | `string` | `"true"` | no |
 | <a name="input_not_responding_extra_tags"></a> [not\_responding\_extra\_tags](#input\_not\_responding\_extra\_tags) | Extra tags for Kong does not respond monitor | `list(string)` | `[]` | no |
@@ -78,6 +80,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | <a name="output_not_responding_id"></a> [not\_responding\_id](#output\_not\_responding\_id) | id for monitor not\_responding |
 | <a name="output_treatment_limit_id"></a> [treatment\_limit\_id](#output\_treatment\_limit\_id) | id for monitor treatment\_limit |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [Datadog Kong integration](https://docs.datadoghq.com/integrations/kong/)

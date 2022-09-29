@@ -23,6 +23,7 @@ Creates DataDog monitors with the following checks:
 - Postgresql Server memory usage
 - Postgresql Server storage
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -108,6 +109,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_postgresql_io_consumption_id"></a> [postgresql\_io\_consumption\_id](#output\_postgresql\_io\_consumption\_id) | id for monitor postgresql\_io\_consumption |
 | <a name="output_postgresql_memory_usage_id"></a> [postgresql\_memory\_usage\_id](#output\_postgresql\_memory\_usage\_id) | id for monitor postgresql\_memory\_usage |
 | <a name="output_postgresql_no_connection_id"></a> [postgresql\_no\_connection\_id](#output\_postgresql\_no\_connection\_id) | id for monitor postgresql\_no\_connection |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)

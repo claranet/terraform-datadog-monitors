@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 
 - Memorystore Redis system memory usage ratio
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -67,6 +68,7 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_system_memory_usage_ratio_id"></a> [system\_memory\_usage\_ratio\_id](#output\_system\_memory\_usage\_ratio\_id) | id for monitor system\_memory\_usage\_ratio |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [GCP Metrics for Memorystore Redis](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-redis)

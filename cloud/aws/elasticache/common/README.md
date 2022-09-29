@@ -24,6 +24,7 @@ Creates DataDog monitors with the following checks:
 - Elasticache max connections reached
 - Elasticache swap
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -117,6 +118,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_elasticache_max_connection_id"></a> [elasticache\_max\_connection\_id](#output\_elasticache\_max\_connection\_id) | id for monitor elasticache\_max\_connection |
 | <a name="output_elasticache_no_connection_id"></a> [elasticache\_no\_connection\_id](#output\_elasticache\_no\_connection\_id) | id for monitor elasticache\_no\_connection |
 | <a name="output_elasticache_swap_id"></a> [elasticache\_swap\_id](#output\_elasticache\_swap\_id) | id for monitor elasticache\_swap |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_elasticache/](https://docs.datadoghq.com/integrations/amazon_elasticache/)

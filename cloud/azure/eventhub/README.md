@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Event Hub too many errors
 - Event Hub too many failed requests
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -89,6 +90,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_eventhub_errors_id"></a> [eventhub\_errors\_id](#output\_eventhub\_errors\_id) | id for monitor eventhub\_errors |
 | <a name="output_eventhub_failed_requests_id"></a> [eventhub\_failed\_requests\_id](#output\_eventhub\_failed\_requests\_id) | id for monitor eventhub\_failed\_requests |
 | <a name="output_eventhub_status_id"></a> [eventhub\_status\_id](#output\_eventhub\_status\_id) | id for monitor eventhub\_status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 Datadog documentation : [https://docs.datadoghq.com/integrations/azure_event_hub/](https://docs.datadoghq.com/integrations/azure_event_hub/)

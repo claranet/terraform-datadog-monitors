@@ -20,6 +20,7 @@ Creates DataDog monitors with the following checks:
 - Zookeeper latency
 - Zookeeper service does not respond
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -56,6 +57,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before begin to monitor new host | `number` | `300` | no |
 | <a name="input_not_responding_group_by"></a> [not\_responding\_group\_by](#input\_not\_responding\_group\_by) | List of tags to use to group data | `list(string)` | <pre>[<br>  "host",<br>  "server"<br>]</pre> | no |
 | <a name="input_not_responding_no_data_timeframe"></a> [not\_responding\_no\_data\_timeframe](#input\_not\_responding\_no\_data\_timeframe) | Zookeeper monitor no\_data\_timeframe | `number` | `10` | no |
@@ -82,6 +84,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | <a name="output_datadog_monitor_zookeeper_latency_id"></a> [datadog\_monitor\_zookeeper\_latency\_id](#output\_datadog\_monitor\_zookeeper\_latency\_id) | id for monitor datadog\_monitor\_zookeeper\_latency |
 | <a name="output_not_responding_id"></a> [not\_responding\_id](#output\_not\_responding\_id) | id for monitor not\_responding |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/zk/](https://docs.datadoghq.com/integrations/zk/)

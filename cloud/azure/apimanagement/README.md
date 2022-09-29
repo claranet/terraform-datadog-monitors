@@ -23,6 +23,7 @@ Creates DataDog monitors with the following checks:
 - API Management too many other requests
 - API Management too many unauthorized requests
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -109,6 +110,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_apimgt_status_id"></a> [apimgt\_status\_id](#output\_apimgt\_status\_id) | id for monitor apimgt\_status |
 | <a name="output_apimgt_successful_requests_id"></a> [apimgt\_successful\_requests\_id](#output\_apimgt\_successful\_requests\_id) | id for monitor apimgt\_successful\_requests |
 | <a name="output_apimgt_unauthorized_requests_id"></a> [apimgt\_unauthorized\_requests\_id](#output\_apimgt\_unauthorized\_requests\_id) | id for monitor apimgt\_unauthorized\_requests |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 Azure API Management metrics documentation: [https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-use-azure-monitor](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-use-azure-monitor)

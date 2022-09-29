@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - SQL Elastic Pool DTU Consumption too high
 - SQL Elastic Pool high disk usage
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -91,6 +92,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_sql_elasticpool_cpu_id"></a> [sql\_elasticpool\_cpu\_id](#output\_sql\_elasticpool\_cpu\_id) | id for monitor sql\_elasticpool\_cpu |
 | <a name="output_sql_elasticpool_dtu_consumption_high_id"></a> [sql\_elasticpool\_dtu\_consumption\_high\_id](#output\_sql\_elasticpool\_dtu\_consumption\_high\_id) | id for monitor sql\_elasticpool\_dtu\_consumption\_high |
 | <a name="output_sql_elasticpool_free_space_low_id"></a> [sql\_elasticpool\_free\_space\_low\_id](#output\_sql\_elasticpool\_free\_space\_low\_id) | id for monitor sql\_elasticpool\_free\_space\_low |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_sql_elastic_pool/](https://docs.datadoghq.com/integrations/azure_sql_elastic_pool/)

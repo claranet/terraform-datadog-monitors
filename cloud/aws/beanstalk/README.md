@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - Beanstalk Environment health
 - Beanstalk Instance root file system usage
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -103,6 +104,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_application_latency_p90_id"></a> [application\_latency\_p90\_id](#output\_application\_latency\_p90\_id) | id for monitor application\_latency\_p90 |
 | <a name="output_health_id"></a> [health\_id](#output\_health\_id) | id for monitor health |
 | <a name="output_root_filesystem_usage_id"></a> [root\_filesystem\_usage\_id](#output\_root\_filesystem\_usage\_id) | id for monitor root\_filesystem\_usage |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 Datadog documentation: [https://docs.datadoghq.com/integrations/amazon_elasticbeanstalk/](https://docs.datadoghq.com/integrations/amazon_elasticbeanstalk/)

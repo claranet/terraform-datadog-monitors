@@ -51,6 +51,7 @@ Creates DataDog monitors with the following checks:
 - Azure Table Storage too many throttling errors
 - Azure Table Storage too many timeout errors
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -238,6 +239,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_table_timeout_error_requests_id"></a> [table\_timeout\_error\_requests\_id](#output\_table\_timeout\_error\_requests\_id) | id for monitor table\_timeout\_error\_requests |
 | <a name="output_tableservices_latency_id"></a> [tableservices\_latency\_id](#output\_tableservices\_latency\_id) | id for monitor tableservices\_latency |
 | <a name="output_tableservices_requests_error_id"></a> [tableservices\_requests\_error\_id](#output\_tableservices\_requests\_error\_id) | id for monitor tableservices\_requests\_error |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_storage/](https://docs.datadoghq.com/integrations/azure_storage/)

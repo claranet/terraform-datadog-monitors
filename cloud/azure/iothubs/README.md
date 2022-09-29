@@ -32,6 +32,7 @@ Creates DataDog monitors with the following checks:
 - IOT Hub Too many query_jobs failed
 - IOT Hub Total devices is wrong
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -196,6 +197,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_too_many_list_jobs_failed_id"></a> [too\_many\_list\_jobs\_failed\_id](#output\_too\_many\_list\_jobs\_failed\_id) | id for monitor too\_many\_list\_jobs\_failed |
 | <a name="output_too_many_query_jobs_failed_id"></a> [too\_many\_query\_jobs\_failed\_id](#output\_too\_many\_query\_jobs\_failed\_id) | id for monitor too\_many\_query\_jobs\_failed |
 | <a name="output_total_devices_id"></a> [total\_devices\_id](#output\_total\_devices\_id) | id for monitor total\_devices |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_iot_hub](https://docs.datadoghq.com/integrations/azure_iot_hub)

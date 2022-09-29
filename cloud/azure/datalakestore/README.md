@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 
 - Datalake Store is down
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -69,6 +70,7 @@ Creates DataDog monitors with the following checks:
 | Name | Description |
 |------|-------------|
 | <a name="output_datalakestore_status_id"></a> [datalakestore\_status\_id](#output\_datalakestore\_status\_id) | id for monitor datalakestore\_status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation : [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)  

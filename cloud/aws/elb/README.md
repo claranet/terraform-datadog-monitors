@@ -24,6 +24,7 @@ Creates DataDog monitors with the following checks:
 - ELB healthy instances
 - ELB latency too high
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -117,6 +118,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_ELB_too_much_4xx_id"></a> [ELB\_too\_much\_4xx\_id](#output\_ELB\_too\_much\_4xx\_id) | id for monitor ELB\_too\_much\_4xx |
 | <a name="output_ELB_too_much_5xx_backend_id"></a> [ELB\_too\_much\_5xx\_backend\_id](#output\_ELB\_too\_much\_5xx\_backend\_id) | id for monitor ELB\_too\_much\_5xx\_backend |
 | <a name="output_ELB_too_much_5xx_id"></a> [ELB\_too\_much\_5xx\_id](#output\_ELB\_too\_much\_5xx\_id) | id for monitor ELB\_too\_much\_5xx |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog blog: [https://www.datadoghq.com/blog/monitor-application-load-balancer/](https://www.datadoghq.com/blog/monitor-application-load-balancer/)

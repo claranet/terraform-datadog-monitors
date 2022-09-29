@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - API Gateway HTTP 5xx errors
 - API Gateway latency
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -87,6 +88,7 @@ No modules.
 | <a name="output_API_Gateway_latency_id"></a> [API\_Gateway\_latency\_id](#output\_API\_Gateway\_latency\_id) | id for monitor API\_Gateway\_latency |
 | <a name="output_API_http_4xx_errors_count_id"></a> [API\_http\_4xx\_errors\_count\_id](#output\_API\_http\_4xx\_errors\_count\_id) | id for monitor API\_http\_4xx\_errors\_count |
 | <a name="output_API_http_5xx_errors_count_id"></a> [API\_http\_5xx\_errors\_count\_id](#output\_API\_http\_5xx\_errors\_count\_id) | id for monitor API\_http\_5xx\_errors\_count |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_api_gateway/](https://docs.datadoghq.com/integrations/amazon_api_gateway/)

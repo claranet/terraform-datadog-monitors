@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - Mysql Server memory usage
 - Mysql Server storage
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -99,6 +100,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_mysql_free_storage_id"></a> [mysql\_free\_storage\_id](#output\_mysql\_free\_storage\_id) | id for monitor mysql\_free\_storage |
 | <a name="output_mysql_io_consumption_id"></a> [mysql\_io\_consumption\_id](#output\_mysql\_io\_consumption\_id) | id for monitor mysql\_io\_consumption |
 | <a name="output_mysql_memory_usage_id"></a> [mysql\_memory\_usage\_id](#output\_mysql\_memory\_usage\_id) | id for monitor mysql\_memory\_usage |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)

@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Pub/Sub Topic sending messages operations
 - Pub/Sub Topic sending messages with result unavailable (disabled by default)
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -85,6 +86,7 @@ No modules.
 | <a name="output_sending_operations_count_id"></a> [sending\_operations\_count\_id](#output\_sending\_operations\_count\_id) | id for monitor sending\_operations\_count |
 | <a name="output_unavailable_sending_operations_count_id"></a> [unavailable\_sending\_operations\_count\_id](#output\_unavailable\_sending\_operations\_count\_id) | id for monitor unavailable\_sending\_operations\_count |
 | <a name="output_unavailable_sending_operations_ratio_id"></a> [unavailable\_sending\_operations\_ratio\_id](#output\_unavailable\_sending\_operations\_ratio\_id) | id for monitor unavailable\_sending\_operations\_ratio |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [GCP Pub/Sub Metrics](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-pubsub)

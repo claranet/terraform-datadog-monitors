@@ -20,6 +20,7 @@ Creates DataDog monitors with the following checks:
 - Azure Search latency too high
 - Azure Search throttled queries rate is too high
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -81,6 +82,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | <a name="output_azure_search_latency_id"></a> [azure\_search\_latency\_id](#output\_azure\_search\_latency\_id) | id for monitor azure\_search\_latency |
 | <a name="output_azure_search_throttled_queries_rate_id"></a> [azure\_search\_throttled\_queries\_rate\_id](#output\_azure\_search\_throttled\_queries\_rate\_id) | id for monitor azure\_search\_throttled\_queries\_rate |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_app_services](https://docs.datadoghq.com/integrations/azure_app_services)

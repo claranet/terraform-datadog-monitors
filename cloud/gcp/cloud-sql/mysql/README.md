@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 
 - Cloud SQL MySQL Replication Lag
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -67,6 +68,7 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_replication_lag_id"></a> [replication\_lag\_id](#output\_replication\_lag\_id) | id for monitor replication\_lag |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [GCP Metrics for CloudSQL](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-cloudsql)

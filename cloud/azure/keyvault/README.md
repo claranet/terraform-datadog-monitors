@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Key Vault API result rate is low
 - Key Vault is down
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -91,6 +92,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_keyvault_api_latency_id"></a> [keyvault\_api\_latency\_id](#output\_keyvault\_api\_latency\_id) | id for monitor keyvault\_api\_latency |
 | <a name="output_keyvault_api_result_id"></a> [keyvault\_api\_result\_id](#output\_keyvault\_api\_result\_id) | id for monitor keyvault\_api\_result |
 | <a name="output_keyvault_status_id"></a> [keyvault\_status\_id](#output\_keyvault\_status\_id) | id for monitor keyvault\_status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation : [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)  

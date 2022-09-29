@@ -27,6 +27,7 @@ Creates DataDog monitors with the following checks:
 - GCP Big Query Uploaded Bytes
 - GCP Big Query Uploaded Bytes Billed
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -137,6 +138,7 @@ No modules.
 | <a name="output_table_count_id"></a> [table\_count\_id](#output\_table\_count\_id) | id for monitor table\_count |
 | <a name="output_uploaded_bytes_billed_id"></a> [uploaded\_bytes\_billed\_id](#output\_uploaded\_bytes\_billed\_id) | id for monitor uploaded\_bytes\_billed |
 | <a name="output_uploaded_bytes_id"></a> [uploaded\_bytes\_id](#output\_uploaded\_bytes\_id) | id for monitor uploaded\_bytes |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [GCP Big Query monitoring](https://cloud.google.com/bigquery/docs/monitoring)

@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Event Grid too many failed messages
 - Event Grid too many unmatched events
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -89,6 +90,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_eventgrid_failed_messages_id"></a> [eventgrid\_failed\_messages\_id](#output\_eventgrid\_failed\_messages\_id) | id for monitor eventgrid\_failed\_messages |
 | <a name="output_eventgrid_no_successful_message_id"></a> [eventgrid\_no\_successful\_message\_id](#output\_eventgrid\_no\_successful\_message\_id) | id for monitor eventgrid\_no\_successful\_message |
 | <a name="output_eventgrid_unmatched_events_id"></a> [eventgrid\_unmatched\_events\_id](#output\_eventgrid\_unmatched\_events\_id) | id for monitor eventgrid\_unmatched\_events |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 Datadog Azure documentation: [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)

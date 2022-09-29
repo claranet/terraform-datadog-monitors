@@ -23,6 +23,7 @@ Creates DataDog monitors with the following checks:
 - ElasticSearch cluster free storage space
 - ElasticSearch cluster status is not green
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -91,6 +92,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_es_cluster_status_id"></a> [es\_cluster\_status\_id](#output\_es\_cluster\_status\_id) | id for monitor es\_cluster\_status |
 | <a name="output_es_cpu_90_15min_id"></a> [es\_cpu\_90\_15min\_id](#output\_es\_cpu\_90\_15min\_id) | id for monitor es\_cpu\_90\_15min |
 | <a name="output_es_free_space_low_id"></a> [es\_free\_space\_low\_id](#output\_es\_free\_space\_low\_id) | id for monitor es\_free\_space\_low |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_es/](https://docs.datadoghq.com/integrations/amazon_es/)

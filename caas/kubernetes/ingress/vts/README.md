@@ -20,6 +20,7 @@ Creates DataDog monitors with the following checks:
 - Nginx Ingress 4xx errors
 - Nginx Ingress 5xx errors
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -83,6 +84,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | <a name="output_nginx_ingress_too_many_4xx_id"></a> [nginx\_ingress\_too\_many\_4xx\_id](#output\_nginx\_ingress\_too\_many\_4xx\_id) | id for monitor nginx\_ingress\_too\_many\_4xx |
 | <a name="output_nginx_ingress_too_many_5xx_id"></a> [nginx\_ingress\_too\_many\_5xx\_id](#output\_nginx\_ingress\_too\_many\_5xx\_id) | id for monitor nginx\_ingress\_too\_many\_5xx |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog blog: https://www.datadoghq.com/blog/monitor-prometheus-metrics

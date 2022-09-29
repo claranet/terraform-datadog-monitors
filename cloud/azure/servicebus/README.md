@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - Service Bus server errors rate is high
 - Service Bus user errors rate is high
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -97,6 +98,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_service_bus_server_errors_id"></a> [service\_bus\_server\_errors\_id](#output\_service\_bus\_server\_errors\_id) | id for monitor service\_bus\_server\_errors |
 | <a name="output_service_bus_user_errors_id"></a> [service\_bus\_user\_errors\_id](#output\_service\_bus\_user\_errors\_id) | id for monitor service\_bus\_user\_errors |
 | <a name="output_servicebus_status_id"></a> [servicebus\_status\_id](#output\_servicebus\_status\_id) | id for monitor servicebus\_status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation : [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)  

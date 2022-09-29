@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 
 - VPN tunnel down
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -65,6 +66,7 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_VPN_status_id"></a> [VPN\_status\_id](#output\_VPN\_status\_id) | id for monitor VPN\_status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/vpn-metricscollected.html](https://docs.datadoghq.com/integrations/amazon_web_services/)

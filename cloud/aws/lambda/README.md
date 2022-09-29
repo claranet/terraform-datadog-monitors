@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - Lambda Number of invocations (disabled by default)
 - Lambda Percentage of errors
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -101,6 +102,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_invocations_id"></a> [invocations\_id](#output\_invocations\_id) | id for monitor invocations |
 | <a name="output_pct_errors_id"></a> [pct\_errors\_id](#output\_pct\_errors\_id) | id for monitor pct\_errors |
 | <a name="output_throttles_id"></a> [throttles\_id](#output\_throttles\_id) | id for monitor throttles |
+<!-- END_TF_DOCS -->
 ## Related documentation
 * [Datadog Documentation](https://docs.datadoghq.com/integrations/amazon_lambda/)
 * [Service documentation](https://docs.aws.amazon.com/lambda/index.html)

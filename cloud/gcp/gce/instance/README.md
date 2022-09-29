@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Compute Engine instance Disk Throttled Bps
 - Compute Engine instance Disk Throttled OPS
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -87,6 +88,7 @@ No modules.
 | <a name="output_cpu_utilization_id"></a> [cpu\_utilization\_id](#output\_cpu\_utilization\_id) | id for monitor cpu\_utilization |
 | <a name="output_disk_throttled_bps_id"></a> [disk\_throttled\_bps\_id](#output\_disk\_throttled\_bps\_id) | id for monitor disk\_throttled\_bps |
 | <a name="output_disk_throttled_ops_id"></a> [disk\_throttled\_ops\_id](#output\_disk\_throttled\_ops\_id) | id for monitor disk\_throttled\_ops |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [Datadog GCE Instance metrics](https://www.datadoghq.com/blog/monitoring-google-compute-engine-performance/#instance-metrics)

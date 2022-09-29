@@ -24,6 +24,7 @@ Creates DataDog monitors with the following checks:
 - Cloud SQL Memory Utilization
 - Cloud SQL Memory Utilization forecast (disabled by default)
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -129,6 +130,7 @@ No modules.
 | <a name="output_failover_unavailable_id"></a> [failover\_unavailable\_id](#output\_failover\_unavailable\_id) | id for monitor failover\_unavailable |
 | <a name="output_memory_utilization_forecast_id"></a> [memory\_utilization\_forecast\_id](#output\_memory\_utilization\_forecast\_id) | id for monitor memory\_utilization\_forecast |
 | <a name="output_memory_utilization_id"></a> [memory\_utilization\_id](#output\_memory\_utilization\_id) | id for monitor memory\_utilization |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [GCP Metrics for CloudSQL](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-cloudsql)

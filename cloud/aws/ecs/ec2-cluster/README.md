@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - ECS Cluster CPU Utilization High (disabled by default)
 - ECS Cluster Memory Reservation High (disabled by default)
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -88,5 +89,6 @@ Creates DataDog monitors with the following checks:
 | <a name="output_cluster_cpu_utilization_id"></a> [cluster\_cpu\_utilization\_id](#output\_cluster\_cpu\_utilization\_id) | id for monitor cluster\_cpu\_utilization |
 | <a name="output_cluster_memory_reservation_id"></a> [cluster\_memory\_reservation\_id](#output\_cluster\_memory\_reservation\_id) | id for monitor cluster\_memory\_reservation |
 | <a name="output_ecs_agent_status_id"></a> [ecs\_agent\_status\_id](#output\_ecs\_agent\_status\_id) | id for monitor ecs\_agent\_status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 

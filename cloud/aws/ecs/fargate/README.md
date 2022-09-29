@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Fargate memory Utilization High (disabled by default)
 - Fargate service does not respond.
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -90,6 +91,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_cpu_utilization_id"></a> [cpu\_utilization\_id](#output\_cpu\_utilization\_id) | id for monitor cpu\_utilization |
 | <a name="output_memory_utilization_id"></a> [memory\_utilization\_id](#output\_memory\_utilization\_id) | id for monitor memory\_utilization |
 | <a name="output_service_check_id"></a> [service\_check\_id](#output\_service\_check\_id) | id for monitor service\_check |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 [Official DataDog documentation on ECS Fargate](https://docs.datadoghq.com/integrations/ecs_fargate/)

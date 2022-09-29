@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 
 - RDS Aurora Mysql replica lag
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -71,6 +72,7 @@ Creates DataDog monitors with the following checks:
 | Name | Description |
 |------|-------------|
 | <a name="output_rds_aurora_mysql_replica_lag_id"></a> [rds\_aurora\_mysql\_replica\_lag\_id](#output\_rds\_aurora\_mysql\_replica\_lag\_id) | id for monitor rds\_aurora\_mysql\_replica\_lag |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_rds/](https://docs.datadoghq.com/integrations/amazon_rds/)

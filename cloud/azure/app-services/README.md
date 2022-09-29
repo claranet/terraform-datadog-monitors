@@ -24,6 +24,7 @@ Creates DataDog monitors with the following checks:
 - App Services memory usage
 - App Services response time too high
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -119,6 +120,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_appservices_memory_usage_count_id"></a> [appservices\_memory\_usage\_count\_id](#output\_appservices\_memory\_usage\_count\_id) | id for monitor appservices\_memory\_usage\_count |
 | <a name="output_appservices_response_time_id"></a> [appservices\_response\_time\_id](#output\_appservices\_response\_time\_id) | id for monitor appservices\_response\_time |
 | <a name="output_appservices_status_id"></a> [appservices\_status\_id](#output\_appservices\_status\_id) | id for monitor appservices\_status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_app_services](https://docs.datadoghq.com/integrations/azure_app_services)

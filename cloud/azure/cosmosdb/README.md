@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - Cosmos DB is down
 - Cosmos DB max scaling reached for collection
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -100,6 +101,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_cosmos_db_5xx_requests_id"></a> [cosmos\_db\_5xx\_requests\_id](#output\_cosmos\_db\_5xx\_requests\_id) | id for monitor cosmos\_db\_5xx\_requests |
 | <a name="output_cosmos_db_scaling_id"></a> [cosmos\_db\_scaling\_id](#output\_cosmos\_db\_scaling\_id) | id for monitor cosmos\_db\_scaling |
 | <a name="output_cosmos_db_status_id"></a> [cosmos\_db\_status\_id](#output\_cosmos\_db\_status\_id) | id for monitor cosmos\_db\_status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation : [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)  
