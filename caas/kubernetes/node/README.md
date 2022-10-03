@@ -108,6 +108,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_ready_extra_tags"></a> [ready\_extra\_tags](#input\_ready\_extra\_tags) | Extra tags for Node ready monitor | `list(string)` | `[]` | no |
 | <a name="input_ready_message"></a> [ready\_message](#input\_ready\_message) | Custom message for Node ready monitor | `string` | `""` | no |
 | <a name="input_ready_threshold_warning"></a> [ready\_threshold\_warning](#input\_ready\_threshold\_warning) | Node ready monitor (warning threshold) | `string` | `3` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_unregister_net_device_enabled"></a> [unregister\_net\_device\_enabled](#input\_unregister\_net\_device\_enabled) | Flag to enable Unregister net device monitor | `string` | `"true"` | no |
 | <a name="input_unregister_net_device_extra_tags"></a> [unregister\_net\_device\_extra\_tags](#input\_unregister\_net\_device\_extra\_tags) | Extra tags for Unregister net device monitor | `list(string)` | `[]` | no |
 | <a name="input_unregister_net_device_message"></a> [unregister\_net\_device\_message](#input\_unregister\_net\_device\_message) | Custom message for Unregister net device monitor | `string` | `""` | no |

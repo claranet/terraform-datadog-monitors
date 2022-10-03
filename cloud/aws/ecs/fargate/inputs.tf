@@ -27,6 +27,11 @@ variable "new_group_delay" {
   default     = 300
 }
 
+variable "timeout_h" {
+  description = "Default auto-resolving state (in hours)"
+  default     = 0
+}
+
 variable "notify_no_data" {
   description = "Will raise no data alert if set to true"
   type        = bool

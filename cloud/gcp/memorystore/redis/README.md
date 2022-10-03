@@ -63,6 +63,7 @@ No modules.
 | <a name="input_system_memory_usage_ratio_threshold_warning"></a> [system\_memory\_usage\_ratio\_threshold\_warning](#input\_system\_memory\_usage\_ratio\_threshold\_warning) | Memorystore Redis System memory usage ratio warning threshold | `string` | `80` | no |
 | <a name="input_system_memory_usage_ratio_time_aggregator"></a> [system\_memory\_usage\_ratio\_time\_aggregator](#input\_system\_memory\_usage\_ratio\_time\_aggregator) | Time aggregator for Memorystore Redis System memory usage ratio monitor | `string` | `"min"` | no |
 | <a name="input_system_memory_usage_ratio_timeframe"></a> [system\_memory\_usage\_ratio\_timeframe](#input\_system\_memory\_usage\_ratio\_timeframe) | Timeframe for Memorystore Redis System memory usage ratio monitor | `string` | `"last_10m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

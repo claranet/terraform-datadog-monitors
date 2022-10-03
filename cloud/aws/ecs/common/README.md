@@ -86,6 +86,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_service_missing_tasks_threshold_warning"></a> [service\_missing\_tasks\_threshold\_warning](#input\_service\_missing\_tasks\_threshold\_warning) | Warning threshold for the Service Missing Tasks monitor | `string` | `80` | no |
 | <a name="input_service_missing_tasks_time_aggregator"></a> [service\_missing\_tasks\_time\_aggregator](#input\_service\_missing\_tasks\_time\_aggregator) | Monitor aggregator for Service Missing Tasks [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_service_missing_tasks_timeframe"></a> [service\_missing\_tasks\_timeframe](#input\_service\_missing\_tasks\_timeframe) | Timeframe for the Service Missing Tasks monitor | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

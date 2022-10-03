@@ -202,6 +202,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_timeout_error_requests_threshold_warning"></a> [timeout\_error\_requests\_threshold\_warning](#input\_timeout\_error\_requests\_threshold\_warning) | Warning regarding acceptable percent of timeout error requests for a storage | `number` | `50` | no |
 | <a name="input_timeout_error_requests_time_aggregator"></a> [timeout\_error\_requests\_time\_aggregator](#input\_timeout\_error\_requests\_time\_aggregator) | Monitor aggregator for Storage timeout [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_timeout_error_requests_timeframe"></a> [timeout\_error\_requests\_timeframe](#input\_timeout\_error\_requests\_timeframe) | Monitor timeframe for Storage timeout [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

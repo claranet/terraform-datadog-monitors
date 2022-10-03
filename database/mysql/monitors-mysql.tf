@@ -19,7 +19,7 @@ EOQ
   notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -51,7 +51,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_connection_extra_tags)
@@ -81,7 +81,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_aborted_extra_tags)
@@ -111,7 +111,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_slow_extra_tags)
@@ -141,7 +141,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_pool_efficiency_extra_tags)
@@ -172,7 +172,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_pool_utilization_extra_tags)
@@ -215,7 +215,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_threads_extra_tags)
@@ -258,7 +258,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_questions_extra_tags)
@@ -285,7 +285,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_replication_lag_extra_tags)
@@ -310,7 +310,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = true

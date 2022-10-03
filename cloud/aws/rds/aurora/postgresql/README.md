@@ -67,6 +67,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
 | <a name="input_rds_aurora_postgresql_replica_lag_no_data_timeframe"></a> [rds\_aurora\_postgresql\_replica\_lag\_no\_data\_timeframe](#input\_rds\_aurora\_postgresql\_replica\_lag\_no\_data\_timeframe) | Number of minutes before reporting no data | `string` | `10` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

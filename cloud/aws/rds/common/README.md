@@ -86,6 +86,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_replicalag_threshold_warning"></a> [replicalag\_threshold\_warning](#input\_replicalag\_threshold\_warning) | replica lag in seconds (warning threshold) | `string` | `"200"` | no |
 | <a name="input_replicalag_time_aggregator"></a> [replicalag\_time\_aggregator](#input\_replicalag\_time\_aggregator) | Monitor aggregator for RDS replica lag [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_replicalag_timeframe"></a> [replicalag\_timeframe](#input\_replicalag\_timeframe) | Monitor timeframe for RDS replica lag monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

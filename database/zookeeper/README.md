@@ -64,6 +64,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_not_responding_notify_no_data"></a> [not\_responding\_notify\_no\_data](#input\_not\_responding\_notify\_no\_data) | Send notification if not\_responding monitor does not retrieve data | `bool` | `true` | no |
 | <a name="input_not_responding_threshold_warning"></a> [not\_responding\_threshold\_warning](#input\_not\_responding\_threshold\_warning) | Zookeeper not responding limit (warning threshold) | `number` | `3` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_zookeeper_latency_availability_extra_tags"></a> [zookeeper\_latency\_availability\_extra\_tags](#input\_zookeeper\_latency\_availability\_extra\_tags) | Extra tags for zookeeper read latency monitor | `list(string)` | `[]` | no |
 | <a name="input_zookeeper_latency_enabled"></a> [zookeeper\_latency\_enabled](#input\_zookeeper\_latency\_enabled) | Flag to enable Zookeeper read latency monitor | `string` | `"true"` | no |
 | <a name="input_zookeeper_latency_group_by"></a> [zookeeper\_latency\_group\_by](#input\_zookeeper\_latency\_group\_by) | Tags to use to group datas | `list(string)` | <pre>[<br>  "host"<br>]</pre> | no |

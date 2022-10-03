@@ -22,7 +22,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.response_time_extra_tags)
@@ -52,7 +52,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.memory_usage_extra_tags)
@@ -175,7 +175,7 @@ EOQ
   no_data_timeframe   = var.appservices_status_no_data_timeframe
   renotify_interval   = 0
   require_full_window = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   tags                = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.status_extra_tags)
 

@@ -23,7 +23,7 @@ EOQ
   require_full_window = false
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
 
@@ -55,7 +55,7 @@ EOQ
   require_full_window = false
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
 
@@ -88,7 +88,7 @@ EOQ
   require_full_window = false
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
 

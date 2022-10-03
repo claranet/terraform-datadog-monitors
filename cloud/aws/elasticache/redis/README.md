@@ -92,6 +92,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_replication_lag_threshold_warning"></a> [replication\_lag\_threshold\_warning](#input\_replication\_lag\_threshold\_warning) | Elasticache redis replication lag warning threshold in seconds | `string` | `90` | no |
 | <a name="input_replication_lag_time_aggregator"></a> [replication\_lag\_time\_aggregator](#input\_replication\_lag\_time\_aggregator) | Monitor aggregator for Elasticache redis replication lag [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_replication_lag_timeframe"></a> [replication\_lag\_timeframe](#input\_replication\_lag\_timeframe) | Monitor timeframe for Elasticache redis replication lag [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_10m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

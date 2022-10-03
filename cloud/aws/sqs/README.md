@@ -69,6 +69,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_visible_messages_enabled"></a> [visible\_messages\_enabled](#input\_visible\_messages\_enabled) | Flag to enable Number of Visible Messages monitor | `string` | `"false"` | no |
 | <a name="input_visible_messages_extra_tags"></a> [visible\_messages\_extra\_tags](#input\_visible\_messages\_extra\_tags) | Extra tags for Number of Visible Messages monitor | `list(string)` | `[]` | no |
 | <a name="input_visible_messages_message"></a> [visible\_messages\_message](#input\_visible\_messages\_message) | Custom message for Number of Visible Messages monitor | `string` | `""` | no |

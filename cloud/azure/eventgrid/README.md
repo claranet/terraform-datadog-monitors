@@ -76,6 +76,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_no_successful_message_rate_timeframe"></a> [no\_successful\_message\_rate\_timeframe](#input\_no\_successful\_message\_rate\_timeframe) | Monitor timeframe for Event Grid no successful message [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_unmatched_events_rate_enabled"></a> [unmatched\_events\_rate\_enabled](#input\_unmatched\_events\_rate\_enabled) | Flag to enable Event Grid unmatched events monitor | `string` | `"true"` | no |
 | <a name="input_unmatched_events_rate_extra_tags"></a> [unmatched\_events\_rate\_extra\_tags](#input\_unmatched\_events\_rate\_extra\_tags) | Extra tags for Event Grid unmatched events monitor | `list(string)` | `[]` | no |
 | <a name="input_unmatched_events_rate_message"></a> [unmatched\_events\_rate\_message](#input\_unmatched\_events\_rate\_message) | Custom message for Event Grid unmatched events monitor | `string` | `""` | no |

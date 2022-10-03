@@ -84,6 +84,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_service_check_no_data_timeframe"></a> [service\_check\_no\_data\_timeframe](#input\_service\_check\_no\_data\_timeframe) | No data timeframe in minutes | `number` | `10` | no |
 | <a name="input_service_check_threshold_warning"></a> [service\_check\_threshold\_warning](#input\_service\_check\_threshold\_warning) | Warning threshold | `number` | `3` | no |
 | <a name="input_service_group_by"></a> [service\_group\_by](#input\_service\_group\_by) | Service check grouping by | `string` | `"*"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

@@ -134,6 +134,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_status_message"></a> [status\_message](#input\_status\_message) | Custom message for App Gateway status | `string` | `""` | no |
 | <a name="input_status_time_aggregator"></a> [status\_time\_aggregator](#input\_status\_time\_aggregator) | Monitor aggregator for App Gateway status [available values: min, max or avg] | `string` | `"max"` | no |
 | <a name="input_status_timeframe"></a> [status\_timeframe](#input\_status\_timeframe) | Monitor timeframe for App Gateway status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_total_requests_enabled"></a> [total\_requests\_enabled](#input\_total\_requests\_enabled) | Flag to enable App Gateway current connections monitor | `string` | `"true"` | no |
 | <a name="input_total_requests_extra_tags"></a> [total\_requests\_extra\_tags](#input\_total\_requests\_extra\_tags) | Extra tags for App Gateway current connections monitor | `list(string)` | `[]` | no |
 | <a name="input_total_requests_message"></a> [total\_requests\_message](#input\_total\_requests\_message) | Custom message for App Gateway current connections monitor | `string` | `""` | no |

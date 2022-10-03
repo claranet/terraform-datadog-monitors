@@ -94,6 +94,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_replica_ready_threshold_critical"></a> [replica\_ready\_threshold\_critical](#input\_replica\_ready\_threshold\_critical) | Ready replica critical threshold | `number` | `1` | no |
 | <a name="input_replica_ready_time_aggregator"></a> [replica\_ready\_time\_aggregator](#input\_replica\_ready\_time\_aggregator) | Monitor aggregator for Ready replica [available values: min, max or avg] | `string` | `"max"` | no |
 | <a name="input_replica_ready_timeframe"></a> [replica\_ready\_timeframe](#input\_replica\_ready\_timeframe) | Monitor timeframe for Ready replica [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

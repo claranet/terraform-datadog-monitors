@@ -22,7 +22,7 @@ EOQ
   notify_no_data      = var.notify_no_data
   notify_audit        = false
   locked              = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
   renotify_interval   = 0
@@ -53,7 +53,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -84,7 +84,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -116,7 +116,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -147,7 +147,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -179,7 +179,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -210,7 +210,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -241,7 +241,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -272,7 +272,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -305,7 +305,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = false
