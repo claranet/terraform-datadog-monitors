@@ -145,6 +145,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_rejected_con_threshold_warning"></a> [rejected\_con\_threshold\_warning](#input\_rejected\_con\_threshold\_warning) | rejected connections errors limit (warning threshold) | `number` | `10` | no |
 | <a name="input_rejected_con_time_aggregator"></a> [rejected\_con\_time\_aggregator](#input\_rejected\_con\_time\_aggregator) | Monitor aggregator for Redis rejected connections errors [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_rejected_con_timeframe"></a> [rejected\_con\_timeframe](#input\_rejected\_con\_timeframe) | Monitor timeframe for Redis rejected connections errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

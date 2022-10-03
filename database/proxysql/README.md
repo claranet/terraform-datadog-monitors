@@ -102,6 +102,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_proxysql_thread_worker_threshold_warning"></a> [proxysql\_thread\_worker\_threshold\_warning](#input\_proxysql\_thread\_worker\_threshold\_warning) | Minimum warning acceptable of thread worker running | `number` | `4` | no |
 | <a name="input_proxysql_thread_worker_time_aggregator"></a> [proxysql\_thread\_worker\_time\_aggregator](#input\_proxysql\_thread\_worker\_time\_aggregator) | Monitor time aggregator for ProxySQL thread worker monitor [available values: min, max or avg] | `string` | `"avg"` | no |
 | <a name="input_proxysql_thread_worker_timeframe"></a> [proxysql\_thread\_worker\_timeframe](#input\_proxysql\_thread\_worker\_timeframe) | Monitor timeframe for ProxySQL thread worker monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

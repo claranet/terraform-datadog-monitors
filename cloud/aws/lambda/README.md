@@ -94,6 +94,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_throttles_threshold_warning"></a> [throttles\_threshold\_warning](#input\_throttles\_threshold\_warning) | Warning threshold in number of throttles | `number` | `1` | no |
 | <a name="input_throttles_time_aggregator"></a> [throttles\_time\_aggregator](#input\_throttles\_time\_aggregator) | Monitor aggregator for Throttles [available values: min, max or avg] | `string` | `"sum"` | no |
 | <a name="input_throttles_timeframe"></a> [throttles\_timeframe](#input\_throttles\_timeframe) | Monitor timeframe for Throttles [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_1h"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

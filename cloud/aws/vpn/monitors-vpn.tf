@@ -17,7 +17,7 @@ EOQ
   no_data_timeframe   = var.vpn_status_no_data_timeframe
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
 

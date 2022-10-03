@@ -19,7 +19,7 @@ EOQ
   notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   require_full_window = true
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_thread_worker_extra_tags)
@@ -49,7 +49,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_slow_extra_tags)
@@ -76,7 +76,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_client_conn_aborted_extra_tags)
@@ -103,7 +103,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_server_conn_aborted_extra_tags)
@@ -132,7 +132,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_pool_conn_failure_extra_tags)

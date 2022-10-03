@@ -20,6 +20,11 @@ variable "new_group_delay" {
   default     = 300
 }
 
+variable "timeout_h" {
+  description = "Default auto-resolving state (in hours)"
+  default     = 0
+}
+
 variable "prefix_slug" {
   description = "Prefix string to prepend between brackets on every monitors names"
   default     = ""

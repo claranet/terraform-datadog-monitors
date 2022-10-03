@@ -266,6 +266,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_task_time_in_queue_change_time_aggregator"></a> [task\_time\_in\_queue\_change\_time\_aggregator](#input\_task\_time\_in\_queue\_change\_time\_aggregator) | Time aggregator for the Cluster Status monitor | `string` | `"avg"` | no |
 | <a name="input_task_time_in_queue_change_timeframe"></a> [task\_time\_in\_queue\_change\_timeframe](#input\_task\_time\_in\_queue\_change\_timeframe) | Timeframe for the Cluster Status monitor | `string` | `"last_10m"` | no |
 | <a name="input_task_time_in_queue_change_timeshift"></a> [task\_time\_in\_queue\_change\_timeshift](#input\_task\_time\_in\_queue\_change\_timeshift) | Timeshift for the Cluster Status monitor | `string` | `"last_10m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

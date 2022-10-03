@@ -85,6 +85,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_status_message"></a> [status\_message](#input\_status\_message) | Custom message for Key Vault status monitor | `string` | `""` | no |
 | <a name="input_status_time_aggregator"></a> [status\_time\_aggregator](#input\_status\_time\_aggregator) | Monitor aggregator for Key Vault status [available values: min, max or avg] | `string` | `"max"` | no |
 | <a name="input_status_timeframe"></a> [status\_timeframe](#input\_status\_timeframe) | Monitor timeframe for Key Vault status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

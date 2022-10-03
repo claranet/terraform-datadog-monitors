@@ -64,6 +64,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_sqlserver_availability_message"></a> [sqlserver\_availability\_message](#input\_sqlserver\_availability\_message) | Custom message for SQL Server availability monitor | `string` | `""` | no |
 | <a name="input_sqlserver_availability_no_data_timeframe"></a> [sqlserver\_availability\_no\_data\_timeframe](#input\_sqlserver\_availability\_no\_data\_timeframe) | SQL Server availability monitor no data timeframe | `string` | `10` | no |
 | <a name="input_sqlserver_availability_threshold_warning"></a> [sqlserver\_availability\_threshold\_warning](#input\_sqlserver\_availability\_threshold\_warning) | SQL Server availability monitor (warning threshold) | `string` | `3` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

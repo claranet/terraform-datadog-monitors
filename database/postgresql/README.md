@@ -82,6 +82,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_postgresql_lock_time_aggregator"></a> [postgresql\_lock\_time\_aggregator](#input\_postgresql\_lock\_time\_aggregator) | Monitor time aggregator for PostgreSQL lock monitor [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_postgresql_lock_timeframe"></a> [postgresql\_lock\_timeframe](#input\_postgresql\_lock\_timeframe) | Monitor timeframe for PostgreSQL lock monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

@@ -21,7 +21,7 @@ EOQ
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -54,7 +54,7 @@ EOQ
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.rds_free_space_low_no_data_timeframe
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -85,7 +85,7 @@ EOQ
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = false

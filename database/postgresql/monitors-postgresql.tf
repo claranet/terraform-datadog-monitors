@@ -19,7 +19,7 @@ EOQ
   notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = true
@@ -50,7 +50,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform"], var.postgresql_connection_extra_tags)
@@ -79,7 +79,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform"], var.postgresql_lock_extra_tags)

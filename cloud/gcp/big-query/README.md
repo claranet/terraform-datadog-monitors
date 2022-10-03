@@ -113,6 +113,7 @@ No modules.
 | <a name="input_table_count_threshold_critical"></a> [table\_count\_threshold\_critical](#input\_table\_count\_threshold\_critical) | Table Count (critical threshold) | `string` | `1` | no |
 | <a name="input_table_count_threshold_warning"></a> [table\_count\_threshold\_warning](#input\_table\_count\_threshold\_warning) | Table Count (warning threshold) | `string` | `0` | no |
 | <a name="input_table_count_timeframe"></a> [table\_count\_timeframe](#input\_table\_count\_timeframe) | Timeframe for the Table Count monitor | `string` | `"last_4h"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_uploaded_bytes_billed_enabled"></a> [uploaded\_bytes\_billed\_enabled](#input\_uploaded\_bytes\_billed\_enabled) | Flag to enable GCP Big Query Uploaded Bytes Billed monitor | `string` | `"true"` | no |
 | <a name="input_uploaded_bytes_billed_extra_tags"></a> [uploaded\_bytes\_billed\_extra\_tags](#input\_uploaded\_bytes\_billed\_extra\_tags) | Extra tags for GCP Big Query Scanned Bytes monitor | `list(string)` | `[]` | no |
 | <a name="input_uploaded_bytes_billed_message"></a> [uploaded\_bytes\_billed\_message](#input\_uploaded\_bytes\_billed\_message) | Custom message for the Uploaded Bytes Billed monitor | `string` | `""` | no |

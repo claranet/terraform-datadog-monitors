@@ -101,6 +101,7 @@ No modules.
 | <a name="input_request_count_time_aggregator"></a> [request\_count\_time\_aggregator](#input\_request\_count\_time\_aggregator) | Timeframe for the GCP LB Request Count monitor | `string` | `"sum"` | no |
 | <a name="input_request_count_timeframe"></a> [request\_count\_timeframe](#input\_request\_count\_timeframe) | Timeframe for the GCP LB Request Count monitor | `string` | `"last_5m"` | no |
 | <a name="input_request_count_timeshift"></a> [request\_count\_timeshift](#input\_request\_count\_timeshift) | Timeshift for the GCP LB Request Count monitor | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

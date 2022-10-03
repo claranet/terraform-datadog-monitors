@@ -101,6 +101,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_su_utilization_threshold_warning"></a> [su\_utilization\_threshold\_warning](#input\_su\_utilization\_threshold\_warning) | Streaming Unit utilization rate limit (warning threshold) | `number` | `80` | no |
 | <a name="input_su_utilization_time_aggregator"></a> [su\_utilization\_time\_aggregator](#input\_su\_utilization\_time\_aggregator) | Monitor aggregator for Stream Analytics utilization [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_su_utilization_timeframe"></a> [su\_utilization\_timeframe](#input\_su\_utilization\_timeframe) | Monitor timeframe for Stream Analytics utilization [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

@@ -63,6 +63,7 @@ No modules.
 | <a name="input_replication_lag_threshold_warning"></a> [replication\_lag\_threshold\_warning](#input\_replication\_lag\_threshold\_warning) | Seconds behind the master (warning threshold) | `string` | `90` | no |
 | <a name="input_replication_lag_time_aggregator"></a> [replication\_lag\_time\_aggregator](#input\_replication\_lag\_time\_aggregator) | Time aggregator for the Replication Lag monitor | `string` | `"min"` | no |
 | <a name="input_replication_lag_timeframe"></a> [replication\_lag\_timeframe](#input\_replication\_lag\_timeframe) | Timeframe for the Replication Lag monitor | `string` | `"last_10m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

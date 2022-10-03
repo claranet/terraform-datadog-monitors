@@ -85,6 +85,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_searcher_warmup_time_threshold_critical"></a> [searcher\_warmup\_time\_threshold\_critical](#input\_searcher\_warmup\_time\_threshold\_critical) | Searcher warmup time critical threshold in ms | `number` | `5000` | no |
 | <a name="input_searcher_warmup_time_threshold_warning"></a> [searcher\_warmup\_time\_threshold\_warning](#input\_searcher\_warmup\_time\_threshold\_warning) | Searcher warmup time warning threshold in ms | `number` | `2000` | no |
 | <a name="input_searcher_warmup_time_timeframe"></a> [searcher\_warmup\_time\_timeframe](#input\_searcher\_warmup\_time\_timeframe) | Timeframe for the searcher warmup time monitor | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

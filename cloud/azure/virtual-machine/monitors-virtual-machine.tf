@@ -17,7 +17,7 @@ EOQ
   no_data_timeframe   = var.virtualmachine_status_no_data_timeframe
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -48,7 +48,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -115,7 +115,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = false
@@ -180,7 +180,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
   require_full_window = false

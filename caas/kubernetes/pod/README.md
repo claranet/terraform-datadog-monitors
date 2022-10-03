@@ -86,6 +86,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_terminated_threshold_warning"></a> [terminated\_threshold\_warning](#input\_terminated\_threshold\_warning) | terminated warning threshold | `number` | `0` | no |
 | <a name="input_terminated_time_aggregator"></a> [terminated\_time\_aggregator](#input\_terminated\_time\_aggregator) | Monitor aggregator for Pod terminated [available values: min, max or avg] | `string` | `"sum"` | no |
 | <a name="input_terminated_timeframe"></a> [terminated\_timeframe](#input\_terminated\_timeframe) | Monitor timeframe for Pod terminated [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_10m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 

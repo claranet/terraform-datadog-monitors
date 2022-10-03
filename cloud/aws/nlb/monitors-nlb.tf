@@ -24,7 +24,7 @@ EOQ
   no_data_timeframe   = var.nlb_no_healthy_instances_no_data_timeframe
   renotify_interval   = 0
   require_full_window = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:nlb", "team:claranet", "created-by:terraform"], var.nlb_no_healthy_instances_extra_tags)

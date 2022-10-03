@@ -20,7 +20,7 @@ EOQ
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.health_no_data_timeframe
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
   locked              = false
@@ -48,7 +48,7 @@ EOQ
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
   locked              = false
@@ -76,7 +76,7 @@ EOQ
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
   locked              = false

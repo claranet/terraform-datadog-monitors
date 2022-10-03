@@ -108,6 +108,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_swap_threshold_warning"></a> [swap\_threshold\_warning](#input\_swap\_threshold\_warning) | Elasticache swap warning threshold in bytes | `string` | `0` | no |
 | <a name="input_swap_time_aggregator"></a> [swap\_time\_aggregator](#input\_swap\_time\_aggregator) | Monitor aggregator for Elasticache memcached swap [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_swap_timeframe"></a> [swap\_timeframe](#input\_swap\_timeframe) | Monitor timeframe for Elasticache swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 
