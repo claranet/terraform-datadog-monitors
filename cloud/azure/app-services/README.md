@@ -24,6 +24,7 @@ Creates DataDog monitors with the following checks:
 - App Services memory usage
 - App Services response time too high
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -93,6 +94,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_memory_usage_time_aggregator"></a> [memory\_usage\_time\_aggregator](#input\_memory\_usage\_time\_aggregator) | Monitor aggregator for App Services memory usage [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_memory_usage_timeframe"></a> [memory\_usage\_timeframe](#input\_memory\_usage\_timeframe) | Monitor timeframe for App Services memory usage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
@@ -119,6 +121,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_appservices_memory_usage_count_id"></a> [appservices\_memory\_usage\_count\_id](#output\_appservices\_memory\_usage\_count\_id) | id for monitor appservices\_memory\_usage\_count |
 | <a name="output_appservices_response_time_id"></a> [appservices\_response\_time\_id](#output\_appservices\_response\_time\_id) | id for monitor appservices\_response\_time |
 | <a name="output_appservices_status_id"></a> [appservices\_status\_id](#output\_appservices\_status\_id) | id for monitor appservices\_status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_app_services](https://docs.datadoghq.com/integrations/azure_app_services)

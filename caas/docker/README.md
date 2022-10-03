@@ -20,6 +20,7 @@ Creates DataDog monitors with the following checks:
 - Docker Container Memory Used (disabled by default)
 - Docker does not respond
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -63,6 +64,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_memory_used_time_aggregator"></a> [memory\_used\_time\_aggregator](#input\_memory\_used\_time\_aggregator) | Time aggregator for the Container Memory Usage monitor | `string` | `"min"` | no |
 | <a name="input_memory_used_timeframe"></a> [memory\_used\_timeframe](#input\_memory\_used\_timeframe) | Timeframe for the Container Memory Usage monitor | `string` | `"last_5m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_not_responding_enabled"></a> [not\_responding\_enabled](#input\_not\_responding\_enabled) | Flag to enable Docker does not respond monitor | `string` | `"true"` | no |
 | <a name="input_not_responding_extra_tags"></a> [not\_responding\_extra\_tags](#input\_not\_responding\_extra\_tags) | Extra tags for Docker does not respond monitor | `list(string)` | `[]` | no |
@@ -78,6 +80,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | <a name="output_memory_used_id"></a> [memory\_used\_id](#output\_memory\_used\_id) | id for monitor memory\_used |
 | <a name="output_not_responding_id"></a> [not\_responding\_id](#output\_not\_responding\_id) | id for monitor not\_responding |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [Datadog Docker integration](https://docs.datadoghq.com/integrations/docker_daemon/)

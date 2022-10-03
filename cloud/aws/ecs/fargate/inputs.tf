@@ -22,6 +22,11 @@ variable "new_host_delay" {
   default     = 300
 }
 
+variable "new_group_delay" {
+  description = "Delay in seconds before monitor new resource"
+  default     = 300
+}
+
 variable "notify_no_data" {
   description = "Will raise no data alert if set to true"
   type        = bool

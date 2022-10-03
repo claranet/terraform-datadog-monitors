@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - Redis server load too high
 - Redis too many evictedkeys
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -67,6 +68,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a Redis monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_percent_processor_time_enabled"></a> [percent\_processor\_time\_enabled](#input\_percent\_processor\_time\_enabled) | Flag to enable Redis processor monitor | `string` | `"true"` | no |
@@ -99,6 +101,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_percent_processor_time_id"></a> [percent\_processor\_time\_id](#output\_percent\_processor\_time\_id) | id for monitor percent\_processor\_time |
 | <a name="output_server_load_id"></a> [server\_load\_id](#output\_server\_load\_id) | id for monitor server\_load |
 | <a name="output_status_id"></a> [status\_id](#output\_status\_id) | id for monitor status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_redis_cache/](https://docs.datadoghq.com/integrations/azure_redis_cache/)

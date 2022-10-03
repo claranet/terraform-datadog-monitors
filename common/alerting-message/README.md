@@ -38,6 +38,7 @@ Creates a DataDog monitor alert message with the following inputs :
 |------|-------------|
 | alerting-message | The generated message string |
 
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 Datadog notifications official documentation: [https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning](https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning)

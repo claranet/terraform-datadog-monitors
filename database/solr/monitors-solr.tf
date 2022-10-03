@@ -20,6 +20,7 @@ EOQ
 
   no_data_timeframe   = var.not_responding_no_data_timeframe
   new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = var.notify_no_data
   notify_audit        = false
   locked              = false
@@ -55,6 +56,7 @@ EOQ
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_audit        = false
   locked              = false
   include_tags        = true
@@ -87,6 +89,7 @@ EOQ
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_audit        = false
   locked              = false
   include_tags        = true

@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - ECS Service Memory Utilization High (disabled by default)
 - ECS Service not healthy enough
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -60,6 +61,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_separator"></a> [filter\_tags\_separator](#input\_filter\_tags\_separator) | Set the filter tags separator (, or AND) | `string` | `","` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
@@ -92,5 +94,6 @@ Creates DataDog monitors with the following checks:
 | <a name="output_service_cpu_utilization_id"></a> [service\_cpu\_utilization\_id](#output\_service\_cpu\_utilization\_id) | id for monitor service\_cpu\_utilization |
 | <a name="output_service_memory_utilization_id"></a> [service\_memory\_utilization\_id](#output\_service\_memory\_utilization\_id) | id for monitor service\_memory\_utilization |
 | <a name="output_service_missing_tasks_id"></a> [service\_missing\_tasks\_id](#output\_service\_missing\_tasks\_id) | id for monitor service\_missing\_tasks |
+<!-- END_TF_DOCS -->
 ## Related documentation
 

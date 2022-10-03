@@ -23,6 +23,7 @@ Creates DataDog monitors with the following checks:
 - API Management too many other requests
 - API Management too many unauthorized requests
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -70,6 +71,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a Redis monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_other_requests_enabled"></a> [other\_requests\_enabled](#input\_other\_requests\_enabled) | Flag to enable API Management other requests monitor | `string` | `"true"` | no |
@@ -109,6 +111,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_apimgt_status_id"></a> [apimgt\_status\_id](#output\_apimgt\_status\_id) | id for monitor apimgt\_status |
 | <a name="output_apimgt_successful_requests_id"></a> [apimgt\_successful\_requests\_id](#output\_apimgt\_successful\_requests\_id) | id for monitor apimgt\_successful\_requests |
 | <a name="output_apimgt_unauthorized_requests_id"></a> [apimgt\_unauthorized\_requests\_id](#output\_apimgt\_unauthorized\_requests\_id) | id for monitor apimgt\_unauthorized\_requests |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 Azure API Management metrics documentation: [https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-use-azure-monitor](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-use-azure-monitor)

@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 
 - NLB healthy instances
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -54,6 +55,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_nlb_no_healthy_instances_enabled"></a> [nlb\_no\_healthy\_instances\_enabled](#input\_nlb\_no\_healthy\_instances\_enabled) | Flag to enable NLB no healthy instances monitor | `string` | `"true"` | no |
 | <a name="input_nlb_no_healthy_instances_extra_tags"></a> [nlb\_no\_healthy\_instances\_extra\_tags](#input\_nlb\_no\_healthy\_instances\_extra\_tags) | Extra tags for NLB no healthy instances monitor | `list(string)` | `[]` | no |
@@ -70,6 +72,7 @@ Creates DataDog monitors with the following checks:
 | Name | Description |
 |------|-------------|
 | <a name="output_NLB_no_healthy_instances_id"></a> [NLB\_no\_healthy\_instances\_id](#output\_NLB\_no\_healthy\_instances\_id) | id for monitor NLB\_no\_healthy\_instances |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog blog: [https://www.datadoghq.com/blog/monitor-aws-network-load-balancer/](https://www.datadoghq.com/blog/monitor-aws-network-load-balancer/)

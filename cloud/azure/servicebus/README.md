@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - Service Bus server errors rate is high
 - Service Bus user errors rate is high
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -60,6 +61,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_no_active_connections_enabled"></a> [no\_active\_connections\_enabled](#input\_no\_active\_connections\_enabled) | Flag to enable Service Bus no active connections monitor | `string` | `"true"` | no |
 | <a name="input_no_active_connections_extra_tags"></a> [no\_active\_connections\_extra\_tags](#input\_no\_active\_connections\_extra\_tags) | Extra tags for Service Bus no active connections monitor | `list(string)` | `[]` | no |
@@ -97,6 +99,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_service_bus_server_errors_id"></a> [service\_bus\_server\_errors\_id](#output\_service\_bus\_server\_errors\_id) | id for monitor service\_bus\_server\_errors |
 | <a name="output_service_bus_user_errors_id"></a> [service\_bus\_user\_errors\_id](#output\_service\_bus\_user\_errors\_id) | id for monitor service\_bus\_user\_errors |
 | <a name="output_servicebus_status_id"></a> [servicebus\_status\_id](#output\_servicebus\_status\_id) | id for monitor servicebus\_status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation : [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)  

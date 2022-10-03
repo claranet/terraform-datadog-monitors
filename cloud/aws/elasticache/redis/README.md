@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - Elasticache redis is receiving no commands
 - Elasticache redis replication lag
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -79,6 +80,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_separator"></a> [filter\_tags\_separator](#input\_filter\_tags\_separator) | Set the filter tags separator (, or AND) | `string` | `","` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
@@ -99,6 +101,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_redis_commands_id"></a> [redis\_commands\_id](#output\_redis\_commands\_id) | id for monitor redis\_commands |
 | <a name="output_redis_cpu_high_id"></a> [redis\_cpu\_high\_id](#output\_redis\_cpu\_high\_id) | id for monitor redis\_cpu\_high |
 | <a name="output_redis_replication_lag_id"></a> [redis\_replication\_lag\_id](#output\_redis\_replication\_lag\_id) | id for monitor redis\_replication\_lag |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [https://docs.datadoghq.com/integrations/amazon_elasticache/](https://docs.datadoghq.com/integrations/amazon_elasticache/)

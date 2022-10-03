@@ -24,6 +24,7 @@ Creates DataDog monitors with the following checks:
 - Virtual Machine RAM reserved
 - Virtual Machine requests failed
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -85,6 +86,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a Redis monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
@@ -119,6 +121,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_virtualmachine_ram_reserved_id"></a> [virtualmachine\_ram\_reserved\_id](#output\_virtualmachine\_ram\_reserved\_id) | id for monitor virtualmachine\_ram\_reserved |
 | <a name="output_virtualmachine_requests_failed_id"></a> [virtualmachine\_requests\_failed\_id](#output\_virtualmachine\_requests\_failed\_id) | id for monitor virtualmachine\_requests\_failed |
 | <a name="output_virtualmachine_status_id"></a> [virtualmachine\_status\_id](#output\_virtualmachine\_status\_id) | id for monitor virtualmachine\_status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_vm/](https://docs.datadoghq.com/integrations/azure_vm/)

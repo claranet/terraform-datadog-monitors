@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Kubernetes Pod terminated abnormally
 - Kubernetes Pod waiting errors
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -67,6 +68,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_pod_group_by"></a> [pod\_group\_by](#input\_pod\_group\_by) | Select group by element on monitors (error and terminated) | `list` | <pre>[<br>  "namespace",<br>  "pod",<br>  "reason",<br>  "kube_cluster_name"<br>]</pre> | no |
@@ -92,6 +94,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_error_id"></a> [error\_id](#output\_error\_id) | id for monitor error |
 | <a name="output_pod_phase_status_id"></a> [pod\_phase\_status\_id](#output\_pod\_phase\_status\_id) | id for monitor pod\_phase\_status |
 | <a name="output_terminated_id"></a> [terminated\_id](#output\_terminated\_id) | id for monitor terminated |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [Datadog metrics](https://docs.datadoghq.com/agent/kubernetes/metrics/)
