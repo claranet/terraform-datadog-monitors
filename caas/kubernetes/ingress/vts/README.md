@@ -74,6 +74,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_ingress_5xx_time_aggregator"></a> [ingress\_5xx\_time\_aggregator](#input\_ingress\_5xx\_time\_aggregator) | Monitor aggregator for Ingress 5xx errors [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_ingress_5xx_timeframe"></a> [ingress\_5xx\_timeframe](#input\_ingress\_5xx\_timeframe) | Monitor timeframe for Ingress 5xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |

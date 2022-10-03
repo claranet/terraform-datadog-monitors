@@ -67,6 +67,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_no_successful_message_rate_enabled"></a> [no\_successful\_message\_rate\_enabled](#input\_no\_successful\_message\_rate\_enabled) | Flag to enable Event Grid no successful message monitor | `string` | `"true"` | no |
 | <a name="input_no_successful_message_rate_extra_tags"></a> [no\_successful\_message\_rate\_extra\_tags](#input\_no\_successful\_message\_rate\_extra\_tags) | Extra tags for Event Grid no successful message monitor | `list(string)` | `[]` | no |

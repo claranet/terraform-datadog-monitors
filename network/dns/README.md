@@ -18,7 +18,7 @@ module "datadog-monitors-network-dns" {
 Creates DataDog monitors with the following checks:
 
 - DNS cannot resolve
-- 
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
