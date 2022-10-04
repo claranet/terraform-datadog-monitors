@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 
 - RDS Aurora Mysql replica lag
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -61,16 +62,19 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
 | <a name="input_rds_aurora_mysql_replica_lag_no_data_timeframe"></a> [rds\_aurora\_mysql\_replica\_lag\_no\_data\_timeframe](#input\_rds\_aurora\_mysql\_replica\_lag\_no\_data\_timeframe) | Number of minutes before reporting no data | `string` | `10` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | <a name="output_rds_aurora_mysql_replica_lag_id"></a> [rds\_aurora\_mysql\_replica\_lag\_id](#output\_rds\_aurora\_mysql\_replica\_lag\_id) | id for monitor rds\_aurora\_mysql\_replica\_lag |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_rds/](https://docs.datadoghq.com/integrations/amazon_rds/)

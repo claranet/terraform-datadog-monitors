@@ -24,6 +24,7 @@ Creates DataDog monitors with the following checks:
 - Cloud SQL Memory Utilization
 - Cloud SQL Memory Utilization forecast (disabled by default)
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -115,9 +116,11 @@ No modules.
 | <a name="input_memory_utilization_time_aggregator"></a> [memory\_utilization\_time\_aggregator](#input\_memory\_utilization\_time\_aggregator) | Time aggregator for the Memory Utilization monitor | `string` | `"avg"` | no |
 | <a name="input_memory_utilization_timeframe"></a> [memory\_utilization\_timeframe](#input\_memory\_utilization\_timeframe) | Timeframe for the Memory Utilization monitor | `string` | `"last_5m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds for the new host evaluation | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 
@@ -129,6 +132,7 @@ No modules.
 | <a name="output_failover_unavailable_id"></a> [failover\_unavailable\_id](#output\_failover\_unavailable\_id) | id for monitor failover\_unavailable |
 | <a name="output_memory_utilization_forecast_id"></a> [memory\_utilization\_forecast\_id](#output\_memory\_utilization\_forecast\_id) | id for monitor memory\_utilization\_forecast |
 | <a name="output_memory_utilization_id"></a> [memory\_utilization\_id](#output\_memory\_utilization\_id) | id for monitor memory\_utilization |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [GCP Metrics for CloudSQL](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-cloudsql)

@@ -23,6 +23,7 @@ Creates DataDog monitors with the following checks:
 - Velero scheduled backup missing
 - Velero volume snapshot failure
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -66,9 +67,11 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_velero_backup_deletion_failure_enabled"></a> [velero\_backup\_deletion\_failure\_enabled](#input\_velero\_backup\_deletion\_failure\_enabled) | Flag to enable Velero backup deletion failure monitor | `string` | `"true"` | no |
 | <a name="input_velero_backup_deletion_failure_extra_tags"></a> [velero\_backup\_deletion\_failure\_extra\_tags](#input\_velero\_backup\_deletion\_failure\_extra\_tags) | Extra tags for Velero backup deletion failure monitor | `list(string)` | `[]` | no |
 | <a name="input_velero_backup_deletion_failure_monitor_message"></a> [velero\_backup\_deletion\_failure\_monitor\_message](#input\_velero\_backup\_deletion\_failure\_monitor\_message) | Custom message for Velero backup deletion failure monitor | `string` | `""` | no |
@@ -100,6 +103,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_velero_backup_partial_failure_id"></a> [velero\_backup\_partial\_failure\_id](#output\_velero\_backup\_partial\_failure\_id) | id for monitor velero\_backup\_partial\_failure |
 | <a name="output_velero_scheduled_backup_missing_id"></a> [velero\_scheduled\_backup\_missing\_id](#output\_velero\_scheduled\_backup\_missing\_id) | id for monitor velero\_scheduled\_backup\_missing |
 | <a name="output_velero_volume_snapshot_failure_id"></a> [velero\_volume\_snapshot\_failure\_id](#output\_velero\_volume\_snapshot\_failure\_id) | id for monitor velero\_volume\_snapshot\_failure |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 Documentation for Datadog prometheus intergration: https://docs.datadoghq.com/integrations/prometheus/

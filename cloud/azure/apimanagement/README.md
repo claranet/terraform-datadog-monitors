@@ -23,6 +23,7 @@ Creates DataDog monitors with the following checks:
 - API Management too many other requests
 - API Management too many unauthorized requests
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -70,6 +71,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a Redis monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_other_requests_enabled"></a> [other\_requests\_enabled](#input\_other\_requests\_enabled) | Flag to enable API Management other requests monitor | `string` | `"true"` | no |
@@ -92,6 +94,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_successful_requests_threshold_warning"></a> [successful\_requests\_threshold\_warning](#input\_successful\_requests\_threshold\_warning) | Warning regarding acceptable percent of successful requests | `number` | `30` | no |
 | <a name="input_successful_requests_time_aggregator"></a> [successful\_requests\_time\_aggregator](#input\_successful\_requests\_time\_aggregator) | Monitor aggregator for API Management successful requests [available values: min, max or avg] | `string` | `"max"` | no |
 | <a name="input_successful_requests_timeframe"></a> [successful\_requests\_timeframe](#input\_successful\_requests\_timeframe) | Monitor timeframe for API Management successful requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_unauthorized_requests_enabled"></a> [unauthorized\_requests\_enabled](#input\_unauthorized\_requests\_enabled) | Flag to enable API Management unauthorized requests monitor | `string` | `"true"` | no |
 | <a name="input_unauthorized_requests_extra_tags"></a> [unauthorized\_requests\_extra\_tags](#input\_unauthorized\_requests\_extra\_tags) | Extra tags for API Management unauthorized requests monitor | `list(string)` | `[]` | no |
 | <a name="input_unauthorized_requests_message"></a> [unauthorized\_requests\_message](#input\_unauthorized\_requests\_message) | Custom message for API Management unauthorized requests monitor | `string` | `""` | no |
@@ -109,6 +112,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_apimgt_status_id"></a> [apimgt\_status\_id](#output\_apimgt\_status\_id) | id for monitor apimgt\_status |
 | <a name="output_apimgt_successful_requests_id"></a> [apimgt\_successful\_requests\_id](#output\_apimgt\_successful\_requests\_id) | id for monitor apimgt\_successful\_requests |
 | <a name="output_apimgt_unauthorized_requests_id"></a> [apimgt\_unauthorized\_requests\_id](#output\_apimgt\_unauthorized\_requests\_id) | id for monitor apimgt\_unauthorized\_requests |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 Azure API Management metrics documentation: [https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-use-azure-monitor](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-use-azure-monitor)

@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Event Grid too many failed messages
 - Event Grid too many unmatched events
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -66,6 +67,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_no_successful_message_rate_enabled"></a> [no\_successful\_message\_rate\_enabled](#input\_no\_successful\_message\_rate\_enabled) | Flag to enable Event Grid no successful message monitor | `string` | `"true"` | no |
 | <a name="input_no_successful_message_rate_extra_tags"></a> [no\_successful\_message\_rate\_extra\_tags](#input\_no\_successful\_message\_rate\_extra\_tags) | Extra tags for Event Grid no successful message monitor | `list(string)` | `[]` | no |
@@ -74,6 +76,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_no_successful_message_rate_timeframe"></a> [no\_successful\_message\_rate\_timeframe](#input\_no\_successful\_message\_rate\_timeframe) | Monitor timeframe for Event Grid no successful message [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_unmatched_events_rate_enabled"></a> [unmatched\_events\_rate\_enabled](#input\_unmatched\_events\_rate\_enabled) | Flag to enable Event Grid unmatched events monitor | `string` | `"true"` | no |
 | <a name="input_unmatched_events_rate_extra_tags"></a> [unmatched\_events\_rate\_extra\_tags](#input\_unmatched\_events\_rate\_extra\_tags) | Extra tags for Event Grid unmatched events monitor | `list(string)` | `[]` | no |
 | <a name="input_unmatched_events_rate_message"></a> [unmatched\_events\_rate\_message](#input\_unmatched\_events\_rate\_message) | Custom message for Event Grid unmatched events monitor | `string` | `""` | no |
@@ -89,6 +92,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_eventgrid_failed_messages_id"></a> [eventgrid\_failed\_messages\_id](#output\_eventgrid\_failed\_messages\_id) | id for monitor eventgrid\_failed\_messages |
 | <a name="output_eventgrid_no_successful_message_id"></a> [eventgrid\_no\_successful\_message\_id](#output\_eventgrid\_no\_successful\_message\_id) | id for monitor eventgrid\_no\_successful\_message |
 | <a name="output_eventgrid_unmatched_events_id"></a> [eventgrid\_unmatched\_events\_id](#output\_eventgrid\_unmatched\_events\_id) | id for monitor eventgrid\_unmatched\_events |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 Datadog Azure documentation: [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)

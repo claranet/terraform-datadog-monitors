@@ -23,6 +23,7 @@ Creates DataDog monitors with the following checks:
 - ProxySQL Slow queries
 - ProxySQL Thread Worker
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -62,6 +63,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds for the metric evaluation | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `false` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
@@ -100,6 +102,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_proxysql_thread_worker_threshold_warning"></a> [proxysql\_thread\_worker\_threshold\_warning](#input\_proxysql\_thread\_worker\_threshold\_warning) | Minimum warning acceptable of thread worker running | `number` | `4` | no |
 | <a name="input_proxysql_thread_worker_time_aggregator"></a> [proxysql\_thread\_worker\_time\_aggregator](#input\_proxysql\_thread\_worker\_time\_aggregator) | Monitor time aggregator for ProxySQL thread worker monitor [available values: min, max or avg] | `string` | `"avg"` | no |
 | <a name="input_proxysql_thread_worker_timeframe"></a> [proxysql\_thread\_worker\_timeframe](#input\_proxysql\_thread\_worker\_timeframe) | Monitor timeframe for ProxySQL thread worker monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 
@@ -110,6 +113,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_proxysql_server_conn_aborted_id"></a> [proxysql\_server\_conn\_aborted\_id](#output\_proxysql\_server\_conn\_aborted\_id) | id for monitor proxysql\_server\_conn\_aborted |
 | <a name="output_proxysql_slow_id"></a> [proxysql\_slow\_id](#output\_proxysql\_slow\_id) | id for monitor proxysql\_slow |
 | <a name="output_proxysql_thread_worker_id"></a> [proxysql\_thread\_worker\_id](#output\_proxysql\_thread\_worker\_id) | id for monitor proxysql\_thread\_worker |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [Datadog documentation](https://docs.datadoghq.com/integrations/proxysql/)

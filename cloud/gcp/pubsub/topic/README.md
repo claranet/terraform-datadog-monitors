@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Pub/Sub Topic sending messages operations
 - Pub/Sub Topic sending messages with result unavailable (disabled by default)
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -54,6 +55,7 @@ No modules.
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_filter_tags"></a> [filter\_tags](#input\_filter\_tags) | Tags used for filtering | `string` | `"*"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds for the new host evaluation | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
@@ -63,6 +65,7 @@ No modules.
 | <a name="input_sending_operations_count_threshold_critical"></a> [sending\_operations\_count\_threshold\_critical](#input\_sending\_operations\_count\_threshold\_critical) | Critical threshold for the number of sending operations. | `string` | `0` | no |
 | <a name="input_sending_operations_count_time_aggregator"></a> [sending\_operations\_count\_time\_aggregator](#input\_sending\_operations\_count\_time\_aggregator) | Timeframe for the GCP Pub/Sub Sending Operations Count monitor | `string` | `"sum"` | no |
 | <a name="input_sending_operations_count_timeframe"></a> [sending\_operations\_count\_timeframe](#input\_sending\_operations\_count\_timeframe) | Timeframe for the GCP Pub/Sub Sending Operations Count monitor | `string` | `"last_30m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_unavailable_sending_operations_count_enabled"></a> [unavailable\_sending\_operations\_count\_enabled](#input\_unavailable\_sending\_operations\_count\_enabled) | Flag to enable GCP Pub/Sub Unavailable Sending Operations Count monitor | `string` | `"false"` | no |
 | <a name="input_unavailable_sending_operations_count_extra_tags"></a> [unavailable\_sending\_operations\_count\_extra\_tags](#input\_unavailable\_sending\_operations\_count\_extra\_tags) | Extra tags for GCP Pub/Sub Unavailable Sending Operations Count monitor | `list(string)` | `[]` | no |
 | <a name="input_unavailable_sending_operations_count_message"></a> [unavailable\_sending\_operations\_count\_message](#input\_unavailable\_sending\_operations\_count\_message) | Custom message for the GCP Pub/Sub Unavailable Sending Operations Count monitor | `string` | `""` | no |
@@ -85,6 +88,7 @@ No modules.
 | <a name="output_sending_operations_count_id"></a> [sending\_operations\_count\_id](#output\_sending\_operations\_count\_id) | id for monitor sending\_operations\_count |
 | <a name="output_unavailable_sending_operations_count_id"></a> [unavailable\_sending\_operations\_count\_id](#output\_unavailable\_sending\_operations\_count\_id) | id for monitor unavailable\_sending\_operations\_count |
 | <a name="output_unavailable_sending_operations_ratio_id"></a> [unavailable\_sending\_operations\_ratio\_id](#output\_unavailable\_sending\_operations\_ratio\_id) | id for monitor unavailable\_sending\_operations\_ratio |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [GCP Pub/Sub Metrics](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-pubsub)

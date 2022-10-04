@@ -17,11 +17,12 @@ EOQ
   }
 
   new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   no_data_timeframe   = var.cannot_resolve_no_data_timeframe
   notify_no_data      = var.notify_no_data
   notify_audit        = false
   locked              = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
   renotify_interval   = 0

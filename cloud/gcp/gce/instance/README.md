@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Compute Engine instance Disk Throttled Bps
 - Compute Engine instance Disk Throttled OPS
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -76,9 +77,11 @@ No modules.
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_filter_tags"></a> [filter\_tags](#input\_filter\_tags) | Tags used for filtering | `string` | `"*"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds for the new host evaluation | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 
@@ -87,6 +90,7 @@ No modules.
 | <a name="output_cpu_utilization_id"></a> [cpu\_utilization\_id](#output\_cpu\_utilization\_id) | id for monitor cpu\_utilization |
 | <a name="output_disk_throttled_bps_id"></a> [disk\_throttled\_bps\_id](#output\_disk\_throttled\_bps\_id) | id for monitor disk\_throttled\_bps |
 | <a name="output_disk_throttled_ops_id"></a> [disk\_throttled\_ops\_id](#output\_disk\_throttled\_ops\_id) | id for monitor disk\_throttled\_ops |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [Datadog GCE Instance metrics](https://www.datadoghq.com/blog/monitoring-google-compute-engine-performance/#instance-metrics)

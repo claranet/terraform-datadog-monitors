@@ -18,10 +18,11 @@ EOQ
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:apigateway", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
@@ -48,6 +49,7 @@ EOQ
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
@@ -78,6 +80,7 @@ EOQ
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false

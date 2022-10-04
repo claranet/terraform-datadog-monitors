@@ -45,6 +45,7 @@ Creates all kinds of filters tags patterns depending of the monitor type and dir
 | <a name="output_query_alert"></a> [query\_alert](#output\_query\_alert) | The full filtering pattern including parentheses for service check monitor type |
 | <a name="output_service_check"></a> [service\_check](#output\_service\_check) | The full filtering pattern including braces for query alert monitor type |
 
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 Datadog API type of monitor: [https://docs.datadoghq.com/api/?lang=python#create-a-monitor](https://docs.datadoghq.com/api/?lang=python#create-a-monitor)

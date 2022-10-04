@@ -20,6 +20,7 @@ Creates DataDog monitors with the following checks:
 - SQS Age of the oldest message
 - SQS Visible messages (disabled by default)
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -64,9 +65,11 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_separator"></a> [filter\_tags\_separator](#input\_filter\_tags\_separator) | Set the filter tags separator (, or AND) | `string` | `","` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_visible_messages_enabled"></a> [visible\_messages\_enabled](#input\_visible\_messages\_enabled) | Flag to enable Number of Visible Messages monitor | `string` | `"false"` | no |
 | <a name="input_visible_messages_extra_tags"></a> [visible\_messages\_extra\_tags](#input\_visible\_messages\_extra\_tags) | Extra tags for Number of Visible Messages monitor | `list(string)` | `[]` | no |
 | <a name="input_visible_messages_message"></a> [visible\_messages\_message](#input\_visible\_messages\_message) | Custom message for Number of Visible Messages monitor | `string` | `""` | no |
@@ -81,6 +84,7 @@ Creates DataDog monitors with the following checks:
 |------|-------------|
 | <a name="output_age_of_oldest_message_id"></a> [age\_of\_oldest\_message\_id](#output\_age\_of\_oldest\_message\_id) | id for monitor age\_of\_oldest\_message |
 | <a name="output_visible_messages_id"></a> [visible\_messages\_id](#output\_visible\_messages\_id) | id for monitor visible\_messages |
+<!-- END_TF_DOCS -->
 ## Related documentation
 * [Datadog Documentation](https://docs.datadoghq.com/integrations/amazon_sqs/)
 * [Service Documentation](https://docs.aws.amazon.com/sqs/index.html)

@@ -28,6 +28,7 @@ Creates DataDog monitors with the following checks:
 - Redis memory used
 - Redis rejected connections
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -128,6 +129,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_mem_used_time_aggregator"></a> [mem\_used\_time\_aggregator](#input\_mem\_used\_time\_aggregator) | Monitor aggregator for Redis RAM memory used [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_mem_used_timeframe"></a> [mem\_used\_timeframe](#input\_mem\_used\_timeframe) | Monitor timeframe for Redis RAM memory used [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a Redis monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds for the metric evaluation | `number` | `300` | no |
 | <a name="input_not_responding_enabled"></a> [not\_responding\_enabled](#input\_not\_responding\_enabled) | Flag to enable Redis does not respond monitor | `string` | `"true"` | no |
 | <a name="input_not_responding_extra_tags"></a> [not\_responding\_extra\_tags](#input\_not\_responding\_extra\_tags) | Extra tags for Redis does not respond monitor | `list(string)` | `[]` | no |
@@ -143,6 +145,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_rejected_con_threshold_warning"></a> [rejected\_con\_threshold\_warning](#input\_rejected\_con\_threshold\_warning) | rejected connections errors limit (warning threshold) | `number` | `10` | no |
 | <a name="input_rejected_con_time_aggregator"></a> [rejected\_con\_time\_aggregator](#input\_rejected\_con\_time\_aggregator) | Monitor aggregator for Redis rejected connections errors [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_rejected_con_timeframe"></a> [rejected\_con\_timeframe](#input\_rejected\_con\_timeframe) | Monitor timeframe for Redis rejected connections errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 
@@ -158,6 +161,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_memory_used_id"></a> [memory\_used\_id](#output\_memory\_used\_id) | id for monitor memory\_used |
 | <a name="output_not_responding_id"></a> [not\_responding\_id](#output\_not\_responding\_id) | id for monitor not\_responding |
 | <a name="output_rejected_connections_id"></a> [rejected\_connections\_id](#output\_rejected\_connections\_id) | id for monitor rejected\_connections |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 [Datadog blog: How to monitor Redis](https://www.datadoghq.com/blog/how-to-monitor-redis-performance-metrics/)

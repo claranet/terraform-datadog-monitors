@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - Event Hub too many errors
 - Event Hub too many failed requests
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -73,6 +74,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
@@ -81,6 +83,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_status_message"></a> [status\_message](#input\_status\_message) | Custom message for Event Hub status monitor | `string` | `""` | no |
 | <a name="input_status_time_aggregator"></a> [status\_time\_aggregator](#input\_status\_time\_aggregator) | Monitor aggregator for Event Hub status [available values: min, max or avg] | `string` | `"max"` | no |
 | <a name="input_status_timeframe"></a> [status\_timeframe](#input\_status\_timeframe) | Monitor timeframe for Event Hub status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 
@@ -89,6 +92,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_eventhub_errors_id"></a> [eventhub\_errors\_id](#output\_eventhub\_errors\_id) | id for monitor eventhub\_errors |
 | <a name="output_eventhub_failed_requests_id"></a> [eventhub\_failed\_requests\_id](#output\_eventhub\_failed\_requests\_id) | id for monitor eventhub\_failed\_requests |
 | <a name="output_eventhub_status_id"></a> [eventhub\_status\_id](#output\_eventhub\_status\_id) | id for monitor eventhub\_status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 Datadog documentation : [https://docs.datadoghq.com/integrations/azure_event_hub/](https://docs.datadoghq.com/integrations/azure_event_hub/)

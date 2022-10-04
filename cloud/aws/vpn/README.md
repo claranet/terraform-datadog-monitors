@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 
 - VPN tunnel down
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -50,9 +51,11 @@ No modules.
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_filter_tags"></a> [filter\_tags](#input\_filter\_tags) | Tags used for metrics filtering | `string` | `"*"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_vpn_status_enabled"></a> [vpn\_status\_enabled](#input\_vpn\_status\_enabled) | Flag to enable VPN status monitor | `string` | `"true"` | no |
 | <a name="input_vpn_status_extra_tags"></a> [vpn\_status\_extra\_tags](#input\_vpn\_status\_extra\_tags) | Extra tags for VPN status monitor | `list(string)` | `[]` | no |
 | <a name="input_vpn_status_message"></a> [vpn\_status\_message](#input\_vpn\_status\_message) | Custom message for VPN status monitor | `string` | `""` | no |
@@ -65,6 +68,7 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_VPN_status_id"></a> [VPN\_status\_id](#output\_VPN\_status\_id) | id for monitor VPN\_status |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/vpn-metricscollected.html](https://docs.datadoghq.com/integrations/amazon_web_services/)

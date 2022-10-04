@@ -21,6 +21,7 @@ Creates DataDog monitors with the following checks:
 - RDS instance free space
 - RDS replica lag
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -73,6 +74,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_separator"></a> [filter\_tags\_separator](#input\_filter\_tags\_separator) | Set the filter tags separator (, or AND) | `string` | `","` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
@@ -84,6 +86,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_replicalag_threshold_warning"></a> [replicalag\_threshold\_warning](#input\_replicalag\_threshold\_warning) | replica lag in seconds (warning threshold) | `string` | `"200"` | no |
 | <a name="input_replicalag_time_aggregator"></a> [replicalag\_time\_aggregator](#input\_replicalag\_time\_aggregator) | Monitor aggregator for RDS replica lag [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_replicalag_timeframe"></a> [replicalag\_timeframe](#input\_replicalag\_timeframe) | Monitor timeframe for RDS replica lag monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 
@@ -92,6 +95,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_rds_cpu_90_15min_id"></a> [rds\_cpu\_90\_15min\_id](#output\_rds\_cpu\_90\_15min\_id) | id for monitor rds\_cpu\_90\_15min |
 | <a name="output_rds_free_space_low_id"></a> [rds\_free\_space\_low\_id](#output\_rds\_free\_space\_low\_id) | id for monitor rds\_free\_space\_low |
 | <a name="output_rds_replica_lag_id"></a> [rds\_replica\_lag\_id](#output\_rds\_replica\_lag\_id) | id for monitor rds\_replica\_lag |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_rds/](https://docs.datadoghq.com/integrations/amazon_rds/)

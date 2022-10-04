@@ -32,6 +32,7 @@ Creates DataDog monitors with the following checks:
 - IOT Hub Too many query_jobs failed
 - IOT Hub Total devices is wrong
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -150,6 +151,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_invalid_d2c_telemetry_egress_time_aggregator"></a> [invalid\_d2c\_telemetry\_egress\_time\_aggregator](#input\_invalid\_d2c\_telemetry\_egress\_time\_aggregator) | Monitor aggregator for IoT Hub invalid d2c telemetry [available values: min, max, sum or avg] | `string` | `"min"` | no |
 | <a name="input_invalid_d2c_telemetry_egress_timeframe"></a> [invalid\_d2c\_telemetry\_egress\_timeframe](#input\_invalid\_d2c\_telemetry\_egress\_timeframe) | Monitor timeframe for IoT Hub invalid d2c telemetry [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_orphaned_d2c_telemetry_egress_enabled"></a> [orphaned\_d2c\_telemetry\_egress\_enabled](#input\_orphaned\_d2c\_telemetry\_egress\_enabled) | Flag to enable IoT Hub orphaned d2c telemetry monitor | `string` | `"true"` | no |
@@ -166,6 +168,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_status_no_data_timeframe"></a> [status\_no\_data\_timeframe](#input\_status\_no\_data\_timeframe) | Number of minutes before reporting no data | `string` | `10` | no |
 | <a name="input_status_time_aggregator"></a> [status\_time\_aggregator](#input\_status\_time\_aggregator) | Monitor aggregator for IoT Hub status [available values: min, max, sum or avg] | `string` | `"max"` | no |
 | <a name="input_status_timeframe"></a> [status\_timeframe](#input\_status\_timeframe) | Monitor timeframe for IoT Hub status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_too_many_d2c_telemetry_ingress_nosent_enabled"></a> [too\_many\_d2c\_telemetry\_ingress\_nosent\_enabled](#input\_too\_many\_d2c\_telemetry\_ingress\_nosent\_enabled) | Flag to enable IoT Hub unsent d2c telemetry monitor | `string` | `"true"` | no |
 | <a name="input_too_many_d2c_telemetry_ingress_nosent_extra_tags"></a> [too\_many\_d2c\_telemetry\_ingress\_nosent\_extra\_tags](#input\_too\_many\_d2c\_telemetry\_ingress\_nosent\_extra\_tags) | Extra tags for IoT Hub unsent d2c telemetry monitor | `list(string)` | `[]` | no |
 | <a name="input_too_many_d2c_telemetry_ingress_nosent_message"></a> [too\_many\_d2c\_telemetry\_ingress\_nosent\_message](#input\_too\_many\_d2c\_telemetry\_ingress\_nosent\_message) | Custom message for IoT Hub unsent d2c telemetry monitor | `string` | `""` | no |
@@ -196,6 +199,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_too_many_list_jobs_failed_id"></a> [too\_many\_list\_jobs\_failed\_id](#output\_too\_many\_list\_jobs\_failed\_id) | id for monitor too\_many\_list\_jobs\_failed |
 | <a name="output_too_many_query_jobs_failed_id"></a> [too\_many\_query\_jobs\_failed\_id](#output\_too\_many\_query\_jobs\_failed\_id) | id for monitor too\_many\_query\_jobs\_failed |
 | <a name="output_total_devices_id"></a> [total\_devices\_id](#output\_total\_devices\_id) | id for monitor total\_devices |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure_iot_hub](https://docs.datadoghq.com/integrations/azure_iot_hub)

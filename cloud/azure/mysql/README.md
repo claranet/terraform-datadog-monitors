@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - Mysql Server memory usage
 - Mysql Server storage
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -87,9 +88,11 @@ Creates DataDog monitors with the following checks:
 | <a name="input_memory_usage_time_aggregator"></a> [memory\_usage\_time\_aggregator](#input\_memory\_usage\_time\_aggregator) | Monitor aggregator for Mysql memory [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_memory_usage_timeframe"></a> [memory\_usage\_timeframe](#input\_memory\_usage\_timeframe) | Monitor timeframe for Mysql memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_15m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 
@@ -99,6 +102,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_mysql_free_storage_id"></a> [mysql\_free\_storage\_id](#output\_mysql\_free\_storage\_id) | id for monitor mysql\_free\_storage |
 | <a name="output_mysql_io_consumption_id"></a> [mysql\_io\_consumption\_id](#output\_mysql\_io\_consumption\_id) | id for monitor mysql\_io\_consumption |
 | <a name="output_mysql_memory_usage_id"></a> [mysql\_memory\_usage\_id](#output\_mysql\_memory\_usage\_id) | id for monitor mysql\_memory\_usage |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/azure/](https://docs.datadoghq.com/integrations/azure/)

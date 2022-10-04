@@ -23,6 +23,7 @@ Creates DataDog monitors with the following checks:
 - ElasticSearch cluster free storage space
 - ElasticSearch cluster status is not green
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -80,9 +81,11 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 
@@ -91,6 +94,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_es_cluster_status_id"></a> [es\_cluster\_status\_id](#output\_es\_cluster\_status\_id) | id for monitor es\_cluster\_status |
 | <a name="output_es_cpu_90_15min_id"></a> [es\_cpu\_90\_15min\_id](#output\_es\_cpu\_90\_15min\_id) | id for monitor es\_cpu\_90\_15min |
 | <a name="output_es_free_space_low_id"></a> [es\_free\_space\_low\_id](#output\_es\_free\_space\_low\_id) | id for monitor es\_free\_space\_low |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_es/](https://docs.datadoghq.com/integrations/amazon_es/)

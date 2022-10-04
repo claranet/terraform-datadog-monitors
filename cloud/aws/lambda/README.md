@@ -22,6 +22,7 @@ Creates DataDog monitors with the following checks:
 - Lambda Number of invocations (disabled by default)
 - Lambda Percentage of errors
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -75,6 +76,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_invocations_time_aggregator"></a> [invocations\_time\_aggregator](#input\_invocations\_time\_aggregator) | Monitor aggregator for Invocations [available values: min, max or avg] | `string` | `"sum"` | no |
 | <a name="input_invocations_timeframe"></a> [invocations\_timeframe](#input\_invocations\_timeframe) | Monitor timeframe for Invocations [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_30m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_pct_errors_enabled"></a> [pct\_errors\_enabled](#input\_pct\_errors\_enabled) | Flag to enable Percentage of errors monitor | `string` | `"true"` | no |
@@ -92,6 +94,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_throttles_threshold_warning"></a> [throttles\_threshold\_warning](#input\_throttles\_threshold\_warning) | Warning threshold in number of throttles | `number` | `1` | no |
 | <a name="input_throttles_time_aggregator"></a> [throttles\_time\_aggregator](#input\_throttles\_time\_aggregator) | Monitor aggregator for Throttles [available values: min, max or avg] | `string` | `"sum"` | no |
 | <a name="input_throttles_timeframe"></a> [throttles\_timeframe](#input\_throttles\_timeframe) | Monitor timeframe for Throttles [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_1h"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 
@@ -101,6 +104,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_invocations_id"></a> [invocations\_id](#output\_invocations\_id) | id for monitor invocations |
 | <a name="output_pct_errors_id"></a> [pct\_errors\_id](#output\_pct\_errors\_id) | id for monitor pct\_errors |
 | <a name="output_throttles_id"></a> [throttles\_id](#output\_throttles\_id) | id for monitor throttles |
+<!-- END_TF_DOCS -->
 ## Related documentation
 * [Datadog Documentation](https://docs.datadoghq.com/integrations/amazon_lambda/)
 * [Service documentation](https://docs.aws.amazon.com/lambda/index.html)

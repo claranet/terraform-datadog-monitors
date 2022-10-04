@@ -24,6 +24,7 @@ Creates DataDog monitors with the following checks:
 - Elasticache max connections reached
 - Elasticache swap
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -76,6 +77,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_eviction_timeframe"></a> [eviction\_timeframe](#input\_eviction\_timeframe) | Monitor timeframe for Elasticache eviction [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_15m"` | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
+| <a name="input_filter_tags_separator"></a> [filter\_tags\_separator](#input\_filter\_tags\_separator) | Set the filter tags separator (, or AND) | `string` | `","` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_free_memory_condition_timeframe"></a> [free\_memory\_condition\_timeframe](#input\_free\_memory\_condition\_timeframe) | Monitor condition timeframe for Elasticache free memory [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_15m"` | no |
 | <a name="input_free_memory_enabled"></a> [free\_memory\_enabled](#input\_free\_memory\_enabled) | Flag to enable Elasticache free memory monitor | `string` | `"true"` | no |
@@ -90,6 +92,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_max_connection_time_aggregator"></a> [max\_connection\_time\_aggregator](#input\_max\_connection\_time\_aggregator) | Monitor aggregator for Elasticache max connection [available values: min, max or avg] | `string` | `"max"` | no |
 | <a name="input_max_connection_timeframe"></a> [max\_connection\_timeframe](#input\_max\_connection\_timeframe) | Monitor timeframe for Elasticache max connection [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_no_connection_enabled"></a> [no\_connection\_enabled](#input\_no\_connection\_enabled) | Flag to enable Elasticache no connection monitor | `string` | `"true"` | no |
 | <a name="input_no_connection_extra_tags"></a> [no\_connection\_extra\_tags](#input\_no\_connection\_extra\_tags) | Extra tags for Elasticache no connection monitor | `list(string)` | `[]` | no |
@@ -105,6 +108,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_swap_threshold_warning"></a> [swap\_threshold\_warning](#input\_swap\_threshold\_warning) | Elasticache swap warning threshold in bytes | `string` | `0` | no |
 | <a name="input_swap_time_aggregator"></a> [swap\_time\_aggregator](#input\_swap\_time\_aggregator) | Monitor aggregator for Elasticache memcached swap [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_swap_timeframe"></a> [swap\_timeframe](#input\_swap\_timeframe) | Monitor timeframe for Elasticache swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 
@@ -116,6 +120,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_elasticache_max_connection_id"></a> [elasticache\_max\_connection\_id](#output\_elasticache\_max\_connection\_id) | id for monitor elasticache\_max\_connection |
 | <a name="output_elasticache_no_connection_id"></a> [elasticache\_no\_connection\_id](#output\_elasticache\_no\_connection\_id) | id for monitor elasticache\_no\_connection |
 | <a name="output_elasticache_swap_id"></a> [elasticache\_swap\_id](#output\_elasticache\_swap\_id) | id for monitor elasticache\_swap |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 DataDog documentation: [https://docs.datadoghq.com/integrations/amazon_elasticache/](https://docs.datadoghq.com/integrations/amazon_elasticache/)

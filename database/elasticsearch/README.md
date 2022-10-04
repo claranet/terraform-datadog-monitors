@@ -40,6 +40,7 @@ Creates DataDog monitors with the following checks:
 - Elasticsearch JVM memory Young usage
 - Elasticsearch number of current open HTTP connections anomaly detected
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -210,6 +211,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_jvm_memory_young_usage_time_aggregator"></a> [jvm\_memory\_young\_usage\_time\_aggregator](#input\_jvm\_memory\_young\_usage\_time\_aggregator) | Time aggregator for the Cluster Status monitor | `string` | `"avg"` | no |
 | <a name="input_jvm_memory_young_usage_timeframe"></a> [jvm\_memory\_young\_usage\_timeframe](#input\_jvm\_memory\_young\_usage\_timeframe) | Timeframe for the Cluster Status monitor | `string` | `"last_10m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before begin to monitor new host | `number` | `300` | no |
 | <a name="input_node_free_space_enabled"></a> [node\_free\_space\_enabled](#input\_node\_free\_space\_enabled) | Flag to enable Cluster Status monitor | `string` | `"true"` | no |
 | <a name="input_node_free_space_extra_tags"></a> [node\_free\_space\_extra\_tags](#input\_node\_free\_space\_extra\_tags) | Extra tags for Cluster Status monitor | `list(string)` | `[]` | no |
@@ -264,6 +266,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_task_time_in_queue_change_time_aggregator"></a> [task\_time\_in\_queue\_change\_time\_aggregator](#input\_task\_time\_in\_queue\_change\_time\_aggregator) | Time aggregator for the Cluster Status monitor | `string` | `"avg"` | no |
 | <a name="input_task_time_in_queue_change_timeframe"></a> [task\_time\_in\_queue\_change\_timeframe](#input\_task\_time\_in\_queue\_change\_timeframe) | Timeframe for the Cluster Status monitor | `string` | `"last_10m"` | no |
 | <a name="input_task_time_in_queue_change_timeshift"></a> [task\_time\_in\_queue\_change\_timeshift](#input\_task\_time\_in\_queue\_change\_timeshift) | Timeshift for the Cluster Status monitor | `string` | `"last_10m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 
@@ -291,6 +294,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_search_query_change_id"></a> [search\_query\_change\_id](#output\_search\_query\_change\_id) | id for monitor search\_query\_change |
 | <a name="output_search_query_latency_id"></a> [search\_query\_latency\_id](#output\_search\_query\_latency\_id) | id for monitor search\_query\_latency |
 | <a name="output_task_time_in_queue_change_id"></a> [task\_time\_in\_queue\_change\_id](#output\_task\_time\_in\_queue\_change\_id) | id for monitor task\_time\_in\_queue\_change |
+<!-- END_TF_DOCS -->
 ## Related documentation
 * [Integration Datadog & ElasticSearch](https://docs.datadoghq.com/integrations/elastic/)
 * [How to monitor ElasticSearch with Datadog](https://www.datadoghq.com/blog/monitor-elasticsearch-datadog/)

@@ -23,6 +23,7 @@ Creates DataDog monitors with the following checks:
 - GCP LB Requests count increased abruptly
 - GCP LB service backend latency
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -88,6 +89,7 @@ No modules.
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_filter_tags"></a> [filter\_tags](#input\_filter\_tags) | Tags used for filtering | `string` | `"*"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
+| <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds for the new host evaluation | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
@@ -99,6 +101,7 @@ No modules.
 | <a name="input_request_count_time_aggregator"></a> [request\_count\_time\_aggregator](#input\_request\_count\_time\_aggregator) | Timeframe for the GCP LB Request Count monitor | `string` | `"sum"` | no |
 | <a name="input_request_count_timeframe"></a> [request\_count\_timeframe](#input\_request\_count\_timeframe) | Timeframe for the GCP LB Request Count monitor | `string` | `"last_5m"` | no |
 | <a name="input_request_count_timeshift"></a> [request\_count\_timeshift](#input\_request\_count\_timeshift) | Timeshift for the GCP LB Request Count monitor | `string` | `"last_5m"` | no |
+| <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
 
@@ -109,6 +112,7 @@ No modules.
 | <a name="output_error_rate_4xx_id"></a> [error\_rate\_4xx\_id](#output\_error\_rate\_4xx\_id) | id for monitor error\_rate\_4xx |
 | <a name="output_error_rate_5xx_id"></a> [error\_rate\_5xx\_id](#output\_error\_rate\_5xx\_id) | id for monitor error\_rate\_5xx |
 | <a name="output_request_count_id"></a> [request\_count\_id](#output\_request\_count\_id) | id for monitor request\_count |
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 * [GCP LB Metrics](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-loadbalancing)

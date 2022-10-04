@@ -15,6 +15,16 @@ variable "new_host_delay" {
   default     = 300
 }
 
+variable "new_group_delay" {
+  description = "Delay in seconds before monitor new resource"
+  default     = 300
+}
+
+variable "timeout_h" {
+  description = "Default auto-resolving state (in hours)"
+  default     = 0
+}
+
 variable "prefix_slug" {
   description = "Prefix string to prepend between brackets on every monitors names"
   default     = ""
@@ -48,6 +58,11 @@ variable "filter_tags_custom" {
 variable "filter_tags_custom_excluded" {
   description = "Tags excluded for custom filtering when filter_tags_use_defaults is false"
   default     = ""
+}
+
+variable "filter_tags_separator" {
+  description = "Set the filter tags separator (, or AND)"
+  default     = ","
 }
 
 # Elasticache specific

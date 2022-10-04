@@ -17,7 +17,7 @@ EOQ
 
   notify_audit = false
   locked       = false
-  timeout_h    = 0
+  timeout_h    = var.timeout_h
 
   evaluation_delay  = var.evaluation_delay
   new_host_delay    = var.new_host_delay
@@ -50,11 +50,12 @@ EOQ
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = false
   require_full_window = true
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
 
@@ -84,11 +85,12 @@ EOQ
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
   notify_no_data      = false
   require_full_window = true
   renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = 0
+  timeout_h           = var.timeout_h
   include_tags        = true
   locked              = false
 
