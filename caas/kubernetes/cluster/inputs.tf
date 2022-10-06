@@ -19,6 +19,11 @@ variable "filter_tags_custom_excluded" {
   default     = ""
 }
 
+variable "filter_tags_separator" {
+  description = "Set the filter tags separator (, or AND)"
+  default     = ","
+}
+
 variable "message" {
   description = "Message sent when a monitor is triggered"
 }
