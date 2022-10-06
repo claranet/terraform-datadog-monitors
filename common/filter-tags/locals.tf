@@ -30,7 +30,7 @@ locals {
   )
 
   std_including_string = replace("${replace(local.including_string, "${var.filter_tags_separator}", "${local.filter_tags_separator}")}", "/ +/", " ")
-  std_excluding_string = replace("${replace(local.including_string, "${var.filter_tags_separator}", "${local.filter_tags_separator}")}", "/ +/", " ")
+  std_excluding_string = replace("${replace(local.excluding_string, "${var.filter_tags_separator}", "${local.filter_tags_separator}")}", "/ +/", " ")
 
   including_string = var.filter_tags_use_defaults == "true" ? join(local.filter_tags_separator, local.including_default_list) : join(local.filter_tags_separator, local.including_custom_list)
   excluding_string = join(local.filter_tags_separator, local.excluding_list)
