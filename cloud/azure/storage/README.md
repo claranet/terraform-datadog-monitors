@@ -76,6 +76,7 @@ Creates DataDog monitors with the following checks:
 | <a name="module_filter-tags-client-other-error-blob"></a> [filter-tags-client-other-error-blob](#module\_filter-tags-client-other-error-blob) | ../../../common/filter-tags | n/a |
 | <a name="module_filter-tags-network-error"></a> [filter-tags-network-error](#module\_filter-tags-network-error) | ../../../common/filter-tags | n/a |
 | <a name="module_filter-tags-server-other-error"></a> [filter-tags-server-other-error](#module\_filter-tags-server-other-error) | ../../../common/filter-tags | n/a |
+| <a name="module_filter-tags-status"></a> [filter-tags-status](#module\_filter-tags-status) | ../../../common/filter-tags | n/a |
 | <a name="module_filter-tags-success"></a> [filter-tags-success](#module\_filter-tags-success) | ../../../common/filter-tags | n/a |
 | <a name="module_filter-tags-success-blob"></a> [filter-tags-success-blob](#module\_filter-tags-success-blob) | ../../../common/filter-tags | n/a |
 | <a name="module_filter-tags-throttling-error"></a> [filter-tags-throttling-error](#module\_filter-tags-throttling-error) | ../../../common/filter-tags | n/a |

@@ -43,6 +43,7 @@ Creates DataDog monitors with the following checks:
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_filter-tags"></a> [filter-tags](#module\_filter-tags) | ../../../common/filter-tags | n/a |
+| <a name="module_filter-tags-status"></a> [filter-tags-status](#module\_filter-tags-status) | ../../../common/filter-tags | n/a |
 
 ## Resources
 

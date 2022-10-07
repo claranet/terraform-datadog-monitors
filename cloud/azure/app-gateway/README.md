@@ -50,6 +50,7 @@ Creates DataDog monitors with the following checks:
 | <a name="module_filter-tags-5xx-error"></a> [filter-tags-5xx-error](#module\_filter-tags-5xx-error) | ../../../common/filter-tags | n/a |
 | <a name="module_filter-tags-backend-4xx-error"></a> [filter-tags-backend-4xx-error](#module\_filter-tags-backend-4xx-error) | ../../../common/filter-tags | n/a |
 | <a name="module_filter-tags-backend-5xx-error"></a> [filter-tags-backend-5xx-error](#module\_filter-tags-backend-5xx-error) | ../../../common/filter-tags | n/a |
+| <a name="module_filter-tags-status"></a> [filter-tags-status](#module\_filter-tags-status) | ../../../common/filter-tags | n/a |
 
 ## Resources
 

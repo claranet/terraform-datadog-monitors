@@ -41,6 +41,7 @@ Creates DataDog monitors with the following checks:
 |------|--------|---------|
 | <a name="module_filter-tags"></a> [filter-tags](#module\_filter-tags) | ../../../common/filter-tags | n/a |
 | <a name="module_filter-tags-activity"></a> [filter-tags-activity](#module\_filter-tags-activity) | ../../../common/filter-tags | n/a |
+| <a name="module_filter-tags-status"></a> [filter-tags-status](#module\_filter-tags-status) | ../../../common/filter-tags | n/a |
 | <a name="module_filter-tags-statuscode"></a> [filter-tags-statuscode](#module\_filter-tags-statuscode) | ../../../common/filter-tags | n/a |
 
 ## Resources
