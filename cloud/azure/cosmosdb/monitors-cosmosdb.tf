@@ -38,16 +38,16 @@ resource "datadog_monitor" "cosmos_db_4xx_requests" {
   # List of available status codes : https://docs.microsoft.com/en-us/rest/api/cosmos-db/http-status-codes-for-cosmosdb
   query = <<EOQ
     ${var.cosmos_db_4xx_request_time_aggregator}(${var.cosmos_db_4xx_request_timeframe}): default( (
-      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "400")} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0) +
-      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "401")} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0) +
-      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "403")} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0) +
-      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "404")} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0) +
-      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "408")} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0) +
-      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "409")} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0) +
-      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "412")} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0) +
-      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "413")} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0) +
-      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "429")} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0) +
-      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "449")} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0) ) /
+      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "400")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
+      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "401")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
+      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "403")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
+      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "404")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
+      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "408")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
+      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "409")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
+      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "412")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
+      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "413")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
+      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "429")} by {resource_group,region,name,collectionname}.as_rate(), 0) +
+      default(sum:azure.cosmosdb.total_requests${format(module.filter-tags-statuscode.query_alert, "449")} by {resource_group,region,name,collectionname}.as_rate(), 0) ) /
       default(sum:azure.cosmosdb.total_requests${module.filter-tags.query_alert} by {resource_group,region,name,databasename,collectionname}.as_rate(), 0)
     , 0) * 100 > ${var.cosmos_db_4xx_request_rate_threshold_critical}
 EOQ
