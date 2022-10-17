@@ -71,6 +71,11 @@ variable "filter_tags_custom_excluded" {
   default     = ""
 }
 
+variable "filter_tags_separator" {
+  description = "Set the filter tags separator (, or AND)"
+  default     = ","
+}
+
 #Ingress
 
 variable "ingress_5xx_enabled" {

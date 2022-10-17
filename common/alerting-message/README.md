@@ -4,11 +4,11 @@
 
 ```
 module "datadog-message-alerting" {
-  source            = "git::ssh://git@bitbucket.org/morea/terraform.feature.datadog.git//common/alerting-message?ref={revision}"
+  source  = "claranet/monitors/datadog//common/alerting-message"
 
-  message_alert      = "${var.oncall_24x7}"
-  message_warning    = "${var.oncall_business_hours}"
-  message_nodata     = "${var.oncall_nodata}"
+  message_alert      = var.oncall_24x7
+  message_warning    = var.oncall_business_hours
+  message_nodata     = var.oncall_nodata
 }
 ```
 
