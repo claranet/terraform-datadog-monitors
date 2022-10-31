@@ -25,7 +25,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-memcached", "team:claranet", "created-by:terraform", "engine:memcached"], var.get_hits_extra_tags)
@@ -57,7 +56,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache-memcached", "team:claranet", "created-by:terraform", "engine:memcached"], var.cpu_high_extra_tags)

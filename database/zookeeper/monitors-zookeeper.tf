@@ -18,7 +18,6 @@ EOQ
   new_group_delay     = var.new_group_delay
   notify_no_data      = var.not_responding_notify_no_data
   notify_audit        = false
-  locked              = false
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
@@ -51,7 +50,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:zookeeper", "resource:zookeeper", "team:claranet", "created-by:terraform"], var.zookeeper_latency_availability_extra_tags)

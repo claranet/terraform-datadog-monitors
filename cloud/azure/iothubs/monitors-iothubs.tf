@@ -26,7 +26,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_jobs_rate_extra_tags)
@@ -60,7 +59,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_listjobs_rate_extra_tags)
@@ -94,7 +92,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_queryjobs_rate_extra_tags)
@@ -121,7 +118,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.status_extra_tags)
@@ -147,7 +143,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.total_devices_extra_tags)
@@ -181,7 +176,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_c2d_methods_rate_extra_tags)
@@ -215,7 +209,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_c2d_twin_read_rate_extra_tags)
@@ -249,7 +242,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_c2d_twin_update_rate_extra_tags)
@@ -283,7 +275,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_d2c_twin_read_rate_extra_tags)
@@ -317,7 +308,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.failed_d2c_twin_update_rate_extra_tags)
@@ -353,7 +343,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.dropped_d2c_telemetry_egress_extra_tags)
@@ -389,7 +378,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.orphaned_d2c_telemetry_egress_extra_tags)
@@ -425,7 +413,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.invalid_d2c_telemetry_egress_extra_tags)
@@ -458,7 +445,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:iothubs", "team:claranet", "created-by:terraform"], var.too_many_d2c_telemetry_ingress_nosent_extra_tags)

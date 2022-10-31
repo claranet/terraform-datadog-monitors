@@ -24,7 +24,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds-aurora-postgresql", "team:claranet", "created-by:terraform"], var.aurora_replicalag_extra_tags)

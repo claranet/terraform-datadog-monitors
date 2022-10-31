@@ -22,7 +22,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform"], var.cpu_extra_tags)
@@ -52,7 +51,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:system-core", "resource:generic", "team:claranet", "created-by:terraform"], var.load_extra_tags)
@@ -82,7 +80,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"], var.disk_space_extra_tags)
@@ -115,7 +112,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
@@ -149,7 +145,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:disk", "resource:generic", "team:claranet", "created-by:terraform"], var.disk_inodes_extra_tags)
@@ -181,7 +176,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:system-check", "resource:generic", "team:claranet", "created-by:terraform"], var.memory_extra_tags)

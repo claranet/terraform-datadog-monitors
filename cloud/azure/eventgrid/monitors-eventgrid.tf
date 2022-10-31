@@ -19,7 +19,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventgrid", "team:claranet", "created-by:terraform"], var.no_successful_message_rate_extra_tags)
@@ -54,7 +53,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventgrid", "team:claranet", "created-by:terraform"], var.failed_messages_rate_extra_tags)
@@ -89,7 +87,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventgrid", "team:claranet", "created-by:terraform"], var.unmatched_events_rate_extra_tags)

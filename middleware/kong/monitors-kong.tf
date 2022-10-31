@@ -21,7 +21,6 @@ EOQ
   no_data_timeframe   = var.not_responding_no_data_timeframe
   notify_no_data      = var.notify_no_data
   notify_audit        = false
-  locked              = false
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
@@ -56,7 +55,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:middleware", "provider:kong", "resource:kong", "team:claranet", "created-by:terraform"], var.treatment_limit_extra_tags)
