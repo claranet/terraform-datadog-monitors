@@ -21,7 +21,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:system", "provider:host", "resource:unreachable", "team:claranet", "created-by:terraform"], var.unreachable_extra_tags)

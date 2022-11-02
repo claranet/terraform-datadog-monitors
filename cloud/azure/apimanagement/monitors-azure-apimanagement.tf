@@ -21,7 +21,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:apimanagement", "team:claranet", "created-by:terraform"], var.status_extra_tags)
@@ -52,7 +51,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
   renotify_interval   = 0
 
@@ -84,7 +82,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
   renotify_interval   = 0
 
@@ -116,7 +113,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
   renotify_interval   = 0
 
@@ -150,7 +146,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
   renotify_interval   = 0
 

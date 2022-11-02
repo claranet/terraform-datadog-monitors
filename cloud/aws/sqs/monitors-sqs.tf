@@ -24,7 +24,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:sqs", "team:claranet", "created-by:terraform"], var.visible_messages_extra_tags)
@@ -56,7 +55,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:sqs", "team:claranet", "created-by:terraform"], var.age_of_oldest_message_extra_tags)

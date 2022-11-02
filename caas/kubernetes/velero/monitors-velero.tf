@@ -22,7 +22,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_scheduled_backup_missing_extra_tags)
@@ -52,7 +51,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_backup_failure_extra_tags)
@@ -82,7 +80,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_backup_partial_failure_extra_tags)
@@ -112,7 +109,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_backup_deletion_failure_extra_tags)
@@ -142,7 +138,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_volume_snapshot_failure_extra_tags)

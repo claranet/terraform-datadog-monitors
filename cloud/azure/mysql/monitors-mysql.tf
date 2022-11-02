@@ -23,7 +23,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:mysql", "team:claranet", "created-by:terraform"], var.cpu_usage_extra_tags)
@@ -54,7 +53,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:mysql", "team:claranet", "created-by:terraform"], var.free_storage_extra_tags)
@@ -85,7 +83,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:mysql", "team:claranet", "created-by:terraform"], var.io_consumption_extra_tags)
@@ -116,7 +113,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:mysql", "team:claranet", "created-by:terraform"], var.memory_usage_extra_tags)

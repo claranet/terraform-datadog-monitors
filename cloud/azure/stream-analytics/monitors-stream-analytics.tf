@@ -19,7 +19,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.status_extra_tags)
@@ -45,7 +44,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   monitor_thresholds {
@@ -82,7 +80,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.failed_function_requests_extra_tags)
@@ -113,7 +110,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.conversion_errors_extra_tags)
@@ -144,7 +140,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 1
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.runtime_errors_extra_tags)

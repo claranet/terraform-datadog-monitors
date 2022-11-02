@@ -23,7 +23,6 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:beanstalk", "team:claranet", "created-by:terraform"], var.health_extra_tags)
 }
@@ -51,7 +50,6 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:beanstalk", "team:claranet", "created-by:terraform"], var.application_latency_p90_extra_tags)
 }
@@ -79,7 +77,6 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:beanstalk", "team:claranet", "created-by:terraform"], var.application_5xx_error_rate_extra_tags)
 }
@@ -107,7 +104,6 @@ EOQ
   timeout_h           = var.root_filesystem_usage_timeout_h
   include_tags        = true
   require_full_window = false
-  locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:beanstalk", "team:claranet", "created-by:terraform"], var.root_filesystem_usage_extra_tags)
 }

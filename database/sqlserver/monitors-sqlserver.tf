@@ -21,7 +21,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:database", "provider:sqlserver", "resource:sqlserver", "team:claranet", "created-by:terraform"], var.sqlserver_availability_extra_tags)

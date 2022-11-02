@@ -16,7 +16,6 @@ EOQ
   }
 
   notify_audit = false
-  locked       = false
   timeout_h    = var.timeout_h
 
   evaluation_delay  = var.evaluation_delay
@@ -57,7 +56,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs_fargate", "team:claranet", "created-by:terraform"], var.cpu_utilization_extra_tags)
 
@@ -92,7 +90,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs_fargate", "team:claranet", "created-by:terraform"], var.memory_utilization_extra_tags)
 

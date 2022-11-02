@@ -21,7 +21,6 @@ EOQ
   no_data_timeframe   = var.not_responding_no_data_timeframe
   notify_no_data      = var.notify_no_data
   notify_audit        = false
-  locked              = false
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
@@ -55,7 +54,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:docker", "provider:docker", "resource:docker", "team:claranet", "created-by:terraform"], var.memory_used_extra_tags)

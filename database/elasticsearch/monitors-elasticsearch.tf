@@ -21,7 +21,6 @@ EOQ
   new_group_delay     = var.new_group_delay
   notify_no_data      = var.notify_no_data
   notify_audit        = false
-  locked              = false
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
@@ -55,7 +54,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -87,7 +85,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -119,7 +116,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -151,7 +147,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -187,7 +182,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -219,7 +213,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -251,7 +244,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -283,7 +275,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -318,7 +309,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -353,7 +343,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -389,7 +378,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -425,7 +413,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -470,7 +457,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -506,7 +492,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -542,7 +527,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -574,7 +558,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -606,7 +589,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -639,7 +621,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -672,7 +653,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -705,7 +685,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
@@ -737,7 +716,6 @@ EOQ
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
-  locked              = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false

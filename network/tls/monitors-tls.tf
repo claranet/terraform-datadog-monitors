@@ -21,7 +21,6 @@ EOQ
   no_data_timeframe   = var.cannot_connect_no_data_timeframe
   notify_no_data      = var.notify_no_data
   notify_audit        = false
-  locked              = false
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
@@ -52,7 +51,6 @@ EOQ
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   notify_audit        = false
-  locked              = false
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
@@ -83,7 +81,6 @@ EOQ
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   notify_audit        = false
-  locked              = false
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
@@ -121,7 +118,6 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  locked              = false
   require_full_window = true
 
   tags = concat(["env:${var.environment}", "type:network", "provider:tls", "resource:tls-certificate", "team:claranet", "created-by:terraform"], var.certificate_expiration_date_extra_tags)
