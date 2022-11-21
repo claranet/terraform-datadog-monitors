@@ -5,7 +5,7 @@ resource "datadog_monitor" "job" {
   type    = "service check"
 
   query = <<EOQ
-    "kubernetes_state.job.complete"${module.filter-tags.service_check}.by("job_name").last(6).count_by_status()
+    "kubernetes_state.job.complete"${module.filter-tags.service_check}.by("kube_job").last(6).count_by_status()
 EOQ
 
   monitor_thresholds {
