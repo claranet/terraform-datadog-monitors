@@ -408,3 +408,9 @@ variable "appgateway_backend_http_5xx_errors_threshold_warning" {
   default     = 80
   description = "Warning regarding acceptable percent of 5xx error"
 }
+
+variable "minimum_traffic" {
+  description = "Minimum traffic to have for requests status alerts to avoid false triggering."
+  type        = number
+  default     = 20
+}
