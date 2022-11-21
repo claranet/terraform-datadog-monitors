@@ -290,3 +290,8 @@ variable "status_timeframe" {
   default     = "last_5m"
 }
 
+variable "minimum_traffic" {
+  description = "Minimum traffic to have for requests status alerts to avoid false triggering."
+  type        = number
+  default     = 20
+}

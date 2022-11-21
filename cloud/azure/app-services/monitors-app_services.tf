@@ -67,8 +67,8 @@ resource "datadog_monitor" "appservices_http_5xx_errors_count" {
 
   query = <<EOQ
     ${var.http_5xx_requests_time_aggregator}(${var.http_5xx_requests_timeframe}): (
-      default(avg:azure.app_services.http5xx${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 0) /
-      default(avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 1)
+      default(avg:azure.app_services.http5xx${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
+      clamp_min(default(avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1), ${var.minimum_traffic})
     ) * 100 > ${var.http_5xx_requests_threshold_critical}
 EOQ
 
@@ -98,8 +98,8 @@ resource "datadog_monitor" "appservices_http_4xx_errors_count" {
 
   query = <<EOQ
     ${var.http_4xx_requests_time_aggregator}(${var.http_4xx_requests_timeframe}): (
-      default(avg:azure.app_services.http4xx${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 0) /
-      default(avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 1)
+      default(avg:azure.app_services.http4xx${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
+      clamp_min(default(avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1), ${var.minimum_traffic})
     ) * 100 > ${var.http_4xx_requests_threshold_critical}
 EOQ
 
@@ -130,9 +130,9 @@ resource "datadog_monitor" "appservices_http_success_status_rate" {
   query = <<EOQ
     ${var.http_successful_requests_time_aggregator}(${var.http_successful_requests_timeframe}):
     default( (
-      (default(avg:azure.app_services.http2xx${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 0) +
-       default(avg:azure.app_services.http3xx${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 0) ) /
-      default(avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name,instance}.as_rate(), 0)
+      (clamp_min(default(avg:azure.app_services.http2xx${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0), ${var.minimum_traffic}) +
+       clamp_min(default(avg:azure.app_services.http3xx${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0), ${var.minimum_traffic}) ) /
+      default(avg:azure.app_services.requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0)
     ) * 100, 100) < ${var.http_successful_requests_threshold_critical}
 EOQ
 
@@ -180,4 +180,3 @@ EOQ
   tags                = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.status_extra_tags)
 
 }
-
