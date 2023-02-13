@@ -450,3 +450,9 @@ variable "status_extra_tags" {
   type        = list(string)
   default     = []
 }
+
+variable "minimum_traffic" {
+  description = "Minimum traffic to have for requests status alerts to avoid false triggering."
+  type        = number
+  default     = 20
+}
