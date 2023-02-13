@@ -35,7 +35,7 @@ resource "datadog_monitor" "apimgt_failed_requests" {
   query = <<EOQ
     ${var.failed_requests_time_aggregator}(${var.failed_requests_timeframe}): (
       default(avg:azure.apimanagement_service.failed_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
-      default(avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
+      clamp_min(default(avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1), ${var.minimum_traffic})
     ) * 100 > ${var.failed_requests_threshold_critical}
 EOQ
 
@@ -66,7 +66,7 @@ resource "datadog_monitor" "apimgt_other_requests" {
   query = <<EOQ
     ${var.other_requests_time_aggregator}(${var.other_requests_timeframe}): (
       default(avg:azure.apimanagement_service.other_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
-      default(avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
+      clamp_min(default(avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1), ${var.minimum_traffic})
     ) * 100 > ${var.other_requests_threshold_critical}
 EOQ
 
@@ -97,7 +97,7 @@ resource "datadog_monitor" "apimgt_unauthorized_requests" {
   query = <<EOQ
     ${var.unauthorized_requests_time_aggregator}(${var.unauthorized_requests_timeframe}): (
       default(avg:azure.apimanagement_service.unauthorized_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 0) /
-      default(avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1)
+      clamp_min(default(avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), 1), ${var.minimum_traffic})
     ) * 100 > ${var.unauthorized_requests_threshold_critical}
 EOQ
 
@@ -128,7 +128,7 @@ resource "datadog_monitor" "apimgt_successful_requests" {
   query = <<EOQ
     ${var.successful_requests_time_aggregator}(${var.successful_requests_timeframe}):
     default(
-      avg:azure.apimanagement_service.successful_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate() /
+      clamp_min(avg:azure.apimanagement_service.successful_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate(), ${var.minimum_traffic}) /
       avg:azure.apimanagement_service.total_requests${module.filter-tags.query_alert} by {resource_group,region,name}.as_rate()
       * 100
     , 100) < ${var.successful_requests_threshold_critical}

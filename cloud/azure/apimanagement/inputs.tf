@@ -252,3 +252,8 @@ variable "successful_requests_threshold_warning" {
   default     = 30
 }
 
+variable "minimum_traffic" {
+  description = "Minimum traffic to have for requests status alerts to avoid false triggering."
+  type        = number
+  default     = 20
+}
