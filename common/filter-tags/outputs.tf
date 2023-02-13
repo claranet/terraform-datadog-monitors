@@ -16,5 +16,5 @@ output "service_check" {
 # event_alert = tags:tag:val,tag2:val2 excluded_tags:excludedtag:value,exludedtag2:value2
 output "event_alert" {
   description = "The full filtering pattern for event alert monitor type"
-  value       = "tags:(${local.std_including_string})${local.std_excluding_string == "" ? "" : " excluded_tags:(${local.std_excluding_string})"}"
+  value       = "${local.event_including_string}${local.event_excluding_string == "" ? "" : local.event_excluding_string}"
 }
