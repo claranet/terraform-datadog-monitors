@@ -84,3 +84,30 @@ EOQ
   tags = concat(["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform"], var.postgresql_lock_extra_tags)
 }
 
+resource "datadog_monitor" "postgresql_disk_queue_depth" {
+  count   = var.postgresql_disk_queue_enabled ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] PostgreSQL disk queue depth {{#is_alert}}{{{comparator}}} {{threshold}} ({{value}}){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ({{value}}){{/is_warning}}"
+  message = coalesce(var.postgresql_disk_queue_message, var.message)
+  type    = "query alert"
+
+  query = <<EOQ
+    ${var.postgresql_disk_queue_aggregator}(${var.postgresql_disk_queue_timeframe}):
+      default(avg:aws.rds.disk_queue_depth${module.filter-tags.query_alert} by {server}, 0)
+    > ${var.postgresql_disk_queue_threshold_critical}
+EOQ
+
+  monitor_thresholds {
+    warning  = var.postgresql_disk_queue_threshold_warning
+    critical = var.postgresql_disk_queue_threshold_critical
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  require_full_window = true
+  timeout_h           = 0
+  include_tags        = true
+
+  tags = concat(["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform"], var.postgresql_disk_queue_extra_tags)
+}

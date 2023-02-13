@@ -17,6 +17,7 @@ module "datadog-monitors-cloud-aws-rds-common" {
 
 Creates DataDog monitors with the following checks:
 
+- RDS connection variance
 - RDS instance CPU high
 - RDS instance free space
 - RDS replica lag
@@ -45,6 +46,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Type |
 |------|------|
+| [datadog_monitor.rds_connection_variance](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 | [datadog_monitor.rds_cpu_90_15min](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 | [datadog_monitor.rds_free_space_low](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 | [datadog_monitor.rds_replica_lag](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
@@ -53,6 +55,13 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_connection_variance_enabled"></a> [connection\_variance\_enabled](#input\_connection\_variance\_enabled) | Flag to enable RDS connection variance monitor | `bool` | `true` | no |
+| <a name="input_connection_variance_extra_tags"></a> [connection\_variance\_extra\_tags](#input\_connection\_variance\_extra\_tags) | Extra tags for RDS connection variance monitor | `list(string)` | `[]` | no |
+| <a name="input_connection_variance_message"></a> [connection\_variance\_message](#input\_connection\_variance\_message) | Custom message for RDS CPU usage monitor | `string` | `""` | no |
+| <a name="input_connection_variance_threshold_critical"></a> [connection\_variance\_threshold\_critical](#input\_connection\_variance\_threshold\_critical) | replica lag in seconds (critical threshold) | `string` | `"1"` | no |
+| <a name="input_connection_variance_threshold_warning"></a> [connection\_variance\_threshold\_warning](#input\_connection\_variance\_threshold\_warning) | connection variance (warning threshold) | `string` | `"0"` | no |
+| <a name="input_connection_variance_time_aggregator"></a> [connection\_variance\_time\_aggregator](#input\_connection\_variance\_time\_aggregator) | Monitor aggregator for connection variance [available values: min, max or avg] | `string` | `"avg"` | no |
+| <a name="input_connection_variance_timeframe"></a> [connection\_variance\_timeframe](#input\_connection\_variance\_timeframe) | Monitor timeframe for RDS connection variance monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_4h"` | no |
 | <a name="input_cpu_enabled"></a> [cpu\_enabled](#input\_cpu\_enabled) | Flag to enable RDS CPU usage monitor | `string` | `"true"` | no |
 | <a name="input_cpu_extra_tags"></a> [cpu\_extra\_tags](#input\_cpu\_extra\_tags) | Extra tags for RDS CPU usage monitor | `list(string)` | `[]` | no |
 | <a name="input_cpu_message"></a> [cpu\_message](#input\_cpu\_message) | Custom message for RDS CPU usage monitor | `string` | `""` | no |
@@ -92,6 +101,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description |
 |------|-------------|
+| <a name="output_rds_connection_variance_id"></a> [rds\_connection\_variance\_id](#output\_rds\_connection\_variance\_id) | id for monitor rds\_connection\_variance |
 | <a name="output_rds_cpu_90_15min_id"></a> [rds\_cpu\_90\_15min\_id](#output\_rds\_cpu\_90\_15min\_id) | id for monitor rds\_cpu\_90\_15min |
 | <a name="output_rds_free_space_low_id"></a> [rds\_free\_space\_low\_id](#output\_rds\_free\_space\_low\_id) | id for monitor rds\_free\_space\_low |
 | <a name="output_rds_replica_lag_id"></a> [rds\_replica\_lag\_id](#output\_rds\_replica\_lag\_id) | id for monitor rds\_replica\_lag |
