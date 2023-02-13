@@ -165,10 +165,10 @@ resource "datadog_monitor" "unregister_net_device" {
   count   = var.unregister_net_device_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Frequent unregister net device"
   message = coalesce(var.unregister_net_device_message, var.message)
-  type    = "event alert"
+  type    = "event-v2 alert"
 
   query = <<EOQ
-    events('sources:kubernetes priority:all ${module.filter-tags.event_alert} \"UnregisterNetDevice\"').rollup('count').last('${var.unregister_net_device_timeframe}') > ${var.unregister_net_device_threshold_critical}
+    events(\"sources:kubernetes priority:all ${module.filter-tags.event_alert} \\\"UnregisterNetDevice\\\"\").rollup(\"count\").last(\"${var.unregister_net_device_timeframe}\") > ${var.unregister_net_device_threshold_critical}
 EOQ
 
   new_host_delay    = var.new_host_delay
