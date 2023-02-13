@@ -167,12 +167,9 @@ resource "datadog_monitor" "unregister_net_device" {
   message = coalesce(var.unregister_net_device_message, var.message)
   type    = "event-v2 alert"
 
-  query = <<EOQ
-    events(\"sources:kubernetes priority:all ${module.filter-tags.event_alert} \\\"UnregisterNetDevice\\\"\").rollup(\"count\").last(\"${var.unregister_net_device_timeframe}\") > ${var.unregister_net_device_threshold_critical}
-EOQ
+  query = "events(\"sources:kubernetes ${module.filter-tags.event_alert} \"UnregisterNetDevice\"\").rollup(\"count\").last(\"${var.unregister_net_device_timeframe}\") >= ${var.unregister_net_device_threshold_critical}"
 
   new_host_delay    = var.new_host_delay
-  new_group_delay   = var.new_group_delay
   notify_no_data    = false
   renotify_interval = 0
   notify_audit      = false
@@ -272,4 +269,3 @@ EOQ
 
   tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.volume_inodes_extra_tags)
 }
-
