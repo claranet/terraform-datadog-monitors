@@ -89,3 +89,37 @@ EOQ
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform"], var.replicalag_extra_tags)
 }
+
+resource "datadog_monitor" "rds_connection_variance" {
+  count   = var.connection_variance_enabled ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] RDS connection variance {{#is_alert}}{{{comparator}}} {{threshold}} ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}} ms ({{value}}ms){{/is_warning}}"
+  message = coalesce(var.connection_variance_message, var.message)
+  type    = "query alert"
+
+  query = <<EOQ
+  ${var.connection_variance_time_aggregator}(${var.connection_variance_timeframe}): (
+    anomalies(avg:aws.rds.database_connections${module.filter-tags.query_alert} by {dbinstanceidentifier}, 'agile', 1, 
+      direction='both', 
+      alert_window='last_15m', 
+      interval=60, 
+      count_default_zero='true',
+      seasonality='weekly')
+  ) > ${var.connection_variance_threshold_critical}
+EOQ
+
+  monitor_thresholds {
+    warning  = var.connection_variance_threshold_warning
+    critical = var.connection_variance_threshold_critical
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  notify_audit        = false
+  timeout_h           = 0
+  include_tags        = true
+  locked              = false
+  require_full_window = false
+
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform"], var.connection_variance_extra_tags)
+}

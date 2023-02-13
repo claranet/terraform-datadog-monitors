@@ -1,3 +1,8 @@
+output "rds_connection_variance_id" {
+  description = "id for monitor rds_connection_variance"
+  value       = datadog_monitor.rds_connection_variance.*.id
+}
+
 output "rds_cpu_90_15min_id" {
   description = "id for monitor rds_cpu_90_15min"
   value       = datadog_monitor.rds_cpu_90_15min.*.id

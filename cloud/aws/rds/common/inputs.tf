@@ -186,3 +186,42 @@ variable "replicalag_threshold_critical" {
   description = "replica lag in seconds (critical threshold)"
   default     = "300"
 }
+
+variable "connection_variance_enabled" {
+  description = "Flag to enable RDS connection variance monitor"
+  type        = bool
+  default     = true
+}
+
+variable "connection_variance_timeframe" {
+  description = "Monitor timeframe for RDS connection variance monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_4h"
+}
+
+variable "connection_variance_threshold_warning" {
+  description = "connection variance (warning threshold)"
+  default     = "0"
+}
+
+variable "connection_variance_threshold_critical" {
+  description = "replica lag in seconds (critical threshold)"
+  default     = "1"
+}
+
+variable "connection_variance_extra_tags" {
+  description = "Extra tags for RDS connection variance monitor"
+  type        = list(string)
+  default     = []
+}
+variable "connection_variance_message" {
+  description = "Custom message for RDS CPU usage monitor"
+  type        = string
+  default     = ""
+}
+
+variable "connection_variance_time_aggregator" {
+  description = "Monitor aggregator for connection variance [available values: min, max or avg]"
+  type        = string
+  default     = "avg"
+}

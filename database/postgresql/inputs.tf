@@ -176,3 +176,46 @@ variable "postgresql_lock_timeframe" {
   default     = "last_5m"
 }
 
+#################################
+###   PostgreSQL disk queue   ###
+#################################
+
+variable "postgresql_disk_queue_aggregator" {
+  description = "Monitor time aggregator for PostgreSQL disk queue depth [available values: min, max or avg]"
+  type        = string
+  default     = "avg"
+}
+
+variable "postgresql_disk_queue_timeframe" {
+  description = "Monitor timeframe for PostgreSQL disk queue depth [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_15m"
+}
+
+variable "postgresql_disk_queue_threshold_critical" {
+  default     = 64
+  description = "Maximum critical acceptable number of locks"
+}
+
+variable "postgresql_disk_queue_threshold_warning" {
+  default     = 48
+  description = "Maximum warning acceptable number of disk queue"
+}
+
+variable "postgresql_disk_queue_enabled" {
+  description = "Flag to enable PostgreSQL disk queue"
+  type        = bool
+  default     = true
+}
+
+variable "postgresql_disk_queue_extra_tags" {
+  description = "Extra tags for PostgreSQL lock connects monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "postgresql_disk_queue_message" {
+  description = "Custom message for PostgreSQL disk queue monitor"
+  type        = string
+  default     = ""
+}
