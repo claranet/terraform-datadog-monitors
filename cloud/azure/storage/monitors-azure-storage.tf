@@ -4,7 +4,7 @@ resource "datadog_monitor" "storage_status" {
   message = coalesce(var.status_message, var.message)
 
   query = <<EOQ
-    ${var.status_time_aggregator}(${var.status_timeframe}):avg:azure.storage.count${module.filter-tags.query_alert} by {resource_group,region,name} < 1
+    ${var.status_time_aggregator}(${var.status_timeframe}):avg:azure.storage.count${module.filter-tags-status.query_alert} by {resource_group,region,name} < 1
 EOQ
 
 

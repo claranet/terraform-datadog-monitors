@@ -6,7 +6,7 @@ resource "datadog_monitor" "status" {
 
   query = <<EOQ
     ${var.status_time_aggregator}(${var.status_timeframe}): (
-      avg:azure.web_serverfarms.count${module.filter-tags.query_alert} by {resource_group,region,name}
+      avg:azure.web_serverfarms.count${module.filter-tags-status.query_alert} by {resource_group,region,name}
     ) != 1
 EOQ
 
