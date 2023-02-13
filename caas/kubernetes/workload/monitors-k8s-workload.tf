@@ -89,10 +89,10 @@ resource "datadog_monitor" "replica_ready" {
   type    = "query alert"
 
   query = <<EOQ
-    ${var.replica_available_time_aggregator}(${var.replica_available_timeframe}):
+    ${var.replica_ready_time_aggregator}(${var.replica_ready_timeframe}):
       max:kubernetes_state.replicaset.replicas_desired${module.filter-tags.query_alert} by {${local.replica_group_by}} -
       max:kubernetes_state.replicaset.replicas_ready${module.filter-tags.query_alert} by {${local.replica_group_by}}
-    + 1 < ${var.replica_available_threshold_critical}
+    + 1 < ${var.replica_ready_threshold_critical}
 EOQ
 
   monitor_thresholds {
@@ -119,10 +119,10 @@ resource "datadog_monitor" "replica_current" {
   type    = "query alert"
 
   query = <<EOQ
-    ${var.replica_available_time_aggregator}(${var.replica_available_timeframe}):
+    ${var.replica_current_time_aggregator}(${var.replica_current_timeframe}):
       max:kubernetes_state.replicaset.replicas_desired${module.filter-tags.query_alert} by {${local.replica_group_by}} -
       max:kubernetes_state.replicaset.replicas${module.filter-tags.query_alert} by {${local.replica_group_by}}
-    + 1 < ${var.replica_available_threshold_critical}
+    + 1 < ${var.replica_current_threshold_critical}
 EOQ
 
   monitor_thresholds {
