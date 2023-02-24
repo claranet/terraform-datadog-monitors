@@ -70,7 +70,7 @@ variable "filter_tags_separator" {
 # Service checks
 variable "service_check_enabled" {
   type        = bool
-  description = "Flag to enable monitor "
+  description = "Flag to enable monitor"
   default     = true
 }
 
