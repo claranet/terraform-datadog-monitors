@@ -205,7 +205,7 @@ variable "connection_variance_threshold_warning" {
 }
 
 variable "connection_variance_threshold_critical" {
-  description = "replica lag in seconds (critical threshold)"
+  description = "connection variance (critical threshold)"
   default     = "1"
 }
 
@@ -215,7 +215,7 @@ variable "connection_variance_extra_tags" {
   default     = []
 }
 variable "connection_variance_message" {
-  description = "Custom message for RDS CPU usage monitor"
+  description = "Custom message for RDS connection variance monitor"
   type        = string
   default     = ""
 }

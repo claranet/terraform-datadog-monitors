@@ -118,7 +118,6 @@ EOQ
   notify_audit        = false
   timeout_h           = 0
   include_tags        = true
-  locked              = false
   require_full_window = false
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds", "team:claranet", "created-by:terraform"], var.connection_variance_extra_tags)
