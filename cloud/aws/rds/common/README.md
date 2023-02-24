@@ -57,8 +57,8 @@ Creates DataDog monitors with the following checks:
 |------|-------------|------|---------|:--------:|
 | <a name="input_connection_variance_enabled"></a> [connection\_variance\_enabled](#input\_connection\_variance\_enabled) | Flag to enable RDS connection variance monitor | `bool` | `true` | no |
 | <a name="input_connection_variance_extra_tags"></a> [connection\_variance\_extra\_tags](#input\_connection\_variance\_extra\_tags) | Extra tags for RDS connection variance monitor | `list(string)` | `[]` | no |
-| <a name="input_connection_variance_message"></a> [connection\_variance\_message](#input\_connection\_variance\_message) | Custom message for RDS CPU usage monitor | `string` | `""` | no |
-| <a name="input_connection_variance_threshold_critical"></a> [connection\_variance\_threshold\_critical](#input\_connection\_variance\_threshold\_critical) | replica lag in seconds (critical threshold) | `string` | `"1"` | no |
+| <a name="input_connection_variance_message"></a> [connection\_variance\_message](#input\_connection\_variance\_message) | Custom message for RDS connection variance monitor | `string` | `""` | no |
+| <a name="input_connection_variance_threshold_critical"></a> [connection\_variance\_threshold\_critical](#input\_connection\_variance\_threshold\_critical) | connection variance (critical threshold) | `string` | `"1"` | no |
 | <a name="input_connection_variance_threshold_warning"></a> [connection\_variance\_threshold\_warning](#input\_connection\_variance\_threshold\_warning) | connection variance (warning threshold) | `string` | `"0"` | no |
 | <a name="input_connection_variance_time_aggregator"></a> [connection\_variance\_time\_aggregator](#input\_connection\_variance\_time\_aggregator) | Monitor aggregator for connection variance [available values: min, max or avg] | `string` | `"avg"` | no |
 | <a name="input_connection_variance_timeframe"></a> [connection\_variance\_timeframe](#input\_connection\_variance\_timeframe) | Monitor timeframe for RDS connection variance monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_4h"` | no |
