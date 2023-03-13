@@ -88,7 +88,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_replica_current_threshold_critical"></a> [replica\_current\_threshold\_critical](#input\_replica\_current\_threshold\_critical) | Current replica critical threshold | `number` | `1` | no |
 | <a name="input_replica_current_time_aggregator"></a> [replica\_current\_time\_aggregator](#input\_replica\_current\_time\_aggregator) | Monitor aggregator for Current replica [available values: min, max or avg] | `string` | `"max"` | no |
 | <a name="input_replica_current_timeframe"></a> [replica\_current\_timeframe](#input\_replica\_current\_timeframe) | Monitor timeframe for Current replica [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_15m"` | no |
-| <a name="input_replica_group_by"></a> [replica\_group\_by](#input\_replica\_group\_by) | Select group by element on monitors | `list` | <pre>[<br>  "namespace",<br>  "replicaset"<br>]</pre> | no |
+| <a name="input_replica_group_by"></a> [replica\_group\_by](#input\_replica\_group\_by) | Select group by element on monitors | `list` | <pre>[<br>  "namespace",<br>  "replicaset",<br>  "kube_cluster_name"<br>]</pre> | no |
 | <a name="input_replica_ready_enabled"></a> [replica\_ready\_enabled](#input\_replica\_ready\_enabled) | Flag to enable Ready replica monitor | `string` | `"true"` | no |
 | <a name="input_replica_ready_extra_tags"></a> [replica\_ready\_extra\_tags](#input\_replica\_ready\_extra\_tags) | Extra tags for Ready replica monitor | `list(string)` | `[]` | no |
 | <a name="input_replica_ready_message"></a> [replica\_ready\_message](#input\_replica\_ready\_message) | Custom message for Ready replica monitor | `string` | `""` | no |

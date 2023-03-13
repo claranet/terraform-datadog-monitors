@@ -6,8 +6,8 @@ resource "datadog_monitor" "nginx_ingress_too_many_5xx" {
 
   query = <<EOQ
     ${var.ingress_5xx_time_aggregator}(${var.ingress_5xx_timeframe}): default(
-      sum:nginx_ingress.nginx_upstream_responses_total${module.filter-tags-5xx.query_alert} by {upstream,ingress_class}.as_rate() /
-      (sum:nginx_ingress.nginx_upstream_requests_total${module.filter-tags.query_alert} by {upstream,ingress_class}.as_rate() + ${var.artificial_requests_count})
+      sum:nginx_ingress.nginx_upstream_responses_total${module.filter-tags-5xx.query_alert} by {upstream,ingress_class,kube_cluster_name}.as_rate() /
+      (sum:nginx_ingress.nginx_upstream_requests_total${module.filter-tags.query_alert} by {upstream,ingress_class,kube_cluster_name}.as_rate() + ${var.artificial_requests_count})
       * 100, 0) > ${var.ingress_5xx_threshold_critical}
 EOQ
 
@@ -37,8 +37,8 @@ resource "datadog_monitor" "nginx_ingress_too_many_4xx" {
 
   query = <<EOQ
     ${var.ingress_4xx_time_aggregator}(${var.ingress_4xx_timeframe}): default(
-    sum:nginx_ingress.nginx_upstream_responses_total${module.filter-tags-4xx.query_alert} by {upstream,ingress_class}.as_rate() /
-    (sum:nginx_ingress.nginx_upstream_requests_total${module.filter-tags.query_alert} by {upstream,ingress_class}.as_rate() + ${var.artificial_requests_count})
+    sum:nginx_ingress.nginx_upstream_responses_total${module.filter-tags-4xx.query_alert} by {upstream,ingress_class,kube_cluster_name}.as_rate() /
+    (sum:nginx_ingress.nginx_upstream_requests_total${module.filter-tags.query_alert} by {upstream,ingress_class,kube_cluster_name}.as_rate() + ${var.artificial_requests_count})
     * 100, 0) > ${var.ingress_4xx_threshold_critical}
 EOQ
 
