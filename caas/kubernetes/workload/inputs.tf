@@ -214,7 +214,7 @@ variable "replica_current_threshold_critical" {
 }
 
 variable "replica_group_by" {
-  default     = ["namespace", "replicaset"]
+  default     = ["namespace", "replicaset", "kube_cluster_name"]
   description = "Select group by element on monitors"
 }
 
