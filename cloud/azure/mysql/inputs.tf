@@ -51,6 +51,12 @@ variable "filter_tags_custom" {
 
 # Azure Databases for MySQL Servers specific variables
 
+variable "server_type" {
+  description = "Mysql Server Type on Azure [available values: single, flexible]"
+  type        = string
+  default     = "single"
+}
+
 variable "cpu_usage_enabled" {
   description = "Flag to enable Mysql status monitor"
   type        = string

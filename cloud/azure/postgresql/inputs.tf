@@ -57,6 +57,12 @@ variable "filter_tags_custom" {
 
 # Azure Databases for PostgreSQL Servers specific variables
 
+variable "server_type" {
+  description = "PostgreSQL Server Type on Azure [available values: single, flexible]"
+  type        = string
+  default     = "single"
+}
+
 variable "cpu_usage_enabled" {
   description = "Flag to enable PostgreSQL status monitor"
   type        = string
@@ -168,7 +174,7 @@ variable "free_storage_threshold_critical" {
 }
 
 variable "io_consumption_enabled" {
-  description = "Flag to enable PostgreSQL status monitor"
+  description = "Flag to enable PostgreSQL status monitor (only working when `server_type` is `single`)"
   type        = string
   default     = "true"
 }

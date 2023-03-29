@@ -57,6 +57,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_server_type"></a> [server\_type](#input\_server\_type) | PostgreSQL Server Type on Azure [available values: single, flexible] | `string` | `"single"` | no |
 | <a name="input_cpu_usage_enabled"></a> [cpu\_usage\_enabled](#input\_cpu\_usage\_enabled) | Flag to enable PostgreSQL status monitor | `string` | `"true"` | no |
 | <a name="input_cpu_usage_extra_tags"></a> [cpu\_usage\_extra\_tags](#input\_cpu\_usage\_extra\_tags) | Extra tags for PostgreSQL status monitor | `list(string)` | `[]` | no |
 | <a name="input_cpu_usage_message"></a> [cpu\_usage\_message](#input\_cpu\_usage\_message) | Custom message for PostgreSQL CPU monitor | `string` | `""` | no |
@@ -75,7 +76,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_free_storage_threshold_warning"></a> [free\_storage\_threshold\_warning](#input\_free\_storage\_threshold\_warning) | PostgreSQL Free Storage remaining in percent (warning threshold) | `string` | `"20"` | no |
 | <a name="input_free_storage_time_aggregator"></a> [free\_storage\_time\_aggregator](#input\_free\_storage\_time\_aggregator) | Monitor aggregator for PostgreSQL Free Storage [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_free_storage_timeframe"></a> [free\_storage\_timeframe](#input\_free\_storage\_timeframe) | Monitor timeframe for PostgreSQL Free Storage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_15m"` | no |
-| <a name="input_io_consumption_enabled"></a> [io\_consumption\_enabled](#input\_io\_consumption\_enabled) | Flag to enable PostgreSQL status monitor | `string` | `"true"` | no |
+| <a name="input_io_consumption_enabled"></a> [io\_consumption\_enabled](#input\_io\_consumption\_enabled) | Flag to enable PostgreSQL status monitor (only working when `server_type` is `single`) | `string` | `"true"` | no |
 | <a name="input_io_consumption_extra_tags"></a> [io\_consumption\_extra\_tags](#input\_io\_consumption\_extra\_tags) | Extra tags for PostgreSQL status monitor | `list(string)` | `[]` | no |
 | <a name="input_io_consumption_message"></a> [io\_consumption\_message](#input\_io\_consumption\_message) | Custom message for PostgreSQL IO consumption monitor | `string` | `""` | no |
 | <a name="input_io_consumption_threshold_critical"></a> [io\_consumption\_threshold\_critical](#input\_io\_consumption\_threshold\_critical) | PostgreSQL IO consumption in percent (critical threshold) | `string` | `"90"` | no |

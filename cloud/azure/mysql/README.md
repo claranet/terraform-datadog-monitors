@@ -55,6 +55,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_server_type"></a> [server\_type](#input\_server\_type) | Mysql Server Type on Azure [available values: single, flexible] | `string` | `"single"` | no |
 | <a name="input_cpu_usage_enabled"></a> [cpu\_usage\_enabled](#input\_cpu\_usage\_enabled) | Flag to enable Mysql status monitor | `string` | `"true"` | no |
 | <a name="input_cpu_usage_extra_tags"></a> [cpu\_usage\_extra\_tags](#input\_cpu\_usage\_extra\_tags) | Extra tags for Mysql status monitor | `list(string)` | `[]` | no |
 | <a name="input_cpu_usage_message"></a> [cpu\_usage\_message](#input\_cpu\_usage\_message) | Custom message for Mysql CPU monitor | `string` | `""` | no |

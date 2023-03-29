@@ -6,7 +6,7 @@ resource "datadog_monitor" "mysql_cpu_usage" {
 
   query = <<EOQ
     ${var.cpu_usage_time_aggregator}(${var.cpu_usage_timeframe}): (
-      avg:azure.dbformysql_servers.cpu_percent${module.filter-tags.query_alert} by {resource_group,region,name}
+      avg:azure.${local.metric_namespace}.cpu_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.cpu_usage_threshold_critical}
 EOQ
 
@@ -36,7 +36,7 @@ resource "datadog_monitor" "mysql_free_storage" {
 
   query = <<EOQ
     ${var.free_storage_time_aggregator}(${var.free_storage_timeframe}): (
-      100 - avg:azure.dbformysql_servers.storage_percent${module.filter-tags.query_alert} by {resource_group,region,name}
+      100 - avg:azure.${local.metric_namespace}.storage_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) < ${var.free_storage_threshold_critical}
 EOQ
 
@@ -66,7 +66,7 @@ resource "datadog_monitor" "mysql_io_consumption" {
 
   query = <<EOQ
     ${var.io_consumption_time_aggregator}(${var.io_consumption_timeframe}): (
-      avg:azure.dbformysql_servers.io_consumption_percent${module.filter-tags.query_alert} by {resource_group,region,name}
+      avg:azure.${local.metric_namespace}.io_consumption_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.io_consumption_threshold_critical}
 EOQ
 
@@ -96,7 +96,7 @@ resource "datadog_monitor" "mysql_memory_usage" {
 
   query = <<EOQ
     ${var.memory_usage_time_aggregator}(${var.memory_usage_timeframe}): (
-      avg:azure.dbformysql_servers.memory_percent${module.filter-tags.query_alert} by {resource_group,region,name}
+      avg:azure.${local.metric_namespace}.memory_percent${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.memory_usage_threshold_critical}
 EOQ
 
