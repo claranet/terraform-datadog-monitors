@@ -61,6 +61,10 @@ variable "server_type" {
   description = "PostgreSQL Server Type on Azure [available values: single, flexible]"
   type        = string
   default     = "single"
+  validation {
+    condition     = contains(["single", "flexible"], var.server_type)
+    error_message = "PostgreSQL Server Type should be `single` or `flexible`"
+  }
 }
 
 variable "cpu_usage_enabled" {
