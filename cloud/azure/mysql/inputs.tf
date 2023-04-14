@@ -57,7 +57,7 @@ variable "server_type" {
   default     = "single"
   validation {
     condition     = contains(["single", "flexible"], var.server_type)
-    error_message = "Mysql Server Type should be `single` or `flexible`"
+    error_message = "Mysql Server Type should be `single` or `flexible`."
   }
 }
 
