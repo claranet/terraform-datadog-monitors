@@ -17,11 +17,11 @@ module "datadog-monitors-cloud-azure-postgresql" {
 
 Creates DataDog monitors with the following checks:
 
-- Postgresql Server CPU usage
-- Postgresql Server has no connection
-- Postgresql Server IO consumption
-- Postgresql Server memory usage
-- Postgresql Server storage
+- Postgresql ${title(var.server_type)} Server CPU usage
+- Postgresql ${title(var.server_type)} Server has no connection
+- Postgresql ${title(var.server_type)} Server IO consumption
+- Postgresql ${title(var.server_type)} Server memory usage
+- Postgresql ${title(var.server_type)} Server storage
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -57,7 +57,6 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_server_type"></a> [server\_type](#input\_server\_type) | PostgreSQL Server Type on Azure [available values: single, flexible] | `string` | `"single"` | no |
 | <a name="input_cpu_usage_enabled"></a> [cpu\_usage\_enabled](#input\_cpu\_usage\_enabled) | Flag to enable PostgreSQL status monitor | `string` | `"true"` | no |
 | <a name="input_cpu_usage_extra_tags"></a> [cpu\_usage\_extra\_tags](#input\_cpu\_usage\_extra\_tags) | Extra tags for PostgreSQL status monitor | `list(string)` | `[]` | no |
 | <a name="input_cpu_usage_message"></a> [cpu\_usage\_message](#input\_cpu\_usage\_message) | Custom message for PostgreSQL CPU monitor | `string` | `""` | no |
@@ -101,6 +100,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_postgresql_no_connection_no_data_timeframe"></a> [postgresql\_no\_connection\_no\_data\_timeframe](#input\_postgresql\_no\_connection\_no\_data\_timeframe) | Number of minutes before reporting no data | `string` | `10` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_server_type"></a> [server\_type](#input\_server\_type) | PostgreSQL Server Type on Azure [available values: single, flexible] | `string` | `"single"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
