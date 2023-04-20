@@ -17,11 +17,11 @@ module "datadog-monitors-cloud-azure-postgresql" {
 
 Creates DataDog monitors with the following checks:
 
-- Postgresql Server CPU usage
-- Postgresql Server has no connection
-- Postgresql Server IO consumption
-- Postgresql Server memory usage
-- Postgresql Server storage
+- Postgresql ${title(var.server_type)} Server CPU usage
+- Postgresql ${title(var.server_type)} Server has no connection
+- Postgresql ${title(var.server_type)} Server IO consumption
+- Postgresql ${title(var.server_type)} Server memory usage
+- Postgresql ${title(var.server_type)} Server storage
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -75,7 +75,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_free_storage_threshold_warning"></a> [free\_storage\_threshold\_warning](#input\_free\_storage\_threshold\_warning) | PostgreSQL Free Storage remaining in percent (warning threshold) | `string` | `"20"` | no |
 | <a name="input_free_storage_time_aggregator"></a> [free\_storage\_time\_aggregator](#input\_free\_storage\_time\_aggregator) | Monitor aggregator for PostgreSQL Free Storage [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_free_storage_timeframe"></a> [free\_storage\_timeframe](#input\_free\_storage\_timeframe) | Monitor timeframe for PostgreSQL Free Storage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_15m"` | no |
-| <a name="input_io_consumption_enabled"></a> [io\_consumption\_enabled](#input\_io\_consumption\_enabled) | Flag to enable PostgreSQL status monitor | `string` | `"true"` | no |
+| <a name="input_io_consumption_enabled"></a> [io\_consumption\_enabled](#input\_io\_consumption\_enabled) | Flag to enable PostgreSQL status monitor (only working when `server_type` is `single`) | `string` | `"true"` | no |
 | <a name="input_io_consumption_extra_tags"></a> [io\_consumption\_extra\_tags](#input\_io\_consumption\_extra\_tags) | Extra tags for PostgreSQL status monitor | `list(string)` | `[]` | no |
 | <a name="input_io_consumption_message"></a> [io\_consumption\_message](#input\_io\_consumption\_message) | Custom message for PostgreSQL IO consumption monitor | `string` | `""` | no |
 | <a name="input_io_consumption_threshold_critical"></a> [io\_consumption\_threshold\_critical](#input\_io\_consumption\_threshold\_critical) | PostgreSQL IO consumption in percent (critical threshold) | `string` | `"90"` | no |
@@ -100,6 +100,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_postgresql_no_connection_no_data_timeframe"></a> [postgresql\_no\_connection\_no\_data\_timeframe](#input\_postgresql\_no\_connection\_no\_data\_timeframe) | Number of minutes before reporting no data | `string` | `10` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_server_type"></a> [server\_type](#input\_server\_type) | PostgreSQL Server Type on Azure [available values: single, flexible] | `string` | `"single"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
