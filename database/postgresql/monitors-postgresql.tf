@@ -111,3 +111,31 @@ EOQ
 
   tags = concat(["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform"], var.postgresql_disk_queue_extra_tags)
 }
+
+resource "datadog_monitor" "postgresql_replication_delay" {
+  count   = var.postgresql_replication_delay_enabled ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] PostgreSQL replication delay on {{host}}:{{port}}"
+  message = coalesce(var.postgresql_replication_delay_message, var.message)
+  type    = "query alert"
+
+  query = <<EOQ
+    ${var.postgresql_replication_delay_aggregator}(${var.postgresql_replication_delay_timeframe}):
+      avg:postgresql.replication_delay${module.filter-tags.query_alert} by {server,port}
+    > ${var.postgresql_replication_delay_threshold_critical}
+EOQ
+
+  monitor_thresholds {
+    warning  = var.postgresql_replication_delay_threshold_warning
+    critical = var.postgresql_replication_delay_threshold_critical
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  notify_no_data      = false
+  renotify_interval   = 0
+  require_full_window = true
+  timeout_h           = 0
+  include_tags        = true
+
+  tags = concat(["env:${var.environment}", "type:database", "provider:postgres", "resource:postgresql", "team:claranet", "created-by:terraform"], var.postgresql_replication_delay_extra_tags)
+}

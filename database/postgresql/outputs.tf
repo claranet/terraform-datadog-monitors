@@ -13,6 +13,11 @@ output "postgresql_disk_queue_depth_id" {
   value       = datadog_monitor.postgresql_disk_queue_depth.*.id
 }
 
+output "postgresql_replication_delay_id" {
+  description = "id for monitor postgresql_replication_delay"
+  value       = datadog_monitor.postgresql_replication_delay.*.id
+}
+
 output "postgresql_too_many_locks_id" {
   description = "id for monitor postgresql_too_many_locks"
   value       = datadog_monitor.postgresql_too_many_locks.*.id

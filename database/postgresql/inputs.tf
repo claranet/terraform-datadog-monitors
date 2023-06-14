@@ -219,3 +219,47 @@ variable "postgresql_disk_queue_message" {
   type        = string
   default     = ""
 }
+
+########################################
+###   PostgreSQL replication delay   ###
+########################################
+
+variable "postgresql_replication_delay_aggregator" {
+  description = "Monitor time aggregator for PostgreSQL replication delay [available values: min, max or avg]"
+  type        = string
+  default     = "avg"
+}
+
+variable "postgresql_replication_delay_timeframe" {
+  description = "Monitor timeframe for PostgreSQL replication delay [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_15m"
+}
+
+variable "postgresql_replication_delay_threshold_critical" {
+  default     = 200
+  description = "Critical threshold in seconds"
+}
+
+variable "postgresql_replication_delay_threshold_warning" {
+  default     = 100
+  description = "Warning threshold in seconds"
+}
+
+variable "postgresql_replication_delay_enabled" {
+  description = "Flag to enable PostgreSQL replication delay monitor"
+  type        = bool
+  default     = true
+}
+
+variable "postgresql_replication_delay_extra_tags" {
+  description = "Extra tags for PostgreSQL replication delay monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "postgresql_replication_delay_message" {
+  description = "Custom message for PostgreSQL replication delay monitor"
+  type        = string
+  default     = ""
+}
