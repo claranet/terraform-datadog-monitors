@@ -120,7 +120,7 @@ resource "datadog_monitor" "postgresql_replication_delay" {
 
   query = <<EOQ
     ${var.postgresql_replication_delay_aggregator}(${var.postgresql_replication_delay_timeframe}):
-      avg:postgresql.replication_delay${module.filter-tags.query_alert} by {server,port}
+      avg:postgresql.replication_delay${module.filter-tags.query_alert} by {host,port}
     > ${var.postgresql_replication_delay_threshold_critical}
 EOQ
 
