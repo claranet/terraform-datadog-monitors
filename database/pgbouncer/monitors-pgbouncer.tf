@@ -5,7 +5,7 @@ resource "datadog_monitor" "pgbouncer_availability" {
   type    = "service check"
 
   query = <<EOQ
-    "pgbouncer.can_connect"${module.filter-tags.service_check}.by("host","port","db").last(6).count_by_status()
+    "pgbouncer.can_connect"${module.filter-tags.service_check}.by("host","db").last(6).count_by_status()
 EOQ
 
   monitor_thresholds {
@@ -34,7 +34,7 @@ resource "datadog_monitor" "pgbouncer_pool_connection_limit" {
 
   query = <<EOQ
     ${var.pgbouncer_pool_connection_limit_time_aggregator}(${var.pgbouncer_pool_connection_limit_timeframe}):
-      avg:pgbouncer.pools.cl_active${module.filter-tags.query_alert} by {host,port,db}
+      avg:pgbouncer.pools.cl_active${module.filter-tags.query_alert} by {host,db}
     > ${var.pgbouncer_pool_connection_limit_threshold_critical}
 EOQ
 
