@@ -13,3 +13,8 @@ output "pgbouncer_pool_connection_limit_id" {
   value       = datadog_monitor.pgbouncer_pool_connection_limit.*.id
 }
 
+output "pgbouncer_wait_time_id" {
+  description = "id for monitor pgbouncer_wait_time"
+  value       = datadog_monitor.pgbouncer_wait_time.*.id
+}
+

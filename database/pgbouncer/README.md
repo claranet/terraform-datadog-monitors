@@ -20,6 +20,7 @@ Creates DataDog monitors with the following checks:
 - PGBouncer database connection limit
 - PGBouncer does not respond
 - PGBouncer pool connection limit
+- PGBouncer wait time
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -48,6 +49,7 @@ Creates DataDog monitors with the following checks:
 | [datadog_monitor.pgbouncer_availability](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 | [datadog_monitor.pgbouncer_database_connection_limit](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 | [datadog_monitor.pgbouncer_pool_connection_limit](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
+| [datadog_monitor.pgbouncer_wait_time](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 
 ## Inputs
 
@@ -81,6 +83,13 @@ Creates DataDog monitors with the following checks:
 | <a name="input_pgbouncer_pool_connection_limit_threshold_warning"></a> [pgbouncer\_pool\_connection\_limit\_threshold\_warning](#input\_pgbouncer\_pool\_connection\_limit\_threshold\_warning) | Warning number of connections limit monitor | `number` | `70` | no |
 | <a name="input_pgbouncer_pool_connection_limit_time_aggregator"></a> [pgbouncer\_pool\_connection\_limit\_time\_aggregator](#input\_pgbouncer\_pool\_connection\_limit\_time\_aggregator) | Monitor time aggregator for PGBouncer connection monitor [available values: min, max or avg] | `string` | `"avg"` | no |
 | <a name="input_pgbouncer_pool_connection_limit_timeframe"></a> [pgbouncer\_pool\_connection\_limit\_timeframe](#input\_pgbouncer\_pool\_connection\_limit\_timeframe) | Monitor timeframe for PGBouncer connection monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_pgbouncer_wait_time_enabled"></a> [pgbouncer\_wait\_time\_enabled](#input\_pgbouncer\_wait\_time\_enabled) | Flag to enable PGBouncer wait time monitor | `bool` | `true` | no |
+| <a name="input_pgbouncer_wait_time_extra_tags"></a> [pgbouncer\_wait\_time\_extra\_tags](#input\_pgbouncer\_wait\_time\_extra\_tags) | Extra tags for PGBouncer wait time monitor | `list(string)` | `[]` | no |
+| <a name="input_pgbouncer_wait_time_message"></a> [pgbouncer\_wait\_time\_message](#input\_pgbouncer\_wait\_time\_message) | Custom message for PGBouncer connection monitor | `string` | `""` | no |
+| <a name="input_pgbouncer_wait_time_threshold_critical"></a> [pgbouncer\_wait\_time\_threshold\_critical](#input\_pgbouncer\_wait\_time\_threshold\_critical) | Critical number in μs of wait time monitor | `number` | `100000` | no |
+| <a name="input_pgbouncer_wait_time_threshold_warning"></a> [pgbouncer\_wait\_time\_threshold\_warning](#input\_pgbouncer\_wait\_time\_threshold\_warning) | Warning number in μs of wait time monitor | `number` | `70000` | no |
+| <a name="input_pgbouncer_wait_time_time_aggregator"></a> [pgbouncer\_wait\_time\_time\_aggregator](#input\_pgbouncer\_wait\_time\_time\_aggregator) | Monitor time aggregator for PGBouncer connection monitor [available values: min, max or avg] | `string` | `"avg"` | no |
+| <a name="input_pgbouncer_wait_time_timeframe"></a> [pgbouncer\_wait\_time\_timeframe](#input\_pgbouncer\_wait\_time\_timeframe) | Monitor timeframe for PGBouncer connection monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
@@ -91,6 +100,7 @@ Creates DataDog monitors with the following checks:
 | <a name="output_pgbouncer_availability_id"></a> [pgbouncer\_availability\_id](#output\_pgbouncer\_availability\_id) | id for monitor pgbouncer\_availability |
 | <a name="output_pgbouncer_database_connection_limit_id"></a> [pgbouncer\_database\_connection\_limit\_id](#output\_pgbouncer\_database\_connection\_limit\_id) | id for monitor pgbouncer\_database\_connection\_limit |
 | <a name="output_pgbouncer_pool_connection_limit_id"></a> [pgbouncer\_pool\_connection\_limit\_id](#output\_pgbouncer\_pool\_connection\_limit\_id) | id for monitor pgbouncer\_pool\_connection\_limit |
+| <a name="output_pgbouncer_wait_time_id"></a> [pgbouncer\_wait\_time\_id](#output\_pgbouncer\_wait\_time\_id) | id for monitor pgbouncer\_wait\_time |
 <!-- END_TF_DOCS -->
 ## Related documentation
 

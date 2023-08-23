@@ -175,3 +175,47 @@ variable "pgbouncer_database_connection_limit_timeframe" {
   type        = string
   default     = "last_5m"
 }
+
+###############################
+###   PGBouncer wait time   ###
+###############################
+
+variable "pgbouncer_wait_time_threshold_critical" {
+  default     = 100000
+  description = "Critical number in μs of wait time monitor"
+}
+
+variable "pgbouncer_wait_time_threshold_warning" {
+  default     = 70000
+  description = "Warning number in μs of wait time monitor"
+}
+
+variable "pgbouncer_wait_time_enabled" {
+  description = "Flag to enable PGBouncer wait time monitor"
+  type        = bool
+  default     = true
+}
+
+variable "pgbouncer_wait_time_extra_tags" {
+  description = "Extra tags for PGBouncer wait time monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "pgbouncer_wait_time_message" {
+  description = "Custom message for PGBouncer connection monitor"
+  type        = string
+  default     = ""
+}
+
+variable "pgbouncer_wait_time_time_aggregator" {
+  description = "Monitor time aggregator for PGBouncer connection monitor [available values: min, max or avg]"
+  type        = string
+  default     = "avg"
+}
+
+variable "pgbouncer_wait_time_timeframe" {
+  description = "Monitor timeframe for PGBouncer connection monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_5m"
+}
