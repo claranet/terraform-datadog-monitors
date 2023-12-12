@@ -64,7 +64,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_conversion_errors_threshold_warning"></a> [conversion\_errors\_threshold\_warning](#input\_conversion\_errors\_threshold\_warning) | Conversion errors limit (warning threshold) | `number` | `0` | no |
 | <a name="input_conversion_errors_time_aggregator"></a> [conversion\_errors\_time\_aggregator](#input\_conversion\_errors\_time\_aggregator) | Monitor aggregator for Stream Analytics conversion errors [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_conversion_errors_timeframe"></a> [conversion\_errors\_timeframe](#input\_conversion\_errors\_timeframe) | Monitor timeframe for Stream Analytics conversion errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_failed_function_requests_enabled"></a> [failed\_function\_requests\_enabled](#input\_failed\_function\_requests\_enabled) | Flag to enable Stream Analytics failed requests monitor | `string` | `"true"` | no |
 | <a name="input_failed_function_requests_extra_tags"></a> [failed\_function\_requests\_extra\_tags](#input\_failed\_function\_requests\_extra\_tags) | Extra tags for Stream Analytics failed requests monitor | `list(string)` | `[]` | no |
@@ -101,6 +101,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_su_utilization_threshold_warning"></a> [su\_utilization\_threshold\_warning](#input\_su\_utilization\_threshold\_warning) | Streaming Unit utilization rate limit (warning threshold) | `number` | `80` | no |
 | <a name="input_su_utilization_time_aggregator"></a> [su\_utilization\_time\_aggregator](#input\_su\_utilization\_time\_aggregator) | Monitor aggregator for Stream Analytics utilization [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_su_utilization_timeframe"></a> [su\_utilization\_timeframe](#input\_su\_utilization\_timeframe) | Monitor timeframe for Stream Analytics utilization [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:azure",<br>  "resource:stream-analytics"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs

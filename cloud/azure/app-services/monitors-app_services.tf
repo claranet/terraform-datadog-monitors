@@ -25,7 +25,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.response_time_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.response_time_extra_tags)
 }
 
 # Monitoring App Services memory usage
@@ -55,7 +55,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.memory_usage_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.memory_usage_extra_tags)
 }
 
 # Monitoring App Services 5xx errors percent
@@ -86,7 +86,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.http_5xx_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.http_5xx_requests_extra_tags)
 }
 
 # Monitoring App Services 4xx errors percent
@@ -117,7 +117,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.http_4xx_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.http_4xx_requests_extra_tags)
 }
 
 # Monitoring App Services HTTP 2xx & 3xx status pages percent
@@ -150,7 +150,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.http_successful_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.http_successful_requests_extra_tags)
 }
 
 # Monitoring App Services status

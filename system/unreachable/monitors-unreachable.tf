@@ -23,6 +23,6 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:system", "provider:host", "resource:unreachable", "team:claranet", "created-by:terraform"], var.unreachable_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.unreachable_extra_tags)
 }
 

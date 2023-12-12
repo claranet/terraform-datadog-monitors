@@ -1,7 +1,7 @@
-# Global Terraform
-variable "environment" {
-  description = "Architecture environment"
-  type        = string
+# Global variables
+variable "tags" {
+  type    = list(string)
+  default = ["type:cloud", "provider:azure", "resource:postgresql"]
 }
 
 # Global DataDog

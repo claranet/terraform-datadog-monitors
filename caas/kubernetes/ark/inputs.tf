@@ -1,9 +1,10 @@
-# Datadog global variables
-
-variable "environment" {
-  description = "Architecture environment"
+# Global variables
+variable "tags" {
+  type    = list(string)
+  default = ["type:caas", "provider:prometheus", "resource:ark"]
 }
 
+# Global DataDog
 variable "filter_tags_use_defaults" {
   description = "Use default filter tags convention"
   default     = "true"
@@ -54,7 +55,6 @@ variable "notify_no_data" {
 }
 
 # Datadog monitors variables
-
 variable "ark_schedules_monitor_message" {
   description = "Custom message for Ark schedules monitor"
   type        = string
@@ -83,4 +83,3 @@ variable "ark_schedules_monitor_no_data_timeframe" {
   description = "No data timeframe in minutes"
   default     = 2880
 }
-

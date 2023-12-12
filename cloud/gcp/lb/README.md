@@ -69,7 +69,7 @@ No modules.
 | <a name="input_backend_latency_service_threshold_warning"></a> [backend\_latency\_service\_threshold\_warning](#input\_backend\_latency\_service\_threshold\_warning) | Latency in milliseconds (warning threshold) | `string` | `1000` | no |
 | <a name="input_backend_latency_service_time_aggregator"></a> [backend\_latency\_service\_time\_aggregator](#input\_backend\_latency\_service\_time\_aggregator) | Timeframe for the GCP LB Backend Latency monitor | `string` | `"min"` | no |
 | <a name="input_backend_latency_service_timeframe"></a> [backend\_latency\_service\_timeframe](#input\_backend\_latency\_service\_timeframe) | Timeframe for the GCP LB Backend Latency monitor | `string` | `"last_10m"` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_error_rate_4xx_artificial_request"></a> [error\_rate\_4xx\_artificial\_request](#input\_error\_rate\_4xx\_artificial\_request) | Divisor Delta for the GCP LB 4XX Errors monitor | `string` | `5` | no |
 | <a name="input_error_rate_4xx_enabled"></a> [error\_rate\_4xx\_enabled](#input\_error\_rate\_4xx\_enabled) | Flag to enable GCP LB 4XX Errors monitor | `string` | `"true"` | no |
 | <a name="input_error_rate_4xx_extra_tags"></a> [error\_rate\_4xx\_extra\_tags](#input\_error\_rate\_4xx\_extra\_tags) | Extra tags for GCP LB 4XX Errors monitor | `list(string)` | `[]` | no |
@@ -101,6 +101,8 @@ No modules.
 | <a name="input_request_count_time_aggregator"></a> [request\_count\_time\_aggregator](#input\_request\_count\_time\_aggregator) | Timeframe for the GCP LB Request Count monitor | `string` | `"sum"` | no |
 | <a name="input_request_count_timeframe"></a> [request\_count\_timeframe](#input\_request\_count\_timeframe) | Timeframe for the GCP LB Request Count monitor | `string` | `"last_5m"` | no |
 | <a name="input_request_count_timeshift"></a> [request\_count\_timeshift](#input\_request\_count\_timeshift) | Timeshift for the GCP LB Request Count monitor | `string` | `"last_5m"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:gcp",<br>  "resource:lb"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs

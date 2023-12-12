@@ -51,7 +51,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `15` | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
@@ -64,6 +64,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_not_responding_notify_no_data"></a> [not\_responding\_notify\_no\_data](#input\_not\_responding\_notify\_no\_data) | Send notification if not\_responding monitor does not retrieve data | `bool` | `true` | no |
 | <a name="input_not_responding_threshold_warning"></a> [not\_responding\_threshold\_warning](#input\_not\_responding\_threshold\_warning) | Zookeeper not responding limit (warning threshold) | `number` | `3` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:database",<br>  "provider:zookeeper",<br>  "resource:zookeeper"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_zookeeper_latency_availability_extra_tags"></a> [zookeeper\_latency\_availability\_extra\_tags](#input\_zookeeper\_latency\_availability\_extra\_tags) | Extra tags for zookeeper read latency monitor | `list(string)` | `[]` | no |
 | <a name="input_zookeeper_latency_enabled"></a> [zookeeper\_latency\_enabled](#input\_zookeeper\_latency\_enabled) | Flag to enable Zookeeper read latency monitor | `string` | `"true"` | no |

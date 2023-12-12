@@ -73,7 +73,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_cpu_high_threshold_warning"></a> [cpu\_high\_threshold\_warning](#input\_cpu\_high\_threshold\_warning) | Elasticache redis cpu high warning threshold in percentage | `string` | `75` | no |
 | <a name="input_cpu_high_time_aggregator"></a> [cpu\_high\_time\_aggregator](#input\_cpu\_high\_time\_aggregator) | Monitor aggregator for Elasticache redis cpu high [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_cpu_high_timeframe"></a> [cpu\_high\_timeframe](#input\_cpu\_high\_timeframe) | Monitor timeframe for Elasticache redis cpu high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_15m"` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Infrastructure Environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
@@ -92,6 +92,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_replication_lag_threshold_warning"></a> [replication\_lag\_threshold\_warning](#input\_replication\_lag\_threshold\_warning) | Elasticache redis replication lag warning threshold in seconds | `string` | `90` | no |
 | <a name="input_replication_lag_time_aggregator"></a> [replication\_lag\_time\_aggregator](#input\_replication\_lag\_time\_aggregator) | Monitor aggregator for Elasticache redis replication lag [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_replication_lag_timeframe"></a> [replication\_lag\_timeframe](#input\_replication\_lag\_timeframe) | Monitor timeframe for Elasticache redis replication lag [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_10m"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:aws",<br>  "resource:elasticache-redis",<br>  "engine:redis"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs

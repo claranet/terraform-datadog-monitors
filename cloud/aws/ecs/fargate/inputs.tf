@@ -1,10 +1,10 @@
-# Generics
-
-variable "environment" {
-  description = "Architecture environment"
-  type        = string
+# Global variables
+variable "tags" {
+  type    = list(string)
+  default = ["type:cloud", "provider:aws", "resource:ecs_fargate", "category:service"]
 }
 
+# Generics
 variable "message" {
   type        = string
   description = "Message sent when a monitor is triggered"

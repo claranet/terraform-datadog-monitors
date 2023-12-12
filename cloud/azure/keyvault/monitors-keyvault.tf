@@ -21,7 +21,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:keyvault", "team:claranet", "created-by:terraform"], var.status_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.status_extra_tags)
 }
 
 resource "datadog_monitor" "keyvault_api_result" {
@@ -54,7 +54,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:keyvault", "team:claranet", "created-by:terraform"], var.api_result_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.api_result_extra_tags)
 }
 
 resource "datadog_monitor" "keyvault_api_latency" {
@@ -84,6 +84,6 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:keyvault", "team:claranet", "created-by:terraform"], var.api_latency_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.api_latency_extra_tags)
 }
 

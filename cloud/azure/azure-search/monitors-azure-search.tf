@@ -26,7 +26,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure-search", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.latency_extra_tags)
 }
 
 # Monitoring Azure Search throttled queries
@@ -56,6 +56,6 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:azure-search", "team:claranet", "created-by:terraform"], var.throttled_queries_rate_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.throttled_queries_rate_extra_tags)
 }
 

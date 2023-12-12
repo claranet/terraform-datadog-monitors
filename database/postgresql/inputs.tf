@@ -1,6 +1,7 @@
-variable "environment" {
-  description = "Environment"
-  type        = string
+# Global variables
+variable "tags" {
+  type    = list(string)
+  default = ["type:database", "provider:postgres", "resource:postgresql"]
 }
 
 # Global DataDog

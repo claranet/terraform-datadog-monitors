@@ -25,7 +25,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform"], var.cpu_usage_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.cpu_usage_extra_tags)
 }
 
 resource "datadog_monitor" "postgresql_no_connection" {
@@ -51,7 +51,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform"], var.no_connection_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.no_connection_extra_tags)
 }
 
 resource "datadog_monitor" "postgresql_free_storage" {
@@ -81,7 +81,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform"], var.free_storage_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.free_storage_extra_tags)
 }
 
 resource "datadog_monitor" "postgresql_io_consumption" {
@@ -111,7 +111,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform"], var.io_consumption_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.io_consumption_extra_tags)
 }
 
 resource "datadog_monitor" "postgresql_memory_usage" {
@@ -141,6 +141,6 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:postgresql", "team:claranet", "created-by:terraform"], var.memory_usage_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.memory_usage_extra_tags)
 }
 

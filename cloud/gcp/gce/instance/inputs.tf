@@ -1,11 +1,10 @@
-#
-# Datadog global variables
-#
-variable "environment" {
-  description = "Architecture environment"
-  type        = string
+# Global variables
+variable "tags" {
+  type    = list(string)
+  default = ["type:cloud", "provider:gcp", "resource:gce-instance"]
 }
 
+# Global DataDog
 variable "filter_tags" {
   description = "Tags used for filtering"
   default     = "*"

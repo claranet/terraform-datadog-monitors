@@ -54,7 +54,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_errors_rate_enabled"></a> [errors\_rate\_enabled](#input\_errors\_rate\_enabled) | Flag to enable Event Hub errors monitor | `string` | `"true"` | no |
 | <a name="input_errors_rate_extra_tags"></a> [errors\_rate\_extra\_tags](#input\_errors\_rate\_extra\_tags) | Extra tags for Event Hub errors monitor | `list(string)` | `[]` | no |
 | <a name="input_errors_rate_message"></a> [errors\_rate\_message](#input\_errors\_rate\_message) | Custom message for Event Hub errors monitor | `string` | `""` | no |
@@ -84,6 +84,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_status_message"></a> [status\_message](#input\_status\_message) | Custom message for Event Hub status monitor | `string` | `""` | no |
 | <a name="input_status_time_aggregator"></a> [status\_time\_aggregator](#input\_status\_time\_aggregator) | Monitor aggregator for Event Hub status [available values: min, max or avg] | `string` | `"max"` | no |
 | <a name="input_status_timeframe"></a> [status\_timeframe](#input\_status\_timeframe) | Monitor timeframe for Event Hub status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:azure",<br>  "resource:eventhub"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs

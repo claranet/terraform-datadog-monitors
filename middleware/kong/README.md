@@ -66,6 +66,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_not_responding_threshold_warning"></a> [not\_responding\_threshold\_warning](#input\_not\_responding\_threshold\_warning) | Warning threshold for the service check | `string` | `3` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:middleware",<br>  "provider:kong",<br>  "resource:kong"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_treatment_limit_enabled"></a> [treatment\_limit\_enabled](#input\_treatment\_limit\_enabled) | Flag to enable Kong Treatment Limit monitor | `string` | `"true"` | no |
 | <a name="input_treatment_limit_extra_tags"></a> [treatment\_limit\_extra\_tags](#input\_treatment\_limit\_extra\_tags) | Extra tags for Kong Treatment Limit monitor | `list(string)` | `[]` | no |

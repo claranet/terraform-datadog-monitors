@@ -23,7 +23,7 @@ EOQ
   require_full_window = true
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:zookeeper", "resource:zookeeper", "team:claranet", "created-by:terraform"], var.zookeeper_latency_availability_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.zookeeper_latency_availability_extra_tags)
 
 }
 
@@ -52,6 +52,6 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:zookeeper", "resource:zookeeper", "team:claranet", "created-by:terraform"], var.zookeeper_latency_availability_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.zookeeper_latency_availability_extra_tags)
 
 }

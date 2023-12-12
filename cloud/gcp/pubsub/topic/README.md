@@ -51,7 +51,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_filter_tags"></a> [filter\_tags](#input\_filter\_tags) | Tags used for filtering | `string` | `"*"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
@@ -65,6 +65,8 @@ No modules.
 | <a name="input_sending_operations_count_threshold_critical"></a> [sending\_operations\_count\_threshold\_critical](#input\_sending\_operations\_count\_threshold\_critical) | Critical threshold for the number of sending operations. | `string` | `0` | no |
 | <a name="input_sending_operations_count_time_aggregator"></a> [sending\_operations\_count\_time\_aggregator](#input\_sending\_operations\_count\_time\_aggregator) | Timeframe for the GCP Pub/Sub Sending Operations Count monitor | `string` | `"sum"` | no |
 | <a name="input_sending_operations_count_timeframe"></a> [sending\_operations\_count\_timeframe](#input\_sending\_operations\_count\_timeframe) | Timeframe for the GCP Pub/Sub Sending Operations Count monitor | `string` | `"last_30m"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:gcp",<br>  "resource:pubsub",<br>  "category:topic"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_unavailable_sending_operations_count_enabled"></a> [unavailable\_sending\_operations\_count\_enabled](#input\_unavailable\_sending\_operations\_count\_enabled) | Flag to enable GCP Pub/Sub Unavailable Sending Operations Count monitor | `string` | `"false"` | no |
 | <a name="input_unavailable_sending_operations_count_extra_tags"></a> [unavailable\_sending\_operations\_count\_extra\_tags](#input\_unavailable\_sending\_operations\_count\_extra\_tags) | Extra tags for GCP Pub/Sub Unavailable Sending Operations Count monitor | `list(string)` | `[]` | no |

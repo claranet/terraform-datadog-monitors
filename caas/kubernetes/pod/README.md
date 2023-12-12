@@ -55,7 +55,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `any` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_error_enabled"></a> [error\_enabled](#input\_error\_enabled) | Flag to enable Pod errors monitor | `string` | `"true"` | no |
 | <a name="input_error_extra_tags"></a> [error\_extra\_tags](#input\_error\_extra\_tags) | Extra tags for Pod errors monitor | `list(string)` | `[]` | no |
 | <a name="input_error_message"></a> [error\_message](#input\_error\_message) | Custom message for Pod errors monitor | `string` | `""` | no |
@@ -80,6 +80,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_pod_phase_status_timeframe"></a> [pod\_phase\_status\_timeframe](#input\_pod\_phase\_status\_timeframe) | Monitor timeframe for Pod phase status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | <a name="input_pod_status_group_by"></a> [pod\_status\_group\_by](#input\_pod\_status\_group\_by) | Select group by element on monitors (phase status) | `list` | <pre>[<br>  "namespace",<br>  "kube_cluster_name"<br>]</pre> | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:caas",<br>  "provider:kubernetes",<br>  "resource:kubernetes-pod"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_terminated_enabled"></a> [terminated\_enabled](#input\_terminated\_enabled) | Flag to enable Pod terminated monitor | `string` | `"true"` | no |
 | <a name="input_terminated_extra_tags"></a> [terminated\_extra\_tags](#input\_terminated\_extra\_tags) | Extra tags for Pod terminated monitor | `list(string)` | `[]` | no |
 | <a name="input_terminated_message"></a> [terminated\_message](#input\_terminated\_message) | Custom message for Pod terminated monitor | `string` | `""` | no |

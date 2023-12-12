@@ -23,7 +23,7 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_availability_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.mysql_availability_extra_tags)
 }
 
 resource "datadog_monitor" "mysql_connection" {
@@ -53,7 +53,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_connection_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.mysql_connection_extra_tags)
 }
 
 resource "datadog_monitor" "mysql_aborted" {
@@ -83,7 +83,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_aborted_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.mysql_aborted_extra_tags)
 }
 
 resource "datadog_monitor" "mysql_slow" {
@@ -113,7 +113,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_slow_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.mysql_slow_extra_tags)
 }
 
 resource "datadog_monitor" "mysql_pool_efficiency" {
@@ -143,7 +143,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_pool_efficiency_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.mysql_pool_efficiency_extra_tags)
 }
 
 resource "datadog_monitor" "mysql_pool_utilization" {
@@ -174,7 +174,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_pool_utilization_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.mysql_pool_utilization_extra_tags)
 }
 
 resource "datadog_monitor" "mysql_threads_anomaly" {
@@ -217,7 +217,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_threads_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.mysql_threads_extra_tags)
 }
 
 resource "datadog_monitor" "mysql_questions_anomaly" {
@@ -260,7 +260,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_questions_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.mysql_questions_extra_tags)
 }
 
 resource "datadog_monitor" "mysql_replication_lag" {
@@ -287,7 +287,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_replication_lag_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.mysql_replication_lag_extra_tags)
 }
 
 resource "datadog_monitor" "mysql_replication_status" {
@@ -313,5 +313,5 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:mysql", "resource:mysql", "team:claranet", "created-by:terraform"], var.mysql_replication_status_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.mysql_replication_status_extra_tags)
 }

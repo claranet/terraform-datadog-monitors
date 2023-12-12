@@ -30,7 +30,7 @@ resource "datadog_monitor" "pct_errors" {
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:lambda", "team:claranet", "created-by:terraform"], var.pct_errors_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.pct_errors_extra_tags)
 }
 
 # Errors Absolute Value
@@ -61,7 +61,7 @@ resource "datadog_monitor" "errors" {
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:lambda", "team:claranet", "created-by:terraform"], var.errors_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.errors_extra_tags)
 }
 
 # Throttles
@@ -92,7 +92,7 @@ resource "datadog_monitor" "throttles" {
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:lambda", "team:claranet", "created-by:terraform"], var.throttles_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.throttles_extra_tags)
 }
 
 # INVOCATIONS
@@ -126,5 +126,5 @@ resource "datadog_monitor" "invocations" {
 
 
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:lambda", "team:claranet", "created-by:terraform"], var.invocations_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.invocations_extra_tags)
 }

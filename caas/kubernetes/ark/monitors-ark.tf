@@ -14,7 +14,6 @@ EOQ
   }
 
   evaluation_delay  = var.evaluation_delay
-  new_host_delay    = var.new_host_delay
   new_group_delay   = var.new_group_delay
   no_data_timeframe = var.ark_schedules_monitor_no_data_timeframe
 
@@ -25,6 +24,5 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:prometheus", "resource:ark", "team:claranet", "created-by:terraform"], var.ark_schedules_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.ark_schedules_extra_tags)
 }
-

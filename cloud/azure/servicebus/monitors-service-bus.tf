@@ -21,7 +21,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform"], var.status_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.status_extra_tags)
 }
 
 resource "datadog_monitor" "service_bus_no_active_connections" {
@@ -46,7 +46,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform"], var.no_active_connections_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.no_active_connections_extra_tags)
 }
 
 resource "datadog_monitor" "service_bus_user_errors" {
@@ -77,7 +77,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform"], var.user_errors_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.user_errors_extra_tags)
 }
 
 resource "datadog_monitor" "service_bus_server_errors" {
@@ -108,6 +108,6 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:servicebus", "team:claranet", "created-by:terraform"], var.server_errors_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.server_errors_extra_tags)
 }
 

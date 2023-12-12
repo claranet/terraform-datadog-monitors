@@ -59,7 +59,7 @@ Creates DataDog monitors with the following checks:
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_apimgt_status_no_data_timeframe"></a> [apimgt\_status\_no\_data\_timeframe](#input\_apimgt\_status\_no\_data\_timeframe) | Number of minutes before reporting no data | `string` | `10` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_failed_requests_enabled"></a> [failed\_requests\_enabled](#input\_failed\_requests\_enabled) | Flag to enable API Management failed requests monitor | `string` | `"true"` | no |
 | <a name="input_failed_requests_extra_tags"></a> [failed\_requests\_extra\_tags](#input\_failed\_requests\_extra\_tags) | Extra tags for API Management failed requests monitor | `list(string)` | `[]` | no |
@@ -96,6 +96,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_successful_requests_threshold_warning"></a> [successful\_requests\_threshold\_warning](#input\_successful\_requests\_threshold\_warning) | Warning regarding acceptable percent of successful requests | `number` | `30` | no |
 | <a name="input_successful_requests_time_aggregator"></a> [successful\_requests\_time\_aggregator](#input\_successful\_requests\_time\_aggregator) | Monitor aggregator for API Management successful requests [available values: min, max or avg] | `string` | `"max"` | no |
 | <a name="input_successful_requests_timeframe"></a> [successful\_requests\_timeframe](#input\_successful\_requests\_timeframe) | Monitor timeframe for API Management successful requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:azure",<br>  "resource:apimanagement"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_unauthorized_requests_enabled"></a> [unauthorized\_requests\_enabled](#input\_unauthorized\_requests\_enabled) | Flag to enable API Management unauthorized requests monitor | `string` | `"true"` | no |
 | <a name="input_unauthorized_requests_extra_tags"></a> [unauthorized\_requests\_extra\_tags](#input\_unauthorized\_requests\_extra\_tags) | Extra tags for API Management unauthorized requests monitor | `list(string)` | `[]` | no |

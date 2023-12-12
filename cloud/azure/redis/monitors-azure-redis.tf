@@ -21,7 +21,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform"], var.status_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.status_extra_tags)
 }
 
 resource "datadog_monitor" "evictedkeys" {
@@ -51,7 +51,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform"], var.evictedkeys_limit_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.evictedkeys_limit_extra_tags)
 }
 
 resource "datadog_monitor" "percent_processor_time" {
@@ -81,7 +81,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform"], var.percent_processor_time_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.percent_processor_time_extra_tags)
 }
 
 resource "datadog_monitor" "server_load" {
@@ -111,6 +111,6 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:redis", "team:claranet", "created-by:terraform"], var.server_load_rate_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.server_load_rate_extra_tags)
 }
 

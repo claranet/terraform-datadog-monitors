@@ -29,5 +29,5 @@ EOQ
   no_data_timeframe   = var.system_memory_usage_ratio_no_data_timeframe
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:memorystore", "team:claranet", "created-by:terraform", "engine:redis"], var.system_memory_usage_ratio_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.system_memory_usage_ratio_extra_tags)
 }

@@ -60,7 +60,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_cpu_utilization_threshold_warning"></a> [cpu\_utilization\_threshold\_warning](#input\_cpu\_utilization\_threshold\_warning) | Warning threshold for the monitor | `string` | `85` | no |
 | <a name="input_cpu_utilization_time_aggregator"></a> [cpu\_utilization\_time\_aggregator](#input\_cpu\_utilization\_time\_aggregator) | Monitor aggregator (min, max or avg) | `string` | `"min"` | no |
 | <a name="input_cpu_utilization_timeframe"></a> [cpu\_utilization\_timeframe](#input\_cpu\_utilization\_timeframe) | Timeframe for the monitor | `string` | `"last_5m"` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `15` | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
@@ -84,6 +84,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_service_check_no_data_timeframe"></a> [service\_check\_no\_data\_timeframe](#input\_service\_check\_no\_data\_timeframe) | No data timeframe in minutes | `number` | `10` | no |
 | <a name="input_service_check_threshold_warning"></a> [service\_check\_threshold\_warning](#input\_service\_check\_threshold\_warning) | Warning threshold | `number` | `3` | no |
 | <a name="input_service_group_by"></a> [service\_group\_by](#input\_service\_group\_by) | Service check grouping by | `string` | `"*"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:aws",<br>  "resource:ecs_fargate",<br>  "category:service"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs

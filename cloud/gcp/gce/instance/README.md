@@ -73,7 +73,7 @@ No modules.
 | <a name="input_disk_throttled_ops_threshold_warning"></a> [disk\_throttled\_ops\_threshold\_warning](#input\_disk\_throttled\_ops\_threshold\_warning) | Disk Throttled OPS in percentage (warning threshold) | `string` | `30` | no |
 | <a name="input_disk_throttled_ops_time_aggregator"></a> [disk\_throttled\_ops\_time\_aggregator](#input\_disk\_throttled\_ops\_time\_aggregator) | Time aggregator for the Disk Throttled OPS monitor | `string` | `"min"` | no |
 | <a name="input_disk_throttled_ops_timeframe"></a> [disk\_throttled\_ops\_timeframe](#input\_disk\_throttled\_ops\_timeframe) | Timeframe for the Disk Throttled OPS monitor | `string` | `"last_15m"` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_filter_tags"></a> [filter\_tags](#input\_filter\_tags) | Tags used for filtering | `string` | `"*"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
@@ -81,6 +81,8 @@ No modules.
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds for the new host evaluation | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:gcp",<br>  "resource:gce-instance"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs

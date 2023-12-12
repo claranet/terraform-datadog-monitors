@@ -1,9 +1,10 @@
-# Azure App Gateway global variables
-variable "environment" {
-  description = "Architecture environment"
-  type        = string
+# Global variables
+variable "tags" {
+  type    = list(string)
+  default = ["type:cloud", "provider:azure", "resource:app-gateway"]
 }
 
+# Azure App Gateway global variables
 variable "filter_tags_use_defaults" {
   description = "Use default filter tags convention"
   default     = "true"

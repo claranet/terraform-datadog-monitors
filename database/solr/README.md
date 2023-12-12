@@ -53,7 +53,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `15` | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
@@ -85,6 +85,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_searcher_warmup_time_threshold_critical"></a> [searcher\_warmup\_time\_threshold\_critical](#input\_searcher\_warmup\_time\_threshold\_critical) | Searcher warmup time critical threshold in ms | `number` | `5000` | no |
 | <a name="input_searcher_warmup_time_threshold_warning"></a> [searcher\_warmup\_time\_threshold\_warning](#input\_searcher\_warmup\_time\_threshold\_warning) | Searcher warmup time warning threshold in ms | `number` | `2000` | no |
 | <a name="input_searcher_warmup_time_timeframe"></a> [searcher\_warmup\_time\_timeframe](#input\_searcher\_warmup\_time\_timeframe) | Timeframe for the searcher warmup time monitor | `string` | `"last_5m"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:database",<br>  "provider:solr",<br>  "resource:solr"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs

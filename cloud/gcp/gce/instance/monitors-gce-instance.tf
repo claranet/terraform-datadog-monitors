@@ -29,7 +29,7 @@ EOQ
   no_data_timeframe   = var.cpu_utilization_no_data_timeframe
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform"], var.cpu_utilization_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.cpu_utilization_extra_tags)
 }
 
 #
@@ -68,7 +68,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform"], var.disk_throttled_bps_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.disk_throttled_bps_extra_tags)
 }
 
 #
@@ -107,6 +107,6 @@ EOQ
   require_full_window = false
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:gce-instance", "team:claranet", "created-by:terraform"], var.disk_throttled_ops_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.disk_throttled_ops_extra_tags)
 }
 

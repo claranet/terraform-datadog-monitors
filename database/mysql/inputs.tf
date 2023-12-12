@@ -1,8 +1,10 @@
-variable "environment" {
-  description = "Environment"
-  type        = string
+# Global variables
+variable "tags" {
+  type    = list(string)
+  default = ["type:database", "provider:mysql", "resource:mysql"]
 }
 
+# Global DataDog
 variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 15

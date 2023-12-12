@@ -29,7 +29,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform"], var.error_rate_4xx_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.error_rate_4xx_extra_tags)
 }
 
 #
@@ -63,7 +63,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform"], var.error_rate_5xx_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.error_rate_5xx_extra_tags)
 }
 
 #
@@ -96,7 +96,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform"], var.backend_latency_service_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.backend_latency_service_extra_tags)
 }
 
 #
@@ -129,7 +129,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform"], var.backend_latency_bucket_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.backend_latency_bucket_extra_tags)
 }
 
 #
@@ -162,6 +162,6 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:lb", "team:claranet", "created-by:terraform"], var.request_count_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.request_count_extra_tags)
 }
 

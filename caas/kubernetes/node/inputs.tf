@@ -1,9 +1,10 @@
-# Datadog global variables
-
-variable "environment" {
-  description = "Architecture environment"
+# Global variables
+variable "tags" {
+  type    = list(string)
+  default = ["type:caas", "provider:kubernetes", "resource:kubernetes-node"]
 }
 
+# Global DataDog
 variable "filter_tags_use_defaults" {
   description = "Use default filter tags convention"
   default     = "true"

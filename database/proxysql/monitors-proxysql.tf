@@ -22,7 +22,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_thread_worker_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.proxysql_thread_worker_extra_tags)
 }
 
 resource "datadog_monitor" "proxysql_slow" {
@@ -52,7 +52,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_slow_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.proxysql_slow_extra_tags)
 }
 
 resource "datadog_monitor" "proxysql_client_conn_aborted" {
@@ -79,7 +79,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_client_conn_aborted_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.proxysql_client_conn_aborted_extra_tags)
 }
 
 resource "datadog_monitor" "proxysql_server_conn_aborted" {
@@ -106,7 +106,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_server_conn_aborted_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.proxysql_server_conn_aborted_extra_tags)
 }
 
 resource "datadog_monitor" "proxysql_pool_conn_failure" {
@@ -135,5 +135,5 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:proxysql", "resource:proxysql", "team:claranet", "created-by:terraform"], var.proxysql_pool_conn_failure_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.proxysql_pool_conn_failure_extra_tags)
 }

@@ -1,8 +1,10 @@
-variable "environment" {
-  description = "Environment"
-  type        = string
+# Global variables
+variable "tags" {
+  type    = list(string)
+  default = ["type:cloud", "provider:aws", "resource:apigateway"]
 }
 
+# Global DataDog
 variable "filter_tags" {
   description = "Tags used for filtering"
   default     = "*"

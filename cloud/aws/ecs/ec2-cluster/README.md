@@ -72,7 +72,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_cluster_memory_reservation_threshold_warning"></a> [cluster\_memory\_reservation\_threshold\_warning](#input\_cluster\_memory\_reservation\_threshold\_warning) | Warning threshold for the Cluster Memory Reservation monitor | `string` | `85` | no |
 | <a name="input_cluster_memory_reservation_time_aggregator"></a> [cluster\_memory\_reservation\_time\_aggregator](#input\_cluster\_memory\_reservation\_time\_aggregator) | Monitor aggregator for Cluster Memory Reservation [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_cluster_memory_reservation_timeframe"></a> [cluster\_memory\_reservation\_timeframe](#input\_cluster\_memory\_reservation\_timeframe) | Timeframe for the Cluster Memory Reservation monitor | `string` | `"last_5m"` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
@@ -82,6 +82,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:aws",<br>  "resource:ecs",<br>  "category:agent"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs

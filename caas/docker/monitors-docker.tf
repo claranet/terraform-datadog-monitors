@@ -26,7 +26,7 @@ EOQ
   require_full_window = true
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:docker", "provider:docker", "resource:docker", "team:claranet", "created-by:terraform"], var.not_responding_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.not_responding_extra_tags)
 }
 
 resource "datadog_monitor" "memory_used" {
@@ -56,6 +56,6 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:docker", "provider:docker", "resource:docker", "team:claranet", "created-by:terraform"], var.memory_used_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.memory_used_extra_tags)
 }
 

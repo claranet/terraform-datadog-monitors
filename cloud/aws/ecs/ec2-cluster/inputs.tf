@@ -1,11 +1,12 @@
+# Global variables
+variable "tags" {
+  type    = list(string)
+  default = ["type:cloud", "provider:aws", "resource:ecs", "category:agent"]
+}
+
 #
 # Datadog global variables
 #
-variable "environment" {
-  description = "Architecture environment"
-  type        = string
-}
-
 variable "message" {
   description = "Message sent when a monitor is triggered"
 }

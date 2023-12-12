@@ -21,7 +21,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:virtualmachine", "team:claranet", "created-by:terraform"], var.status_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.status_extra_tags)
 }
 
 resource "datadog_monitor" "virtualmachine_cpu_usage" {
@@ -51,7 +51,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:virtualmachine", "team:claranet", "created-by:terraform"], var.cpu_usage_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.cpu_usage_extra_tags)
 }
 
 resource "datadog_monitor" "virtualmachine_credit_cpu_remaining_too_low" {
@@ -84,7 +84,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:virtualmachine", "team:claranet", "created-by:terraform"], var.cpu_remaining_rate_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.cpu_remaining_rate_extra_tags)
 }
 
 resource "datadog_monitor" "virtualmachine_ram_reserved" {
@@ -116,7 +116,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:virtualmachine", "team:claranet", "created-by:terraform"], var.ram_reserved_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.ram_reserved_extra_tags)
 }
 
 resource "datadog_monitor" "virtualmachine_disk_space" {
@@ -146,7 +146,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:virtualmachine", "team:claranet", "created-by:terraform"], var.disk_space_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.disk_space_extra_tags)
 }
 
 resource "datadog_monitor" "virtualmachine_requests_failed" {
@@ -179,5 +179,5 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:virtualmachine", "team:claranet", "created-by:terraform"], var.requests_failed_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.requests_failed_extra_tags)
 }

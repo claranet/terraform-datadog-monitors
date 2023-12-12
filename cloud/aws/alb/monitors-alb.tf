@@ -27,7 +27,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.alb_no_healthy_instances_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.alb_no_healthy_instances_extra_tags)
 }
 
 resource "datadog_monitor" "ALB_latency" {
@@ -56,7 +56,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.latency_extra_tags)
 }
 
 resource "datadog_monitor" "ALB_httpcode_5xx" {
@@ -86,7 +86,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.httpcode_alb_5xx_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.httpcode_alb_5xx_extra_tags)
 }
 
 resource "datadog_monitor" "ALB_httpcode_4xx" {
@@ -116,7 +116,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.httpcode_alb_4xx_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.httpcode_alb_4xx_extra_tags)
 }
 
 resource "datadog_monitor" "ALB_httpcode_target_5xx" {
@@ -146,7 +146,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.httpcode_target_5xx_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.httpcode_target_5xx_extra_tags)
 }
 
 resource "datadog_monitor" "ALB_httpcode_target_4xx" {
@@ -176,6 +176,6 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:alb", "team:claranet", "created-by:terraform"], var.httpcode_target_4xx_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.httpcode_target_4xx_extra_tags)
 }
 

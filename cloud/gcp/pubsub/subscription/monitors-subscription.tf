@@ -32,7 +32,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "category:subscription", "team:claranet", "created-by:terraform"], var.oldest_unacked_message_age_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.oldest_unacked_message_age_extra_tags)
 }
 
 ######################
@@ -69,7 +69,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "category:subscription", "team:claranet", "created-by:terraform"], var.subscription_push_latency_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.subscription_push_latency_extra_tags)
 }
 
 #
@@ -112,5 +112,5 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:pubsub", "category:subscription", "team:claranet", "created-by:terraform"], var.subscription_push_latency_anomaly_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.subscription_push_latency_anomaly_extra_tags)
 }

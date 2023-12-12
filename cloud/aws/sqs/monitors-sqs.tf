@@ -26,7 +26,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:sqs", "team:claranet", "created-by:terraform"], var.visible_messages_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.visible_messages_extra_tags)
 }
 
 # Age of the Oldest Message
@@ -57,5 +57,5 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:sqs", "team:claranet", "created-by:terraform"], var.age_of_oldest_message_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.age_of_oldest_message_extra_tags)
 }

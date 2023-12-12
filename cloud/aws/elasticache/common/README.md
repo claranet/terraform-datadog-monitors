@@ -60,7 +60,7 @@ Creates DataDog monitors with the following checks:
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_elasticache_max_connection_no_data_timeframe"></a> [elasticache\_max\_connection\_no\_data\_timeframe](#input\_elasticache\_max\_connection\_no\_data\_timeframe) | Number of minutes before reporting no data | `string` | `10` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Infrastructure Environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_eviction_enabled"></a> [eviction\_enabled](#input\_eviction\_enabled) | Flag to enable Elasticache eviction monitor | `string` | `"true"` | no |
 | <a name="input_eviction_extra_tags"></a> [eviction\_extra\_tags](#input\_eviction\_extra\_tags) | Extra tags for Elasticache eviction monitor | `list(string)` | `[]` | no |
@@ -108,6 +108,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_swap_threshold_warning"></a> [swap\_threshold\_warning](#input\_swap\_threshold\_warning) | Elasticache swap warning threshold in bytes | `string` | `0` | no |
 | <a name="input_swap_time_aggregator"></a> [swap\_time\_aggregator](#input\_swap\_time\_aggregator) | Monitor aggregator for Elasticache memcached swap [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_swap_timeframe"></a> [swap\_timeframe](#input\_swap\_timeframe) | Monitor timeframe for Elasticache swap [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:aws",<br>  "resource:elasticache"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs

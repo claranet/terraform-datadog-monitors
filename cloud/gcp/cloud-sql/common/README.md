@@ -85,7 +85,7 @@ No modules.
 | <a name="input_disk_utilization_threshold_warning"></a> [disk\_utilization\_threshold\_warning](#input\_disk\_utilization\_threshold\_warning) | Disk Utilization in percentage (warning threshold) | `string` | `80` | no |
 | <a name="input_disk_utilization_time_aggregator"></a> [disk\_utilization\_time\_aggregator](#input\_disk\_utilization\_time\_aggregator) | Time aggregator for the Disk Utilization monitor | `string` | `"avg"` | no |
 | <a name="input_disk_utilization_timeframe"></a> [disk\_utilization\_timeframe](#input\_disk\_utilization\_timeframe) | Timeframe for the Disk Utilization monitor | `string` | `"last_5m"` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_failover_unavailable_enabled"></a> [failover\_unavailable\_enabled](#input\_failover\_unavailable\_enabled) | Flag to enable GCP Cloud SQL Failover Unavailable monitor | `string` | `"true"` | no |
 | <a name="input_failover_unavailable_extra_tags"></a> [failover\_unavailable\_extra\_tags](#input\_failover\_unavailable\_extra\_tags) | Extra tags for GCP Cloud SQL Failover Unavailable monitor | `list(string)` | `[]` | no |
@@ -120,6 +120,8 @@ No modules.
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds for the new host evaluation | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:gcp",<br>  "resource:cloud-sql"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs

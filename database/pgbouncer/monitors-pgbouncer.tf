@@ -23,7 +23,7 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:pgbouncer", "resource:pgbouncer", "team:claranet", "created-by:terraform"], var.pgbouncer_availability_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.pgbouncer_availability_extra_tags)
 }
 
 resource "datadog_monitor" "pgbouncer_pool_connection_limit" {
@@ -51,7 +51,7 @@ EOQ
   timeout_h           = 0
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:pgbouncer", "resource:pgbouncer", "team:claranet", "created-by:terraform"], var.pgbouncer_pool_connection_limit_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.pgbouncer_pool_connection_limit_extra_tags)
 }
 
 resource "datadog_monitor" "pgbouncer_database_connection_limit" {
@@ -80,7 +80,7 @@ EOQ
   timeout_h           = 0
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:pgbouncer", "resource:pgbouncer", "team:claranet", "created-by:terraform"], var.pgbouncer_database_connection_limit_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.pgbouncer_database_connection_limit_extra_tags)
 }
 
 resource "datadog_monitor" "pgbouncer_wait_time" {
@@ -108,5 +108,5 @@ EOQ
   timeout_h           = 0
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:database", "provider:pgbouncer", "resource:pgbouncer", "team:claranet", "created-by:terraform"], var.pgbouncer_wait_time_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.pgbouncer_wait_time_extra_tags)
 }
