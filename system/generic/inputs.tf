@@ -1,7 +1,7 @@
 # Global variables
 variable "tags" {
   type    = list(string)
-  default = ["type:system", "provider:system-check", "resource:generic"]
+  default = ["type:system", "resource:generic"]
 }
 
 # Global DataDog

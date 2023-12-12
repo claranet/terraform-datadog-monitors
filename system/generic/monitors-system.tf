@@ -24,7 +24,7 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(local.common_tags, var.tags, var.cpu_extra_tags)
+  tags = concat(local.common_tags, var.tags, ["provider:system-check"], var.cpu_extra_tags)
 }
 
 resource "datadog_monitor" "load" {
@@ -53,7 +53,7 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(local.common_tags, var.tags, var.load_extra_tags)
+  tags = concat(local.common_tags, var.tags, ["provider:system-core"], var.load_extra_tags)
 }
 
 resource "datadog_monitor" "disk_space" {
@@ -82,7 +82,7 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(local.common_tags, var.tags, var.disk_space_extra_tags)
+  tags = concat(local.common_tags, var.tags, ["provider:disk"], var.disk_space_extra_tags)
 }
 
 resource "datadog_monitor" "disk_space_forecast" {
@@ -118,7 +118,7 @@ EOQ
   notify_no_data      = false
   renotify_interval   = 0
 
-  tags = concat(local.common_tags, var.tags, var.disk_space_forecast_extra_tags)
+  tags = concat(local.common_tags, var.tags, ["provider:disk"], var.disk_space_forecast_extra_tags)
 }
 
 resource "datadog_monitor" "disk_inodes" {
@@ -147,7 +147,7 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(local.common_tags, var.tags, var.disk_inodes_extra_tags)
+  tags = concat(local.common_tags, var.tags, ["provider:disk"], var.disk_inodes_extra_tags)
 }
 
 resource "datadog_monitor" "memory" {
@@ -178,6 +178,6 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(local.common_tags, var.tags, var.memory_extra_tags)
+  tags = concat(local.common_tags, var.tags, ["provider:system-check"], var.memory_extra_tags)
 }
 
