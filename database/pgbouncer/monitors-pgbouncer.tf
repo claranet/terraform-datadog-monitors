@@ -34,7 +34,7 @@ resource "datadog_monitor" "pgbouncer_pool_connection_limit" {
 
   query = <<EOQ
     ${var.pgbouncer_pool_connection_limit_time_aggregator}(${var.pgbouncer_pool_connection_limit_timeframe}):
-      avg:pgbouncer.pools.cl_active${module.filter-tags.query_alert} by {host,db}
+      sum:pgbouncer.pools.cl_active${module.filter-tags.query_alert} by {host,db}
     > ${var.pgbouncer_pool_connection_limit_threshold_critical}
 EOQ
 
