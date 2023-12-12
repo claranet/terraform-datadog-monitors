@@ -76,7 +76,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_disk_pressure_extra_tags"></a> [disk\_pressure\_extra\_tags](#input\_disk\_pressure\_extra\_tags) | Extra tags for Disk pressure monitor | `list(string)` | `[]` | no |
 | <a name="input_disk_pressure_message"></a> [disk\_pressure\_message](#input\_disk\_pressure\_message) | Custom message for Disk pressure monitor | `string` | `""` | no |
 | <a name="input_disk_pressure_threshold_warning"></a> [disk\_pressure\_threshold\_warning](#input\_disk\_pressure\_threshold\_warning) | Disk pressure monitor (warning threshold) | `string` | `3` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `any` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `15` | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
@@ -109,6 +109,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_ready_extra_tags"></a> [ready\_extra\_tags](#input\_ready\_extra\_tags) | Extra tags for Node ready monitor | `list(string)` | `[]` | no |
 | <a name="input_ready_message"></a> [ready\_message](#input\_ready\_message) | Custom message for Node ready monitor | `string` | `""` | no |
 | <a name="input_ready_threshold_warning"></a> [ready\_threshold\_warning](#input\_ready\_threshold\_warning) | Node ready monitor (warning threshold) | `string` | `3` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:caas",<br>  "provider:kubernetes",<br>  "resource:kubernetes-node"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_unregister_net_device_enabled"></a> [unregister\_net\_device\_enabled](#input\_unregister\_net\_device\_enabled) | Flag to enable Unregister net device monitor | `string` | `"true"` | no |
 | <a name="input_unregister_net_device_extra_tags"></a> [unregister\_net\_device\_extra\_tags](#input\_unregister\_net\_device\_extra\_tags) | Extra tags for Unregister net device monitor | `list(string)` | `[]` | no |

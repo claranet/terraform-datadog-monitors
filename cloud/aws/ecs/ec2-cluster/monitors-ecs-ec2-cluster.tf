@@ -26,7 +26,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:agent"], var.agent_status_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.agent_status_extra_tags)
 }
 
 resource "datadog_monitor" "cluster_cpu_utilization" {
@@ -57,7 +57,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:cluster"], var.cluster_cpu_utilization_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.cluster_cpu_utilization_extra_tags)
 
 }
 
@@ -89,5 +89,5 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:cluster"], var.cluster_memory_reservation_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.cluster_memory_reservation_extra_tags)
 }

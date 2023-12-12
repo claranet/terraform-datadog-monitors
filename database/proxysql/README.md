@@ -57,7 +57,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_environment"></a> [environment](#input\_environment) | Environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `15` | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
@@ -102,6 +102,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_proxysql_thread_worker_threshold_warning"></a> [proxysql\_thread\_worker\_threshold\_warning](#input\_proxysql\_thread\_worker\_threshold\_warning) | Minimum warning acceptable of thread worker running | `number` | `4` | no |
 | <a name="input_proxysql_thread_worker_time_aggregator"></a> [proxysql\_thread\_worker\_time\_aggregator](#input\_proxysql\_thread\_worker\_time\_aggregator) | Monitor time aggregator for ProxySQL thread worker monitor [available values: min, max or avg] | `string` | `"avg"` | no |
 | <a name="input_proxysql_thread_worker_timeframe"></a> [proxysql\_thread\_worker\_timeframe](#input\_proxysql\_thread\_worker\_timeframe) | Monitor timeframe for ProxySQL thread worker monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:database",<br>  "provider:proxysql",<br>  "resource:proxysql"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs

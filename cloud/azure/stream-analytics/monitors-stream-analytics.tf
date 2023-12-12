@@ -21,7 +21,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.status_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.status_extra_tags)
 }
 
 resource "datadog_monitor" "su_utilization" {
@@ -51,7 +51,7 @@ EOQ
     critical = var.su_utilization_threshold_critical
   }
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.su_utilization_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.su_utilization_extra_tags)
 }
 
 resource "datadog_monitor" "failed_function_requests" {
@@ -82,7 +82,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.failed_function_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.failed_function_requests_extra_tags)
 }
 
 resource "datadog_monitor" "conversion_errors" {
@@ -112,7 +112,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.conversion_errors_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.conversion_errors_extra_tags)
 }
 
 resource "datadog_monitor" "runtime_errors" {
@@ -142,6 +142,6 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:stream-analytics", "team:claranet", "created-by:terraform"], var.runtime_errors_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.runtime_errors_extra_tags)
 }
 

@@ -74,7 +74,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_blocked_clients_threshold_warning"></a> [blocked\_clients\_threshold\_warning](#input\_blocked\_clients\_threshold\_warning) | Blocked clients rate (warning threshold) | `number` | `10` | no |
 | <a name="input_blocked_clients_time_aggregator"></a> [blocked\_clients\_time\_aggregator](#input\_blocked\_clients\_time\_aggregator) | Monitor aggregator for Redis Blocked clients [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_blocked_clients_timeframe"></a> [blocked\_clients\_timeframe](#input\_blocked\_clients\_timeframe) | Monitor timeframe for Redis Blocked clients [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `15` | no |
 | <a name="input_evictedkeys_change_enabled"></a> [evictedkeys\_change\_enabled](#input\_evictedkeys\_change\_enabled) | Flag to enable Redis evicted keys monitor | `string` | `"true"` | no |
 | <a name="input_evictedkeys_change_extra_tags"></a> [evictedkeys\_change\_extra\_tags](#input\_evictedkeys\_change\_extra\_tags) | Extra tags for Redis evicted keys monitor | `list(string)` | `[]` | no |
@@ -145,6 +145,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_rejected_con_threshold_warning"></a> [rejected\_con\_threshold\_warning](#input\_rejected\_con\_threshold\_warning) | rejected connections errors limit (warning threshold) | `number` | `10` | no |
 | <a name="input_rejected_con_time_aggregator"></a> [rejected\_con\_time\_aggregator](#input\_rejected\_con\_time\_aggregator) | Monitor aggregator for Redis rejected connections errors [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_rejected_con_timeframe"></a> [rejected\_con\_timeframe](#input\_rejected\_con\_timeframe) | Monitor timeframe for Redis rejected connections errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:database",<br>  "provider:redisdb",<br>  "resource:redis"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs

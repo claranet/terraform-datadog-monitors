@@ -26,7 +26,7 @@ EOQ
   require_full_window = true
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:middleware", "provider:kong", "resource:kong", "team:claranet", "created-by:terraform"], var.not_responding_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.not_responding_extra_tags)
 }
 
 resource "datadog_monitor" "treatment_limit" {
@@ -57,6 +57,6 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:middleware", "provider:kong", "resource:kong", "team:claranet", "created-by:terraform"], var.treatment_limit_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.treatment_limit_extra_tags)
 }
 

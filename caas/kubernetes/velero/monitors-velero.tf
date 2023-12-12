@@ -24,7 +24,7 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_scheduled_backup_missing_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.velero_scheduled_backup_missing_extra_tags)
 }
 
 resource "datadog_monitor" "velero_backup_failure" {
@@ -53,7 +53,7 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_backup_failure_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.velero_backup_failure_extra_tags)
 }
 
 resource "datadog_monitor" "velero_backup_partial_failure" {
@@ -82,7 +82,7 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_backup_partial_failure_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.velero_backup_partial_failure_extra_tags)
 }
 
 resource "datadog_monitor" "velero_backup_deletion_failure" {
@@ -111,7 +111,7 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_backup_deletion_failure_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.velero_backup_deletion_failure_extra_tags)
 }
 
 resource "datadog_monitor" "velero_volume_snapshot_failure" {
@@ -140,6 +140,6 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:openmetrics", "resource:velero", "team:claranet", "created-by:terraform"], var.velero_volume_snapshot_failure_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.velero_volume_snapshot_failure_extra_tags)
 }
 

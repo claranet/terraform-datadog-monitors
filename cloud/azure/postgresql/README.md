@@ -64,7 +64,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_cpu_usage_threshold_warning"></a> [cpu\_usage\_threshold\_warning](#input\_cpu\_usage\_threshold\_warning) | PostgreSQL CPU usage in percent (warning threshold) | `string` | `"80"` | no |
 | <a name="input_cpu_usage_time_aggregator"></a> [cpu\_usage\_time\_aggregator](#input\_cpu\_usage\_time\_aggregator) | Monitor aggregator for PostgreSQL CPU [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_cpu_usage_timeframe"></a> [cpu\_usage\_timeframe](#input\_cpu\_usage\_timeframe) | Monitor timeframe for PostgreSQL CPU [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_15m"` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
@@ -101,6 +101,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_postgresql_no_connection_no_data_timeframe"></a> [postgresql\_no\_connection\_no\_data\_timeframe](#input\_postgresql\_no\_connection\_no\_data\_timeframe) | Number of minutes before reporting no data | `string` | `10` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
 | <a name="input_server_type"></a> [server\_type](#input\_server\_type) | PostgreSQL Server Type on Azure [available values: single, flexible] | `string` | `"single"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:azure",<br>  "resource:postgresql"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs

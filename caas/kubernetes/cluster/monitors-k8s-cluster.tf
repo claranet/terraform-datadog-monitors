@@ -24,6 +24,5 @@ EOQ
   include_tags        = true
   require_full_window = true
 
-  tags = concat(["env:${var.environment}", "type:caas", "provider:kubernetes", "resource:kubernetes-node", "team:claranet", "created-by:terraform"], var.apiserver_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.apiserver_extra_tags)
 }
-

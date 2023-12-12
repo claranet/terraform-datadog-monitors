@@ -26,5 +26,5 @@ EOQ
   require_full_window = true
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:network", "provider:dns_check", "resource:dns", "team:claranet", "created-by:terraform"], var.cannot_resolve_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.cannot_resolve_extra_tags)
 }

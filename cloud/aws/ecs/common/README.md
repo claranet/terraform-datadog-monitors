@@ -53,7 +53,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_filter_tags"></a> [filter\_tags](#input\_filter\_tags) | Tags used for filtering | `string` | `"*"` | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
@@ -86,6 +86,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_service_missing_tasks_threshold_warning"></a> [service\_missing\_tasks\_threshold\_warning](#input\_service\_missing\_tasks\_threshold\_warning) | Warning threshold for the Service Missing Tasks monitor | `string` | `80` | no |
 | <a name="input_service_missing_tasks_time_aggregator"></a> [service\_missing\_tasks\_time\_aggregator](#input\_service\_missing\_tasks\_time\_aggregator) | Monitor aggregator for Service Missing Tasks [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_service_missing_tasks_timeframe"></a> [service\_missing\_tasks\_timeframe](#input\_service\_missing\_tasks\_timeframe) | Timeframe for the Service Missing Tasks monitor | `string` | `"last_5m"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:aws",<br>  "resource:ecs",<br>  "category:service"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs

@@ -26,6 +26,6 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:kinesis-firehose", "team:claranet", "created-by:terraform"], var.incoming_records_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.incoming_records_extra_tags)
 }
 

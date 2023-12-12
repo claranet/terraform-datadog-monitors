@@ -51,7 +51,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_filter_tags"></a> [filter\_tags](#input\_filter\_tags) | Tags used for filtering | `string` | `"*"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
@@ -86,6 +86,8 @@ No modules.
 | <a name="input_subscription_push_latency_threshold_warning"></a> [subscription\_push\_latency\_threshold\_warning](#input\_subscription\_push\_latency\_threshold\_warning) | GCP Pub/Sub Subscription Push Latency High warning threshold | `string` | `1000` | no |
 | <a name="input_subscription_push_latency_time_aggregator"></a> [subscription\_push\_latency\_time\_aggregator](#input\_subscription\_push\_latency\_time\_aggregator) | Time aggregator for the GCP Pub/Sub Subscription Push Latency High monitor | `string` | `"avg"` | no |
 | <a name="input_subscription_push_latency_timeframe"></a> [subscription\_push\_latency\_timeframe](#input\_subscription\_push\_latency\_timeframe) | Timeframe for the GCP Pub/Sub Subscription Push Latency High monitor | `string` | `"last_10m"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:gcp",<br>  "resource:pubsub",<br>  "category:subscription"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs

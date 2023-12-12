@@ -22,7 +22,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.status_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.status_extra_tags)
 }
 
 # Monitoring App Gateway total_requests
@@ -47,7 +47,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.total_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.total_requests_extra_tags)
 }
 
 # Monitoring App Gateway backend_connect_time
@@ -77,7 +77,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_backend_connect_time_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.appgateway_backend_connect_time_extra_tags)
 }
 
 # Monitoring App Gateway failed_requests
@@ -109,7 +109,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_failed_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.appgateway_failed_requests_extra_tags)
 }
 
 # Monitoring App Gateway unhealthy_host_ratio
@@ -141,7 +141,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_unhealthy_host_ratio_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.appgateway_unhealthy_host_ratio_extra_tags)
 }
 
 # Monitoring App Gateway response_status 4xx
@@ -173,7 +173,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_http_4xx_errors_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.appgateway_http_4xx_errors_extra_tags)
 }
 
 # Monitoring App Gateway response_status 5xx
@@ -204,7 +204,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_http_5xx_errors_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.appgateway_http_5xx_errors_extra_tags)
 }
 
 # Monitoring App Gateway Backend response_status 4xx
@@ -236,7 +236,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_backend_http_4xx_errors_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.appgateway_backend_http_4xx_errors_extra_tags)
 }
 
 # Monitoring App Gateway Backend response_status 5xx
@@ -267,5 +267,5 @@ EOQ
   timeout_h           = 1
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-gateway", "team:claranet", "created-by:terraform"], var.appgateway_backend_http_5xx_errors_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.appgateway_backend_http_5xx_errors_extra_tags)
 }

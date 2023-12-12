@@ -58,7 +58,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_age_of_oldest_message_threshold_warning"></a> [age\_of\_oldest\_message\_threshold\_warning](#input\_age\_of\_oldest\_message\_threshold\_warning) | Warning threshold in seconds | `number` | `300` | no |
 | <a name="input_age_of_oldest_message_time_aggregator"></a> [age\_of\_oldest\_message\_time\_aggregator](#input\_age\_of\_oldest\_message\_time\_aggregator) | Monitor aggregator for Age of Oldest Message [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_age_of_oldest_message_timeframe"></a> [age\_of\_oldest\_message\_timeframe](#input\_age\_of\_oldest\_message\_timeframe) | Monitor timeframe for Age of Oldest Message [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_30m"` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
@@ -69,6 +69,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:aws",<br>  "resource:sqs"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_visible_messages_enabled"></a> [visible\_messages\_enabled](#input\_visible\_messages\_enabled) | Flag to enable Number of Visible Messages monitor | `string` | `"false"` | no |
 | <a name="input_visible_messages_extra_tags"></a> [visible\_messages\_extra\_tags](#input\_visible\_messages\_extra\_tags) | Extra tags for Number of Visible Messages monitor | `list(string)` | `[]` | no |

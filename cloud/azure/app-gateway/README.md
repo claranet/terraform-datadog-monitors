@@ -120,7 +120,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_appgateway_unhealthy_host_ratio_threshold_warning"></a> [appgateway\_unhealthy\_host\_ratio\_threshold\_warning](#input\_appgateway\_unhealthy\_host\_ratio\_threshold\_warning) | Warning regarding acceptable ratio of unhealthy host | `number` | `50` | no |
 | <a name="input_appgateway_unhealthy_host_ratio_time_aggregator"></a> [appgateway\_unhealthy\_host\_ratio\_time\_aggregator](#input\_appgateway\_unhealthy\_host\_ratio\_time\_aggregator) | Monitor aggregator for App Gateway unhealthy host ratio [available values: min, max or avg] | `string` | `"max"` | no |
 | <a name="input_appgateway_unhealthy_host_ratio_timeframe"></a> [appgateway\_unhealthy\_host\_ratio\_timeframe](#input\_appgateway\_unhealthy\_host\_ratio\_timeframe) | Monitor timeframe for App Gateway unhealthy host ratio [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
@@ -136,6 +136,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_status_message"></a> [status\_message](#input\_status\_message) | Custom message for App Gateway status | `string` | `""` | no |
 | <a name="input_status_time_aggregator"></a> [status\_time\_aggregator](#input\_status\_time\_aggregator) | Monitor aggregator for App Gateway status [available values: min, max or avg] | `string` | `"max"` | no |
 | <a name="input_status_timeframe"></a> [status\_timeframe](#input\_status\_timeframe) | Monitor timeframe for App Gateway status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:azure",<br>  "resource:app-gateway"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_total_requests_enabled"></a> [total\_requests\_enabled](#input\_total\_requests\_enabled) | Flag to enable App Gateway current connections monitor | `string` | `"true"` | no |
 | <a name="input_total_requests_extra_tags"></a> [total\_requests\_extra\_tags](#input\_total\_requests\_extra\_tags) | Extra tags for App Gateway current connections monitor | `list(string)` | `[]` | no |

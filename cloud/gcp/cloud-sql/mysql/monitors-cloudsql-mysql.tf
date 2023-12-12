@@ -29,6 +29,6 @@ EOQ
   no_data_timeframe   = var.replication_lag_no_data_timeframe
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform", "engine:mysql"], var.replication_lag_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.replication_lag_extra_tags)
 }
 

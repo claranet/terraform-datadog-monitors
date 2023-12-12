@@ -24,7 +24,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.status_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.status_extra_tags)
 }
 
 resource "datadog_monitor" "blobservices_requests_error" {
@@ -56,7 +56,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.successful_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.successful_requests_extra_tags)
 }
 
 resource "datadog_monitor" "fileservices_requests_error" {
@@ -87,7 +87,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.successful_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.successful_requests_extra_tags)
 }
 
 resource "datadog_monitor" "queueservices_requests_error" {
@@ -119,7 +119,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.successful_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.successful_requests_extra_tags)
 }
 
 resource "datadog_monitor" "tableservices_requests_error" {
@@ -151,7 +151,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.successful_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.successful_requests_extra_tags)
 }
 
 resource "datadog_monitor" "blobservices_latency" {
@@ -182,7 +182,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.latency_extra_tags)
 }
 
 resource "datadog_monitor" "fileservices_latency" {
@@ -213,7 +213,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.latency_extra_tags)
 }
 
 resource "datadog_monitor" "queueservices_latency" {
@@ -244,7 +244,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.latency_extra_tags)
 }
 
 resource "datadog_monitor" "tableservices_latency" {
@@ -275,7 +275,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.latency_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.latency_extra_tags)
 }
 
 resource "datadog_monitor" "blob_timeout_error_requests" {
@@ -306,7 +306,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.timeout_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.timeout_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "file_timeout_error_requests" {
@@ -337,7 +337,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.timeout_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.timeout_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "queue_timeout_error_requests" {
@@ -369,7 +369,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.timeout_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.timeout_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "table_timeout_error_requests" {
@@ -401,7 +401,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.timeout_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.timeout_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "blob_network_error_requests" {
@@ -433,7 +433,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.network_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.network_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "file_network_error_requests" {
@@ -465,7 +465,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.network_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.network_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "queue_network_error_requests" {
@@ -497,7 +497,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.network_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.network_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "table_network_error_requests" {
@@ -529,7 +529,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.network_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.network_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "blob_throttling_error_requests" {
@@ -561,7 +561,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.throttling_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.throttling_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "file_throttling_error_requests" {
@@ -593,7 +593,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.throttling_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.throttling_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "queue_throttling_error_requests" {
@@ -625,7 +625,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.throttling_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.throttling_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "table_throttling_error_requests" {
@@ -657,7 +657,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.throttling_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.throttling_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "blob_server_other_error_requests" {
@@ -689,7 +689,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.server_other_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.server_other_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "file_server_other_error_requests" {
@@ -721,7 +721,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.server_other_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.server_other_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "queue_server_other_error_requests" {
@@ -753,7 +753,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.server_other_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.server_other_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "table_server_other_error_requests" {
@@ -785,7 +785,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.server_other_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.server_other_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "blob_client_other_error_requests" {
@@ -816,7 +816,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.client_other_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.client_other_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "file_client_other_error_requests" {
@@ -848,7 +848,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.client_other_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.client_other_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "queue_client_other_error_requests" {
@@ -880,7 +880,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.client_other_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.client_other_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "table_client_other_error_requests" {
@@ -912,7 +912,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.client_other_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.client_other_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "blob_authorization_error_requests" {
@@ -944,7 +944,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.authorization_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.authorization_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "file_authorization_error_requests" {
@@ -976,7 +976,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.authorization_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.authorization_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "queue_authorization_error_requests" {
@@ -1008,7 +1008,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.authorization_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.authorization_error_requests_extra_tags)
 }
 
 resource "datadog_monitor" "table_authorization_error_requests" {
@@ -1040,5 +1040,5 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:storage", "team:claranet", "created-by:terraform"], var.authorization_error_requests_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.authorization_error_requests_extra_tags)
 }

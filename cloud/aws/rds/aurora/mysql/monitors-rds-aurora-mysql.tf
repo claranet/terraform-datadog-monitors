@@ -26,5 +26,5 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:rds-aurora-mysql", "team:claranet", "created-by:terraform"], var.aurora_replicalag_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.aurora_replicalag_extra_tags)
 }

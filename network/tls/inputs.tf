@@ -1,7 +1,7 @@
-# Global Terraform
-variable "environment" {
-  description = "Architecture Environment"
-  type        = string
+# Global variables
+variable "tags" {
+  type    = list(string)
+  default = ["type:network", "provider:tls", "resource:webcheck"]
 }
 
 # Global DataDog

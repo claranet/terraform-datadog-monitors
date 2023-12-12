@@ -21,7 +21,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventhub", "team:claranet", "created-by:terraform"], var.status_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.status_extra_tags)
 }
 
 resource "datadog_monitor" "eventhub_failed_requests" {
@@ -52,7 +52,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventhub", "team:claranet", "created-by:terraform"], var.failed_requests_rate_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.failed_requests_rate_extra_tags)
 }
 
 resource "datadog_monitor" "eventhub_errors" {
@@ -85,6 +85,6 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:eventhub", "team:claranet", "created-by:terraform"], var.errors_rate_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.errors_rate_extra_tags)
 }
 

@@ -96,6 +96,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_root_filesystem_usage_threshold_warning"></a> [root\_filesystem\_usage\_threshold\_warning](#input\_root\_filesystem\_usage\_threshold\_warning) | File system usage warning threshold in percent | `string` | `80` | no |
 | <a name="input_root_filesystem_usage_timeframe"></a> [root\_filesystem\_usage\_timeframe](#input\_root\_filesystem\_usage\_timeframe) | Monitor timeframe for beanstalk instance file system usage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | <a name="input_root_filesystem_usage_timeout_h"></a> [root\_filesystem\_usage\_timeout\_h](#input\_root\_filesystem\_usage\_timeout\_h) | File system usage auto-resolving state (in hours) | `number` | `0` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:aws",<br>  "resource:beanstalk"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs

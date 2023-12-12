@@ -21,7 +21,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform"], var.status_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.status_extra_tags)
 }
 
 resource "datadog_monitor" "sql-database_cpu" {
@@ -51,7 +51,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform"], var.cpu_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.cpu_extra_tags)
 }
 
 resource "datadog_monitor" "sql-database_free_space_low" {
@@ -81,7 +81,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform"], var.diskspace_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.diskspace_extra_tags)
 }
 
 resource "datadog_monitor" "sql-database_dtu_consumption_high" {
@@ -111,7 +111,7 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform"], var.dtu_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.dtu_extra_tags)
 }
 
 resource "datadog_monitor" "sql-database_deadlocks_count" {
@@ -140,6 +140,6 @@ EOQ
   include_tags        = true
   require_full_window = false
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:sql-database", "team:claranet", "created-by:terraform"], var.deadlock_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.deadlock_extra_tags)
 }
 

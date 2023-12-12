@@ -1,0 +1,1 @@
+../../../../common/module/inputs.tf

@@ -59,6 +59,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:system",<br>  "provider:host",<br>  "resource:unreachable"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_unreachable_enabled"></a> [unreachable\_enabled](#input\_unreachable\_enabled) | Flag to enable Host unreachable monitor | `string` | `"true"` | no |
 | <a name="input_unreachable_extra_tags"></a> [unreachable\_extra\_tags](#input\_unreachable\_extra\_tags) | Extra tags for Host unreachable monitor | `list(string)` | `[]` | no |

@@ -27,6 +27,6 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
 
-  tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:nlb", "team:claranet", "created-by:terraform"], var.nlb_no_healthy_instances_extra_tags)
+  tags = concat(local.common_tags, var.tags, var.nlb_no_healthy_instances_extra_tags)
 }
 

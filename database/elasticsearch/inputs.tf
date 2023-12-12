@@ -1,11 +1,10 @@
-#
-# Datadog global variables
-#
-variable "environment" {
-  description = "Architecture environment"
-  type        = string
+# Global variables
+variable "tags" {
+  type    = list(string)
+  default = ["type:database", "provider:elasticsearch", "resource:elasticsearch"]
 }
 
+# Global DataDog
 variable "filter_tags_use_defaults" {
   description = "Use default filter tags convention"
   default     = "true"

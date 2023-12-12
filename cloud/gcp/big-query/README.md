@@ -75,7 +75,7 @@ No modules.
 | <a name="input_concurrent_queries_threshold_critical"></a> [concurrent\_queries\_threshold\_critical](#input\_concurrent\_queries\_threshold\_critical) | Concurrent Queries (critical threshold) (hard limit 50) | `string` | `45` | no |
 | <a name="input_concurrent_queries_threshold_warning"></a> [concurrent\_queries\_threshold\_warning](#input\_concurrent\_queries\_threshold\_warning) | Concurrent Queries (warning threshold) (hard limit 50) | `string` | `40` | no |
 | <a name="input_concurrent_queries_timeframe"></a> [concurrent\_queries\_timeframe](#input\_concurrent\_queries\_timeframe) | Timeframe for the Concurrent Queries monitor | `string` | `"last_5m"` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_execution_time_enabled"></a> [execution\_time\_enabled](#input\_execution\_time\_enabled) | Flag to enable GCP Big Query Execution Time monitor | `string` | `"true"` | no |
 | <a name="input_execution_time_extra_tags"></a> [execution\_time\_extra\_tags](#input\_execution\_time\_extra\_tags) | Extra tags for GCP Big Query Execution Time monitor | `list(string)` | `[]` | no |
@@ -113,6 +113,8 @@ No modules.
 | <a name="input_table_count_threshold_critical"></a> [table\_count\_threshold\_critical](#input\_table\_count\_threshold\_critical) | Table Count (critical threshold) | `string` | `1` | no |
 | <a name="input_table_count_threshold_warning"></a> [table\_count\_threshold\_warning](#input\_table\_count\_threshold\_warning) | Table Count (warning threshold) | `string` | `0` | no |
 | <a name="input_table_count_timeframe"></a> [table\_count\_timeframe](#input\_table\_count\_timeframe) | Timeframe for the Table Count monitor | `string` | `"last_4h"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:gcp",<br>  "resource:big-query"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_uploaded_bytes_billed_enabled"></a> [uploaded\_bytes\_billed\_enabled](#input\_uploaded\_bytes\_billed\_enabled) | Flag to enable GCP Big Query Uploaded Bytes Billed monitor | `string` | `"true"` | no |
 | <a name="input_uploaded_bytes_billed_extra_tags"></a> [uploaded\_bytes\_billed\_extra\_tags](#input\_uploaded\_bytes\_billed\_extra\_tags) | Extra tags for GCP Big Query Scanned Bytes monitor | `list(string)` | `[]` | no |

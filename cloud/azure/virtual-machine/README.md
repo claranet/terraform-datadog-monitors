@@ -80,7 +80,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_disk_space_threshold_warning"></a> [disk\_space\_threshold\_warning](#input\_disk\_space\_threshold\_warning) | Virtual Machine free disk space in percent (warning threshold) | `string` | `"90"` | no |
 | <a name="input_disk_space_time_aggregator"></a> [disk\_space\_time\_aggregator](#input\_disk\_space\_time\_aggregator) | Monitor aggregator for Virtual Machine free disk space [available values: min, max or avg] | `string` | `"max"` | no |
 | <a name="input_disk_space_timeframe"></a> [disk\_space\_timeframe](#input\_disk\_space\_timeframe) | Monitor timeframe for Virtual Machine free disk space too low [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
@@ -109,6 +109,8 @@ Creates DataDog monitors with the following checks:
 | <a name="input_status_message"></a> [status\_message](#input\_status\_message) | Custom message for Virtual Machine status monitor | `string` | `""` | no |
 | <a name="input_status_time_aggregator"></a> [status\_time\_aggregator](#input\_status\_time\_aggregator) | Monitor aggregator for Virtual Machine status [available values: min, max or avg] | `string` | `"max"` | no |
 | <a name="input_status_timeframe"></a> [status\_timeframe](#input\_status\_timeframe) | Monitor timeframe for Virtual Machine status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:azure",<br>  "resource:virtualmachine"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 | <a name="input_virtualmachine_status_no_data_timeframe"></a> [virtualmachine\_status\_no\_data\_timeframe](#input\_virtualmachine\_status\_no\_data\_timeframe) | Number of minutes before reporting no data | `string` | `10` | no |
 

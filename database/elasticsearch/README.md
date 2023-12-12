@@ -119,7 +119,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_cluster_unassigned_shards_threshold_warning"></a> [cluster\_unassigned\_shards\_threshold\_warning](#input\_cluster\_unassigned\_shards\_threshold\_warning) | Cluster Status warning threshold | `string` | `1` | no |
 | <a name="input_cluster_unassigned_shards_time_aggregator"></a> [cluster\_unassigned\_shards\_time\_aggregator](#input\_cluster\_unassigned\_shards\_time\_aggregator) | Time aggregator for the Cluster Status monitor | `string` | `"avg"` | no |
 | <a name="input_cluster_unassigned_shards_timeframe"></a> [cluster\_unassigned\_shards\_timeframe](#input\_cluster\_unassigned\_shards\_timeframe) | Timeframe for the Cluster Status monitor | `string` | `"last_5m"` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `15` | no |
 | <a name="input_fetch_change_enabled"></a> [fetch\_change\_enabled](#input\_fetch\_change\_enabled) | Flag to enable Cluster Status monitor | `string` | `"true"` | no |
 | <a name="input_fetch_change_extra_tags"></a> [fetch\_change\_extra\_tags](#input\_fetch\_change\_extra\_tags) | Extra tags for Cluster Status monitor | `list(string)` | `[]` | no |
@@ -258,6 +258,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_search_query_latency_threshold_warning"></a> [search\_query\_latency\_threshold\_warning](#input\_search\_query\_latency\_threshold\_warning) | Cluster Status warning threshold | `string` | `10` | no |
 | <a name="input_search_query_latency_time_aggregator"></a> [search\_query\_latency\_time\_aggregator](#input\_search\_query\_latency\_time\_aggregator) | Time aggregator for the Cluster Status monitor | `string` | `"avg"` | no |
 | <a name="input_search_query_latency_timeframe"></a> [search\_query\_latency\_timeframe](#input\_search\_query\_latency\_timeframe) | Timeframe for the Cluster Status monitor | `string` | `"last_15m"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:database",<br>  "provider:elasticsearch",<br>  "resource:elasticsearch"<br>]</pre> | no |
 | <a name="input_task_time_in_queue_change_enabled"></a> [task\_time\_in\_queue\_change\_enabled](#input\_task\_time\_in\_queue\_change\_enabled) | Flag to enable Cluster Status monitor | `string` | `"true"` | no |
 | <a name="input_task_time_in_queue_change_extra_tags"></a> [task\_time\_in\_queue\_change\_extra\_tags](#input\_task\_time\_in\_queue\_change\_extra\_tags) | Extra tags for Cluster Status monitor | `list(string)` | `[]` | no |
 | <a name="input_task_time_in_queue_change_message"></a> [task\_time\_in\_queue\_change\_message](#input\_task\_time\_in\_queue\_change\_message) | Custom message for the Cluster Status monitor | `string` | `""` | no |
@@ -266,6 +267,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_task_time_in_queue_change_time_aggregator"></a> [task\_time\_in\_queue\_change\_time\_aggregator](#input\_task\_time\_in\_queue\_change\_time\_aggregator) | Time aggregator for the Cluster Status monitor | `string` | `"avg"` | no |
 | <a name="input_task_time_in_queue_change_timeframe"></a> [task\_time\_in\_queue\_change\_timeframe](#input\_task\_time\_in\_queue\_change\_timeframe) | Timeframe for the Cluster Status monitor | `string` | `"last_10m"` | no |
 | <a name="input_task_time_in_queue_change_timeshift"></a> [task\_time\_in\_queue\_change\_timeshift](#input\_task\_time\_in\_queue\_change\_timeshift) | Timeshift for the Cluster Status monitor | `string` | `"last_10m"` | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs

@@ -47,7 +47,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_environment"></a> [environment](#input\_environment) | Architecture environment | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `900` | no |
 | <a name="input_filter_tags"></a> [filter\_tags](#input\_filter\_tags) | Tags used for filtering | `string` | `"*"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
@@ -63,6 +63,8 @@ No modules.
 | <a name="input_system_memory_usage_ratio_threshold_warning"></a> [system\_memory\_usage\_ratio\_threshold\_warning](#input\_system\_memory\_usage\_ratio\_threshold\_warning) | Memorystore Redis System memory usage ratio warning threshold | `string` | `80` | no |
 | <a name="input_system_memory_usage_ratio_time_aggregator"></a> [system\_memory\_usage\_ratio\_time\_aggregator](#input\_system\_memory\_usage\_ratio\_time\_aggregator) | Time aggregator for Memorystore Redis System memory usage ratio monitor | `string` | `"min"` | no |
 | <a name="input_system_memory_usage_ratio_timeframe"></a> [system\_memory\_usage\_ratio\_timeframe](#input\_system\_memory\_usage\_ratio\_timeframe) | Timeframe for Memorystore Redis System memory usage ratio monitor | `string` | `"last_10m"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:gcp",<br>  "resource:memorystore",<br>  "engine:redis"<br>]</pre> | no |
+| <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
 ## Outputs
