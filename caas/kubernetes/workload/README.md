@@ -61,6 +61,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_cronjob_extra_tags"></a> [cronjob\_extra\_tags](#input\_cronjob\_extra\_tags) | Extra tags for Cronjob monitor | `list(string)` | `[]` | no |
 | <a name="input_cronjob_message"></a> [cronjob\_message](#input\_cronjob\_message) | Custom message for Cronjob monitor | `string` | `""` | no |
 | <a name="input_cronjob_threshold_warning"></a> [cronjob\_threshold\_warning](#input\_cronjob\_threshold\_warning) | Cronjob monitor (warning threshold) | `string` | `3` | no |
+| <a name="input_deployment_group_by"></a> [deployment\_group\_by](#input\_deployment\_group\_by) | Select group by element on deployment monitors | `list` | <pre>[<br>  "kube_namespace",<br>  "kube_deployment",<br>  "kube_cluster_name"<br>]</pre> | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `15` | no |
 | <a name="input_filter_tags_custom"></a> [filter\_tags\_custom](#input\_filter\_tags\_custom) | Tags used for custom filtering when filter\_tags\_use\_defaults is false | `string` | `"*"` | no |
@@ -88,7 +89,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_replica_current_threshold_critical"></a> [replica\_current\_threshold\_critical](#input\_replica\_current\_threshold\_critical) | Current replica critical threshold | `number` | `1` | no |
 | <a name="input_replica_current_time_aggregator"></a> [replica\_current\_time\_aggregator](#input\_replica\_current\_time\_aggregator) | Monitor aggregator for Current replica [available values: min, max or avg] | `string` | `"max"` | no |
 | <a name="input_replica_current_timeframe"></a> [replica\_current\_timeframe](#input\_replica\_current\_timeframe) | Monitor timeframe for Current replica [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_15m"` | no |
-| <a name="input_replica_group_by"></a> [replica\_group\_by](#input\_replica\_group\_by) | Select group by element on monitors | `list` | <pre>[<br>  "kube_namespace",<br>  "kube_replica_set",<br>  "kube_cluster_name"<br>]</pre> | no |
+| <a name="input_replica_group_by"></a> [replica\_group\_by](#input\_replica\_group\_by) | Select group by element on replicaset monitors | `list` | <pre>[<br>  "kube_namespace",<br>  "kube_replica_set",<br>  "kube_cluster_name"<br>]</pre> | no |
 | <a name="input_replica_ready_enabled"></a> [replica\_ready\_enabled](#input\_replica\_ready\_enabled) | Flag to enable Ready replica monitor | `string` | `"true"` | no |
 | <a name="input_replica_ready_extra_tags"></a> [replica\_ready\_extra\_tags](#input\_replica\_ready\_extra\_tags) | Extra tags for Ready replica monitor | `list(string)` | `[]` | no |
 | <a name="input_replica_ready_message"></a> [replica\_ready\_message](#input\_replica\_ready\_message) | Custom message for Ready replica monitor | `string` | `""` | no |

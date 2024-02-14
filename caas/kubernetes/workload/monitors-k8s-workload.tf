@@ -60,8 +60,8 @@ resource "datadog_monitor" "replica_available" {
 
   query = <<EOQ
     ${var.replica_available_time_aggregator}(${var.replica_available_timeframe}):
-      max:kubernetes_state.deployment.replicas_desired${module.filter-tags.query_alert} by {${local.replica_group_by}} -
-      max:kubernetes_state.deployment.replicas_available${module.filter-tags.query_alert} by {${local.replica_group_by}}
+      max:kubernetes_state.deployment.replicas_desired${module.filter-tags.query_alert} by {${local.deployment_group_by}} -
+      max:kubernetes_state.deployment.replicas_available${module.filter-tags.query_alert} by {${local.deployment_group_by}}
     + 1 < ${var.replica_available_threshold_critical}
 EOQ
 
