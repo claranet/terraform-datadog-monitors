@@ -172,11 +172,11 @@ variable "terminated_threshold_warning" {
 }
 
 variable "pod_group_by" {
-  default     = ["namespace", "pod", "reason", "kube_cluster_name"]
+  default     = ["kube_namespace", "pod_name", "reason", "kube_cluster_name"]
   description = "Select group by element on monitors (error and terminated)"
 }
 
 variable "pod_status_group_by" {
-  default     = ["namespace", "kube_cluster_name"]
+  default     = ["kube_namespace", "kube_cluster_name"]
   description = "Select group by element on monitors (phase status)"
 }
