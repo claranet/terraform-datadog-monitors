@@ -32,7 +32,7 @@ resource "datadog_monitor" "cronjob" {
   type    = "service check"
 
   query = <<EOQ
-    "kubernetes_state.cronjob.on_schedule_check"${module.filter-tags.service_check}.by("cronjob").last(6).count_by_status()
+    "kubernetes_state.cronjob.on_schedule_check"${module.filter-tags.service_check}.by("kube_cronjob").last(6).count_by_status()
 EOQ
 
   monitor_thresholds {

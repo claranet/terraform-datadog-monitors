@@ -72,13 +72,13 @@ Creates DataDog monitors with the following checks:
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
-| <a name="input_pod_group_by"></a> [pod\_group\_by](#input\_pod\_group\_by) | Select group by element on monitors (error and terminated) | `list` | <pre>[<br>  "namespace",<br>  "pod",<br>  "reason",<br>  "kube_cluster_name"<br>]</pre> | no |
+| <a name="input_pod_group_by"></a> [pod\_group\_by](#input\_pod\_group\_by) | Select group by element on monitors (error and terminated) | `list` | <pre>[<br>  "kube_namespace",<br>  "pod_name",<br>  "reason",<br>  "kube_cluster_name"<br>]</pre> | no |
 | <a name="input_pod_phase_status_enabled"></a> [pod\_phase\_status\_enabled](#input\_pod\_phase\_status\_enabled) | Flag to enable Pod phase status monitor | `string` | `"true"` | no |
 | <a name="input_pod_phase_status_extra_tags"></a> [pod\_phase\_status\_extra\_tags](#input\_pod\_phase\_status\_extra\_tags) | Extra tags for Pod phase status monitor | `list(string)` | `[]` | no |
 | <a name="input_pod_phase_status_message"></a> [pod\_phase\_status\_message](#input\_pod\_phase\_status\_message) | Custom message for Pod phase status monitor | `string` | `""` | no |
 | <a name="input_pod_phase_status_time_aggregator"></a> [pod\_phase\_status\_time\_aggregator](#input\_pod\_phase\_status\_time\_aggregator) | Monitor aggregator for Pod phase status [available values: min, max or avg] | `string` | `"max"` | no |
 | <a name="input_pod_phase_status_timeframe"></a> [pod\_phase\_status\_timeframe](#input\_pod\_phase\_status\_timeframe) | Monitor timeframe for Pod phase status [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
-| <a name="input_pod_status_group_by"></a> [pod\_status\_group\_by](#input\_pod\_status\_group\_by) | Select group by element on monitors (phase status) | `list` | <pre>[<br>  "namespace",<br>  "kube_cluster_name"<br>]</pre> | no |
+| <a name="input_pod_status_group_by"></a> [pod\_status\_group\_by](#input\_pod\_status\_group\_by) | Select group by element on monitors (phase status) | `list` | <pre>[<br>  "kube_namespace",<br>  "kube_cluster_name"<br>]</pre> | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:caas",<br>  "provider:kubernetes",<br>  "resource:kubernetes-pod"<br>]</pre> | no |
 | <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
