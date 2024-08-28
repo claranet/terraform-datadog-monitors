@@ -178,13 +178,13 @@ variable "free_storage_threshold_critical" {
 }
 
 variable "io_consumption_enabled" {
-  description = "Flag to enable PostgreSQL status monitor (only working when `server_type` is `single`)"
+  description = "Flag to enable PostgreSQL IO consumption monitor"
   type        = string
   default     = "true"
 }
 
 variable "io_consumption_extra_tags" {
-  description = "Extra tags for PostgreSQL status monitor"
+  description = "Extra tags for PostgreSQL IO consumption monitor"
   type        = list(string)
   default     = []
 }
