@@ -85,14 +85,14 @@ EOQ
 }
 
 resource "datadog_monitor" "postgresql_io_consumption" {
-  count   = (var.io_consumption_enabled == "true" && var.server_type == "single") ? 1 : 0
+  count   = (var.io_consumption_enabled == "true") ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Postgresql ${title(var.server_type)} Server IO consumption {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.io_consumption_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
     ${var.io_consumption_time_aggregator}(${var.io_consumption_timeframe}): (
-      avg:azure.${local.metric_namespace}.io_consumption_percent${module.filter-tags.query_alert} by {resource_group,region,name}
+      avg:azure.${local.metric_namespace}.${local.metric_io_consumption_percent}${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.io_consumption_threshold_critical}
 EOQ
 
