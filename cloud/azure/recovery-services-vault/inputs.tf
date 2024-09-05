@@ -53,7 +53,7 @@ variable "notify_no_data" {
 variable "no_data_timeframe" {
   description = "Number of minutes before reporting no data on Backup Unhealthy Event monitor"
   type        = string
-  default     = 7200
+  default     = 1440
 }
 
 # Azure Recovery Services Vault Backup Backup Unhealthy Event monitor
