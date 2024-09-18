@@ -223,3 +223,11 @@ variable "deployment_group_by" {
   default     = ["kube_namespace", "kube_deployment", "kube_cluster_name"]
   description = "Select group by element on deployment monitors"
 }
+
+variable "jobfailed_group_by" {
+  default = ["kube_job", "kube_cluster_name"]
+}
+
+variable "cronjobfailed_group_by" {
+  default = ["kube_cronjob"]
+}

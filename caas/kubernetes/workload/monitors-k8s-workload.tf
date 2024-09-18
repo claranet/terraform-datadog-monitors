@@ -5,7 +5,7 @@ resource "datadog_monitor" "job" {
   type    = "service check"
 
   query = <<EOQ
-    "kubernetes_state.job.complete"${module.filter-tags.service_check}.by("kube_job", "kube_cluster_name").last(6).count_by_status()
+    "kubernetes_state.job.complete"${module.filter-tags.service_check}.by(${local.jobfailed_group_by}).last(6).count_by_status()
 EOQ
 
   monitor_thresholds {
@@ -32,7 +32,7 @@ resource "datadog_monitor" "cronjob" {
   type    = "service check"
 
   query = <<EOQ
-    "kubernetes_state.cronjob.on_schedule_check"${module.filter-tags.service_check}.by("kube_cronjob").last(6).count_by_status()
+    "kubernetes_state.cronjob.on_schedule_check"${module.filter-tags.service_check}.by(${local.cronjobfailed_group_by}).last(6).count_by_status()
 EOQ
 
   monitor_thresholds {
