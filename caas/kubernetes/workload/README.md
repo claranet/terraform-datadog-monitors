@@ -61,6 +61,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_cronjob_extra_tags"></a> [cronjob\_extra\_tags](#input\_cronjob\_extra\_tags) | Extra tags for Cronjob monitor | `list(string)` | `[]` | no |
 | <a name="input_cronjob_message"></a> [cronjob\_message](#input\_cronjob\_message) | Custom message for Cronjob monitor | `string` | `""` | no |
 | <a name="input_cronjob_threshold_warning"></a> [cronjob\_threshold\_warning](#input\_cronjob\_threshold\_warning) | Cronjob monitor (warning threshold) | `string` | `3` | no |
+| <a name="input_cronjobfailed_group_by"></a> [cronjobfailed\_group\_by](#input\_cronjobfailed\_group\_by) | n/a | `list` | <pre>[<br>  "kube_cronjob"<br>]</pre> | no |
 | <a name="input_deployment_group_by"></a> [deployment\_group\_by](#input\_deployment\_group\_by) | Select group by element on deployment monitors | `list` | <pre>[<br>  "kube_namespace",<br>  "kube_deployment",<br>  "kube_cluster_name"<br>]</pre> | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Architecture Environment | `string` | n/a | yes |
 | <a name="input_evaluation_delay"></a> [evaluation\_delay](#input\_evaluation\_delay) | Delay in seconds for the metric evaluation | `number` | `15` | no |
@@ -72,6 +73,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_job_extra_tags"></a> [job\_extra\_tags](#input\_job\_extra\_tags) | Extra tags for Job monitor | `list(string)` | `[]` | no |
 | <a name="input_job_message"></a> [job\_message](#input\_job\_message) | Custom message for Job monitor | `string` | `""` | no |
 | <a name="input_job_threshold_warning"></a> [job\_threshold\_warning](#input\_job\_threshold\_warning) | Job monitor (warning threshold) | `string` | `3` | no |
+| <a name="input_jobfailed_group_by"></a> [jobfailed\_group\_by](#input\_jobfailed\_group\_by) | n/a | `list` | <pre>[<br>  "kube_job",<br>  "kube_cluster_name"<br>]</pre> | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
