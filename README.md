@@ -241,6 +241,7 @@ For example, this will regenerate every READMEs thanks to [terraform-docs](https
 		- [webcheck](https://github.com/claranet/terraform-datadog-monitors/tree/master/network/http/webcheck/)
 	- [tls](https://github.com/claranet/terraform-datadog-monitors/tree/master/network/tls/)
 - [saas](https://github.com/claranet/terraform-datadog-monitors/tree/master/saas/)
+	- [elastic_cloud](https://github.com/claranet/terraform-datadog-monitors/tree/master/saas/elastic_cloud/)
 	- [new-relic](https://github.com/claranet/terraform-datadog-monitors/tree/master/saas/new-relic/)
 - [system](https://github.com/claranet/terraform-datadog-monitors/tree/master/system/)
 	- [generic](https://github.com/claranet/terraform-datadog-monitors/tree/master/system/generic/)
