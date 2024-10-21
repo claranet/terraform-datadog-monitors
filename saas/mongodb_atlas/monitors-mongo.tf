@@ -3,13 +3,13 @@
 #
 resource "datadog_monitor" "mongodb_primary" {
   count   = var.mongodb_primary_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] MongoDB primary state"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB primary state"
   message = coalesce(var.mongodb_primary_message, var.message)
   type    = "metric alert"
 
   query = <<EOQ
       ${var.mongodb_primary_aggregator}(${var.mongodb_primary_timeframe}):
-      min:mongodb.atlas.replstatus.state${module.filter-tags.query_alert} by {replicasetname} >= 2
+      min:mongodb.atlas.replstatus.state${module.filter-tags.query_alert} by {clustername,replicasetname} >= 2
 EOQ
 
   evaluation_delay    = var.evaluation_delay
@@ -31,14 +31,14 @@ EOQ
 #
 resource "datadog_monitor" "mongodb_secondary" {
   count   = var.mongodb_secondary_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] MongoDB secondary missing"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB secondary missing"
   message = coalesce(var.mongodb_secondary_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
       ${var.mongodb_secondary_aggregator}(${var.mongodb_secondary_timeframe}):
       ${var.mongodb_desired_servers_count} -
-      sum:mongodb.atlas.replstatus.health${module.filter-tags.query_alert} by {replicasetname}
+      sum:mongodb.atlas.replstatus.health${module.filter-tags.query_alert} by {clustername,replicasetname}
       > 1
 EOQ
 
@@ -65,13 +65,13 @@ EOQ
 #
 resource "datadog_monitor" "mongodb_replication" {
   count   = var.mongodb_replication_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] MongoDB replication lag"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB replication lag"
   message = coalesce(var.mongodb_replication_message, var.message)
   type    = "metric alert"
 
   query = <<EOQ
       ${var.mongodb_replication_aggregator}(${var.mongodb_replication_timeframe}):
-      avg:mongodb.atlas.replset.replicationlag${module.filter-tags.query_alert} by {host} > ${var.mongodb_lag_critical}
+      avg:mongodb.atlas.replset.replicationlag${module.filter-tags.query_alert} by {clustername,host} > ${var.mongodb_lag_critical}
 EOQ
 
   monitor_thresholds {
@@ -97,7 +97,7 @@ EOQ
 #
 resource "datadog_monitor" "mongodb_high_disk_usage" {
   count   = var.mongodb_high_disk_usage_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] MongoDB High file system storage usage"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB High file system storage usage"
   message = coalesce(var.mongodb_high_disk_usage_message, var.message)
   type    = "query alert"
 
@@ -130,7 +130,7 @@ EOQ
 #
 resource "datadog_monitor" "mongodb_oplog_low" {
   count   = var.mongodb_oplog_low_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] MongoDB Low oplog window"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB Low oplog window"
   message = coalesce(var.mongodb_oplog_low_message, var.message)
   type    = "query alert"
 
@@ -163,7 +163,7 @@ EOQ
 #
 resource "datadog_monitor" "mongodb_replicaset_member_unhealthy" {
   count   = var.mongodb_replicaset_member_unhealthy_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] MongoDB Unhealthy replica set member"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB Unhealthy replica set member"
   message = coalesce(var.mongodb_replicaset_member_unhealthy_message, var.message)
   type    = "query alert"
 
@@ -195,20 +195,20 @@ EOQ
 #
 resource "datadog_monitor" "mongodb_cpu_high" {
   count   = var.mongodb_cpu_high_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] MongoDB CPU usage is higher than average on host: {{host.name}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB CPU usage is higher than average on host: {{host.name}}"
   message = coalesce(var.mongodb_cpu_high_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
       ${var.mongodb_cpu_high_aggregator}(${var.mongodb_cpu_high_timeframe}):
-        anomalies(avg:mongodb.atlas.system.cpu.norm.irq${module.filter-tags.query_alert} by {host}
-        + avg:mongodb.atlas.system.cpu.norm.nice${module.filter-tags.query_alert} by {host}
-        + avg:mongodb.atlas.system.cpu.norm.user${module.filter-tags.query_alert} by {host}
-        + avg:mongodb.atlas.system.cpu.norm.guest${module.filter-tags.query_alert} by {host}
-        + avg:mongodb.atlas.system.cpu.norm.steal${module.filter-tags.query_alert} by {host}
-        + avg:mongodb.atlas.system.cpu.norm.iowait${module.filter-tags.query_alert} by {host}
-        + avg:mongodb.atlas.system.cpu.norm.kernel${module.filter-tags.query_alert} by {host}
-        + avg:mongodb.atlas.system.cpu.norm.softirq${module.filter-tags.query_alert} by {host}
+        anomalies(avg:mongodb.atlas.system.cpu.norm.irq${module.filter-tags.query_alert} by {clustername,host}
+        + avg:mongodb.atlas.system.cpu.norm.nice${module.filter-tags.query_alert} by {clustername,host}
+        + avg:mongodb.atlas.system.cpu.norm.user${module.filter-tags.query_alert} by {clustername,host}
+        + avg:mongodb.atlas.system.cpu.norm.guest${module.filter-tags.query_alert} by {clustername,host}
+        + avg:mongodb.atlas.system.cpu.norm.steal${module.filter-tags.query_alert} by {clustername,host}
+        + avg:mongodb.atlas.system.cpu.norm.iowait${module.filter-tags.query_alert} by {clustername,host}
+        + avg:mongodb.atlas.system.cpu.norm.kernel${module.filter-tags.query_alert} by {clustername,host}
+        + avg:mongodb.atlas.system.cpu.norm.softirq${module.filter-tags.query_alert} by {clustername,host}
         , 'agile', 2, direction='above', interval=60, alert_window='${var.mongodb_cpu_high_alert_window}', count_default_zero='true', seasonality='hourly')
         >= ${var.mongodb_cpu_high_critical}
 EOQ
@@ -241,13 +241,13 @@ EOQ
 #
 resource "datadog_monitor" "mongodb_query_efficiency" {
   count   = var.mongodb_query_efficiency_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] MongoDB Efficiency of queries is degrading"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB Efficiency of queries is degrading"
   message = coalesce(var.mongodb_query_efficiency_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
       ${var.mongodb_query_efficiency_aggregator}(${var.mongodb_query_efficiency_timeframe}):
-        anomalies(avg:mongodb.atlas.metrics.queryexecutor.scannedobjectsperreturned${module.filter-tags.query_alert}
+        anomalies(avg:mongodb.atlas.metrics.queryexecutor.scannedobjectsperreturned${module.filter-tags.query_alert} by {clustername}
         , 'agile', 2, direction='above', interval=60, alert_window='${var.mongodb_query_efficiency_alert_window}', count_default_zero='true', seasonality='hourly')
         >= ${var.mongodb_query_efficiency_critical}
 EOQ
@@ -279,14 +279,14 @@ EOQ
 #
 resource "datadog_monitor" "mongodb_mem_usage" {
   count   = var.mongodb_mem_usage_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] MongoDB Memory usage is higher than average on host: {{host.name}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB Memory usage is higher than average on host: {{host.name}}"
   message = coalesce(var.mongodb_mem_usage_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
       ${var.mongodb_mem_usage_aggregator}(${var.mongodb_mem_usage_timeframe}):
-        anomalies(avg:mongodb.atlas.mem.virtual${module.filter-tags.query_alert} by {host}
-        + avg:mongodb.atlas.mem.resident${module.filter-tags.query_alert} by {host}
+        anomalies(avg:mongodb.atlas.mem.virtual${module.filter-tags.query_alert} by {clustername,host}
+        + avg:mongodb.atlas.mem.resident${module.filter-tags.query_alert} by {clustername,host}
         , 'agile', 2, direction='above', interval=60, alert_window='${var.mongodb_mem_usage_alert_window}', count_default_zero='true', seasonality='hourly')
         >= ${var.mongodb_mem_usage_critical}
 EOQ
@@ -319,13 +319,13 @@ EOQ
 #
 resource "datadog_monitor" "mongodb_read_latency" {
   count   = var.mongodb_read_latency_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] MongoDB Read Latency is higher than average for host: {{host.name}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB Read Latency is higher than average for host: {{host.name}}"
   message = coalesce(var.mongodb_read_latency_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
       ${var.mongodb_read_latency_aggregator}(${var.mongodb_read_latency_timeframe}):
-        anomalies(avg:mongodb.atlas.oplatencies.reads.avg${module.filter-tags.query_alert} by {host}
+        anomalies(avg:mongodb.atlas.oplatencies.reads.avg${module.filter-tags.query_alert} by {clustername,host}
         , 'basic', 2, direction='above', interval=60, alert_window='${var.mongodb_read_latency_alert_window}', count_default_zero='true')
         >= ${var.mongodb_read_latency_critical}
 EOQ
@@ -358,13 +358,13 @@ EOQ
 #
 resource "datadog_monitor" "mongodb_write_latency" {
   count   = var.mongodb_write_latency_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] MongoDB Write Latency is higher than average for host: {{host.name}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB Write Latency is higher than average for host: {{host.name}}"
   message = coalesce(var.mongodb_write_latency_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
       ${var.mongodb_write_latency_aggregator}(${var.mongodb_write_latency_timeframe}):
-        anomalies(avg:mongodb.atlas.oplatencies.writes.avg${module.filter-tags.query_alert} by {host}
+        anomalies(avg:mongodb.atlas.oplatencies.writes.avg${module.filter-tags.query_alert} by {clustername,host}
         , 'basic', 2, direction='above', interval=60, alert_window='${var.mongodb_write_latency_alert_window}', count_default_zero='true')
         >= ${var.mongodb_write_latency_critical}
 EOQ
