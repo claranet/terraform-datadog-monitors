@@ -206,7 +206,7 @@ variable "mongodb_high_disk_usage_enabled" {
 variable "mongodb_high_disk_usage_message" {
   description = "Custom message for MongoDB high disk usage monitor"
   type        = string
-  default     = "The used file system storage is reaching capacity for database host {{host.name}} on MongoDB Cluster {{clustername.name}}. {{value}} % of the total storage has been used."
+  default     = ""
 }
 
 variable "mongodb_high_disk_usage_aggregator" {
@@ -249,7 +249,7 @@ variable "mongodb_oplog_low_enabled" {
 variable "mongodb_oplog_low_message" {
   description = "Custom message for MongoDB low oplog window monitor"
   type        = string
-  default     = "Oplog window for database host {{host.name}} on MongoDB Cluster {{clustername.name}} is below the threshold. The oplog window is {{value}} seconds."
+  default     = ""
 }
 
 variable "mongodb_oplog_low_aggregator" {
@@ -292,7 +292,7 @@ variable "mongodb_replicaset_member_unhealthy_enabled" {
 variable "mongodb_replicaset_member_unhealthy_message" {
   description = "Custom message for MongoDB unhealthy replica set member monitor"
   type        = string
-  default     = "MongoDB Cluster {{clustername.name}} replica set member {{host.name}} is unhealthy."
+  default     = ""
 }
 
 variable "mongodb_replicaset_member_unhealthy_aggregator" {
@@ -330,7 +330,7 @@ variable "mongodb_cpu_high_enabled" {
 variable "mongodb_cpu_high_message" {
   description = "Custom message for MongoDB high CPU usage monitor"
   type        = string
-  default     = "CPU usage is higher than normal ({{value}} %)"
+  default     = ""
 }
 
 variable "mongodb_cpu_high_aggregator" {
@@ -391,7 +391,7 @@ variable "mongodb_query_efficiency_enabled" {
 variable "mongodb_query_efficiency_message" {
   description = "Custom message for MongoDB query efficiency monitor"
   type        = string
-  default     = "Average query efficiency is degraded"
+  default     = ""
 }
 
 variable "mongodb_query_efficiency_aggregator" {
@@ -452,7 +452,7 @@ variable "mongodb_mem_usage_enabled" {
 variable "mongodb_mem_usage_message" {
   description = "Custom message for MongoDB memory usage monitor"
   type        = string
-  default     = "Memory usage is higher than normal ({{value}} %)"
+  default     = ""
 }
 
 variable "mongodb_mem_usage_aggregator" {
@@ -513,7 +513,7 @@ variable "mongodb_read_latency_enabled" {
 variable "mongodb_read_latency_message" {
   description = "Custom message for MongoDB read latency monitor"
   type        = string
-  default     = "Read latency is higher than usual ({{value}} ms)"
+  default     = ""
 }
 
 variable "mongodb_read_latency_aggregator" {
@@ -574,7 +574,7 @@ variable "mongodb_write_latency_enabled" {
 variable "mongodb_write_latency_message" {
   description = "Custom message for MongoDB write latency monitor"
   type        = string
-  default     = "Write latency is higher than usual ({{value}} ms)"
+  default     = ""
 }
 
 variable "mongodb_write_latency_aggregator" {

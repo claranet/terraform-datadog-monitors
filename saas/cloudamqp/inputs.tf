@@ -60,7 +60,7 @@ variable "notify_no_data" {
 variable "disk_free_space_message" {
   description = "Custom message for the Disk Space is Low monitor"
   type        = string
-  default     = "{{#is_alert}}\nDisk space is extremely low. \nThis can be caused by an overload of messages or persistent messages that are being mismanaged. \nPlease resolve.\n{{/is_alert}}"
+  default     = ""
 }
 
 variable "disk_free_space_time_aggregator" {
@@ -99,7 +99,7 @@ variable "disk_free_space_extra_tags" {
 variable "unacknowledged_messages_high_message" {
   description = "Custom message for the Unacknowledged Messages monitor"
   type        = string
-  default     = "{{#is_alert}}\nThe ratio of unacknowledged to acknowledged messages in this queue is higher than usual. \nPlease check your message pipeline. \n{{/is_alert}}"
+  default     = ""
 }
 
 variable "unacknowledged_messages_high_time_aggregator" {
@@ -138,7 +138,7 @@ variable "unacknowledged_messages_high_extra_tags" {
 variable "memory_usage_high_message" {
   description = "Custom message for the High memory usage monitor"
   type        = string
-  default     = "RabbitMQ is using too many resources on host: {{host.name}}. It may block connections and won't be able to perform many internal operations."
+  default     = ""
 }
 
 variable "memory_usage_high_time_aggregator" {
@@ -177,7 +177,7 @@ variable "memory_usage_high_extra_tags" {
 variable "messages_ready_message" {
   description = "Custom message for the Messages are ready monitor"
   type        = string
-  default     = "Messages are ready in {{rabbitmq_queue.name}}. With messages ready in your queue, ensure you have consumers to consume these messages."
+  default     = ""
 }
 
 variable "messages_ready_time_aggregator" {
@@ -216,7 +216,7 @@ variable "messages_ready_extra_tags" {
 variable "no_consumers_message" {
   description = "Custom message for the No consumers monitor"
   type        = string
-  default     = "RabbitMQ currently has 0 consumers in {{rabbitmq_queue.name}} on {{host.name}}. This can lead to message accumulation which can impact application latency and increased memory usage to store the accumulated messages"
+  default     = ""
 }
 
 variable "no_consumers_time_aggregator" {
@@ -249,7 +249,7 @@ variable "no_consumers_extra_tags" {
 variable "unack_rate_message" {
   description = "Custom message for the Messages unacknowledged rate monitor"
   type        = string
-  default     = "The rate at which messages are being delivered without receiving acknowledgement is higher than usual. There may be errors or performance issues downstream.\n\nHost: {{host.name}}\nRabbitMQ Queue: {{rabbitmq_queue.name}}"
+  default     = ""
 }
 
 variable "unack_rate_time_aggregator" {
