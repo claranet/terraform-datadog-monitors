@@ -3,7 +3,7 @@
 #
 resource "datadog_monitor" "cluster_status_not_green" {
   count   = var.cluster_status_not_green_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ElasticSearch Cluster status not green"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] ElasticSearch Cluster status not green"
   message = coalesce(var.cluster_status_not_green_message, var.message)
   type    = "metric alert"
 
@@ -35,7 +35,7 @@ EOQ
 #
 resource "datadog_monitor" "cluster_initializing_shards" {
   count   = var.cluster_initializing_shards_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ElasticSearch Cluster is initializing shards"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] ElasticSearch Cluster is initializing shards"
   message = coalesce(var.cluster_initializing_shards_message, var.message)
   type    = "metric alert"
 
@@ -66,7 +66,7 @@ EOQ
 #
 resource "datadog_monitor" "cluster_relocating_shards" {
   count   = var.cluster_relocating_shards_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ElasticSearch Cluster is relocating shards"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] ElasticSearch Cluster is relocating shards"
   message = coalesce(var.cluster_relocating_shards_message, var.message)
   type    = "metric alert"
 
@@ -97,7 +97,7 @@ EOQ
 #
 resource "datadog_monitor" "cluster_unassigned_shards" {
   count   = var.cluster_unassigned_shards_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ElasticSearch Cluster has unassigned shards"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] ElasticSearch Cluster has unassigned shards"
   message = coalesce(var.cluster_unassigned_shards_message, var.message)
   type    = "metric alert"
 
@@ -128,16 +128,16 @@ EOQ
 #
 resource "datadog_monitor" "node_free_space" {
   count   = var.node_free_space_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ElasticSearch free space < 10%"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] ElasticSearch free space < 10%"
   message = coalesce(var.node_free_space_message, var.message)
 
   type = "query alert"
 
   query = <<EOQ
   ${var.node_free_space_time_aggregator}(${var.node_free_space_timeframe}):
-    (min:elastic_cloud.fs.total.available_in_bytes${module.filter-tags.query_alert} by {node_name}
+    (min:elastic_cloud.fs.total.available_in_bytes${module.filter-tags.query_alert} by {deployment_name,node_name}
     /
-    min:elastic_cloud.fs.total.total_in_bytes${module.filter-tags.query_alert} by {node_name}
+    min:elastic_cloud.fs.total.total_in_bytes${module.filter-tags.query_alert} by {deployment_name,node_name}
     ) * 100
   < ${var.node_free_space_threshold_critical}
 EOQ
@@ -163,13 +163,13 @@ EOQ
 #
 resource "datadog_monitor" "jvm_heap_memory_usage" {
   count   = var.jvm_heap_memory_usage_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch JVM HEAP memory usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] Elasticsearch JVM HEAP memory usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.jvm_heap_memory_usage_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
   ${var.jvm_heap_memory_usage_time_aggregator}(${var.jvm_heap_memory_usage_timeframe}):
-    avg:elastic_cloud.jvm.mem.heap_in_use${module.filter-tags.query_alert} by {node_name}
+    avg:elastic_cloud.jvm.mem.heap_in_use${module.filter-tags.query_alert} by {deployment_name,node_name}
   > ${var.jvm_heap_memory_usage_threshold_critical}
 EOQ
 
@@ -194,13 +194,13 @@ EOQ
 #
 resource "datadog_monitor" "jvm_memory_young_usage" {
   count   = var.jvm_memory_young_usage_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch JVM memory Young usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] Elasticsearch JVM memory Young usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.jvm_memory_young_usage_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
   ${var.jvm_memory_young_usage_time_aggregator}(${var.jvm_memory_young_usage_timeframe}):
-    avg:elastic_cloud.jvm.mem.pools.young.used${module.filter-tags.query_alert} by {node_name} / avg:elastic_cloud.jvm.mem.pools.young.max${module.filter-tags.query_alert} by {node_name} * 100
+    avg:elastic_cloud.jvm.mem.pools.young.used${module.filter-tags.query_alert} by {deployment_name,node_name} / avg:elastic_cloud.jvm.mem.pools.young.max${module.filter-tags.query_alert} by {deployment_name,node_name} * 100
   > ${var.jvm_memory_young_usage_threshold_critical}
 EOQ
 
@@ -225,13 +225,13 @@ EOQ
 #
 resource "datadog_monitor" "jvm_memory_old_usage" {
   count   = var.jvm_memory_old_usage_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch JVM memory Old usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] Elasticsearch JVM memory Old usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.jvm_memory_old_usage_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
   ${var.jvm_memory_old_usage_time_aggregator}(${var.jvm_memory_old_usage_timeframe}):
-    avg:elastic_cloud.jvm.mem.pools.old.used${module.filter-tags.query_alert} by {node_name} / avg:elastic_cloud.jvm.mem.pools.old.max${module.filter-tags.query_alert} by {node_name} * 100
+    avg:elastic_cloud.jvm.mem.pools.old.used${module.filter-tags.query_alert} by {deployment_name,node_name} / avg:elastic_cloud.jvm.mem.pools.old.max${module.filter-tags.query_alert} by {deployment_name,node_name} * 100
   > ${var.jvm_memory_old_usage_threshold_critical}
 EOQ
 
@@ -256,15 +256,15 @@ EOQ
 #
 resource "datadog_monitor" "jvm_gc_old_collection_latency" {
   count   = var.jvm_gc_old_collection_latency_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch average Old-generation garbage collections latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] Elasticsearch average Old-generation garbage collections latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = coalesce(var.jvm_gc_old_collection_latency_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
   ${var.jvm_gc_old_collection_latency_time_aggregator}(${var.jvm_gc_old_collection_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.jvm.gc.collectors.old.collection_time${module.filter-tags.query_alert} by {node_name}) /
-      diff(avg:elastic_cloud.jvm.gc.collectors.old.count${module.filter-tags.query_alert} by {node_name})
+      diff(avg:elastic_cloud.jvm.gc.collectors.old.collection_time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
+      diff(avg:elastic_cloud.jvm.gc.collectors.old.count${module.filter-tags.query_alert} by {deployment_name,node_name})
     * 1000, 0)
   > ${var.jvm_gc_old_collection_latency_threshold_critical}
 EOQ
@@ -290,15 +290,15 @@ EOQ
 #
 resource "datadog_monitor" "jvm_gc_young_collection_latency" {
   count   = var.jvm_gc_young_collection_latency_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch average Young-generation garbage collections latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] Elasticsearch average Young-generation garbage collections latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = coalesce(var.jvm_gc_young_collection_latency_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
   ${var.jvm_gc_young_collection_latency_time_aggregator}(${var.jvm_gc_young_collection_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.jvm.gc.collectors.young.collection_time${module.filter-tags.query_alert} by {node_name}) /
-      diff(avg:elastic_cloud.jvm.gc.collectors.young.count${module.filter-tags.query_alert} by {node_name})
+      diff(avg:elastic_cloud.jvm.gc.collectors.young.collection_time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
+      diff(avg:elastic_cloud.jvm.gc.collectors.young.count${module.filter-tags.query_alert} by {deployment_name,node_name})
     * 1000, 0)
   > ${var.jvm_gc_young_collection_latency_threshold_critical}
 EOQ
@@ -324,7 +324,7 @@ EOQ
 #
 resource "datadog_monitor" "indexing_latency" {
   count   = var.indexing_latency_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch average indexing latency by document {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] Elasticsearch average indexing latency by document {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = coalesce(var.indexing_latency_message, var.message)
   type    = "query alert"
 
@@ -332,8 +332,8 @@ resource "datadog_monitor" "indexing_latency" {
   query = <<EOQ
   ${var.indexing_latency_time_aggregator}(${var.indexing_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.indexing.index.time${module.filter-tags.query_alert} by {node_name}) /
-      diff(avg:elastic_cloud.indexing.index.total${module.filter-tags.query_alert} by {node_name})
+      diff(avg:elastic_cloud.indexing.index.time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
+      diff(avg:elastic_cloud.indexing.index.total${module.filter-tags.query_alert} by {deployment_name,node_name})
     * 1000, 0)
    > ${var.indexing_latency_threshold_critical}
 EOQ
@@ -359,7 +359,7 @@ EOQ
 #
 resource "datadog_monitor" "flush_latency" {
   count   = var.flush_latency_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch average index flushing to disk latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] Elasticsearch average index flushing to disk latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = coalesce(var.flush_latency_message, var.message)
   type    = "query alert"
 
@@ -367,8 +367,8 @@ resource "datadog_monitor" "flush_latency" {
   query = <<EOQ
   ${var.flush_latency_time_aggregator}(${var.flush_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.flush.total.time${module.filter-tags.query_alert} by {node_name}) /
-      diff(avg:elastic_cloud.flush.total${module.filter-tags.query_alert} by {node_name})
+      diff(avg:elastic_cloud.flush.total.time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
+      diff(avg:elastic_cloud.flush.total${module.filter-tags.query_alert} by {deployment_name,node_name})
     * 1000, 0)
   > ${var.flush_latency_threshold_critical}
 EOQ
@@ -394,13 +394,13 @@ EOQ
 #
 resource "datadog_monitor" "http_connections_anomaly" {
   count   = var.http_connections_anomaly_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch number of current open HTTP connections anomaly detected"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] Elasticsearch number of current open HTTP connections anomaly detected"
   message = coalesce(var.http_connections_anomaly_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
   ${var.http_connections_anomaly_time_aggregator}(${var.http_connections_anomaly_timeframe}):
-    anomalies(avg:elastic_cloud.http.current_open${module.filter-tags.query_alert} by {node_name},
+    anomalies(avg:elastic_cloud.http.current_open${module.filter-tags.query_alert} by {deployment_name,node_name},
               '${var.http_connections_anomaly_detection_algorithm}',
               ${var.http_connections_anomaly_deviations},
               direction='${var.http_connections_anomaly_direction}',
@@ -438,7 +438,7 @@ EOQ
 #
 resource "datadog_monitor" "search_query_latency" {
   count   = var.search_query_latency_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch average search query latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] Elasticsearch average search query latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = coalesce(var.search_query_latency_message, var.message)
   type    = "query alert"
 
@@ -446,8 +446,8 @@ resource "datadog_monitor" "search_query_latency" {
   query = <<EOQ
   ${var.search_query_latency_time_aggregator}(${var.search_query_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.search.query.time${module.filter-tags.query_alert} by {node_name}) /
-      diff(avg:elastic_cloud.search.query.total${module.filter-tags.query_alert} by {node_name})
+      diff(avg:elastic_cloud.search.query.time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
+      diff(avg:elastic_cloud.search.query.total${module.filter-tags.query_alert} by {deployment_name,node_name})
     * 1000, 0)
   > ${var.search_query_latency_threshold_critical}
 EOQ
@@ -473,7 +473,7 @@ EOQ
 #
 resource "datadog_monitor" "fetch_latency" {
   count   = var.fetch_latency_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch average search fetch latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] Elasticsearch average search fetch latency {{#is_alert}}{{{comparator}}} {{threshold}}ms ({{value}}ms){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}ms ({{value}}ms){{/is_warning}}"
   message = coalesce(var.fetch_latency_message, var.message)
   type    = "query alert"
 
@@ -481,8 +481,8 @@ resource "datadog_monitor" "fetch_latency" {
   query = <<EOQ
   ${var.fetch_latency_time_aggregator}(${var.fetch_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.search.fetch.time${module.filter-tags.query_alert} by {node_name}) /
-      diff(avg:elastic_cloud.search.fetch.total${module.filter-tags.query_alert} by {node_name})
+      diff(avg:elastic_cloud.search.fetch.time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
+      diff(avg:elastic_cloud.search.fetch.total${module.filter-tags.query_alert} by {deployment_name,node_name})
     * 1000, 0)
   > ${var.fetch_latency_threshold_critical}
 EOQ
@@ -508,7 +508,7 @@ EOQ
 #
 resource "datadog_monitor" "search_query_change" {
   count   = var.search_query_change_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch change alert on the number of currently active queries"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] Elasticsearch change alert on the number of currently active queries"
   message = coalesce(var.search_query_change_message, var.message)
   type    = "query alert"
 
@@ -539,7 +539,7 @@ EOQ
 #
 resource "datadog_monitor" "fetch_change" {
   count   = var.fetch_change_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch change alert on the number of search fetches currently running"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] Elasticsearch change alert on the number of search fetches currently running"
   message = coalesce(var.fetch_change_message, var.message)
   type    = "query alert"
 
@@ -570,14 +570,14 @@ EOQ
 #
 resource "datadog_monitor" "field_data_evictions_change" {
   count   = var.field_data_evictions_change_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch change alert on the total number of evictions from the fielddata cache"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] Elasticsearch change alert on the total number of evictions from the fielddata cache"
   message = coalesce(var.field_data_evictions_change_message, var.message)
   type    = "query alert"
 
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
   query = <<EOQ
   change(${var.field_data_evictions_change_time_aggregator}(${var.field_data_evictions_change_timeframe}),${var.field_data_evictions_change_timeshift}):
-    avg:elastic_cloud.fielddata.evictions${module.filter-tags.query_alert} by {node_name}
+    avg:elastic_cloud.fielddata.evictions${module.filter-tags.query_alert} by {deployment_name,node_name}
   > ${var.field_data_evictions_change_threshold_critical}
 EOQ
 
@@ -602,14 +602,14 @@ EOQ
 #
 resource "datadog_monitor" "query_cache_evictions_change" {
   count   = var.query_cache_evictions_change_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch change alert on the number of query cache evictions"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] Elasticsearch change alert on the number of query cache evictions"
   message = coalesce(var.query_cache_evictions_change_message, var.message)
   type    = "query alert"
 
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
   query = <<EOQ
   change(${var.query_cache_evictions_change_time_aggregator}(${var.query_cache_evictions_change_timeframe}),${var.query_cache_evictions_change_timeshift}):
-    avg:elastic_cloud.indices.query_cache.evictions${module.filter-tags.query_alert} by {node_name}
+    avg:elastic_cloud.indices.query_cache.evictions${module.filter-tags.query_alert} by {deployment_name,node_name}
   > ${var.query_cache_evictions_change_threshold_critical}
 EOQ
 
@@ -634,14 +634,14 @@ EOQ
 #
 resource "datadog_monitor" "request_cache_evictions_change" {
   count   = var.request_cache_evictions_change_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch change alert on the number of request cache evictions"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] Elasticsearch change alert on the number of request cache evictions"
   message = coalesce(var.request_cache_evictions_change_message, var.message)
   type    = "query alert"
 
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
   query = <<EOQ
   change(${var.request_cache_evictions_change_time_aggregator}(${var.request_cache_evictions_change_timeframe}),${var.request_cache_evictions_change_timeshift}):
-    avg:elastic_cloud.indices.request_cache.evictions${module.filter-tags.query_alert} by {node_name}
+    avg:elastic_cloud.indices.request_cache.evictions${module.filter-tags.query_alert} by {deployment_name,node_name}
   > ${var.request_cache_evictions_change_threshold_critical}
 EOQ
 
@@ -666,7 +666,7 @@ EOQ
 #
 resource "datadog_monitor" "task_time_in_queue_change" {
   count   = var.task_time_in_queue_change_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch change alert on the average time spent by tasks in the queue"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{deployment_name}}] Elasticsearch change alert on the average time spent by tasks in the queue"
   message = coalesce(var.task_time_in_queue_change_message, var.message)
   type    = "query alert"
 
