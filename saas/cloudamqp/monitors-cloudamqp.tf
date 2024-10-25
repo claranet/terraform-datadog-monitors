@@ -79,6 +79,7 @@ resource "datadog_monitor" "memory_usage_high" {
 EOQ
 
   monitor_thresholds {
+    warning  = var.memory_usage_high_threshold_warning
     critical = var.memory_usage_high_threshold_critical
   }
 

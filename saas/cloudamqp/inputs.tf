@@ -159,6 +159,12 @@ variable "memory_usage_high_threshold_critical" {
   default     = 90
 }
 
+variable "memory_usage_high_threshold_warning" {
+  description = "High memory usage warning threshold"
+  type        = string
+  default     = 80
+}
+
 variable "memory_usage_high_enabled" {
   description = "Flag to enable High memory usage monitor"
   type        = string

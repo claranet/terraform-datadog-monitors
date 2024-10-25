@@ -1,4 +1,3 @@
-
 locals {
   alerting-message = templatefile(
     "${path.module}/templates/alerting-message.tftpl",

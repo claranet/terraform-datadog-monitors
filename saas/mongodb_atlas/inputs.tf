@@ -91,7 +91,7 @@ variable "mongodb_server_count_timeframe" {
 variable "mongodb_replication_timeframe" {
   description = "Monitor timeframe for MongoDB replication lag  [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
-  default     = "last_1m"
+  default     = "last_5m"
 }
 
 variable "mongodb_lag_warning" {
@@ -409,7 +409,7 @@ variable "mongodb_query_efficiency_timeframe" {
 variable "mongodb_query_efficiency_alert_window" {
   description = "Alert window for MongoDB query efficiency"
   type        = string
-  default     = "last_15m"
+  default     = "last_30m"
 }
 
 variable "mongodb_query_efficiency_critical" {
@@ -431,7 +431,7 @@ variable "mongodb_query_efficiency_recovery_window" {
 variable "mongodb_query_efficiency_trigger_window" {
   description = "Trigger window for MongoDB query efficiency alert"
   type        = string
-  default     = "last_15m"
+  default     = "last_30m"
 }
 
 variable "mongodb_query_efficiency_extra_tags" {
@@ -470,7 +470,7 @@ variable "mongodb_mem_usage_timeframe" {
 variable "mongodb_mem_usage_alert_window" {
   description = "Alert window for MongoDB memory usage"
   type        = string
-  default     = "last_15m"
+  default     = "last_30m"
 }
 
 variable "mongodb_mem_usage_critical" {
@@ -492,7 +492,7 @@ variable "mongodb_mem_usage_recovery_window" {
 variable "mongodb_mem_usage_trigger_window" {
   description = "Trigger window for MongoDB memory usage alert"
   type        = string
-  default     = "last_15m"
+  default     = "last_30m"
 }
 
 variable "mongodb_mem_usage_extra_tags" {
@@ -531,7 +531,7 @@ variable "mongodb_read_latency_timeframe" {
 variable "mongodb_read_latency_alert_window" {
   description = "Alert window for MongoDB read latency"
   type        = string
-  default     = "last_15m"
+  default     = "last_30m"
 }
 
 variable "mongodb_read_latency_critical" {
@@ -553,7 +553,7 @@ variable "mongodb_read_latency_recovery_window" {
 variable "mongodb_read_latency_trigger_window" {
   description = "Trigger window for MongoDB read latency alert"
   type        = string
-  default     = "last_15m"
+  default     = "last_30m"
 }
 
 variable "mongodb_read_latency_extra_tags" {
@@ -592,7 +592,7 @@ variable "mongodb_write_latency_timeframe" {
 variable "mongodb_write_latency_alert_window" {
   description = "Alert window for MongoDB write latency"
   type        = string
-  default     = "last_15m"
+  default     = "last_30m"
 }
 
 variable "mongodb_write_latency_critical" {
@@ -614,7 +614,7 @@ variable "mongodb_write_latency_recovery_window" {
 variable "mongodb_write_latency_trigger_window" {
   description = "Trigger window for MongoDB write latency alert"
   type        = string
-  default     = "last_15m"
+  default     = "last_30m"
 }
 
 variable "mongodb_write_latency_extra_tags" {

@@ -297,7 +297,7 @@ variable "jvm_heap_memory_usage_time_aggregator" {
 variable "jvm_heap_memory_usage_timeframe" {
   description = "Timeframe for the Cluster Status monitor"
   type        = string
-  default     = "last_5m"
+  default     = "last_15m"
 }
 
 variable "jvm_heap_memory_usage_threshold_warning" {
