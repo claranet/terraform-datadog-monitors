@@ -45,6 +45,10 @@ variable "message" {
   description = "Message sent when an alert is triggered"
 }
 
+variable "message_warning" {
+  description = "Message sent when an warning alert is triggered"
+}
+
 variable "filter_tags_use_defaults" {
   description = "Use default filter tags convention"
   default     = "true"
@@ -96,12 +100,12 @@ variable "mongodb_replication_timeframe" {
 
 variable "mongodb_lag_warning" {
   description = "Warn replication lag in s"
-  default     = 2
+  default     = 20
 }
 
 variable "mongodb_lag_critical" {
   description = "Critical replication lag in s"
-  default     = 5
+  default     = 30
 }
 
 variable "mongodb_primary_enabled" {

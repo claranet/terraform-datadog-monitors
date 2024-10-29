@@ -50,7 +50,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = false
+  notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -71,18 +71,45 @@ resource "datadog_monitor" "mongodb_replication" {
 
   query = <<EOQ
       ${var.mongodb_replication_aggregator}(${var.mongodb_replication_timeframe}):
-      avg:mongodb.atlas.replset.replicationlag${module.filter-tags.query_alert} by {clustername,host} > ${var.mongodb_lag_critical}
+      avg:mongodb.atlas.replset.replicationlag${module.filter-tags.query_alert} by {clustername} > ${var.mongodb_lag_critical}
 EOQ
 
   monitor_thresholds {
     critical = var.mongodb_lag_critical
-    warning  = var.mongodb_lag_warning
   }
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = false
+  notify_no_data      = var.notify_no_data
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = var.timeout_h
+  include_tags        = true
+  require_full_window = true
+
+  tags = concat(local.common_tags, var.tags, var.mongodb_replication_extra_tags)
+}
+
+resource "datadog_monitor" "mongodb_replication_warning" {
+  count   = var.mongodb_replication_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB replication lag"
+  message = coalesce(var.mongodb_replication_message, var.message_warning)
+  type    = "metric alert"
+
+  query = <<EOQ
+      ${var.mongodb_replication_aggregator}(${var.mongodb_replication_timeframe}):
+      avg:mongodb.atlas.replset.replicationlag${module.filter-tags.query_alert} by {clustername} > ${var.mongodb_lag_warning}
+EOQ
+
+  monitor_thresholds {
+    critical = var.mongodb_lag_warning
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
+  notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -109,13 +136,41 @@ EOQ
 
   monitor_thresholds {
     critical = var.mongodb_high_disk_usage_critical
-    warning  = var.mongodb_high_disk_usage_warning
   }
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = false
+  notify_no_data      = var.notify_no_data
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = var.timeout_h
+  include_tags        = true
+  require_full_window = true
+
+  tags = concat(local.common_tags, var.tags, var.mongodb_high_disk_usage_extra_tags)
+}
+
+resource "datadog_monitor" "mongodb_high_disk_usage_warning" {
+  count   = var.mongodb_high_disk_usage_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB High file system storage usage"
+  message = coalesce(var.mongodb_high_disk_usage_message, var.message_warning)
+  type    = "query alert"
+
+  query = <<EOQ
+      ${var.mongodb_high_disk_usage_aggregator}(${var.mongodb_high_disk_usage_timeframe}):
+        mongodb.atlas.system.disk.max.space.percentused${module.filter-tags.query_alert} by {clustername, host}
+        > ${var.mongodb_high_disk_usage_warning}
+EOQ
+
+  monitor_thresholds {
+    critical = var.mongodb_high_disk_usage_warning
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
+  notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -142,13 +197,41 @@ EOQ
 
   monitor_thresholds {
     critical = var.mongodb_oplog_low_critical
-    warning  = var.mongodb_oplog_low_warning
   }
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = false
+  notify_no_data      = var.notify_no_data
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = var.timeout_h
+  include_tags        = true
+  require_full_window = true
+
+  tags = concat(local.common_tags, var.tags, var.mongodb_oplog_low_extra_tags)
+}
+
+resource "datadog_monitor" "mongodb_oplog_low_warning" {
+  count   = var.mongodb_oplog_low_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB Low oplog window"
+  message = coalesce(var.mongodb_oplog_low_message, var.message_warning)
+  type    = "query alert"
+
+  query = <<EOQ
+      ${var.mongodb_oplog_low_aggregator}(${var.mongodb_oplog_low_timeframe}):
+        100
+        * avg:mongodb.atlas.replset.oplogWindow${module.filter-tags.query_alert} by {clustername,host} < ${var.mongodb_oplog_low_warning}
+EOQ
+
+  monitor_thresholds {
+    critical = var.mongodb_oplog_low_warning
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
+  notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -180,7 +263,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = false
+  notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -226,7 +309,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = false
+  notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -264,7 +347,7 @@ EOQ
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
-  notify_no_data      = false
+  notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -304,7 +387,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = false
+  notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -326,7 +409,7 @@ resource "datadog_monitor" "mongodb_read_latency" {
   query = <<EOQ
       ${var.mongodb_read_latency_aggregator}(${var.mongodb_read_latency_timeframe}):
         anomalies(avg:mongodb.atlas.oplatencies.reads.avg${module.filter-tags.query_alert} by {clustername,host}
-        , 'basic', 2, direction='above', interval=60, alert_window='${var.mongodb_read_latency_alert_window}', count_default_zero='true')
+        , 'agile', 2, direction='above', interval=60, alert_window='${var.mongodb_read_latency_alert_window}', count_default_zero='true')
         >= ${var.mongodb_read_latency_critical}
 EOQ
 
@@ -343,7 +426,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = false
+  notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -365,7 +448,7 @@ resource "datadog_monitor" "mongodb_write_latency" {
   query = <<EOQ
       ${var.mongodb_write_latency_aggregator}(${var.mongodb_write_latency_timeframe}):
         anomalies(avg:mongodb.atlas.oplatencies.writes.avg${module.filter-tags.query_alert} by {clustername,host}
-        , 'basic', 2, direction='above', interval=60, alert_window='${var.mongodb_write_latency_alert_window}', count_default_zero='true')
+        , 'agile', 2, direction='above', interval=60, alert_window='${var.mongodb_write_latency_alert_window}', count_default_zero='true')
         >= ${var.mongodb_write_latency_critical}
 EOQ
 
@@ -382,7 +465,7 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = false
+  notify_no_data      = var.notify_no_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h

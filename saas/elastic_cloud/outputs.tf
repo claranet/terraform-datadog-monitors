@@ -8,9 +8,14 @@ output "cluster_relocating_shards_id" {
   value       = datadog_monitor.cluster_relocating_shards.*.id
 }
 
-output "cluster_status_not_green_id" {
-  description = "id for monitor cluster_status_not_green"
-  value       = datadog_monitor.cluster_status_not_green.*.id
+output "cluster_status_not_green_red_id" {
+  description = "id for monitor cluster_status_not_green_red"
+  value       = datadog_monitor.cluster_status_not_green_red.*.id
+}
+
+output "cluster_status_not_green_yellow_id" {
+  description = "id for monitor cluster_status_not_green_yellow"
+  value       = datadog_monitor.cluster_status_not_green_yellow.*.id
 }
 
 output "cluster_unassigned_shards_id" {

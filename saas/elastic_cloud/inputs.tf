@@ -24,6 +24,10 @@ variable "message" {
   description = "Message sent when a monitor is triggered"
 }
 
+variable "message_warning" {
+  description = "Message sent when a warning monitor is triggered"
+}
+
 variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 15
@@ -471,13 +475,13 @@ variable "jvm_gc_young_collection_latency_message" {
 variable "jvm_gc_young_collection_latency_time_aggregator" {
   description = "Time aggregator for the Cluster Status monitor"
   type        = string
-  default     = "avg"
+  default     = "min"
 }
 
 variable "jvm_gc_young_collection_latency_timeframe" {
   description = "Timeframe for the Cluster Status monitor"
   type        = string
-  default     = "last_15m"
+  default     = "last_30m"
 }
 
 variable "jvm_gc_young_collection_latency_threshold_warning" {

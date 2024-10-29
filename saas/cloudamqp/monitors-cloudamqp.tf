@@ -24,7 +24,7 @@ EOQ
   notify_audit        = false
   include_tags        = true
   require_full_window = false
-  notify_no_data      = false
+  notify_no_data      = true
 
   tags = concat(local.common_tags, var.tags, var.disk_free_space_extra_tags)
 }
@@ -56,7 +56,7 @@ EOQ
   notify_audit        = false
   include_tags        = true
   require_full_window = false
-  notify_no_data      = false
+  notify_no_data      = true
 
   tags = concat(local.common_tags, var.tags, var.unacknowledged_messages_high_extra_tags)
 }
@@ -79,7 +79,6 @@ resource "datadog_monitor" "memory_usage_high" {
 EOQ
 
   monitor_thresholds {
-    warning  = var.memory_usage_high_threshold_warning
     critical = var.memory_usage_high_threshold_critical
   }
 
@@ -89,7 +88,36 @@ EOQ
   notify_audit        = false
   include_tags        = true
   require_full_window = true
-  notify_no_data      = false
+  notify_no_data      = true
+
+  tags = concat(local.common_tags, var.tags, var.memory_usage_high_extra_tags)
+}
+
+resource "datadog_monitor" "memory_usage_high_warning" {
+  count   = var.memory_usage_high_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{instance.name}}] RabbitMQ Level of memory usage is too high for host: {{host.name}}"
+  message = coalesce(var.memory_usage_high_message, var.message_warning)
+  type    = "query alert"
+
+  query = <<EOQ
+  ${var.memory_usage_high_time_aggregator}(${var.memory_usage_high_timeframe}):
+      (avg:system.mem.total${module.filter-tags.query_alert} by {instance,host} - avg:system.mem.usable${module.filter-tags.query_alert} by {instance,host})
+      / avg:system.mem.total${module.filter-tags.query_alert} by {instance,host}
+    * 100
+    > ${var.memory_usage_high_threshold_warning}
+EOQ
+
+  monitor_thresholds {
+    critical = var.memory_usage_high_threshold_warning
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
+  notify_audit        = false
+  include_tags        = true
+  require_full_window = true
+  notify_no_data      = true
 
   tags = concat(local.common_tags, var.tags, var.memory_usage_high_extra_tags)
 }
@@ -99,7 +127,7 @@ EOQ
 #
 resource "datadog_monitor" "messages_ready" {
   count   = var.messages_ready_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{instance.name}}] RabbitMQ Queue message(s) ready"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{rabbitmq_queue.name}}] RabbitMQ Queue message(s) ready"
   message = coalesce(var.messages_ready_message, var.message)
   type    = "query alert"
 
@@ -119,7 +147,7 @@ EOQ
   notify_audit        = false
   include_tags        = true
   require_full_window = false
-  notify_no_data      = false
+  notify_no_data      = true
 
   tags = concat(local.common_tags, var.tags, var.messages_ready_extra_tags)
 }
@@ -149,7 +177,7 @@ EOQ
   notify_audit        = false
   include_tags        = true
   require_full_window = false
-  notify_no_data      = false
+  notify_no_data      = true
 
   tags = concat(local.common_tags, var.tags, var.no_consumers_extra_tags)
 }
@@ -192,7 +220,7 @@ EOQ
   notify_audit        = false
   include_tags        = true
   require_full_window = false
-  notify_no_data      = false
+  notify_no_data      = true
 
   tags = concat(local.common_tags, var.tags, var.unack_rate_extra_tags)
 }

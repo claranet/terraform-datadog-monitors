@@ -24,6 +24,10 @@ variable "message" {
   description = "Message sent when a monitor is triggered"
 }
 
+variable "message_warning" {
+  description = "Message sent when a warning monitor is triggered"
+}
+
 variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 15
@@ -201,7 +205,7 @@ variable "messages_ready_timeframe" {
 variable "messages_ready_threshold_critical" {
   description = "Messages are ready critical threshold"
   type        = string
-  default     = 1
+  default     = 600
 }
 
 variable "messages_ready_enabled" {
