@@ -77,7 +77,7 @@ variable "mongodb_desired_servers_count" {
 variable "mongodb_primary_timeframe" {
   description = "Monitor timeframe for MongoDB wrong state for primary node [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
-  default     = "last_1m"
+  default     = "last_5m"
 }
 
 variable "mongodb_secondary_timeframe" {
@@ -177,13 +177,13 @@ variable "mongodb_replication_message" {
 variable "mongodb_primary_aggregator" {
   description = "Monitor aggregator for MongoDB primary state [available values: min, max]"
   type        = string
-  default     = "max"
+  default     = "min"
 }
 
 variable "mongodb_secondary_aggregator" {
   description = "Monitor aggregator for MongoDB secondary state [available values: min, max]"
   type        = string
-  default     = "max"
+  default     = "min"
 }
 
 variable "mongodb_server_count_aggregator" {
@@ -523,7 +523,7 @@ variable "mongodb_read_latency_message" {
 variable "mongodb_read_latency_aggregator" {
   description = "Monitor aggregator for MongoDB read latency [available values: min, max]"
   type        = string
-  default     = "avg"
+  default     = "min"
 }
 
 variable "mongodb_read_latency_timeframe" {
@@ -532,32 +532,9 @@ variable "mongodb_read_latency_timeframe" {
   default     = "last_4h"
 }
 
-variable "mongodb_read_latency_alert_window" {
-  description = "Alert window for MongoDB read latency"
-  type        = string
-  default     = "last_30m"
-}
-
 variable "mongodb_read_latency_critical" {
   description = "Critical threshold for MongoDB read latency"
-  default     = 1
-}
-
-variable "mongodb_read_latency_critical_recovery" {
-  description = "Recovery threshold for MongoDB read latency"
-  default     = 0
-}
-
-variable "mongodb_read_latency_recovery_window" {
-  description = "Recovery window for MongoDB read latency"
-  type        = string
-  default     = "last_15m"
-}
-
-variable "mongodb_read_latency_trigger_window" {
-  description = "Trigger window for MongoDB read latency alert"
-  type        = string
-  default     = "last_30m"
+  default     = 50
 }
 
 variable "mongodb_read_latency_extra_tags" {
@@ -584,41 +561,18 @@ variable "mongodb_write_latency_message" {
 variable "mongodb_write_latency_aggregator" {
   description = "Monitor aggregator for MongoDB write latency [available values: min, max]"
   type        = string
-  default     = "avg"
+  default     = "min"
 }
 
 variable "mongodb_write_latency_timeframe" {
   description = "Timeframe for MongoDB write latency monitor"
   type        = string
-  default     = "last_4h"
-}
-
-variable "mongodb_write_latency_alert_window" {
-  description = "Alert window for MongoDB write latency"
-  type        = string
-  default     = "last_30m"
+  default     = "last_5m"
 }
 
 variable "mongodb_write_latency_critical" {
   description = "Critical threshold for MongoDB write latency"
-  default     = 1
-}
-
-variable "mongodb_write_latency_critical_recovery" {
-  description = "Recovery threshold for MongoDB write latency"
-  default     = 0
-}
-
-variable "mongodb_write_latency_recovery_window" {
-  description = "Recovery window for MongoDB write latency"
-  type        = string
-  default     = "last_15m"
-}
-
-variable "mongodb_write_latency_trigger_window" {
-  description = "Trigger window for MongoDB write latency alert"
-  type        = string
-  default     = "last_30m"
+  default     = 50
 }
 
 variable "mongodb_write_latency_extra_tags" {

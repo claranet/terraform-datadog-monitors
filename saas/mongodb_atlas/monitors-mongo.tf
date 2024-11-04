@@ -402,25 +402,18 @@ EOQ
 #
 resource "datadog_monitor" "mongodb_read_latency" {
   count   = var.mongodb_read_latency_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB Read Latency is higher than average for host: {{host.name}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB Read Latency is too high on host: {{host.name}}"
   message = coalesce(var.mongodb_read_latency_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
       ${var.mongodb_read_latency_aggregator}(${var.mongodb_read_latency_timeframe}):
-        anomalies(avg:mongodb.atlas.oplatencies.reads.avg${module.filter-tags.query_alert} by {clustername,host}
-        , 'agile', 2, direction='above', interval=60, alert_window='${var.mongodb_read_latency_alert_window}', count_default_zero='true')
+        avg:mongodb.atlas.oplatencies.reads.avg${module.filter-tags.query_alert} by {clustername,host}
         >= ${var.mongodb_read_latency_critical}
 EOQ
 
-  monitor_threshold_windows {
-    recovery_window = var.mongodb_read_latency_recovery_window
-    trigger_window  = var.mongodb_read_latency_trigger_window
-  }
-
   monitor_thresholds {
     critical          = var.mongodb_read_latency_critical
-    critical_recovery = var.mongodb_read_latency_critical_recovery
   }
 
   evaluation_delay    = var.evaluation_delay
@@ -441,25 +434,18 @@ EOQ
 #
 resource "datadog_monitor" "mongodb_write_latency" {
   count   = var.mongodb_write_latency_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB Write Latency is higher than average for host: {{host.name}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{clustername.name}}] MongoDB Write Latency is too high for host: {{host.name}}"
   message = coalesce(var.mongodb_write_latency_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
       ${var.mongodb_write_latency_aggregator}(${var.mongodb_write_latency_timeframe}):
-        anomalies(avg:mongodb.atlas.oplatencies.writes.avg${module.filter-tags.query_alert} by {clustername,host}
-        , 'agile', 2, direction='above', interval=60, alert_window='${var.mongodb_write_latency_alert_window}', count_default_zero='true')
+        avg:mongodb.atlas.oplatencies.writes.avg${module.filter-tags.query_alert} by {clustername,host}
         >= ${var.mongodb_write_latency_critical}
 EOQ
 
-  monitor_threshold_windows {
-    recovery_window = var.mongodb_write_latency_recovery_window
-    trigger_window  = var.mongodb_write_latency_trigger_window
-  }
-
   monitor_thresholds {
     critical          = var.mongodb_write_latency_critical
-    critical_recovery = var.mongodb_write_latency_critical_recovery
   }
 
   evaluation_delay    = var.evaluation_delay
