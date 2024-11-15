@@ -1129,18 +1129,19 @@ variable "slm_snapshots_failed_message" {
 variable "slm_snapshots_failed_time_aggregator" {
   description = "Time aggregator for SLM Snapshots Failed monitor"
   type        = string
-}
-
-variable "slm_snapshots_failed_threshold_critical" {
-  description = "SLM Snapshots Failed critical threshold"
-  type        = string
-  default     = 1
+  default     = "avg"
 }
 
 variable "slm_snapshots_failed_timeframe" {
   description = "SLM Snapshots Failed timeframe"
   type        = string
   default     = "last_5m"
+}
+
+variable "slm_snapshots_failed_threshold_critical" {
+  description = "SLM Snapshots Failed critical threshold"
+  type        = string
+  default     = 1
 }
 
 variable "slm_snapshots_failed_extra_tags" {
@@ -1168,18 +1169,19 @@ variable "slm_snapshot_deletion_failures_message" {
 variable "slm_snapshot_deletion_failures_time_aggregator" {
   description = "Time aggregator for SLM Snapshot deletion failures monitor"
   type        = string
-}
-
-variable "slm_snapshot_deletion_failures_threshold_critical" {
-  description = "SLM Snapshot deletion failures critical threshold"
-  type        = string
-  default     = 1
+  default     = "avg"
 }
 
 variable "slm_snapshot_deletion_failures_timeframe" {
   description = "SLM Snapshot deletion failures timeframe"
   type        = string
   default     = "last_5m"
+}
+
+variable "slm_snapshot_deletion_failures_threshold_critical" {
+  description = "SLM Snapshot deletion failures critical threshold"
+  type        = string
+  default     = 1
 }
 
 variable "slm_snapshot_deletion_failures_extra_tags" {
