@@ -23,22 +23,24 @@ Creates DataDog monitors with the following checks:
 - Elasticsearch average search fetch latency
 - Elasticsearch average search query latency
 - Elasticsearch average Young-generation garbage collections latency
-- Elasticsearch change alert on the average time spent by tasks in the queue
-- Elasticsearch change alert on the number of currently active queries
-- Elasticsearch change alert on the number of query cache evictions
-- Elasticsearch change alert on the number of request cache evictions
-- Elasticsearch change alert on the number of search fetches currently running
-- Elasticsearch change alert on the total number of evictions from the fielddata cache
-- ElasticSearch Cluster has unassigned shards
-- ElasticSearch Cluster is initializing shards
-- ElasticSearch Cluster is relocating shards
-- ElasticSearch Cluster status not green
-- ElasticSearch does not respond
-- ElasticSearch free space < 10%
+- Elasticsearch change alert on the average time spent by tasks in the queue on {{cluster_name}}
+- Elasticsearch change alert on the number of currently active queries on {{cluster_name}}
+- Elasticsearch change alert on the number of query cache evictions on {{node_name}}
+- Elasticsearch change alert on the number of request cache evictions on {{node_name}}
+- Elasticsearch change alert on the number of search fetches currently running on {{cluster_name}}
+- Elasticsearch change alert on the total number of evictions from the fielddata cache on {{node_name}}
+- ElasticSearch Cluster has unassigned shards on {{cluster_name}}
+- ElasticSearch Cluster is initializing shards on {{cluster_name}}
+- ElasticSearch Cluster is relocating shards on {{cluster_name}}
+- ElasticSearch Cluster status not green on {{cluster_name}}
+- ElasticSearch does not respond on {{server}}:{{port}}
+- ElasticSearch free space < 10% on {{node_name}}
 - Elasticsearch JVM HEAP memory usage
 - Elasticsearch JVM memory Old usage
 - Elasticsearch JVM memory Young usage
-- Elasticsearch number of current open HTTP connections anomaly detected
+- Elasticsearch number of current open HTTP connections anomaly detected on {{node_name}}
+- Elasticsearch {{policy}} snapshot deletion failure on {{cluster_name}}
+- Elasticsearch {{policy}} snapshot failed on {{cluster_name}}
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -85,6 +87,8 @@ Creates DataDog monitors with the following checks:
 | [datadog_monitor.request_cache_evictions_change](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 | [datadog_monitor.search_query_change](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 | [datadog_monitor.search_query_latency](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
+| [datadog_monitor.slm_snapshot_deletion_failures](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
+| [datadog_monitor.slm_snapshots_failed](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 | [datadog_monitor.task_time_in_queue_change](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 
 ## Inputs
@@ -258,6 +262,18 @@ Creates DataDog monitors with the following checks:
 | <a name="input_search_query_latency_threshold_warning"></a> [search\_query\_latency\_threshold\_warning](#input\_search\_query\_latency\_threshold\_warning) | Cluster Status warning threshold | `string` | `10` | no |
 | <a name="input_search_query_latency_time_aggregator"></a> [search\_query\_latency\_time\_aggregator](#input\_search\_query\_latency\_time\_aggregator) | Time aggregator for the Cluster Status monitor | `string` | `"avg"` | no |
 | <a name="input_search_query_latency_timeframe"></a> [search\_query\_latency\_timeframe](#input\_search\_query\_latency\_timeframe) | Timeframe for the Cluster Status monitor | `string` | `"last_15m"` | no |
+| <a name="input_slm_snapshot_deletion_failures_enabled"></a> [slm\_snapshot\_deletion\_failures\_enabled](#input\_slm\_snapshot\_deletion\_failures\_enabled) | Flag to enable SLM Snapshot deletion failures monitor | `string` | `"true"` | no |
+| <a name="input_slm_snapshot_deletion_failures_extra_tags"></a> [slm\_snapshot\_deletion\_failures\_extra\_tags](#input\_slm\_snapshot\_deletion\_failures\_extra\_tags) | Extra tags for SLM Snapshot deletion failures monitor | `list(string)` | `[]` | no |
+| <a name="input_slm_snapshot_deletion_failures_message"></a> [slm\_snapshot\_deletion\_failures\_message](#input\_slm\_snapshot\_deletion\_failures\_message) | Custom message for SLM Snapshot deletion failures monitor | `string` | `""` | no |
+| <a name="input_slm_snapshot_deletion_failures_threshold_critical"></a> [slm\_snapshot\_deletion\_failures\_threshold\_critical](#input\_slm\_snapshot\_deletion\_failures\_threshold\_critical) | SLM Snapshot deletion failures critical threshold | `string` | `1` | no |
+| <a name="input_slm_snapshot_deletion_failures_time_aggregator"></a> [slm\_snapshot\_deletion\_failures\_time\_aggregator](#input\_slm\_snapshot\_deletion\_failures\_time\_aggregator) | Time aggregator for SLM Snapshot deletion failures monitor | `string` | n/a | yes |
+| <a name="input_slm_snapshot_deletion_failures_timeframe"></a> [slm\_snapshot\_deletion\_failures\_timeframe](#input\_slm\_snapshot\_deletion\_failures\_timeframe) | SLM Snapshot deletion failures timeframe | `string` | `"last_5m"` | no |
+| <a name="input_slm_snapshots_failed_enabled"></a> [slm\_snapshots\_failed\_enabled](#input\_slm\_snapshots\_failed\_enabled) | Flag to enable SLM Snapshots Failed monitor | `string` | `"true"` | no |
+| <a name="input_slm_snapshots_failed_extra_tags"></a> [slm\_snapshots\_failed\_extra\_tags](#input\_slm\_snapshots\_failed\_extra\_tags) | Extra tags for SLM Snapshots Failed monitor | `list(string)` | `[]` | no |
+| <a name="input_slm_snapshots_failed_message"></a> [slm\_snapshots\_failed\_message](#input\_slm\_snapshots\_failed\_message) | Custom message for SLM Snapshots Failed monitor | `string` | `""` | no |
+| <a name="input_slm_snapshots_failed_threshold_critical"></a> [slm\_snapshots\_failed\_threshold\_critical](#input\_slm\_snapshots\_failed\_threshold\_critical) | SLM Snapshots Failed critical threshold | `string` | `1` | no |
+| <a name="input_slm_snapshots_failed_time_aggregator"></a> [slm\_snapshots\_failed\_time\_aggregator](#input\_slm\_snapshots\_failed\_time\_aggregator) | Time aggregator for SLM Snapshots Failed monitor | `string` | n/a | yes |
+| <a name="input_slm_snapshots_failed_timeframe"></a> [slm\_snapshots\_failed\_timeframe](#input\_slm\_snapshots\_failed\_timeframe) | SLM Snapshots Failed timeframe | `string` | `"last_5m"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:database",<br>  "provider:elasticsearch",<br>  "resource:elasticsearch"<br>]</pre> | no |
 | <a name="input_task_time_in_queue_change_enabled"></a> [task\_time\_in\_queue\_change\_enabled](#input\_task\_time\_in\_queue\_change\_enabled) | Flag to enable Cluster Status monitor | `string` | `"true"` | no |
 | <a name="input_task_time_in_queue_change_extra_tags"></a> [task\_time\_in\_queue\_change\_extra\_tags](#input\_task\_time\_in\_queue\_change\_extra\_tags) | Extra tags for Cluster Status monitor | `list(string)` | `[]` | no |
@@ -295,6 +311,8 @@ Creates DataDog monitors with the following checks:
 | <a name="output_request_cache_evictions_change_id"></a> [request\_cache\_evictions\_change\_id](#output\_request\_cache\_evictions\_change\_id) | id for monitor request\_cache\_evictions\_change |
 | <a name="output_search_query_change_id"></a> [search\_query\_change\_id](#output\_search\_query\_change\_id) | id for monitor search\_query\_change |
 | <a name="output_search_query_latency_id"></a> [search\_query\_latency\_id](#output\_search\_query\_latency\_id) | id for monitor search\_query\_latency |
+| <a name="output_slm_snapshot_deletion_failures_id"></a> [slm\_snapshot\_deletion\_failures\_id](#output\_slm\_snapshot\_deletion\_failures\_id) | id for monitor slm\_snapshot\_deletion\_failures |
+| <a name="output_slm_snapshots_failed_id"></a> [slm\_snapshots\_failed\_id](#output\_slm\_snapshots\_failed\_id) | id for monitor slm\_snapshots\_failed |
 | <a name="output_task_time_in_queue_change_id"></a> [task\_time\_in\_queue\_change\_id](#output\_task\_time\_in\_queue\_change\_id) | id for monitor task\_time\_in\_queue\_change |
 <!-- END_TF_DOCS -->
 ## Related documentation

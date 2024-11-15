@@ -103,6 +103,16 @@ output "search_query_latency_id" {
   value       = datadog_monitor.search_query_latency.*.id
 }
 
+output "slm_snapshot_deletion_failures_id" {
+  description = "id for monitor slm_snapshot_deletion_failures"
+  value       = datadog_monitor.slm_snapshot_deletion_failures.*.id
+}
+
+output "slm_snapshots_failed_id" {
+  description = "id for monitor slm_snapshots_failed"
+  value       = datadog_monitor.slm_snapshots_failed.*.id
+}
+
 output "task_time_in_queue_change_id" {
   description = "id for monitor task_time_in_queue_change"
   value       = datadog_monitor.task_time_in_queue_change.*.id

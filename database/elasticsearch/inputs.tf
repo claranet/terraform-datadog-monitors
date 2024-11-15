@@ -1110,3 +1110,80 @@ variable "not_responding_extra_tags" {
   default     = []
 }
 
+#
+# SLM - Snapshots Failed
+#
+
+variable "slm_snapshots_failed_enabled" {
+  description = "Flag to enable SLM Snapshots Failed monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "slm_snapshots_failed_message" {
+  description = "Custom message for SLM Snapshots Failed monitor"
+  type        = string
+  default     = ""
+}
+
+variable "slm_snapshots_failed_time_aggregator" {
+  description = "Time aggregator for SLM Snapshots Failed monitor"
+  type        = string
+}
+
+variable "slm_snapshots_failed_threshold_critical" {
+  description = "SLM Snapshots Failed critical threshold"
+  type        = string
+  default     = 1
+}
+
+variable "slm_snapshots_failed_timeframe" {
+  description = "SLM Snapshots Failed timeframe"
+  type        = string
+  default     = "last_5m"
+}
+
+variable "slm_snapshots_failed_extra_tags" {
+  description = "Extra tags for SLM Snapshots Failed monitor"
+  type        = list(string)
+  default     = []
+}
+
+#
+# SLM - Snapshot deletion failures
+#
+
+variable "slm_snapshot_deletion_failures_enabled" {
+  description = "Flag to enable SLM Snapshot deletion failures monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "slm_snapshot_deletion_failures_message" {
+  description = "Custom message for SLM Snapshot deletion failures monitor"
+  type        = string
+  default     = ""
+}
+
+variable "slm_snapshot_deletion_failures_time_aggregator" {
+  description = "Time aggregator for SLM Snapshot deletion failures monitor"
+  type        = string
+}
+
+variable "slm_snapshot_deletion_failures_threshold_critical" {
+  description = "SLM Snapshot deletion failures critical threshold"
+  type        = string
+  default     = 1
+}
+
+variable "slm_snapshot_deletion_failures_timeframe" {
+  description = "SLM Snapshot deletion failures timeframe"
+  type        = string
+  default     = "last_5m"
+}
+
+variable "slm_snapshot_deletion_failures_extra_tags" {
+  description = "Extra tags for SLM Snapshot deletion failures monitor"
+  type        = list(string)
+  default     = []
+}
