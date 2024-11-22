@@ -1,44 +1,70 @@
-resource "datadog_monitor" "redis_cache_hits" {
+resource "datadog_monitor" "redis_cache_hits_warning" {
   count   = var.cache_hits_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache redis cache hit ratio {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{replication_group.name}}] Elasticache redis cache hit ratio {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  message = coalesce(var.cache_hits_message, var.message_warning)
+  type    = "query alert"
+
+  query = <<EOQ
+    ${var.cache_hits_time_aggregator}(${var.cache_hits_timeframe}): default(
+      avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid,replication_group}.as_rate() / (
+        avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid,replication_group}.as_rate() +
+        avg:aws.elasticache.cache_misses${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid,replication_group}.as_rate())
+    * 100, 100) < ${var.cache_hits_threshold_warning}
+EOQ
+
+  monitor_thresholds {
+    critical = var.cache_hits_threshold_warning
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
+  notify_no_data      = var.notify_no_data
+  notify_audit        = false
+  include_tags        = true
+  require_full_window = true
+
+  tags = concat(local.common_tags, var.tags, var.cache_hits_extra_tags)
+}
+
+resource "datadog_monitor" "redis_cache_hits_critical" {
+  count   = var.cache_hits_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{replication_group.name}}] Elasticache redis cache hit ratio {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.cache_hits_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
     ${var.cache_hits_time_aggregator}(${var.cache_hits_timeframe}): default(
-      avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_rate() / (
-        avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_rate() +
-        avg:aws.elasticache.cache_misses${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_rate())
+      avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid,replication_group}.as_rate() / (
+        avg:aws.elasticache.cache_hits${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid,replication_group}.as_rate() +
+        avg:aws.elasticache.cache_misses${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid,replication_group}.as_rate())
     * 100, 100) < ${var.cache_hits_threshold_critical}
 EOQ
 
   monitor_thresholds {
-    warning  = var.cache_hits_threshold_warning
     critical = var.cache_hits_threshold_critical
   }
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = false
-  renotify_interval   = 0
+  notify_no_data      = var.notify_no_data
   notify_audit        = false
-  timeout_h           = var.timeout_h
   include_tags        = true
-  require_full_window = false
+  require_full_window = true
 
   tags = concat(local.common_tags, var.tags, var.cache_hits_extra_tags)
 }
 
 resource "datadog_monitor" "redis_cpu_high" {
   count   = var.cpu_high_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache redis CPU {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{replication_group.name}}] Elasticache redis CPU {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
   message = coalesce(var.cpu_high_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
     ${var.cpu_high_time_aggregator}(${var.cpu_high_timeframe}): (
-      avg:aws.elasticache.engine_cpuutilization${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
+      avg:aws.elasticache.engine_cpuutilization${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid,replication_group}
     ) > ${var.cpu_high_threshold_critical}
 EOQ
 
@@ -47,68 +73,168 @@ EOQ
   new_group_delay     = var.new_group_delay
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.redis_cpu_high_no_data_timeframe
-  renotify_interval   = 0
   notify_audit        = false
-  timeout_h           = var.timeout_h
   include_tags        = true
-  require_full_window = false
+  require_full_window = true
 
   tags = concat(local.common_tags, var.tags, var.cpu_high_extra_tags)
 }
 
-resource "datadog_monitor" "redis_replication_lag" {
+resource "datadog_monitor" "redis_replication_lag_warning" {
   count   = var.replication_lag_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache redis replication lag {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{replication_group.name}}] Elasticache redis replication lag {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
+  message = coalesce(var.replication_lag_message, var.message_warning)
+  type    = "query alert"
+
+  query = <<EOQ
+    ${var.replication_lag_time_aggregator}(${var.replication_lag_timeframe}): (
+      avg:aws.elasticache.replication_lag${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid,replication_group}
+    ) > ${var.replication_lag_threshold_warning}
+EOQ
+
+  monitor_thresholds {
+    critical = var.replication_lag_threshold_warning
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
+  notify_no_data      = var.notify_no_data
+  notify_audit        = false
+  include_tags        = true
+  require_full_window = true
+
+  tags = concat(local.common_tags, var.tags, var.replication_lag_extra_tags)
+}
+
+resource "datadog_monitor" "redis_replication_lag_critical" {
+  count   = var.replication_lag_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{replication_group.name}}] Elasticache redis replication lag {{#is_alert}}{{{comparator}}} {{threshold}}s ({{value}}s){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}s ({{value}}s){{/is_warning}}"
   message = coalesce(var.replication_lag_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
     ${var.replication_lag_time_aggregator}(${var.replication_lag_timeframe}): (
-      avg:aws.elasticache.replication_lag${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}
+      avg:aws.elasticache.replication_lag${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid,replication_group}
     ) > ${var.replication_lag_threshold_critical}
 EOQ
 
   monitor_thresholds {
-    warning  = var.replication_lag_threshold_warning
     critical = var.replication_lag_threshold_critical
   }
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = false
-  renotify_interval   = 0
+  notify_no_data      = var.notify_no_data
   notify_audit        = false
-  timeout_h           = var.timeout_h
   include_tags        = true
-  require_full_window = false
+  require_full_window = true
 
   tags = concat(local.common_tags, var.tags, var.replication_lag_extra_tags)
 }
 
 resource "datadog_monitor" "redis_commands" {
   count   = var.commands_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticache redis is receiving no commands"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{replication_group.name}}] Elasticache redis is receiving no commands"
   message = coalesce(var.commands_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
     sum(${var.commands_timeframe}): (
-      avg:aws.elasticache.get_type_cmds${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count() +
-      avg:aws.elasticache.set_type_cmds${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid}.as_count()
+      avg:aws.elasticache.get_type_cmds${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid,replication_group}.as_count() +
+      avg:aws.elasticache.set_type_cmds${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid,replication_group}.as_count()
     ) <= 0
 EOQ
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = false
-  renotify_interval   = 0
+  notify_no_data      = var.notify_no_data
   notify_audit        = false
-  timeout_h           = var.timeout_h
   include_tags        = true
-  require_full_window = false
+  require_full_window = true
 
   tags = concat(local.common_tags, var.tags, var.commands_extra_tags)
 }
 
+resource "datadog_monitor" "redis_memory_usage_warning" {
+  count   = var.memory_usage_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{replication_group.name}}] Elasticache redis memory usage is high"
+  message = coalesce(var.memory_usage_message, var.message_warning)
+  type    = "metric alert"
+
+  query = <<EOQ
+     ${var.memory_usage_aggregator}(${var.memory_usage_timeframe}):
+       min:aws.elasticache.database_memory_usage_percentage${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid,replication_group}
+       > ${var.memory_usage_threshold_warning}
+EOQ
+
+  monitor_thresholds {
+    critical = var.memory_usage_threshold_warning
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
+  notify_no_data      = var.notify_no_data
+  notify_audit        = false
+  include_tags        = true
+  require_full_window = true
+
+  tags = concat(local.common_tags, var.tags, var.memory_usage_extra_tags)
+}
+
+resource "datadog_monitor" "redis_memory_usage_critical" {
+  count   = var.memory_usage_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{replication_group.name}}] Elasticache redis memory usage is high"
+  message = coalesce(var.memory_usage_message, var.message)
+  type    = "metric alert"
+
+  query = <<EOQ
+     ${var.memory_usage_aggregator}(${var.memory_usage_timeframe}):
+       min:aws.elasticache.database_memory_usage_percentage${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid,replication_group}
+       > ${var.memory_usage_threshold_critical}
+EOQ
+
+  monitor_thresholds {
+    critical = var.memory_usage_threshold_critical
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
+  notify_no_data      = var.notify_no_data
+  notify_audit        = false
+  include_tags        = true
+  require_full_window = true
+
+  tags = concat(local.common_tags, var.tags, var.memory_usage_extra_tags)
+}
+
+resource "datadog_monitor" "redis_eviction_rate_critical" {
+  count   = var.eviction_rate_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{replication_group.name}}] Elasticache redis high number of evictions"
+  message = coalesce(var.eviction_rate_message, var.message)
+  type    = "metric alert"
+
+  query = <<EOQ
+     ${var.eviction_rate_aggregator}(${var.eviction_rate_timeframe}):
+       min:aws.elasticache.evictions${module.filter-tags.query_alert} by {region,cacheclusterid,cachenodeid,replication_group}
+       >= ${var.eviction_rate_threshold_critical}
+EOQ
+
+  monitor_thresholds {
+    critical = var.eviction_rate_threshold_critical
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
+  notify_no_data      = var.notify_no_data
+  notify_audit        = false
+  include_tags        = true
+  require_full_window = true
+
+  tags = concat(local.common_tags, var.tags, var.eviction_rate_extra_tags)
+}

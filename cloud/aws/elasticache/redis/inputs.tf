@@ -42,7 +42,11 @@ variable "redis_cpu_high_no_data_timeframe" {
 }
 
 variable "message" {
-  description = "Message sent when an alert is triggered"
+  description = "Message sent when a monitor is triggered"
+}
+
+variable "message_warning" {
+  description = "Message sent when a warning monitor is triggered"
 }
 
 variable "filter_tags_use_defaults" {
@@ -136,19 +140,13 @@ variable "cpu_high_time_aggregator" {
 variable "cpu_high_timeframe" {
   description = "Monitor timeframe for Elasticache redis cpu high [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
-  default     = "last_15m"
-}
-
-variable "cpu_high_threshold_warning" {
-  description = "Elasticache redis cpu high warning threshold in percentage"
-  type        = string
-  default     = 75
+  default     = "last_5m"
 }
 
 variable "cpu_high_threshold_critical" {
   description = "Elasticache redis cpu high critical threshold in percentage"
   type        = string
-  default     = 90
+  default     = 85
 }
 
 variable "replication_lag_enabled" {
@@ -215,5 +213,83 @@ variable "commands_timeframe" {
   description = "Monitor timeframe for Elasticache redis commands [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
   default     = "last_5m"
+}
+
+variable "memory_usage_enabled" {
+  description = "Flag to enable Elasticache memory usage monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "memory_usage_extra_tags" {
+  description = "Extra tags for Elasticache redis memory usage monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "memory_usage_message" {
+  description = "Custom message for Elasticache redis memory usage monitor"
+  type        = string
+  default     = ""
+}
+
+variable "memory_usage_aggregator" {
+  description = "Monitor aggregator for Elasticache redis memory usage [available values: min, max or avg]"
+  type        = string
+  default     = "min"
+}
+
+variable "memory_usage_timeframe" {
+  description = "Monitor timeframe for Elasticache redis memory usage [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_15m"
+}
+
+variable "memory_usage_threshold_warning" {
+  description = "Elasticache redis memory usage warning threshold in percentage"
+  type        = string
+  default     = 80
+}
+
+variable "memory_usage_threshold_critical" {
+  description = "Elasticache redis memory usage critical threshold in percentage"
+  type        = string
+  default     = 90
+}
+
+variable "eviction_rate_enabled" {
+  description = "Flag to enable Elasticache eviction rate monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "eviction_rate_extra_tags" {
+  description = "Extra tags for Elasticache redis eviction rate monitor"
+  type        = list(string)
+  default     = []
+}
+
+variable "eviction_rate_message" {
+  description = "Custom message for Elasticache redis eviction rate monitor"
+  type        = string
+  default     = ""
+}
+
+variable "eviction_rate_aggregator" {
+  description = "Monitor aggregator for Elasticache redis eviction rate [available values: min, max or avg]"
+  type        = string
+  default     = "min"
+}
+
+variable "eviction_rate_timeframe" {
+  description = "Monitor timeframe for Elasticache redis eviction rate [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_10m"
+}
+
+variable "eviction_rate_threshold_critical" {
+  description = "Elasticache redis eviction rate critical threshold"
+  type        = string
+  default     = 1000
 }
 
