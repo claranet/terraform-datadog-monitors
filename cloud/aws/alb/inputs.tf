@@ -29,6 +29,10 @@ variable "message" {
   description = "Message sent when a monitor is triggered"
 }
 
+variable "message_warning" {
+  description = "Message sent when a warning monitor is triggered"
+}
+
 variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 900
