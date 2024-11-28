@@ -29,6 +29,10 @@ variable "message" {
   description = "Message sent when a monitor is triggered"
 }
 
+variable "message_warning" {
+  description = "Message sent when a warning monitor is triggered"
+}
+
 variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 15
@@ -131,44 +135,44 @@ variable "error_threshold_warning" {
   description = "error warning threshold"
 }
 
-variable "terminated_enabled" {
-  description = "Flag to enable Pod terminated monitor"
+variable "restarts_enabled" {
+  description = "Flag to enable Pod restarts monitor"
   type        = string
   default     = "true"
 }
 
-variable "terminated_extra_tags" {
-  description = "Extra tags for Pod terminated monitor"
+variable "restarts_extra_tags" {
+  description = "Extra tags for Pod restarts monitor"
   type        = list(string)
   default     = []
 }
 
-variable "terminated_message" {
-  description = "Custom message for Pod terminated monitor"
+variable "restarts_message" {
+  description = "Custom message for Pod restarts monitor"
   type        = string
   default     = ""
 }
 
-variable "terminated_time_aggregator" {
-  description = "Monitor aggregator for Pod terminated [available values: min, max or avg]"
+variable "restarts_time_aggregator" {
+  description = "Monitor aggregator for Pod restarts [available values: min, max or avg]"
   type        = string
-  default     = "sum"
+  default     = "max"
 }
 
-variable "terminated_timeframe" {
-  description = "Monitor timeframe for Pod terminated [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+variable "restarts_timeframe" {
+  description = "Monitor timeframe for Pod restarts [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
-  default     = "last_10m"
+  default     = "last_5m"
 }
 
-variable "terminated_threshold_critical" {
-  default     = 0.5
-  description = "terminated critical threshold"
+variable "restarts_threshold_critical" {
+  default     = 5
+  description = "restarts critical threshold"
 }
 
-variable "terminated_threshold_warning" {
-  default     = 0
-  description = "terminated warning threshold"
+variable "restarts_threshold_warning" {
+  default     = 3
+  description = "restarts warning threshold"
 }
 
 variable "pod_group_by" {
@@ -177,6 +181,11 @@ variable "pod_group_by" {
 }
 
 variable "pod_status_group_by" {
-  default     = ["kube_namespace", "kube_cluster_name"]
+  default     = ["kube_namespace", "kube_cluster_name", "pod_phase", "pod_name"]
   description = "Select group by element on monitors (phase status)"
+}
+
+variable "pod_granular" {
+  default     = ["kube_namespace", "kube_cluster_name", "pod_name"]
+  description = "Select group by element on monitors (misc)"
 }
