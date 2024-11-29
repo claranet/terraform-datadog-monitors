@@ -730,13 +730,13 @@ EOQ
 resource "datadog_monitor" "slm_snapshots_failed" {
   count   = var.slm_snapshots_failed_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch {{policy}} snapshot failed on {{cluster_name}}"
-  message = coalesce(var.slm_snapshots_failed_message, var.message)
+  message = "This monitor will be triggered on each failed snapshot according to the timeframe configured, and should be resolved manually ${coalesce(var.slm_snapshots_failed_message, var.message)}"
   type    = "query alert"
 
   query = <<EOQ
-  ${var.slm_snapshots_failed_time_aggregator}(${var.slm_snapshots_failed_timeframe}):
+  change(${var.slm_snapshots_failed_time_aggregator}(${var.slm_snapshots_failed_timeframe}), ${var.slm_snapshots_failed_timeshift}):
     avg:elasticsearch.slm.snapshots_failed${module.filter-tags.query_alert} by {cluster_name,repository,policy}
-  >= ${var.slm_snapshots_failed_threshold_critical}
+  > ${var.slm_snapshots_failed_threshold_critical}
 EOQ
 
   monitor_thresholds {
@@ -761,13 +761,13 @@ EOQ
 resource "datadog_monitor" "slm_snapshot_deletion_failures" {
   count   = var.slm_snapshot_deletion_failures_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch {{policy}} snapshot deletion failure on {{cluster_name}}"
-  message = coalesce(var.slm_snapshot_deletion_failures_message, var.message)
+  message = "This monitor will be triggered on each failed snapshot according to the timeframe configured, and should be resolved manually ${coalesce(var.slm_snapshot_deletion_failures_message, var.message)}"
   type    = "query alert"
 
   query = <<EOQ
-  ${var.slm_snapshot_deletion_failures_time_aggregator}(${var.slm_snapshot_deletion_failures_timeframe}):
+  change(${var.slm_snapshot_deletion_failures_time_aggregator}(${var.slm_snapshot_deletion_failures_timeframe}), ${var.slm_snapshot_deletion_failures_timeshift}):
     avg:elasticsearch.slm.snapshot_deletion_failures${module.filter-tags.query_alert} by {cluster_name,repository,policy}
-  >= ${var.slm_snapshot_deletion_failures_threshold_critical}
+  > ${var.slm_snapshot_deletion_failures_threshold_critical}
 EOQ
 
   monitor_thresholds {
