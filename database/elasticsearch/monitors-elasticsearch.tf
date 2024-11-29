@@ -730,7 +730,7 @@ EOQ
 resource "datadog_monitor" "slm_snapshots_failed" {
   count   = var.slm_snapshots_failed_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch {{policy}} snapshot failed on {{cluster_name}}"
-  message = "This monitor will be triggered on each failed snapshot according to the timeframe configured, and should be resolved manually ${coalesce(var.slm_snapshots_failed_message, var.message)}"
+  message = "This monitor will be triggered on each failed snapshot according to the timeframe configured, and should be resolved manually.\n${coalesce(var.slm_snapshots_failed_message, var.message)}"
   type    = "query alert"
 
   query = <<EOQ
@@ -761,7 +761,7 @@ EOQ
 resource "datadog_monitor" "slm_snapshot_deletion_failures" {
   count   = var.slm_snapshot_deletion_failures_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Elasticsearch {{policy}} snapshot deletion failure on {{cluster_name}}"
-  message = "This monitor will be triggered on each failed snapshot according to the timeframe configured, and should be resolved manually ${coalesce(var.slm_snapshot_deletion_failures_message, var.message)}"
+  message = "This monitor will be triggered on each failed snapshot according to the timeframe configured, and should be resolved manually.\n${coalesce(var.slm_snapshot_deletion_failures_message, var.message)}"
   type    = "query alert"
 
   query = <<EOQ
