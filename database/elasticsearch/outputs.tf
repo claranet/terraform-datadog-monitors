@@ -3,6 +3,11 @@ output "cluster_initializing_shards_id" {
   value       = datadog_monitor.cluster_initializing_shards.*.id
 }
 
+output "cluster_maximum_shards_id" {
+  description = "id for monitor cluster_maximum_shards"
+  value       = datadog_monitor.cluster_maximum_shards.*.id
+}
+
 output "cluster_relocating_shards_id" {
   description = "id for monitor cluster_relocating_shards"
   value       = datadog_monitor.cluster_relocating_shards.*.id

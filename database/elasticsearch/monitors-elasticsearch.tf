@@ -155,6 +155,37 @@ EOQ
 }
 
 #
+# Cluster maximum shards
+#
+resource "datadog_monitor" "cluster_maximum_shards" {
+  count   = var.cluster_maximum_shards_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] ElasticSearch Cluster has maximum shards open on {{cluster_name}}"
+  message = coalesce(var.cluster_maximum_shards_message, var.message)
+  type    = "metric alert"
+
+  query = <<EOQ
+  ${var.cluster_maximum_shards_time_aggregator}(${var.cluster_maximum_shards_timeframe}):
+    avg:elasticsearch.active_shards${module.filter-tags.query_alert} by {cluster_name} / (${var.cluster_maximum_shards_per_node} * avg:elasticsearch.number_of_nodes${module.filter-tags.query_alert} by {cluster_name}) * 100
+  > ${var.cluster_maximum_shards_threshold_critical}
+EOQ
+
+  monitor_thresholds {
+    warning  = var.cluster_maximum_shards_threshold_warning
+    critical = var.cluster_maximum_shards_threshold_critical
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_host_delay      = var.new_host_delay
+  new_group_delay     = var.new_group_delay
+  notify_audit        = false
+  include_tags        = true
+  require_full_window = true
+  notify_no_data      = false
+
+  tags = concat(local.common_tags, var.tags, var.cluster_maximum_shards_extra_tags)
+}
+
+#
 # Free Space in nodes
 #
 resource "datadog_monitor" "node_free_space" {
