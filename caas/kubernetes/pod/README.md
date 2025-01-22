@@ -18,8 +18,10 @@ module "datadog-monitors-caas-kubernetes-pod" {
 Creates DataDog monitors with the following checks:
 
 - Kubernetes Pod phase status failed
+- Kubernetes Pod {{pod_name}} container {{kube_container_name}} killed by OOM on {{kube_cluster_name}}
 - Kubernetes Pod terminated abnormally
 - Kubernetes Pod waiting errors
+- Kubernetes pods in {{kube_replica_set}} frequently restarted on {{kube_cluster_name}}
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -48,6 +50,8 @@ Creates DataDog monitors with the following checks:
 | Name | Type |
 |------|------|
 | [datadog_monitor.error](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
+| [datadog_monitor.pod_container_killed_by_oom](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
+| [datadog_monitor.pod_frequently_restarted](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 | [datadog_monitor.pod_phase_status](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 | [datadog_monitor.terminated](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 
@@ -72,6 +76,20 @@ Creates DataDog monitors with the following checks:
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
+| <a name="input_pod_container_killed_by_oom_enabled"></a> [pod\_container\_killed\_by\_oom\_enabled](#input\_pod\_container\_killed\_by\_oom\_enabled) | Flag to enable Pod container killed by OOM monitor | `string` | `"true"` | no |
+| <a name="input_pod_container_killed_by_oom_extra_tags"></a> [pod\_container\_killed\_by\_oom\_extra\_tags](#input\_pod\_container\_killed\_by\_oom\_extra\_tags) | Extra tags for Pod container killed by OOM monitor | `list(string)` | `[]` | no |
+| <a name="input_pod_container_killed_by_oom_message"></a> [pod\_container\_killed\_by\_oom\_message](#input\_pod\_container\_killed\_by\_oom\_message) | Custom message for Pod container killed by OOM monitor | `string` | `""` | no |
+| <a name="input_pod_container_killed_by_oom_threshold_critical"></a> [pod\_container\_killed\_by\_oom\_threshold\_critical](#input\_pod\_container\_killed\_by\_oom\_threshold\_critical) | Pod container killed by OOM critical threshold | `number` | `5` | no |
+| <a name="input_pod_container_killed_by_oom_threshold_warning"></a> [pod\_container\_killed\_by\_oom\_threshold\_warning](#input\_pod\_container\_killed\_by\_oom\_threshold\_warning) | Pod container killed by OOM warning threshold | `number` | `0` | no |
+| <a name="input_pod_container_killed_by_oom_time_aggregator"></a> [pod\_container\_killed\_by\_oom\_time\_aggregator](#input\_pod\_container\_killed\_by\_oom\_time\_aggregator) | Monitor aggregator for Pod container killed by OOM [available values: min, max or avg] | `string` | `"avg"` | no |
+| <a name="input_pod_container_killed_by_oom_timeframe"></a> [pod\_container\_killed\_by\_oom\_timeframe](#input\_pod\_container\_killed\_by\_oom\_timeframe) | Monitor timeframe for Pod container killed by OOM [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_15m"` | no |
+| <a name="input_pod_frequently_restarted_enabled"></a> [pod\_frequently\_restarted\_enabled](#input\_pod\_frequently\_restarted\_enabled) | Flag to enable Pod frequently restarted monitor | `string` | `"true"` | no |
+| <a name="input_pod_frequently_restarted_extra_tags"></a> [pod\_frequently\_restarted\_extra\_tags](#input\_pod\_frequently\_restarted\_extra\_tags) | Extra tags for Pod frequently restarted monitor | `list(string)` | `[]` | no |
+| <a name="input_pod_frequently_restarted_message"></a> [pod\_frequently\_restarted\_message](#input\_pod\_frequently\_restarted\_message) | Custom message for Pod frequently restarted monitor | `string` | `""` | no |
+| <a name="input_pod_frequently_restarted_threshold_critical"></a> [pod\_frequently\_restarted\_threshold\_critical](#input\_pod\_frequently\_restarted\_threshold\_critical) | Pod frequently restarted critical threshold | `number` | `10` | no |
+| <a name="input_pod_frequently_restarted_threshold_warning"></a> [pod\_frequently\_restarted\_threshold\_warning](#input\_pod\_frequently\_restarted\_threshold\_warning) | Pod frequently restarted warning threshold | `number` | `5` | no |
+| <a name="input_pod_frequently_restarted_time_aggregator"></a> [pod\_frequently\_restarted\_time\_aggregator](#input\_pod\_frequently\_restarted\_time\_aggregator) | Monitor aggregator for Pod frequently restarted [available values: min, max or avg] | `string` | `"min"` | no |
+| <a name="input_pod_frequently_restarted_timeframe"></a> [pod\_frequently\_restarted\_timeframe](#input\_pod\_frequently\_restarted\_timeframe) | Monitor timeframe for Pod frequently restarted [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_15m"` | no |
 | <a name="input_pod_group_by"></a> [pod\_group\_by](#input\_pod\_group\_by) | Select group by element on monitors (error and terminated) | `list` | <pre>[<br>  "kube_namespace",<br>  "pod_name",<br>  "reason",<br>  "kube_cluster_name"<br>]</pre> | no |
 | <a name="input_pod_phase_status_enabled"></a> [pod\_phase\_status\_enabled](#input\_pod\_phase\_status\_enabled) | Flag to enable Pod phase status monitor | `string` | `"true"` | no |
 | <a name="input_pod_phase_status_extra_tags"></a> [pod\_phase\_status\_extra\_tags](#input\_pod\_phase\_status\_extra\_tags) | Extra tags for Pod phase status monitor | `list(string)` | `[]` | no |
@@ -96,6 +114,8 @@ Creates DataDog monitors with the following checks:
 | Name | Description |
 |------|-------------|
 | <a name="output_error_id"></a> [error\_id](#output\_error\_id) | id for monitor error |
+| <a name="output_pod_container_killed_by_oom_id"></a> [pod\_container\_killed\_by\_oom\_id](#output\_pod\_container\_killed\_by\_oom\_id) | id for monitor pod\_container\_killed\_by\_oom |
+| <a name="output_pod_frequently_restarted_id"></a> [pod\_frequently\_restarted\_id](#output\_pod\_frequently\_restarted\_id) | id for monitor pod\_frequently\_restarted |
 | <a name="output_pod_phase_status_id"></a> [pod\_phase\_status\_id](#output\_pod\_phase\_status\_id) | id for monitor pod\_phase\_status |
 | <a name="output_terminated_id"></a> [terminated\_id](#output\_terminated\_id) | id for monitor terminated |
 <!-- END_TF_DOCS -->

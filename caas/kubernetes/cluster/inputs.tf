@@ -66,7 +66,7 @@ variable "apiserver_no_data_timeframe" {
 }
 
 # Datadog monitors variables
-
+## API server monitor variables
 variable "apiserver_enabled" {
   description = "Flag to enable API server monitor"
   type        = string
@@ -91,3 +91,39 @@ variable "apiserver_threshold_warning" {
   default     = 3
 }
 
+## Heartbeat monitor variables
+variable "heartbeat_enabled" {
+  description = "Flag to enable heartbeat monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "heartbeat_message" {
+  description = "Custom message for heartbeat monitor"
+  type        = string
+  default     = ""
+}
+
+variable "heartbeat_no_data_timeframe" {
+  description = "Number of minutes before reporting no data"
+  type        = string
+  default     = 20
+}
+
+variable "heartbeat_time_aggregator" {
+  description = "Time aggregator for heartbeat monitor"
+  type        = string
+  default     = "min"
+}
+
+variable "heartbeat_timeframe" {
+  description = "Timeframe for heartbeat monitor"
+  type        = string
+  default     = "last_30m"
+}
+
+variable "heartbeat_extra_tags" {
+  description = "Extra tags for heartbeat monitor"
+  type        = list(string)
+  default     = []
+}

@@ -25,33 +25,6 @@ EOQ
   tags = concat(local.common_tags, var.tags, var.disk_pressure_extra_tags)
 }
 
-resource "datadog_monitor" "disk_out" {
-  count   = var.disk_out_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Out of disk"
-  message = coalesce(var.disk_out_message, var.message)
-  type    = "service check"
-
-  query = <<EOQ
-    "kubernetes_state.node.out_of_disk"${module.filter-tags.service_check}.by("kube_node","kube_cluster_name").last(6).count_by_status()
-EOQ
-
-  monitor_thresholds {
-    warning  = var.disk_out_threshold_warning
-    critical = 5
-  }
-
-  new_host_delay      = var.new_host_delay
-  new_group_delay     = var.new_group_delay
-  notify_no_data      = false
-  renotify_interval   = 0
-  notify_audit        = false
-  timeout_h           = var.timeout_h
-  include_tags        = true
-  require_full_window = true
-
-  tags = concat(local.common_tags, var.tags, var.disk_out_extra_tags)
-}
-
 resource "datadog_monitor" "memory_pressure" {
   count   = var.memory_pressure_enabled == "true" ? 1 : 0
   name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Memory pressure"

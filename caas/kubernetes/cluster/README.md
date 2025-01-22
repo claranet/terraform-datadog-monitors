@@ -18,6 +18,7 @@ module "datadog-monitors-caas-kubernetes-cluster" {
 Creates DataDog monitors with the following checks:
 
 - Kubernetes API server does not respond
+- Kubernetes cluster heartbeat alert on {{kube_cluster_name}}
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -44,6 +45,7 @@ Creates DataDog monitors with the following checks:
 | Name | Type |
 |------|------|
 | [datadog_monitor.apiserver](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
+| [datadog_monitor.heartbeat](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 
 ## Inputs
 
@@ -60,6 +62,12 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_separator"></a> [filter\_tags\_separator](#input\_filter\_tags\_separator) | Set the filter tags separator (, or AND) | `string` | `","` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
+| <a name="input_heartbeat_enabled"></a> [heartbeat\_enabled](#input\_heartbeat\_enabled) | Flag to enable heartbeat monitor | `string` | `"true"` | no |
+| <a name="input_heartbeat_extra_tags"></a> [heartbeat\_extra\_tags](#input\_heartbeat\_extra\_tags) | Extra tags for heartbeat monitor | `list(string)` | `[]` | no |
+| <a name="input_heartbeat_message"></a> [heartbeat\_message](#input\_heartbeat\_message) | Custom message for heartbeat monitor | `string` | `""` | no |
+| <a name="input_heartbeat_no_data_timeframe"></a> [heartbeat\_no\_data\_timeframe](#input\_heartbeat\_no\_data\_timeframe) | Number of minutes before reporting no data | `string` | `20` | no |
+| <a name="input_heartbeat_time_aggregator"></a> [heartbeat\_time\_aggregator](#input\_heartbeat\_time\_aggregator) | Time aggregator for heartbeat monitor | `string` | `"min"` | no |
+| <a name="input_heartbeat_timeframe"></a> [heartbeat\_timeframe](#input\_heartbeat\_timeframe) | Timeframe for heartbeat monitor | `string` | `"last_30m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
@@ -74,6 +82,7 @@ Creates DataDog monitors with the following checks:
 | Name | Description |
 |------|-------------|
 | <a name="output_apiserver_id"></a> [apiserver\_id](#output\_apiserver\_id) | id for monitor apiserver |
+| <a name="output_heartbeat_id"></a> [heartbeat\_id](#output\_heartbeat\_id) | id for monitor heartbeat |
 <!-- END_TF_DOCS -->
 ## Related documentation
 

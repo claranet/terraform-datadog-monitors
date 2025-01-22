@@ -214,6 +214,198 @@ variable "replica_current_threshold_critical" {
   description = "Current replica critical threshold"
 }
 
+# DaemonSet not ready
+variable "daemonset_pods_not_ready_enabled" {
+  description = "Flag to enable DaemonSet pods not ready monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "daemonset_pods_not_ready_message" {
+  description = "Custom message for DaemonSet pods not ready monitor"
+  type        = string
+  default     = ""
+}
+
+variable "daemonset_pods_not_ready_time_aggregator" {
+  description = "Monitor aggregator for DaemonSet pods not ready [available values: min, max or avg]"
+  type        = string
+  default     = "max"
+}
+
+variable "daemonset_pods_not_ready_timeframe" {
+  description = "Monitor timeframe for DaemonSet pods not ready [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_30m"
+}
+
+variable "daemonset_pods_not_ready_threshold_critical" {
+  description = "DaemonSet pods not ready critical threshold"
+  type        = number
+  default     = 1
+}
+
+variable "daemonset_pods_not_ready_extra_tags" {
+  description = "Extra tags for DaemonSet pods not ready monitor"
+  type        = list(string)
+  default     = []
+}
+
+# StatefulSet not ready
+variable "statefulset_pods_not_ready_enabled" {
+  description = "Flag to enable StatefulSet pods not ready monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "statefulset_pods_not_ready_message" {
+  description = "Custom message for StatefulSet pods not ready monitor"
+  type        = string
+  default     = ""
+}
+
+variable "statefulset_pods_not_ready_time_aggregator" {
+  description = "Monitor aggregator for StatefulSet pods not ready [available values: min, max or avg]"
+  type        = string
+  default     = "max"
+}
+
+variable "statefulset_pods_not_ready_timeframe" {
+  description = "Monitor timeframe for StatefulSet pods not ready [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_15m"
+}
+
+variable "statefulset_pods_not_ready_threshold_critical" {
+  description = "StatefulSet pods not ready critical threshold"
+  type        = number
+  default     = 100
+}
+
+variable "statefulset_pods_not_ready_extra_tags" {
+  description = "Extra tags for StatefulSet pods not ready monitor"
+  type        = list(string)
+  default     = []
+}
+
+# Deployments replica too low
+variable "deployments_replica_too_low_enabled" {
+  description = "Flag to enable Deployment replica too low monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "deployments_replica_too_low_message" {
+  description = "Custom message for Deployment replica too low monitor"
+  type        = string
+  default     = ""
+}
+
+variable "deployments_replica_too_low_time_aggregator" {
+  description = "Monitor aggregator for Deployment replica too low [available values: min, max or avg]"
+  type        = string
+  default     = "max"
+}
+
+variable "deployments_replica_too_low_timeframe" {
+  description = "Monitor timeframe for Deployment replica too low [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_15m"
+}
+
+variable "deployments_replica_too_low_threshold_critical" {
+  description = "Deployment replica too low critical threshold"
+  type        = number
+  default     = 0
+}
+
+variable "deployments_replica_too_low_extra_tags" {
+  description = "Extra tags for Deployment replica too low monitor"
+  type        = list(string)
+  default     = []
+}
+
+# HPA cannot scale up further
+variable "hpa_cannot_scaleup_further_enabled" {
+  description = "Flag to enable HPA cannot scale up further monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "hpa_cannot_scaleup_further_message" {
+  description = "Custom message for HPA cannot scale up further monitor"
+  type        = string
+  default     = ""
+}
+
+variable "hpa_cannot_scaleup_further_time_aggregator" {
+  description = "Monitor aggregator for HPA cannot scale up further [available values: min, max or avg]"
+  type        = string
+  default     = "avg"
+}
+
+variable "hpa_cannot_scaleup_further_timeframe" {
+  description = "Monitor timeframe for HPA cannot scale up further [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_30m"
+}
+
+variable "hpa_cannot_scaleup_further_threshold_critical" {
+  description = "HPA cannot scale up further critical threshold"
+  type        = number
+  default     = 100
+}
+
+variable "hpa_cannot_scaleup_further_threshold_warning" {
+  description = "HPA cannot scale up further warning threshold"
+  type        = number
+  default     = 90
+}
+
+variable "hpa_cannot_scaleup_further_extra_tags" {
+  description = "Extra tags for HPA cannot scale up further monitor"
+  type        = list(string)
+  default     = []
+}
+
+# Pod Disruption Budget not respected
+variable "pod_disruption_budget_not_respected_enabled" {
+  description = "Flag to enable Pod Disruption Budget not respected monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "pod_disruption_budget_not_respected_message" {
+  description = "Custom message for Pod Disruption Budget not respected monitor"
+  type        = string
+  default     = ""
+}
+
+variable "pod_disruption_budget_not_respected_time_aggregator" {
+  description = "Monitor aggregator for Pod Disruption Budget not respected [available values: min, max or avg]"
+  type        = string
+  default     = "max"
+}
+
+variable "pod_disruption_budget_not_respected_timeframe" {
+  description = "Monitor timeframe for Pod Disruption Budget not respected [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_15m"
+}
+
+variable "pod_disruption_budget_not_respected_threshold_critical" {
+  description = "Pod Disruption Budget not respected critical threshold"
+  type        = number
+  default     = 0
+}
+
+variable "pod_disruption_budget_not_respected_extra_tags" {
+  description = "Extra tags for Pod Disruption Budget not respected monitor"
+  type        = list(string)
+  default     = []
+}
+
+# General filter tags
 variable "replica_group_by" {
   default     = ["kube_namespace", "kube_replica_set", "kube_cluster_name"]
   description = "Select group by element on replicaset monitors"
