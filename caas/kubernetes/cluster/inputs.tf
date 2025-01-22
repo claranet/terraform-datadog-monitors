@@ -70,7 +70,7 @@ variable "apiserver_no_data_timeframe" {
 variable "apiserver_enabled" {
   description = "Flag to enable API server monitor"
   type        = string
-  default     = "true"
+  default     = "false"
 }
 
 variable "apiserver_extra_tags" {

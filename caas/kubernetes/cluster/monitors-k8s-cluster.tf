@@ -1,12 +1,12 @@
 resource "datadog_monitor" "apiserver" {
   count   = var.apiserver_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes API server does not respond"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes API server does not respond on {{kube_cluster_name}}"
   message = coalesce(var.apiserver_message, var.message)
 
   type = "service check"
 
   query = <<EOQ
-    "kube_apiserver_controlplane.up"${module.filter-tags.service_check}.last(6).count_by_status()
+    "kube_apiserver_controlplane.up"${module.filter-tags.service_check}.by("kube_cluster_name").last(6).count_by_status()
 EOQ
 
   monitor_thresholds {
@@ -16,7 +16,7 @@ EOQ
 
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = var.notify_no_data
+  notify_no_data      = false
   no_data_timeframe   = var.apiserver_no_data_timeframe
   renotify_interval   = 0
   notify_audit        = false
