@@ -235,7 +235,7 @@ EOQ
 
 resource "datadog_monitor" "hpa_cannot_scaleup_further" {
   count   = var.hpa_cannot_scaleup_further_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes HPA Cannot Scale Out Further {{horizontalpodautoscaler}} on {{kube_cluster_name}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes HPA cannot scale out further {{horizontalpodautoscaler}} on {{kube_cluster_name}}"
   message = coalesce(var.hpa_cannot_scaleup_further_message, var.message)
   type    = "query alert"
 

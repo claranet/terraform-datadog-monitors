@@ -22,7 +22,7 @@ Creates DataDog monitors with the following checks:
 - Kubernetes Current replicas
 - Kubernetes DaemonSet {{kube_daemon_set}} not ready on {{kube_cluster_name}}
 - Kubernetes Deployment {{kube_deployment}} replica too low on {{kube_cluster_name}}
-- Kubernetes HPA Cannot Scale Out Further {{horizontalpodautoscaler}} on {{kube_cluster_name}}
+- Kubernetes HPA cannot scale out further {{horizontalpodautoscaler}} on {{kube_cluster_name}}
 - Kubernetes job failed
 - Kubernetes Pod Disruption Budget {{poddisruptionbudget}} not respected on {{kube_cluster_name}}
 - Kubernetes Ready replicas
