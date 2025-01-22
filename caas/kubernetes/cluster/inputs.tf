@@ -68,7 +68,7 @@ variable "apiserver_no_data_timeframe" {
 # Datadog monitors variables
 ## API server monitor variables
 variable "apiserver_enabled" {
-  description = "Flag to enable API server monitor"
+  description = "Flag to enable API server monitor (do not work on some clusters, see https://docs.datadoghq.com/containers/kubernetes/control_plane/?tab=datadogoperator#ManagedServices)"
   type        = string
   default     = "false"
 }

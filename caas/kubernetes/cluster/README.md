@@ -51,7 +51,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_apiserver_enabled"></a> [apiserver\_enabled](#input\_apiserver\_enabled) | Flag to enable API server monitor | `string` | `"false"` | no |
+| <a name="input_apiserver_enabled"></a> [apiserver\_enabled](#input\_apiserver\_enabled) | Flag to enable API server monitor (do not work on some clusters, see https://docs.datadoghq.com/containers/kubernetes/control_plane/?tab=datadogoperator#ManagedServices) | `string` | `"false"` | no |
 | <a name="input_apiserver_extra_tags"></a> [apiserver\_extra\_tags](#input\_apiserver\_extra\_tags) | Extra tags for API server monitor | `list(string)` | `[]` | no |
 | <a name="input_apiserver_message"></a> [apiserver\_message](#input\_apiserver\_message) | Custom message for API server monitor | `string` | `""` | no |
 | <a name="input_apiserver_no_data_timeframe"></a> [apiserver\_no\_data\_timeframe](#input\_apiserver\_no\_data\_timeframe) | Number of minutes before reporting no data | `string` | `10` | no |
