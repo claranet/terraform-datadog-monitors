@@ -210,8 +210,8 @@ resource "datadog_monitor" "statefulset_pods_not_ready" {
 
   query = <<EOQ
     ${var.statefulset_pods_not_ready_time_aggregator}(${var.statefulset_pods_not_ready_timeframe}):
-      avg:kubernetes_state.statefulset.ready${module.filter-tags.query_alert} by {kube_stateful_set,kube_namespace,kube_cluster_name}
-      / avg:kubernetes_state.statefulset.desired${module.filter-tags.query_alert} by {kube_stateful_set,kube_namespace,kube_cluster_name}
+      avg:kubernetes_state.statefulset.replicas_ready${module.filter-tags.query_alert} by {kube_stateful_set,kube_namespace,kube_cluster_name}
+      / avg:kubernetes_state.statefulset.replicas_desired${module.filter-tags.query_alert} by {kube_stateful_set,kube_namespace,kube_cluster_name}
       * 100
     < ${var.statefulset_pods_not_ready_threshold_critical}
 EOQ
