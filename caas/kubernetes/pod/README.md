@@ -21,7 +21,7 @@ Creates DataDog monitors with the following checks:
 - Kubernetes Pod {{pod_name}} container {{kube_container_name}} killed by OOM on {{kube_cluster_name}}
 - Kubernetes Pod terminated abnormally
 - Kubernetes Pod waiting errors
-- Kubernetes pods in {{kube_replica_set}} frequently restarted on {{kube_cluster_name}}
+- Kubernetes Pods in {{kube_replica_set}} frequently restarted on {{kube_cluster_name}}
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements

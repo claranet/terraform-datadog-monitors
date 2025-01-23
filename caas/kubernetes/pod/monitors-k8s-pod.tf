@@ -119,7 +119,7 @@ EOQ
 
 resource "datadog_monitor" "pod_frequently_restarted" {
   count   = var.pod_frequently_restarted_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes pods in {{kube_replica_set}} frequently restarted on {{kube_cluster_name}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Pods in {{kube_replica_set}} frequently restarted on {{kube_cluster_name}}"
   message = coalesce(var.pod_frequently_restarted_message, var.message)
   type    = "metric alert"
 
