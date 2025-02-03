@@ -19,6 +19,7 @@ Creates DataDog monitors with the following checks:
 
 - Nginx Ingress 4xx errors
 - Nginx Ingress 5xx errors
+- Nginx Ingress {{kube_replica_set}} is down on {{kube_cluster_name}}
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -46,6 +47,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Type |
 |------|------|
+| [datadog_monitor.nginx_ingress_is_down](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 | [datadog_monitor.nginx_ingress_too_many_4xx](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 | [datadog_monitor.nginx_ingress_too_many_5xx](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 
@@ -74,6 +76,13 @@ Creates DataDog monitors with the following checks:
 | <a name="input_ingress_5xx_threshold_warning"></a> [ingress\_5xx\_threshold\_warning](#input\_ingress\_5xx\_threshold\_warning) | 5xx warning threshold in percentage | `string` | `"10"` | no |
 | <a name="input_ingress_5xx_time_aggregator"></a> [ingress\_5xx\_time\_aggregator](#input\_ingress\_5xx\_time\_aggregator) | Monitor aggregator for Ingress 5xx errors [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_ingress_5xx_timeframe"></a> [ingress\_5xx\_timeframe](#input\_ingress\_5xx\_timeframe) | Monitor timeframe for Ingress 5xx errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_ingress_down_enabled"></a> [ingress\_down\_enabled](#input\_ingress\_down\_enabled) | Flag to enable Nginx Ingress is down monitor | `string` | `"true"` | no |
+| <a name="input_ingress_down_extra_tags"></a> [ingress\_down\_extra\_tags](#input\_ingress\_down\_extra\_tags) | Extra tags for Nginx Ingress is down monitor | `list(string)` | `[]` | no |
+| <a name="input_ingress_down_message"></a> [ingress\_down\_message](#input\_ingress\_down\_message) | Message sent when an alert is triggered | `string` | `""` | no |
+| <a name="input_ingress_down_threshold_critical"></a> [ingress\_down\_threshold\_critical](#input\_ingress\_down\_threshold\_critical) | Nginx Ingress is down critical threshold in percentage | `number` | `0.3` | no |
+| <a name="input_ingress_down_threshold_warning"></a> [ingress\_down\_threshold\_warning](#input\_ingress\_down\_threshold\_warning) | Nginx Ingress is down warning threshold in percentage | `number` | `0.7` | no |
+| <a name="input_ingress_down_time_aggregator"></a> [ingress\_down\_time\_aggregator](#input\_ingress\_down\_time\_aggregator) | Monitor aggregator for Nginx Ingress is down [available values: min, max or avg] | `string` | `"avg"` | no |
+| <a name="input_ingress_down_timeframe"></a> [ingress\_down\_timeframe](#input\_ingress\_down\_timeframe) | Monitor timeframe for Nginx Ingress is down [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_10m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
@@ -87,6 +96,7 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description |
 |------|-------------|
+| <a name="output_nginx_ingress_is_down_id"></a> [nginx\_ingress\_is\_down\_id](#output\_nginx\_ingress\_is\_down\_id) | id for monitor nginx\_ingress\_is\_down |
 | <a name="output_nginx_ingress_too_many_4xx_id"></a> [nginx\_ingress\_too\_many\_4xx\_id](#output\_nginx\_ingress\_too\_many\_4xx\_id) | id for monitor nginx\_ingress\_too\_many\_4xx |
 | <a name="output_nginx_ingress_too_many_5xx_id"></a> [nginx\_ingress\_too\_many\_5xx\_id](#output\_nginx\_ingress\_too\_many\_5xx\_id) | id for monitor nginx\_ingress\_too\_many\_5xx |
 <!-- END_TF_DOCS -->

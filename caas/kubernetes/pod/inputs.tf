@@ -171,6 +171,93 @@ variable "terminated_threshold_warning" {
   description = "terminated warning threshold"
 }
 
+# Pod container killed by OOM
+variable "pod_container_killed_by_oom_enabled" {
+  description = "Flag to enable Pod container killed by OOM monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "pod_container_killed_by_oom_message" {
+  description = "Custom message for Pod container killed by OOM monitor"
+  type        = string
+  default     = ""
+}
+
+variable "pod_container_killed_by_oom_time_aggregator" {
+  description = "Monitor aggregator for Pod container killed by OOM [available values: min, max or avg]"
+  type        = string
+  default     = "avg"
+}
+
+variable "pod_container_killed_by_oom_timeframe" {
+  description = "Monitor timeframe for Pod container killed by OOM [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_15m"
+}
+
+variable "pod_container_killed_by_oom_threshold_warning" {
+  description = "Pod container killed by OOM warning threshold"
+  type        = number
+  default     = 0
+}
+
+variable "pod_container_killed_by_oom_threshold_critical" {
+  description = "Pod container killed by OOM critical threshold"
+  type        = number
+  default     = 5
+}
+
+variable "pod_container_killed_by_oom_extra_tags" {
+  description = "Extra tags for Pod container killed by OOM monitor"
+  type        = list(string)
+  default     = []
+}
+
+# Pod frequently restarted
+variable "pod_frequently_restarted_enabled" {
+  description = "Flag to enable Pod frequently restarted monitor"
+  type        = string
+  default     = "true"
+}
+
+variable "pod_frequently_restarted_message" {
+  description = "Custom message for Pod frequently restarted monitor"
+  type        = string
+  default     = ""
+}
+
+variable "pod_frequently_restarted_time_aggregator" {
+  description = "Monitor aggregator for Pod frequently restarted [available values: min, max or avg]"
+  type        = string
+  default     = "min"
+}
+
+variable "pod_frequently_restarted_timeframe" {
+  description = "Monitor timeframe for Pod frequently restarted [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_15m"
+}
+
+variable "pod_frequently_restarted_threshold_warning" {
+  description = "Pod frequently restarted warning threshold"
+  type        = number
+  default     = 5
+}
+
+variable "pod_frequently_restarted_threshold_critical" {
+  description = "Pod frequently restarted critical threshold"
+  type        = number
+  default     = 10
+}
+
+variable "pod_frequently_restarted_extra_tags" {
+  description = "Extra tags for Pod frequently restarted monitor"
+  type        = list(string)
+  default     = []
+}
+
+# General filter tags
 variable "pod_group_by" {
   default     = ["kube_namespace", "pod_name", "reason", "kube_cluster_name"]
   description = "Select group by element on monitors (error and terminated)"

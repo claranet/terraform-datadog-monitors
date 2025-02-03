@@ -60,3 +60,31 @@ EOQ
   tags = concat(local.common_tags, var.tags, var.ingress_4xx_extra_tags)
 }
 
+resource "datadog_monitor" "nginx_ingress_is_down" {
+  count   = var.ingress_down_enabled == "true" ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Nginx Ingress {{kube_replica_set}} is down on {{kube_cluster_name}}"
+  message = coalesce(var.ingress_down_message, var.message)
+  type    = "query alert"
+
+  query = <<EOQ
+    ${var.ingress_down_time_aggregator}(${var.ingress_down_timeframe}):
+      avg:nginx_ingress.nginx_up${module.filter-tags.query_alert} by {kube_replica_set,kube_cluster_name}
+      <= ${var.ingress_down_threshold_critical}
+EOQ
+
+  monitor_thresholds {
+    warning  = var.ingress_down_threshold_warning
+    critical = var.ingress_down_threshold_critical
+  }
+
+  evaluation_delay    = var.evaluation_delay
+  new_group_delay     = var.new_group_delay
+  notify_no_data      = true
+  renotify_interval   = 0
+  notify_audit        = false
+  timeout_h           = var.timeout_h
+  include_tags        = true
+  require_full_window = true
+
+  tags = concat(local.common_tags, var.tags, var.ingress_down_extra_tags)
+}

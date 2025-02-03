@@ -1,6 +1,6 @@
 resource "datadog_monitor" "disk_pressure" {
   count   = var.disk_pressure_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Disk pressure"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node {{kube_node}} disk pressure on {{kube_cluster_name}}"
   message = coalesce(var.disk_pressure_message, var.message)
   type    = "service check"
 
@@ -25,36 +25,9 @@ EOQ
   tags = concat(local.common_tags, var.tags, var.disk_pressure_extra_tags)
 }
 
-resource "datadog_monitor" "disk_out" {
-  count   = var.disk_out_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Out of disk"
-  message = coalesce(var.disk_out_message, var.message)
-  type    = "service check"
-
-  query = <<EOQ
-    "kubernetes_state.node.out_of_disk"${module.filter-tags.service_check}.by("kube_node","kube_cluster_name").last(6).count_by_status()
-EOQ
-
-  monitor_thresholds {
-    warning  = var.disk_out_threshold_warning
-    critical = 5
-  }
-
-  new_host_delay      = var.new_host_delay
-  new_group_delay     = var.new_group_delay
-  notify_no_data      = false
-  renotify_interval   = 0
-  notify_audit        = false
-  timeout_h           = var.timeout_h
-  include_tags        = true
-  require_full_window = true
-
-  tags = concat(local.common_tags, var.tags, var.disk_out_extra_tags)
-}
-
 resource "datadog_monitor" "memory_pressure" {
   count   = var.memory_pressure_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Memory pressure"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node {{kube_node}} memory pressure on {{kube_cluster_name}}"
   message = coalesce(var.memory_pressure_message, var.message)
   type    = "service check"
 
@@ -81,7 +54,7 @@ EOQ
 
 resource "datadog_monitor" "ready" {
   count   = var.ready_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node not ready"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node {{kube_node}} not ready on {{kube_cluster_name}}"
   message = coalesce(var.ready_message, var.message)
   type    = "service check"
 
@@ -108,12 +81,12 @@ EOQ
 
 resource "datadog_monitor" "kubelet_ping" {
   count   = var.kubelet_ping_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Kubelet API does not respond"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node {{kube_node}} Kubelet API does not respond on {{kube_cluster_name}}"
   message = coalesce(var.kubelet_ping_message, var.message)
   type    = "service check"
 
   query = <<EOQ
-    "kubernetes.kubelet.check.ping"${module.filter-tags.service_check}.by("name","kube_cluster_name").last(6).count_by_status()
+    "kubernetes.kubelet.check.ping"${module.filter-tags.service_check}.by("kube_node","kube_cluster_name").last(6).count_by_status()
 EOQ
 
   monitor_thresholds {
@@ -136,12 +109,12 @@ EOQ
 
 resource "datadog_monitor" "kubelet_syncloop" {
   count   = var.kubelet_syncloop_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Kubelet sync loop that updates containers does not work"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node {{kube_node}} Kubelet sync loop that updates containers does not work on {{kube_cluster_name}}"
   message = coalesce(var.kubelet_syncloop_message, var.message)
   type    = "service check"
 
   query = <<EOQ
-    "kubernetes.kubelet.check.syncloop"${module.filter-tags.service_check}.by("name","kube_cluster_name").last(6).count_by_status()
+    "kubernetes.kubelet.check.syncloop"${module.filter-tags.service_check}.by("kube_node","kube_cluster_name").last(6).count_by_status()
 EOQ
 
   monitor_thresholds {
@@ -163,7 +136,7 @@ EOQ
 
 resource "datadog_monitor" "unregister_net_device" {
   count   = var.unregister_net_device_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node Frequent unregister net device"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node {{kube_node}} frequent unregister net device"
   message = coalesce(var.unregister_net_device_message, var.message)
   type    = "event-v2 alert"
 
@@ -181,7 +154,7 @@ resource "datadog_monitor" "unregister_net_device" {
 
 resource "datadog_monitor" "node_unschedulable" {
   count   = var.node_unschedulable_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node unschedulable"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node {{kube_node}} unschedulable on {{kube_cluster_name}}"
   message = coalesce(var.node_unschedulable_message, var.message)
   type    = "metric alert"
 
@@ -210,7 +183,7 @@ EOQ
 
 resource "datadog_monitor" "volume_space" {
   count   = var.volume_space_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node volume space usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node volume {{persistentvolumeclaim}} space usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}} on {{kube_cluster_name}}"
   message = coalesce(var.volume_space_message, var.message)
   type    = "query alert"
 
@@ -241,7 +214,7 @@ EOQ
 
 resource "datadog_monitor" "volume_inodes" {
   count   = var.volume_inodes_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node volume inodes usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] Kubernetes Node volume {{persistentvolumeclaim}} inodes usage {{#is_alert}}{{{comparator}}} {{threshold}}% ({{value}}%){{/is_alert}}{{#is_warning}}{{{comparator}}} {{warn_threshold}}% ({{value}}%){{/is_warning}} on {{kube_cluster_name}}"
   message = coalesce(var.volume_inodes_message, var.message)
   type    = "query alert"
 

@@ -91,30 +91,6 @@ variable "disk_pressure_threshold_warning" {
   default     = 3
 }
 
-variable "disk_out_enabled" {
-  description = "Flag to enable Out of disk monitor"
-  type        = string
-  default     = "true"
-}
-
-variable "disk_out_extra_tags" {
-  description = "Extra tags for Out of disk monitor"
-  type        = list(string)
-  default     = []
-}
-
-variable "disk_out_message" {
-  description = "Custom message for Out of disk monitor"
-  type        = string
-  default     = ""
-}
-
-variable "disk_out_threshold_warning" {
-  description = "Out of disk monitor (warning threshold)"
-  type        = string
-  default     = 3
-}
-
 variable "memory_pressure_enabled" {
   description = "Flag to enable Memory pressure monitor"
   type        = string

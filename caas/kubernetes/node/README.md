@@ -17,16 +17,15 @@ module "datadog-monitors-caas-kubernetes-node" {
 
 Creates DataDog monitors with the following checks:
 
-- Kubernetes Node Disk pressure
-- Kubernetes Node Frequent unregister net device
-- Kubernetes Node Kubelet API does not respond
-- Kubernetes Node Kubelet sync loop that updates containers does not work
-- Kubernetes Node Memory pressure
-- Kubernetes Node not ready
-- Kubernetes Node Out of disk
-- Kubernetes Node unschedulable
-- Kubernetes Node volume inodes usage
-- Kubernetes Node volume space usage
+- Kubernetes Node {{kube_node}} disk pressure on {{kube_cluster_name}}
+- Kubernetes Node {{kube_node}} frequent unregister net device
+- Kubernetes Node {{kube_node}} Kubelet API does not respond on {{kube_cluster_name}}
+- Kubernetes Node {{kube_node}} Kubelet sync loop that updates containers does not work on {{kube_cluster_name}}
+- Kubernetes Node {{kube_node}} memory pressure on {{kube_cluster_name}}
+- Kubernetes Node {{kube_node}} not ready on {{kube_cluster_name}}
+- Kubernetes Node {{kube_node}} unschedulable on {{kube_cluster_name}}
+- Kubernetes Node volume {{persistentvolumeclaim}} inodes usage
+- Kubernetes Node volume {{persistentvolumeclaim}} space usage
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -53,7 +52,6 @@ Creates DataDog monitors with the following checks:
 
 | Name | Type |
 |------|------|
-| [datadog_monitor.disk_out](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 | [datadog_monitor.disk_pressure](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 | [datadog_monitor.kubelet_ping](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
 | [datadog_monitor.kubelet_syncloop](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/monitor) | resource |
@@ -68,10 +66,6 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_disk_out_enabled"></a> [disk\_out\_enabled](#input\_disk\_out\_enabled) | Flag to enable Out of disk monitor | `string` | `"true"` | no |
-| <a name="input_disk_out_extra_tags"></a> [disk\_out\_extra\_tags](#input\_disk\_out\_extra\_tags) | Extra tags for Out of disk monitor | `list(string)` | `[]` | no |
-| <a name="input_disk_out_message"></a> [disk\_out\_message](#input\_disk\_out\_message) | Custom message for Out of disk monitor | `string` | `""` | no |
-| <a name="input_disk_out_threshold_warning"></a> [disk\_out\_threshold\_warning](#input\_disk\_out\_threshold\_warning) | Out of disk monitor (warning threshold) | `string` | `3` | no |
 | <a name="input_disk_pressure_enabled"></a> [disk\_pressure\_enabled](#input\_disk\_pressure\_enabled) | Flag to enable Disk pressure monitor | `string` | `"true"` | no |
 | <a name="input_disk_pressure_extra_tags"></a> [disk\_pressure\_extra\_tags](#input\_disk\_pressure\_extra\_tags) | Extra tags for Disk pressure monitor | `list(string)` | `[]` | no |
 | <a name="input_disk_pressure_message"></a> [disk\_pressure\_message](#input\_disk\_pressure\_message) | Custom message for Disk pressure monitor | `string` | `""` | no |
@@ -137,7 +131,6 @@ Creates DataDog monitors with the following checks:
 
 | Name | Description |
 |------|-------------|
-| <a name="output_disk_out_id"></a> [disk\_out\_id](#output\_disk\_out\_id) | id for monitor disk\_out |
 | <a name="output_disk_pressure_id"></a> [disk\_pressure\_id](#output\_disk\_pressure\_id) | id for monitor disk\_pressure |
 | <a name="output_kubelet_ping_id"></a> [kubelet\_ping\_id](#output\_kubelet\_ping\_id) | id for monitor kubelet\_ping |
 | <a name="output_kubelet_syncloop_id"></a> [kubelet\_syncloop\_id](#output\_kubelet\_syncloop\_id) | id for monitor kubelet\_syncloop |

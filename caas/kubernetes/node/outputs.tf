@@ -1,8 +1,3 @@
-output "disk_out_id" {
-  description = "id for monitor disk_out"
-  value       = datadog_monitor.disk_out.*.id
-}
-
 output "disk_pressure_id" {
   description = "id for monitor disk_pressure"
   value       = datadog_monitor.disk_pressure.*.id
