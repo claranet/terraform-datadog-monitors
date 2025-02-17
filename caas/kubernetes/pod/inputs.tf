@@ -264,6 +264,6 @@ variable "pod_group_by" {
 }
 
 variable "pod_status_group_by" {
-  default     = ["kube_namespace", "kube_cluster_name"]
+  default     = ["pod_name", "kube_namespace", "kube_cluster_name"]
   description = "Select group by element on monitors (phase status)"
 }
