@@ -240,9 +240,9 @@ resource "datadog_monitor" "node_free_space" {
 
   query = <<EOQ
   ${var.node_free_space_time_aggregator}(${var.node_free_space_timeframe}):
-    (min:elastic_cloud.fs.total.available_in_bytes${module.filter-tags.query_alert} by {deployment_name,node_name}
+    (min:elastic_cloud.fs.total.available_in_bytes${module.filter-tags.query_alert} by {deployment_name}
     /
-    min:elastic_cloud.fs.total.total_in_bytes${module.filter-tags.query_alert} by {deployment_name,node_name}
+    min:elastic_cloud.fs.total.total_in_bytes${module.filter-tags.query_alert} by {deployment_name}
     ) * 100
   < ${var.node_free_space_threshold_critical}
 EOQ
@@ -271,9 +271,9 @@ resource "datadog_monitor" "node_free_space_warning" {
 
   query = <<EOQ
   ${var.node_free_space_time_aggregator}(${var.node_free_space_timeframe}):
-    (min:elastic_cloud.fs.total.available_in_bytes${module.filter-tags.query_alert} by {deployment_name,node_name}
+    (min:elastic_cloud.fs.total.available_in_bytes${module.filter-tags.query_alert} by {deployment_name}
     /
-    min:elastic_cloud.fs.total.total_in_bytes${module.filter-tags.query_alert} by {deployment_name,node_name}
+    min:elastic_cloud.fs.total.total_in_bytes${module.filter-tags.query_alert} by {deployment_name}
     ) * 100
   < ${var.node_free_space_threshold_warning}
 EOQ
@@ -304,7 +304,7 @@ resource "datadog_monitor" "jvm_heap_memory_usage" {
 
   query = <<EOQ
   ${var.jvm_heap_memory_usage_time_aggregator}(${var.jvm_heap_memory_usage_timeframe}):
-    avg:elastic_cloud.jvm.mem.heap_in_use${module.filter-tags.query_alert} by {deployment_name,node_name}
+    avg:elastic_cloud.jvm.mem.heap_in_use${module.filter-tags.query_alert} by {deployment_name}
   > ${var.jvm_heap_memory_usage_threshold_critical}
 EOQ
 
@@ -331,7 +331,7 @@ resource "datadog_monitor" "jvm_heap_memory_usage_warning" {
 
   query = <<EOQ
   ${var.jvm_heap_memory_usage_time_aggregator}(${var.jvm_heap_memory_usage_timeframe}):
-    avg:elastic_cloud.jvm.mem.heap_in_use${module.filter-tags.query_alert} by {deployment_name,node_name}
+    avg:elastic_cloud.jvm.mem.heap_in_use${module.filter-tags.query_alert} by {deployment_name}
   > ${var.jvm_heap_memory_usage_threshold_warning}
 EOQ
 
@@ -361,7 +361,7 @@ resource "datadog_monitor" "jvm_memory_young_usage" {
 
   query = <<EOQ
   ${var.jvm_memory_young_usage_time_aggregator}(${var.jvm_memory_young_usage_timeframe}):
-    avg:elastic_cloud.jvm.mem.pools.young.used${module.filter-tags.query_alert} by {deployment_name,node_name} / avg:elastic_cloud.jvm.mem.pools.young.max${module.filter-tags.query_alert} by {deployment_name,node_name} * 100
+    avg:elastic_cloud.jvm.mem.pools.young.used${module.filter-tags.query_alert} by {deployment_name} / avg:elastic_cloud.jvm.mem.pools.young.max${module.filter-tags.query_alert} by {deployment_name} * 100
   > ${var.jvm_memory_young_usage_threshold_critical}
 EOQ
 
@@ -388,7 +388,7 @@ resource "datadog_monitor" "jvm_memory_young_usage_warning" {
 
   query = <<EOQ
   ${var.jvm_memory_young_usage_time_aggregator}(${var.jvm_memory_young_usage_timeframe}):
-    avg:elastic_cloud.jvm.mem.pools.young.used${module.filter-tags.query_alert} by {deployment_name,node_name} / avg:elastic_cloud.jvm.mem.pools.young.max${module.filter-tags.query_alert} by {deployment_name,node_name} * 100
+    avg:elastic_cloud.jvm.mem.pools.young.used${module.filter-tags.query_alert} by {deployment_name} / avg:elastic_cloud.jvm.mem.pools.young.max${module.filter-tags.query_alert} by {deployment_name} * 100
   > ${var.jvm_memory_young_usage_threshold_warning}
 EOQ
 
@@ -418,7 +418,7 @@ resource "datadog_monitor" "jvm_memory_old_usage" {
 
   query = <<EOQ
   ${var.jvm_memory_old_usage_time_aggregator}(${var.jvm_memory_old_usage_timeframe}):
-    avg:elastic_cloud.jvm.mem.pools.old.used${module.filter-tags.query_alert} by {deployment_name,node_name} / avg:elastic_cloud.jvm.mem.pools.old.max${module.filter-tags.query_alert} by {deployment_name,node_name} * 100
+    avg:elastic_cloud.jvm.mem.pools.old.used${module.filter-tags.query_alert} by {deployment_name} / avg:elastic_cloud.jvm.mem.pools.old.max${module.filter-tags.query_alert} by {deployment_name} * 100
   > ${var.jvm_memory_old_usage_threshold_critical}
 EOQ
 
@@ -445,7 +445,7 @@ resource "datadog_monitor" "jvm_memory_old_usage_warning" {
 
   query = <<EOQ
   ${var.jvm_memory_old_usage_time_aggregator}(${var.jvm_memory_old_usage_timeframe}):
-    avg:elastic_cloud.jvm.mem.pools.old.used${module.filter-tags.query_alert} by {deployment_name,node_name} / avg:elastic_cloud.jvm.mem.pools.old.max${module.filter-tags.query_alert} by {deployment_name,node_name} * 100
+    avg:elastic_cloud.jvm.mem.pools.old.used${module.filter-tags.query_alert} by {deployment_name} / avg:elastic_cloud.jvm.mem.pools.old.max${module.filter-tags.query_alert} by {deployment_name} * 100
   > ${var.jvm_memory_old_usage_threshold_warning}
 EOQ
 
@@ -476,8 +476,8 @@ resource "datadog_monitor" "jvm_gc_old_collection_latency" {
   query = <<EOQ
   ${var.jvm_gc_old_collection_latency_time_aggregator}(${var.jvm_gc_old_collection_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.jvm.gc.collectors.old.collection_time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
-      diff(avg:elastic_cloud.jvm.gc.collectors.old.count${module.filter-tags.query_alert} by {deployment_name,node_name})
+      diff(avg:elastic_cloud.jvm.gc.collectors.old.collection_time${module.filter-tags.query_alert} by {deployment_name}) /
+      diff(avg:elastic_cloud.jvm.gc.collectors.old.count${module.filter-tags.query_alert} by {deployment_name})
     * 1000, 0)
   > ${var.jvm_gc_old_collection_latency_threshold_critical}
 EOQ
@@ -506,8 +506,8 @@ resource "datadog_monitor" "jvm_gc_old_collection_latency_warning" {
   query = <<EOQ
   ${var.jvm_gc_old_collection_latency_time_aggregator}(${var.jvm_gc_old_collection_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.jvm.gc.collectors.old.collection_time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
-      diff(avg:elastic_cloud.jvm.gc.collectors.old.count${module.filter-tags.query_alert} by {deployment_name,node_name})
+      diff(avg:elastic_cloud.jvm.gc.collectors.old.collection_time${module.filter-tags.query_alert} by {deployment_name}) /
+      diff(avg:elastic_cloud.jvm.gc.collectors.old.count${module.filter-tags.query_alert} by {deployment_name})
     * 1000, 0)
   > ${var.jvm_gc_old_collection_latency_threshold_warning}
 EOQ
@@ -539,8 +539,8 @@ resource "datadog_monitor" "jvm_gc_young_collection_latency" {
   query = <<EOQ
   ${var.jvm_gc_young_collection_latency_time_aggregator}(${var.jvm_gc_young_collection_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.jvm.gc.collectors.young.collection_time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
-      diff(avg:elastic_cloud.jvm.gc.collectors.young.count${module.filter-tags.query_alert} by {deployment_name,node_name})
+      diff(avg:elastic_cloud.jvm.gc.collectors.young.collection_time${module.filter-tags.query_alert} by {deployment_name}) /
+      diff(avg:elastic_cloud.jvm.gc.collectors.young.count${module.filter-tags.query_alert} by {deployment_name})
     * 1000, 0)
   > ${var.jvm_gc_young_collection_latency_threshold_critical}
 EOQ
@@ -569,8 +569,8 @@ resource "datadog_monitor" "jvm_gc_young_collection_latency_warning" {
   query = <<EOQ
   ${var.jvm_gc_young_collection_latency_time_aggregator}(${var.jvm_gc_young_collection_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.jvm.gc.collectors.young.collection_time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
-      diff(avg:elastic_cloud.jvm.gc.collectors.young.count${module.filter-tags.query_alert} by {deployment_name,node_name})
+      diff(avg:elastic_cloud.jvm.gc.collectors.young.collection_time${module.filter-tags.query_alert} by {deployment_name}) /
+      diff(avg:elastic_cloud.jvm.gc.collectors.young.count${module.filter-tags.query_alert} by {deployment_name})
     * 1000, 0)
   > ${var.jvm_gc_young_collection_latency_threshold_warning}
 EOQ
@@ -603,8 +603,8 @@ resource "datadog_monitor" "indexing_latency" {
   query = <<EOQ
   ${var.indexing_latency_time_aggregator}(${var.indexing_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.indexing.index.time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
-      diff(avg:elastic_cloud.indexing.index.total${module.filter-tags.query_alert} by {deployment_name,node_name})
+      diff(avg:elastic_cloud.indexing.index.time${module.filter-tags.query_alert} by {deployment_name}) /
+      diff(avg:elastic_cloud.indexing.index.total${module.filter-tags.query_alert} by {deployment_name})
     * 1000, 0)
    > ${var.indexing_latency_threshold_critical}
 EOQ
@@ -634,8 +634,8 @@ resource "datadog_monitor" "indexing_latency_warning" {
   query = <<EOQ
   ${var.indexing_latency_time_aggregator}(${var.indexing_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.indexing.index.time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
-      diff(avg:elastic_cloud.indexing.index.total${module.filter-tags.query_alert} by {deployment_name,node_name})
+      diff(avg:elastic_cloud.indexing.index.time${module.filter-tags.query_alert} by {deployment_name}) /
+      diff(avg:elastic_cloud.indexing.index.total${module.filter-tags.query_alert} by {deployment_name})
     * 1000, 0)
    > ${var.indexing_latency_threshold_warning}
 EOQ
@@ -668,8 +668,8 @@ resource "datadog_monitor" "flush_latency" {
   query = <<EOQ
   ${var.flush_latency_time_aggregator}(${var.flush_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.flush.total.time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
-      diff(avg:elastic_cloud.flush.total${module.filter-tags.query_alert} by {deployment_name,node_name})
+      diff(avg:elastic_cloud.flush.total.time${module.filter-tags.query_alert} by {deployment_name}) /
+      diff(avg:elastic_cloud.flush.total${module.filter-tags.query_alert} by {deployment_name})
     * 1000, 0)
   > ${var.flush_latency_threshold_critical}
 EOQ
@@ -699,8 +699,8 @@ resource "datadog_monitor" "flush_latency_warning" {
   query = <<EOQ
   ${var.flush_latency_time_aggregator}(${var.flush_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.flush.total.time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
-      diff(avg:elastic_cloud.flush.total${module.filter-tags.query_alert} by {deployment_name,node_name})
+      diff(avg:elastic_cloud.flush.total.time${module.filter-tags.query_alert} by {deployment_name}) /
+      diff(avg:elastic_cloud.flush.total${module.filter-tags.query_alert} by {deployment_name})
     * 1000, 0)
   > ${var.flush_latency_threshold_warning}
 EOQ
@@ -731,7 +731,7 @@ resource "datadog_monitor" "http_connections_anomaly" {
 
   query = <<EOQ
   ${var.http_connections_anomaly_time_aggregator}(${var.http_connections_anomaly_timeframe}):
-    anomalies(avg:elastic_cloud.http.current_open${module.filter-tags.query_alert} by {deployment_name,node_name},
+    anomalies(avg:elastic_cloud.http.current_open${module.filter-tags.query_alert} by {deployment_name},
               '${var.http_connections_anomaly_detection_algorithm}',
               ${var.http_connections_anomaly_deviations},
               direction='${var.http_connections_anomaly_direction}',
@@ -771,7 +771,7 @@ resource "datadog_monitor" "http_connections_anomaly_warning" {
 
   query = <<EOQ
   ${var.http_connections_anomaly_time_aggregator}(${var.http_connections_anomaly_timeframe}):
-    anomalies(avg:elastic_cloud.http.current_open${module.filter-tags.query_alert} by {deployment_name,node_name},
+    anomalies(avg:elastic_cloud.http.current_open${module.filter-tags.query_alert} by {deployment_name},
               '${var.http_connections_anomaly_detection_algorithm}',
               ${var.http_connections_anomaly_deviations},
               direction='${var.http_connections_anomaly_direction}',
@@ -816,8 +816,8 @@ resource "datadog_monitor" "search_query_latency" {
   query = <<EOQ
   ${var.search_query_latency_time_aggregator}(${var.search_query_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.search.query.time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
-      diff(avg:elastic_cloud.search.query.total${module.filter-tags.query_alert} by {deployment_name,node_name})
+      diff(avg:elastic_cloud.search.query.time${module.filter-tags.query_alert} by {deployment_name}) /
+      diff(avg:elastic_cloud.search.query.total${module.filter-tags.query_alert} by {deployment_name})
     * 1000, 0)
   > ${var.search_query_latency_threshold_critical}
 EOQ
@@ -847,8 +847,8 @@ resource "datadog_monitor" "search_query_latency_warning" {
   query = <<EOQ
   ${var.search_query_latency_time_aggregator}(${var.search_query_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.search.query.time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
-      diff(avg:elastic_cloud.search.query.total${module.filter-tags.query_alert} by {deployment_name,node_name})
+      diff(avg:elastic_cloud.search.query.time${module.filter-tags.query_alert} by {deployment_name}) /
+      diff(avg:elastic_cloud.search.query.total${module.filter-tags.query_alert} by {deployment_name})
     * 1000, 0)
   > ${var.search_query_latency_threshold_warning}
 EOQ
@@ -881,8 +881,8 @@ resource "datadog_monitor" "fetch_latency" {
   query = <<EOQ
   ${var.fetch_latency_time_aggregator}(${var.fetch_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.search.fetch.time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
-      diff(avg:elastic_cloud.search.fetch.total${module.filter-tags.query_alert} by {deployment_name,node_name})
+      diff(avg:elastic_cloud.search.fetch.time${module.filter-tags.query_alert} by {deployment_name}) /
+      diff(avg:elastic_cloud.search.fetch.total${module.filter-tags.query_alert} by {deployment_name})
     * 1000, 0)
   > ${var.fetch_latency_threshold_critical}
 EOQ
@@ -912,8 +912,8 @@ resource "datadog_monitor" "fetch_latency_warning" {
   query = <<EOQ
   ${var.fetch_latency_time_aggregator}(${var.fetch_latency_timeframe}):
     default(
-      diff(avg:elastic_cloud.search.fetch.time${module.filter-tags.query_alert} by {deployment_name,node_name}) /
-      diff(avg:elastic_cloud.search.fetch.total${module.filter-tags.query_alert} by {deployment_name,node_name})
+      diff(avg:elastic_cloud.search.fetch.time${module.filter-tags.query_alert} by {deployment_name}) /
+      diff(avg:elastic_cloud.search.fetch.total${module.filter-tags.query_alert} by {deployment_name})
     * 1000, 0)
   > ${var.fetch_latency_threshold_warning}
 EOQ
@@ -1059,7 +1059,7 @@ resource "datadog_monitor" "field_data_evictions_change" {
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
   query = <<EOQ
   change(${var.field_data_evictions_change_time_aggregator}(${var.field_data_evictions_change_timeframe}),${var.field_data_evictions_change_timeshift}):
-    avg:elastic_cloud.fielddata.evictions${module.filter-tags.query_alert} by {deployment_name,node_name}
+    avg:elastic_cloud.fielddata.evictions${module.filter-tags.query_alert} by {deployment_name}
   > ${var.field_data_evictions_change_threshold_critical}
 EOQ
 
@@ -1087,7 +1087,7 @@ resource "datadog_monitor" "field_data_evictions_change_warning" {
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
   query = <<EOQ
   change(${var.field_data_evictions_change_time_aggregator}(${var.field_data_evictions_change_timeframe}),${var.field_data_evictions_change_timeshift}):
-    avg:elastic_cloud.fielddata.evictions${module.filter-tags.query_alert} by {deployment_name,node_name}
+    avg:elastic_cloud.fielddata.evictions${module.filter-tags.query_alert} by {deployment_name}
   > ${var.field_data_evictions_change_threshold_warning}
 EOQ
 
@@ -1118,7 +1118,7 @@ resource "datadog_monitor" "query_cache_evictions_change" {
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
   query = <<EOQ
   change(${var.query_cache_evictions_change_time_aggregator}(${var.query_cache_evictions_change_timeframe}),${var.query_cache_evictions_change_timeshift}):
-    avg:elastic_cloud.indices.query_cache.evictions${module.filter-tags.query_alert} by {deployment_name,node_name}
+    avg:elastic_cloud.indices.query_cache.evictions${module.filter-tags.query_alert} by {deployment_name}
   > ${var.query_cache_evictions_change_threshold_critical}
 EOQ
 
@@ -1146,7 +1146,7 @@ resource "datadog_monitor" "query_cache_evictions_change_warning" {
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
   query = <<EOQ
   change(${var.query_cache_evictions_change_time_aggregator}(${var.query_cache_evictions_change_timeframe}),${var.query_cache_evictions_change_timeshift}):
-    avg:elastic_cloud.indices.query_cache.evictions${module.filter-tags.query_alert} by {deployment_name,node_name}
+    avg:elastic_cloud.indices.query_cache.evictions${module.filter-tags.query_alert} by {deployment_name}
   > ${var.query_cache_evictions_change_threshold_warning}
 EOQ
 
@@ -1177,7 +1177,7 @@ resource "datadog_monitor" "request_cache_evictions_change" {
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
   query = <<EOQ
   change(${var.request_cache_evictions_change_time_aggregator}(${var.request_cache_evictions_change_timeframe}),${var.request_cache_evictions_change_timeshift}):
-    avg:elastic_cloud.indices.request_cache.evictions${module.filter-tags.query_alert} by {deployment_name,node_name}
+    avg:elastic_cloud.indices.request_cache.evictions${module.filter-tags.query_alert} by {deployment_name}
   > ${var.request_cache_evictions_change_threshold_critical}
 EOQ
 
@@ -1205,7 +1205,7 @@ resource "datadog_monitor" "request_cache_evictions_change_warning" {
   // TODO add tags to filter by node type and do not apply this monitor on non-data nodes
   query = <<EOQ
   change(${var.request_cache_evictions_change_time_aggregator}(${var.request_cache_evictions_change_timeframe}),${var.request_cache_evictions_change_timeshift}):
-    avg:elastic_cloud.indices.request_cache.evictions${module.filter-tags.query_alert} by {deployment_name,node_name}
+    avg:elastic_cloud.indices.request_cache.evictions${module.filter-tags.query_alert} by {deployment_name}
   > ${var.request_cache_evictions_change_threshold_warning}
 EOQ
 
