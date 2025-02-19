@@ -18,7 +18,7 @@ module "filter-tags-phase" {
   filter_tags_custom          = var.filter_tags_custom
   filter_tags_custom_excluded = var.filter_tags_custom_excluded
   filter_tags_separator       = var.filter_tags_separator
-  extra_tags_excluded         = ["phase:pending", "phase:running", "phase:succeeded", "phase:unknown"]
+  extra_tags_excluded         = ["pod_phase:pending", "pod_phase:running", "pod_phase:succeeded", "pod_phase:unknown"]
 }
 
 module "filter-tags-nocontainercreating" {
