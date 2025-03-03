@@ -65,7 +65,6 @@ Creates DataDog monitors with the following checks:
 | <a name="input_memory_used_timeframe"></a> [memory\_used\_timeframe](#input\_memory\_used\_timeframe) | Timeframe for the Container Memory Usage monitor | `string` | `"last_5m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
-| <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_not_responding_enabled"></a> [not\_responding\_enabled](#input\_not\_responding\_enabled) | Flag to enable Docker does not respond monitor | `string` | `"true"` | no |
 | <a name="input_not_responding_extra_tags"></a> [not\_responding\_extra\_tags](#input\_not\_responding\_extra\_tags) | Extra tags for Docker does not respond monitor | `list(string)` | `[]` | no |
 | <a name="input_not_responding_message"></a> [not\_responding\_message](#input\_not\_responding\_message) | Custom message for Docker does not respond monitor | `string` | `""` | no |
@@ -73,6 +72,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_not_responding_threshold_warning"></a> [not\_responding\_threshold\_warning](#input\_not\_responding\_threshold\_warning) | Docker does not respond monitor (warning threshold) | `string` | `3` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_priority"></a> [priority](#input\_priority) | Alert severity of monitors from 1 (high) to 5 (low) | `number` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:docker",<br>  "provider:docker",<br>  "resource:docker"<br>]</pre> | no |
 | <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |

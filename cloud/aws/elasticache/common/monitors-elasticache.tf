@@ -16,7 +16,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -24,6 +23,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.eviction_extra_tags)
 }
@@ -41,7 +41,6 @@ resource "datadog_monitor" "elasticache_max_connection" {
 EOQ
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.elasticache_max_connection_no_data_timeframe
@@ -50,6 +49,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.max_connection_extra_tags)
 }
@@ -67,7 +67,6 @@ resource "datadog_monitor" "elasticache_no_connection" {
 EOQ
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -75,6 +74,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.no_connection_extra_tags)
 }
@@ -97,7 +97,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -105,6 +104,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.swap_extra_tags)
 }
@@ -127,7 +127,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -135,6 +134,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.free_memory_extra_tags)
 }
@@ -157,7 +157,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -165,7 +164,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:elasticache", "team:claranet", "created-by:terraform"], var.eviction_growing_extra_tags)
 }
-

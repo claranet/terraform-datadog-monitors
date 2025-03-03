@@ -19,7 +19,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -28,6 +27,7 @@ EOQ
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.cpu_utilization_no_data_timeframe
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.cpu_utilization_extra_tags)
 }
@@ -59,7 +59,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -67,6 +66,7 @@ EOQ
   require_full_window = false
   notify_no_data      = false
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.disk_throttled_bps_extra_tags)
 }
@@ -98,7 +98,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   notify_audit        = false
@@ -106,7 +105,7 @@ EOQ
   include_tags        = true
   require_full_window = false
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.disk_throttled_ops_extra_tags)
 }
-

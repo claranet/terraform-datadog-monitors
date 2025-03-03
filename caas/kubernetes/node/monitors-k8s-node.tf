@@ -13,7 +13,6 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -21,6 +20,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.disk_pressure_extra_tags)
 }
@@ -40,7 +40,6 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -48,6 +47,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.memory_pressure_extra_tags)
 }
@@ -67,7 +67,6 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -75,6 +74,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.ready_extra_tags)
 }
@@ -94,7 +94,6 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.kubelet_ping_no_data_timeframe
@@ -103,6 +102,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.kubelet_ping_extra_tags)
 }
@@ -122,7 +122,6 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -130,6 +129,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.kubelet_syncloop_extra_tags)
 }
@@ -142,12 +142,12 @@ resource "datadog_monitor" "unregister_net_device" {
 
   query = "events(\"sources:kubernetes ${module.filter-tags.event_alert} \"UnregisterNetDevice\"\").rollup(\"count\").last(\"${var.unregister_net_device_timeframe}\") >= ${var.unregister_net_device_threshold_critical}"
 
-  new_host_delay    = var.new_host_delay
   notify_no_data    = false
   renotify_interval = 0
   notify_audit      = false
   timeout_h         = var.timeout_h
   include_tags      = true
+  priority          = var.priority
 
   tags = concat(local.common_tags, var.tags, var.unregister_net_device_extra_tags)
 }
@@ -169,7 +169,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -177,6 +176,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.node_unschedulable_extra_tags)
 }
@@ -200,7 +200,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -208,6 +207,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.volume_space_extra_tags)
 }
@@ -231,7 +231,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -239,6 +238,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.volume_inodes_extra_tags)
 }

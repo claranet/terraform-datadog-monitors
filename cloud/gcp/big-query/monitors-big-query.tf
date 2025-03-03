@@ -19,7 +19,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   include_tags        = true
   notify_no_data      = false
@@ -27,6 +26,7 @@ EOQ
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.concurrent_queries_extra_tags)
 }
@@ -52,7 +52,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   include_tags        = true
   notify_no_data      = false
@@ -60,6 +59,7 @@ EOQ
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.execution_time_extra_tags)
 }
@@ -85,7 +85,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   include_tags        = true
   notify_no_data      = false
@@ -93,6 +92,7 @@ EOQ
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.scanned_bytes_extra_tags)
 }
@@ -118,7 +118,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   include_tags        = true
   notify_no_data      = false
@@ -126,6 +125,7 @@ EOQ
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.scanned_bytes_billed_extra_tags)
 }
@@ -151,7 +151,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   include_tags        = true
   notify_no_data      = false
@@ -159,6 +158,7 @@ EOQ
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.available_slots_extra_tags)
 }
@@ -184,7 +184,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   include_tags        = true
   notify_no_data      = false
@@ -192,6 +191,7 @@ EOQ
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.stored_bytes_extra_tags)
 }
@@ -217,7 +217,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   include_tags        = true
   notify_no_data      = false
@@ -225,6 +224,7 @@ EOQ
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.table_count_extra_tags)
 }
@@ -250,7 +250,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   include_tags        = true
   notify_no_data      = false
@@ -258,6 +257,7 @@ EOQ
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.uploaded_bytes_extra_tags)
 }
@@ -283,7 +283,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   include_tags        = true
   notify_no_data      = false
@@ -291,7 +290,7 @@ EOQ
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.uploaded_bytes_billed_extra_tags)
 }
-

@@ -7,7 +7,6 @@ resource "datadog_monitor" "storage_status" {
     ${var.status_time_aggregator}(${var.status_timeframe}):avg:azure.storage.count${module.filter-tags-status.query_alert} by {resource_group,region,name} < 1
 EOQ
 
-
   monitor_thresholds {
     critical = 1
   }
@@ -19,10 +18,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.status_extra_tags)
 }
@@ -39,7 +38,6 @@ resource "datadog_monitor" "blobservices_requests_error" {
       * 100),0) > ${var.successful_storage_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.successful_storage_requests_threshold_critical
     warning  = var.successful_storage_requests_threshold_warning
@@ -51,10 +49,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.successful_requests_extra_tags)
 }
@@ -70,7 +68,6 @@ resource "datadog_monitor" "fileservices_requests_error" {
       * 100),0) > ${var.successful_storage_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.successful_storage_requests_threshold_critical
     warning  = var.successful_storage_requests_threshold_warning
@@ -82,10 +79,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.successful_requests_extra_tags)
 }
@@ -102,7 +99,6 @@ resource "datadog_monitor" "queueservices_requests_error" {
       * 100),0) > ${var.successful_storage_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.successful_storage_requests_threshold_critical
     warning  = var.successful_storage_requests_threshold_warning
@@ -114,10 +110,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.successful_requests_extra_tags)
 }
@@ -134,7 +130,6 @@ resource "datadog_monitor" "tableservices_requests_error" {
       * 100),0) > ${var.successful_storage_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.successful_storage_requests_threshold_critical
     warning  = var.successful_storage_requests_threshold_warning
@@ -146,10 +141,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.successful_requests_extra_tags)
 }
@@ -165,7 +160,6 @@ resource "datadog_monitor" "blobservices_latency" {
     0)) > ${var.latency_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.latency_threshold_critical
     warning  = var.latency_threshold_warning
@@ -177,10 +171,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.latency_extra_tags)
 }
@@ -196,7 +190,6 @@ resource "datadog_monitor" "fileservices_latency" {
     0)) > ${var.latency_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.latency_threshold_critical
     warning  = var.latency_threshold_warning
@@ -208,10 +201,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.latency_extra_tags)
 }
@@ -227,7 +220,6 @@ resource "datadog_monitor" "queueservices_latency" {
     0)) > ${var.latency_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.latency_threshold_critical
     warning  = var.latency_threshold_warning
@@ -239,10 +231,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.latency_extra_tags)
 }
@@ -258,7 +250,6 @@ resource "datadog_monitor" "tableservices_latency" {
     0)) > ${var.latency_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.latency_threshold_critical
     warning  = var.latency_threshold_warning
@@ -270,10 +261,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.latency_extra_tags)
 }
@@ -301,10 +292,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.timeout_error_requests_extra_tags)
 }
@@ -332,10 +323,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.timeout_error_requests_extra_tags)
 }
@@ -352,7 +343,6 @@ resource "datadog_monitor" "queue_timeout_error_requests" {
     * 100),0) > ${var.timeout_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.timeout_error_requests_threshold_critical
     warning  = var.timeout_error_requests_threshold_warning
@@ -364,10 +354,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.timeout_error_requests_extra_tags)
 }
@@ -384,7 +374,6 @@ resource "datadog_monitor" "table_timeout_error_requests" {
     * 100),0) > ${var.timeout_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.timeout_error_requests_threshold_critical
     warning  = var.timeout_error_requests_threshold_warning
@@ -396,10 +385,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.timeout_error_requests_extra_tags)
 }
@@ -416,7 +405,6 @@ resource "datadog_monitor" "blob_network_error_requests" {
     * 100),0) > ${var.network_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.network_error_requests_threshold_critical
     warning  = var.network_error_requests_threshold_warning
@@ -428,10 +416,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.network_error_requests_extra_tags)
 }
@@ -448,7 +436,6 @@ resource "datadog_monitor" "file_network_error_requests" {
     * 100),0) > ${var.network_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.network_error_requests_threshold_critical
     warning  = var.network_error_requests_threshold_warning
@@ -460,10 +447,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.network_error_requests_extra_tags)
 }
@@ -480,7 +467,6 @@ resource "datadog_monitor" "queue_network_error_requests" {
     * 100),0) > ${var.network_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.network_error_requests_threshold_critical
     warning  = var.network_error_requests_threshold_warning
@@ -492,10 +478,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.network_error_requests_extra_tags)
 }
@@ -512,7 +498,6 @@ resource "datadog_monitor" "table_network_error_requests" {
     * 100),0) > ${var.network_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.network_error_requests_threshold_critical
     warning  = var.network_error_requests_threshold_warning
@@ -524,10 +509,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.network_error_requests_extra_tags)
 }
@@ -544,7 +529,6 @@ resource "datadog_monitor" "blob_throttling_error_requests" {
     * 100),0) > ${var.throttling_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.throttling_error_requests_threshold_critical
     warning  = var.throttling_error_requests_threshold_warning
@@ -556,10 +540,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.throttling_error_requests_extra_tags)
 }
@@ -576,7 +560,6 @@ resource "datadog_monitor" "file_throttling_error_requests" {
     * 100),0) > ${var.throttling_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.throttling_error_requests_threshold_critical
     warning  = var.throttling_error_requests_threshold_warning
@@ -588,10 +571,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.throttling_error_requests_extra_tags)
 }
@@ -608,7 +591,6 @@ resource "datadog_monitor" "queue_throttling_error_requests" {
     * 100),0) > ${var.throttling_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.throttling_error_requests_threshold_critical
     warning  = var.throttling_error_requests_threshold_warning
@@ -620,10 +602,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.throttling_error_requests_extra_tags)
 }
@@ -640,7 +622,6 @@ resource "datadog_monitor" "table_throttling_error_requests" {
     * 100),0) > ${var.throttling_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.throttling_error_requests_threshold_critical
     warning  = var.throttling_error_requests_threshold_warning
@@ -652,10 +633,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.throttling_error_requests_extra_tags)
 }
@@ -672,7 +653,6 @@ resource "datadog_monitor" "blob_server_other_error_requests" {
     * 100),0) > ${var.server_other_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.server_other_error_requests_threshold_critical
     warning  = var.server_other_error_requests_threshold_warning
@@ -684,10 +664,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.server_other_error_requests_extra_tags)
 }
@@ -704,7 +684,6 @@ resource "datadog_monitor" "file_server_other_error_requests" {
     * 100),0) > ${var.server_other_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.server_other_error_requests_threshold_critical
     warning  = var.server_other_error_requests_threshold_warning
@@ -716,10 +695,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.server_other_error_requests_extra_tags)
 }
@@ -736,7 +715,6 @@ resource "datadog_monitor" "queue_server_other_error_requests" {
     * 100),0) > ${var.server_other_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.server_other_error_requests_threshold_critical
     warning  = var.server_other_error_requests_threshold_warning
@@ -748,10 +726,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.server_other_error_requests_extra_tags)
 }
@@ -768,7 +746,6 @@ resource "datadog_monitor" "table_server_other_error_requests" {
     * 100),0) > ${var.server_other_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.server_other_error_requests_threshold_critical
     warning  = var.server_other_error_requests_threshold_warning
@@ -780,10 +757,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.server_other_error_requests_extra_tags)
 }
@@ -799,7 +776,6 @@ resource "datadog_monitor" "blob_client_other_error_requests" {
   * 100),0) > ${var.client_other_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.client_other_error_requests_threshold_critical
     warning  = var.client_other_error_requests_threshold_warning
@@ -811,10 +787,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.client_other_error_requests_extra_tags)
 }
@@ -831,7 +807,6 @@ resource "datadog_monitor" "file_client_other_error_requests" {
     * 100),0) > ${var.client_other_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.client_other_error_requests_threshold_critical
     warning  = var.client_other_error_requests_threshold_warning
@@ -843,10 +818,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.client_other_error_requests_extra_tags)
 }
@@ -863,7 +838,6 @@ resource "datadog_monitor" "queue_client_other_error_requests" {
     * 100),0) > ${var.client_other_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.client_other_error_requests_threshold_critical
     warning  = var.client_other_error_requests_threshold_warning
@@ -875,10 +849,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.client_other_error_requests_extra_tags)
 }
@@ -895,7 +869,6 @@ resource "datadog_monitor" "table_client_other_error_requests" {
     * 100),0) > ${var.client_other_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.client_other_error_requests_threshold_critical
     warning  = var.client_other_error_requests_threshold_warning
@@ -907,10 +880,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.client_other_error_requests_extra_tags)
 }
@@ -927,7 +900,6 @@ resource "datadog_monitor" "blob_authorization_error_requests" {
   * 100),0) > ${var.authorization_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.authorization_error_requests_threshold_critical
     warning  = var.authorization_error_requests_threshold_warning
@@ -939,10 +911,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.authorization_error_requests_extra_tags)
 }
@@ -959,7 +931,6 @@ resource "datadog_monitor" "file_authorization_error_requests" {
     * 100),0) > ${var.authorization_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.authorization_error_requests_threshold_critical
     warning  = var.authorization_error_requests_threshold_warning
@@ -971,10 +942,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.authorization_error_requests_extra_tags)
 }
@@ -991,7 +962,6 @@ resource "datadog_monitor" "queue_authorization_error_requests" {
     * 100),0) > ${var.authorization_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.authorization_error_requests_threshold_critical
     warning  = var.authorization_error_requests_threshold_warning
@@ -1003,10 +973,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.authorization_error_requests_extra_tags)
 }
@@ -1023,7 +993,6 @@ resource "datadog_monitor" "table_authorization_error_requests" {
     * 100),0) > ${var.authorization_error_requests_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.authorization_error_requests_threshold_critical
     warning  = var.authorization_error_requests_threshold_warning
@@ -1035,10 +1004,10 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.authorization_error_requests_extra_tags)
 }

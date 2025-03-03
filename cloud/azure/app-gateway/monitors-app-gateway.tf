@@ -12,7 +12,6 @@ resource "datadog_monitor" "appgateway_status" {
 EOQ
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.appgateway_status_no_data_timeframe
@@ -21,6 +20,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.status_extra_tags)
 }
@@ -38,7 +38,6 @@ resource "datadog_monitor" "total_requests" {
 EOQ
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -46,6 +45,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.total_requests_extra_tags)
 }
@@ -68,7 +68,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -76,6 +75,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.appgateway_backend_connect_time_extra_tags)
 }
@@ -100,7 +100,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -108,6 +107,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.appgateway_failed_requests_extra_tags)
 }
@@ -132,7 +132,6 @@ EOQ
     warning  = var.appgateway_unhealthy_host_ratio_threshold_warning
   }
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -140,6 +139,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.appgateway_unhealthy_host_ratio_extra_tags)
 }
@@ -158,20 +158,19 @@ resource "datadog_monitor" "appgateway_http_4xx_errors" {
       * 100),0) > ${var.appgateway_http_4xx_errors_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     warning  = var.appgateway_http_4xx_errors_threshold_warning
     critical = var.appgateway_http_4xx_errors_threshold_critical
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 1
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.appgateway_http_4xx_errors_extra_tags)
 }
@@ -196,13 +195,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 1
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.appgateway_http_5xx_errors_extra_tags)
 }
@@ -221,20 +220,19 @@ resource "datadog_monitor" "appgateway_backend_http_4xx_errors" {
       * 100),0) > ${var.appgateway_backend_http_4xx_errors_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     warning  = var.appgateway_backend_http_4xx_errors_threshold_warning
     critical = var.appgateway_backend_http_4xx_errors_threshold_critical
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 1
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.appgateway_backend_http_4xx_errors_extra_tags)
 }
@@ -259,13 +257,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 1
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.appgateway_backend_http_5xx_errors_extra_tags)
 }

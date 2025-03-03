@@ -58,12 +58,12 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
-| <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before begin to monitor new host | `number` | `300` | no |
 | <a name="input_not_responding_group_by"></a> [not\_responding\_group\_by](#input\_not\_responding\_group\_by) | List of tags to use to group data | `list(string)` | <pre>[<br>  "host",<br>  "server"<br>]</pre> | no |
 | <a name="input_not_responding_no_data_timeframe"></a> [not\_responding\_no\_data\_timeframe](#input\_not\_responding\_no\_data\_timeframe) | Zookeeper monitor no\_data\_timeframe | `number` | `10` | no |
 | <a name="input_not_responding_notify_no_data"></a> [not\_responding\_notify\_no\_data](#input\_not\_responding\_notify\_no\_data) | Send notification if not\_responding monitor does not retrieve data | `bool` | `true` | no |
 | <a name="input_not_responding_threshold_warning"></a> [not\_responding\_threshold\_warning](#input\_not\_responding\_threshold\_warning) | Zookeeper not responding limit (warning threshold) | `number` | `3` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_priority"></a> [priority](#input\_priority) | Alert severity of monitors from 1 (high) to 5 (low) | `number` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:database",<br>  "provider:zookeeper",<br>  "resource:zookeeper"<br>]</pre> | no |
 | <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |

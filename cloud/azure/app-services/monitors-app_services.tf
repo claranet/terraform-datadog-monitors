@@ -17,13 +17,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.response_time_extra_tags)
 }
@@ -47,13 +47,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.memory_usage_extra_tags)
 }
@@ -78,13 +78,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 1
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.http_5xx_requests_extra_tags)
 }
@@ -109,13 +109,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false # Will NOT notify when no data is received
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 1
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.http_4xx_requests_extra_tags)
 }
@@ -142,13 +142,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 1
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.http_successful_requests_extra_tags)
 }
@@ -169,7 +169,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.appservices_status_no_data_timeframe
@@ -177,6 +176,7 @@ EOQ
   require_full_window = false
   timeout_h           = var.timeout_h
   include_tags        = true
-  tags                = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.status_extra_tags)
+  priority            = var.priority
 
+  tags = concat(["env:${var.environment}", "type:cloud", "provider:azure", "resource:app-services", "team:claranet", "created-by:terraform"], var.status_extra_tags)
 }

@@ -15,13 +15,12 @@ resource "datadog_monitor" "pct_errors" {
       > ${var.pct_errors_threshold_critical}
   EOQ
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
-
   monitor_thresholds {
     critical = var.pct_errors_threshold_critical
     warning  = var.pct_errors_threshold_warning
   }
+
+  evaluation_delay = var.evaluation_delay
 
   notify_no_data      = false
   require_full_window = false
@@ -29,6 +28,7 @@ resource "datadog_monitor" "pct_errors" {
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.pct_errors_extra_tags)
 }
@@ -46,13 +46,12 @@ resource "datadog_monitor" "errors" {
       > ${var.errors_threshold_critical}
   EOQ
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
-
   monitor_thresholds {
     critical = var.errors_threshold_critical
     warning  = var.errors_threshold_warning
   }
+
+  evaluation_delay = var.evaluation_delay
 
   notify_no_data      = false
   require_full_window = false
@@ -60,6 +59,7 @@ resource "datadog_monitor" "errors" {
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.errors_extra_tags)
 }
@@ -77,13 +77,12 @@ resource "datadog_monitor" "throttles" {
       > ${var.throttles_threshold_critical}
   EOQ
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
-
   monitor_thresholds {
     critical = var.throttles_threshold_critical
     warning  = var.throttles_threshold_warning
   }
+
+  evaluation_delay = var.evaluation_delay
 
   notify_no_data      = false
   require_full_window = false
@@ -91,6 +90,7 @@ resource "datadog_monitor" "throttles" {
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.throttles_extra_tags)
 }
@@ -108,13 +108,12 @@ resource "datadog_monitor" "invocations" {
       <= ${var.invocations_threshold_critical}
   EOQ
 
-  evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
-
   monitor_thresholds {
     critical = var.invocations_threshold_critical
     warning  = var.invocations_threshold_warning
   }
+
+  evaluation_delay = var.evaluation_delay
 
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.invocations_no_data_timeframe
@@ -123,8 +122,7 @@ resource "datadog_monitor" "invocations" {
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
-
-
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.invocations_extra_tags)
 }

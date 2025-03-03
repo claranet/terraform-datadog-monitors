@@ -20,7 +20,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -28,6 +27,7 @@ EOQ
   require_full_window = false
   notify_no_data      = false
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.error_rate_4xx_extra_tags)
 }
@@ -54,7 +54,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -62,6 +61,7 @@ EOQ
   require_full_window = false
   notify_no_data      = false
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.error_rate_5xx_extra_tags)
 }
@@ -87,7 +87,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -95,6 +94,7 @@ EOQ
   require_full_window = false
   notify_no_data      = false
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.backend_latency_service_extra_tags)
 }
@@ -120,7 +120,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -128,6 +127,7 @@ EOQ
   require_full_window = false
   notify_no_data      = false
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.backend_latency_bucket_extra_tags)
 }
@@ -153,7 +153,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -161,7 +160,7 @@ EOQ
   require_full_window = false
   notify_no_data      = false
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.request_count_extra_tags)
 }
-

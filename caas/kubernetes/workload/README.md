@@ -105,7 +105,6 @@ Creates DataDog monitors with the following checks:
 | <a name="input_jobfailed_group_by"></a> [jobfailed\_group\_by](#input\_jobfailed\_group\_by) | n/a | `list` | <pre>[<br>  "kube_job",<br>  "kube_cluster_name"<br>]</pre> | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
-| <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_pod_disruption_budget_not_respected_enabled"></a> [pod\_disruption\_budget\_not\_respected\_enabled](#input\_pod\_disruption\_budget\_not\_respected\_enabled) | Flag to enable Pod Disruption Budget not respected monitor | `string` | `"true"` | no |
 | <a name="input_pod_disruption_budget_not_respected_extra_tags"></a> [pod\_disruption\_budget\_not\_respected\_extra\_tags](#input\_pod\_disruption\_budget\_not\_respected\_extra\_tags) | Extra tags for Pod Disruption Budget not respected monitor | `list(string)` | `[]` | no |
@@ -114,6 +113,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_pod_disruption_budget_not_respected_time_aggregator"></a> [pod\_disruption\_budget\_not\_respected\_time\_aggregator](#input\_pod\_disruption\_budget\_not\_respected\_time\_aggregator) | Monitor aggregator for Pod Disruption Budget not respected [available values: min, max or avg] | `string` | `"max"` | no |
 | <a name="input_pod_disruption_budget_not_respected_timeframe"></a> [pod\_disruption\_budget\_not\_respected\_timeframe](#input\_pod\_disruption\_budget\_not\_respected\_timeframe) | Monitor timeframe for Pod Disruption Budget not respected [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_15m"` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_priority"></a> [priority](#input\_priority) | Alert severity of monitors from 1 (high) to 5 (low) | `number` | `null` | no |
 | <a name="input_replica_available_enabled"></a> [replica\_available\_enabled](#input\_replica\_available\_enabled) | Flag to enable Available replica monitor | `string` | `"true"` | no |
 | <a name="input_replica_available_extra_tags"></a> [replica\_available\_extra\_tags](#input\_replica\_available\_extra\_tags) | Extra tags for Available replicamonitor | `list(string)` | `[]` | no |
 | <a name="input_replica_available_message"></a> [replica\_available\_message](#input\_replica\_available\_message) | Custom message for Available replica monitor | `string` | `""` | no |

@@ -13,7 +13,6 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -21,6 +20,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.job_extra_tags)
 }
@@ -40,7 +40,6 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -48,6 +47,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.cronjob_extra_tags)
 }
@@ -70,7 +70,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -78,6 +77,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.replica_available_extra_tags)
 }
@@ -100,7 +100,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -108,6 +107,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.replica_ready_extra_tags)
 }
@@ -130,7 +130,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -138,6 +137,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.replica_current_extra_tags)
 }
@@ -168,6 +168,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = false
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.deployments_replica_too_low_extra_tags)
 }
@@ -190,7 +191,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -198,6 +198,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.daemonset_pods_not_ready_extra_tags)
 }
@@ -221,7 +222,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -229,6 +229,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.statefulset_pods_not_ready_extra_tags)
 }
@@ -253,7 +254,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -261,6 +261,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.hpa_cannot_scaleup_further_extra_tags)
 }
@@ -291,6 +292,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = false
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.pod_disruption_budget_not_respected_extra_tags)
 }

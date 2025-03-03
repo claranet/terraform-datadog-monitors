@@ -56,7 +56,6 @@ No modules.
 | <a name="input_filter_tags"></a> [filter\_tags](#input\_filter\_tags) | Tags used for filtering | `string` | `"*"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
-| <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds for the new host evaluation | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_oldest_unacked_message_age_enabled"></a> [oldest\_unacked\_message\_age\_enabled](#input\_oldest\_unacked\_message\_age\_enabled) | Flag to enable GCP Pub/Sub Subscription Oldest Unacked Message Age monitor | `string` | `"true"` | no |
 | <a name="input_oldest_unacked_message_age_extra_tags"></a> [oldest\_unacked\_message\_age\_extra\_tags](#input\_oldest\_unacked\_message\_age\_extra\_tags) | Extra tags for GCP Pub/Sub Subscription Oldest Unacked Message Age monitor | `list(string)` | `[]` | no |
@@ -66,6 +65,7 @@ No modules.
 | <a name="input_oldest_unacked_message_age_time_aggregator"></a> [oldest\_unacked\_message\_age\_time\_aggregator](#input\_oldest\_unacked\_message\_age\_time\_aggregator) | Time aggregator for the GCP Pub/Sub Subscription Oldest Unacked Message Age monitor | `string` | `"min"` | no |
 | <a name="input_oldest_unacked_message_age_timeframe"></a> [oldest\_unacked\_message\_age\_timeframe](#input\_oldest\_unacked\_message\_age\_timeframe) | Timeframe for the GCP Pub/Sub Subscription Oldest Unacked Message Age monitor | `string` | `"last_5m"` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_priority"></a> [priority](#input\_priority) | Alert severity of monitors from 1 (high) to 5 (low) | `number` | `null` | no |
 | <a name="input_subscription_push_latency_anomaly_alert_window"></a> [subscription\_push\_latency\_anomaly\_alert\_window](#input\_subscription\_push\_latency\_anomaly\_alert\_window) | Alert window. | `string` | `"last_15m"` | no |
 | <a name="input_subscription_push_latency_anomaly_count_default_zero"></a> [subscription\_push\_latency\_anomaly\_count\_default\_zero](#input\_subscription\_push\_latency\_anomaly\_count\_default\_zero) | Count default zero. | `string` | `"true"` | no |
 | <a name="input_subscription_push_latency_anomaly_detection_algorithm"></a> [subscription\_push\_latency\_anomaly\_detection\_algorithm](#input\_subscription\_push\_latency\_anomaly\_detection\_algorithm) | Anomaly Detection Algorithm used | `string` | `"basic"` | no |

@@ -91,7 +91,6 @@ Creates DataDog monitors with the following checks:
 | <a name="input_memory_pressure_threshold_warning"></a> [memory\_pressure\_threshold\_warning](#input\_memory\_pressure\_threshold\_warning) | Memory pressure monitor (warning threshold) | `string` | `3` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
-| <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_node_unschedulable_enabled"></a> [node\_unschedulable\_enabled](#input\_node\_unschedulable\_enabled) | Flag to enable node unschedulable monitor | `string` | `"true"` | no |
 | <a name="input_node_unschedulable_extra_tags"></a> [node\_unschedulable\_extra\_tags](#input\_node\_unschedulable\_extra\_tags) | Extra tags for node unschedulable monitor | `list(string)` | `[]` | no |
 | <a name="input_node_unschedulable_message"></a> [node\_unschedulable\_message](#input\_node\_unschedulable\_message) | Custom message for node unschedulable monitor | `string` | `""` | no |
@@ -99,6 +98,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_node_unschedulable_timeframe"></a> [node\_unschedulable\_timeframe](#input\_node\_unschedulable\_timeframe) | Monitor timeframe for node unschedulable [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_1h"` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_priority"></a> [priority](#input\_priority) | Alert severity of monitors from 1 (high) to 5 (low) | `number` | `null` | no |
 | <a name="input_ready_enabled"></a> [ready\_enabled](#input\_ready\_enabled) | Flag to enable Node ready monitor | `string` | `"true"` | no |
 | <a name="input_ready_extra_tags"></a> [ready\_extra\_tags](#input\_ready\_extra\_tags) | Extra tags for Node ready monitor | `list(string)` | `[]` | no |
 | <a name="input_ready_message"></a> [ready\_message](#input\_ready\_message) | Custom message for Node ready monitor | `string` | `""` | no |

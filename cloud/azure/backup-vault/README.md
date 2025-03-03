@@ -67,6 +67,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_no_data_timeframe"></a> [no\_data\_timeframe](#input\_no\_data\_timeframe) | Number of minutes before reporting no data | `string` | `1440` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_priority"></a> [priority](#input\_priority) | Alert severity of monitors from 1 (high) to 5 (low) | `number` | `null` | no |
 | <a name="input_restore_unhealthy_event_enabled"></a> [restore\_unhealthy\_event\_enabled](#input\_restore\_unhealthy\_event\_enabled) | Flag to enable Backup Vault Unhealthy Restore Event monitor | `string` | `"true"` | no |
 | <a name="input_restore_unhealthy_event_extra_tags"></a> [restore\_unhealthy\_event\_extra\_tags](#input\_restore\_unhealthy\_event\_extra\_tags) | Extra tags for Backup Vault Unhealthy Restore Event monitor | `list(string)` | `[]` | no |
 | <a name="input_restore_unhealthy_event_message"></a> [restore\_unhealthy\_event\_message](#input\_restore\_unhealthy\_event\_message) | Custom message for Backup Vault Unhealthy Restore Event monitor | `string` | `""` | no |

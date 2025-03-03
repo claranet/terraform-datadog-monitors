@@ -56,9 +56,9 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when an alert is triggered | `any` | n/a | yes |
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
-| <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds for the metric evaluation | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_priority"></a> [priority](#input\_priority) | Alert severity of monitors from 1 (high) to 5 (low) | `number` | `null` | no |
 | <a name="input_sqlserver_availability_enabled"></a> [sqlserver\_availability\_enabled](#input\_sqlserver\_availability\_enabled) | Flag to enable SQL Server availability monitor | `string` | `"true"` | no |
 | <a name="input_sqlserver_availability_extra_tags"></a> [sqlserver\_availability\_extra\_tags](#input\_sqlserver\_availability\_extra\_tags) | Extra tags for SQL Server availability monitor | `list(string)` | `[]` | no |
 | <a name="input_sqlserver_availability_message"></a> [sqlserver\_availability\_message](#input\_sqlserver\_availability\_message) | Custom message for SQL Server availability monitor | `string` | `""` | no |

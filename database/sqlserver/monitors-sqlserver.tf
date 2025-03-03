@@ -14,7 +14,6 @@ EOQ
   }
 
   no_data_timeframe   = var.sqlserver_availability_no_data_timeframe
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = var.notify_no_data
   renotify_interval   = 0
@@ -22,6 +21,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.sqlserver_availability_extra_tags)
 }

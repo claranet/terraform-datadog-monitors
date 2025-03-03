@@ -17,13 +17,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 1
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.http_5xx_errors_rate_extra_tags)
 }
@@ -46,13 +46,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 1
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.high_connections_count_extra_tags)
 }
@@ -75,14 +75,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = 1
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.high_threads_count_extra_tags)
 }
-

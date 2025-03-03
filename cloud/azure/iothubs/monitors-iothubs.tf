@@ -19,7 +19,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -27,6 +26,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.failed_jobs_rate_extra_tags)
 }
@@ -52,7 +52,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -60,6 +59,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.failed_listjobs_rate_extra_tags)
 }
@@ -85,7 +85,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -93,6 +92,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.failed_queryjobs_rate_extra_tags)
 }
@@ -110,7 +110,6 @@ resource "datadog_monitor" "status" {
 EOQ
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.status_no_data_timeframe
@@ -119,6 +118,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.status_extra_tags)
 }
@@ -135,7 +135,6 @@ resource "datadog_monitor" "total_devices" {
     ) == 0
 EOQ
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   notify_no_data      = false
@@ -144,6 +143,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.total_devices_extra_tags)
 }
@@ -169,7 +169,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -177,6 +176,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.failed_c2d_methods_rate_extra_tags)
 }
@@ -202,7 +202,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -210,6 +209,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.failed_c2d_twin_read_rate_extra_tags)
 }
@@ -235,7 +235,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -243,6 +242,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.failed_c2d_twin_update_rate_extra_tags)
 }
@@ -268,7 +268,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -276,6 +275,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.failed_d2c_twin_read_rate_extra_tags)
 }
@@ -301,7 +301,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -309,6 +308,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.failed_d2c_twin_update_rate_extra_tags)
 }
@@ -336,7 +336,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -344,6 +343,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.dropped_d2c_telemetry_egress_extra_tags)
 }
@@ -371,7 +371,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -379,6 +378,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.orphaned_d2c_telemetry_egress_extra_tags)
 }
@@ -406,7 +406,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -414,6 +413,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.invalid_d2c_telemetry_egress_extra_tags)
 }
@@ -438,7 +438,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -446,6 +445,7 @@ EOQ
   timeout_h           = 1
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.too_many_d2c_telemetry_ingress_nosent_extra_tags)
 }

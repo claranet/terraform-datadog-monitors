@@ -14,7 +14,6 @@ EOQ
   }
 
   evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
   new_group_delay  = var.new_group_delay
 
   notify_no_data      = false
@@ -23,6 +22,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.pod_phase_status_extra_tags)
 }
@@ -45,7 +45,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -53,6 +52,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.error_extra_tags)
 }
@@ -75,7 +75,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -83,6 +82,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.terminated_extra_tags)
 }
@@ -105,7 +105,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -113,6 +112,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.pod_container_killed_by_oom_extra_tags)
 }
@@ -135,7 +135,6 @@ EOQ
   }
 
   evaluation_delay = var.evaluation_delay
-  new_host_delay   = var.new_host_delay
   new_group_delay  = var.new_group_delay
 
   notify_no_data      = false
@@ -144,6 +143,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.pod_frequently_restarted_extra_tags)
 }

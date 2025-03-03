@@ -167,9 +167,9 @@ Creates DataDog monitors with the following checks:
 | <a name="input_network_error_requests_time_aggregator"></a> [network\_error\_requests\_time\_aggregator](#input\_network\_error\_requests\_time\_aggregator) | Monitor aggregator for Storage network errors [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_network_error_requests_timeframe"></a> [network\_error\_requests\_timeframe](#input\_network\_error\_requests\_timeframe) | Monitor timeframe for Storage network errors [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
-| <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_priority"></a> [priority](#input\_priority) | Alert severity of monitors from 1 (high) to 5 (low) | `number` | `null` | no |
 | <a name="input_server_other_error_requests_enabled"></a> [server\_other\_error\_requests\_enabled](#input\_server\_other\_error\_requests\_enabled) | Flag to enable Storage server other errors monitor | `string` | `"true"` | no |
 | <a name="input_server_other_error_requests_extra_tags"></a> [server\_other\_error\_requests\_extra\_tags](#input\_server\_other\_error\_requests\_extra\_tags) | Extra tags for Storage server other errors monitor | `list(string)` | `[]` | no |
 | <a name="input_server_other_error_requests_message"></a> [server\_other\_error\_requests\_message](#input\_server\_other\_error\_requests\_message) | Custom message for Storage server other errors monitor | `string` | `""` | no |

@@ -16,7 +16,6 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   no_data_timeframe   = var.cannot_connect_no_data_timeframe
   notify_no_data      = var.notify_no_data
@@ -25,6 +24,7 @@ EOQ
   include_tags        = true
   require_full_window = true
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.cannot_connect_extra_tags)
 }
@@ -47,7 +47,6 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   notify_audit        = false
@@ -55,6 +54,7 @@ EOQ
   include_tags        = true
   require_full_window = true
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.invalid_tls_certificate_extra_tags)
 }
@@ -77,7 +77,6 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   notify_audit        = false
@@ -85,6 +84,7 @@ EOQ
   include_tags        = true
   require_full_window = true
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.tls_certificate_expiration_extra_tags)
 }
@@ -104,14 +104,12 @@ resource "datadog_monitor" "certificate_expiration_date" {
     < ${var.certificate_expiration_date_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     warning  = var.certificate_expiration_date_threshold_warning
     critical = var.certificate_expiration_date_threshold_critical
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -119,6 +117,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.certificate_expiration_date_extra_tags)
 }

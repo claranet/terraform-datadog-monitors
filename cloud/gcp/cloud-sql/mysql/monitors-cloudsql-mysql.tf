@@ -19,7 +19,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -28,7 +27,7 @@ EOQ
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.replication_lag_no_data_timeframe
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.replication_lag_extra_tags)
 }
-
