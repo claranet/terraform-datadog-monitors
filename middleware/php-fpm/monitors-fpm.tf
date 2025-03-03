@@ -5,7 +5,7 @@ resource "datadog_monitor" "php_fpm_connect" {
   type    = "service check"
 
   query = <<EOQ
-    "php_fpm.can_ping"${module.filter-tags.service_check}.by("ping_url").last(6).count_by_status()
+    "php_fpm.can_ping"${module.filter-tags.service_check}.by("host","ping_url").last(6).count_by_status()
 EOQ
 
   monitor_thresholds {
