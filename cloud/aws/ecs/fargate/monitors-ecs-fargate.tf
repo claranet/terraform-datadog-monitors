@@ -19,11 +19,10 @@ EOQ
   timeout_h    = var.timeout_h
 
   evaluation_delay  = var.evaluation_delay
-  new_host_delay    = var.new_host_delay
   notify_no_data    = var.notify_no_data
   no_data_timeframe = var.service_check_no_data_timeframe
   renotify_interval = 0
-
+  priority          = var.priority
 
   include_tags = true
   tags         = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs_fargate", "team:claranet", "created-by:terraform", "category:service"], var.service_check_extra_tags)
@@ -41,14 +40,12 @@ ${var.cpu_utilization_time_aggregator}(${var.cpu_utilization_timeframe}):
 > ${var.cpu_utilization_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.cpu_utilization_threshold_critical
     warning  = var.cpu_utilization_threshold_warning
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   require_full_window = true
@@ -56,9 +53,9 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.cpu_utilization_extra_tags)
-
 }
 
 resource "datadog_monitor" "memory_utilization" {
@@ -75,14 +72,12 @@ ${var.memory_utilization_time_aggregator}(${var.memory_utilization_timeframe}):
 > ${var.memory_utilization_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.memory_utilization_threshold_critical
     warning  = var.memory_utilization_threshold_warning
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   require_full_window = true
@@ -90,7 +85,7 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.memory_utilization_extra_tags)
-
 }

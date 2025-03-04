@@ -19,6 +19,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.backup_unhealthy_event_extra_tags)
 }
@@ -43,7 +44,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.restore_unhealthy_event_extra_tags)
 }
-

@@ -74,7 +74,6 @@ Creates DataDog monitors with the following checks:
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a Redis monitor is triggered | `any` | n/a | yes |
 | <a name="input_minimum_traffic"></a> [minimum\_traffic](#input\_minimum\_traffic) | Minimum traffic to have for requests status alerts to avoid false triggering. | `number` | `20` | no |
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
-| <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_other_requests_enabled"></a> [other\_requests\_enabled](#input\_other\_requests\_enabled) | Flag to enable API Management other requests monitor | `string` | `"true"` | no |
 | <a name="input_other_requests_extra_tags"></a> [other\_requests\_extra\_tags](#input\_other\_requests\_extra\_tags) | Extra tags for API Management other requests monitor | `list(string)` | `[]` | no |
@@ -84,6 +83,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_other_requests_time_aggregator"></a> [other\_requests\_time\_aggregator](#input\_other\_requests\_time\_aggregator) | Monitor aggregator for API Management other requests [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_other_requests_timeframe"></a> [other\_requests\_timeframe](#input\_other\_requests\_timeframe) | Monitor timeframe for API Management other requests [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_priority"></a> [priority](#input\_priority) | Alert severity of monitors from 1 (high) to 5 (low) | `number` | `null` | no |
 | <a name="input_status_enabled"></a> [status\_enabled](#input\_status\_enabled) | Flag to enable API Management status monitor | `string` | `"true"` | no |
 | <a name="input_status_extra_tags"></a> [status\_extra\_tags](#input\_status\_extra\_tags) | Extra tags for API Management status monitor | `list(string)` | `[]` | no |
 | <a name="input_status_message"></a> [status\_message](#input\_status\_message) | Custom message for API Management status monitor | `string` | `""` | no |

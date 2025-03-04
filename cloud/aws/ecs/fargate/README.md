@@ -75,9 +75,9 @@ Creates DataDog monitors with the following checks:
 | <a name="input_memory_utilization_timeframe"></a> [memory\_utilization\_timeframe](#input\_memory\_utilization\_timeframe) | Timeframe for the Fargate Memory Utilization monitor | `string` | `"last_5m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `string` | n/a | yes |
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
-| <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_priority"></a> [priority](#input\_priority) | Alert severity of monitors from 1 (high) to 5 (low) | `number` | `null` | no |
 | <a name="input_service_check_enabled"></a> [service\_check\_enabled](#input\_service\_check\_enabled) | Flag to enable monitor | `bool` | `true` | no |
 | <a name="input_service_check_extra_tags"></a> [service\_check\_extra\_tags](#input\_service\_check\_extra\_tags) | Extra tags for the monitor | `list(string)` | `[]` | no |
 | <a name="input_service_check_message"></a> [service\_check\_message](#input\_service\_check\_message) | Custom message for the monitor | `string` | `""` | no |

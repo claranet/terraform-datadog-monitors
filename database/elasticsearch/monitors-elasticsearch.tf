@@ -17,7 +17,6 @@ EOQ
   }
 
   no_data_timeframe   = var.not_responding_no_data_timeframe
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = var.notify_no_data
   notify_audit        = false
@@ -25,6 +24,7 @@ EOQ
   include_tags        = true
   require_full_window = true
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.not_responding_extra_tags)
 }
@@ -51,12 +51,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.cluster_status_not_green_extra_tags)
 }
@@ -82,12 +82,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.cluster_initializing_shards_extra_tags)
 }
@@ -113,12 +113,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.cluster_relocating_shards_extra_tags)
 }
@@ -144,12 +144,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.cluster_unassigned_shards_extra_tags)
 }
@@ -175,12 +175,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.cluster_maximum_shards_extra_tags)
 }
@@ -210,12 +210,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.node_free_space_extra_tags)
 }
@@ -241,12 +241,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.jvm_heap_memory_usage_extra_tags)
 }
@@ -272,12 +272,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.jvm_memory_young_usage_extra_tags)
 }
@@ -303,12 +303,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.jvm_memory_old_usage_extra_tags)
 }
@@ -337,12 +337,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.jvm_gc_old_collection_latency_extra_tags)
 }
@@ -371,12 +371,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.jvm_gc_young_collection_latency_extra_tags)
 }
@@ -406,12 +406,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.indexing_latency_extra_tags)
 }
@@ -441,12 +441,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.flush_latency_extra_tags)
 }
@@ -485,12 +485,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.http_connections_anomaly_extra_tags)
 }
@@ -520,12 +520,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.search_query_latency_extra_tags)
 }
@@ -555,12 +555,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.fetch_latency_extra_tags)
 }
@@ -586,12 +586,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.search_query_change_extra_tags)
 }
@@ -617,12 +617,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.fetch_change_extra_tags)
 }
@@ -649,12 +649,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.field_data_evictions_change_extra_tags)
 }
@@ -681,12 +681,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.query_cache_evictions_change_extra_tags)
 }
@@ -713,12 +713,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.request_cache_evictions_change_extra_tags)
 }
@@ -744,12 +744,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.task_time_in_queue_change_extra_tags)
 }
@@ -775,12 +775,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.slm_snapshots_failed_extra_tags)
 }
@@ -806,12 +806,12 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
   require_full_window = true
   notify_no_data      = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.slm_snapshot_deletion_failures_extra_tags)
 }

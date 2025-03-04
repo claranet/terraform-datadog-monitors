@@ -62,9 +62,9 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
-| <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_priority"></a> [priority](#input\_priority) | Alert severity of monitors from 1 (high) to 5 (low) | `number` | `null` | no |
 | <a name="input_service_cpu_utilization_enabled"></a> [service\_cpu\_utilization\_enabled](#input\_service\_cpu\_utilization\_enabled) | Flag to enable Service CPU Utilization monitor | `string` | `"false"` | no |
 | <a name="input_service_cpu_utilization_extra_tags"></a> [service\_cpu\_utilization\_extra\_tags](#input\_service\_cpu\_utilization\_extra\_tags) | Extra tags for Service CPU Utilization monitor | `list(string)` | `[]` | no |
 | <a name="input_service_cpu_utilization_message"></a> [service\_cpu\_utilization\_message](#input\_service\_cpu\_utilization\_message) | Custom message for the Service CPU Utilization monitor | `string` | `""` | no |

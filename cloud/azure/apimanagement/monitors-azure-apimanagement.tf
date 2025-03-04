@@ -13,7 +13,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.apimgt_status_no_data_timeframe
@@ -22,6 +21,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.status_extra_tags)
 }
@@ -44,7 +44,6 @@ EOQ
     warning  = var.failed_requests_threshold_warning
   }
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   notify_no_data      = false
@@ -53,6 +52,7 @@ EOQ
   include_tags        = true
   require_full_window = false
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.failed_requests_extra_tags)
 }
@@ -75,7 +75,6 @@ EOQ
     warning  = var.other_requests_threshold_warning
   }
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   notify_no_data      = false
@@ -84,6 +83,7 @@ EOQ
   include_tags        = true
   require_full_window = false
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.other_requests_extra_tags)
 }
@@ -106,7 +106,6 @@ EOQ
     warning  = var.unauthorized_requests_threshold_warning
   }
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   notify_no_data      = false
@@ -115,6 +114,7 @@ EOQ
   include_tags        = true
   require_full_window = false
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.unauthorized_requests_extra_tags)
 }
@@ -139,7 +139,6 @@ EOQ
     warning  = var.successful_requests_threshold_warning
   }
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   evaluation_delay    = var.evaluation_delay
   notify_no_data      = false
@@ -148,7 +147,7 @@ EOQ
   include_tags        = true
   require_full_window = false
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.successful_requests_extra_tags)
 }
-

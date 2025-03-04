@@ -226,7 +226,6 @@ Creates DataDog monitors with the following checks:
 | <a name="input_jvm_memory_young_usage_timeframe"></a> [jvm\_memory\_young\_usage\_timeframe](#input\_jvm\_memory\_young\_usage\_timeframe) | Timeframe for the JVM Memory Young Usage monitor | `string` | `"last_10m"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
-| <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before begin to monitor new host | `number` | `300` | no |
 | <a name="input_node_free_space_enabled"></a> [node\_free\_space\_enabled](#input\_node\_free\_space\_enabled) | Flag to enable Free Space in nodes monitor | `string` | `"true"` | no |
 | <a name="input_node_free_space_extra_tags"></a> [node\_free\_space\_extra\_tags](#input\_node\_free\_space\_extra\_tags) | Extra tags for Free Space in nodes monitor | `list(string)` | `[]` | no |
 | <a name="input_node_free_space_message"></a> [node\_free\_space\_message](#input\_node\_free\_space\_message) | Custom message for the Free Space in nodes monitor | `string` | `""` | no |
@@ -241,6 +240,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_not_responding_threshold_warning"></a> [not\_responding\_threshold\_warning](#input\_not\_responding\_threshold\_warning) | Elasticsearch not responding limit (warning threshold) | `number` | `3` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_priority"></a> [priority](#input\_priority) | Alert severity of monitors from 1 (high) to 5 (low) | `number` | `null` | no |
 | <a name="input_query_cache_evictions_change_enabled"></a> [query\_cache\_evictions\_change\_enabled](#input\_query\_cache\_evictions\_change\_enabled) | Flag to enable Query Cache Evictions monitor | `string` | `"true"` | no |
 | <a name="input_query_cache_evictions_change_extra_tags"></a> [query\_cache\_evictions\_change\_extra\_tags](#input\_query\_cache\_evictions\_change\_extra\_tags) | Extra tags for Query Cache Evictions monitor | `list(string)` | `[]` | no |
 | <a name="input_query_cache_evictions_change_message"></a> [query\_cache\_evictions\_change\_message](#input\_query\_cache\_evictions\_change\_message) | Custom message for the Query Cache Evictions monitor | `string` | `""` | no |

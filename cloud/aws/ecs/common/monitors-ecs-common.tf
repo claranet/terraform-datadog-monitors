@@ -11,14 +11,12 @@ resource "datadog_monitor" "service_cpu_utilization" {
     > ${var.service_cpu_utilization_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.service_cpu_utilization_threshold_critical
     warning  = var.service_cpu_utilization_threshold_warning
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   require_full_window = false
@@ -26,6 +24,7 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:service"], var.service_cpu_utilization_extra_tags)
 }
@@ -48,7 +47,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   require_full_window = false
@@ -56,6 +54,7 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:service"], var.service_memory_utilization_extra_tags)
 }
@@ -72,14 +71,12 @@ resource "datadog_monitor" "service_missing_tasks" {
   * 100 < ${var.service_missing_tasks_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.service_missing_tasks_threshold_critical
     warning  = var.service_missing_tasks_threshold_warning
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   require_full_window = false
@@ -87,6 +84,7 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:aws", "resource:ecs", "team:claranet", "created-by:terraform", "category:service"], var.service_missing_tasks_extra_tags)
 }

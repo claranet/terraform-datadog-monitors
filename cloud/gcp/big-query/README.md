@@ -86,9 +86,9 @@ No modules.
 | <a name="input_filter_tags"></a> [filter\_tags](#input\_filter\_tags) | Tags used for filtering | `string` | `"*"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
-| <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds for the new host evaluation | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_priority"></a> [priority](#input\_priority) | Alert severity of monitors from 1 (high) to 5 (low) | `number` | `null` | no |
 | <a name="input_scanned_bytes_billed_enabled"></a> [scanned\_bytes\_billed\_enabled](#input\_scanned\_bytes\_billed\_enabled) | Flag to enable GCP Big Query Scanned Bytes Billed monitor | `string` | `"true"` | no |
 | <a name="input_scanned_bytes_billed_extra_tags"></a> [scanned\_bytes\_billed\_extra\_tags](#input\_scanned\_bytes\_billed\_extra\_tags) | Extra tags for GCP Big Query Scanned Bytes Billed monitor | `list(string)` | `[]` | no |
 | <a name="input_scanned_bytes_billed_message"></a> [scanned\_bytes\_billed\_message](#input\_scanned\_bytes\_billed\_message) | Custom message for the Scanned Bytes Billed monitor | `string` | `""` | no |

@@ -69,7 +69,6 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a Redis monitor is triggered | `any` | n/a | yes |
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
-| <a name="input_new_host_delay"></a> [new\_host\_delay](#input\_new\_host\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_percent_processor_time_enabled"></a> [percent\_processor\_time\_enabled](#input\_percent\_processor\_time\_enabled) | Flag to enable Redis processor monitor | `string` | `"true"` | no |
 | <a name="input_percent_processor_time_extra_tags"></a> [percent\_processor\_time\_extra\_tags](#input\_percent\_processor\_time\_extra\_tags) | Extra tags for Redis processor monitor | `list(string)` | `[]` | no |
@@ -79,6 +78,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_percent_processor_time_time_aggregator"></a> [percent\_processor\_time\_time\_aggregator](#input\_percent\_processor\_time\_time\_aggregator) | Monitor aggregator for Redis processor [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_percent_processor_time_timeframe"></a> [percent\_processor\_time\_timeframe](#input\_percent\_processor\_time\_timeframe) | Monitor timeframe for Redis processor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
+| <a name="input_priority"></a> [priority](#input\_priority) | Alert severity of monitors from 1 (high) to 5 (low) | `number` | `null` | no |
 | <a name="input_server_load_rate_enabled"></a> [server\_load\_rate\_enabled](#input\_server\_load\_rate\_enabled) | Flag to enable Redis server load monitor | `string` | `"true"` | no |
 | <a name="input_server_load_rate_extra_tags"></a> [server\_load\_rate\_extra\_tags](#input\_server\_load\_rate\_extra\_tags) | Extra tags for Redis server load monitor | `list(string)` | `[]` | no |
 | <a name="input_server_load_rate_message"></a> [server\_load\_rate\_message](#input\_server\_load\_rate\_message) | Custom message for Redis server load monitor | `string` | `""` | no |

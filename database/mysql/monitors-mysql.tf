@@ -14,7 +14,6 @@ EOQ
   }
 
   no_data_timeframe   = var.mysql_availability_no_data_timeframe
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = var.notify_no_data
   renotify_interval   = 0
@@ -22,6 +21,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.mysql_availability_extra_tags)
 }
@@ -45,13 +45,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.mysql_connection_extra_tags)
 }
@@ -75,13 +75,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.mysql_aborted_extra_tags)
 }
@@ -105,13 +105,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.mysql_slow_extra_tags)
 }
@@ -135,13 +135,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.mysql_pool_efficiency_extra_tags)
 }
@@ -166,13 +166,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.mysql_pool_utilization_extra_tags)
 }
@@ -209,13 +209,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.mysql_threads_extra_tags)
 }
@@ -252,13 +252,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = true
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.mysql_questions_extra_tags)
 }
@@ -279,13 +279,13 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
   require_full_window = false
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.mysql_replication_lag_extra_tags)
 }
@@ -304,7 +304,6 @@ EOQ
     critical = 1
   }
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -312,6 +311,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.mysql_replication_status_extra_tags)
 }

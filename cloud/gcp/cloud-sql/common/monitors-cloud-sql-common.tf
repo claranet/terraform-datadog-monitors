@@ -19,7 +19,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -27,6 +26,7 @@ EOQ
   require_full_window = false
   notify_no_data      = false
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.cpu_utilization_extra_tags)
 }
@@ -52,7 +52,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -61,6 +60,7 @@ EOQ
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.disk_utilization_no_data_timeframe
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.disk_utilization_extra_tags)
 }
@@ -93,7 +93,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -101,6 +100,7 @@ EOQ
   require_full_window = false
   notify_no_data      = false
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.disk_utilization_forecast_extra_tags)
 }
@@ -126,7 +126,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -134,6 +133,7 @@ EOQ
   require_full_window = false
   notify_no_data      = false
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.memory_utilization_extra_tags)
 }
@@ -166,7 +166,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -174,6 +173,7 @@ EOQ
   require_full_window = false
   notify_no_data      = false
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.memory_utilization_forecast_extra_tags)
 }
@@ -189,6 +189,8 @@ resource "datadog_monitor" "failover_unavailable" {
 
   query = <<EOQ
   ${var.failover_unavailable_time_aggregator}(${var.failover_unavailable_timeframe}):
+  priority = var.priority
+
     avg:gcp.cloudsql.database.available_for_failover{${join(", ", compact([var.filter_tags_failover_unavailable, var.filter_tags_failover_unavailable != "" && var.filter_tags == "*" ? "" : var.filter_tags]))}}
   <= ${var.failover_unavailable_threshold_critical}
 EOQ
@@ -198,7 +200,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -206,7 +207,7 @@ EOQ
   require_full_window = false
   notify_no_data      = false
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(["env:${var.environment}", "type:cloud", "provider:gcp", "resource:cloud-sql", "team:claranet", "created-by:terraform"], var.failover_unavailable_extra_tags)
 }
-

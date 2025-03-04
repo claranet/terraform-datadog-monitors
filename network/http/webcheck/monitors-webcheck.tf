@@ -16,7 +16,6 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   no_data_timeframe   = var.cannot_connect_no_data_timeframe
   notify_no_data      = var.notify_no_data
@@ -25,6 +24,7 @@ EOQ
   include_tags        = true
   require_full_window = true
   renotify_interval   = 0
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.cannot_connect_extra_tags)
 }

@@ -17,7 +17,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -25,6 +24,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.visible_messages_extra_tags)
 }
@@ -48,7 +48,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   renotify_interval   = 0
@@ -56,6 +55,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.age_of_oldest_message_extra_tags)
 }

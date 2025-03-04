@@ -14,7 +14,6 @@ EOQ
     critical = 5
   }
 
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   no_data_timeframe   = var.apiserver_no_data_timeframe
@@ -23,6 +22,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.apiserver_extra_tags)
 }
@@ -50,6 +50,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.heartbeat_extra_tags)
 }

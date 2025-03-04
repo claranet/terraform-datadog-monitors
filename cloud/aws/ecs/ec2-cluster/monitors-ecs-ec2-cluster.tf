@@ -9,14 +9,12 @@ resource "datadog_monitor" "ecs_agent_status" {
     "aws.ecs.agent_connected"${module.filter-tags.service_check}.by("cluster","instance_id").last(6).count_by_status()
 EOQ
 
-
   monitor_thresholds {
     warning  = var.agent_status_threshold_warning
     critical = 5
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.agent_status_no_data_timeframe
@@ -25,6 +23,7 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.agent_status_extra_tags)
 }
@@ -41,14 +40,12 @@ resource "datadog_monitor" "cluster_cpu_utilization" {
     > ${var.cluster_cpu_utilization_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.cluster_cpu_utilization_threshold_critical
     warning  = var.cluster_cpu_utilization_threshold_warning
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   require_full_window = false
@@ -56,9 +53,9 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.cluster_cpu_utilization_extra_tags)
-
 }
 
 resource "datadog_monitor" "cluster_memory_reservation" {
@@ -73,14 +70,12 @@ resource "datadog_monitor" "cluster_memory_reservation" {
     > ${var.cluster_memory_reservation_threshold_critical}
 EOQ
 
-
   monitor_thresholds {
     critical = var.cluster_memory_reservation_threshold_critical
     warning  = var.cluster_memory_reservation_threshold_warning
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = false
   require_full_window = false
@@ -88,6 +83,7 @@ EOQ
   notify_audit        = false
   timeout_h           = var.timeout_h
   include_tags        = true
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.cluster_memory_reservation_extra_tags)
 }

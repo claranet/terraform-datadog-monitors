@@ -11,7 +11,6 @@ resource "datadog_monitor" "VPN_status" {
 EOQ
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_no_data      = var.notify_no_data
   no_data_timeframe   = var.vpn_status_no_data_timeframe
@@ -20,7 +19,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.vpn_status_extra_tags)
 }
-

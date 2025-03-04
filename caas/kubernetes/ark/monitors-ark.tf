@@ -23,6 +23,7 @@ EOQ
   timeout_h           = var.timeout_h
   include_tags        = true
   require_full_window = false
+  priority            = var.priority
 
   tags = concat(local.common_tags, var.tags, var.ark_schedules_extra_tags)
 }
