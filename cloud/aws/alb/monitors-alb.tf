@@ -1,11 +1,11 @@
 resource "datadog_monitor" "ALB_no_healthy_instances_warning" {
   count   = var.alb_no_healthy_instances_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{service.name}}] ALB healthy instances {{#is_alert}}is at 0{{/is_alert}}{{#is_warning}}is at {{value}}%%{{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{service.name}}] ALB healthy instances is under 100%"
   message = coalesce(var.alb_no_healthy_instances_message, var.message_warning)
   type    = "query alert"
 
   query = <<EOQ
-    ${var.alb_no_healthy_instances_time_aggregator}(${var.alb_no_healthy_instances_timeframe}): (
+    ${var.alb_no_healthy_instances_time_aggregator_warning}(${var.alb_no_healthy_instances_timeframe_warning}): (
       sum:aws.applicationelb.healthy_host_count.minimum${module.filter-tags.query_alert} by {region,loadbalancer,targetgroup,service} / (
       sum:aws.applicationelb.healthy_host_count.minimum${module.filter-tags.query_alert} by {region,loadbalancer,targetgroup,service} +
       sum:aws.applicationelb.un_healthy_host_count.maximum${module.filter-tags.query_alert} by {region,loadbalancer,targetgroup,service} )

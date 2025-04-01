@@ -95,10 +95,22 @@ variable "alb_no_healthy_instances_time_aggregator" {
   default     = "min"
 }
 
+variable "alb_no_healthy_instances_time_aggregator_warning" {
+  description = "Monitor aggregator for ALB no healthy instances [available values: min, max or avg]"
+  type        = string
+  default     = "max"
+}
+
 variable "alb_no_healthy_instances_timeframe" {
   description = "Monitor timeframe for ALB no healthy instances [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
   default     = "last_5m"
+}
+
+variable "alb_no_healthy_instances_timeframe_warning" {
+  description = "Monitor timeframe for ALB no healthy instances [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_15m"
 }
 
 variable "alb_no_healthy_instances_threshold_warning" {
