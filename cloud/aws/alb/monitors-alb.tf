@@ -31,7 +31,7 @@ EOQ
 
 resource "datadog_monitor" "ALB_no_healthy_instances_critical" {
   count   = var.alb_no_healthy_instances_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{service.name}}] ALB healthy instances {{#is_alert}}is at 0{{/is_alert}}{{#is_warning}}is at {{value}}%%{{/is_warning}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{service.name}}] ALB healthy instances is at 0"
   message = coalesce(var.alb_no_healthy_instances_message, var.message)
   type    = "query alert"
 
