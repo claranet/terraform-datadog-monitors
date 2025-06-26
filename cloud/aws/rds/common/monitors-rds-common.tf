@@ -122,3 +122,102 @@ EOQ
 
   tags = concat(local.common_tags, var.tags, var.connection_variance_extra_tags)
 }
+
+resource "datadog_monitor" "rds_burst_balance" {
+  count   = var.burst_balance_enabled ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] RDS burst balance"
+  type    = "metric alert"
+  message = coalesce(var.burst_balance_message, var.message)
+
+  query = <<EOQ
+    ${var.burst_balance_time_aggregator}(${var.burst_balance_timeframe}): (
+      avg:aws.rds.burst_balance${module.filter-tags.query_alert} by {region,name}
+    ) <= ${var.burst_balance_threshold_critical}
+EOQ
+
+  require_full_window = false
+  notify_no_data      = false
+
+  monitor_thresholds {
+    critical = var.burst_balance_threshold_critical
+    warning  = var.burst_balance_threshold_warning
+  }
+
+  include_tags = false
+
+  tags = concat(local.common_tags, var.tags, var.burst_balance_extra_tags)
+}
+
+resource "datadog_monitor" "rds_freeable_memory" {
+  count   = var.rds_freeable_memory_enabled ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] RDS freeable memory"
+  type    = "metric alert"
+  message = coalesce(var.rds_freeable_memory_message, var.message)
+
+  query = <<EOQ
+    ${var.rds_freeable_memory_time_aggregator}(${var.rds_freeable_memory_timeframe}): (
+      avg:aws.rds.freeable_memory${module.filter-tags.query_alert} by {region,name}
+    ) <= ${var.rds_freeable_memory_threshold_critical}
+EOQ
+
+  require_full_window = false
+  notify_no_data      = false
+
+  monitor_thresholds {
+    critical = var.rds_freeable_memory_threshold_critical
+    warning  = var.rds_freeable_memory_threshold_warning
+  }
+
+  include_tags = false
+
+  tags = concat(local.common_tags, var.tags, var.rds_freeable_memory_extra_tags)
+}
+
+resource "datadog_monitor" "rds_read_iops" {
+  count   = var.rds_read_iops_enabled ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] RDS Read IOPS"
+  type    = "metric alert"
+  message = coalesce(var.rds_read_iops_message, var.message)
+
+  query = <<EOQ
+    ${var.rds_read_iops_time_aggregator}(${var.rds_read_iops_timeframe}): (
+      avg:aws.rds.read_iops${module.filter-tags.query_alert} by {region,name}
+    ) >= ${var.rds_read_iops_threshold_critical}
+EOQ
+
+  require_full_window = false
+  notify_no_data      = false
+
+  monitor_thresholds {
+    critical = var.rds_read_iops_threshold_critical
+    warning  = var.rds_read_iops_threshold_warning
+  }
+
+  include_tags = false
+
+  tags = concat(local.common_tags, var.tags, var.rds_read_iops_extra_tags)
+}
+
+resource "datadog_monitor" "rds_write_iops" {
+  count   = var.rds_write_iops_enabled ? 1 : 0
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] RDS Write IOPS"
+  type    = "metric alert"
+  message = coalesce(var.rds_write_iops_message, var.message)
+
+  query               = <<EOQ
+    ${var.rds_write_iops_time_aggregator}(${var.rds_write_iops_timeframe}): (
+      avg:aws.rds.write_iops${module.filter-tags.query_alert} by {region,name}
+    ) >= ${var.rds_write_iops_threshold_critical}
+EOQ
+  require_full_window = false
+  notify_no_data      = false
+
+  monitor_thresholds {
+    critical = var.rds_write_iops_threshold_critical
+    warning  = var.rds_write_iops_threshold_warning
+  }
+
+  include_tags = false
+
+  tags = concat(local.common_tags, var.tags, var.rds_write_iops_extra_tags)
+}

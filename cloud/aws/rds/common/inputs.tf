@@ -1,4 +1,3 @@
-
 # Global variables
 variable "tags" {
   type    = list(string)
@@ -221,4 +220,176 @@ variable "connection_variance_time_aggregator" {
   description = "Monitor aggregator for connection variance [available values: min, max or avg]"
   type        = string
   default     = "avg"
+}
+
+# RDS Burst Balance
+variable "burst_balance_enabled" {
+  description = "Flag to enable RDS burst balance monitor"
+  type        = bool
+  default     = true
+}
+
+variable "burst_balance_message" {
+  description = "Custom message for the RDS burst balance monitor"
+  type        = string
+  default     = ""
+}
+
+variable "burst_balance_time_aggregator" {
+  description = "Monitor aggregator for RDS burst balance [available values: min, max or avg]"
+  type        = string
+  default     = "avg"
+}
+
+variable "burst_balance_timeframe" {
+  description = "Timeframe for the RDS burst balance monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_5m"
+}
+
+variable "burst_balance_threshold_critical" {
+  description = "Critical threshold for RDS burst balance monitor"
+  type        = number
+  default     = 0
+}
+
+variable "burst_balance_threshold_warning" {
+  description = "Warning threshold for RDS burst balance monitor"
+  type        = number
+  default     = 50
+}
+
+variable "burst_balance_extra_tags" {
+  description = "Extra tags for RDS burst balance monitor"
+  type        = list(string)
+  default     = []
+}
+
+# RDS Freeable Memory
+variable "rds_freeable_memory_enabled" {
+  description = "Flag to enable RDS freeable memory monitor"
+  type        = bool
+  default     = true
+}
+
+variable "rds_freeable_memory_message" {
+  description = "Custom message for the RDS freeable memory monitor"
+  type        = string
+  default     = ""
+}
+
+variable "rds_freeable_memory_time_aggregator" {
+  description = "Monitor aggregator for RDS freeable memory [available values: min, max or avg]"
+  type        = string
+  default     = "avg"
+}
+
+variable "rds_freeable_memory_timeframe" {
+  description = "Timeframe for the RDS freeable memory monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_30m"
+}
+
+variable "rds_freeable_memory_threshold_critical" {
+  description = "Critical threshold for RDS freeable memory monitor in bytes"
+  type        = number
+  default     = 134217728 # 128MB
+}
+
+variable "rds_freeable_memory_threshold_warning" {
+  description = "Warning threshold for RDS freeable memory monitor in bytes"
+  type        = number
+  default     = 268435456 # 256MB
+}
+
+variable "rds_freeable_memory_extra_tags" {
+  description = "Extra tags for RDS freeable memory monitor"
+  type        = list(string)
+  default     = []
+}
+
+# RDS Read IOPS
+variable "rds_read_iops_enabled" {
+  description = "Flag to enable RDS read IOPS monitor"
+  type        = bool
+  default     = true
+}
+
+variable "rds_read_iops_message" {
+  description = "Custom message for the RDS read IOPS monitor"
+  type        = string
+  default     = ""
+}
+
+variable "rds_read_iops_time_aggregator" {
+  description = "Monitor aggregator for RDS read IOPS [available values: min, max or avg]"
+  type        = string
+  default     = "avg"
+}
+
+variable "rds_read_iops_timeframe" {
+  description = "Timeframe for the RDS read IOPS monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_30m"
+}
+
+variable "rds_read_iops_threshold_critical" {
+  description = "Critical threshold for RDS read IOPS monitor"
+  type        = number
+  default     = 1000000 # 1M
+}
+
+variable "rds_read_iops_threshold_warning" {
+  description = "Warning threshold for RDS read IOPS monitor"
+  type        = number
+  default     = 500000 # 500k
+}
+
+variable "rds_read_iops_extra_tags" {
+  description = "Extra tags for RDS read IOPS monitor"
+  type        = list(string)
+  default     = []
+}
+
+# RDS Write IOPS
+variable "rds_write_iops_enabled" {
+  description = "Flag to enable RDS write IOPS monitor"
+  type        = bool
+  default     = true
+}
+
+variable "rds_write_iops_message" {
+  description = "Custom message for the RDS write IOPS monitor"
+  type        = string
+  default     = ""
+}
+
+variable "rds_write_iops_time_aggregator" {
+  description = "Monitor aggregator for RDS write IOPS [available values: min, max or avg]"
+  type        = string
+  default     = "avg"
+}
+
+variable "rds_write_iops_timeframe" {
+  description = "Timeframe for the RDS write IOPS monitor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_30m"
+}
+
+variable "rds_write_iops_threshold_critical" {
+  description = "Critical threshold for RDS write IOPS monitor"
+  type        = number
+  default     = 1000000 # 1M
+}
+
+variable "rds_write_iops_threshold_warning" {
+  description = "Warning threshold for RDS write IOPS monitor"
+  type        = number
+  default     = 500000 # 500k
+}
+
+variable "rds_write_iops_extra_tags" {
+  description = "Extra tags for RDS write IOPS monitor"
+  type        = list(string)
+  default     = []
 }

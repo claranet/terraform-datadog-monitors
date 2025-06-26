@@ -71,7 +71,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_cronjob_extra_tags"></a> [cronjob\_extra\_tags](#input\_cronjob\_extra\_tags) | Extra tags for Cronjob monitor | `list(string)` | `[]` | no |
 | <a name="input_cronjob_message"></a> [cronjob\_message](#input\_cronjob\_message) | Custom message for Cronjob monitor | `string` | `""` | no |
 | <a name="input_cronjob_threshold_warning"></a> [cronjob\_threshold\_warning](#input\_cronjob\_threshold\_warning) | Cronjob monitor (warning threshold) | `string` | `3` | no |
-| <a name="input_cronjobfailed_group_by"></a> [cronjobfailed\_group\_by](#input\_cronjobfailed\_group\_by) | n/a | `list` | <pre>[<br>  "kube_cronjob"<br>]</pre> | no |
+| <a name="input_cronjobfailed_group_by"></a> [cronjobfailed\_group\_by](#input\_cronjobfailed\_group\_by) | n/a | `list` | <pre>[<br>  "kube_cronjob",<br>  "kube_cluster_name",<br>  "kube_namespace"<br>]</pre> | no |
 | <a name="input_daemonset_pods_not_ready_enabled"></a> [daemonset\_pods\_not\_ready\_enabled](#input\_daemonset\_pods\_not\_ready\_enabled) | Flag to enable DaemonSet pods not ready monitor | `string` | `"true"` | no |
 | <a name="input_daemonset_pods_not_ready_extra_tags"></a> [daemonset\_pods\_not\_ready\_extra\_tags](#input\_daemonset\_pods\_not\_ready\_extra\_tags) | Extra tags for DaemonSet pods not ready monitor | `list(string)` | `[]` | no |
 | <a name="input_daemonset_pods_not_ready_message"></a> [daemonset\_pods\_not\_ready\_message](#input\_daemonset\_pods\_not\_ready\_message) | Custom message for DaemonSet pods not ready monitor | `string` | `""` | no |
@@ -102,7 +102,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_job_extra_tags"></a> [job\_extra\_tags](#input\_job\_extra\_tags) | Extra tags for Job monitor | `list(string)` | `[]` | no |
 | <a name="input_job_message"></a> [job\_message](#input\_job\_message) | Custom message for Job monitor | `string` | `""` | no |
 | <a name="input_job_threshold_warning"></a> [job\_threshold\_warning](#input\_job\_threshold\_warning) | Job monitor (warning threshold) | `string` | `3` | no |
-| <a name="input_jobfailed_group_by"></a> [jobfailed\_group\_by](#input\_jobfailed\_group\_by) | n/a | `list` | <pre>[<br>  "kube_job",<br>  "kube_cluster_name"<br>]</pre> | no |
+| <a name="input_jobfailed_group_by"></a> [jobfailed\_group\_by](#input\_jobfailed\_group\_by) | n/a | `list` | <pre>[<br>  "kube_job",<br>  "kube_cluster_name",<br>  "kube_namespace"<br>]</pre> | no |
 | <a name="input_message"></a> [message](#input\_message) | Message sent when a monitor is triggered | `any` | n/a | yes |
 | <a name="input_new_group_delay"></a> [new\_group\_delay](#input\_new\_group\_delay) | Delay in seconds before monitor new resource | `number` | `300` | no |
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
