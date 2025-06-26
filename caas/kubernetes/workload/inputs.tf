@@ -413,9 +413,9 @@ variable "deployment_group_by" {
 }
 
 variable "jobfailed_group_by" {
-  default = ["kube_job", "kube_cluster_name"]
+  default = ["kube_job", "kube_cluster_name", "kube_namespace"]
 }
 
 variable "cronjobfailed_group_by" {
-  default = ["kube_cronjob"]
+  default = ["kube_cronjob", "kube_cluster_name", "kube_namespace"]
 }
