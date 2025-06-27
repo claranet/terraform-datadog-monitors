@@ -94,7 +94,7 @@ resource "datadog_monitor" "pod_container_killed_by_oom" {
   type    = "query alert"
 
   query = <<EOQ
-    change(${var.pod_container_killed_by_oom_time_aggregator}(${var.pod_container_killed_by_oom_timeframe})):
+    change(${var.pod_container_killed_by_oom_time_aggregator}(${var.pod_container_killed_by_oom_timeframe}),${var.pod_container_killed_by_oom_timeshift}):
       avg:container.memory.oom_events${module.filter-tags.query_alert} by {pod_name,kube_container_name,kube_cluster_name}
     > ${var.pod_container_killed_by_oom_threshold_critical}
 EOQ

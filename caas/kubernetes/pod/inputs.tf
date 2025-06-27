@@ -189,7 +189,13 @@ variable "pod_container_killed_by_oom_time_aggregator" {
 variable "pod_container_killed_by_oom_timeframe" {
   description = "Monitor timeframe for Pod container killed by OOM [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
   type        = string
-  default     = "last_15m"
+  default     = "last_5m"
+}
+
+variable "pod_container_killed_by_oom_timeshift" {
+  description = "Monitor timeshift for Pod container killed by OOM [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_1h"
 }
 
 variable "pod_container_killed_by_oom_threshold_warning" {
