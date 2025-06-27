@@ -195,13 +195,13 @@ variable "pod_container_killed_by_oom_timeframe" {
 variable "pod_container_killed_by_oom_threshold_warning" {
   description = "Pod container killed by OOM warning threshold"
   type        = number
-  default     = 0
+  default     = 10
 }
 
 variable "pod_container_killed_by_oom_threshold_critical" {
   description = "Pod container killed by OOM critical threshold"
   type        = number
-  default     = 5
+  default     = 20
 }
 
 variable "pod_container_killed_by_oom_extra_tags" {
