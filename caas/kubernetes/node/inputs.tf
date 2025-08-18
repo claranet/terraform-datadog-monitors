@@ -136,7 +136,7 @@ variable "ready_threshold_warning" {
 }
 
 variable "kubelet_ping_enabled" {
-  description = "Flag to enable Kubelet ping monitor"
+  description = "Flag to enable Kubelet ping monitor (not recommended on clusters with autoscaling)"
   type        = string
   default     = "true"
 }

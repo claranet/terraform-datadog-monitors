@@ -76,7 +76,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_filter_tags_custom_excluded"></a> [filter\_tags\_custom\_excluded](#input\_filter\_tags\_custom\_excluded) | Tags excluded for custom filtering when filter\_tags\_use\_defaults is false | `string` | `""` | no |
 | <a name="input_filter_tags_separator"></a> [filter\_tags\_separator](#input\_filter\_tags\_separator) | Set the filter tags separator (, or AND) | `string` | `","` | no |
 | <a name="input_filter_tags_use_defaults"></a> [filter\_tags\_use\_defaults](#input\_filter\_tags\_use\_defaults) | Use default filter tags convention | `string` | `"true"` | no |
-| <a name="input_kubelet_ping_enabled"></a> [kubelet\_ping\_enabled](#input\_kubelet\_ping\_enabled) | Flag to enable Kubelet ping monitor | `string` | `"true"` | no |
+| <a name="input_kubelet_ping_enabled"></a> [kubelet\_ping\_enabled](#input\_kubelet\_ping\_enabled) | Flag to enable Kubelet ping monitor (not recommended on clusters with autoscaling) | `string` | `"true"` | no |
 | <a name="input_kubelet_ping_extra_tags"></a> [kubelet\_ping\_extra\_tags](#input\_kubelet\_ping\_extra\_tags) | Extra tags for Kubelet ping monitor | `list(string)` | `[]` | no |
 | <a name="input_kubelet_ping_message"></a> [kubelet\_ping\_message](#input\_kubelet\_ping\_message) | Custom message for Kubelet ping monitor | `string` | `""` | no |
 | <a name="input_kubelet_ping_no_data_timeframe"></a> [kubelet\_ping\_no\_data\_timeframe](#input\_kubelet\_ping\_no\_data\_timeframe) | Number of minutes before reporting no data | `string` | `10` | no |
