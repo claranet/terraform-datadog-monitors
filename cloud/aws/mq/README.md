@@ -1,29 +1,3 @@
-# CLOUD AWS MQ DataDog monitors
-
-## How to use this module
-
-```hcl
-module "datadog-monitors-cloud-aws-sqs" {
-  source      = "claranet/monitors/datadog//cloud/aws/mq"
-  version     = "{revision}"
-
-  environment = var.environment
-  message     = module.datadog-message-alerting.alerting-message
-}
-
-```
-
-## Purpose
-
-Creates DataDog monitors with the following checks:
-
-- AWS MQ CPU Utilization High
-- AWS MQ Memory Utilization High
-- AWS MQ Disk Free limit High
-- AWS MQ Consumer count Low
-- AWS MQ Messages ready High
-
-<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
