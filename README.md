@@ -168,6 +168,7 @@ For example, this will regenerate every READMEs thanks to [terraform-docs](https
 		- [elb](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/elb/)
 		- [kinesis-firehose](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/kinesis-firehose/)
 		- [lambda](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/lambda/)
+		- [mq](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/mq/)
 		- [nlb](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/nlb/)
 		- [rds](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/rds/)
 			- [aurora](https://github.com/claranet/terraform-datadog-monitors/tree/master/cloud/aws/rds/aurora/)

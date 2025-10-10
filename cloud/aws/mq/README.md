@@ -1,3 +1,29 @@
+# CLOUD AWS MQ DataDog monitors
+
+## How to use this module
+
+```hcl
+module "datadog-monitors-cloud-aws-mq" {
+  source      = "claranet/monitors/datadog//cloud/aws/mq"
+  version     = "{revision}"
+
+  environment = var.environment
+  message     = module.datadog-message-alerting.alerting-message
+}
+
+```
+
+## Purpose
+
+Creates DataDog monitors with the following checks:
+
+- AWS MQ Consumer count Low
+- AWS MQ CPU Utilization High
+- AWS MQ Disk Free limit High
+- AWS MQ Memory Utilization High
+- AWS MQ Messages ready High
+
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -76,7 +102,7 @@
 | <a name="input_notify_no_data"></a> [notify\_no\_data](#input\_notify\_no\_data) | Will raise no data alert if set to true | `bool` | `true` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
 | <a name="input_priority"></a> [priority](#input\_priority) | Alert severity of monitors from 1 (high) to 5 (low) | `number` | `null` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br/>  "type:cloud",<br/>  "provider:aws",<br/>  "resource:mq"<br/>]</pre> | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global variables | `list(string)` | <pre>[<br>  "type:cloud",<br>  "provider:aws",<br>  "resource:mq"<br>]</pre> | no |
 | <a name="input_team"></a> [team](#input\_team) | n/a | `string` | `"claranet"` | no |
 | <a name="input_timeout_h"></a> [timeout\_h](#input\_timeout\_h) | Default auto-resolving state (in hours) | `number` | `0` | no |
 
@@ -89,3 +115,6 @@
 | <a name="output_disk_free_limit_id"></a> [disk\_free\_limit\_id](#output\_disk\_free\_limit\_id) | id for monitor disk\_free\_limit |
 | <a name="output_memory_utilization_id"></a> [memory\_utilization\_id](#output\_memory\_utilization\_id) | id for monitor memory\_utilization |
 | <a name="output_messages_ready_id"></a> [messages\_ready\_id](#output\_messages\_ready\_id) | id for monitor messages\_ready |
+<!-- END_TF_DOCS -->
+## Related documentation
+
