@@ -33,6 +33,11 @@ variable "evaluation_delay" {
   default     = 15
 }
 
+variable "evaluation_delay_disk_free_space" {
+  description = "Delay in seconds for the metric evaluation"
+  default     = 15
+}
+
 variable "new_host_delay" {
   description = "Delay in seconds before begin to monitor new host"
   default     = 300
