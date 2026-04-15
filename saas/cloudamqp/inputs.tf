@@ -12,7 +12,7 @@ variable "filter_tags_use_defaults" {
 
 variable "filter_tags_custom" {
   description = "Tags used for custom filtering when filter_tags_use_defaults is false"
-  default     = "host:*.cloudamqp.com"
+  default     = "rabbitmq_cluster:*"
 }
 
 variable "filter_tags_custom_excluded" {
@@ -85,9 +85,9 @@ variable "disk_free_space_timeframe" {
 }
 
 variable "disk_free_space_threshold_critical" {
-  description = "Disk Space is Low critical threshold"
-  type        = string
-  default     = 1
+  description = "Disk Space is Low critical threshold in bytes (e.g. 1000000000 = 1GiB)"
+  type        = number
+  default     = 1000000000
 }
 
 variable "disk_free_space_enabled" {
