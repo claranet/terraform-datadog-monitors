@@ -19,7 +19,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay_disk_free_space
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
@@ -51,7 +50,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
@@ -83,7 +81,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
@@ -112,7 +109,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
@@ -142,7 +138,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
@@ -172,7 +167,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
@@ -215,7 +209,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
