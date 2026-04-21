@@ -58,6 +58,16 @@ variable "filter_tags_custom_excluded" {
 
 # Azure Redis specific variables
 
+variable "server_type" {
+  description = "Redis Server Type on Azure [available values: cache, managed]"
+  type        = string
+  default     = "cache"
+  validation {
+    condition     = contains(["cache", "managed"], var.server_type)
+    error_message = "Redis Server Type should be `cache` or `managed`."
+  }
+}
+
 variable "status_enabled" {
   description = "Flag to enable Redis status monitor"
   type        = string
@@ -207,4 +217,3 @@ variable "server_load_rate_threshold_warning" {
   description = "Server CPU load rate (warning threshold)"
   default     = 70
 }
-
