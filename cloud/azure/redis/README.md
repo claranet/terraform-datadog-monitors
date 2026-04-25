@@ -8,7 +8,6 @@ module "datadog-monitors-cloud-azure-redis" {
   version     = "{revision}"
 
   environment = var.environment
-  server_type = "cache" # cache (Azure Cache for Redis) | managed (Azure Managed Redis)
   message     = module.datadog-message-alerting.alerting-message
 }
 
@@ -22,7 +21,6 @@ Creates DataDog monitors with the following checks:
 - Redis processor time too high
 - Redis server load too high
 - Redis too many evictedkeys
-- Supports both Azure Cache for Redis and Azure Managed Redis (`server_type`)
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -81,7 +79,6 @@ Creates DataDog monitors with the following checks:
 | <a name="input_percent_processor_time_timeframe"></a> [percent\_processor\_time\_timeframe](#input\_percent\_processor\_time\_timeframe) | Monitor timeframe for Redis processor [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
 | <a name="input_prefix_slug"></a> [prefix\_slug](#input\_prefix\_slug) | Prefix string to prepend between brackets on every monitors names | `string` | `""` | no |
 | <a name="input_priority"></a> [priority](#input\_priority) | Alert severity of monitors from 1 (high) to 5 (low) | `number` | `null` | no |
-| <a name="input_server_type"></a> [server\_type](#input\_server\_type) | Redis Server Type on Azure [available values: cache, managed] | `string` | `"cache"` | no |
 | <a name="input_server_load_rate_enabled"></a> [server\_load\_rate\_enabled](#input\_server\_load\_rate\_enabled) | Flag to enable Redis server load monitor | `string` | `"true"` | no |
 | <a name="input_server_load_rate_extra_tags"></a> [server\_load\_rate\_extra\_tags](#input\_server\_load\_rate\_extra\_tags) | Extra tags for Redis server load monitor | `list(string)` | `[]` | no |
 | <a name="input_server_load_rate_message"></a> [server\_load\_rate\_message](#input\_server\_load\_rate\_message) | Custom message for Redis server load monitor | `string` | `""` | no |
@@ -89,6 +86,7 @@ Creates DataDog monitors with the following checks:
 | <a name="input_server_load_rate_threshold_warning"></a> [server\_load\_rate\_threshold\_warning](#input\_server\_load\_rate\_threshold\_warning) | Server CPU load rate (warning threshold) | `number` | `70` | no |
 | <a name="input_server_load_rate_time_aggregator"></a> [server\_load\_rate\_time\_aggregator](#input\_server\_load\_rate\_time\_aggregator) | Monitor aggregator for Redis server load [available values: min, max or avg] | `string` | `"min"` | no |
 | <a name="input_server_load_rate_timeframe"></a> [server\_load\_rate\_timeframe](#input\_server\_load\_rate\_timeframe) | Monitor timeframe for Redis server load [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`] | `string` | `"last_5m"` | no |
+| <a name="input_server_type"></a> [server\_type](#input\_server\_type) | Redis Server Type on Azure [available values: cache, managed] | `string` | `"cache"` | no |
 | <a name="input_status_enabled"></a> [status\_enabled](#input\_status\_enabled) | Flag to enable Redis status monitor | `string` | `"true"` | no |
 | <a name="input_status_extra_tags"></a> [status\_extra\_tags](#input\_status\_extra\_tags) | Extra tags for Redis status monitor | `list(string)` | `[]` | no |
 | <a name="input_status_message"></a> [status\_message](#input\_status\_message) | Custom message for Redis status monitor | `string` | `""` | no |

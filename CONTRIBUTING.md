@@ -17,7 +17,8 @@ Please note we have a [code of conduct](#code-of-conduct), follow it in all your
 
 ## Pull Request Process
 
-1. Ensure to run the `auto_update.sh` script to be in an up to date and valid state.
+0. `git submodule update --init --recursive` to make sure you have the latest version of the submodules.
+1. Ensure to run the `auto_update.sh` script to be in an up to date and valid state. For example with: `docker run --rm -v "$PWD:/work" claranet/terraform-ci /work/scripts/auto_update.sh`
 2. Update the main README.md with details of changes to the interface, this includes new environment
    variables, exposed ports, useful file locations and container parameters.
 3. Increase the version numbers in any examples files and the README.md to the new version that this
