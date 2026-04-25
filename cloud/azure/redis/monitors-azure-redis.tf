@@ -6,7 +6,7 @@ resource "datadog_monitor" "status" {
 
   query = <<EOQ
     ${var.status_time_aggregator}(${var.status_timeframe}): (
-      avg:azure.cache_redis.count${module.filter-tags.query_alert} by {resource_group,region,name}
+      avg:azure.${local.metric_namespace}.count${module.filter-tags.query_alert} by {resource_group,region,name}
     ) != 1
 EOQ
 
@@ -32,7 +32,7 @@ resource "datadog_monitor" "evictedkeys" {
 
   query = <<EOQ
     ${var.evictedkeys_limit_time_aggregator}(${var.evictedkeys_limit_timeframe}): (
-      avg:azure.cache_redis.evictedkeys${module.filter-tags.query_alert} by {resource_group,region,name}
+      avg:azure.${local.metric_namespace}.evictedkeys${module.filter-tags.query_alert} by {resource_group,region,name}
      ) > ${var.evictedkeys_limit_threshold_critical}
 EOQ
 
@@ -62,7 +62,7 @@ resource "datadog_monitor" "percent_processor_time" {
 
   query = <<EOQ
     ${var.percent_processor_time_time_aggregator}(${var.percent_processor_time_timeframe}): (
-      avg:azure.cache_redis.percent_processor_time${module.filter-tags.query_alert} by {resource_group,region,name}
+      avg:azure.${local.metric_namespace}.percent_processor_time${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.percent_processor_time_threshold_critical}
 EOQ
 
@@ -92,7 +92,7 @@ resource "datadog_monitor" "server_load" {
 
   query = <<EOQ
     ${var.server_load_rate_time_aggregator}(${var.server_load_rate_timeframe}): (
-      avg:azure.cache_redis.server_load${module.filter-tags.query_alert} by {resource_group,region,name}
+      avg:azure.${local.metric_namespace}.server_load${module.filter-tags.query_alert} by {resource_group,region,name}
     ) > ${var.server_load_rate_threshold_critical}
 EOQ
 
