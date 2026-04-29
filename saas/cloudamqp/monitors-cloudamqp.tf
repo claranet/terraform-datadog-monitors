@@ -10,8 +10,8 @@ resource "datadog_monitor" "disk_free_space" {
 
   query = <<EOQ
   ${var.disk_free_space_time_aggregator}(${var.disk_free_space_timeframe}):
-    avg:rabbitmq.node.disk_alarm${module.filter-tags.query_alert} by {instance,rabbitmq_node}
-    >= 1
+    avg:rabbitmq.disk_space.available_bytes${module.filter-tags.query_alert} by {rabbitmq_node,instance}
+    < ${var.disk_free_space_threshold_critical}
 EOQ
 
   monitor_thresholds {
@@ -19,7 +19,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay_disk_free_space
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
@@ -51,7 +50,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
@@ -66,14 +64,14 @@ EOQ
 #
 resource "datadog_monitor" "memory_usage_high" {
   count   = var.memory_usage_high_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{instance.name}}] RabbitMQ Level of memory usage is too high for host: {{host.name}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{instance.name}}] RabbitMQ Level of memory usage is too high for node: {{rabbitmq_node.name}}"
   message = coalesce(var.memory_usage_high_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
   ${var.memory_usage_high_time_aggregator}(${var.memory_usage_high_timeframe}):
-      (avg:system.mem.total${module.filter-tags.query_alert} by {instance,host} - avg:system.mem.usable${module.filter-tags.query_alert} by {instance,host})
-      / avg:system.mem.total${module.filter-tags.query_alert} by {instance,host}
+      (avg:system_memory_limit_bytes${module.filter-tags.query_alert} by {rabbitmq_node,instance} - avg:system_linux_memory_available_bytes${module.filter-tags.query_alert} by {rabbitmq_node,instance})
+      / avg:system_memory_limit_bytes${module.filter-tags.query_alert} by {rabbitmq_node,instance}
     * 100
     > ${var.memory_usage_high_threshold_critical}
 EOQ
@@ -83,7 +81,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
@@ -95,14 +92,14 @@ EOQ
 
 resource "datadog_monitor" "memory_usage_high_warning" {
   count   = var.memory_usage_high_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{instance.name}}] RabbitMQ Level of memory usage is too high for host: {{host.name}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{instance.name}}] RabbitMQ Level of memory usage is too high for node: {{rabbitmq_node.name}}"
   message = coalesce(var.memory_usage_high_message, var.message_warning)
   type    = "query alert"
 
   query = <<EOQ
   ${var.memory_usage_high_time_aggregator}(${var.memory_usage_high_timeframe}):
-      (avg:system.mem.total${module.filter-tags.query_alert} by {instance,host} - avg:system.mem.usable${module.filter-tags.query_alert} by {instance,host})
-      / avg:system.mem.total${module.filter-tags.query_alert} by {instance,host}
+      (avg:system_memory_limit_bytes${module.filter-tags.query_alert} by {rabbitmq_node,instance} - avg:system_linux_memory_available_bytes${module.filter-tags.query_alert} by {rabbitmq_node,instance})
+      / avg:system_memory_limit_bytes${module.filter-tags.query_alert} by {rabbitmq_node,instance}
     * 100
     > ${var.memory_usage_high_threshold_warning}
 EOQ
@@ -112,7 +109,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
@@ -127,13 +123,13 @@ EOQ
 #
 resource "datadog_monitor" "messages_ready" {
   count   = var.messages_ready_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{rabbitmq_queue.name}}] RabbitMQ Queue message(s) ready"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{instance.name}}] RabbitMQ Queue message(s) ready are higher than usual"
   message = coalesce(var.messages_ready_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
   ${var.messages_ready_time_aggregator}(${var.messages_ready_timeframe}):
-    rabbitmq.queue.messages_ready${module.filter-tags.query_alert} by {host,rabbitmq_queue}
+    rabbitmq_queue_messages_ready${module.filter-tags.query_alert} by {instance}
     > ${var.messages_ready_threshold_critical}
 EOQ
 
@@ -142,7 +138,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
@@ -157,13 +152,13 @@ EOQ
 #
 resource "datadog_monitor" "no_consumers" {
   count   = var.no_consumers_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{instance.name}}] RabbitMQ Number of consumers is 0 in {{rabbitmq_queue.name}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{instance.name}}] RabbitMQ Number of consumers is 0"
   message = coalesce(var.no_consumers_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
   ${var.no_consumers_time_aggregator}(${var.no_consumers_timeframe}):
-    rabbitmq.queue.consumers${module.filter-tags.query_alert} by {instance,rabbitmq_queue}
+    rabbitmq_consumers${module.filter-tags.query_alert} by {instance}
     < 1
 EOQ
 
@@ -172,7 +167,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
@@ -187,14 +181,14 @@ EOQ
 #
 resource "datadog_monitor" "unack_rate" {
   count   = var.unack_rate_enabled == "true" ? 1 : 0
-  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{instance.name}}] RabbitMQ Messages unacknowledged rate is higher than usual on: {{host.name}}"
+  name    = "${var.prefix_slug == "" ? "" : "[${var.prefix_slug}]"}[${var.environment}] [{{instance.name}}] RabbitMQ Messages unacknowledged rate is higher than usual on: {{rabbitmq_node.name}}"
   message = coalesce(var.unack_rate_message, var.message)
   type    = "query alert"
 
   query = <<EOQ
   ${var.unack_rate_time_aggregator}(${var.unack_rate_timeframe}):
-    anomalies(avg:rabbitmq.queue.messages_unacknowledged.rate${module.filter-tags.query_alert}
-      by {rabbitmq_queue,instance,host},
+    anomalies(diff(avg:rabbitmq_queue_messages_unacked${module.filter-tags.query_alert}
+      by {rabbitmq_node,instance}),
       'agile', 2,
       direction='above',
       interval=60,
@@ -215,7 +209,6 @@ EOQ
   }
 
   evaluation_delay    = var.evaluation_delay
-  new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
   notify_audit        = false
   include_tags        = true
