@@ -1,3 +1,8 @@
+locals {
+  # Per-monitor override, falling back to the module-wide on_missing_data
+  mongodb_cpu_high_on_missing_data = var.mongodb_cpu_high_on_missing_data != "" ? var.mongodb_cpu_high_on_missing_data : var.on_missing_data
+}
+
 #
 # Primary state
 #
@@ -15,8 +20,9 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = var.notify_no_data
-  no_data_timeframe   = var.mongodb_primary_no_data_timeframe
+  notify_no_data      = var.on_missing_data == "" ? var.notify_no_data : null
+  no_data_timeframe   = var.on_missing_data == "" ? var.mongodb_primary_no_data_timeframe : null
+  on_missing_data     = var.on_missing_data == "" ? null : var.on_missing_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -50,7 +56,8 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = var.notify_no_data
+  notify_no_data      = var.on_missing_data == "" ? var.notify_no_data : null
+  on_missing_data     = var.on_missing_data == "" ? null : var.on_missing_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -81,7 +88,8 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = var.notify_no_data
+  notify_no_data      = var.on_missing_data == "" ? var.notify_no_data : null
+  on_missing_data     = var.on_missing_data == "" ? null : var.on_missing_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -109,7 +117,8 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = var.notify_no_data
+  notify_no_data      = var.on_missing_data == "" ? var.notify_no_data : null
+  on_missing_data     = var.on_missing_data == "" ? null : var.on_missing_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -141,7 +150,8 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = var.notify_no_data
+  notify_no_data      = var.on_missing_data == "" ? var.notify_no_data : null
+  on_missing_data     = var.on_missing_data == "" ? null : var.on_missing_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -170,7 +180,8 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = var.notify_no_data
+  notify_no_data      = var.on_missing_data == "" ? var.notify_no_data : null
+  on_missing_data     = var.on_missing_data == "" ? null : var.on_missing_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -202,7 +213,8 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = var.notify_no_data
+  notify_no_data      = var.on_missing_data == "" ? var.notify_no_data : null
+  on_missing_data     = var.on_missing_data == "" ? null : var.on_missing_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -231,7 +243,8 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = var.notify_no_data
+  notify_no_data      = var.on_missing_data == "" ? var.notify_no_data : null
+  on_missing_data     = var.on_missing_data == "" ? null : var.on_missing_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -263,7 +276,8 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = var.notify_no_data
+  notify_no_data      = var.on_missing_data == "" ? var.notify_no_data : null
+  on_missing_data     = var.on_missing_data == "" ? null : var.on_missing_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -292,7 +306,7 @@ resource "datadog_monitor" "mongodb_cpu_high" {
         + avg:mongodb.atlas.system.cpu.norm.iowait${module.filter-tags.query_alert} by {clustername,host}
         + avg:mongodb.atlas.system.cpu.norm.kernel${module.filter-tags.query_alert} by {clustername,host}
         + avg:mongodb.atlas.system.cpu.norm.softirq${module.filter-tags.query_alert} by {clustername,host}
-        , 'agile', 2, direction='above', interval=60, alert_window='${var.mongodb_cpu_high_alert_window}', count_default_zero='true', seasonality='hourly')
+        , 'agile', 2, direction='above', interval=${var.mongodb_cpu_high_interval}, alert_window='${var.mongodb_cpu_high_alert_window}', count_default_zero='true', seasonality='hourly')
         >= ${var.mongodb_cpu_high_critical}
 EOQ
 
@@ -309,7 +323,8 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = var.notify_no_data
+  notify_no_data      = local.mongodb_cpu_high_on_missing_data == "" ? var.notify_no_data : null
+  on_missing_data     = local.mongodb_cpu_high_on_missing_data == "" ? null : local.mongodb_cpu_high_on_missing_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -347,7 +362,8 @@ EOQ
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
-  notify_no_data      = var.notify_no_data
+  notify_no_data      = var.on_missing_data == "" ? var.notify_no_data : null
+  on_missing_data     = var.on_missing_data == "" ? null : var.on_missing_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -387,7 +403,8 @@ EOQ
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = var.notify_no_data
+  notify_no_data      = var.on_missing_data == "" ? var.notify_no_data : null
+  on_missing_data     = var.on_missing_data == "" ? null : var.on_missing_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -413,13 +430,14 @@ resource "datadog_monitor" "mongodb_read_latency" {
 EOQ
 
   monitor_thresholds {
-    critical          = var.mongodb_read_latency_critical
+    critical = var.mongodb_read_latency_critical
   }
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = var.notify_no_data
+  notify_no_data      = var.on_missing_data == "" ? var.notify_no_data : null
+  on_missing_data     = var.on_missing_data == "" ? null : var.on_missing_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
@@ -445,13 +463,14 @@ resource "datadog_monitor" "mongodb_write_latency" {
 EOQ
 
   monitor_thresholds {
-    critical          = var.mongodb_write_latency_critical
+    critical = var.mongodb_write_latency_critical
   }
 
   evaluation_delay    = var.evaluation_delay
   new_host_delay      = var.new_host_delay
   new_group_delay     = var.new_group_delay
-  notify_no_data      = var.notify_no_data
+  notify_no_data      = var.on_missing_data == "" ? var.notify_no_data : null
+  on_missing_data     = var.on_missing_data == "" ? null : var.on_missing_data
   renotify_interval   = 0
   notify_audit        = false
   timeout_h           = var.timeout_h
