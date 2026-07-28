@@ -41,6 +41,12 @@ variable "mongodb_primary_no_data_timeframe" {
   default     = 10
 }
 
+variable "on_missing_data" {
+  description = "Controls how monitors are treated when data is missing [available values: default, show_no_data, show_and_notify_no_data, resolve]. Leave empty to keep using notify_no_data/no_data_timeframe instead."
+  type        = string
+  default     = ""
+}
+
 variable "message" {
   description = "Message sent when an alert is triggered"
 }
@@ -353,6 +359,17 @@ variable "mongodb_cpu_high_alert_window" {
   description = "Alert window for MongoDB high CPU usage"
   type        = string
   default     = "last_15m"
+}
+
+variable "mongodb_cpu_high_interval" {
+  description = "Rollup interval in seconds for the MongoDB high CPU usage anomaly detection"
+  default     = 60
+}
+
+variable "mongodb_cpu_high_on_missing_data" {
+  description = "Override of on_missing_data for the MongoDB high CPU usage monitor, falls back to on_missing_data when empty"
+  type        = string
+  default     = ""
 }
 
 variable "mongodb_cpu_high_critical" {
