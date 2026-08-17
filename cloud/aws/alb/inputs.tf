@@ -148,6 +148,12 @@ variable "latency_timeframe" {
   default     = "last_5m"
 }
 
+variable "latency_timeframe_warning" {
+  description = "Monitor timeframe for ALB latency [available values: `last_#m` (1, 5, 10, 15, or 30), `last_#h` (1, 2, or 4), or `last_1d`]"
+  type        = string
+  default     = "last_5m"
+}
+
 variable "latency_threshold_critical" {
   default     = 3
   description = "latency critical threshold in seconds"

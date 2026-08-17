@@ -67,7 +67,7 @@ resource "datadog_monitor" "ALB_latency_warning" {
   type    = "query alert"
 
   query = <<EOQ
-    ${var.latency_time_aggregator}(${var.latency_timeframe}):
+    ${var.latency_time_aggregator}(${var.latency_timeframe_warning}):
       default(avg:aws.applicationelb.target_response_time.average${module.filter-tags.query_alert} by {region,loadbalancer,service,targetgroup}, 0)
     > ${var.latency_threshold_warning}
 EOQ
